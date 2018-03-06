@@ -2,6 +2,14 @@
   "name": "WalletID",
   "version": "0.0.1",
   "private": true,
+  "author": "Timothy Engqvist Johansson <timothy@blockfirm.se>",
+  "copyright": "© 2018 Blockfirm AB",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blockfirm/wallet-id-app.git"
+  },
+  "bugs": "https://github.com/blockfirm/wallet-id-app/issues",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
