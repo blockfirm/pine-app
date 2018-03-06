@@ -5,12 +5,19 @@
     "jest": true
   },
   "plugins": [
-    "react"
+    "react",
+    "flowtype"
   ],
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:flowtype/recommended"
   ],
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": false
+    }
+  },
   "rules": {
     "eqeqeq": ["error", "smart"],
     "no-else-return": "error",
@@ -89,6 +96,8 @@
     "no-useless-constructor": "error",
     "prefer-const": "error",
     "prefer-template": "error",
-    "template-curly-spacing": "error"
+    "template-curly-spacing": "error",
+
+    "flowtype/no-types-missing-file-annotation": 0
   }
 }
