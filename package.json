@@ -12,7 +12,8 @@
   "bugs": "https://github.com/blockfirm/wallet-id-app/issues",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "lint": "./node_modules/.bin/eslint --ext .js index.js src/ __tests__/ __mocks__/"
   },
   "dependencies": {
     "react": "^16.3.0-alpha.1",
