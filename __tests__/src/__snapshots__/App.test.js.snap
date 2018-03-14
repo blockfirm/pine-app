@@ -117,11 +117,16 @@ exports[`App renders correctly 1`] = `
                   "fontFamily": "System",
                   "fontWeight": "400",
                 },
-                Object {
-                  "color": "#333333",
-                  "marginBottom": 5,
-                  "textAlign": "center",
-                },
+                Array [
+                  Object {
+                    "color": "rgba(0, 0, 0, 0.5)",
+                    "marginBottom": 20,
+                  },
+                  Object {
+                    "marginBottom": 5,
+                    "textAlign": "center",
+                  },
+                ],
               ]
             }
           >
@@ -139,11 +144,16 @@ exports[`App renders correctly 1`] = `
                   "fontFamily": "System",
                   "fontWeight": "400",
                 },
-                Object {
-                  "color": "#333333",
-                  "marginBottom": 5,
-                  "textAlign": "center",
-                },
+                Array [
+                  Object {
+                    "color": "rgba(0, 0, 0, 0.5)",
+                    "marginBottom": 20,
+                  },
+                  Object {
+                    "marginBottom": 5,
+                    "textAlign": "center",
+                  },
+                ],
               ]
             }
           >

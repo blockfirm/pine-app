@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
-  Text,
   View
 } from 'react-native';
 
 import StyledText from '../components/StyledText';
+import Paragraph from '../components/Paragraph';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -23,12 +23,12 @@ export default class HomeScreen extends Component<Props> {
         <StyledText style={styles.welcome}>
           Welcome to React Native!
         </StyledText>
-        <StyledText style={styles.instructions}>
+        <Paragraph style={styles.instructions}>
           To get started, edit App.js
-        </StyledText>
-        <StyledText style={styles.instructions}>
+        </Paragraph>
+        <Paragraph style={styles.instructions}>
           {instructions}
-        </StyledText>
+        </Paragraph>
       </View>
     );
   }
@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
   },
   instructions: {
     textAlign: 'center',
-    color: '#333333',
     marginBottom: 5
   }
 });
