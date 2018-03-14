@@ -15,12 +15,20 @@ exports[`HomeScreen renders correctly 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
+    numberOfLines={undefined}
     style={
-      Object {
-        "fontSize": 20,
-        "margin": 10,
-        "textAlign": "center",
-      }
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Object {
+          "fontSize": 20,
+          "margin": 10,
+          "textAlign": "center",
+        },
+      ]
     }
   >
     Welcome to React Native!
@@ -29,12 +37,20 @@ exports[`HomeScreen renders correctly 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
+    numberOfLines={undefined}
     style={
-      Object {
-        "color": "#333333",
-        "marginBottom": 5,
-        "textAlign": "center",
-      }
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Object {
+          "color": "#333333",
+          "marginBottom": 5,
+          "textAlign": "center",
+        },
+      ]
     }
   >
     To get started, edit App.js
@@ -43,12 +59,20 @@ exports[`HomeScreen renders correctly 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
+    numberOfLines={undefined}
     style={
-      Object {
-        "color": "#333333",
-        "marginBottom": 5,
-        "textAlign": "center",
-      }
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Object {
+          "color": "#333333",
+          "marginBottom": 5,
+          "textAlign": "center",
+        },
+      ]
     }
   >
     Press Cmd+R to reload,
