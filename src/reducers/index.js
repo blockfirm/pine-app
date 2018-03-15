@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
+import errorReducer from './error';
 
 const getRootReducer = (navReducer) => {
   const rootReducer = combineReducers({
-    nav: navReducer
+    nav: navReducer,
+    error: errorReducer
   });
 
   return rootReducer;
