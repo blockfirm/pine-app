@@ -1,15 +1,15 @@
 import 'react-native';
 import React from 'react';
 import renderer from 'react-test-renderer';
-import HomeScreen from '../../../src/screens/HomeScreen';
+import BaseScreen from '../../../src/screens/BaseScreen';
 
 jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
 jest.mock('../../../src/containers/HeaderContainer', () => 'HeaderContainer');
 
-describe('HomeScreen', () => {
+describe('BaseScreen', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
-      <HomeScreen />
+      <BaseScreen />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

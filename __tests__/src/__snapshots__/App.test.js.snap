@@ -75,14 +75,36 @@ exports[`App renders correctly 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#F5FCFF",
-              "flex": 1,
-              "justifyContent": "center",
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#ffffff",
+                "flex": 1,
+                "justifyContent": "center",
+                "padding": 40,
+              },
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#F5FCFF",
+                "flex": 1,
+                "justifyContent": "center",
+              },
+            ]
           }
         >
+          <View
+            style={
+              Object {
+                "backgroundColor": "transparent",
+                "height": 42,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "zIndex": 1000,
+              }
+            }
+          />
           <Text
             accessible={true}
             allowFontScaling={true}

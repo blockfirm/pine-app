@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseScreen renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#ffffff",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 40,
+      },
+      undefined,
+    ]
+  }
+>
+  <HeaderContainer
+    backButtonIconStyle={undefined}
+  />
+  <ErrorModalContainer />
+</View>
+`;

@@ -4,9 +4,9 @@ import {
   StyleSheet
 } from 'react-native';
 
-import ErrorBoundary from '../components/ErrorBoundary';
 import StyledText from '../components/StyledText';
 import Paragraph from '../components/Paragraph';
+import BaseScreen from './BaseScreen';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -19,7 +19,7 @@ type Props = {};
 export default class HomeScreen extends Component<Props> {
   render() {
     return (
-      <ErrorBoundary style={styles.container}>
+      <BaseScreen style={styles.container}>
         <StyledText style={styles.welcome}>
           Welcome to React Native!
         </StyledText>
@@ -29,7 +29,7 @@ export default class HomeScreen extends Component<Props> {
         <Paragraph style={styles.instructions}>
           {instructions}
         </Paragraph>
-      </ErrorBoundary>
+      </BaseScreen>
     );
   }
 }
