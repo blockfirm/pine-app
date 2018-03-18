@@ -17,6 +17,7 @@
     "lint": "./node_modules/.bin/eslint --ext .js index.js src/ __tests__/ __mocks__/"
   },
   "dependencies": {
+    "deepmerge": "^2.1.0",
     "react": "^16.3.0-alpha.1",
     "react-native": "0.54.0",
     "react-native-blur": "^3.2.2",
@@ -46,6 +47,9 @@
     "testRegex": "(/__tests__/.*(\\.|/)(test|spec))\\.jsx?$",
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-navigation)"
+    ],
+    "setupFiles": [
+      "./__tests__/setup.js"
     ]
   }
 }
