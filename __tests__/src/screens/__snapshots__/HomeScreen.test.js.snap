@@ -88,5 +88,6 @@ exports[`HomeScreen renders correctly 1`] = `
     Press Cmd+R to reload,
 Cmd+D or shake for dev menu
   </Text>
+  <ErrorModalContainer />
 </View>
 `;

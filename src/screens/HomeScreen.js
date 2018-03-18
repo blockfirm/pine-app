@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {
   Platform,
-  StyleSheet,
-  View
+  StyleSheet
 } from 'react-native';
 
+import ErrorBoundary from '../components/ErrorBoundary';
 import StyledText from '../components/StyledText';
 import Paragraph from '../components/Paragraph';
 
@@ -19,7 +19,7 @@ type Props = {};
 export default class HomeScreen extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
+      <ErrorBoundary style={styles.container}>
         <StyledText style={styles.welcome}>
           Welcome to React Native!
         </StyledText>
@@ -29,7 +29,7 @@ export default class HomeScreen extends Component<Props> {
         <Paragraph style={styles.instructions}>
           {instructions}
         </Paragraph>
-      </View>
+      </ErrorBoundary>
     );
   }
 }
