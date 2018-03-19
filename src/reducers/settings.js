@@ -1,8 +1,8 @@
-import * as actions from '../actions';
+import * as settingsActions from '../actions/settings';
 
 export default function settings(state = {}, action) {
   switch (action.type) {
-    case actions.LOAD_SETTINGS_SUCCESS:
+    case settingsActions.SETTINGS_LOAD_SUCCESS:
       return { ...action.settings };
 
     default:

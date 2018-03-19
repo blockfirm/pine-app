@@ -1,34 +1,34 @@
 import { Settings } from 'react-native';
 import {
-  loadSettings,
-  LOAD_SETTINGS_REQUEST,
-  LOAD_SETTINGS_SUCCESS,
-  LOAD_SETTINGS_FAILURE
-} from '../../../src/actions/loadSettings';
-import config from '../../../src/config';
+  load as loadSettings,
+  SETTINGS_LOAD_REQUEST,
+  SETTINGS_LOAD_SUCCESS,
+  SETTINGS_LOAD_FAILURE
+} from '../../../../src/actions/settings/load';
+import config from '../../../../src/config';
 
 const SETTINGS_KEY = 'settings';
 const dispatchMock = jest.fn();
 
-describe('LOAD_SETTINGS_REQUEST', () => {
-  it('equals "LOAD_SETTINGS_REQUEST"', () => {
-    expect(LOAD_SETTINGS_REQUEST).toBe('LOAD_SETTINGS_REQUEST');
+describe('SETTINGS_LOAD_REQUEST', () => {
+  it('equals "SETTINGS_LOAD_REQUEST"', () => {
+    expect(SETTINGS_LOAD_REQUEST).toBe('SETTINGS_LOAD_REQUEST');
   });
 });
 
-describe('LOAD_SETTINGS_SUCCESS', () => {
-  it('equals "LOAD_SETTINGS_SUCCESS"', () => {
-    expect(LOAD_SETTINGS_SUCCESS).toBe('LOAD_SETTINGS_SUCCESS');
+describe('SETTINGS_LOAD_SUCCESS', () => {
+  it('equals "SETTINGS_LOAD_SUCCESS"', () => {
+    expect(SETTINGS_LOAD_SUCCESS).toBe('SETTINGS_LOAD_SUCCESS');
   });
 });
 
-describe('LOAD_SETTINGS_FAILURE', () => {
-  it('equals "LOAD_SETTINGS_FAILURE"', () => {
-    expect(LOAD_SETTINGS_FAILURE).toBe('LOAD_SETTINGS_FAILURE');
+describe('SETTINGS_LOAD_FAILURE', () => {
+  it('equals "SETTINGS_LOAD_FAILURE"', () => {
+    expect(SETTINGS_LOAD_FAILURE).toBe('SETTINGS_LOAD_FAILURE');
   });
 });
 
-describe('loadSettings', () => {
+describe('load', () => {
   beforeEach(() => {
     Settings.get.mockClear();
   });
@@ -53,11 +53,11 @@ describe('loadSettings', () => {
       returnedFunction = loadSettings();
     });
 
-    it('dispatches an action of type LOAD_SETTINGS_REQUEST', () => {
+    it('dispatches an action of type SETTINGS_LOAD_REQUEST', () => {
       returnedFunction(dispatchMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: LOAD_SETTINGS_REQUEST
+        type: SETTINGS_LOAD_REQUEST
       });
     });
 
@@ -68,13 +68,13 @@ describe('loadSettings', () => {
       expect(Settings.get).toHaveBeenCalledWith(SETTINGS_KEY);
     });
 
-    it('dispatches an action of type LOAD_SETTINGS_SUCCESS with the settings', () => {
+    it('dispatches an action of type SETTINGS_LOAD_SUCCESS with the settings', () => {
       const expectedSettings = config;
 
       returnedFunction(dispatchMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: LOAD_SETTINGS_SUCCESS,
+        type: SETTINGS_LOAD_SUCCESS,
         settings: expectedSettings
       });
     });
@@ -133,7 +133,7 @@ describe('loadSettings', () => {
         expect(dispatchAction).toThrowError('9a75627c-865b-4faf-811b-b598a78c392d');
       });
 
-      it('dispatches an action of type LOAD_SETTINGS_FAILURE with the error', () => {
+      it('dispatches an action of type SETTINGS_LOAD_FAILURE with the error', () => {
         expect.hasAssertions();
 
         try {
@@ -142,7 +142,7 @@ describe('loadSettings', () => {
           expect(error).toBeTruthy();
 
           expect(dispatchMock).toHaveBeenCalledWith({
-            type: LOAD_SETTINGS_FAILURE,
+            type: SETTINGS_LOAD_FAILURE,
             error
           });
         }

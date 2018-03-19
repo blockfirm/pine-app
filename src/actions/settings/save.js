@@ -1,37 +1,37 @@
 import { Settings } from 'react-native';
 import deepmerge from 'deepmerge';
-import { loadSettings } from './loadSettings';
+import { load as loadSettings } from './load';
 
-export const SAVE_SETTINGS_REQUEST = 'SAVE_SETTINGS_REQUEST';
-export const SAVE_SETTINGS_SUCCESS = 'SAVE_SETTINGS_SUCCESS';
-export const SAVE_SETTINGS_FAILURE = 'SAVE_SETTINGS_FAILURE';
+export const SETTINGS_SAVE_REQUEST = 'SETTINGS_SAVE_REQUEST';
+export const SETTINGS_SAVE_SUCCESS = 'SETTINGS_SAVE_SUCCESS';
+export const SETTINGS_SAVE_FAILURE = 'SETTINGS_SAVE_FAILURE';
 
 const SETTINGS_KEY = 'settings';
 
-const saveSettingsRequest = () => {
+const saveRequest = () => {
   return {
-    type: SAVE_SETTINGS_REQUEST
+    type: SETTINGS_SAVE_REQUEST
   };
 };
 
-const saveSettingsSuccess = () => {
+const saveSuccess = () => {
   return {
-    type: SAVE_SETTINGS_SUCCESS
+    type: SETTINGS_SAVE_SUCCESS
   };
 };
 
-const saveSettingsFailure = (error) => {
+const saveFailure = (error) => {
   return {
-    type: SAVE_SETTINGS_FAILURE,
+    type: SETTINGS_SAVE_FAILURE,
     error
   };
 };
 
-export const saveSettings = (newSettings) => {
+export const save = (newSettings) => {
   return (dispatch) => {
     let settings;
 
-    dispatch(saveSettingsRequest());
+    dispatch(saveRequest());
 
     try {
       // Get saved settings.
@@ -43,12 +43,12 @@ export const saveSettings = (newSettings) => {
       // Save merged settings.
       Settings.set({ settings });
     } catch (error) {
-      dispatch(saveSettingsFailure(error));
+      dispatch(saveFailure(error));
       throw error;
     }
 
     // Reload settings.
     dispatch(loadSettings());
-    dispatch(saveSettingsSuccess());
+    dispatch(saveSuccess());
   };
 };

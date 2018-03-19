@@ -1,37 +1,37 @@
 import { Settings } from 'react-native';
-import { loadSettings } from '../../../src/actions/loadSettings';
+import { load as loadSettings } from '../../../../src/actions/settings/load';
 import {
-  saveSettings,
-  SAVE_SETTINGS_REQUEST,
-  SAVE_SETTINGS_SUCCESS,
-  SAVE_SETTINGS_FAILURE
-} from '../../../src/actions/saveSettings';
+  save as saveSettings,
+  SETTINGS_SAVE_REQUEST,
+  SETTINGS_SAVE_SUCCESS,
+  SETTINGS_SAVE_FAILURE
+} from '../../../../src/actions/settings/save';
 
 const dispatchMock = jest.fn();
 
-jest.mock('../../../src/actions/loadSettings', () => ({
-  loadSettings: jest.fn()
+jest.mock('../../../../src/actions/settings/load', () => ({
+  load: jest.fn()
 }));
 
-describe('SAVE_SETTINGS_REQUEST', () => {
-  it('equals "SAVE_SETTINGS_REQUEST"', () => {
-    expect(SAVE_SETTINGS_REQUEST).toBe('SAVE_SETTINGS_REQUEST');
+describe('SETTINGS_SAVE_REQUEST', () => {
+  it('equals "SETTINGS_SAVE_REQUEST"', () => {
+    expect(SETTINGS_SAVE_REQUEST).toBe('SETTINGS_SAVE_REQUEST');
   });
 });
 
-describe('SAVE_SETTINGS_SUCCESS', () => {
-  it('equals "SAVE_SETTINGS_SUCCESS"', () => {
-    expect(SAVE_SETTINGS_SUCCESS).toBe('SAVE_SETTINGS_SUCCESS');
+describe('SETTINGS_SAVE_SUCCESS', () => {
+  it('equals "SETTINGS_SAVE_SUCCESS"', () => {
+    expect(SETTINGS_SAVE_SUCCESS).toBe('SETTINGS_SAVE_SUCCESS');
   });
 });
 
-describe('SAVE_SETTINGS_FAILURE', () => {
-  it('equals "SAVE_SETTINGS_FAILURE"', () => {
-    expect(SAVE_SETTINGS_FAILURE).toBe('SAVE_SETTINGS_FAILURE');
+describe('SETTINGS_SAVE_FAILURE', () => {
+  it('equals "SETTINGS_SAVE_FAILURE"', () => {
+    expect(SETTINGS_SAVE_FAILURE).toBe('SETTINGS_SAVE_FAILURE');
   });
 });
 
-describe('saveSettings', () => {
+describe('save', () => {
   let fakeSettings;
 
   beforeEach(() => {
@@ -66,11 +66,11 @@ describe('saveSettings', () => {
       returnedFunction = saveSettings(fakeSettings);
     });
 
-    it('dispatches an action of type SAVE_SETTINGS_REQUEST', () => {
+    it('dispatches an action of type SETTINGS_SAVE_REQUEST', () => {
       returnedFunction(dispatchMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: SAVE_SETTINGS_REQUEST
+        type: SETTINGS_SAVE_REQUEST
       });
     });
 
@@ -79,11 +79,11 @@ describe('saveSettings', () => {
       expect(loadSettings).toHaveBeenCalledTimes(1);
     });
 
-    it('dispatches an action of type SAVE_SETTINGS_SUCCESS', () => {
+    it('dispatches an action of type SETTINGS_SAVE_SUCCESS', () => {
       returnedFunction(dispatchMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: SAVE_SETTINGS_SUCCESS
+        type: SETTINGS_SAVE_SUCCESS
       });
     });
 
@@ -147,7 +147,7 @@ describe('saveSettings', () => {
         expect(dispatchAction).toThrowError('18eafc71-7a92-4b8a-854a-ca2c528747d4');
       });
 
-      it('dispatches an action of type SAVE_SETTINGS_FAILURE with the error', () => {
+      it('dispatches an action of type SETTINGS_SAVE_FAILURE with the error', () => {
         expect.hasAssertions();
 
         try {
@@ -156,7 +156,7 @@ describe('saveSettings', () => {
           expect(error).toBeTruthy();
 
           expect(dispatchMock).toHaveBeenCalledWith({
-            type: SAVE_SETTINGS_FAILURE,
+            type: SETTINGS_SAVE_FAILURE,
             error
           });
         }

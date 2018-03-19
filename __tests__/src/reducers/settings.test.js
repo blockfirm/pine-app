@@ -1,4 +1,4 @@
-import { LOAD_SETTINGS_SUCCESS } from '../../../src/actions/loadSettings';
+import { SETTINGS_LOAD_SUCCESS } from '../../../src/actions/settings';
 import settingsReducer from '../../../src/reducers/settings';
 
 describe('settingsReducer', () => {
@@ -6,13 +6,13 @@ describe('settingsReducer', () => {
     expect(typeof settingsReducer).toBe('function');
   });
 
-  describe('when action is LOAD_SETTINGS_SUCCESS', () => {
+  describe('when action is SETTINGS_LOAD_SUCCESS', () => {
     it('returns the settings', () => {
       const oldState = {};
       const fakeSettings = { setting: '5e90e288-e9e9-47fc-87f2-9009c7889f17' };
 
       const action = {
-        type: LOAD_SETTINGS_SUCCESS,
+        type: SETTINGS_LOAD_SUCCESS,
         settings: fakeSettings
       };
 

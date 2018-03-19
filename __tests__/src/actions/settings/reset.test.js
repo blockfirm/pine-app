@@ -1,37 +1,37 @@
 import { Settings } from 'react-native';
-import { loadSettings } from '../../../src/actions/loadSettings';
+import { load as loadSettings } from '../../../../src/actions/settings/load';
 import {
-  resetSettings,
-  RESET_SETTINGS_REQUEST,
-  RESET_SETTINGS_SUCCESS,
-  RESET_SETTINGS_FAILURE
-} from '../../../src/actions/resetSettings';
+  reset as resetSettings,
+  SETTINGS_RESET_REQUEST,
+  SETTINGS_RESET_SUCCESS,
+  SETTINGS_RESET_FAILURE
+} from '../../../../src/actions/settings/reset';
 
 const dispatchMock = jest.fn();
 
-jest.mock('../../../src/actions/loadSettings', () => ({
-  loadSettings: jest.fn()
+jest.mock('../../../../src/actions/settings/load', () => ({
+  load: jest.fn()
 }));
 
-describe('RESET_SETTINGS_REQUEST', () => {
-  it('equals "RESET_SETTINGS_REQUEST"', () => {
-    expect(RESET_SETTINGS_REQUEST).toBe('RESET_SETTINGS_REQUEST');
+describe('SETTINGS_RESET_REQUEST', () => {
+  it('equals "SETTINGS_RESET_REQUEST"', () => {
+    expect(SETTINGS_RESET_REQUEST).toBe('SETTINGS_RESET_REQUEST');
   });
 });
 
-describe('RESET_SETTINGS_SUCCESS', () => {
-  it('equals "RESET_SETTINGS_SUCCESS"', () => {
-    expect(RESET_SETTINGS_SUCCESS).toBe('RESET_SETTINGS_SUCCESS');
+describe('SETTINGS_RESET_SUCCESS', () => {
+  it('equals "SETTINGS_RESET_SUCCESS"', () => {
+    expect(SETTINGS_RESET_SUCCESS).toBe('SETTINGS_RESET_SUCCESS');
   });
 });
 
-describe('RESET_SETTINGS_FAILURE', () => {
-  it('equals "RESET_SETTINGS_FAILURE"', () => {
-    expect(RESET_SETTINGS_FAILURE).toBe('RESET_SETTINGS_FAILURE');
+describe('SETTINGS_RESET_FAILURE', () => {
+  it('equals "SETTINGS_RESET_FAILURE"', () => {
+    expect(SETTINGS_RESET_FAILURE).toBe('SETTINGS_RESET_FAILURE');
   });
 });
 
-describe('resetSettings', () => {
+describe('reset', () => {
   beforeEach(() => {
     Settings.set.mockClear();
     loadSettings.mockClear();
@@ -57,11 +57,11 @@ describe('resetSettings', () => {
       returnedFunction = resetSettings();
     });
 
-    it('dispatches an action of type RESET_SETTINGS_REQUEST', () => {
+    it('dispatches an action of type SETTINGS_RESET_REQUEST', () => {
       returnedFunction(dispatchMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: RESET_SETTINGS_REQUEST
+        type: SETTINGS_RESET_REQUEST
       });
     });
 
@@ -77,11 +77,11 @@ describe('resetSettings', () => {
       expect(loadSettings).toHaveBeenCalledTimes(1);
     });
 
-    it('dispatches an action of type RESET_SETTINGS_SUCCESS', () => {
+    it('dispatches an action of type SETTINGS_RESET_SUCCESS', () => {
       returnedFunction(dispatchMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: RESET_SETTINGS_SUCCESS
+        type: SETTINGS_RESET_SUCCESS
       });
     });
 
@@ -101,7 +101,7 @@ describe('resetSettings', () => {
         expect(dispatchAction).toThrowError('416782bb-53b3-49f8-a902-0fca3053ee3b');
       });
 
-      it('dispatches an action of type RESET_SETTINGS_FAILURE with the error', () => {
+      it('dispatches an action of type SETTINGS_RESET_FAILURE with the error', () => {
         expect.hasAssertions();
 
         try {
@@ -110,7 +110,7 @@ describe('resetSettings', () => {
           expect(error).toBeTruthy();
 
           expect(dispatchMock).toHaveBeenCalledWith({
-            type: RESET_SETTINGS_FAILURE,
+            type: SETTINGS_RESET_FAILURE,
             error
           });
         }
