@@ -1,11 +1,11 @@
-import * as actions from '../actions';
+import * as errorActions from '../actions/error';
 
 export default function error(state = null, action) {
   switch (action.type) {
-    case actions.HANDLE_ERROR:
+    case errorActions.ERROR_HANDLE:
       return action.error;
 
-    case actions.DISMISS_ERROR:
+    case errorActions.ERROR_DISMISS:
       return null;
 
     default:

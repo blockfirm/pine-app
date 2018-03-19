@@ -1,12 +1,12 @@
-import { handleError, HANDLE_ERROR } from '../../../src/actions/handleError';
+import { handle as handleError, ERROR_HANDLE } from '../../../../src/actions/error/handle';
 
-describe('HANDLE_ERROR', () => {
-  it('equals "HANDLE_ERROR"', () => {
-    expect(HANDLE_ERROR).toBe('HANDLE_ERROR');
+describe('ERROR_HANDLE', () => {
+  it('equals "ERROR_HANDLE"', () => {
+    expect(ERROR_HANDLE).toBe('ERROR_HANDLE');
   });
 });
 
-describe('handleError', () => {
+describe('handle', () => {
   it('is a function', () => {
     expect(typeof handleError).toBe('function');
   });
@@ -23,9 +23,9 @@ describe('handleError', () => {
   });
 
   describe('the returned object', () => {
-    it('has "type" set to HANDLE_ERROR', () => {
+    it('has "type" set to ERROR_HANDLE', () => {
       const returnValue = handleError();
-      expect(returnValue.type).toBe(HANDLE_ERROR);
+      expect(returnValue.type).toBe(ERROR_HANDLE);
     });
 
     it('has "error" set to the passed error', () => {

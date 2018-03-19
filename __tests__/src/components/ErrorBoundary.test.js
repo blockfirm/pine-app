@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import renderer from 'react-test-renderer';
 
-import { HANDLE_ERROR } from '../../../src/actions';
+import { ERROR_HANDLE } from '../../../src/actions/error';
 import ErrorBoundary from '../../../src/components/ErrorBoundary';
 
 const dispatchMock = jest.fn();
@@ -21,7 +21,7 @@ describe('ErrorBoundary', () => {
   });
 
   describe('#componentDidCatch(error)', () => {
-    it('dispatches an action of type HANDLE_ERROR with the error', () => {
+    it('dispatches an action of type ERROR_HANDLE with the error', () => {
       const error = new Error('11a8def9-f495-4cc9-aba4-181284bb2280');
 
       const errorBoundary = new ErrorBoundary({
@@ -31,7 +31,7 @@ describe('ErrorBoundary', () => {
       errorBoundary.componentDidCatch(error);
 
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: HANDLE_ERROR,
+        type: ERROR_HANDLE,
         error
       });
     });

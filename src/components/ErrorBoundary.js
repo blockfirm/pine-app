@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { handleError } from '../actions';
+import { handle as handleError } from '../actions/error';
 import ErrorModalContainer from '../containers/ErrorModalContainer';
 
 export default class ErrorBoundary extends Component {
