@@ -18,6 +18,9 @@
       "onlyFilesWithFlowAnnotation": false
     }
   },
+  "globals": {
+    "Promise": true
+  },
   "rules": {
     "eqeqeq": ["error", "smart"],
     "no-else-return": "error",
