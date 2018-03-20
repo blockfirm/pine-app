@@ -135,7 +135,7 @@ describe('save', () => {
 
       beforeEach(() => {
         // Make the function fail by returning a rejected promise from AsyncStorage.setItem().
-        AsyncStorage.setItem.mockImplementationOnce(() => new Promise.reject(
+        AsyncStorage.setItem.mockImplementationOnce(() => Promise.reject(
           new Error('d73daa18-769b-48cc-a893-244a5507e768')
         ));
 
