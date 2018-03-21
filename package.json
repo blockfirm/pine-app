@@ -23,6 +23,7 @@
     "react-native-blur": "^3.2.2",
     "react-native-haptic": "^1.0.5",
     "react-native-iphone-x-helper": "^1.0.2",
+    "react-native-randombytes": "^3.0.0",
     "react-native-vector-icons": "^4.5.0",
     "react-navigation": "^1.4.0",
     "react-navigation-redux-debouncer": "^0.0.2",
