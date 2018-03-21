@@ -1,0 +1,271 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders correctly 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  collapsable={undefined}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#F18340",
+          "borderRadius": 4,
+          "height": 42,
+          "justifyContent": "center",
+          "shadowColor": "#000000",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0.1,
+          "shadowRadius": 4,
+          "width": 670,
+        },
+        undefined,
+      ]
+    }
+  >
+    <ActivityIndicator
+      animating={false}
+      color="#F8F8F8"
+      hidesWhenStopped={true}
+      size="small"
+      style={
+        Object {
+          "height": 12,
+          "left": 15,
+          "position": "absolute",
+          "top": 15,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Object {
+            "color": "#F8F8F8",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "letterSpacing": 1,
+          },
+        ]
+      }
+    >
+      06B5F369-EC66-4E0A-8777-90C71DEC3F7B
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button renders correctly as disabled 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  collapsable={undefined}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#F18340",
+          "borderRadius": 4,
+          "height": 42,
+          "justifyContent": "center",
+          "shadowColor": "#000000",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0.1,
+          "shadowRadius": 4,
+          "width": 670,
+        },
+        undefined,
+        Object {
+          "opacity": 0.4,
+        },
+      ]
+    }
+  >
+    <ActivityIndicator
+      animating={false}
+      color="#F8F8F8"
+      hidesWhenStopped={true}
+      size="small"
+      style={
+        Object {
+          "height": 12,
+          "left": 15,
+          "position": "absolute",
+          "top": 15,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Object {
+            "color": "#F8F8F8",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "letterSpacing": 1,
+          },
+        ]
+      }
+    >
+      15013B10-4256-4D32-B25F-A031DFB6CE95
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button renders correctly in full width 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  collapsable={undefined}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#F18340",
+          "borderRadius": 4,
+          "height": 42,
+          "justifyContent": "center",
+          "shadowColor": "#000000",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0.1,
+          "shadowRadius": 4,
+          "width": 670,
+        },
+        undefined,
+      ]
+    }
+  >
+    <ActivityIndicator
+      animating={false}
+      color="#F8F8F8"
+      hidesWhenStopped={true}
+      size="small"
+      style={
+        Object {
+          "height": 12,
+          "left": 15,
+          "position": "absolute",
+          "top": 15,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Object {
+            "color": "#F8F8F8",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "letterSpacing": 1,
+          },
+        ]
+      }
+    >
+      099349FD-1C84-415B-818F-C8C6AF2EA8E7
+    </Text>
+  </View>
+</View>
+`;
