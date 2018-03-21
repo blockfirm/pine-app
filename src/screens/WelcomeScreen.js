@@ -27,8 +27,14 @@ export default class WelcomeScreen extends Component {
     header: null
   }
 
-  _createKey() {
+  _showMnemonicScreen(mnemonic) {
+    const navigation = this.props.navigation;
+    navigation.navigate('Mnemonic', { mnemonic });
+  }
 
+  _createKey() {
+    const mnemonic = 'during bulb nominee acquire paddle next course stable govern eagle title wing';
+    this._showMnemonicScreen(mnemonic);
   }
 
   _recoverKey() {
