@@ -1,0 +1,558 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MnemonicWords renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "center",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        1
+        . 
+        during
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        2
+        . 
+        bulb
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        3
+        . 
+        nominee
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        4
+        . 
+        acquire
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        5
+        . 
+        paddle
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        6
+        . 
+        next
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        7
+        . 
+        course
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        8
+        . 
+        stable
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        9
+        . 
+        govern
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        10
+        . 
+        eagle
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        11
+        . 
+        title
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "padding": 4,
+        "width": "49%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fbfbfb",
+          "borderColor": "#DDDDDF",
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 7,
+          "paddingLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+            },
+          ]
+        }
+      >
+        12
+        . 
+        wing
+      </Text>
+    </View>
+  </View>
+</View>
+`;
