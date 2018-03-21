@@ -83,12 +83,7 @@ exports[`App renders correctly 1`] = `
                 "justifyContent": "center",
                 "padding": 40,
               },
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#F5FCFF",
-                "flex": 1,
-                "justifyContent": "center",
-              },
+              undefined,
             ]
           }
         >
@@ -117,15 +112,22 @@ exports[`App renders correctly 1`] = `
                   "fontFamily": "System",
                   "fontWeight": "400",
                 },
-                Object {
-                  "fontSize": 20,
-                  "margin": 10,
-                  "textAlign": "center",
-                },
+                Array [
+                  Object {
+                    "fontSize": 18,
+                    "fontWeight": "600",
+                    "letterSpacing": 1,
+                    "marginBottom": 10,
+                    "textAlign": "center",
+                  },
+                  Object {
+                    "marginBottom": 20,
+                  },
+                ],
               ]
             }
           >
-            Welcome to React Native!
+            Welcome to Wallet ID
           </Text>
           <Text
             accessible={true}
@@ -144,44 +146,175 @@ exports[`App renders correctly 1`] = `
                     "color": "rgba(0, 0, 0, 0.5)",
                     "marginBottom": 20,
                   },
-                  Object {
-                    "marginBottom": 5,
-                    "textAlign": "center",
-                  },
+                  undefined,
                 ],
               ]
             }
           >
-            To get started, edit App.js
+            Start by creating a new key.
           </Text>
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={undefined}
+          <View
+            pointerEvents={undefined}
             style={
               Array [
                 Object {
-                  "color": "#000000",
-                  "fontFamily": "System",
-                  "fontWeight": "400",
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "bottom": 30,
+                  "left": 40,
+                  "position": "absolute",
+                  "right": 40,
                 },
-                Array [
-                  Object {
-                    "color": "rgba(0, 0, 0, 0.5)",
-                    "marginBottom": 20,
-                  },
-                  Object {
-                    "marginBottom": 5,
-                    "textAlign": "center",
-                  },
-                ],
+                undefined,
               ]
             }
           >
-            Press Cmd+R to reload,
-Cmd+D or shake for dev menu
-          </Text>
+            <View
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={undefined}
+              accessible={true}
+              collapsable={undefined}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID={undefined}
+              tvParallaxProperties={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#F18340",
+                      "borderRadius": 4,
+                      "height": 42,
+                      "justifyContent": "center",
+                      "shadowColor": "#000000",
+                      "shadowOffset": Object {
+                        "height": 0,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.1,
+                      "shadowRadius": 4,
+                      "width": 670,
+                    },
+                    Object {
+                      "marginBottom": 10,
+                    },
+                  ]
+                }
+              >
+                <ActivityIndicator
+                  animating={false}
+                  color="#F8F8F8"
+                  hidesWhenStopped={true}
+                  size="small"
+                  style={
+                    Object {
+                      "height": 12,
+                      "left": 15,
+                      "position": "absolute",
+                      "top": 15,
+                    }
+                  }
+                />
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={undefined}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#000000",
+                        "fontFamily": "System",
+                        "fontWeight": "400",
+                      },
+                      Object {
+                        "color": "#F8F8F8",
+                        "fontSize": 12,
+                        "fontWeight": "600",
+                        "letterSpacing": 1,
+                      },
+                    ]
+                  }
+                >
+                  CREATE A NEW KEY
+                </Text>
+              </View>
+            </View>
+            <View
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={undefined}
+              accessible={true}
+              collapsable={undefined}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID={undefined}
+              tvParallaxProperties={undefined}
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={undefined}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#000000",
+                        "fontFamily": "System",
+                        "fontWeight": "400",
+                      },
+                      Array [
+                        Object {
+                          "color": "#007AFF",
+                          "fontSize": 12,
+                          "fontWeight": "600",
+                        },
+                        undefined,
+                      ],
+                    ]
+                  }
+                >
+                  Or recover an existing Wallet ID key
+                </Text>
+              </Text>
+            </View>
+          </View>
           <View
             pointerEvents="none"
             style={
@@ -401,93 +534,6 @@ Cmd+D or shake for dev menu
                 </View>
               </View>
             </View>
-          </View>
-        </View>
-      </View>
-    </View>
-    <View
-      collapsable={undefined}
-      onLayout={[Function]}
-      pointerEvents="box-none"
-      style={
-        Object {
-          "backgroundColor": "#F7F7F7",
-          "borderBottomColor": "#A7A7AA",
-          "borderBottomWidth": 0.5,
-          "height": 64,
-          "paddingBottom": 0,
-          "paddingLeft": 0,
-          "paddingRight": 0,
-          "paddingTop": 20,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "bottom": 0,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          }
-        }
-      />
-      <View
-        style={
-          Object {
-            "flex": 1,
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "bottom": 0,
-              "flexDirection": "row",
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            }
-          }
-        >
-          <View
-            collapsable={undefined}
-            pointerEvents="box-none"
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "transparent",
-                "bottom": 0,
-                "flexDirection": "row",
-                "justifyContent": "center",
-                "left": 0,
-                "opacity": 1,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              }
-            }
-          >
-            <Text
-              accessibilityTraits="header"
-              accessible={true}
-              allowFontScaling={true}
-              collapsable={undefined}
-              ellipsizeMode="tail"
-              numberOfLines={1}
-              onLayout={[Function]}
-              style={
-                Object {
-                  "color": "rgba(0, 0, 0, .9)",
-                  "fontSize": 17,
-                  "fontWeight": "700",
-                  "marginHorizontal": 16,
-                  "textAlign": "center",
-                }
-              }
-            />
           </View>
         </View>
       </View>

@@ -8,7 +8,7 @@ jest.mock('../../../src/containers/HeaderContainer', () => 'HeaderContainer');
 
 const storeMock = {
   getState: jest.fn(() => ({})),
-  dispatch: jest.fn()
+  dispatch: jest.fn(() => ({}))
 };
 
 describe('SplashScreen', () => {

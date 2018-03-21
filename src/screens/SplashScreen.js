@@ -33,13 +33,23 @@ export default class SplashScreen extends Component {
     super(...arguments);
 
     const dispatch = props.dispatch;
-    dispatch(settingsActions.load());
+    const settings = dispatch(settingsActions.load());
+
+    if (!settings.initialized) {
+      return this._showWelcomeView();
+    }
+
     this._showHomeView();
   }
 
   _showHomeView() {
     const dispatch = this.props.dispatch;
     dispatch(navigateWithReset('Home'));
+  }
+
+  _showWelcomeView() {
+    const dispatch = this.props.dispatch;
+    dispatch(navigateWithReset('Welcome'));
   }
 
   render() {
