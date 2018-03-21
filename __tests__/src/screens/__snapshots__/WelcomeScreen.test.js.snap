@@ -1,0 +1,238 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WelcomeScreen renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#ffffff",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 40,
+      },
+      undefined,
+    ]
+  }
+>
+  <HeaderContainer
+    backButtonIconStyle={undefined}
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    numberOfLines={undefined}
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Array [
+          Object {
+            "fontSize": 18,
+            "fontWeight": "600",
+            "letterSpacing": 1,
+            "marginBottom": 10,
+            "textAlign": "center",
+          },
+          Object {
+            "marginBottom": 20,
+          },
+        ],
+      ]
+    }
+  >
+    Welcome to Wallet ID
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    numberOfLines={undefined}
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Array [
+          Object {
+            "color": "rgba(0, 0, 0, 0.5)",
+            "marginBottom": 20,
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    Start by creating a new key.
+  </Text>
+  <View
+    pointerEvents={undefined}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "bottom": 30,
+          "left": 40,
+          "position": "absolute",
+          "right": 40,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#F18340",
+              "borderRadius": 4,
+              "height": 42,
+              "justifyContent": "center",
+              "shadowColor": "#000000",
+              "shadowOffset": Object {
+                "height": 0,
+                "width": 0,
+              },
+              "shadowOpacity": 0.1,
+              "shadowRadius": 4,
+              "width": 670,
+            },
+            Object {
+              "marginBottom": 10,
+            },
+          ]
+        }
+      >
+        <ActivityIndicator
+          animating={false}
+          color="#F8F8F8"
+          hidesWhenStopped={true}
+          size="small"
+          style={
+            Object {
+              "height": 12,
+              "left": 15,
+              "position": "absolute",
+              "top": 15,
+            }
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#F8F8F8",
+                "fontSize": 12,
+                "fontWeight": "600",
+                "letterSpacing": 1,
+              },
+            ]
+          }
+        >
+          CREATE A NEW KEY
+        </Text>
+      </View>
+    </View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Array [
+                Object {
+                  "color": "#007AFF",
+                  "fontSize": 12,
+                  "fontWeight": "600",
+                },
+                undefined,
+              ],
+            ]
+          }
+        >
+          Or recover an existing Wallet ID key
+        </Text>
+      </Text>
+    </View>
+  </View>
+  <ErrorModalContainer />
+</View>
+`;
