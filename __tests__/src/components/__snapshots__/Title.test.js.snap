@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title renders correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  numberOfLines={undefined}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      Array [
+        Object {
+          "fontSize": 18,
+          "fontWeight": "600",
+          "letterSpacing": 1,
+          "marginBottom": 10,
+          "textAlign": "center",
+        },
+        undefined,
+      ],
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    32a29072-5334-4ad1-a86d-37f6c2639449
+  </Text>
+</Text>
+`;
