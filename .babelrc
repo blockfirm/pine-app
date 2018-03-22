@@ -1,4 +1,20 @@
 {
   "presets": ["react-native"],
-  "plugins": ["transform-decorators-legacy"]
+  "sourceMaps": true,
+  "plugins": [
+    "transform-decorators-legacy",
+    ["rewrite-require", {
+      "aliases": {
+        "crypto": "react-native-crypto",
+        "stream": "readable-stream",
+        "_stream_duplex": "readable-stream/duplex",
+        "_stream_passthrough": "readable-stream/passthrough",
+        "_stream_readable": "readable-stream/readable",
+        "_stream_transform": "readable-stream/transform",
+        "_stream_writable": "readable-stream/writable",
+        "vm": "vm-browserify"
+      },
+      "throwForNonStringLiteral": true
+    }]
+  ]
 }

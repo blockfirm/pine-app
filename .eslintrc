@@ -19,7 +19,8 @@
     }
   },
   "globals": {
-    "Promise": true
+    "Promise": true,
+    "global": true
   },
   "rules": {
     "eqeqeq": ["error", "smart"],
