@@ -3,6 +3,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { handle as handleError } from '../actions/error';
+import generateMnemonic from '../crypto/generateMnemonic';
 import Title from '../components/Title';
 import Paragraph from '../components/Paragraph';
 import Footer from '../components/Footer';
@@ -33,8 +35,15 @@ export default class WelcomeScreen extends Component {
   }
 
   _createKey() {
-    const mnemonic = 'during bulb nominee acquire paddle next course stable govern eagle title wing';
-    this._showMnemonicScreen(mnemonic);
+    const dispatch = this.props.dispatch;
+
+    return generateMnemonic()
+      .then((mnemonic) => {
+        this._showMnemonicScreen(mnemonic);
+      })
+      .catch((error) => {
+        dispatch(handleError(error));
+      });
   }
 
   _recoverKey() {
