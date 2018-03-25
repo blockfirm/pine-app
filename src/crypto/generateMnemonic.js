@@ -1,5 +1,5 @@
 import bip39 from 'bip39';
-import randomBytes from './randomBytes';
+import getRandomBytes from './getRandomBytes';
 
 const ENTROPY = 128; // 128-bit entropy equals 12 mnemonic words.
 
@@ -10,10 +10,10 @@ export default function generateMnemonic() {
    * is that bip39.generateMnemonic otherwise calls randomBytes
    * synchronously which then won't use iOS's SecRandomCopyBytes.
    */
-  return randomBytes(ENTROPY / 8).then((bytes) => {
-    const getRandomBytes = () => bytes;
+  return getRandomBytes(ENTROPY / 8).then((bytes) => {
+    const randomBytesFunction = () => bytes;
     const wordlist = bip39.english;
-    const mnemonic = bip39.generateMnemonic(ENTROPY, getRandomBytes, wordlist);
+    const mnemonic = bip39.generateMnemonic(ENTROPY, randomBytesFunction, wordlist);
 
     return mnemonic;
   });
