@@ -1,3 +1,3 @@
-export default {
-  randomBytes: jest.fn()
-};
+export const randomBytes = jest.fn((size, callback) => {
+  callback(null, []);
+});
