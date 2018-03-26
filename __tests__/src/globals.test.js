@@ -23,4 +23,22 @@ describe('globals', () => {
   it('it exposes crypto.getRandomValues', () => {
     expect(typeof global.crypto.getRandomValues).toBe('function');
   });
+
+  describe('global.crypto.getRandomValues(array)', () => {
+    it('overwrites the specified array with random values', () => {
+      const array = new Buffer('999999', 'hex');
+
+      global.crypto.getRandomValues(array);
+
+      // This is mocked in __mocks__/react-native-randombytes.js.
+      expect(array.toString('hex')).toBe('012345');
+    });
+
+    it('returns the specified array', () => {
+      const array = new Buffer('999999', 'hex');
+      const returnValue = global.crypto.getRandomValues(array);
+
+      expect(returnValue).toBe(array);
+    });
+  });
 });
