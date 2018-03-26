@@ -1,15 +1,4 @@
-
 import generateMnemonic from '../../../src/crypto/generateMnemonic';
-
-jest.mock('../../../src/crypto/getRandomBytes', () => {
-  return (size) => {
-    const hexString = '0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF';
-    const sizedHexString = hexString.substr(0, size * 2);
-    const randomBytes = new Buffer(sizedHexString, 'hex');
-
-    return Promise.resolve(randomBytes);
-  };
-});
 
 describe('generateMnemonic', () => {
   it('is a function', () => {
@@ -29,6 +18,7 @@ describe('generateMnemonic', () => {
     expect.hasAssertions();
 
     return generateMnemonic().then((words) => {
+      // The seed to these words are mocked in __mocks__/react-native-randombytes.js.
       const expectedWords = 'abuse boss fly battle rubber wasp afraid hamster guide essence vibrant tattoo';
       expect(words).toBe(expectedWords);
     });
