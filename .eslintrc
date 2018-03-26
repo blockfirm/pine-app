@@ -20,7 +20,8 @@
   },
   "globals": {
     "Promise": true,
-    "global": true
+    "global": true,
+    "Buffer": true
   },
   "rules": {
     "eqeqeq": ["error", "smart"],
