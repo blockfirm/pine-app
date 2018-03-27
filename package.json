@@ -17,7 +17,9 @@
     "lint": "./node_modules/.bin/eslint --ext .js index.js src/ __tests__/ __mocks__/"
   },
   "dependencies": {
+    "assert": "^1.4.1",
     "bip39": "^2.5.0",
+    "bitcoinjs-lib": "^3.3.2",
     "buffer": "^5.1.0",
     "deepmerge": "^2.1.0",
     "events": "^2.0.0",
