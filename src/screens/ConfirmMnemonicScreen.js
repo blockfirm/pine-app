@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { navigateWithReset } from '../actions';
+import * as keyActions from '../actions/keys';
 import Title from '../components/Title';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
@@ -47,6 +48,23 @@ export default class ConfirmMnemonicScreen extends Component {
   _showHomeScreen() {
     const dispatch = this.props.dispatch;
     return dispatch(navigateWithReset('Home'));
+  }
+
+  _saveKey() {
+    const dispatch = this.props.dispatch;
+
+    const key = {
+      name: 'Default'
+    };
+
+    return dispatch(keyActions.add(key))
+      .then(() => {
+        // TODO: Save mnemonic with key.id.
+        return dispatch(keyActions.save());
+      })
+      .then(() => {
+        return this._showHomeScreen();
+      });
   }
 
   _onChangePhrase(phrase) {
@@ -97,9 +115,10 @@ export default class ConfirmMnemonicScreen extends Component {
             <Footer>
               <Button
                 label='Confirm'
+                loadingLabel='Saving key...'
                 disabled={buttonDisabled}
                 fullWidth={this.state.keyboardState}
-                onPress={this._showHomeScreen.bind(this)}
+                onPress={this._saveKey.bind(this)}
               />
               <KeyboardSpacer topSpacing={-30} onToggle={this._onKeyboardToggle.bind(this)} />
             </Footer>
