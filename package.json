@@ -51,7 +51,8 @@
     "eslint-plugin-flowtype": "^2.46.1",
     "eslint-plugin-react": "^7.7.0",
     "jest": "22.4.2",
-    "react-test-renderer": "^16.3.0-alpha.1"
+    "react-test-renderer": "^16.3.0-alpha.1",
+    "reactotron-react-native": "^1.14.0"
   },
   "jest": {
     "preset": "react-native",
