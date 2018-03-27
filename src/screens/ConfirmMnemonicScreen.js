@@ -6,6 +6,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { navigateWithReset } from '../actions';
 import * as keyActions from '../actions/keys';
+import saveMnemonicByKey from '../crypto/saveMnemonicByKey';
 import Title from '../components/Title';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
@@ -52,6 +53,8 @@ export default class ConfirmMnemonicScreen extends Component {
 
   _saveKey() {
     const dispatch = this.props.dispatch;
+    const { params } = this.props.navigation.state;
+    const mnemonic = params.mnemonic;
 
     const key = {
       name: 'Default'
@@ -59,8 +62,10 @@ export default class ConfirmMnemonicScreen extends Component {
 
     return dispatch(keyActions.add(key))
       .then(() => {
-        // TODO: Save mnemonic with key.id.
         return dispatch(keyActions.save());
+      })
+      .then(() => {
+        return saveMnemonicByKey(mnemonic, key.id);
       })
       .then(() => {
         return this._showHomeScreen();

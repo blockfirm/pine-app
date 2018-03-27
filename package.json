@@ -29,6 +29,7 @@
     "react-native-haptic": "^1.0.5",
     "react-native-iphone-x-helper": "^1.0.2",
     "react-native-keyboard-spacer": "^0.4.1",
+    "react-native-keychain": "^3.0.0-rc.3",
     "react-native-randombytes": "^3.0.0",
     "react-native-vector-icons": "^4.5.0",
     "react-navigation": "^1.4.0",
