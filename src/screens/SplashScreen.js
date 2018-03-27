@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { navigateWithReset } from '../actions';
 import * as settingsActions from '../actions/settings';
+import * as keyActions from '../actions/keys';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -35,11 +36,20 @@ export default class SplashScreen extends Component {
     const dispatch = props.dispatch;
     const settings = dispatch(settingsActions.load());
 
-    if (!settings.initialized) {
-      return this._showWelcomeScreen();
-    }
+    this._loadState().then(() => {
+      if (!settings.initialized) {
+        return this._showWelcomeScreen();
+      }
 
-    this._showHomeScreen();
+      this._showHomeScreen();
+    });
+  }
+
+  _loadState() {
+    const dispatch = this.props.dispatch;
+
+    // Load existing keys into state.
+    return dispatch(keyActions.load());
   }
 
   _showHomeScreen() {
