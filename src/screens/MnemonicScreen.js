@@ -27,7 +27,7 @@ export default class MnemonicScreen extends Component {
     const { params } = navigation.state;
     const mnemonic = params.mnemonic;
 
-    navigation.navigate('ConfirmMnemonicScreen', { mnemonic });
+    navigation.navigate('ConfirmMnemonic', { mnemonic });
   }
 
   render() {
