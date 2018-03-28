@@ -6,6 +6,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { navigateWithReset } from '../actions';
 import * as keyActions from '../actions/keys';
+import * as settingsActions from '../actions/settings';
 import saveMnemonicByKey from '../crypto/saveMnemonicByKey';
 import getPublicKeyFromMnemonic from '../crypto/getPublicKeyFromMnemonic';
 import Title from '../components/Title';
@@ -52,6 +53,16 @@ export default class ConfirmMnemonicScreen extends Component {
     return dispatch(navigateWithReset('Home'));
   }
 
+  _flagAsInitialized() {
+    const dispatch = this.props.dispatch;
+
+    const newSettings = {
+      initialized: true
+    };
+
+    return dispatch(settingsActions.save(newSettings));
+  }
+
   _saveKey() {
     const dispatch = this.props.dispatch;
     const { params } = this.props.navigation.state;
@@ -63,12 +74,18 @@ export default class ConfirmMnemonicScreen extends Component {
       xpub: publicKey
     };
 
+    // Save key metadata with public key.
     return dispatch(keyActions.add(key))
       .then(() => {
         return dispatch(keyActions.save());
       })
       .then(() => {
+        // Save mnemonic separately in Keychain.
         return saveMnemonicByKey(mnemonic, key.id);
+      })
+      .then(() => {
+        // Flag that the user has set up the app for the first time.
+        return this._flagAsInitialized();
       })
       .then(() => {
         return this._showHomeScreen();
