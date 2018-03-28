@@ -70,7 +70,7 @@ export default class WelcomeScreen extends Component {
           />
 
           <Link onPress={this._recoverKey.bind(this)}>
-            Or recover an existing Wallet ID key
+            Or import an existing Wallet ID key
           </Link>
         </Footer>
       </BaseScreen>

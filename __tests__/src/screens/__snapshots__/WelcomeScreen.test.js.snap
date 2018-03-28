@@ -228,7 +228,7 @@ exports[`WelcomeScreen renders correctly 1`] = `
             ]
           }
         >
-          Or recover an existing Wallet ID key
+          Or import an existing Wallet ID key
         </Text>
       </Text>
     </View>
