@@ -46,7 +46,7 @@ export default class WelcomeScreen extends Component {
       });
   }
 
-  _recoverKey() {
+  _importKey() {
 
   }
 
@@ -69,7 +69,7 @@ export default class WelcomeScreen extends Component {
             style={styles.button}
           />
 
-          <Link onPress={this._recoverKey.bind(this)}>
+          <Link onPress={this._importKey.bind(this)}>
             Or import an existing Wallet ID key
           </Link>
         </Footer>
