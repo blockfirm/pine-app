@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { navigateWithReset } from '../actions';
+import { handle as handleError } from '../actions/error/handle';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import saveMnemonicByKey from '../crypto/saveMnemonicByKey';
@@ -89,6 +90,9 @@ export default class ConfirmMnemonicScreen extends Component {
       })
       .then(() => {
         return this._showHomeScreen();
+      })
+      .catch((error) => {
+        dispatch(handleError(error));
       });
   }
 
