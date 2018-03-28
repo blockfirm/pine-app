@@ -47,7 +47,8 @@ export default class WelcomeScreen extends Component {
   }
 
   _importKey() {
-
+    const navigation = this.props.navigation;
+    navigation.navigate('ImportMnemonic');
   }
 
   render() {
