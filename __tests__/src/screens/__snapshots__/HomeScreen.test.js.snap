@@ -11,12 +11,7 @@ exports[`HomeScreen renders correctly 1`] = `
         "justifyContent": "center",
         "padding": 40,
       },
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#F5FCFF",
-        "flex": 1,
-        "justifyContent": "center",
-      },
+      undefined,
     ]
   }
 >
@@ -35,70 +30,20 @@ exports[`HomeScreen renders correctly 1`] = `
           "fontFamily": "System",
           "fontWeight": "400",
         },
-        Object {
-          "fontSize": 20,
-          "margin": 10,
-          "textAlign": "center",
-        },
-      ]
-    }
-  >
-    Welcome to React Native!
-  </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    numberOfLines={undefined}
-    style={
-      Array [
-        Object {
-          "color": "#000000",
-          "fontFamily": "System",
-          "fontWeight": "400",
-        },
         Array [
           Object {
-            "color": "rgba(0, 0, 0, 0.5)",
-            "marginBottom": 20,
-          },
-          Object {
-            "marginBottom": 5,
+            "fontSize": 18,
+            "fontWeight": "600",
+            "letterSpacing": 1,
+            "marginBottom": 10,
             "textAlign": "center",
           },
+          undefined,
         ],
       ]
     }
   >
-    To get started, edit App.js
-  </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    numberOfLines={undefined}
-    style={
-      Array [
-        Object {
-          "color": "#000000",
-          "fontFamily": "System",
-          "fontWeight": "400",
-        },
-        Array [
-          Object {
-            "color": "rgba(0, 0, 0, 0.5)",
-            "marginBottom": 20,
-          },
-          Object {
-            "marginBottom": 5,
-            "textAlign": "center",
-          },
-        ],
-      ]
-    }
-  >
-    Press Cmd+R to reload,
-Cmd+D or shake for dev menu
+    Welcome to Wallet ID!
   </Text>
   <ErrorModalContainer />
 </View>
