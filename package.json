@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "author": "Timothy Engqvist Johansson <timothy@blockfirm.se>",
+  "website": "https://walletid.co",
   "copyright": "© 2018 Blockfirm AB",
   "license": "Apache-2.0",
   "repository": {
