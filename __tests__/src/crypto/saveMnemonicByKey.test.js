@@ -29,9 +29,7 @@ describe('saveMnemonicByKey', () => {
 
     saveMnemonicByKey(fakeMnemonic, fakeKeyId);
 
-    expect(Keychain.setGenericPassword.mock.calls[0][2]).toMatchObject({
-      service: fakeKeyId
-    });
+    expect(Keychain.setGenericPassword.mock.calls[0][2]).toBe(fakeKeyId);
   });
 
   it('returns the result from Keychain.setGenericPassword', () => {

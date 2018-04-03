@@ -17,7 +17,7 @@ describe('removeMnemonicByKey', () => {
   it('calls Keychain.resetGenericPassword with service set to the key id', () => {
     const fakeKeyId = 'c9103642-6a6e-46ca-ad74-30acb61c238a';
     removeMnemonicByKey(fakeKeyId);
-    expect(Keychain.resetGenericPassword).toBeCalledWith({ service: fakeKeyId });
+    expect(Keychain.resetGenericPassword).toBeCalledWith(fakeKeyId);
   });
 
   it('returns the result from Keychain.resetGenericPassword', () => {

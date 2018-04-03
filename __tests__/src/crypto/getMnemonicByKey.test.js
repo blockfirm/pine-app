@@ -17,7 +17,7 @@ describe('getMnemonicByKey', () => {
   it('calls Keychain.getGenericPassword with service set to the key id', () => {
     const fakeKeyId = '7ee4c96a-fa62-43d6-953a-0d9a085c84fb';
     getMnemonicByKey(fakeKeyId);
-    expect(Keychain.getGenericPassword).toBeCalledWith({ service: fakeKeyId });
+    expect(Keychain.getGenericPassword).toBeCalledWith(fakeKeyId);
   });
 
   it('returns the result from Keychain.getGenericPassword', () => {
