@@ -74,7 +74,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
           ]
         }
       >
-        Import key
+        Import Key
       </Text>
       <Text
         accessible={true}

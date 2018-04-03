@@ -117,7 +117,7 @@ export default class ImportMnemonicScreen extends Component {
           <BaseScreen>
             <View style={contentStyles}>
               <Title>
-                Import key
+                Import Key
               </Title>
 
               <Paragraph>

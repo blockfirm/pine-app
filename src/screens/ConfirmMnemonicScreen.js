@@ -125,7 +125,7 @@ export default class ConfirmMnemonicScreen extends Component {
           <BaseScreen>
             <View style={contentStyles}>
               <Title>
-                Confirm recovery key
+                Confirm Recovery Key
               </Title>
 
               <Paragraph style={styles.text}>
