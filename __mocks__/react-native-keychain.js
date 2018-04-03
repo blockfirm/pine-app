@@ -1,4 +1,4 @@
-export const FAKE_USERNAME = '';
+export const FAKE_USERNAME = 'mnemonic';
 export const FAKE_PASSWORD = 'during bulb nominee acquire paddle next course stable govern eagle title wing';
 
 export const getGenericPassword = jest.fn(() => {

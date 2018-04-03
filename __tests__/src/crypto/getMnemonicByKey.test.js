@@ -20,13 +20,32 @@ describe('getMnemonicByKey', () => {
     expect(Keychain.getGenericPassword).toBeCalledWith(fakeKeyId);
   });
 
-  it('returns the result from Keychain.getGenericPassword', () => {
+  it('returns a promise that resolves to the password from Keychain.getGenericPassword', () => {
     Keychain.getGenericPassword.mockImplementationOnce(() => {
-      return '7bd15886-a718-4462-9352-7a58b4305048';
+      return Promise.resolve({
+        username: 'mnemonic',
+        password: '7bd15886-a718-4462-9352-7a58b4305048'
+      });
     });
 
-    const returnValue = getMnemonicByKey();
+    expect.hasAssertions();
 
-    expect(returnValue).toBe('7bd15886-a718-4462-9352-7a58b4305048');
+    return getMnemonicByKey().then((mnemonic) => {
+      expect(mnemonic).toBe('7bd15886-a718-4462-9352-7a58b4305048');
+    });
+  });
+
+  describe('when no mnemonic could be found', () => {
+    it('returns a rejected promise', () => {
+      Keychain.getGenericPassword.mockImplementationOnce(() => {
+        return Promise.resolve(false);
+      });
+
+      expect.hasAssertions();
+
+      return getMnemonicByKey().catch((error) => {
+        expect(error).toBeInstanceOf(Error);
+      });
+    });
   });
 });
