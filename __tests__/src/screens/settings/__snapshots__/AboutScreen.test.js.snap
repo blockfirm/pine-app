@@ -1,0 +1,435 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignSelf": "stretch",
+      "backgroundColor": "#EFEFF4",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          Object {
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "borderBottomColor": "#C8C8CC",
+                "borderBottomWidth": 0.5,
+                "borderTopColor": "#C8C8CC",
+                "borderTopWidth": 0.5,
+                "marginBottom": 30,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderBottomColor": "#C8C7CC",
+                  "borderBottomWidth": 0.5,
+                  "marginLeft": 15,
+                  "paddingBottom": 12,
+                  "paddingRight": 15,
+                  "paddingTop": 12,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={undefined}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "fontWeight": "400",
+                  },
+                ]
+              }
+            >
+              Version
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "color": "#8F8E94",
+                    "position": "absolute",
+                    "right": 15,
+                    "textAlign": "right",
+                    "top": 12,
+                    "width": 150,
+                  },
+                ]
+              }
+            >
+              0.0.1
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "borderBottomColor": "#C8C7CC",
+                  "borderBottomWidth": 0.5,
+                  "marginLeft": 15,
+                  "paddingBottom": 12,
+                  "paddingRight": 15,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "borderBottomWidth": 0,
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={undefined}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "fontWeight": "400",
+                  },
+                ]
+              }
+            >
+              Copyright
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "color": "#8F8E94",
+                    "position": "absolute",
+                    "right": 15,
+                    "textAlign": "right",
+                    "top": 12,
+                    "width": 150,
+                  },
+                ]
+              }
+            >
+              © 2018 Blockfirm AB
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "borderBottomColor": "#C8C8CC",
+                "borderBottomWidth": 0.5,
+                "borderTopColor": "#C8C8CC",
+                "borderTopWidth": 0.5,
+                "marginBottom": 30,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#C8C7CC",
+                    "borderBottomWidth": 0.5,
+                    "marginLeft": 15,
+                    "paddingBottom": 12,
+                    "paddingRight": 15,
+                    "paddingTop": 12,
+                  },
+                  Object {
+                    "borderBottomWidth": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={undefined}
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Object {
+                      "fontWeight": "400",
+                    },
+                  ]
+                }
+              >
+                Terms and Conditions
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Object {
+                      "backgroundColor": "transparent",
+                      "color": "#8F8E94",
+                      "position": "absolute",
+                      "right": 30,
+                      "textAlign": "right",
+                      "top": 12,
+                      "width": 230,
+                    },
+                  ]
+                }
+              />
+              <Text
+                accessible={true}
+                allowFontScaling={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "color": undefined,
+                      "fontSize": 12,
+                    },
+                    Object {
+                      "color": "#D1D1D6",
+                      "fontSize": 20,
+                      "position": "absolute",
+                      "right": 15,
+                      "top": 11,
+                    },
+                    Object {
+                      "fontFamily": "Ionicons",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "borderBottomColor": "#C8C8CC",
+                "borderBottomWidth": 0.5,
+                "borderTopColor": "#C8C8CC",
+                "borderTopWidth": 0.5,
+                "marginBottom": 30,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#C8C7CC",
+                    "borderBottomWidth": 0.5,
+                    "marginLeft": 15,
+                    "paddingBottom": 12,
+                    "paddingRight": 15,
+                    "paddingTop": 12,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={undefined}
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Array [
+                      Object {
+                        "color": "#007AFF",
+                        "fontWeight": "400",
+                      },
+                      undefined,
+                      undefined,
+                    ],
+                  ]
+                }
+              >
+                Visit Website
+              </Text>
+            </View>
+          </View>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#C8C7CC",
+                    "borderBottomWidth": 0.5,
+                    "marginLeft": 15,
+                    "paddingBottom": 12,
+                    "paddingRight": 15,
+                    "paddingTop": 12,
+                  },
+                  Object {
+                    "borderBottomWidth": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={undefined}
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Array [
+                      Object {
+                        "color": "#007AFF",
+                        "fontWeight": "400",
+                      },
+                      undefined,
+                      undefined,
+                    ],
+                  ]
+                }
+              >
+                Report Issue
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+  <ErrorModalContainer />
+</View>
+`;

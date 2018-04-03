@@ -1,0 +1,288 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BitcoinUnitScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignSelf": "stretch",
+      "backgroundColor": "#EFEFF4",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          Object {
+            "paddingTop": 30,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "borderBottomColor": "#C8C8CC",
+                "borderBottomWidth": 0.5,
+                "borderTopColor": "#C8C8CC",
+                "borderTopWidth": 0.5,
+                "marginBottom": 30,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#C8C7CC",
+                    "borderBottomWidth": 0.5,
+                    "marginLeft": 15,
+                    "paddingBottom": 12,
+                    "paddingRight": 15,
+                    "paddingTop": 12,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={undefined}
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Object {
+                      "fontWeight": "400",
+                    },
+                  ]
+                }
+              >
+                BTC
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "color": undefined,
+                      "fontSize": 12,
+                    },
+                    Object {
+                      "color": "#007AFF",
+                      "fontSize": 28,
+                      "position": "absolute",
+                      "right": 15,
+                      "top": 8,
+                    },
+                    Object {
+                      "fontFamily": "Ionicons",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
+          </View>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#C8C7CC",
+                    "borderBottomWidth": 0.5,
+                    "marginLeft": 15,
+                    "paddingBottom": 12,
+                    "paddingRight": 15,
+                    "paddingTop": 12,
+                  },
+                  Object {
+                    "borderBottomWidth": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={undefined}
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Object {
+                      "fontWeight": "400",
+                    },
+                  ]
+                }
+              >
+                mBTC
+              </Text>
+            </View>
+          </View>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#8A8A8F",
+                "fontSize": 13,
+                "lineHeight": 17,
+                "marginBottom": 30,
+                "marginTop": -20,
+                "paddingLeft": 15,
+                "paddingRight": 15,
+              },
+            ]
+          }
+        >
+          Choose the unit in which bitcoin amounts should be displayed.
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#8A8A8F",
+                "fontSize": 13,
+                "lineHeight": 17,
+                "marginBottom": 30,
+                "marginTop": -20,
+                "paddingLeft": 15,
+                "paddingRight": 15,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "fontWeight": "600",
+              }
+            }
+          >
+            BTC
+          </Text>
+           is one bitcoin and will be displayed as ₿.
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#8A8A8F",
+                "fontSize": 13,
+                "lineHeight": 17,
+                "marginBottom": 30,
+                "marginTop": -20,
+                "paddingLeft": 15,
+                "paddingRight": 15,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "fontWeight": "600",
+              }
+            }
+          >
+            mBTC
+          </Text>
+           is one thousandth of a bitcoin and will be displayed as m₿.
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+  <ErrorModalContainer />
+</View>
+`;

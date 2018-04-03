@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseSettingsScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignSelf": "stretch",
+      "backgroundColor": "#EFEFF4",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          Object {
+            "paddingTop": 30,
+          }
+        }
+      />
+    </View>
+  </RCTScrollView>
+  <ErrorModalContainer />
+</View>
+`;

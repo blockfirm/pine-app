@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SettingsAttribute renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderBottomColor": "#C8C7CC",
+        "borderBottomWidth": 0.5,
+        "marginLeft": 15,
+        "paddingBottom": 12,
+        "paddingRight": 15,
+        "paddingTop": 12,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    numberOfLines={undefined}
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Object {
+          "fontWeight": "400",
+        },
+      ]
+    }
+  >
+    8e69990a-32bf-4daf-9a40-2be6c45dad18
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Object {
+          "color": "#8F8E94",
+          "position": "absolute",
+          "right": 15,
+          "textAlign": "right",
+          "top": 12,
+          "width": 150,
+        },
+      ]
+    }
+  >
+    8ed9d949-9a68-4a3d-b69d-0856a632dacc
+  </Text>
+</View>
+`;
+
+exports[`SettingsAttribute renders correctly as the last item 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderBottomColor": "#C8C7CC",
+        "borderBottomWidth": 0.5,
+        "marginLeft": 15,
+        "paddingBottom": 12,
+        "paddingRight": 15,
+        "paddingTop": 12,
+      },
+      Object {
+        "borderBottomWidth": 0,
+      },
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    numberOfLines={undefined}
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Object {
+          "fontWeight": "400",
+        },
+      ]
+    }
+  >
+    8e69990a-32bf-4daf-9a40-2be6c45dad18
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Object {
+          "color": "#8F8E94",
+          "position": "absolute",
+          "right": 15,
+          "textAlign": "right",
+          "top": 12,
+          "width": 150,
+        },
+      ]
+    }
+  >
+    8ed9d949-9a68-4a3d-b69d-0856a632dacc
+  </Text>
+</View>
+`;

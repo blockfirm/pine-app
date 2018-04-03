@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SettingsButton renders correctly 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={null}
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderBottomColor": "#C8C7CC",
+          "borderBottomWidth": 0.5,
+          "marginLeft": 15,
+          "paddingBottom": 12,
+          "paddingRight": 15,
+          "paddingTop": 12,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontWeight": "400",
+            },
+            undefined,
+            undefined,
+          ],
+        ]
+      }
+    >
+      dbf83264-0385-43a8-9cbb-ff52c1587401
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`SettingsButton renders correctly as the last item 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={null}
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderBottomColor": "#C8C7CC",
+          "borderBottomWidth": 0.5,
+          "marginLeft": 15,
+          "paddingBottom": 12,
+          "paddingRight": 15,
+          "paddingTop": 12,
+        },
+        Object {
+          "borderBottomWidth": 0,
+        },
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontWeight": "400",
+            },
+            undefined,
+            undefined,
+          ],
+        ]
+      }
+    >
+      8923b772-b0b3-4cb9-9ec1-f08516a80dd5
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`SettingsButton renders correctly while loading 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={null}
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderBottomColor": "#C8C7CC",
+          "borderBottomWidth": 0.5,
+          "marginLeft": 15,
+          "paddingBottom": 12,
+          "paddingRight": 15,
+          "paddingTop": 12,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontWeight": "400",
+            },
+            undefined,
+            Object {
+              "color": "#8A8A8F",
+            },
+          ],
+        ]
+      }
+    >
+      85361618-e8d1-4284-9f2c-928cf417c323
+    </Text>
+    <ActivityIndicator
+      animating={true}
+      color="#8A8A8F"
+      hidesWhenStopped={true}
+      size="small"
+      style={
+        Object {
+          "height": 42,
+          "position": "absolute",
+          "right": 15,
+          "top": 1,
+        }
+      }
+    />
+  </View>
+</View>
+`;

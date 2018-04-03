@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SettingsGroup renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "white",
+        "borderBottomColor": "#C8C8CC",
+        "borderBottomWidth": 0.5,
+        "borderTopColor": "#C8C8CC",
+        "borderTopWidth": 0.5,
+        "marginBottom": 30,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    7ec4a1e5-7bc9-4e48-99cc-304d19ebc138
+  </Text>
+</View>
+`;
