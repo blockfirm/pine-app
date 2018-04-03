@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import ErrorBoundary from '../../components/ErrorBoundary';
 
 const styles = StyleSheet.create({
