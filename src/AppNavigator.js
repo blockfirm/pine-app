@@ -5,6 +5,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import MnemonicScreen from './screens/MnemonicScreen';
 import ConfirmMnemonicScreen from './screens/ConfirmMnemonicScreen';
 import ImportMnemonicScreen from './screens/ImportMnemonicScreen';
+import DisclaimerScreen from './screens/DisclaimerScreen';
 import HomeScreen from './screens/HomeScreen';
 
 import SettingsScreen from './screens/settings/SettingsScreen';
@@ -22,6 +23,7 @@ const MainCardNavigator = StackNavigator({
   Mnemonic: { screen: MnemonicScreen },
   ConfirmMnemonic: { screen: ConfirmMnemonicScreen },
   ImportMnemonic: { screen: ImportMnemonicScreen },
+  Disclaimer: { screen: DisclaimerScreen },
   Home: { screen: HomeScreen }
 }, {
   headerMode: 'screen'

@@ -1,0 +1,361 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DisclaimerScreen renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#ffffff",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 40,
+      },
+      undefined,
+    ]
+  }
+>
+  <HeaderContainer
+    backButtonIconStyle={undefined}
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    numberOfLines={undefined}
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Array [
+          Object {
+            "fontSize": 18,
+            "fontWeight": "600",
+            "letterSpacing": 1,
+            "marginBottom": 10,
+            "textAlign": "center",
+          },
+          Object {
+            "marginBottom": 30,
+          },
+        ],
+      ]
+    }
+  >
+    Read before you use Wallet ID
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "marginBottom": 50,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "fontSize": 18,
+              "fontWeight": "600",
+              "letterSpacing": 1,
+              "marginBottom": 10,
+              "textAlign": "center",
+            },
+            Object {
+              "fontSize": 14,
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      Key Access
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "rgba(0, 0, 0, 0.5)",
+              "marginBottom": 20,
+            },
+            Object {
+              "fontSize": 14,
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      Your private key stored with Wallet ID is stored securely on the device and only you can access it. No company or third party can access your key and it never leaves the device.
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "fontSize": 18,
+              "fontWeight": "600",
+              "letterSpacing": 1,
+              "marginBottom": 10,
+              "textAlign": "center",
+            },
+            Object {
+              "fontSize": 14,
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      Key Recovery
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "rgba(0, 0, 0, 0.5)",
+              "marginBottom": 20,
+            },
+            Object {
+              "fontSize": 14,
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      Make sure to store your recovery key in a safe place. Anyone with access to the recovery key can access your funds. It is also the only way to recover your key in case you would lose or break your phone.
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "fontSize": 18,
+              "fontWeight": "600",
+              "letterSpacing": 1,
+              "marginBottom": 10,
+              "textAlign": "center",
+            },
+            Object {
+              "fontSize": 14,
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      Terms and Conditions
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={undefined}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "rgba(0, 0, 0, 0.5)",
+              "marginBottom": 20,
+            },
+            Object {
+              "fontSize": 14,
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        By pressing "I understand", you understand and agree to the terms above as well as the 
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        onPress={[Function]}
+        style={
+          Object {
+            "color": "#007AFF",
+          }
+        }
+      >
+        Terms and Conditions
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        .
+      </Text>
+    </Text>
+  </View>
+  <View
+    pointerEvents={undefined}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "bottom": 30,
+          "left": 40,
+          "position": "absolute",
+          "right": 40,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#F18340",
+              "borderRadius": 4,
+              "height": 42,
+              "justifyContent": "center",
+              "shadowColor": "#000000",
+              "shadowOffset": Object {
+                "height": 0,
+                "width": 0,
+              },
+              "shadowOpacity": 0.1,
+              "shadowRadius": 4,
+              "width": 670,
+            },
+            undefined,
+          ]
+        }
+      >
+        <ActivityIndicator
+          animating={false}
+          color="#F8F8F8"
+          hidesWhenStopped={true}
+          size="small"
+          style={
+            Object {
+              "height": 12,
+              "left": 15,
+              "position": "absolute",
+              "top": 15,
+            }
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#F8F8F8",
+                "fontSize": 12,
+                "fontWeight": "600",
+                "letterSpacing": 1,
+              },
+            ]
+          }
+        >
+          I UNDERSTAND
+        </Text>
+      </View>
+    </View>
+  </View>
+  <ErrorModalContainer />
+</View>
+`;

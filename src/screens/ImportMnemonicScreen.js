@@ -49,9 +49,9 @@ export default class ImportMnemonicScreen extends Component {
     this.setState({ keyboardState });
   }
 
-  _showHomeScreen() {
+  _showDisclaimerScreen() {
     const dispatch = this.props.dispatch;
-    return dispatch(navigateWithReset('Home'));
+    return dispatch(navigateWithReset('Disclaimer'));
   }
 
   _flagAsInitialized() {
@@ -88,7 +88,7 @@ export default class ImportMnemonicScreen extends Component {
         return this._flagAsInitialized();
       })
       .then(() => {
-        return this._showHomeScreen();
+        return this._showDisclaimerScreen();
       })
       .catch((error) => {
         dispatch(handleError(error));
