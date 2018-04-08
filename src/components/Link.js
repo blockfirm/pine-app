@@ -6,8 +6,8 @@ import StyledText from './StyledText';
 const styles = StyleSheet.create({
   link: {
     fontSize: 12,
-    fontWeight: '600',
-    color: '#007AFF'
+    fontWeight: '500',
+    color: '#8069DC'
   }
 });
 

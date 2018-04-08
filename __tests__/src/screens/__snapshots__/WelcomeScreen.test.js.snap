@@ -234,9 +234,9 @@ exports[`WelcomeScreen renders correctly 1`] = `
               },
               Array [
                 Object {
-                  "color": "#007AFF",
+                  "color": "#8069DC",
                   "fontSize": 12,
-                  "fontWeight": "600",
+                  "fontWeight": "500",
                 },
                 undefined,
               ],
