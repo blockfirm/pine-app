@@ -9,9 +9,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: windowDimensions.width < 330 ? 16 : 18,
     fontWeight: '600',
-    letterSpacing: 1,
+    letterSpacing: 0.36,
     marginBottom: windowDimensions.width < 330 ? 7 : 10,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#26203D'
   }
 });
 

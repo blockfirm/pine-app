@@ -205,9 +205,10 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 },
                 Array [
                   Object {
+                    "color": "#26203D",
                     "fontSize": 18,
                     "fontWeight": "600",
-                    "letterSpacing": 1,
+                    "letterSpacing": 0.36,
                     "marginBottom": 10,
                     "textAlign": "center",
                   },
@@ -277,9 +278,10 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 },
                 Array [
                   Object {
+                    "color": "#26203D",
                     "fontSize": 18,
                     "fontWeight": "600",
-                    "letterSpacing": 1,
+                    "letterSpacing": 0.36,
                     "marginBottom": 10,
                     "textAlign": "center",
                   },
@@ -407,9 +409,10 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 },
                 Array [
                   Object {
+                    "color": "#26203D",
                     "fontSize": 18,
                     "fontWeight": "600",
-                    "letterSpacing": 1,
+                    "letterSpacing": 0.36,
                     "marginBottom": 10,
                     "textAlign": "center",
                   },
@@ -479,9 +482,10 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 },
                 Array [
                   Object {
+                    "color": "#26203D",
                     "fontSize": 18,
                     "fontWeight": "600",
-                    "letterSpacing": 1,
+                    "letterSpacing": 0.36,
                     "marginBottom": 10,
                     "textAlign": "center",
                   },
@@ -580,9 +584,10 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 },
                 Array [
                   Object {
+                    "color": "#26203D",
                     "fontSize": 18,
                     "fontWeight": "600",
-                    "letterSpacing": 1,
+                    "letterSpacing": 0.36,
                     "marginBottom": 10,
                     "textAlign": "center",
                   },
@@ -681,9 +686,10 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 },
                 Array [
                   Object {
+                    "color": "#26203D",
                     "fontSize": 18,
                     "fontWeight": "600",
-                    "letterSpacing": 1,
+                    "letterSpacing": 0.36,
                     "marginBottom": 10,
                     "textAlign": "center",
                   },
@@ -782,9 +788,10 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 },
                 Array [
                   Object {
+                    "color": "#26203D",
                     "fontSize": 18,
                     "fontWeight": "600",
-                    "letterSpacing": 1,
+                    "letterSpacing": 0.36,
                     "marginBottom": 10,
                     "textAlign": "center",
                   },
