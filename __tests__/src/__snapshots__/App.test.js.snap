@@ -396,7 +396,8 @@ exports[`App renders correctly 1`] = `
                                   },
                                   Array [
                                     Object {
-                                      "color": "rgba(0, 0, 0, 0.5)",
+                                      "color": "#AAAAAA",
+                                      "fontWeight": "400",
                                       "marginBottom": 20,
                                     },
                                     Object {

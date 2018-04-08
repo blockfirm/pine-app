@@ -138,7 +138,8 @@ exports[`ErrorModal renders correctly with an error 1`] = `
             },
             Array [
               Object {
-                "color": "rgba(0, 0, 0, 0.5)",
+                "color": "#AAAAAA",
+                "fontWeight": "400",
                 "marginBottom": 20,
               },
               Object {
@@ -361,7 +362,8 @@ exports[`ErrorModal renders correctly without an error 1`] = `
             },
             Array [
               Object {
-                "color": "rgba(0, 0, 0, 0.5)",
+                "color": "#AAAAAA",
+                "fontWeight": "400",
                 "marginBottom": 20,
               },
               Object {

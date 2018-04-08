@@ -5,7 +5,8 @@ import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
   paragraph: {
-    color: 'rgba(0, 0, 0, 0.5)',
+    color: '#AAAAAA',
+    fontWeight: '400',
     marginBottom: 20
   }
 });
