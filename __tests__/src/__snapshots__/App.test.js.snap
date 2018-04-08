@@ -192,6 +192,36 @@ exports[`App renders correctly 1`] = `
                           }
                         }
                       />
+                      <Image
+                        source={
+                          Object {
+                            "uri": "Launch Screen Background",
+                          }
+                        }
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          }
+                        }
+                      />
+                      <Image
+                        source={
+                          Object {
+                            "uri": "Launch Screen Icon",
+                          }
+                        }
+                        style={
+                          Object {
+                            "height": 72,
+                            "marginLeft": 5.5,
+                            "width": 99,
+                          }
+                        }
+                      />
                       <View
                         pointerEvents={undefined}
                         style={
@@ -212,7 +242,7 @@ exports[`App renders correctly 1`] = `
                       >
                         <ActivityIndicator
                           animating={true}
-                          color="#797F89"
+                          color="#D2DCFF"
                           hidesWhenStopped={true}
                           size="small"
                           style={

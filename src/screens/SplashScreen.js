@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ActivityIndicator } from 'react-native';
+import { StyleSheet, Image, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -15,6 +15,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white'
+  },
+  background: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
+  },
+  icon: {
+    width: 99,
+    height: 72,
+    marginLeft: 5.5 // Hack to make sure it is at the same position as in the Launch Screen,
   },
   footer: {
     backgroundColor: 'transparent'
@@ -65,8 +77,10 @@ export default class SplashScreen extends Component {
   render() {
     return (
       <BaseScreen style={styles.view}>
+        <Image source={{ uri: 'Launch Screen Background' }} style={styles.background} />
+        <Image source={{ uri: 'Launch Screen Icon' }} style={styles.icon} />
         <Footer style={styles.footer}>
-          <ActivityIndicator animating={true} color='#797F89' style={styles.loader} size='small' />
+          <ActivityIndicator animating={true} color='#D2DCFF' style={styles.loader} size='small' />
         </Footer>
       </BaseScreen>
     );
