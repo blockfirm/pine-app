@@ -1353,21 +1353,16 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#F18340",
-                "borderRadius": 4,
+                "backgroundColor": "#F6F6F6",
+                "borderRadius": 7,
                 "height": 42,
                 "justifyContent": "center",
-                "shadowColor": "#000000",
-                "shadowOffset": Object {
-                  "height": 0,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.1,
                 "shadowRadius": 4,
                 "width": 670,
               },
               undefined,
               Object {
+                "color": "#7A7A7A",
                 "opacity": 0.4,
               },
             ]
@@ -1375,7 +1370,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
         >
           <ActivityIndicator
             animating={false}
-            color="#F8F8F8"
+            color="#7A7A7A"
             hidesWhenStopped={true}
             size="small"
             style={
@@ -1387,29 +1382,28 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               }
             }
           />
-          <Text
+          <RNLinearTextGradient
             accessible={true}
             allowFontScaling={true}
             ellipsizeMode="tail"
-            numberOfLines={undefined}
+            gradientEnd={undefined}
+            gradientStart={undefined}
             style={
               Array [
                 Object {
-                  "color": "#000000",
-                  "fontFamily": "System",
-                  "fontWeight": "400",
+                  "color": "gray",
                 },
                 Object {
-                  "color": "#F8F8F8",
-                  "fontSize": 12,
+                  "fontFamily": "System",
+                  "fontSize": 11,
                   "fontWeight": "600",
-                  "letterSpacing": 1,
+                  "letterSpacing": 0.41,
                 },
               ]
             }
           >
             CONFIRM
-          </Text>
+          </RNLinearTextGradient>
         </View>
       </View>
       <View

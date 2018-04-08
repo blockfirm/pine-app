@@ -299,16 +299,10 @@ exports[`DisclaimerScreen renders correctly 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "backgroundColor": "#F18340",
-              "borderRadius": 4,
+              "backgroundColor": "#F6F6F6",
+              "borderRadius": 7,
               "height": 42,
               "justifyContent": "center",
-              "shadowColor": "#000000",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
-              },
-              "shadowOpacity": 0.1,
               "shadowRadius": 4,
               "width": 670,
             },
@@ -318,7 +312,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
       >
         <ActivityIndicator
           animating={false}
-          color="#F8F8F8"
+          color="#7A7A7A"
           hidesWhenStopped={true}
           size="small"
           style={
@@ -330,29 +324,50 @@ exports[`DisclaimerScreen renders correctly 1`] = `
             }
           }
         />
-        <Text
+        <RNLinearTextGradient
           accessible={true}
           allowFontScaling={true}
+          colors={
+            Array [
+              4286605788,
+              4282938547,
+            ]
+          }
           ellipsizeMode="tail"
-          numberOfLines={undefined}
+          gradientEnd={
+            Object {
+              "x": 0.5,
+              "y": 1,
+            }
+          }
+          gradientStart={
+            Object {
+              "x": 0.5,
+              "y": 0,
+            }
+          }
+          locations={
+            Array [
+              0.3,
+              1,
+            ]
+          }
           style={
             Array [
               Object {
-                "color": "#000000",
-                "fontFamily": "System",
-                "fontWeight": "400",
+                "color": "gray",
               },
               Object {
-                "color": "#F8F8F8",
-                "fontSize": 12,
+                "fontFamily": "System",
+                "fontSize": 11,
                 "fontWeight": "600",
-                "letterSpacing": 1,
+                "letterSpacing": 0.41,
               },
             ]
           }
         >
           I UNDERSTAND
-        </Text>
+        </RNLinearTextGradient>
       </View>
     </View>
   </View>
