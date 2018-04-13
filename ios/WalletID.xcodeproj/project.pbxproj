@@ -1539,6 +1539,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = se.blockfirm.WalletID;
 				PRODUCT_NAME = WalletID;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1565,6 +1566,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = se.blockfirm.WalletID;
 				PRODUCT_NAME = WalletID;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1680,7 +1682,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.WalletID-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.blockfirm.WalletID-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WalletID-tvOS.app/WalletID-tvOS";
@@ -1710,7 +1712,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.WalletID-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.blockfirm.WalletID-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WalletID-tvOS.app/WalletID-tvOS";
