@@ -60,11 +60,11 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
               <View
                 style={
                   Object {
-                    "backgroundColor": "#fbfbfb",
-                    "borderColor": "#DDDDDF",
+                    "backgroundColor": "#F8F8F8",
+                    "borderColor": "#DADADA",
                     "borderRadius": 30,
                     "borderWidth": 1,
-                    "padding": 7,
+                    "padding": 11,
                     "paddingLeft": 12,
                   }
                 }
@@ -82,14 +82,42 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
                         "fontWeight": "400",
                       },
                       Object {
-                        "fontFamily": "Menlo-Regular",
+                        "color": "#999999",
                         "fontSize": 11,
+                        "fontWeight": "bold",
+                        "left": 5,
+                        "position": "absolute",
+                        "textAlign": "right",
+                        "top": 11,
+                        "width": 20,
                       },
                     ]
                   }
                 >
                   1
-                  . 
+                  .
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={undefined}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#000000",
+                        "fontFamily": "System",
+                        "fontWeight": "400",
+                      },
+                      Object {
+                        "color": "#999999",
+                        "fontFamily": "Menlo-Regular",
+                        "fontSize": 11,
+                        "paddingLeft": 17,
+                      },
+                    ]
+                  }
+                >
                   
                 </Text>
               </View>
@@ -120,7 +148,7 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
             ]
           }
         >
-          Write down and store this recovery key in a safe place so you can recover your wallet if you lose or break your phone.
+          Write down and store this recovery key in a safe place so you can recover your key if you lose or break your phone.
         </Text>
       </View>
     </View>

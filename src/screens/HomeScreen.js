@@ -8,7 +8,7 @@ import BaseScreen from './BaseScreen';
 const styles = StyleSheet.create({
   navigationIcon: {
     fontSize: 28,
-    color: '#017AFF',
+    color: '#322A51',
     padding: 10
   }
 });
@@ -17,7 +17,7 @@ export default class HomeScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerLeft: (
       <TouchableOpacity onPress={() => { navigation.navigate('Settings'); }}>
-        <Icon name='ios-settings-outline' style={styles.navigationIcon} />
+        <Icon name='ios-settings' style={styles.navigationIcon} />
       </TouchableOpacity>
     )
   });

@@ -2,6 +2,7 @@
 
 exports[`MnemonicScreen renders correctly 1`] = `
 <View
+  headerTitle="Your Recovery Key"
   style={
     Array [
       Object {
@@ -17,6 +18,7 @@ exports[`MnemonicScreen renders correctly 1`] = `
 >
   <HeaderContainer
     backButtonIconStyle={undefined}
+    title="Your Recovery Key"
   />
   <Text
     accessible={true}
@@ -33,10 +35,16 @@ exports[`MnemonicScreen renders correctly 1`] = `
         Array [
           Object {
             "color": "#AAAAAA",
-            "fontWeight": "400",
+            "fontSize": 15,
+            "fontWeight": "300",
+            "lineHeight": 21,
             "marginBottom": 20,
           },
-          undefined,
+          Object {
+            "position": "absolute",
+            "textAlign": "center",
+            "top": 85,
+          },
         ],
       ]
     }
@@ -70,11 +78,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -92,14 +100,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           1
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           during
         </Text>
       </View>
@@ -115,11 +151,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -137,14 +173,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           2
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           bulb
         </Text>
       </View>
@@ -160,11 +224,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -182,14 +246,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           3
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           nominee
         </Text>
       </View>
@@ -205,11 +297,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -227,14 +319,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           4
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           acquire
         </Text>
       </View>
@@ -250,11 +370,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -272,14 +392,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           5
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           paddle
         </Text>
       </View>
@@ -295,11 +443,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -317,14 +465,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           6
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           next
         </Text>
       </View>
@@ -340,11 +516,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -362,14 +538,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           7
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           course
         </Text>
       </View>
@@ -385,11 +589,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -407,14 +611,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           8
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           stable
         </Text>
       </View>
@@ -430,11 +662,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -452,14 +684,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           9
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           govern
         </Text>
       </View>
@@ -475,11 +735,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -497,14 +757,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           10
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           eagle
         </Text>
       </View>
@@ -520,11 +808,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -542,14 +830,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           11
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           title
         </Text>
       </View>
@@ -565,11 +881,11 @@ exports[`MnemonicScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#fbfbfb",
-            "borderColor": "#DDDDDF",
+            "backgroundColor": "#F8F8F8",
+            "borderColor": "#DADADA",
             "borderRadius": 30,
             "borderWidth": 1,
-            "padding": 7,
+            "padding": 11,
             "paddingLeft": 12,
           }
         }
@@ -587,14 +903,42 @@ exports[`MnemonicScreen renders correctly 1`] = `
                 "fontWeight": "400",
               },
               Object {
-                "fontFamily": "Menlo-Regular",
+                "color": "#999999",
                 "fontSize": 11,
+                "fontWeight": "bold",
+                "left": 5,
+                "position": "absolute",
+                "textAlign": "right",
+                "top": 11,
+                "width": 20,
               },
             ]
           }
         >
           12
-          . 
+          .
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#999999",
+                "fontFamily": "Menlo-Regular",
+                "fontSize": 11,
+                "paddingLeft": 17,
+              },
+            ]
+          }
+        >
           wing
         </Text>
       </View>
@@ -646,9 +990,9 @@ exports[`MnemonicScreen renders correctly 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "backgroundColor": "#F6F6F6",
+              "backgroundColor": "#322A51",
               "borderRadius": 7,
-              "height": 42,
+              "height": 46,
               "justifyContent": "center",
               "shadowRadius": 4,
               "width": 670,
@@ -659,7 +1003,7 @@ exports[`MnemonicScreen renders correctly 1`] = `
       >
         <ActivityIndicator
           animating={false}
-          color="#7A7A7A"
+          color="#D2DCFF"
           hidesWhenStopped={true}
           size="small"
           style={
@@ -676,26 +1020,28 @@ exports[`MnemonicScreen renders correctly 1`] = `
           allowFontScaling={true}
           colors={
             Array [
-              4286605788,
-              4282938547,
+              4294962687,
+              4292663551,
+              4292736255,
             ]
           }
           ellipsizeMode="tail"
           gradientEnd={
             Object {
-              "x": 0.5,
+              "x": 1,
               "y": 1,
             }
           }
           gradientStart={
             Object {
-              "x": 0.5,
+              "x": 0,
               "y": 0,
             }
           }
           locations={
             Array [
-              0.3,
+              0,
+              0.5,
               1,
             ]
           }

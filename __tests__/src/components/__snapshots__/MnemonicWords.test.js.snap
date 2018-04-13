@@ -25,11 +25,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -47,14 +47,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         1
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         during
       </Text>
     </View>
@@ -70,11 +98,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -92,14 +120,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         2
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         bulb
       </Text>
     </View>
@@ -115,11 +171,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -137,14 +193,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         3
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         nominee
       </Text>
     </View>
@@ -160,11 +244,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -182,14 +266,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         4
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         acquire
       </Text>
     </View>
@@ -205,11 +317,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -227,14 +339,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         5
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         paddle
       </Text>
     </View>
@@ -250,11 +390,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -272,14 +412,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         6
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         next
       </Text>
     </View>
@@ -295,11 +463,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -317,14 +485,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         7
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         course
       </Text>
     </View>
@@ -340,11 +536,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -362,14 +558,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         8
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         stable
       </Text>
     </View>
@@ -385,11 +609,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -407,14 +631,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         9
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         govern
       </Text>
     </View>
@@ -430,11 +682,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -452,14 +704,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         10
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         eagle
       </Text>
     </View>
@@ -475,11 +755,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -497,14 +777,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         11
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         title
       </Text>
     </View>
@@ -520,11 +828,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#fbfbfb",
-          "borderColor": "#DDDDDF",
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#DADADA",
           "borderRadius": 30,
           "borderWidth": 1,
-          "padding": 7,
+          "padding": 11,
           "paddingLeft": 12,
         }
       }
@@ -542,14 +850,42 @@ exports[`MnemonicWords renders correctly 1`] = `
               "fontWeight": "400",
             },
             Object {
-              "fontFamily": "Menlo-Regular",
+              "color": "#999999",
               "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
             },
           ]
         }
       >
         12
-        . 
+        .
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        numberOfLines={undefined}
+        style={
+          Array [
+            Object {
+              "color": "#000000",
+              "fontFamily": "System",
+              "fontWeight": "400",
+            },
+            Object {
+              "color": "#999999",
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+          ]
+        }
+      >
         wing
       </Text>
     </View>

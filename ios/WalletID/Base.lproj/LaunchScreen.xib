@@ -15,26 +15,21 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Launch Screen Background" translatesAutoresizingMaskIntoConstraints="NO" id="aPT-hh-M7N">
-                    <rect key="frame" x="0.0" y="0.0" width="486" height="480"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="Launch Screen Icon" translatesAutoresizingMaskIntoConstraints="NO" id="QxA-y7-Nqa">
-                    <rect key="frame" x="194" y="204" width="99" height="72"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="LaunchScreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="QxA-y7-Nqa">
+                    <rect key="frame" x="188" y="203" width="104" height="75"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                     </accessibility>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.14901960784313725" green="0.12549019607843137" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
     <resources>
-        <image name="Launch Screen Background" width="1125" height="2436"/>
-        <image name="Launch Screen Icon" width="99" height="72"/>
+        <image name="LaunchScreenLogo" width="104" height="75"/>
     </resources>
 </document>

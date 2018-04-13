@@ -9,16 +9,28 @@ const styles = StyleSheet.create({
     padding: 4
   },
   wrapper: {
-    backgroundColor: '#fbfbfb',
-    borderColor: '#DDDDDF',
+    backgroundColor: '#F8F8F8',
+    borderColor: '#DADADA',
     borderWidth: 1,
     borderRadius: 30,
-    padding: 7,
+    padding: 11,
     paddingLeft: 12
+  },
+  number: {
+    position: 'absolute',
+    top: 11,
+    left: 5,
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '#999999',
+    width: 20,
+    textAlign: 'right'
   },
   word: {
     fontFamily: 'Menlo-Regular',
-    fontSize: 11
+    fontSize: 11,
+    color: '#999999',
+    paddingLeft: 17
   }
 });
 
@@ -30,8 +42,11 @@ export default class MnemonicWord extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.wrapper}>
+          <StyledText style={styles.number}>
+            {index + 1}.
+          </StyledText>
           <StyledText style={styles.word}>
-            {index + 1}. {word}
+            {word}
           </StyledText>
         </View>
       </View>

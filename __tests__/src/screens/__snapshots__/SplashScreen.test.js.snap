@@ -13,7 +13,7 @@ exports[`SplashScreen renders correctly 1`] = `
       },
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#26203D",
         "flex": 1,
         "justifyContent": "center",
       },
@@ -22,34 +22,18 @@ exports[`SplashScreen renders correctly 1`] = `
 >
   <HeaderContainer
     backButtonIconStyle={undefined}
+    title={undefined}
   />
   <Image
     source={
       Object {
-        "uri": "Launch Screen Background",
+        "uri": "LaunchScreenLogo",
       }
     }
     style={
       Object {
-        "bottom": 0,
-        "left": 0,
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
-      }
-    }
-  />
-  <Image
-    source={
-      Object {
-        "uri": "Launch Screen Icon",
-      }
-    }
-    style={
-      Object {
-        "height": 72,
-        "marginLeft": 5.5,
-        "width": 99,
+        "height": 75,
+        "width": 104,
       }
     }
   />

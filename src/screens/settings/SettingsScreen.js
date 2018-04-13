@@ -71,7 +71,7 @@ export default class SettingsScreen extends Component {
   _showResetAppConfirmation() {
     Alert.alert(
       'Reset?',
-      'This will permanently delete your key and reset all settings. You can only recover the key if you have your recovery phrase. Are you sure you want to continue?',
+      'This will permanently delete your key and reset all settings. You can only recover the key if you have your recovery key. Are you sure you want to continue?',
       [
         { text: 'Cancel', style: 'cancel' },
         {
@@ -95,7 +95,7 @@ export default class SettingsScreen extends Component {
 
         <SettingsGroup>
           <SettingsLink name='Bitcoin Display Unit' value={settings.bitcoin.unit} onPress={this._showBitcoinUnit.bind(this)} />
-          <SettingsLink name='Show Recovery Phrase' onPress={this._showMnemonic.bind(this)} isLastItem={true} />
+          <SettingsLink name='Show Recovery Key' onPress={this._showMnemonic.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
         <SettingsGroup>

@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 12
   },
   modalButtonText: {
-    color: '#0073FF',
+    color: '#322A51',
     fontWeight: '600',
     letterSpacing: 1
   }

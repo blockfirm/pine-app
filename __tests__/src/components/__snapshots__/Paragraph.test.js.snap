@@ -16,7 +16,9 @@ exports[`Paragraph renders correctly 1`] = `
       Array [
         Object {
           "color": "#AAAAAA",
-          "fontWeight": "400",
+          "fontSize": 15,
+          "fontWeight": "300",
+          "lineHeight": 21,
           "marginBottom": 20,
         },
         undefined,

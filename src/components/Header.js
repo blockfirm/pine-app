@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
+
+import headerStyles from '../styles/headerStyles';
 import BackButton from './BackButton';
 
 const styles = StyleSheet.create({
@@ -18,6 +20,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: ifIphoneX(54, 30),
     left: 10
+  },
+  title: {
+    position: 'absolute',
+    top: ifIphoneX(60, 36),
+    left: 40,
+    right: 40,
+    textAlign: 'center'
   }
 });
 
@@ -27,7 +36,11 @@ export default class Header extends Component {
 
     return (
       <View style={styles.header}>
-        {showBackButton ? <BackButton onPress={this.props.onBackPress} style={styles.backButton} iconStyle={this.props.backButtonIconStyle} /> : null }
+        { showBackButton ? <BackButton onPress={this.props.onBackPress} style={styles.backButton} iconStyle={this.props.backButtonIconStyle} /> : null }
+
+        <Text style={[headerStyles.title, styles.title]}>
+          {this.props.title}
+        </Text>
       </View>
     );
   }
@@ -36,5 +49,6 @@ export default class Header extends Component {
 Header.propTypes = {
   showBackButton: PropTypes.bool,
   onBackPress: PropTypes.func,
-  backButtonIconStyle: PropTypes.any
+  backButtonIconStyle: PropTypes.any,
+  title: PropTypes.string
 };

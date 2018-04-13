@@ -10,7 +10,7 @@ const headerStyles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     fontFamily: 'System',
-    color: '#000000'
+    color: '#26203D'
   }
 });
 

@@ -17,6 +17,7 @@ exports[`HomeScreen renders correctly 1`] = `
 >
   <HeaderContainer
     backButtonIconStyle={undefined}
+    title={undefined}
   />
   <Text
     accessible={true}

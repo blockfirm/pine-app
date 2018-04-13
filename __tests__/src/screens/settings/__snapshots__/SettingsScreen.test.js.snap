@@ -325,7 +325,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                   ]
                 }
               >
-                Show Recovery Phrase
+                Show Recovery Key
               </Text>
               <Text
                 accessible={true}

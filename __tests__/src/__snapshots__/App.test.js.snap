@@ -172,7 +172,7 @@ exports[`App renders correctly 1`] = `
                           },
                           Object {
                             "alignItems": "center",
-                            "backgroundColor": "white",
+                            "backgroundColor": "#26203D",
                             "flex": 1,
                             "justifyContent": "center",
                           },
@@ -191,34 +191,40 @@ exports[`App renders correctly 1`] = `
                             "zIndex": 1000,
                           }
                         }
-                      />
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "color": "#26203D",
+                                "fontFamily": "System",
+                                "fontSize": 16,
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "left": 40,
+                                "position": "absolute",
+                                "right": 40,
+                                "textAlign": "center",
+                                "top": 36,
+                              },
+                            ]
+                          }
+                        />
+                      </View>
                       <Image
                         source={
                           Object {
-                            "uri": "Launch Screen Background",
+                            "uri": "LaunchScreenLogo",
                           }
                         }
                         style={
                           Object {
-                            "bottom": 0,
-                            "left": 0,
-                            "position": "absolute",
-                            "right": 0,
-                            "top": 0,
-                          }
-                        }
-                      />
-                      <Image
-                        source={
-                          Object {
-                            "uri": "Launch Screen Icon",
-                          }
-                        }
-                        style={
-                          Object {
-                            "height": 72,
-                            "marginLeft": 5.5,
-                            "width": 99,
+                            "height": 75,
+                            "width": 104,
                           }
                         }
                       />
@@ -397,7 +403,9 @@ exports[`App renders correctly 1`] = `
                                   Array [
                                     Object {
                                       "color": "#AAAAAA",
-                                      "fontWeight": "400",
+                                      "fontSize": 15,
+                                      "fontWeight": "300",
+                                      "lineHeight": 21,
                                       "marginBottom": 20,
                                     },
                                     Object {
@@ -459,7 +467,7 @@ exports[`App renders correctly 1`] = `
                                         "fontWeight": "400",
                                       },
                                       Object {
-                                        "color": "#0073FF",
+                                        "color": "#322A51",
                                         "fontWeight": "600",
                                         "letterSpacing": 1,
                                       },

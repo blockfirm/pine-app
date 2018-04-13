@@ -60,13 +60,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -90,13 +93,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -120,13 +126,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -150,13 +159,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -180,13 +192,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -254,13 +269,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -328,13 +346,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -358,13 +379,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -388,13 +412,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -462,13 +489,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -536,13 +566,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -566,13 +599,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -640,13 +676,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -670,13 +709,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -744,13 +786,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -774,13 +819,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],
@@ -848,13 +896,16 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Array [
                     Object {
                       "color": "#AAAAAA",
-                      "fontWeight": "400",
+                      "fontSize": 15,
+                      "fontWeight": "300",
+                      "lineHeight": 21,
                       "marginBottom": 20,
                     },
                     Object {
                       "color": "#000000",
                       "fontFamily": "Arial",
                       "fontSize": 12,
+                      "lineHeight": 14,
                       "textAlign": "justify",
                     },
                   ],

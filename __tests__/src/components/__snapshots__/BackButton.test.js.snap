@@ -39,7 +39,7 @@ exports[`BackButton renders correctly 1`] = `
         Array [
           Object {
             "backgroundColor": "transparent",
-            "color": "#007AFF",
+            "color": "#322A51",
             "fontSize": 32,
             "paddingLeft": 10,
             "paddingRight": 10,

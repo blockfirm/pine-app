@@ -17,11 +17,11 @@ exports[`StyledInput renders correctly 1`] = `
           "width": 0,
         },
         "shadowOpacity": 0.05,
-        "shadowRadius": 8,
+        "shadowRadius": 5,
       },
       undefined,
       Object {
-        "borderColor": "#DDDDDF",
+        "borderColor": "#DADADA",
       },
     ]
   }
@@ -37,13 +37,13 @@ exports[`StyledInput renders correctly 1`] = `
     onFocus={[Function]}
     onSubmitEditing={undefined}
     placeholder={undefined}
-    placeholderTextColor="#DDDDDF"
+    placeholderTextColor="#DADADA"
     returnKeyType="done"
-    selectionColor="#F18340"
+    selectionColor="#26203D"
     style={
       Array [
         Object {
-          "color": "#8E8E93",
+          "color": "#26203D",
           "fontSize": 13,
           "height": 27,
           "letterSpacing": 1.45,
@@ -74,7 +74,7 @@ exports[`StyledInput renders correctly with border color 1`] = `
           "width": 0,
         },
         "shadowOpacity": 0.05,
-        "shadowRadius": 8,
+        "shadowRadius": 5,
       },
       undefined,
       Object {
@@ -94,13 +94,13 @@ exports[`StyledInput renders correctly with border color 1`] = `
     onFocus={[Function]}
     onSubmitEditing={undefined}
     placeholder={undefined}
-    placeholderTextColor="#DDDDDF"
+    placeholderTextColor="#DADADA"
     returnKeyType={undefined}
-    selectionColor="#F18340"
+    selectionColor="#26203D"
     style={
       Array [
         Object {
-          "color": "#8E8E93",
+          "color": "#26203D",
           "fontSize": 13,
           "height": 27,
           "letterSpacing": 1.45,

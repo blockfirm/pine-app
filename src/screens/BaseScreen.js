@@ -19,7 +19,10 @@ export default class BaseScreen extends Component {
   render() {
     return (
       <ErrorBoundary {...this.props} style={[styles.view, this.props.style]}>
-        <HeaderContainer backButtonIconStyle={this.props.backButtonIconStyle} />
+        <HeaderContainer
+          backButtonIconStyle={this.props.backButtonIconStyle}
+          title={this.props.headerTitle}
+        />
         {this.props.children}
       </ErrorBoundary>
     );
@@ -29,5 +32,6 @@ export default class BaseScreen extends Component {
 BaseScreen.propTypes = {
   style: PropTypes.any,
   backButtonIconStyle: PropTypes.any,
+  headerTitle: PropTypes.string,
   children: PropTypes.node
 };

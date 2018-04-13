@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 }))
 export default class ShowMnemonicScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Recovery Phrase',
+    title: 'Recovery Key',
     headerStyle: headerStyles.header,
     headerTitleStyle: headerStyles.title,
     headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />)
@@ -51,7 +51,7 @@ export default class ShowMnemonicScreen extends Component {
         </SettingsGroup>
         <SettingsDescription>
           Write down and store this recovery key in a safe place so you can recover
-          your wallet if you lose or break your phone.
+          your key if you lose or break your phone.
         </SettingsDescription>
       </BaseSettingsScreen>
     );

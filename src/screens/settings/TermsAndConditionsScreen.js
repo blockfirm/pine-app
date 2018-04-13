@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   paragraph: {
     fontFamily: 'Arial',
     fontSize: 12,
+    lineHeight: 14,
     textAlign: 'justify',
     color: '#000000'
   }

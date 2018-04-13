@@ -23,6 +23,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
   testID={undefined}
 >
   <View
+    headerTitle="Confirm Recovery Key"
     style={
       Array [
         Object {
@@ -38,6 +39,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
   >
     <HeaderContainer
       backButtonIconStyle={undefined}
+      title="Confirm Recovery Key"
     />
     <View
       style={
@@ -45,6 +47,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
           Object {
             "alignItems": "center",
             "opacity": 1,
+            "position": "absolute",
+            "top": 100,
           },
         ]
       }
@@ -63,40 +67,14 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
             },
             Array [
               Object {
-                "color": "#26203D",
-                "fontSize": 18,
-                "fontWeight": "600",
-                "letterSpacing": 0.36,
-                "marginBottom": 10,
-                "textAlign": "center",
-              },
-              undefined,
-            ],
-          ]
-        }
-      >
-        Confirm Recovery Key
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
-        style={
-          Array [
-            Object {
-              "color": "#000000",
-              "fontFamily": "System",
-              "fontWeight": "400",
-            },
-            Array [
-              Object {
                 "color": "#AAAAAA",
-                "fontWeight": "400",
+                "fontSize": 15,
+                "fontWeight": "300",
+                "lineHeight": 21,
                 "marginBottom": 20,
               },
               Object {
-                "marginBottom": 30,
+                "textAlign": "center",
               },
             ],
           ]
@@ -144,13 +122,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -166,13 +144,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -183,9 +161,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -199,17 +176,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -243,13 +230,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -265,13 +252,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -282,9 +269,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -298,17 +284,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -342,13 +338,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -364,13 +360,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -381,9 +377,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -397,17 +392,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -441,13 +446,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -463,13 +468,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -480,9 +485,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -496,17 +500,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -540,13 +554,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -562,13 +576,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -579,9 +593,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -595,17 +608,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -639,13 +662,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -661,13 +684,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -678,9 +701,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -694,17 +716,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -738,13 +770,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -760,13 +792,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -777,9 +809,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -793,17 +824,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -837,13 +878,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -859,13 +900,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -876,9 +917,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -892,17 +932,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -936,13 +986,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -958,13 +1008,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -975,9 +1025,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -991,17 +1040,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -1035,13 +1094,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -1057,13 +1116,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -1074,9 +1133,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -1090,17 +1148,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -1134,13 +1202,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -1156,13 +1224,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -1173,9 +1241,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -1189,17 +1256,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -1233,13 +1310,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "width": 0,
                     },
                     "shadowOpacity": 0.05,
-                    "shadowRadius": 8,
+                    "shadowRadius": 5,
                   },
                   Object {
                     "paddingTop": 7,
                   },
                   Object {
-                    "borderColor": "#DDDDDF",
+                    "borderColor": "#DADADA",
                   },
                 ]
               }
@@ -1255,13 +1332,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
                 placeholder={undefined}
-                placeholderTextColor="#DDDDDF"
+                placeholderTextColor="#DADADA"
                 returnKeyType="done"
-                selectionColor="#F18340"
+                selectionColor="#26203D"
                 style={
                   Array [
                     Object {
-                      "color": "#8E8E93",
+                      "color": "#26203D",
                       "fontSize": 13,
                       "height": 27,
                       "letterSpacing": 1.45,
@@ -1272,9 +1349,8 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                         "fontFamily": "Menlo-Regular",
                         "fontSize": 13,
                         "height": 27,
-                        "letterSpacing": 1,
                         "padding": 0,
-                        "paddingLeft": 20,
+                        "paddingLeft": 16,
                         "width": "100%",
                       },
                       Object {},
@@ -1288,17 +1364,27 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
               accessible={true}
               allowFontScaling={true}
               ellipsizeMode="tail"
+              numberOfLines={undefined}
               style={
                 Array [
                   Object {
-                    "color": "#DDDDDF",
-                    "fontFamily": "Menlo-Regular",
-                    "fontSize": 13,
-                    "left": 13,
-                    "position": "absolute",
-                    "top": 12.5,
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
                   },
-                  Object {},
+                  Array [
+                    Object {
+                      "color": "#DDDDDF",
+                      "fontSize": 13,
+                      "fontWeight": "bold",
+                      "left": 7,
+                      "position": "absolute",
+                      "textAlign": "right",
+                      "top": 12.5,
+                      "width": 20,
+                    },
+                    Object {},
+                  ],
                 ]
               }
             >
@@ -1355,24 +1441,23 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#F6F6F6",
+                "backgroundColor": "#322A51",
                 "borderRadius": 7,
-                "height": 42,
+                "height": 46,
                 "justifyContent": "center",
                 "shadowRadius": 4,
                 "width": 670,
               },
               undefined,
               Object {
-                "color": "#7A7A7A",
-                "opacity": 0.4,
+                "opacity": 0.6,
               },
             ]
           }
         >
           <ActivityIndicator
             animating={false}
-            color="#7A7A7A"
+            color="#D2DCFF"
             hidesWhenStopped={true}
             size="small"
             style={
@@ -1387,9 +1472,33 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
           <RNLinearTextGradient
             accessible={true}
             allowFontScaling={true}
+            colors={
+              Array [
+                4294962687,
+                4292663551,
+                4292736255,
+              ]
+            }
             ellipsizeMode="tail"
-            gradientEnd={undefined}
-            gradientStart={undefined}
+            gradientEnd={
+              Object {
+                "x": 1,
+                "y": 1,
+              }
+            }
+            gradientStart={
+              Object {
+                "x": 0,
+                "y": 0,
+              }
+            }
+            locations={
+              Array [
+                0,
+                0.5,
+                1,
+              ]
+            }
             style={
               Array [
                 Object {

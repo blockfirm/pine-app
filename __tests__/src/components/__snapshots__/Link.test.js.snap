@@ -45,7 +45,7 @@ exports[`Link renders correctly 1`] = `
           },
           Array [
             Object {
-              "color": "#8069DC",
+              "color": "#322A51",
               "fontSize": 12,
               "fontWeight": "500",
             },

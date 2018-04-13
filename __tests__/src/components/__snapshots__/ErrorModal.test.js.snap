@@ -139,7 +139,9 @@ exports[`ErrorModal renders correctly with an error 1`] = `
             Array [
               Object {
                 "color": "#AAAAAA",
-                "fontWeight": "400",
+                "fontSize": 15,
+                "fontWeight": "300",
+                "lineHeight": 21,
                 "marginBottom": 20,
               },
               Object {
@@ -201,7 +203,7 @@ exports[`ErrorModal renders correctly with an error 1`] = `
                   "fontWeight": "400",
                 },
                 Object {
-                  "color": "#0073FF",
+                  "color": "#322A51",
                   "fontWeight": "600",
                   "letterSpacing": 1,
                 },
@@ -363,7 +365,9 @@ exports[`ErrorModal renders correctly without an error 1`] = `
             Array [
               Object {
                 "color": "#AAAAAA",
-                "fontWeight": "400",
+                "fontSize": 15,
+                "fontWeight": "300",
+                "lineHeight": 21,
                 "marginBottom": 20,
               },
               Object {
@@ -425,7 +429,7 @@ exports[`ErrorModal renders correctly without an error 1`] = `
                   "fontWeight": "400",
                 },
                 Object {
-                  "color": "#0073FF",
+                  "color": "#322A51",
                   "fontWeight": "600",
                   "letterSpacing": 1,
                 },

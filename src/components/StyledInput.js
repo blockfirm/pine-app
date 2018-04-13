@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
-const BORDER_COLOR = '#DDDDDF';
-const BORDER_COLOR_FOCUS = '#F18340';
+const BORDER_COLOR = '#DADADA';
+const BORDER_COLOR_FOCUS = '#26203D';
 
 const windowDimensions = Dimensions.get('window');
 
@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
     shadowOpacity: 0.05,
     shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 8
+    shadowRadius: 5
   },
   input: {
     fontSize: windowDimensions.width < 330 ? 11 : 13,
     letterSpacing: 1.45,
-    color: '#8E8E93',
+    color: '#26203D',
     width: windowDimensions.width < 330 ? 240 : 278,
     height: 27
   }

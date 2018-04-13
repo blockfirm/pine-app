@@ -6,7 +6,9 @@ import StyledText from './StyledText';
 const styles = StyleSheet.create({
   paragraph: {
     color: '#AAAAAA',
-    fontWeight: '400',
+    fontSize: 15,
+    fontWeight: '300',
+    lineHeight: 21,
     marginBottom: 20
   }
 });

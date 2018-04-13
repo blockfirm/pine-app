@@ -10,9 +10,9 @@ const DEFAULT_WIDTH = FULL_WIDTH - 80;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#F6F6F6',
+    backgroundColor: '#322A51',
     width: DEFAULT_WIDTH,
-    height: 42,
+    height: 46,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 7,
@@ -30,8 +30,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.41
   },
   disabled: {
-    opacity: 0.4,
-    color: '#7A7A7A'
+    opacity: 0.6
   },
   loader: {
     height: 12,
@@ -115,16 +114,15 @@ export default class Button extends Component {
       this.props.style
     ];
 
-    let gradientTextProps = {
-      colors: ['#8069DC', '#4874B3'],
-      locations: [0.3, 1],
-      start: { x: 0.5, y: 0 },
-      end: { x: 0.5, y: 1 }
+    const gradientTextProps = {
+      colors: ['#FFEDFF', '#DCD8FF', '#DDF4FF'],
+      locations: [0, 0.5, 1],
+      start: { x: 0, y: 0 },
+      end: { x: 1, y: 1 }
     };
 
     if (disabled) {
       buttonStyles.push(styles.disabled);
-      gradientTextProps = {};
     }
 
     if (this.state.fullWidth) {
@@ -134,7 +132,7 @@ export default class Button extends Component {
     return (
       <TouchableOpacity disabled={disabled} activeOpacity={0.7} onPress={this._onPress.bind(this)}>
         <View style={buttonStyles}>
-          <ActivityIndicator animating={loading} color='#7A7A7A' style={styles.loader} size='small' />
+          <ActivityIndicator animating={loading} color='#D2DCFF' style={styles.loader} size='small' />
           <LinearTextGradient
             {...gradientTextProps}
             style={styles.label}

@@ -26,13 +26,13 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
               "width": 0,
             },
             "shadowOpacity": 0.05,
-            "shadowRadius": 8,
+            "shadowRadius": 5,
           },
           Object {
             "paddingTop": 7,
           },
           Object {
-            "borderColor": "#33CF8B",
+            "borderColor": "#47D396",
           },
         ]
       }
@@ -48,13 +48,13 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
         onFocus={[Function]}
         onSubmitEditing={undefined}
         placeholder={undefined}
-        placeholderTextColor="#DDDDDF"
+        placeholderTextColor="#DADADA"
         returnKeyType="next"
-        selectionColor="#F18340"
+        selectionColor="#26203D"
         style={
           Array [
             Object {
-              "color": "#8E8E93",
+              "color": "#26203D",
               "fontSize": 13,
               "height": 27,
               "letterSpacing": 1.45,
@@ -65,13 +65,12 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
                 "fontFamily": "Menlo-Regular",
                 "fontSize": 13,
                 "height": 27,
-                "letterSpacing": 1,
                 "padding": 0,
-                "paddingLeft": 20,
+                "paddingLeft": 16,
                 "width": "100%",
               },
               Object {
-                "color": "#33CF8B",
+                "color": "#47D396",
               },
             ],
           ]
@@ -83,19 +82,29 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
+      numberOfLines={undefined}
       style={
         Array [
           Object {
-            "color": "#DDDDDF",
-            "fontFamily": "Menlo-Regular",
-            "fontSize": 13,
-            "left": 13,
-            "position": "absolute",
-            "top": 12.5,
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
           },
-          Object {
-            "color": "#33CF8B",
-          },
+          Array [
+            Object {
+              "color": "#DDDDDF",
+              "fontSize": 13,
+              "fontWeight": "bold",
+              "left": 7,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 12.5,
+              "width": 20,
+            },
+            Object {
+              "color": "#47D396",
+            },
+          ],
         ]
       }
     >
@@ -132,13 +141,13 @@ exports[`MnemonicWordInput renders correctly 1`] = `
               "width": 0,
             },
             "shadowOpacity": 0.05,
-            "shadowRadius": 8,
+            "shadowRadius": 5,
           },
           Object {
             "paddingTop": 7,
           },
           Object {
-            "borderColor": "#DDDDDF",
+            "borderColor": "#DADADA",
           },
         ]
       }
@@ -154,13 +163,13 @@ exports[`MnemonicWordInput renders correctly 1`] = `
         onFocus={[Function]}
         onSubmitEditing={undefined}
         placeholder={undefined}
-        placeholderTextColor="#DDDDDF"
+        placeholderTextColor="#DADADA"
         returnKeyType="next"
-        selectionColor="#F18340"
+        selectionColor="#26203D"
         style={
           Array [
             Object {
-              "color": "#8E8E93",
+              "color": "#26203D",
               "fontSize": 13,
               "height": 27,
               "letterSpacing": 1.45,
@@ -171,9 +180,8 @@ exports[`MnemonicWordInput renders correctly 1`] = `
                 "fontFamily": "Menlo-Regular",
                 "fontSize": 13,
                 "height": 27,
-                "letterSpacing": 1,
                 "padding": 0,
-                "paddingLeft": 20,
+                "paddingLeft": 16,
                 "width": "100%",
               },
               Object {},
@@ -187,17 +195,27 @@ exports[`MnemonicWordInput renders correctly 1`] = `
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
+      numberOfLines={undefined}
       style={
         Array [
           Object {
-            "color": "#DDDDDF",
-            "fontFamily": "Menlo-Regular",
-            "fontSize": 13,
-            "left": 13,
-            "position": "absolute",
-            "top": 12.5,
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
           },
-          Object {},
+          Array [
+            Object {
+              "color": "#DDDDDF",
+              "fontSize": 13,
+              "fontWeight": "bold",
+              "left": 7,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 12.5,
+              "width": 20,
+            },
+            Object {},
+          ],
         ]
       }
     >
@@ -234,13 +252,13 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
               "width": 0,
             },
             "shadowOpacity": 0.05,
-            "shadowRadius": 8,
+            "shadowRadius": 5,
           },
           Object {
             "paddingTop": 7,
           },
           Object {
-            "borderColor": "#FF5A59",
+            "borderColor": "#FF6968",
           },
         ]
       }
@@ -256,13 +274,13 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
         onFocus={[Function]}
         onSubmitEditing={undefined}
         placeholder={undefined}
-        placeholderTextColor="#DDDDDF"
+        placeholderTextColor="#DADADA"
         returnKeyType="next"
-        selectionColor="#F18340"
+        selectionColor="#26203D"
         style={
           Array [
             Object {
-              "color": "#8E8E93",
+              "color": "#26203D",
               "fontSize": 13,
               "height": 27,
               "letterSpacing": 1.45,
@@ -273,13 +291,12 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
                 "fontFamily": "Menlo-Regular",
                 "fontSize": 13,
                 "height": 27,
-                "letterSpacing": 1,
                 "padding": 0,
-                "paddingLeft": 20,
+                "paddingLeft": 16,
                 "width": "100%",
               },
               Object {
-                "color": "#FF5A59",
+                "color": "#FF6968",
               },
             ],
           ]
@@ -291,19 +308,29 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
+      numberOfLines={undefined}
       style={
         Array [
           Object {
-            "color": "#DDDDDF",
-            "fontFamily": "Menlo-Regular",
-            "fontSize": 13,
-            "left": 13,
-            "position": "absolute",
-            "top": 12.5,
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
           },
-          Object {
-            "color": "#FF5A59",
-          },
+          Array [
+            Object {
+              "color": "#DDDDDF",
+              "fontSize": 13,
+              "fontWeight": "bold",
+              "left": 7,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 12.5,
+              "width": 20,
+            },
+            Object {
+              "color": "#FF6968",
+            },
+          ],
         ]
       }
     >

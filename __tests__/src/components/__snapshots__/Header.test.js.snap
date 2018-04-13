@@ -13,7 +13,30 @@ exports[`Header renders correctly with showBackButton set to false 1`] = `
       "zIndex": 1000,
     }
   }
-/>
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#26203D",
+          "fontFamily": "System",
+          "fontSize": 16,
+          "fontWeight": "600",
+        },
+        Object {
+          "left": 40,
+          "position": "absolute",
+          "right": 40,
+          "textAlign": "center",
+          "top": 36,
+        },
+      ]
+    }
+  />
+</View>
 `;
 
 exports[`Header renders correctly with showBackButton set to true 1`] = `
@@ -71,7 +94,7 @@ exports[`Header renders correctly with showBackButton set to true 1`] = `
           Array [
             Object {
               "backgroundColor": "transparent",
-              "color": "#007AFF",
+              "color": "#322A51",
               "fontSize": 32,
               "paddingLeft": 10,
               "paddingRight": 10,
@@ -89,5 +112,27 @@ exports[`Header renders correctly with showBackButton set to true 1`] = `
       
     </Text>
   </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#26203D",
+          "fontFamily": "System",
+          "fontSize": 16,
+          "fontWeight": "600",
+        },
+        Object {
+          "left": 40,
+          "position": "absolute",
+          "right": 40,
+          "textAlign": "center",
+          "top": 36,
+        },
+      ]
+    }
+  />
 </View>
 `;

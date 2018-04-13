@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -17,6 +17,9 @@ const windowDimensions = Dimensions.get('window');
 const styles = StyleSheet.create({
   title: {
     marginBottom: windowDimensions.height < 600 ? 10 : 20
+  },
+  paragraph: {
+    textAlign: 'center'
   },
   button: {
     marginBottom: 10
@@ -58,8 +61,8 @@ export default class WelcomeScreen extends Component {
           Welcome to Wallet ID
         </Title>
 
-        <Paragraph>
-          Start by creating a new key.
+        <Paragraph style={styles.paragraph}>
+          One secure key for all your bitcoin wallets and services.
         </Paragraph>
 
         <Footer>

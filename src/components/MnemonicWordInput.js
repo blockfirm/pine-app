@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import ReactNativeHaptic from 'react-native-haptic';
+
+import StyledText from './StyledText';
 import StyledInput from './StyledInput';
 
-const SUCCESS_COLOR = '#33CF8B';
-const FAILURE_COLOR = '#FF5A59';
+const SUCCESS_COLOR = '#47D396';
+const FAILURE_COLOR = '#FF6968';
 
 const windowDimensions = Dimensions.get('window');
 
@@ -17,10 +19,12 @@ const styles = StyleSheet.create({
   number: {
     position: 'absolute',
     top: windowDimensions.height < 600 ? 11 : 12.5,
-    left: 13,
-    fontFamily: 'Menlo-Regular',
+    left: 7,
     fontSize: windowDimensions.height < 600 ? 11 : 13,
-    color: '#DDDDDF'
+    fontWeight: 'bold',
+    color: '#DDDDDF',
+    textAlign: 'right',
+    width: 20
   },
   inputContainerStyle: {
     paddingTop: windowDimensions.height < 600 ? 5 : 7
@@ -28,11 +32,10 @@ const styles = StyleSheet.create({
   input: {
     fontFamily: 'Menlo-Regular',
     fontSize: windowDimensions.height < 600 ? 11 : 13,
-    letterSpacing: 1,
     width: '100%',
     height: windowDimensions.height < 600 ? 23 : 27,
     padding: 0,
-    paddingLeft: windowDimensions.height < 600 ? 17 : 20
+    paddingLeft: 16
   }
 });
 
@@ -83,9 +86,9 @@ export default class MnemonicWordInput extends Component {
             onChangeText={this.props.onChangeText}
             onSubmitEditing={this.props.onSubmitEditing}
           />
-          <Text style={[styles.number, colorStyle]}>
+          <StyledText style={[styles.number, colorStyle]}>
             {index + 1}.
-          </Text>
+          </StyledText>
         </View>
       </View>
     );

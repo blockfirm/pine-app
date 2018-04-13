@@ -14,7 +14,8 @@ class HeaderContainer extends Component {
   static propTypes = {
     nav: PropTypes.object,
     dispatch: PropTypes.func,
-    backButtonIconStyle: PropTypes.any
+    backButtonIconStyle: PropTypes.any,
+    title: PropTypes.string
   };
 
   _onBackPress() {
@@ -38,6 +39,7 @@ class HeaderContainer extends Component {
         showBackButton={showBackButton}
         onBackPress={this._onBackPress.bind(this)}
         backButtonIconStyle={this.props.backButtonIconStyle}
+        title={this.props.title}
       />
     );
   }

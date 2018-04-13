@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import Paragraph from '../components/Paragraph';
 import MnemonicWords from '../components/MnemonicWords';
@@ -13,6 +14,11 @@ const styles = StyleSheet.create({
   mnemonic: {
     marginTop: 10,
     marginBottom: 40
+  },
+  paragraph: {
+    textAlign: 'center',
+    position: 'absolute',
+    top: ifIphoneX(140, 85)
   }
 });
 
@@ -35,8 +41,8 @@ export default class MnemonicScreen extends Component {
     const mnemonic = params.mnemonic;
 
     return (
-      <BaseScreen>
-        <Paragraph style={styles.text}>
+      <BaseScreen headerTitle='Your Recovery Key'>
+        <Paragraph style={styles.paragraph}>
           Write down and store this recovery key in a safe place so you can recover
           your key if you lose or break your phone.
         </Paragraph>

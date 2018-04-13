@@ -3,6 +3,7 @@ import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-nati
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 import bip39 from 'bip39';
 
 import { navigateWithReset } from '../actions';
@@ -11,7 +12,6 @@ import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import saveMnemonicByKey from '../crypto/saveMnemonicByKey';
 import getPublicKeyFromMnemonic from '../crypto/getPublicKeyFromMnemonic';
-import Title from '../components/Title';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -25,12 +25,17 @@ const styles = StyleSheet.create({
     flex: 1
   },
   content: {
+    position: 'absolute',
+    top: ifIphoneX(140, 100),
     alignItems: 'center',
     opacity: 1
   },
   contentHidden: {
     height: 0,
     opacity: 0
+  },
+  paragraph: {
+    textAlign: 'center'
   }
 });
 
@@ -114,13 +119,9 @@ export default class ImportMnemonicScreen extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss.bind(Keyboard)}>
         <View style={styles.view}>
-          <BaseScreen>
+          <BaseScreen headerTitle='Import Key'>
             <View style={contentStyles}>
-              <Title>
-                Import Key
-              </Title>
-
-              <Paragraph>
+              <Paragraph style={styles.paragraph}>
                 Enter your recovery key to import an existing Wallet ID key.
               </Paragraph>
             </View>
@@ -134,7 +135,7 @@ export default class ImportMnemonicScreen extends Component {
 
             <Footer>
               <Button
-                label='Import'
+                label='Import Key'
                 loadingLabel='Importing...'
                 disabled={buttonDisabled}
                 fullWidth={this.state.keyboardState}

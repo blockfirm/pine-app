@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     fontSize: 32,
-    color: '#007AFF',
+    color: '#322A51',
     backgroundColor: 'transparent'
   }
 });

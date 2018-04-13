@@ -3,6 +3,7 @@ import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-nati
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import { navigateWithReset } from '../actions';
 import { handle as handleError } from '../actions/error/handle';
@@ -10,7 +11,6 @@ import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import saveMnemonicByKey from '../crypto/saveMnemonicByKey';
 import getPublicKeyFromMnemonic from '../crypto/getPublicKeyFromMnemonic';
-import Title from '../components/Title';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -22,6 +22,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   content: {
+    position: 'absolute',
+    top: ifIphoneX(140, 100),
     alignItems: 'center',
     opacity: 1
   },
@@ -29,8 +31,8 @@ const styles = StyleSheet.create({
     height: 0,
     opacity: 0
   },
-  text: {
-    marginBottom: 30
+  paragraph: {
+    textAlign: 'center'
   }
 });
 
@@ -122,13 +124,9 @@ export default class ConfirmMnemonicScreen extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss.bind(Keyboard)}>
         <View style={styles.view}>
-          <BaseScreen>
+          <BaseScreen headerTitle='Confirm Recovery Key'>
             <View style={contentStyles}>
-              <Title>
-                Confirm Recovery Key
-              </Title>
-
-              <Paragraph style={styles.text}>
+              <Paragraph style={styles.paragraph}>
                 To verify that you saved the words correctly,
                 please enter them below.
               </Paragraph>

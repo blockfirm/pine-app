@@ -14,19 +14,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white'
+    backgroundColor: '#26203D'
   },
-  background: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0
-  },
-  icon: {
-    width: 99,
-    height: 72,
-    marginLeft: 5.5 // Hack to make sure it is at the same position as in the Launch Screen,
+  logo: {
+    width: 104,
+    height: 75
   },
   footer: {
     backgroundColor: 'transparent'
@@ -77,8 +69,7 @@ export default class SplashScreen extends Component {
   render() {
     return (
       <BaseScreen style={styles.view}>
-        <Image source={{ uri: 'Launch Screen Background' }} style={styles.background} />
-        <Image source={{ uri: 'Launch Screen Icon' }} style={styles.icon} />
+        <Image source={{ uri: 'LaunchScreenLogo' }} style={styles.logo} />
         <Footer style={styles.footer}>
           <ActivityIndicator animating={true} color='#D2DCFF' style={styles.loader} size='small' />
         </Footer>
