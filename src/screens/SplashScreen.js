@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, ActivityIndicator } from 'react-native';
+import { StyleSheet, Image, ActivityIndicator, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -40,13 +40,22 @@ export default class SplashScreen extends Component {
     const dispatch = props.dispatch;
     const settings = dispatch(settingsActions.load());
 
-    this._loadState().then(() => {
-      if (!settings.initialized) {
-        return this._showWelcomeScreen();
-      }
+    this._loadState()
+      .then(() => {
+        if (!settings.initialized) {
+          return this._showWelcomeScreen();
+        }
 
-      this._showHomeScreen();
-    });
+        this._showHomeScreen();
+      })
+      .then(() => {
+        this._showStatusBar();
+      });
+  }
+
+  _showStatusBar() {
+    StatusBar.setHidden(false);
+    StatusBar.setBarStyle('default');
   }
 
   _loadState() {
