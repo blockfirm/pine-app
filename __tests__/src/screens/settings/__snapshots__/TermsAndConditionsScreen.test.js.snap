@@ -109,7 +109,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 ]
               }
             >
-              These Terms and Conditions ("Terms", "Terms and Conditions") govern your relationship with Wallet ID mobile application (the "Service") operated by Blockfirm AB ("us", "we", or "our").
+              These Terms and Conditions ("Terms", "Terms and Conditions") govern your relationship with Payla mobile application (the "Service") operated by Blockfirm AB ("us", "we", or "our").
             </Text>
             <Text
               accessible={true}
@@ -142,7 +142,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 ]
               }
             >
-              Please read these Terms and Conditions carefully before using our Wallet ID mobile application (the "Service").
+              Please read these Terms and Conditions carefully before using our Payla mobile application (the "Service").
             </Text>
             <Text
               accessible={true}

@@ -59,13 +59,13 @@ export default class DisclaimerScreen extends Component {
     return (
       <BaseScreen style={styles.view}>
         <Title style={styles.title}>
-          Read before you use Wallet ID
+          Read before you use Payla
         </Title>
 
         <View style={styles.terms}>
           <Title style={styles.subtitle}>Key Access</Title>
           <Paragraph style={styles.paragraph}>
-            Your private key stored with Wallet ID is stored securely on the device and only you can
+            Your private key stored with Payla is stored securely on the device and only you can
             access it. No company or third party can access your key and it never leaves the device.
           </Paragraph>
 

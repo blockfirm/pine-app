@@ -1,8 +1,8 @@
-Wallet ID
-=========
+Payla
+=====
 
-An iOS app that stores a private key but never exposes it. Instead it has an API that allows other
-apps to sign transactions with it.
+Payla is an open-source cryptocurrency wallet that lets you pay your friends and purchases with
+whatever crypto you want.
 
 ## Getting Started
 
@@ -32,10 +32,10 @@ Or follow the instructions here: <https://yarnpkg.com/en/docs/install>
 
 ## Contributing
 
-Want to help us making Wallet ID better? Great, but first read the
+Want to help us making Payla better? Great, but first read the
 [CONTRIBUTING.md](CONTRIBUTING.md) file for instructions.
 
 ## Licensing
 
-Wallet ID is licensed under the Apache License, Version 2.0.
+Payla is licensed under the Apache License, Version 2.0.
 See [LICENSE](LICENSE) for full license text.

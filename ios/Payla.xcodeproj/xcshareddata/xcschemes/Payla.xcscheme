@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "WalletID.app"
-               BlueprintName = "WalletID"
-               ReferencedContainer = "container:WalletID.xcodeproj">
+               BuildableName = "Payla.app"
+               BlueprintName = "Payla"
+               ReferencedContainer = "container:Payla.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "WalletIDTests.xctest"
-               BlueprintName = "WalletIDTests"
-               ReferencedContainer = "container:WalletID.xcodeproj">
+               BuildableName = "PaylaTests.xctest"
+               BlueprintName = "PaylaTests"
+               ReferencedContainer = "container:Payla.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -54,6 +54,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -61,9 +62,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "WalletIDTests.xctest"
-               BlueprintName = "WalletIDTests"
-               ReferencedContainer = "container:WalletID.xcodeproj">
+               BuildableName = "PaylaTests.xctest"
+               BlueprintName = "PaylaTests"
+               ReferencedContainer = "container:Payla.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "WalletID.app"
-            BlueprintName = "WalletID"
-            ReferencedContainer = "container:WalletID.xcodeproj">
+            BuildableName = "Payla.app"
+            BlueprintName = "Payla"
+            ReferencedContainer = "container:Payla.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,6 +84,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -94,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "WalletID.app"
-            BlueprintName = "WalletID"
-            ReferencedContainer = "container:WalletID.xcodeproj">
+            BuildableName = "Payla.app"
+            BlueprintName = "Payla"
+            ReferencedContainer = "container:Payla.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +115,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "WalletID.app"
-            BlueprintName = "WalletID"
-            ReferencedContainer = "container:WalletID.xcodeproj">
+            BuildableName = "Payla.app"
+            BlueprintName = "Payla"
+            ReferencedContainer = "container:Payla.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

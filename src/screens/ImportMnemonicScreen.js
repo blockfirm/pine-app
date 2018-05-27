@@ -122,7 +122,7 @@ export default class ImportMnemonicScreen extends Component {
           <BaseScreen headerTitle='Import Key'>
             <View style={contentStyles}>
               <Paragraph style={styles.paragraph}>
-                Enter your recovery key to import an existing Wallet ID key.
+                Enter your recovery key to import an existing Payla key.
               </Paragraph>
             </View>
 

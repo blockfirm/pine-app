@@ -26,7 +26,7 @@ export default class HomeScreen extends Component {
     return (
       <BaseScreen>
         <Title>
-          Welcome to Wallet ID!
+          Welcome to Payla!
         </Title>
       </BaseScreen>
     );

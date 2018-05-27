@@ -58,7 +58,7 @@ export default class WelcomeScreen extends Component {
     return (
       <BaseScreen>
         <Title style={styles.title}>
-          Welcome to Wallet ID
+          Welcome to Payla
         </Title>
 
         <Paragraph style={styles.paragraph}>
@@ -74,7 +74,7 @@ export default class WelcomeScreen extends Component {
           />
 
           <Link onPress={this._importKey.bind(this)}>
-            Or import an existing Wallet ID key
+            Or import an existing Payla key
           </Link>
         </Footer>
       </BaseScreen>

@@ -67,11 +67,11 @@ export default class TermsAndConditionsScreen extends Component {
             </Paragraph>
             <Paragraph style={styles.paragraph}>
               These Terms and Conditions ("Terms", "Terms and Conditions") govern your
-              relationship with Wallet ID mobile application (the "Service") operated by
+              relationship with Payla mobile application (the "Service") operated by
               Blockfirm AB ("us", "we", or "our").
             </Paragraph>
             <Paragraph style={styles.paragraph}>
-              Please read these Terms and Conditions carefully before using our Wallet ID
+              Please read these Terms and Conditions carefully before using our Payla
               mobile application (the "Service").
             </Paragraph>
             <Paragraph style={styles.paragraph}>

@@ -47,7 +47,7 @@ exports[`WelcomeScreen renders correctly 1`] = `
       ]
     }
   >
-    Welcome to Wallet ID
+    Welcome to Payla
   </Text>
   <Text
     accessible={true}
@@ -252,7 +252,7 @@ exports[`WelcomeScreen renders correctly 1`] = `
             ]
           }
         >
-          Or import an existing Wallet ID key
+          Or import an existing Payla key
         </Text>
       </Text>
     </View>

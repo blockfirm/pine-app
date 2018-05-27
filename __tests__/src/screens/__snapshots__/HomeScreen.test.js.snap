@@ -45,7 +45,7 @@ exports[`HomeScreen renders correctly 1`] = `
       ]
     }
   >
-    Welcome to Wallet ID!
+    Welcome to Payla!
   </Text>
   <ErrorModalContainer />
 </View>

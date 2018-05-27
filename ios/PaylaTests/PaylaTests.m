@@ -16,11 +16,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
 
-@interface WalletIDTests : XCTestCase
+@interface PaylaTests : XCTestCase
 
 @end
 
-@implementation WalletIDTests
+@implementation PaylaTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

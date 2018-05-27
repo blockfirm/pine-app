@@ -80,7 +80,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
           ]
         }
       >
-        Enter your recovery key to import an existing Wallet ID key.
+        Enter your recovery key to import an existing Payla key.
       </Text>
     </View>
     <View>
