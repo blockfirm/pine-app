@@ -31,11 +31,17 @@ exports[`Button renders correctly 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#322A51",
+          "backgroundColor": "#007AFF",
           "borderRadius": 7,
           "height": 46,
           "justifyContent": "center",
-          "shadowRadius": 4,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 16,
+            "width": 0,
+          },
+          "shadowOpacity": 0.16,
+          "shadowRadius": 16,
           "width": 670,
         },
         undefined,
@@ -137,11 +143,17 @@ exports[`Button renders correctly as disabled 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#322A51",
+          "backgroundColor": "#007AFF",
           "borderRadius": 7,
           "height": 46,
           "justifyContent": "center",
-          "shadowRadius": 4,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 16,
+            "width": 0,
+          },
+          "shadowOpacity": 0.16,
+          "shadowRadius": 16,
           "width": 670,
         },
         undefined,
@@ -246,11 +258,17 @@ exports[`Button renders correctly in full width 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#322A51",
+          "backgroundColor": "#007AFF",
           "borderRadius": 7,
           "height": 46,
           "justifyContent": "center",
-          "shadowRadius": 4,
+          "shadowColor": "black",
+          "shadowOffset": Object {
+            "height": 16,
+            "width": 0,
+          },
+          "shadowOpacity": 0.16,
+          "shadowRadius": 16,
           "width": 670,
         },
         undefined,

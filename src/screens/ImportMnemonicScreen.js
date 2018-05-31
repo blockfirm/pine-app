@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, StatusBar, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
@@ -119,10 +119,12 @@ export default class ImportMnemonicScreen extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss.bind(Keyboard)}>
         <View style={styles.view}>
-          <BaseScreen headerTitle='Import Key'>
+          <BaseScreen headerTitle='Import Wallet'>
+            <StatusBar barStyle='dark-content' />
+
             <View style={contentStyles}>
               <Paragraph style={styles.paragraph}>
-                Enter your recovery key to import an existing Payla key.
+                Enter your recovery key to import an existing wallet.
               </Paragraph>
             </View>
 
@@ -135,7 +137,7 @@ export default class ImportMnemonicScreen extends Component {
 
             <Footer>
               <Button
-                label='Import Key'
+                label='Import Wallet'
                 loadingLabel='Importing...'
                 disabled={buttonDisabled}
                 fullWidth={this.state.keyboardState}

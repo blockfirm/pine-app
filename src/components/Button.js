@@ -10,13 +10,19 @@ const DEFAULT_WIDTH = FULL_WIDTH - 80;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#322A51',
+    backgroundColor: '#007AFF',
     width: DEFAULT_WIDTH,
     height: 46,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 7,
-    shadowRadius: 4
+    shadowColor: 'black',
+    shadowRadius: 16,
+    shadowOpacity: 0.16,
+    shadowOffset: {
+      height: 16,
+      width: 0
+    }
   },
   fullWidth: {
     width: FULL_WIDTH,

@@ -49,7 +49,7 @@ exports[`MnemonicScreen renders correctly 1`] = `
       ]
     }
   >
-    Write down and store this recovery key in a safe place so you can recover your key if you lose or break your phone.
+    Write down and store this recovery key in a safe place so you can recover your wallet if you lose or break your phone.
   </Text>
   <View
     style={
@@ -61,7 +61,7 @@ exports[`MnemonicScreen renders correctly 1`] = `
           "justifyContent": "center",
         },
         Object {
-          "marginBottom": 40,
+          "marginBottom": 10,
           "marginTop": 10,
         },
       ]
@@ -990,11 +990,17 @@ exports[`MnemonicScreen renders correctly 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "backgroundColor": "#322A51",
+              "backgroundColor": "#007AFF",
               "borderRadius": 7,
               "height": 46,
               "justifyContent": "center",
-              "shadowRadius": 4,
+              "shadowColor": "black",
+              "shadowOffset": Object {
+                "height": 16,
+                "width": 0,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 16,
               "width": 670,
             },
             undefined,

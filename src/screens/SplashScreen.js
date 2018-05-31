@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#26203D'
   },
   logo: {
-    width: 104,
-    height: 75
+    width: 272,
+    height: 274
   },
   footer: {
     backgroundColor: 'transparent'
@@ -54,8 +54,7 @@ export default class SplashScreen extends Component {
   }
 
   _showStatusBar() {
-    StatusBar.setHidden(false);
-    StatusBar.setBarStyle('default');
+    StatusBar.setHidden(false, 'fade');
   }
 
   _loadState() {

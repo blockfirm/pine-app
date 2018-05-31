@@ -35,10 +35,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {
@@ -143,10 +143,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {
@@ -251,10 +251,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {
@@ -359,10 +359,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {
@@ -467,10 +467,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {
@@ -575,10 +575,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {
@@ -683,10 +683,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {
@@ -791,10 +791,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {
@@ -899,10 +899,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {
@@ -1007,10 +1007,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {
@@ -1115,10 +1115,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {
@@ -1223,10 +1223,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               "paddingTop": 7,
               "shadowColor": "#000000",
               "shadowOffset": Object {
-                "height": 4,
+                "height": 6,
                 "width": 0,
               },
-              "shadowOpacity": 0.05,
+              "shadowOpacity": 0.02,
               "shadowRadius": 5,
             },
             Object {

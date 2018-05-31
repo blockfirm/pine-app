@@ -19,65 +19,124 @@ exports[`WelcomeScreen renders correctly 1`] = `
     backButtonIconStyle={undefined}
     title={undefined}
   />
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    numberOfLines={undefined}
+  <View
     style={
-      Array [
-        Object {
-          "color": "#000000",
-          "fontFamily": "System",
-          "fontWeight": "400",
-        },
-        Array [
-          Object {
-            "color": "#26203D",
-            "fontSize": 18,
-            "fontWeight": "600",
-            "letterSpacing": 0.36,
-            "marginBottom": 10,
-            "textAlign": "center",
-          },
-          Object {
-            "marginBottom": 20,
-          },
-        ],
-      ]
+      Object {
+        "alignItems": "center",
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
     }
   >
-    Welcome to Payla
-  </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    numberOfLines={undefined}
-    style={
-      Array [
+    <View
+      style={
         Object {
-          "color": "#000000",
-          "fontFamily": "System",
-          "fontWeight": "400",
-        },
-        Array [
+          "alignItems": "center",
+          "flex": 1,
+          "height": 1334,
+          "justifyContent": "center",
+          "resizeMode": "cover",
+          "width": 750,
+        }
+      }
+    >
+      <Image
+        source={
           Object {
-            "color": "#AAAAAA",
-            "fontSize": 15,
-            "fontWeight": "300",
-            "lineHeight": 21,
-            "marginBottom": 20,
-          },
+            "testUri": "../../../src/images/Background.png",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            Object {
+              "height": 1334,
+              "width": 750,
+            },
+            undefined,
+          ]
+        }
+      />
+      <BVLinearGradient
+        colors={
+          Array [
+            4278190080,
+            0,
+          ]
+        }
+        endPoint={undefined}
+        locations={null}
+        startPoint={undefined}
+        style={
           Object {
-            "textAlign": "center",
-          },
-        ],
-      ]
-    }
-  >
-    One secure key for all your bitcoin wallets and services.
-  </Text>
+            "alignSelf": "stretch",
+            "height": 70,
+          }
+        }
+      />
+      <BVLinearGradient
+        colors={
+          Array [
+            16777215,
+            4294967295,
+          ]
+        }
+        endPoint={undefined}
+        locations={
+          Array [
+            0.25,
+            0.9,
+          ]
+        }
+        startPoint={undefined}
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "flex": 1,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingBottom": 100,
+            "position": "absolute",
+            "shadowColor": "black",
+            "shadowOffset": Object {
+              "height": 0,
+              "width": 0,
+            },
+            "shadowOpacity": 0.5,
+            "shadowRadius": 20,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/IconWelcomeScreen.png",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 23,
+              "height": 80,
+              "width": 80,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
   <View
     pointerEvents={undefined}
     style={
@@ -90,7 +149,9 @@ exports[`WelcomeScreen renders correctly 1`] = `
           "position": "absolute",
           "right": 40,
         },
-        undefined,
+        Object {
+          "backgroundColor": "transparent",
+        },
       ]
     }
   >
@@ -124,11 +185,17 @@ exports[`WelcomeScreen renders correctly 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "backgroundColor": "#322A51",
+              "backgroundColor": "#007AFF",
               "borderRadius": 7,
               "height": 46,
               "justifyContent": "center",
-              "shadowRadius": 4,
+              "shadowColor": "black",
+              "shadowOffset": Object {
+                "height": 16,
+                "width": 0,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 16,
               "width": 670,
             },
             Object {
@@ -195,7 +262,7 @@ exports[`WelcomeScreen renders correctly 1`] = `
             ]
           }
         >
-          CREATE A NEW KEY
+          CREATE A NEW WALLET
         </RNLinearTextGradient>
       </View>
     </View>
@@ -252,7 +319,7 @@ exports[`WelcomeScreen renders correctly 1`] = `
             ]
           }
         >
-          Or import an existing Payla key
+          Or import an existing wallet
         </Text>
       </Text>
     </View>

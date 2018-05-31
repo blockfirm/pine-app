@@ -148,7 +148,7 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
             ]
           }
         >
-          Write down and store this recovery key in a safe place so you can recover your key if you lose or break your phone.
+          Write down and store this recovery key in a safe place so you can recover your wallet if you lose or break your phone.
         </Text>
       </View>
     </View>

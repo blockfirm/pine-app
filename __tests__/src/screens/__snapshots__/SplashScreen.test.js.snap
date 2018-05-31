@@ -32,8 +32,8 @@ exports[`SplashScreen renders correctly 1`] = `
     }
     style={
       Object {
-        "height": 75,
-        "width": 104,
+        "height": 274,
+        "width": 272,
       }
     }
   />

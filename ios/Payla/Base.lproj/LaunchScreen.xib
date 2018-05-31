@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="LaunchScreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="QxA-y7-Nqa">
-                    <rect key="frame" x="188" y="203" width="104" height="75"/>
+                    <rect key="frame" x="104" y="103" width="272" height="274"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -30,6 +30,6 @@
         </view>
     </objects>
     <resources>
-        <image name="LaunchScreenLogo" width="104" height="75"/>
+        <image name="LaunchScreenLogo" width="272" height="274"/>
     </resources>
 </document>

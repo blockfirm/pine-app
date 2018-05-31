@@ -51,7 +51,7 @@ export default class ShowMnemonicScreen extends Component {
         </SettingsGroup>
         <SettingsDescription>
           Write down and store this recovery key in a safe place so you can recover
-          your key if you lose or break your phone.
+          your wallet if you lose or break your phone.
         </SettingsDescription>
       </BaseSettingsScreen>
     );

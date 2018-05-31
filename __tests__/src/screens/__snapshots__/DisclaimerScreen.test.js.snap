@@ -116,7 +116,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
         ]
       }
     >
-      Your private key stored with Payla is stored securely on the device and only you can access it. No company or third party can access your key and it never leaves the device.
+      Your private key is stored securely on the device and only you can access it. No company or third party can access your key and it never leaves the device.
     </Text>
     <Text
       accessible={true}
@@ -177,7 +177,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
         ]
       }
     >
-      Make sure to store your recovery key in a safe place. Anyone with access to the recovery key can access your funds. It is also the only way to recover your key in case you would lose or break your phone.
+      Make sure to store your recovery key in a safe place. Anyone with access to the recovery key can access your funds. It is also the only way to recover your wallet in case you would lose or break your phone.
     </Text>
     <Text
       accessible={true}
@@ -313,11 +313,17 @@ exports[`DisclaimerScreen renders correctly 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "backgroundColor": "#322A51",
+              "backgroundColor": "#007AFF",
               "borderRadius": 7,
               "height": 46,
               "justifyContent": "center",
-              "shadowRadius": 4,
+              "shadowColor": "black",
+              "shadowOffset": Object {
+                "height": 16,
+                "width": 0,
+              },
+              "shadowOpacity": 0.16,
+              "shadowRadius": 16,
               "width": 670,
             },
             undefined,

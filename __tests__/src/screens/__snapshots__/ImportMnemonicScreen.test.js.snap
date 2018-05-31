@@ -23,7 +23,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
   testID={undefined}
 >
   <View
-    headerTitle="Import Key"
+    headerTitle="Import Wallet"
     style={
       Array [
         Object {
@@ -39,7 +39,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
   >
     <HeaderContainer
       backButtonIconStyle={undefined}
-      title="Import Key"
+      title="Import Wallet"
     />
     <View
       style={
@@ -80,7 +80,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
           ]
         }
       >
-        Enter your recovery key to import an existing Payla key.
+        Enter your recovery key to import an existing wallet.
       </Text>
     </View>
     <View>
@@ -118,10 +118,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -226,10 +226,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -334,10 +334,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -442,10 +442,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -550,10 +550,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -658,10 +658,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -766,10 +766,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -874,10 +874,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -982,10 +982,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -1090,10 +1090,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -1198,10 +1198,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -1306,10 +1306,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     "paddingTop": 7,
                     "shadowColor": "#000000",
                     "shadowOffset": Object {
-                      "height": 4,
+                      "height": 6,
                       "width": 0,
                     },
-                    "shadowOpacity": 0.05,
+                    "shadowOpacity": 0.02,
                     "shadowRadius": 5,
                   },
                   Object {
@@ -1441,11 +1441,17 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#322A51",
+                "backgroundColor": "#007AFF",
                 "borderRadius": 7,
                 "height": 46,
                 "justifyContent": "center",
-                "shadowRadius": 4,
+                "shadowColor": "black",
+                "shadowOffset": Object {
+                  "height": 16,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.16,
+                "shadowRadius": 16,
                 "width": 670,
               },
               undefined,
@@ -1513,7 +1519,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
               ]
             }
           >
-            IMPORT KEY
+            IMPORT WALLET
           </RNLinearTextGradient>
         </View>
       </View>

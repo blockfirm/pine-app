@@ -1,25 +1,62 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions, Text } from 'react-native';
+import { StyleSheet, StatusBar, Dimensions, View, Image, ImageBackground } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { handle as handleError } from '../actions/error';
 import generateMnemonic from '../crypto/generateMnemonic';
-import Title from '../components/Title';
-import Paragraph from '../components/Paragraph';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import Link from '../components/Link';
 import BaseScreen from './BaseScreen';
 
-const windowDimensions = Dimensions.get('window');
+const WINDOW_WIDTH = Dimensions.get('window').width;
+const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
-  title: {
-    marginBottom: windowDimensions.height < 600 ? 10 : 20
+  background: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center'
   },
-  paragraph: {
-    textAlign: 'center'
+  backgroundImage: {
+    width: WINDOW_WIDTH,
+    height: WINDOW_HEIGHT,
+    resizeMode: 'cover',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  blackGradient: {
+    alignSelf: 'stretch',
+    height: 70
+  },
+  whiteGradient: {
+    flex: 1,
+    alignSelf: 'stretch'
+  },
+  iconWrapper: {
+    position: 'absolute',
+    paddingBottom: 100,
+    shadowColor: 'black',
+    shadowRadius: 20,
+    shadowOpacity: 0.5,
+    shadowOffset: {
+      height: 0,
+      width: 0
+    }
+  },
+  icon: {
+    width: 80,
+    height: 80,
+    borderRadius: 23
+  },
+  footer: {
+    backgroundColor: 'transparent'
   },
   button: {
     marginBottom: 10
@@ -37,7 +74,7 @@ export default class WelcomeScreen extends Component {
     navigation.navigate('Mnemonic', { mnemonic });
   }
 
-  _createKey() {
+  _createWallet() {
     const dispatch = this.props.dispatch;
 
     return generateMnemonic()
@@ -49,7 +86,7 @@ export default class WelcomeScreen extends Component {
       });
   }
 
-  _importKey() {
+  _importWallet() {
     const navigation = this.props.navigation;
     navigation.navigate('ImportMnemonic');
   }
@@ -57,24 +94,37 @@ export default class WelcomeScreen extends Component {
   render() {
     return (
       <BaseScreen>
-        <Title style={styles.title}>
-          Welcome to Payla
-        </Title>
+        <StatusBar barStyle='light-content' />
 
-        <Paragraph style={styles.paragraph}>
-          One secure key for all your bitcoin wallets and services.
-        </Paragraph>
+        <View style={styles.background}>
+          <ImageBackground source={require('../images/Background.png')} style={styles.backgroundImage}>
+            <LinearGradient
+              colors={['rgba(0, 0, 0, 1)', 'rgba(0, 0, 0, 0)']}
+              style={styles.blackGradient}
+            />
 
-        <Footer>
+            <LinearGradient
+              colors={['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 1)']}
+              locations={[0.25, 0.9]}
+              style={styles.whiteGradient}
+            />
+
+            <View style={styles.iconWrapper}>
+              <Image source={require('../images/IconWelcomeScreen.png')} style={styles.icon} />
+            </View>
+          </ImageBackground>
+        </View>
+
+        <Footer style={styles.footer}>
           <Button
-            label='Create a new key'
-            loadingLabel='Creating key...'
-            onPress={this._createKey.bind(this)}
+            label='Create a new wallet'
+            loadingLabel='Creating wallet...'
+            onPress={this._createWallet.bind(this)}
             style={styles.button}
           />
 
-          <Link onPress={this._importKey.bind(this)}>
-            Or import an existing Payla key
+          <Link onPress={this._importWallet.bind(this)}>
+            Or import an existing wallet
           </Link>
         </Footer>
       </BaseScreen>
