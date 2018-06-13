@@ -5,10 +5,16 @@ import MnemonicScreen from '../../../src/screens/MnemonicScreen';
 
 jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
 jest.mock('../../../src/containers/HeaderContainer', () => 'HeaderContainer');
+jest.mock('../../../src/containers/MnemonicWordsContainer', () => 'MnemonicWordsContainer');
 
 const storeMock = {
-  getState: jest.fn(() => ({})),
-  dispatch: jest.fn()
+  getState: jest.fn(() => ({
+    recoveryKey: {
+      visible: true
+    }
+  })),
+  dispatch: jest.fn(),
+  subscribe: jest.fn()
 };
 
 describe('MnemonicScreen', () => {

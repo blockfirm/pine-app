@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import { BlurView } from 'react-native-blur';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import MnemonicWord from './MnemonicWord';
+import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
   list: {
@@ -9,6 +13,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  blur: {
+    position: 'absolute',
+    top: -50,
+    bottom: -50,
+    left: -50,
+    right: -50
+  },
+  revealWrapper: {
+    position: 'absolute',
+    alignItems: 'center'
+  },
+  revealView: {
+    alignItems: 'center'
+  },
+  revealIcon: {
+    color: '#007AFF',
+    fontSize: 32
+  },
+  revealText: {
+    color: '#007AFF'
   }
 });
 
@@ -21,6 +46,29 @@ export default class MnemonicWords extends Component {
     });
   }
 
+  _renderBlur() {
+    return (
+      <BlurView
+        style={styles.blur}
+        blurType='light'
+        blurAmount={5}
+      />
+    );
+  }
+
+  _renderRevealButton() {
+    return (
+      <TouchableOpacity activeOpacity={0.7} onPress={this.props.onReveal} style={styles.revealWrapper}>
+        <View style={styles.revealView}>
+          <Icon name='ios-eye' style={styles.revealIcon} />
+          <StyledText style={styles.revealText}>
+            Reveal Recovery Key
+          </StyledText>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
   render() {
     const phrase = this.props.phrase;
     const words = phrase.split(' ');
@@ -28,6 +76,9 @@ export default class MnemonicWords extends Component {
     return (
       <View style={[styles.list, this.props.style]}>
         {this._renderWords(words)}
+
+        {this.props.revealed ? null : this._renderBlur()}
+        {this.props.revealed ? null : this._renderRevealButton()}
       </View>
     );
   }
@@ -35,5 +86,7 @@ export default class MnemonicWords extends Component {
 
 MnemonicWords.propTypes = {
   phrase: PropTypes.string.isRequired,
-  style: PropTypes.any
+  style: PropTypes.any,
+  onReveal: PropTypes.func,
+  revealed: PropTypes.bool
 };

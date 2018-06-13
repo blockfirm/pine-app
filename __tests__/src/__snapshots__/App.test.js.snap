@@ -274,28 +274,23 @@ exports[`App renders correctly 1`] = `
                           }
                         }
                       >
-                        <VibrancyView
+                        <View
                           blurAmount={5}
                           blurType="dark"
                           pointerEvents="none"
                           style={
                             Array [
                               Object {
-                                "backgroundColor": "transparent",
+                                "bottom": 0,
+                                "left": 0,
+                                "opacity": 1,
+                                "position": "absolute",
+                                "right": 0,
+                                "top": 0,
                               },
-                              Array [
-                                Object {
-                                  "bottom": 0,
-                                  "left": 0,
-                                  "opacity": 1,
-                                  "position": "absolute",
-                                  "right": 0,
-                                  "top": 0,
-                                },
-                                Object {
-                                  "opacity": 0,
-                                },
-                              ],
+                              Object {
+                                "opacity": 0,
+                              },
                             ]
                           }
                         />

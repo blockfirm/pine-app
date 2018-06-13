@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
+import MnemonicWordsContainer from '../containers/MnemonicWordsContainer';
 import Paragraph from '../components/Paragraph';
-import MnemonicWords from '../components/MnemonicWords';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
@@ -22,7 +22,9 @@ const styles = StyleSheet.create({
   }
 });
 
-@connect()
+@connect((state) => ({
+  recoveryKeyRevealed: state.recoveryKey.visible
+}))
 export default class MnemonicScreen extends Component {
   static navigationOptions = {
     header: null
@@ -49,13 +51,14 @@ export default class MnemonicScreen extends Component {
           your wallet if you lose or break your phone.
         </Paragraph>
 
-        <MnemonicWords phrase={mnemonic} style={styles.mnemonic} />
+        <MnemonicWordsContainer phrase={mnemonic} style={styles.mnemonic} />
 
         <Footer>
           <Button
             label='I have saved these words'
             onPress={this._showConfirmMnemonicScreen.bind(this)}
             style={styles.button}
+            disabled={!this.props.recoveryKeyRevealed}
           />
         </Footer>
       </BaseScreen>
@@ -64,5 +67,6 @@ export default class MnemonicScreen extends Component {
 }
 
 MnemonicScreen.propTypes = {
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  recoveryKeyRevealed: PropTypes.bool
 };
