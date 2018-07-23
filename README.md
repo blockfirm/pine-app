@@ -1,6 +1,10 @@
 Payla
 =====
 
+[![GitHub Release](https://img.shields.io/github/release/blockfirm/payla-app.svg?style=flat-square)](https://github.com/blockfirm/payla-app/releases)
+[![Build Status](https://img.shields.io/travis/blockfirm/payla-app.svg?branch=master&style=flat-square)](https://travis-ci.org/blockfirm/payla-app)
+[![Coverage Status](https://img.shields.io/coveralls/blockfirm/payla-app.svg?style=flat-square)](https://coveralls.io/r/blockfirm/payla-app)
+
 Payla is an open-source cryptocurrency wallet that lets you pay your friends and purchases with
 whatever crypto you want.
 
