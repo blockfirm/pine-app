@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore as createReduxStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import navigationDebouncer from 'react-navigation-redux-debouncer';
 import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
@@ -9,8 +9,8 @@ const reactNavigationReduxMiddleware = createReactNavigationReduxMiddleware(
   state => state.nav
 );
 
-export default (navReducer) => {
-  const store = createStore(
+const createStore = (navReducer) => {
+  const store = createReduxStore(
     getRootReducer(navReducer),
     applyMiddleware(
       thunkMiddleware,
@@ -26,3 +26,5 @@ export default (navReducer) => {
 
   return store;
 };
+
+export default createStore;

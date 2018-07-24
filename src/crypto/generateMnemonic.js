@@ -3,7 +3,7 @@ import getRandomBytes from './getRandomBytes';
 
 const ENTROPY = 128; // 128-bit entropy equals 12 mnemonic words.
 
-export default function generateMnemonic() {
+const generateMnemonic = () => {
   /*
    * This function first generates the random bytes and then passes
    * them to the bip39.generateMnemonic method. The reason for this
@@ -17,4 +17,6 @@ export default function generateMnemonic() {
 
     return mnemonic;
   });
-}
+};
+
+export default generateMnemonic;

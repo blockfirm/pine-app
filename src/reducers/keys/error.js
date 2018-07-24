@@ -1,6 +1,6 @@
 import * as keysActions from '../../actions/keys';
 
-export default function error(state = null, action) {
+const error = (state = null, action) => {
   switch (action.type) {
     case keysActions.KEYS_ADD_REQUEST:
     case keysActions.KEYS_LOAD_REQUEST:
@@ -16,4 +16,6 @@ export default function error(state = null, action) {
     default:
       return state;
   }
-}
+};
+
+export default error;

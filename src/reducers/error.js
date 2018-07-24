@@ -1,6 +1,6 @@
 import * as errorActions from '../actions/error';
 
-export default function error(state = null, action) {
+const error = (state = null, action) => {
   switch (action.type) {
     case errorActions.ERROR_HANDLE:
       return action.error;
@@ -11,4 +11,6 @@ export default function error(state = null, action) {
     default:
       return state;
   }
-}
+};
+
+export default error;

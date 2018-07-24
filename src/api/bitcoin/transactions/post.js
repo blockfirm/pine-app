@@ -1,4 +1,4 @@
-export default function post(rawTransaction, options) {
+const post = (rawTransaction, options) => {
   const url = `${options.baseUrl}/bitcoin/transactions`;
 
   const body = {
@@ -24,4 +24,6 @@ export default function post(rawTransaction, options) {
 
       return response;
     });
-}
+};
+
+export default post;

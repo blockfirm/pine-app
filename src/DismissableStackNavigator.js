@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 import PropTypes from 'prop-types';
 
-export default function DismissableStackNavigator(routes, options) {
+const DismissableStackNavigator = (routes, options) => {
   // eslint-disable-next-line new-cap
   const StackNav = StackNavigator(routes, options);
 
@@ -30,4 +30,6 @@ export default function DismissableStackNavigator(routes, options) {
       );
     }
   };
-}
+};
+
+export default DismissableStackNavigator;

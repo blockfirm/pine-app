@@ -1,6 +1,6 @@
 import { RECOVERY_KEY_REVEAL, RECOVERY_KEY_HIDE } from '../actions/recoveryKey';
 
-export default function recoveryKey(state = {}, action) {
+const recoveryKey = (state = {}, action) => {
   switch (action.type) {
     case RECOVERY_KEY_REVEAL:
       return {
@@ -17,4 +17,6 @@ export default function recoveryKey(state = {}, action) {
     default:
       return state;
   }
-}
+};
+
+export default recoveryKey;

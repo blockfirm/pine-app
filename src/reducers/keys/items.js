@@ -1,6 +1,6 @@
 import * as keysActions from '../../actions/keys';
 
-export default function items(state = {}, action) {
+const items = (state = {}, action) => {
   let newState;
   let key;
 
@@ -24,4 +24,6 @@ export default function items(state = {}, action) {
     default:
       return state;
   }
-}
+};
+
+export default items;

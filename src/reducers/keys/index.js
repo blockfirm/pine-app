@@ -2,7 +2,7 @@ import * as keysActions from '../../actions/keys';
 import error from './error';
 import items from './items';
 
-export default function keys(state = {}, action) {
+const keys = (state = {}, action) => {
   switch (action.type) {
     case keysActions.KEYS_ADD_REQUEST:
     case keysActions.KEYS_ADD_SUCCESS:
@@ -27,4 +27,6 @@ export default function keys(state = {}, action) {
     default:
       return state;
   }
-}
+};
+
+export default keys;

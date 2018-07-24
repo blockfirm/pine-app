@@ -1,6 +1,6 @@
 import * as settingsActions from '../actions/settings';
 
-export default function settings(state = {}, action) {
+const settings = (state = {}, action) => {
   switch (action.type) {
     case settingsActions.SETTINGS_LOAD_SUCCESS:
       return { ...action.settings };
@@ -8,4 +8,6 @@ export default function settings(state = {}, action) {
     default:
       return state;
   }
-}
+};
+
+export default settings;

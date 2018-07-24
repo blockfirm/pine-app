@@ -1,6 +1,6 @@
 import * as Keychain from 'react-native-keychain';
 
-export default function getMnemonicByKey(keyId) {
+const getMnemonicByKey = (keyId) => {
   const service = keyId;
 
   return Keychain.getGenericPassword(service).then((credentials) => {
@@ -10,4 +10,6 @@ export default function getMnemonicByKey(keyId) {
 
     return credentials.password;
   });
-}
+};
+
+export default getMnemonicByKey;

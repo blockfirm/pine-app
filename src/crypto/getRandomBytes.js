@@ -1,6 +1,6 @@
 import { randomBytes } from 'react-native-randombytes';
 
-export default function getRandomBytes(size) {
+const getRandomBytes = (size) => {
   return new Promise((resolve, reject) => {
     /*
      * It's very important to keep this call asynchronous. The synchronous version
@@ -16,4 +16,6 @@ export default function getRandomBytes(size) {
       resolve(bytes);
     });
   });
-}
+};
+
+export default getRandomBytes;
