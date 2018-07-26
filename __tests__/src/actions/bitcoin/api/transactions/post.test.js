@@ -1,11 +1,11 @@
-import * as api from '../../../../src/api';
+import * as api from '../../../../../../src/api';
 
 import {
-  postTransaction,
-  BITCOIN_POST_TRANSACTION_REQUEST,
-  BITCOIN_POST_TRANSACTION_SUCCESS,
-  BITCOIN_POST_TRANSACTION_FAILURE
-} from '../../../../src/actions/bitcoin/postTransaction';
+  post,
+  BITCOIN_API_TRANSACTIONS_POST_REQUEST,
+  BITCOIN_API_TRANSACTIONS_POST_SUCCESS,
+  BITCOIN_API_TRANSACTIONS_POST_FAILURE
+} from '../../../../../../src/actions/bitcoin/api/transactions/post';
 
 const dispatchMock = jest.fn();
 
@@ -17,7 +17,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../src/api', () => ({
+jest.mock('../../../../../../src/api', () => ({
   bitcoin: {
     transactions: {
       post: jest.fn(() => Promise.resolve())
@@ -25,25 +25,25 @@ jest.mock('../../../../src/api', () => ({
   }
 }));
 
-describe('BITCOIN_POST_TRANSACTION_REQUEST', () => {
-  it('equals "BITCOIN_POST_TRANSACTION_REQUEST"', () => {
-    expect(BITCOIN_POST_TRANSACTION_REQUEST).toBe('BITCOIN_POST_TRANSACTION_REQUEST');
+describe('BITCOIN_API_TRANSACTIONS_POST_REQUEST', () => {
+  it('equals "BITCOIN_API_TRANSACTIONS_POST_REQUEST"', () => {
+    expect(BITCOIN_API_TRANSACTIONS_POST_REQUEST).toBe('BITCOIN_API_TRANSACTIONS_POST_REQUEST');
   });
 });
 
-describe('BITCOIN_POST_TRANSACTION_SUCCESS', () => {
-  it('equals "BITCOIN_POST_TRANSACTION_SUCCESS"', () => {
-    expect(BITCOIN_POST_TRANSACTION_SUCCESS).toBe('BITCOIN_POST_TRANSACTION_SUCCESS');
+describe('BITCOIN_API_TRANSACTIONS_POST_SUCCESS', () => {
+  it('equals "BITCOIN_API_TRANSACTIONS_POST_SUCCESS"', () => {
+    expect(BITCOIN_API_TRANSACTIONS_POST_SUCCESS).toBe('BITCOIN_API_TRANSACTIONS_POST_SUCCESS');
   });
 });
 
-describe('BITCOIN_POST_TRANSACTION_FAILURE', () => {
-  it('equals "BITCOIN_POST_TRANSACTION_FAILURE"', () => {
-    expect(BITCOIN_POST_TRANSACTION_FAILURE).toBe('BITCOIN_POST_TRANSACTION_FAILURE');
+describe('BITCOIN_API_TRANSACTIONS_POST_FAILURE', () => {
+  it('equals "BITCOIN_API_TRANSACTIONS_POST_FAILURE"', () => {
+    expect(BITCOIN_API_TRANSACTIONS_POST_FAILURE).toBe('BITCOIN_API_TRANSACTIONS_POST_FAILURE');
   });
 });
 
-describe('postTransaction', () => {
+describe('post', () => {
   let fakeTransaction;
 
   beforeEach(() => {
@@ -55,15 +55,15 @@ describe('postTransaction', () => {
   });
 
   it('is a function', () => {
-    expect(typeof postTransaction).toBe('function');
+    expect(typeof post).toBe('function');
   });
 
   it('accepts one argument', () => {
-    expect(postTransaction.length).toBe(1);
+    expect(post.length).toBe(1);
   });
 
   it('returns a function', () => {
-    const returnValue = postTransaction(fakeTransaction);
+    const returnValue = post(fakeTransaction);
     expect(typeof returnValue).toBe('function');
   });
 
@@ -71,14 +71,14 @@ describe('postTransaction', () => {
     let returnedFunction;
 
     beforeEach(() => {
-      returnedFunction = postTransaction(fakeTransaction);
+      returnedFunction = post(fakeTransaction);
     });
 
-    it('dispatches an action of type BITCOIN_POST_TRANSACTION_REQUEST', () => {
+    it('dispatches an action of type BITCOIN_API_TRANSACTIONS_POST_REQUEST', () => {
       returnedFunction(dispatchMock, getStateMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: BITCOIN_POST_TRANSACTION_REQUEST
+        type: BITCOIN_API_TRANSACTIONS_POST_REQUEST
       });
     });
 
@@ -107,12 +107,12 @@ describe('postTransaction', () => {
         promise = returnedFunction(dispatchMock, getStateMock);
       });
 
-      it('dispatches an action of type BITCOIN_POST_TRANSACTION_SUCCESS with the transaction', () => {
+      it('dispatches an action of type BITCOIN_API_TRANSACTIONS_POST_SUCCESS with the transaction', () => {
         expect.hasAssertions();
 
         return promise.then(() => {
           expect(dispatchMock).toHaveBeenCalledWith({
-            type: BITCOIN_POST_TRANSACTION_SUCCESS,
+            type: BITCOIN_API_TRANSACTIONS_POST_SUCCESS,
             transaction: fakeTransaction
           });
         });
@@ -128,7 +128,7 @@ describe('postTransaction', () => {
           new Error('ca35dd1e-d1dd-41c7-88f3-ae4f64fd62a5')
         ));
 
-        promise = postTransaction()(dispatchMock, getStateMock);
+        promise = post()(dispatchMock, getStateMock);
       });
 
       it('rejects the returned promise', () => {
@@ -140,14 +140,14 @@ describe('postTransaction', () => {
         });
       });
 
-      it('dispatches an action of type BITCOIN_POST_TRANSACTION_FAILURE with the error', () => {
+      it('dispatches an action of type BITCOIN_API_TRANSACTIONS_POST_FAILURE with the error', () => {
         expect.hasAssertions();
 
         return promise.catch((error) => {
           expect(error).toBeTruthy();
 
           expect(dispatchMock).toHaveBeenCalledWith({
-            type: BITCOIN_POST_TRANSACTION_FAILURE,
+            type: BITCOIN_API_TRANSACTIONS_POST_FAILURE,
             error
           });
         });
