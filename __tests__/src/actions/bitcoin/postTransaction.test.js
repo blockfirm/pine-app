@@ -19,7 +19,9 @@ const getStateMock = jest.fn(() => ({
 
 jest.mock('../../../../src/api', () => ({
   bitcoin: {
-    postTransaction: jest.fn(() => Promise.resolve())
+    transactions: {
+      post: jest.fn(() => Promise.resolve())
+    }
   }
 }));
 
@@ -49,7 +51,7 @@ describe('postTransaction', () => {
       txid: 'f91c6df1-140e-4efd-8dcd-4edd390dc70f'
     };
 
-    api.bitcoin.postTransaction.mockClear();
+    api.bitcoin.transactions.post.mockClear();
   });
 
   it('is a function', () => {
@@ -80,7 +82,7 @@ describe('postTransaction', () => {
       });
     });
 
-    it('posts the transaction with api.bitcoin.postTransaction() together with baseUrl from settings', () => {
+    it('posts the transaction with api.bitcoin.transactions.post() together with baseUrl from settings', () => {
       expect.hasAssertions();
 
       return returnedFunction(dispatchMock, getStateMock).then(() => {
@@ -88,8 +90,8 @@ describe('postTransaction', () => {
           baseUrl: '2029bfb0-313f-4969-95fe-98e3d710b047'
         };
 
-        expect(api.bitcoin.postTransaction).toHaveBeenCalledTimes(1);
-        expect(api.bitcoin.postTransaction).toHaveBeenCalledWith(fakeTransaction, expectedOptions);
+        expect(api.bitcoin.transactions.post).toHaveBeenCalledTimes(1);
+        expect(api.bitcoin.transactions.post).toHaveBeenCalledWith(fakeTransaction, expectedOptions);
       });
     });
 
@@ -121,8 +123,8 @@ describe('postTransaction', () => {
       let promise;
 
       beforeEach(() => {
-        // Make the function fail by returning a rejected promise from api.bitcoin.postTransaction().
-        api.bitcoin.postTransaction.mockImplementationOnce(() => Promise.reject(
+        // Make the function fail by returning a rejected promise from api.bitcoin.transactions.post().
+        api.bitcoin.transactions.post.mockImplementationOnce(() => Promise.reject(
           new Error('ca35dd1e-d1dd-41c7-88f3-ae4f64fd62a5')
         ));
 

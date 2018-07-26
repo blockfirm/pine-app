@@ -31,7 +31,7 @@ export const postTransaction = (transaction) => {
 
     dispatch(postTransactionRequest());
 
-    return api.bitcoin.postTransaction(transaction, options)
+    return api.bitcoin.transactions.post(transaction, options)
       .then(() => {
         dispatch(postTransactionSuccess(transaction));
       })
