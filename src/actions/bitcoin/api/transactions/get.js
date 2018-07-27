@@ -34,6 +34,7 @@ export const get = (addresses, page) => {
     return api.bitcoin.transactions.get(addresses, page, options)
       .then((transactions) => {
         dispatch(getSuccess(transactions));
+        return transactions;
       })
       .catch((error) => {
         dispatch(getFailure(error));
