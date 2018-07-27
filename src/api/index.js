@@ -1,1 +1,3 @@
-export * as bitcoin from './bitcoin';
+import * as bitcoin from './bitcoin';
+
+export { bitcoin };

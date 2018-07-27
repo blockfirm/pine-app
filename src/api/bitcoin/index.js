@@ -1,1 +1,3 @@
-export * as transactions from './transactions';
+import * as transactions from './transactions';
+
+export { transactions };
