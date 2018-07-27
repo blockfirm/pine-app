@@ -1,13 +1,6 @@
-import querystring from 'querystring';
-
 const get = (addresses, page, options) => {
-  const queryParams = {
-    addresses: addresses.join(','),
-    page
-  };
-
-  const queryString = querystring.stringify(queryParams);
-  const url = `${options.baseUrl}/bitcoin/transactions?${queryString}`;
+  const addressesParam = encodeURIComponent(addresses.join(','));
+  const url = `${options.baseUrl}/bitcoin/transactions?addresses=${addressesParam}&page=${page}`;
 
   return fetch(url)
     .then((response) => {
