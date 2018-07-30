@@ -80,9 +80,6 @@ export default class ConfirmMnemonicScreen extends Component {
     // Save key metadata with public key.
     return dispatch(keyActions.add(key))
       .then(() => {
-        return dispatch(keyActions.save());
-      })
-      .then(() => {
         // Save mnemonic separately in Keychain.
         return saveMnemonicByKey(mnemonic, key.id);
       })

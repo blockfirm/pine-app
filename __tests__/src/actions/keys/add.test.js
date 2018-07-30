@@ -5,7 +5,18 @@ import {
 } from '../../../../src/actions/keys/add';
 
 const uuidRegex = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
-const dispatchMock = jest.fn();
+
+const dispatchMock = jest.fn((action) => {
+  if (typeof action === 'function') {
+    return action(jest.fn(), () => ({}));
+  }
+
+  return action;
+});
+
+jest.mock('../../../../src/actions/keys/save', () => ({
+  save: jest.fn(() => Promise.resolve())
+}));
 
 describe('KEYS_ADD_REQUEST', () => {
   it('equals "KEYS_ADD_REQUEST"', () => {

@@ -1,3 +1,5 @@
+import { save } from './save';
+
 export const KEYS_REMOVE_REQUEST = 'KEYS_REMOVE_REQUEST';
 export const KEYS_REMOVE_SUCCESS = 'KEYS_REMOVE_SUCCESS';
 export const KEYS_REMOVE_FAILURE = 'KEYS_REMOVE_FAILURE';
@@ -33,9 +35,12 @@ export const remove = (key) => {
         throw error;
       }
 
+      /* The actual key is removed by the reducer, so this action
+       * must be dispatched before saving the state.
+       */
       dispatch(removeSuccess(key));
 
-      return key;
+      return dispatch(save()).then(() => key);
     });
   };
 };

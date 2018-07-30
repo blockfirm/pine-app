@@ -5,7 +5,17 @@ import {
   KEYS_REMOVE_FAILURE
 } from '../../../../src/actions/keys/remove';
 
-const dispatchMock = jest.fn();
+const dispatchMock = jest.fn((action) => {
+  if (typeof action === 'function') {
+    return action(jest.fn(), () => ({}));
+  }
+
+  return action;
+});
+
+jest.mock('../../../../src/actions/keys/save', () => ({
+  save: jest.fn(() => Promise.resolve())
+}));
 
 describe('KEYS_REMOVE_REQUEST', () => {
   it('equals "KEYS_REMOVE_REQUEST"', () => {

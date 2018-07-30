@@ -1,4 +1,5 @@
 import uuidv4 from 'uuid/v4';
+import { save } from './save';
 
 export const KEYS_ADD_REQUEST = 'KEYS_ADD_REQUEST';
 export const KEYS_ADD_SUCCESS = 'KEYS_ADD_SUCCESS';
@@ -24,6 +25,6 @@ export const add = (key) => {
 
     dispatch(addSuccess(key));
 
-    return Promise.resolve(key);
+    return dispatch(save()).then(() => key);
   };
 };
