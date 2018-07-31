@@ -69,6 +69,7 @@ const cleanResult = (result, addressGap) => {
 
 /**
  * Returns the number of consecutive unused addresses at the end of the list.
+ * <https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#address-gap-limit>
  *
  * @param {array} addresses - List of addresses in the format of [{ address, transactions }].
  */
