@@ -24,6 +24,12 @@ const getByAddressFailure = (error) => {
   };
 };
 
+/**
+ * Merges two maps of addresses/transactions with each other.
+ *
+ * @param {object} prevResult - Previous result.
+ * @param {object} newResult - New result to merge with previous result.
+ */
 const mergeResult = (prevResult, newResult) => {
   if (!prevResult) {
     return newResult;
@@ -41,7 +47,13 @@ const mergeResult = (prevResult, newResult) => {
   return merged;
 };
 
-const getAddressesWithTransactions = (transactions) => {
+/**
+ * Filters a set of addresses/transactions and returns a list of addresses
+ * that has at least one transaction.
+ *
+ * @param {object} transactions - Object mapping addresses to a list of transactions.
+ */
+const filterAddressesWithTransactions = (transactions) => {
   const addresses = Object.keys(transactions);
 
   const filteredAddresses = addresses.filter((address) => {
@@ -51,10 +63,20 @@ const getAddressesWithTransactions = (transactions) => {
   return filteredAddresses;
 };
 
+/**
+ * Recursive function that gets all transactions for a list of addresses
+ * by loading them from the API page by page until no more transactions
+ * can by found. One page contains maximum 100 transactions per address.
+ *
+ * @param {function} dispatch - A redux dispatch function.
+ * @param {array} addresses - Array of bitcoin addresses (strings). Maximum 20 addresses.
+ * @param {number} page - Page to load. For internal use by the recursion. Starts at 1.
+ * @param {object} result - An aggregation of all transactions. For internal use by the recursion.
+ */
 const getTransactionsForAddresses = (dispatch, addresses, page = 1, result) => {
   return dispatch(getTransactions(addresses, page)).then((transactions) => {
     const newResult = mergeResult(result, transactions);
-    const nextAddresses = getAddressesWithTransactions(transactions);
+    const nextAddresses = filterAddressesWithTransactions(transactions);
     const nextPage = page + 1;
 
     if (nextAddresses.length === 0) {
@@ -65,6 +87,11 @@ const getTransactionsForAddresses = (dispatch, addresses, page = 1, result) => {
   });
 };
 
+/**
+ * Action to get all transactions for a list of addresses.
+ *
+ * @param {array} addresses - Array of bitcoin addresses (strings). Maximum 20 addresses.
+ */
 export const getByAddress = (addresses) => {
   return (dispatch) => {
     dispatch(getByAddressRequest());
