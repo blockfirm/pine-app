@@ -24,6 +24,13 @@ const postFailure = (error) => {
   };
 };
 
+/**
+ * Action to broadcast a signed transaction to the bitcoin network.
+ * The transaction must be serialized in raw format:
+ * <https://bitcoin.org/en/developer-reference#raw-transaction-format>
+ *
+ * @param {string} transaction - Serialized and signed transaction in raw format.
+ */
 export const post = (transaction) => {
   return (dispatch, getState) => {
     const settings = getState().settings;
