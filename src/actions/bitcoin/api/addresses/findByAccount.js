@@ -109,14 +109,23 @@ const getAddress = (node, network) => {
 /**
  * Generates a BIP44 path based on the specified parameters.
  *
- * @param {string} network - 'mainnet' or 'testnet'.
- * @param {number} accountIndex - The index of the account starting at 0.
- * @param {number} addressIndex - The index of the address starting at 0.
+ * @param {object} addressInfo - An object describing an address using BIP44.
+ * - @param {string} network - 'mainnet' or 'testnet'.
+ * - @param {number} accountIndex - The index of the account starting at 0.
+ * - @param {boolean} internal - Whether or not to generate a path for an internal address.
+ * - @param {number} addressIndex - The index of the address starting at 0.
  */
-const getBip44Path = (network, accountIndex, addressIndex) => {
+const getBip44Path = (addressInfo) => {
+  const {
+    network,
+    accountIndex,
+    internal,
+    addressIndex
+  } = addressInfo;
+
   const purpose = 44; // BIP44
-  const coinType = network === 'testnet' ? '1' : 0; // Default to mainnet.
-  const change = 0; // 0 = external, 1 = internal change address
+  const coinType = network === 'testnet' ? 1 : 0; // Default to mainnet.
+  const change = internal ? 1 : 0; // 0 = external, 1 = internal change address
 
   return `m/${purpose}'/${coinType}'/${accountIndex}'/${change}/${addressIndex}`;
 };
@@ -128,6 +137,7 @@ const getBip44Path = (network, accountIndex, addressIndex) => {
  * - @param {object} root - A bip32 root from a private key.
  * - @param {string} network - 'mainnet' or 'testnet'.
  * - @param {number} accountIndex - The index of the account to generate addresses for.
+ * - @param {boolean} internal - Whether or not to generate internal addresses (change addresses).
  * - @param {number} addressIndex - The address index to start generating addresses from.
  * @param {number} amount - Number of addresses to generate.
  */
@@ -137,7 +147,7 @@ const generateAddresses = (addressInfo, amount) => {
   const addresses = [];
 
   for (let i = addressIndexStart; i < addressIndexEnd; i++) {
-    const path = getBip44Path(addressInfo.network, addressInfo.accountIndex, i);
+    const path = getBip44Path({ ...addressInfo, addressIndex: i });
     const child = addressInfo.root.derivePath(path);
     const address = getAddress(child, addressInfo.network);
 
@@ -157,6 +167,7 @@ const generateAddresses = (addressInfo, amount) => {
  * - @param {object} root - A bip32 root from a private key.
  * - @param {string} network - 'mainnet' or 'testnet'.
  * - @param {number} accountIndex - The index of the account starting at 0.
+ * - @param {boolean} internal - Whether or not to search for internal addresses (change addresses).
  * - @param {number} addressIndex - The index of the address starting at 0.
  * @param {array} result - An aggregation of all addresses that has been searched and its transactions.
  */
@@ -183,8 +194,9 @@ const getAddressesForAccount = (dispatch, addressInfo, result) => {
  * <https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki>
  *
  * @param {number} accountIndex - The index of the account starting at 0.
+ * @param {boolean} internal - Whether or not to search for internal addresses (change addresses).
  */
-export const findByAccount = (accountIndex) => {
+export const findByAccount = (accountIndex, internal = false) => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
@@ -201,6 +213,7 @@ export const findByAccount = (accountIndex) => {
         root,
         network,
         accountIndex,
+        internal,
         addressIndex: 0
       };
 
