@@ -2,7 +2,7 @@
 import bitcoin from 'bitcoinjs-lib';
 import bip32 from 'bip32';
 import bip39 from 'bip39';
-import { getAll as getAllTransactions } from '../transactions/getAll';
+import { getByAddress as getTransactionsByAddress } from '../transactions/getByAddress';
 import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
 
 export const BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_REQUEST = 'BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_REQUEST';
@@ -174,7 +174,7 @@ const generateAddresses = (addressInfo, amount) => {
 const getAddressesForAccount = (dispatch, addressInfo, result) => {
   const addresses = generateAddresses(addressInfo, ADDRESS_SEARCH_SIZE);
 
-  return dispatch(getAllTransactions(addresses)).then((transactions) => {
+  return dispatch(getTransactionsByAddress(addresses)).then((transactions) => {
     const newResult = mergeResult(result, transactions);
     const addressGap = getAddressGap(newResult);
 

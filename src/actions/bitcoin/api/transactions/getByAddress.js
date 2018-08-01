@@ -1,25 +1,25 @@
 import { get as getTransactions } from './get';
 
-export const BITCOIN_API_TRANSACTIONS_GET_ALL_REQUEST = 'BITCOIN_API_TRANSACTIONS_GET_ALL_REQUEST';
-export const BITCOIN_API_TRANSACTIONS_GET_ALL_SUCCESS = 'BITCOIN_API_TRANSACTIONS_GET_ALL_SUCCESS';
-export const BITCOIN_API_TRANSACTIONS_GET_ALL_FAILURE = 'BITCOIN_API_TRANSACTIONS_GET_ALL_FAILURE';
+export const BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST = 'BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST';
+export const BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS = 'BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS';
+export const BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE = 'BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE';
 
-const getAllRequest = () => {
+const getByAddressRequest = () => {
   return {
-    type: BITCOIN_API_TRANSACTIONS_GET_ALL_REQUEST
+    type: BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST
   };
 };
 
-const getAllSuccess = (transactions) => {
+const getByAddressSuccess = (transactions) => {
   return {
-    type: BITCOIN_API_TRANSACTIONS_GET_ALL_SUCCESS,
+    type: BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS,
     transactions
   };
 };
 
-const getAllFailure = (error) => {
+const getByAddressFailure = (error) => {
   return {
-    type: BITCOIN_API_TRANSACTIONS_GET_ALL_FAILURE,
+    type: BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE,
     error
   };
 };
@@ -65,17 +65,17 @@ const getTransactionsForAddresses = (dispatch, addresses, page = 1, result) => {
   });
 };
 
-export const getAll = (addresses) => {
+export const getByAddress = (addresses) => {
   return (dispatch) => {
-    dispatch(getAllRequest());
+    dispatch(getByAddressRequest());
 
     return getTransactionsForAddresses(dispatch, addresses)
       .then((transactions) => {
-        dispatch(getAllSuccess(transactions));
+        dispatch(getByAddressSuccess(transactions));
         return transactions;
       })
       .catch((error) => {
-        dispatch(getAllFailure(error));
+        dispatch(getByAddressFailure(error));
         throw error;
       });
   };

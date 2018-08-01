@@ -1,9 +1,9 @@
 import {
-  getAll,
-  BITCOIN_API_TRANSACTIONS_GET_ALL_REQUEST,
-  BITCOIN_API_TRANSACTIONS_GET_ALL_SUCCESS,
-  BITCOIN_API_TRANSACTIONS_GET_ALL_FAILURE
-} from '../../../../../../src/actions/bitcoin/api/transactions/getAll';
+  getByAddress,
+  BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST,
+  BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS,
+  BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE
+} from '../../../../../../src/actions/bitcoin/api/transactions/getByAddress';
 
 const dispatchMock = jest.fn((fn) => {
   if (typeof fn === 'function') {
@@ -77,25 +77,25 @@ jest.mock('../../../../../../src/actions/bitcoin/api/transactions/get', () => ({
   }
 }));
 
-describe('BITCOIN_API_TRANSACTIONS_GET_ALL_REQUEST', () => {
-  it('equals "BITCOIN_API_TRANSACTIONS_GET_ALL_REQUEST"', () => {
-    expect(BITCOIN_API_TRANSACTIONS_GET_ALL_REQUEST).toBe('BITCOIN_API_TRANSACTIONS_GET_ALL_REQUEST');
+describe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST', () => {
+  it('equals "BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST"', () => {
+    expect(BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST).toBe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST');
   });
 });
 
-describe('BITCOIN_API_TRANSACTIONS_GET_ALL_SUCCESS', () => {
-  it('equals "BITCOIN_API_TRANSACTIONS_GET_ALL_SUCCESS"', () => {
-    expect(BITCOIN_API_TRANSACTIONS_GET_ALL_SUCCESS).toBe('BITCOIN_API_TRANSACTIONS_GET_ALL_SUCCESS');
+describe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS', () => {
+  it('equals "BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS"', () => {
+    expect(BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS).toBe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS');
   });
 });
 
-describe('BITCOIN_API_TRANSACTIONS_GET_ALL_FAILURE', () => {
-  it('equals "BITCOIN_API_TRANSACTIONS_GET_ALL_FAILURE"', () => {
-    expect(BITCOIN_API_TRANSACTIONS_GET_ALL_FAILURE).toBe('BITCOIN_API_TRANSACTIONS_GET_ALL_FAILURE');
+describe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE', () => {
+  it('equals "BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE"', () => {
+    expect(BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE).toBe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE');
   });
 });
 
-describe('getAll', () => {
+describe('getByAddress', () => {
   it('returns all transactions for the specified addresses', () => {
     const addresses = [
       '2Mt4MnuchSfx7UqVSRU8jbtpJNRdQkRHudx',
@@ -133,7 +133,7 @@ describe('getAll', () => {
       ]
     };
 
-    return getAll(addresses)(dispatchMock, getStateMock).then((transactions) => {
+    return getByAddress(addresses)(dispatchMock, getStateMock).then((transactions) => {
       expect(transactions).toMatchObject(expectedResult);
     });
   });

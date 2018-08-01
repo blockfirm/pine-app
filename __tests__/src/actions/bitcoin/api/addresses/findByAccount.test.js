@@ -42,8 +42,8 @@ jest.mock('../../../../../../src/crypto/getMnemonicByKey', () => {
   return () => Promise.resolve('chicken approve topic suit shiver party whale holiday pitch source angry naive');
 });
 
-jest.mock('../../../../../../src/actions/bitcoin/api/transactions/getAll', () => ({
-  getAll: (addresses) => {
+jest.mock('../../../../../../src/actions/bitcoin/api/transactions/getByAddress', () => ({
+  getByAddress: (addresses) => {
     if (addresses.includes('mfzwDkHsb5xQEhsCam6CLAtsadrWDGoaxD')) {
       // Mocking batch 1.
       return () => Promise.resolve({
