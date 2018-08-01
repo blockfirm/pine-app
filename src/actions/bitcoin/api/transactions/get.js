@@ -24,6 +24,14 @@ const getFailure = (error) => {
   };
 };
 
+/**
+ * Action to get one page of transactions for a list of addresses.
+ * Each page contains maximum 100 transactions per address. Returns
+ * a map of addresses to transactions.
+ *
+ * @param {array} addresses - Array of bitcoin addresses (strings). Maximum 20 addresses.
+ * @param {number} page - Page to load. Starts at 1.
+ */
 export const get = (addresses, page) => {
   return (dispatch, getState) => {
     const settings = getState().settings;
