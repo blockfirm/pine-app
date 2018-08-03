@@ -1,12 +1,12 @@
 import { AsyncStorage } from 'react-native';
 import {
   save as saveAddresses,
-  BITCOIN_WALLET_ADDRESSES_SAVE_REQUEST,
-  BITCOIN_WALLET_ADDRESSES_SAVE_SUCCESS,
-  BITCOIN_WALLET_ADDRESSES_SAVE_FAILURE
-} from '../../../../../../src/actions/bitcoin/wallet/addresses/save';
+  BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST,
+  BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_SUCCESS,
+  BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_FAILURE
+} from '../../../../../../../src/actions/bitcoin/wallet/addresses/internal/save';
 
-const BITCOIN_ADDRESSES_STORAGE_KEY = '@Bitcoin/Addresses';
+const BITCOIN_ADDRESSES_INTERNAL_STORAGE_KEY = '@Bitcoin/Addresses/Internal';
 
 const dispatchMock = jest.fn();
 
@@ -14,9 +14,11 @@ const getStateMock = jest.fn(() => ({
   bitcoin: {
     wallet: {
       addresses: {
-        items: {
-          '353128ef-a7bd-44f0-8a60-5c93c04e1c2e': {},
-          '7c7c78c9-2d23-4c4c-9135-1f09f113d87b': {}
+        internal: {
+          items: {
+            '353128ef-a7bd-44f0-8a60-5c93c04e1c2e': {},
+            '7c7c78c9-2d23-4c4c-9135-1f09f113d87b': {}
+          }
         }
       }
     }
@@ -29,21 +31,21 @@ jest.mock('react-native', () => ({
   }
 }));
 
-describe('BITCOIN_WALLET_ADDRESSES_SAVE_REQUEST', () => {
-  it('equals "BITCOIN_WALLET_ADDRESSES_SAVE_REQUEST"', () => {
-    expect(BITCOIN_WALLET_ADDRESSES_SAVE_REQUEST).toBe('BITCOIN_WALLET_ADDRESSES_SAVE_REQUEST');
+describe('BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST', () => {
+  it('equals "BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST"', () => {
+    expect(BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST).toBe('BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST');
   });
 });
 
-describe('BITCOIN_WALLET_ADDRESSES_SAVE_SUCCESS', () => {
-  it('equals "BITCOIN_WALLET_ADDRESSES_SAVE_SUCCESS"', () => {
-    expect(BITCOIN_WALLET_ADDRESSES_SAVE_SUCCESS).toBe('BITCOIN_WALLET_ADDRESSES_SAVE_SUCCESS');
+describe('BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_SUCCESS', () => {
+  it('equals "BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_SUCCESS"', () => {
+    expect(BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_SUCCESS).toBe('BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_SUCCESS');
   });
 });
 
-describe('BITCOIN_WALLET_ADDRESSES_SAVE_FAILURE', () => {
-  it('equals "BITCOIN_WALLET_ADDRESSES_SAVE_FAILURE"', () => {
-    expect(BITCOIN_WALLET_ADDRESSES_SAVE_FAILURE).toBe('BITCOIN_WALLET_ADDRESSES_SAVE_FAILURE');
+describe('BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_FAILURE', () => {
+  it('equals "BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_FAILURE"', () => {
+    expect(BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_FAILURE).toBe('BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_FAILURE');
   });
 });
 
@@ -67,11 +69,11 @@ describe('save', () => {
     expect(typeof returnValue).toBe('function');
   });
 
-  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_SAVE_REQUEST', () => {
+  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST', () => {
     saveAddresses()(dispatchMock, getStateMock);
 
     expect(dispatchMock).toHaveBeenCalledWith({
-      type: BITCOIN_WALLET_ADDRESSES_SAVE_REQUEST
+      type: BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST
     });
   });
 
@@ -92,7 +94,7 @@ describe('save', () => {
       const deserializedArgument2 = JSON.parse(argument2);
 
       expect(AsyncStorage.setItem).toHaveBeenCalledTimes(1);
-      expect(argument1).toBe(BITCOIN_ADDRESSES_STORAGE_KEY);
+      expect(argument1).toBe(BITCOIN_ADDRESSES_INTERNAL_STORAGE_KEY);
 
       expect(typeof deserializedArgument2).toBe('object');
       expect(deserializedArgument2['353128ef-a7bd-44f0-8a60-5c93c04e1c2e']).toBeTruthy();
@@ -100,12 +102,12 @@ describe('save', () => {
     });
   });
 
-  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_SAVE_SUCCESS', () => {
+  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_SUCCESS', () => {
     expect.hasAssertions();
 
     return saveAddresses()(dispatchMock, getStateMock).then(() => {
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: BITCOIN_WALLET_ADDRESSES_SAVE_SUCCESS
+        type: BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_SUCCESS
       });
     });
   });
@@ -131,14 +133,14 @@ describe('save', () => {
       });
     });
 
-    it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_SAVE_FAILURE with the error', () => {
+    it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_FAILURE with the error', () => {
       expect.hasAssertions();
 
       return promise.catch((error) => {
         expect(error).toBeTruthy();
 
         expect(dispatchMock).toHaveBeenCalledWith({
-          type: BITCOIN_WALLET_ADDRESSES_SAVE_FAILURE,
+          type: BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_FAILURE,
           error
         });
       });

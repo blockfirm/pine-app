@@ -1,12 +1,12 @@
 import { AsyncStorage } from 'react-native';
 import {
   load as loadAddresses,
-  BITCOIN_WALLET_ADDRESSES_LOAD_REQUEST,
-  BITCOIN_WALLET_ADDRESSES_LOAD_SUCCESS,
-  BITCOIN_WALLET_ADDRESSES_LOAD_FAILURE
-} from '../../../../../../src/actions/bitcoin/wallet/addresses/load';
+  BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_REQUEST,
+  BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_SUCCESS,
+  BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_FAILURE
+} from '../../../../../../../src/actions/bitcoin/wallet/addresses/external/load';
 
-const BITCOIN_ADDRESSES_STORAGE_KEY = '@Bitcoin/Addresses';
+const BITCOIN_ADDRESSES_EXTERNAL_STORAGE_KEY = '@Bitcoin/Addresses/External';
 const dispatchMock = jest.fn();
 
 jest.mock('react-native', () => ({
@@ -17,21 +17,21 @@ jest.mock('react-native', () => ({
   }
 }));
 
-describe('BITCOIN_WALLET_ADDRESSES_LOAD_REQUEST', () => {
-  it('equals "BITCOIN_WALLET_ADDRESSES_LOAD_REQUEST"', () => {
-    expect(BITCOIN_WALLET_ADDRESSES_LOAD_REQUEST).toBe('BITCOIN_WALLET_ADDRESSES_LOAD_REQUEST');
+describe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_REQUEST', () => {
+  it('equals "BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_REQUEST"', () => {
+    expect(BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_REQUEST).toBe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_REQUEST');
   });
 });
 
-describe('BITCOIN_WALLET_ADDRESSES_LOAD_SUCCESS', () => {
-  it('equals "BITCOIN_WALLET_ADDRESSES_LOAD_SUCCESS"', () => {
-    expect(BITCOIN_WALLET_ADDRESSES_LOAD_SUCCESS).toBe('BITCOIN_WALLET_ADDRESSES_LOAD_SUCCESS');
+describe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_SUCCESS', () => {
+  it('equals "BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_SUCCESS"', () => {
+    expect(BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_SUCCESS).toBe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_SUCCESS');
   });
 });
 
-describe('BITCOIN_WALLET_ADDRESSES_LOAD_FAILURE', () => {
-  it('equals "BITCOIN_WALLET_ADDRESSES_LOAD_FAILURE"', () => {
-    expect(BITCOIN_WALLET_ADDRESSES_LOAD_FAILURE).toBe('BITCOIN_WALLET_ADDRESSES_LOAD_FAILURE');
+describe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_FAILURE', () => {
+  it('equals "BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_FAILURE"', () => {
+    expect(BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_FAILURE).toBe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_FAILURE');
   });
 });
 
@@ -53,11 +53,11 @@ describe('load', () => {
     expect(typeof returnValue).toBe('function');
   });
 
-  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_LOAD_REQUEST', () => {
+  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_REQUEST', () => {
     loadAddresses()(dispatchMock);
 
     expect(dispatchMock).toHaveBeenCalledWith({
-      type: BITCOIN_WALLET_ADDRESSES_LOAD_REQUEST
+      type: BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_REQUEST
     });
   });
 
@@ -66,16 +66,16 @@ describe('load', () => {
 
     return loadAddresses()(dispatchMock).then(() => {
       expect(AsyncStorage.getItem).toHaveBeenCalledTimes(1);
-      expect(AsyncStorage.getItem).toHaveBeenCalledWith(BITCOIN_ADDRESSES_STORAGE_KEY);
+      expect(AsyncStorage.getItem).toHaveBeenCalledWith(BITCOIN_ADDRESSES_EXTERNAL_STORAGE_KEY);
     });
   });
 
-  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_LOAD_SUCCESS with the addresses', () => {
+  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_SUCCESS with the addresses', () => {
     expect.hasAssertions();
 
     return loadAddresses()(dispatchMock).then((addresses) => {
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: BITCOIN_WALLET_ADDRESSES_LOAD_SUCCESS,
+        type: BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_SUCCESS,
         addresses
       });
     });
@@ -134,14 +134,14 @@ describe('load', () => {
       });
     });
 
-    it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_LOAD_FAILURE with the error', () => {
+    it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_FAILURE with the error', () => {
       expect.hasAssertions();
 
       return promise.catch((error) => {
         expect(error).toBeTruthy();
 
         expect(dispatchMock).toHaveBeenCalledWith({
-          type: BITCOIN_WALLET_ADDRESSES_LOAD_FAILURE,
+          type: BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_FAILURE,
           error
         });
       });

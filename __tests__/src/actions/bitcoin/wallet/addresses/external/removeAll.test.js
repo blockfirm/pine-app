@@ -1,9 +1,9 @@
 import {
   removeAll as removeAllAddresses,
-  BITCOIN_WALLET_ADDRESSES_REMOVE_ALL_SUCCESS
-} from '../../../../../../src/actions/bitcoin/wallet/addresses/removeAll';
+  BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS
+} from '../../../../../../../src/actions/bitcoin/wallet/addresses/external/removeAll';
 
-import { save as saveAddresses } from '../../../../../../src/actions/bitcoin/wallet/addresses/save';
+import { save as saveAddresses } from '../../../../../../../src/actions/bitcoin/wallet/addresses/external/save';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -13,13 +13,13 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
-jest.mock('../../../../../../src/actions/bitcoin/wallet/addresses/save', () => ({
+jest.mock('../../../../../../../src/actions/bitcoin/wallet/addresses/external/save', () => ({
   save: jest.fn(() => Promise.resolve())
 }));
 
-describe('BITCOIN_WALLET_ADDRESSES_REMOVE_ALL_SUCCESS', () => {
-  it('equals "BITCOIN_WALLET_ADDRESSES_REMOVE_ALL_SUCCESS"', () => {
-    expect(BITCOIN_WALLET_ADDRESSES_REMOVE_ALL_SUCCESS).toBe('BITCOIN_WALLET_ADDRESSES_REMOVE_ALL_SUCCESS');
+describe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS', () => {
+  it('equals "BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS"', () => {
+    expect(BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS).toBe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS');
   });
 });
 
@@ -37,11 +37,11 @@ describe('removeAll', () => {
     expect(typeof returnValue).toBe('function');
   });
 
-  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_REMOVE_ALL_SUCCESS', () => {
+  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS', () => {
     removeAllAddresses()(dispatchMock);
 
     expect(dispatchMock).toHaveBeenCalledWith({
-      type: BITCOIN_WALLET_ADDRESSES_REMOVE_ALL_SUCCESS
+      type: BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS
     });
   });
 

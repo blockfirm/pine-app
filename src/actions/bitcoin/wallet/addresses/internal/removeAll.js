@@ -1,15 +1,15 @@
 import { save } from './save';
 
-export const BITCOIN_WALLET_ADDRESSES_REMOVE_ALL_SUCCESS = 'BITCOIN_WALLET_ADDRESSES_REMOVE_ALL_SUCCESS';
+export const BITCOIN_WALLET_ADDRESSES_INTERNAL_REMOVE_ALL_SUCCESS = 'BITCOIN_WALLET_ADDRESSES_INTERNAL_REMOVE_ALL_SUCCESS';
 
 const removeAllSuccess = () => {
   return {
-    type: BITCOIN_WALLET_ADDRESSES_REMOVE_ALL_SUCCESS
+    type: BITCOIN_WALLET_ADDRESSES_INTERNAL_REMOVE_ALL_SUCCESS
   };
 };
 
 /**
- * Action to remove all addresses. Useful when resetting the app/wallet.
+ * Action to remove all internal addresses. Useful when resetting the app/wallet.
  */
 export const removeAll = () => {
   return (dispatch) => {

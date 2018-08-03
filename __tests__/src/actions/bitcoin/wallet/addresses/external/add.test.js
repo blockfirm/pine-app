@@ -1,9 +1,9 @@
 import {
   add as addAddresses,
-  BITCOIN_WALLET_ADDRESSES_ADD_SUCCESS
-} from '../../../../../../src/actions/bitcoin/wallet/addresses/add';
+  BITCOIN_WALLET_ADDRESSES_EXTERNAL_ADD_SUCCESS
+} from '../../../../../../../src/actions/bitcoin/wallet/addresses/external/add';
 
-import { save as saveAddresses } from '../../../../../../src/actions/bitcoin/wallet/addresses/save';
+import { save as saveAddresses } from '../../../../../../../src/actions/bitcoin/wallet/addresses/external/save';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -13,13 +13,13 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
-jest.mock('../../../../../../src/actions/bitcoin/wallet/addresses/save', () => ({
+jest.mock('../../../../../../../src/actions/bitcoin/wallet/addresses/external/save', () => ({
   save: jest.fn(() => Promise.resolve())
 }));
 
-describe('BITCOIN_WALLET_ADDRESSES_ADD_SUCCESS', () => {
-  it('equals "BITCOIN_WALLET_ADDRESSES_ADD_SUCCESS"', () => {
-    expect(BITCOIN_WALLET_ADDRESSES_ADD_SUCCESS).toBe('BITCOIN_WALLET_ADDRESSES_ADD_SUCCESS');
+describe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_ADD_SUCCESS', () => {
+  it('equals "BITCOIN_WALLET_ADDRESSES_EXTERNAL_ADD_SUCCESS"', () => {
+    expect(BITCOIN_WALLET_ADDRESSES_EXTERNAL_ADD_SUCCESS).toBe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_ADD_SUCCESS');
   });
 });
 
@@ -47,11 +47,11 @@ describe('add', () => {
     expect(typeof returnValue).toBe('function');
   });
 
-  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_ADD_SUCCESS with the addresses', () => {
+  it('dispatches an action of type BITCOIN_WALLET_ADDRESSES_EXTERNAL_ADD_SUCCESS with the addresses', () => {
     addAddresses(fakeAddresses)(dispatchMock);
 
     expect(dispatchMock).toHaveBeenCalledWith({
-      type: BITCOIN_WALLET_ADDRESSES_ADD_SUCCESS,
+      type: BITCOIN_WALLET_ADDRESSES_EXTERNAL_ADD_SUCCESS,
       addresses: fakeAddresses
     });
   });

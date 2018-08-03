@@ -1,16 +1,16 @@
 import { save } from './save';
 
-export const BITCOIN_WALLET_ADDRESSES_ADD_SUCCESS = 'BITCOIN_WALLET_ADDRESSES_ADD_SUCCESS';
+export const BITCOIN_WALLET_ADDRESSES_INTERNAL_ADD_SUCCESS = 'BITCOIN_WALLET_ADDRESSES_INTERNAL_ADD_SUCCESS';
 
 export const addSuccess = (addresses) => {
   return {
-    type: BITCOIN_WALLET_ADDRESSES_ADD_SUCCESS,
+    type: BITCOIN_WALLET_ADDRESSES_INTERNAL_ADD_SUCCESS,
     addresses
   };
 };
 
 /**
- * Action to add a set of bitcoin addresses to the state and persistent storage.
+ * Action to add a set of internal bitcoin addresses to the state and persistent storage.
  *
  * @param {object} addresses - Set of addresses to add in the format { <address>: {} }.
  */
