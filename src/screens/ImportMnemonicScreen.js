@@ -10,6 +10,7 @@ import { navigateWithReset } from '../actions';
 import { handle as handleError } from '../actions/error/handle';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
+import * as bitcoinWalletActions from '../actions/bitcoin/wallet';
 import saveMnemonicByKey from '../crypto/saveMnemonicByKey';
 import getPublicKeyFromMnemonic from '../crypto/getPublicKeyFromMnemonic';
 import Paragraph from '../components/Paragraph';
@@ -88,6 +89,10 @@ export default class ImportMnemonicScreen extends Component {
       .then(() => {
         // Flag that the user has set up the app for the first time.
         return this._flagAsInitialized();
+      })
+      .then(() => {
+        // Sync wallet with the bitcoin blockchain for the first time.
+        return dispatch(bitcoinWalletActions.init());
       })
       .then(() => {
         return this._showDisclaimerScreen();
