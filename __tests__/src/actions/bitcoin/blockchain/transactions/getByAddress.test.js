@@ -1,9 +1,9 @@
 import {
   getByAddress,
-  BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST,
-  BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS,
-  BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE
-} from '../../../../../../src/actions/bitcoin/api/transactions/getByAddress';
+  BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_REQUEST,
+  BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS,
+  BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_FAILURE
+} from '../../../../../../src/actions/bitcoin/blockchain/transactions/getByAddress';
 
 const dispatchMock = jest.fn((fn) => {
   if (typeof fn === 'function') {
@@ -25,7 +25,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../../src/actions/bitcoin/api/transactions/get', () => ({
+jest.mock('../../../../../../src/actions/bitcoin/blockchain/transactions/get', () => ({
   get: (addresses, page) => {
     if (page === 1) {
       // Mocking page 1.
@@ -77,21 +77,21 @@ jest.mock('../../../../../../src/actions/bitcoin/api/transactions/get', () => ({
   }
 }));
 
-describe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST', () => {
-  it('equals "BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST"', () => {
-    expect(BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST).toBe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_REQUEST');
+describe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_REQUEST', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_REQUEST"', () => {
+    expect(BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_REQUEST).toBe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_REQUEST');
   });
 });
 
-describe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS', () => {
-  it('equals "BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS"', () => {
-    expect(BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS).toBe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS');
+describe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS"', () => {
+    expect(BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS).toBe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_SUCCESS');
   });
 });
 
-describe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE', () => {
-  it('equals "BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE"', () => {
-    expect(BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE).toBe('BITCOIN_API_TRANSACTIONS_GET_BY_ADDRESS_FAILURE');
+describe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_FAILURE', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_FAILURE"', () => {
+    expect(BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_FAILURE).toBe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_BY_ADDRESS_FAILURE');
   });
 });
 

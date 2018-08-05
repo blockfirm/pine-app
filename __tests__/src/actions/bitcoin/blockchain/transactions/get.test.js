@@ -2,10 +2,10 @@ import * as api from '../../../../../../src/api';
 
 import {
   get,
-  BITCOIN_API_TRANSACTIONS_GET_REQUEST,
-  BITCOIN_API_TRANSACTIONS_GET_SUCCESS,
-  BITCOIN_API_TRANSACTIONS_GET_FAILURE
-} from '../../../../../../src/actions/bitcoin/api/transactions/get';
+  BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_REQUEST,
+  BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_SUCCESS,
+  BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_FAILURE
+} from '../../../../../../src/actions/bitcoin/blockchain/transactions/get';
 
 const dispatchMock = jest.fn();
 
@@ -25,21 +25,21 @@ jest.mock('../../../../../../src/api', () => ({
   }
 }));
 
-describe('BITCOIN_API_TRANSACTIONS_GET_REQUEST', () => {
-  it('equals "BITCOIN_API_TRANSACTIONS_GET_REQUEST"', () => {
-    expect(BITCOIN_API_TRANSACTIONS_GET_REQUEST).toBe('BITCOIN_API_TRANSACTIONS_GET_REQUEST');
+describe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_REQUEST', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_REQUEST"', () => {
+    expect(BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_REQUEST).toBe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_REQUEST');
   });
 });
 
-describe('BITCOIN_API_TRANSACTIONS_GET_SUCCESS', () => {
-  it('equals "BITCOIN_API_TRANSACTIONS_GET_SUCCESS"', () => {
-    expect(BITCOIN_API_TRANSACTIONS_GET_SUCCESS).toBe('BITCOIN_API_TRANSACTIONS_GET_SUCCESS');
+describe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_SUCCESS', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_SUCCESS"', () => {
+    expect(BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_SUCCESS).toBe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_SUCCESS');
   });
 });
 
-describe('BITCOIN_API_TRANSACTIONS_GET_FAILURE', () => {
-  it('equals "BITCOIN_API_TRANSACTIONS_GET_FAILURE"', () => {
-    expect(BITCOIN_API_TRANSACTIONS_GET_FAILURE).toBe('BITCOIN_API_TRANSACTIONS_GET_FAILURE');
+describe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_FAILURE', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_FAILURE"', () => {
+    expect(BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_FAILURE).toBe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_FAILURE');
   });
 });
 
@@ -78,11 +78,11 @@ describe('get', () => {
       returnedFunction = get(fakeAddresses, fakePage);
     });
 
-    it('dispatches an action of type BITCOIN_API_TRANSACTIONS_GET_REQUEST', () => {
+    it('dispatches an action of type BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_REQUEST', () => {
       returnedFunction(dispatchMock, getStateMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: BITCOIN_API_TRANSACTIONS_GET_REQUEST
+        type: BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_REQUEST
       });
     });
 
@@ -111,12 +111,12 @@ describe('get', () => {
         promise = returnedFunction(dispatchMock, getStateMock);
       });
 
-      it('dispatches an action of type BITCOIN_API_TRANSACTIONS_GET_SUCCESS with the result from api.bitcoin.transactions.get()', () => {
+      it('dispatches an action of type BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_SUCCESS with the result from api.bitcoin.transactions.get()', () => {
         expect.hasAssertions();
 
         return promise.then(() => {
           expect(dispatchMock).toHaveBeenCalledWith({
-            type: BITCOIN_API_TRANSACTIONS_GET_SUCCESS,
+            type: BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_SUCCESS,
             transactions: 'c942a2aa-a81b-4e64-ac56-1ee80177785c'
           });
         });
@@ -144,14 +144,14 @@ describe('get', () => {
         });
       });
 
-      it('dispatches an action of type BITCOIN_API_TRANSACTIONS_GET_FAILURE with the error', () => {
+      it('dispatches an action of type BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_FAILURE with the error', () => {
         expect.hasAssertions();
 
         return promise.catch((error) => {
           expect(error).toBeTruthy();
 
           expect(dispatchMock).toHaveBeenCalledWith({
-            type: BITCOIN_API_TRANSACTIONS_GET_FAILURE,
+            type: BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_FAILURE,
             error
           });
         });

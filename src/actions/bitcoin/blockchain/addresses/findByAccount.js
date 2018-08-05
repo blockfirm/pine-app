@@ -5,29 +5,29 @@ import bip39 from 'bip39';
 import { getByAddress as getTransactionsByAddress } from '../transactions/getByAddress';
 import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
 
-export const BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_REQUEST = 'BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_REQUEST';
-export const BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS = 'BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS';
-export const BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_FAILURE = 'BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_FAILURE';
+export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST';
+export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS';
+export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE';
 
 const ADDRESS_SEARCH_SIZE = 10; // How many addresses to search transactions for each time.
 const ADDRESS_GAP_LIMIT = 20; // How many empty addresses in a row before stopping the search.
 
 const findByAccountRequest = () => {
   return {
-    type: BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_REQUEST
+    type: BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST
   };
 };
 
 const findByAccountSuccess = (addresses) => {
   return {
-    type: BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS,
+    type: BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS,
     addresses
   };
 };
 
 const findByAccountFailure = (error) => {
   return {
-    type: BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_FAILURE,
+    type: BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE,
     error
   };
 };

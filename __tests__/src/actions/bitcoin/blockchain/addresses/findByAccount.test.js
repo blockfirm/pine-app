@@ -1,9 +1,9 @@
 import {
   findByAccount,
-  BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_REQUEST,
-  BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS,
-  BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_FAILURE
-} from '../../../../../../src/actions/bitcoin/api/addresses/findByAccount';
+  BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST,
+  BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS,
+  BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE
+} from '../../../../../../src/actions/bitcoin/blockchain/addresses/findByAccount';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -42,7 +42,7 @@ jest.mock('../../../../../../src/crypto/getMnemonicByKey', () => {
   return () => Promise.resolve('chicken approve topic suit shiver party whale holiday pitch source angry naive');
 });
 
-jest.mock('../../../../../../src/actions/bitcoin/api/transactions/getByAddress', () => ({
+jest.mock('../../../../../../src/actions/bitcoin/blockchain/transactions/getByAddress', () => ({
   getByAddress: (addresses) => {
     if (addresses.includes('mfzwDkHsb5xQEhsCam6CLAtsadrWDGoaxD')) {
       // Mocking batch 1.
@@ -111,21 +111,21 @@ jest.mock('../../../../../../src/actions/bitcoin/api/transactions/getByAddress',
   }
 }));
 
-describe('BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_REQUEST', () => {
-  it('equals "BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_REQUEST"', () => {
-    expect(BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_REQUEST).toBe('BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_REQUEST');
+describe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST"', () => {
+    expect(BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST).toBe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST');
   });
 });
 
-describe('BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS', () => {
-  it('equals "BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS"', () => {
-    expect(BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS).toBe('BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS');
+describe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS"', () => {
+    expect(BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS).toBe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS');
   });
 });
 
-describe('BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_FAILURE', () => {
-  it('equals "BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_FAILURE"', () => {
-    expect(BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_FAILURE).toBe('BITCOIN_API_ADDRESSES_FIND_BY_ACCOUNT_FAILURE');
+describe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE"', () => {
+    expect(BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE).toBe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE');
   });
 });
 
