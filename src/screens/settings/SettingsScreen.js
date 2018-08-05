@@ -3,11 +3,7 @@ import { Text, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { navigateWithReset } from '../../actions';
-import * as settingsActions from '../../actions/settings';
-import * as keyActions from '../../actions/keys';
-import * as bitcoinWalletActions from '../../actions/bitcoin/wallet';
-import removeMnemonicByKey from '../../crypto/removeMnemonicByKey';
+import { navigateWithReset, reset as resetApp } from '../../actions';
 import headerStyles from '../../styles/headerStyles';
 import DoneButton from '../../components/DoneButton';
 import SettingsGroup from '../../components/SettingsGroup';
@@ -49,24 +45,9 @@ export default class SettingsScreen extends Component {
 
   _resetApp() {
     const dispatch = this.props.dispatch;
-    const keys = Object.values(this.props.keys);
 
-    // Delete each key and mnemonic.
-    const promises = keys.map((key) => {
-      return removeMnemonicByKey(key.id).then(() => {
-        return dispatch(keyActions.remove(key));
-      });
-    });
-
-    // Reset bitcoin wallet.
-    promises.push(
-      dispatch(bitcoinWalletActions.reset())
-    );
-
-    // Once removed, reset settings and navigate to Welcome.
-    return Promise.all(promises)
+    return dispatch(resetApp())
       .then(() => {
-        dispatch(settingsActions.reset());
         this.props.screenProps.dismiss();
       })
       .then(() => {
