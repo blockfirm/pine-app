@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { navigateWithReset } from '../actions';
 import * as settingsActions from '../actions/settings';
 import * as keyActions from '../actions/keys';
+import * as bitcoinWalletActions from '../actions/bitcoin/wallet';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -60,8 +61,12 @@ export default class SplashScreen extends Component {
   _loadState() {
     const dispatch = this.props.dispatch;
 
-    // Load existing keys into state.
-    return dispatch(keyActions.load());
+    const promises = [
+      dispatch(keyActions.load()),
+      dispatch(bitcoinWalletActions.load())
+    ];
+
+    return Promise.all(promises);
   }
 
   _showHomeScreen() {
