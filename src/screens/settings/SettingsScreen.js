@@ -77,7 +77,7 @@ export default class SettingsScreen extends Component {
   _showResetAppConfirmation() {
     Alert.alert(
       'Reset?',
-      'This will remove your key and reset all settings. You can only recover the wallet if you have your recovery key. Are you sure you want to continue?',
+      'This will remove the wallet and reset all settings. You can only recover the wallet if you have your recovery key. Are you sure you want to continue?',
       [
         { text: 'Cancel', style: 'cancel' },
         {
