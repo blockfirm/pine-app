@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { navigateWithReset } from '../../actions';
 import * as settingsActions from '../../actions/settings';
 import * as keyActions from '../../actions/keys';
+import * as bitcoinWalletActions from '../../actions/bitcoin/wallet';
 import removeMnemonicByKey from '../../crypto/removeMnemonicByKey';
 import headerStyles from '../../styles/headerStyles';
 import DoneButton from '../../components/DoneButton';
@@ -56,6 +57,11 @@ export default class SettingsScreen extends Component {
         return dispatch(keyActions.remove(key));
       });
     });
+
+    // Reset bitcoin wallet.
+    promises.push(
+      dispatch(bitcoinWalletActions.reset())
+    );
 
     // Once removed, reset settings and navigate to Welcome.
     return Promise.all(promises)
