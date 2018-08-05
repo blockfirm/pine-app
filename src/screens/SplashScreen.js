@@ -3,10 +3,7 @@ import { StyleSheet, Image, ActivityIndicator, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { navigateWithReset } from '../actions';
-import * as settingsActions from '../actions/settings';
-import * as keyActions from '../actions/keys';
-import * as bitcoinWalletActions from '../actions/bitcoin/wallet';
+import { navigateWithReset, load as loadState } from '../actions';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -39,11 +36,11 @@ export default class SplashScreen extends Component {
     super(...arguments);
 
     const dispatch = props.dispatch;
-    const settings = dispatch(settingsActions.load());
 
-    this._loadState()
-      .then(() => {
-        if (!settings.initialized) {
+    // Load state, including settings, keys, and wallet data.
+    dispatch(loadState())
+      .then((state) => {
+        if (!state.settings.initialized) {
           return this._showWelcomeScreen();
         }
 
@@ -56,17 +53,6 @@ export default class SplashScreen extends Component {
 
   _showStatusBar() {
     StatusBar.setHidden(false, 'fade');
-  }
-
-  _loadState() {
-    const dispatch = this.props.dispatch;
-
-    const promises = [
-      dispatch(keyActions.load()),
-      dispatch(bitcoinWalletActions.load())
-    ];
-
-    return Promise.all(promises);
   }
 
   _showHomeScreen() {
