@@ -40,20 +40,17 @@ const getAddressMap = (addresses) => {
   return addressMap;
 };
 
-const getSortedTransactions = (addresses) => {
+const getTransactions = (addresses) => {
   const transactions = addresses.reduce((accumulator, address) => {
     return accumulator.concat(address.transactions);
   }, []);
-
-  // Sort ascending on time.
-  transactions.sort((a, b) => a.time - b.time);
 
   return transactions;
 };
 
 /**
  * Finds all addresses and transactions for an account and saves them to the state
- * and persistent storage. Only saves transactions for external addresses.
+ * and persistent storage.
  *
  * @param {function} dispatch - A redux dispatch function.
  * @param {number} accountIndex - The index of the account starting at 0.
@@ -71,11 +68,9 @@ const findAndSaveAddresses = (dispatch, accountIndex, internal) => {
 
       return dispatch(addExternalAddresses(addressMap)).then(() => addresses);
     }).then((addresses) => {
-      // Only save external transactions.
-      if (!internal) {
-        const transactions = getSortedTransactions(addresses);
-        return dispatch(addTransactions(transactions));
-      }
+      // Save transactions.
+      const transactions = getTransactions(addresses);
+      return dispatch(addTransactions(transactions));
     });
 };
 
