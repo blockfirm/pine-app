@@ -1,5 +1,31 @@
 import * as transactionActions from '../../../../actions/bitcoin/wallet/transactions';
 
+const createTxidMap = (transactions) => {
+  const txidMap = {};
+
+  transactions.forEach((transaction) => {
+    txidMap[transaction.txid] = true;
+  });
+
+  return txidMap;
+};
+
+const getUniqueTransactions = (oldTransactions, transactions) => {
+  const txidMap = createTxidMap(oldTransactions);
+  const uniqueTransactions = [];
+
+  transactions.forEach((transaction) => {
+    if (transaction.txid in txidMap) {
+      return;
+    }
+
+    uniqueTransactions.push(transaction);
+    txidMap[transaction.txid] = true;
+  });
+
+  return uniqueTransactions;
+};
+
 const itemsReducer = (state = [], action) => {
   let newState;
 
@@ -10,7 +36,7 @@ const itemsReducer = (state = [], action) => {
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_ADD_SUCCESS:
       newState = [
         ...state,
-        ...action.transactions
+        ...getUniqueTransactions(state, action.transactions)
       ];
 
       // Sort ascending on time.

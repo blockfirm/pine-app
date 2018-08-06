@@ -24,8 +24,8 @@ describe('transactionsItemsReducer', () => {
 
   describe('when action is BITCOIN_WALLET_TRANSACTIONS_ADD_SUCCESS', () => {
     it('returns the old state with the new transactions added', () => {
-      const oldState = ['5083126c-d8f8-49e2-887d-81c105044a52'];
-      const actionTransactions = ['1e2e467a-714e-47fb-ac5f-c091f3f35819'];
+      const oldState = [{ txid: '5083126c-d8f8-49e2-887d-81c105044a52' }];
+      const actionTransactions = [{ txid: '1e2e467a-714e-47fb-ac5f-c091f3f35819' }];
 
       const action = {
         type: transactionsActions.BITCOIN_WALLET_TRANSACTIONS_ADD_SUCCESS,
@@ -35,8 +35,34 @@ describe('transactionsItemsReducer', () => {
       const newState = transactionsItemsReducer(oldState, action);
 
       const expectedState = [
-        '5083126c-d8f8-49e2-887d-81c105044a52',
-        '1e2e467a-714e-47fb-ac5f-c091f3f35819'
+        { txid: '5083126c-d8f8-49e2-887d-81c105044a52' },
+        { txid: '1e2e467a-714e-47fb-ac5f-c091f3f35819' }
+      ];
+
+      expect(newState).toEqual(expectedState);
+    });
+
+    it('only adds new unique transactions based on txid', () => {
+      const oldState = [{ txid: 'a88494ac-beb7-4884-adbe-da80e07c8fb5' }];
+
+      const actionTransactions = [
+        { txid: 'a88494ac-beb7-4884-adbe-da80e07c8fb5' },
+        { txid: '5c806976-34f5-4c20-b967-08b944e063d6' },
+        { txid: '5c806976-34f5-4c20-b967-08b944e063d6' },
+        { txid: 'a548538f-a421-47d5-b763-6097ac8d4239' }
+      ];
+
+      const action = {
+        type: transactionsActions.BITCOIN_WALLET_TRANSACTIONS_ADD_SUCCESS,
+        transactions: actionTransactions
+      };
+
+      const newState = transactionsItemsReducer(oldState, action);
+
+      const expectedState = [
+        { txid: 'a88494ac-beb7-4884-adbe-da80e07c8fb5' },
+        { txid: '5c806976-34f5-4c20-b967-08b944e063d6' },
+        { txid: 'a548538f-a421-47d5-b763-6097ac8d4239' }
       ];
 
       expect(newState).toEqual(expectedState);
