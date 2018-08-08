@@ -5,6 +5,7 @@ import HomeScreen from '../../../src/screens/HomeScreen';
 
 jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
 jest.mock('../../../src/containers/HeaderContainer', () => 'HeaderContainer');
+jest.mock('../../../src/containers/TransactionListContainer', () => 'TransactionListContainer');
 
 describe('HomeScreen', () => {
   it('renders correctly', () => {

@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import Title from '../components/Title';
+import TransactionListContainer from '../containers/TransactionListContainer';
 import BaseScreen from './BaseScreen';
 
 const styles = StyleSheet.create({
   navigationIcon: {
     fontSize: 28,
-    color: '#322A51',
+    color: '#C0D2F3',
     padding: 10
+  },
+  view: {
+    padding: 0
   }
 });
 
 export default class HomeScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
+    headerStyle: {
+      backgroundColor: '#26203D'
+    },
     headerLeft: (
       <TouchableOpacity onPress={() => { navigation.navigate('Settings'); }}>
         <Icon name='ios-settings' style={styles.navigationIcon} />
@@ -24,10 +30,9 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <BaseScreen>
-        <Title>
-          Welcome to Payla!
-        </Title>
+      <BaseScreen style={styles.view}>
+        <StatusBar barStyle='light-content' />
+        <TransactionListContainer />
       </BaseScreen>
     );
   }
