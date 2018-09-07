@@ -12,11 +12,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#26203D'
+    backgroundColor: '#FFD23F'
   },
   logo: {
-    width: 272,
-    height: 274
+    width: 93,
+    height: 84
   },
   footer: {
     backgroundColor: 'transparent'
@@ -70,7 +70,7 @@ export default class SplashScreen extends Component {
       <BaseScreen style={styles.view}>
         <Image source={{ uri: 'LaunchScreenLogo' }} style={styles.logo} />
         <Footer style={styles.footer}>
-          <ActivityIndicator animating={true} color='#D2DCFF' style={styles.loader} size='small' />
+          <ActivityIndicator animating={true} color='#FFFFFF' style={styles.loader} size='small' />
         </Footer>
       </BaseScreen>
     );
