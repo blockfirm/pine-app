@@ -16,13 +16,23 @@ const styles = StyleSheet.create({
 });
 
 export default class BaseScreen extends Component {
+  renderHeader() {
+    if (this.props.hideHeader) {
+      return null;
+    }
+
+    return (
+      <HeaderContainer
+        backButtonIconStyle={this.props.backButtonIconStyle}
+        title={this.props.headerTitle}
+      />
+    );
+  }
+
   render() {
     return (
       <ErrorBoundary {...this.props} style={[styles.view, this.props.style]}>
-        <HeaderContainer
-          backButtonIconStyle={this.props.backButtonIconStyle}
-          title={this.props.headerTitle}
-        />
+        {this.renderHeader()}
         {this.props.children}
       </ErrorBoundary>
     );
@@ -33,5 +43,6 @@ BaseScreen.propTypes = {
   style: PropTypes.any,
   backButtonIconStyle: PropTypes.any,
   headerTitle: PropTypes.string,
+  hideHeader: PropTypes.bool,
   children: PropTypes.node
 };

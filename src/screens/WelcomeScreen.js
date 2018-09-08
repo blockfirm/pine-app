@@ -1,65 +1,41 @@
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar, Dimensions, View, Image, ImageBackground } from 'react-native';
+import { StyleSheet, StatusBar, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import LinearGradient from 'react-native-linear-gradient';
 
 import { handle as handleError } from '../actions/error';
 import generateMnemonic from '../crypto/generateMnemonic';
 import Footer from '../components/Footer';
-import Button from '../components/Button';
+import WhiteButton from '../components/WhiteButton';
 import Link from '../components/Link';
 import BaseScreen from './BaseScreen';
 
-const WINDOW_WIDTH = Dimensions.get('window').width;
-const WINDOW_HEIGHT = Dimensions.get('window').height;
-
 const styles = StyleSheet.create({
-  background: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    alignItems: 'center'
-  },
-  backgroundImage: {
-    width: WINDOW_WIDTH,
-    height: WINDOW_HEIGHT,
-    resizeMode: 'cover',
+  view: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#FFD23F'
   },
-  blackGradient: {
-    alignSelf: 'stretch',
-    height: 70
-  },
-  whiteGradient: {
-    flex: 1,
-    alignSelf: 'stretch'
-  },
-  iconWrapper: {
-    position: 'absolute',
-    paddingBottom: 100,
-    shadowColor: 'black',
-    shadowRadius: 20,
-    shadowOpacity: 0.5,
-    shadowOffset: {
-      height: 0,
-      width: 0
-    }
-  },
-  icon: {
-    width: 80,
-    height: 80,
-    borderRadius: 23
+  logo: {
+    width: 93,
+    height: 84,
+    marginBottom: 150
   },
   footer: {
     backgroundColor: 'transparent'
   },
   button: {
+    width: null,
+    paddingLeft: 50,
+    paddingRight: 50
+  },
+  link: {
+    marginTop: 30,
     marginBottom: 10
+  },
+  linkLabel: {
+    color: 'white'
   }
 });
 
@@ -93,38 +69,24 @@ export default class WelcomeScreen extends Component {
 
   render() {
     return (
-      <BaseScreen>
+      <BaseScreen style={styles.view} hideHeader={true}>
         <StatusBar barStyle='light-content' />
 
-        <View style={styles.background}>
-          <ImageBackground source={require('../images/Background.png')} style={styles.backgroundImage}>
-            <LinearGradient
-              colors={['rgba(0, 0, 0, 1)', 'rgba(0, 0, 0, 0)']}
-              style={styles.blackGradient}
-            />
-
-            <LinearGradient
-              colors={['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 1)']}
-              locations={[0.25, 0.9]}
-              style={styles.whiteGradient}
-            />
-
-            <View style={styles.iconWrapper}>
-              <Image source={require('../images/IconWelcomeScreen.png')} style={styles.icon} />
-            </View>
-          </ImageBackground>
-        </View>
+        <Image source={{ uri: 'LaunchScreenLogo' }} style={styles.logo} />
 
         <Footer style={styles.footer}>
-          <Button
+          <WhiteButton
             label='Create a new wallet'
-            loadingLabel='Creating wallet...'
             onPress={this._createWallet.bind(this)}
             style={styles.button}
           />
 
-          <Link onPress={this._importWallet.bind(this)}>
-            Or import an existing wallet
+          <Link
+            onPress={this._importWallet.bind(this)}
+            style={styles.link}
+            labelStyle={styles.linkLabel}
+          >
+            Recover existing wallet
           </Link>
         </Footer>
       </BaseScreen>

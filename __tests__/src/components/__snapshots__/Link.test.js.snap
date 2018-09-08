@@ -21,6 +21,7 @@ exports[`Link renders correctly 1`] = `
   style={
     Object {
       "opacity": 1,
+      "padding": 15,
     }
   }
   testID={undefined}
@@ -45,9 +46,11 @@ exports[`Link renders correctly 1`] = `
           },
           Array [
             Object {
-              "color": "#322A51",
-              "fontSize": 12,
-              "fontWeight": "500",
+              "color": "#007AFF",
+              "fontFamily": "System",
+              "fontSize": 16,
+              "fontWeight": "600",
+              "letterSpacing": -0.41,
             },
             undefined,
           ],

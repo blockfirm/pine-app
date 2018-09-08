@@ -5,18 +5,23 @@ import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
   link: {
-    fontSize: 12,
-    fontWeight: '500',
-    color: '#322A51'
+    padding: 15
+  },
+  label: {
+    color: '#007AFF',
+    fontFamily: 'System',
+    fontWeight: '600',
+    fontSize: 16,
+    letterSpacing: -0.41
   }
 });
 
 export default class Link extends Component {
   render() {
     return (
-      <TouchableOpacity onPress={this.props.onPress}>
+      <TouchableOpacity activeOpacity={0.7} onPress={this.props.onPress} style={[styles.link, this.props.style]}>
         <Text>
-          <StyledText style={[styles.link, this.props.style]}>
+          <StyledText style={[styles.label, this.props.labelStyle]}>
             {this.props.children}
           </StyledText>
         </Text>
@@ -28,5 +33,6 @@ export default class Link extends Component {
 Link.propTypes = {
   onPress: PropTypes.func,
   style: PropTypes.any,
+  labelStyle: PropTypes.any,
   children: PropTypes.node
 };

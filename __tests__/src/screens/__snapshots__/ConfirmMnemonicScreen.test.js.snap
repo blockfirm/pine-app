@@ -1441,86 +1441,54 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#007AFF",
-                "borderRadius": 7,
-                "height": 46,
+                "backgroundColor": "#FFD23F",
+                "borderRadius": 25,
+                "height": 50,
                 "justifyContent": "center",
-                "shadowColor": "black",
-                "shadowOffset": Object {
-                  "height": 16,
-                  "width": 0,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 16,
                 "width": 670,
               },
               undefined,
               Object {
-                "opacity": 0.6,
+                "backgroundColor": "#B1AFB7",
               },
+              undefined,
             ]
           }
         >
           <ActivityIndicator
             animating={false}
-            color="#D2DCFF"
+            color="#FFFFFF"
             hidesWhenStopped={true}
             size="small"
             style={
               Object {
                 "height": 12,
-                "left": 15,
                 "position": "absolute",
-                "top": 15,
               }
             }
           />
-          <RNLinearTextGradient
+          <Text
             accessible={true}
             allowFontScaling={true}
-            colors={
-              Array [
-                4294962687,
-                4292663551,
-                4292736255,
-              ]
-            }
             ellipsizeMode="tail"
-            gradientEnd={
-              Object {
-                "x": 1,
-                "y": 1,
-              }
-            }
-            gradientStart={
-              Object {
-                "x": 0,
-                "y": 0,
-              }
-            }
-            locations={
-              Array [
-                0,
-                0.5,
-                1,
-              ]
-            }
             style={
               Array [
                 Object {
-                  "color": "gray",
-                },
-                Object {
+                  "color": "white",
                   "fontFamily": "System",
-                  "fontSize": 11,
+                  "fontSize": 16,
                   "fontWeight": "600",
-                  "letterSpacing": 0.41,
+                  "letterSpacing": -0.41,
+                },
+                undefined,
+                Object {
+                  "opacity": 1,
                 },
               ]
             }
           >
-            CONFIRM
-          </RNLinearTextGradient>
+            Confirm
+          </Text>
         </View>
       </View>
       <View

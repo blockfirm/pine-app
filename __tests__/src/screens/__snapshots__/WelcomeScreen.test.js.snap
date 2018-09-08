@@ -2,6 +2,7 @@
 
 exports[`WelcomeScreen renders correctly 1`] = `
 <View
+  hideHeader={true}
   style={
     Array [
       Object {
@@ -11,132 +12,29 @@ exports[`WelcomeScreen renders correctly 1`] = `
         "justifyContent": "center",
         "padding": 40,
       },
-      undefined,
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#FFD23F",
+        "flex": 1,
+        "justifyContent": "center",
+      },
     ]
   }
 >
-  <HeaderContainer
-    backButtonIconStyle={undefined}
-    title={undefined}
-  />
-  <View
-    style={
+  <Image
+    source={
       Object {
-        "alignItems": "center",
-        "bottom": 0,
-        "left": 0,
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
+        "uri": "LaunchScreenLogo",
       }
     }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "height": 1334,
-          "justifyContent": "center",
-          "resizeMode": "cover",
-          "width": 750,
-        }
+    style={
+      Object {
+        "height": 84,
+        "marginBottom": 150,
+        "width": 93,
       }
-    >
-      <Image
-        source={
-          Object {
-            "testUri": "../../../src/images/Background.png",
-          }
-        }
-        style={
-          Array [
-            Object {
-              "bottom": 0,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            },
-            Object {
-              "height": 1334,
-              "width": 750,
-            },
-            undefined,
-          ]
-        }
-      />
-      <BVLinearGradient
-        colors={
-          Array [
-            4278190080,
-            0,
-          ]
-        }
-        endPoint={undefined}
-        locations={null}
-        startPoint={undefined}
-        style={
-          Object {
-            "alignSelf": "stretch",
-            "height": 70,
-          }
-        }
-      />
-      <BVLinearGradient
-        colors={
-          Array [
-            16777215,
-            4294967295,
-          ]
-        }
-        endPoint={undefined}
-        locations={
-          Array [
-            0.25,
-            0.9,
-          ]
-        }
-        startPoint={undefined}
-        style={
-          Object {
-            "alignSelf": "stretch",
-            "flex": 1,
-          }
-        }
-      />
-      <View
-        style={
-          Object {
-            "paddingBottom": 100,
-            "position": "absolute",
-            "shadowColor": "black",
-            "shadowOffset": Object {
-              "height": 0,
-              "width": 0,
-            },
-            "shadowOpacity": 0.5,
-            "shadowRadius": 20,
-          }
-        }
-      >
-        <Image
-          source={
-            Object {
-              "testUri": "../../../src/images/IconWelcomeScreen.png",
-            }
-          }
-          style={
-            Object {
-              "borderRadius": 23,
-              "height": 80,
-              "width": 80,
-            }
-          }
-        />
-      </View>
-    </View>
-  </View>
+    }
+  />
   <View
     pointerEvents={undefined}
     style={
@@ -185,85 +83,68 @@ exports[`WelcomeScreen renders correctly 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "backgroundColor": "#007AFF",
-              "borderRadius": 7,
-              "height": 46,
+              "backgroundColor": "#FFD23F",
+              "borderRadius": 25,
+              "height": 50,
               "justifyContent": "center",
-              "shadowColor": "black",
-              "shadowOffset": Object {
-                "height": 16,
-                "width": 0,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 16,
               "width": 670,
             },
-            Object {
-              "marginBottom": 10,
-            },
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "shadowColor": "#000000",
+                "shadowOffset": Object {
+                  "height": 2,
+                  "width": 1,
+                },
+                "shadowOpacity": 0.08,
+                "shadowRadius": 0,
+              },
+              Object {
+                "paddingLeft": 50,
+                "paddingRight": 50,
+                "width": null,
+              },
+            ],
           ]
         }
       >
         <ActivityIndicator
           animating={false}
-          color="#D2DCFF"
+          color="#FFD23F"
           hidesWhenStopped={true}
           size="small"
           style={
             Object {
               "height": 12,
-              "left": 15,
               "position": "absolute",
-              "top": 15,
             }
           }
         />
-        <RNLinearTextGradient
+        <Text
           accessible={true}
           allowFontScaling={true}
-          colors={
-            Array [
-              4294962687,
-              4292663551,
-              4292736255,
-            ]
-          }
           ellipsizeMode="tail"
-          gradientEnd={
-            Object {
-              "x": 1,
-              "y": 1,
-            }
-          }
-          gradientStart={
-            Object {
-              "x": 0,
-              "y": 0,
-            }
-          }
-          locations={
-            Array [
-              0,
-              0.5,
-              1,
-            ]
-          }
           style={
             Array [
               Object {
-                "color": "gray",
+                "color": "white",
+                "fontFamily": "System",
+                "fontSize": 16,
+                "fontWeight": "600",
+                "letterSpacing": -0.41,
               },
               Object {
-                "fontFamily": "System",
-                "fontSize": 11,
-                "fontWeight": "600",
-                "letterSpacing": 0.41,
+                "color": "#FFD23F",
+              },
+              Object {
+                "opacity": 1,
               },
             ]
           }
         >
-          CREATE A NEW WALLET
-        </RNLinearTextGradient>
+          Create a new wallet
+        </Text>
       </View>
     </View>
     <View
@@ -285,7 +166,10 @@ exports[`WelcomeScreen renders correctly 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
+          "marginBottom": 10,
+          "marginTop": 30,
           "opacity": 1,
+          "padding": 15,
         }
       }
       testID={undefined}
@@ -310,16 +194,20 @@ exports[`WelcomeScreen renders correctly 1`] = `
               },
               Array [
                 Object {
-                  "color": "#322A51",
-                  "fontSize": 12,
-                  "fontWeight": "500",
+                  "color": "#007AFF",
+                  "fontFamily": "System",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.41,
                 },
-                undefined,
+                Object {
+                  "color": "white",
+                },
               ],
             ]
           }
         >
-          Or import an existing wallet
+          Recover existing wallet
         </Text>
       </Text>
     </View>

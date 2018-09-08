@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, View, Dimensions, ActivityIndicator } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Dimensions, Text, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
-import { LinearTextGradient } from 'react-native-text-gradient';
 
 const windowDimensions = Dimensions.get('window');
 const FULL_WIDTH = windowDimensions.width;
@@ -10,19 +9,12 @@ const DEFAULT_WIDTH = FULL_WIDTH - 80;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#FFD23F',
     width: DEFAULT_WIDTH,
-    height: 46,
+    height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 7,
-    shadowColor: 'black',
-    shadowRadius: 16,
-    shadowOpacity: 0.16,
-    shadowOffset: {
-      height: 16,
-      width: 0
-    }
+    borderRadius: 25
   },
   fullWidth: {
     width: FULL_WIDTH,
@@ -30,19 +22,18 @@ const styles = StyleSheet.create({
     bottom: ifIphoneX(-24, 0)
   },
   label: {
+    color: 'white',
     fontFamily: 'System',
     fontWeight: '600',
-    fontSize: 11,
-    letterSpacing: 0.41
+    fontSize: 16,
+    letterSpacing: -0.41
   },
   disabled: {
-    opacity: 0.6
+    backgroundColor: '#B1AFB7'
   },
   loader: {
-    height: 12,
     position: 'absolute',
-    top: 15,
-    left: 15
+    height: 12
   }
 });
 
@@ -94,41 +85,44 @@ export default class Button extends Component {
       return;
     }
 
-    this.setState({
-      disabled: true,
-      loading: true
-    });
+    this.setState({ disabled: true });
+
+    // Delay showing the loading indicator so it's only shown for long-running operations.
+    setTimeout(() => {
+      if (!this._isMounted) {
+        return;
+      }
+
+      this.setState({ loading: true });
+    }, 500);
 
     promise.then(() => {
       if (!this._isMounted) {
         return;
       }
 
-      this.setState({
-        disabled: false,
-        loading: false
-      });
+      // Delay hiding the loading indicator to prevent flickering.
+      setTimeout(() => {
+        this.setState({
+          disabled: false,
+          loading: false
+        });
+      }, 500);
     });
   }
 
   render() {
     const { disabled, loading } = this.state;
-    const label = loading ? this.props.loadingLabel : this.props.label;
+    const loaderColor = this.props.loaderColor || '#FFFFFF';
 
     const buttonStyles = [
       styles.button,
       this.props.style
     ];
 
-    const gradientTextProps = {
-      colors: ['#FFEDFF', '#DCD8FF', '#DDF4FF'],
-      locations: [0, 0.5, 1],
-      start: { x: 0, y: 0 },
-      end: { x: 1, y: 1 }
-    };
-
     if (disabled) {
       buttonStyles.push(styles.disabled);
+      buttonStyles.push(this.props.disabledStyle);
     }
 
     if (this.state.fullWidth) {
@@ -138,13 +132,10 @@ export default class Button extends Component {
     return (
       <TouchableOpacity disabled={disabled} activeOpacity={0.7} onPress={this._onPress.bind(this)}>
         <View style={buttonStyles}>
-          <ActivityIndicator animating={loading} color='#D2DCFF' style={styles.loader} size='small' />
-          <LinearTextGradient
-            {...gradientTextProps}
-            style={styles.label}
-          >
-            {label.toUpperCase()}
-          </LinearTextGradient>
+          <ActivityIndicator animating={loading} color={loaderColor} style={styles.loader} size='small' />
+          <Text style={[styles.label, this.props.labelStyle, { opacity: loading ? 0 : 1 }]}>
+            {this.props.label}
+          </Text>
         </View>
       </TouchableOpacity>
     );
@@ -153,9 +144,11 @@ export default class Button extends Component {
 
 Button.propTypes = {
   label: PropTypes.string.isRequired,
-  loadingLabel: PropTypes.string,
   onPress: PropTypes.func,
   style: PropTypes.any,
+  labelStyle: PropTypes.any,
+  disabledStyle: PropTypes.any,
   fullWidth: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  loaderColor: PropTypes.string
 };
