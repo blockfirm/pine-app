@@ -135,7 +135,8 @@ exports[`ErrorModal renders correctly with an error 1`] = `
               Object {
                 "color": "#AAAAAA",
                 "fontSize": 15,
-                "fontWeight": "300",
+                "fontWeight": "400",
+                "letterSpacing": -0.24,
                 "lineHeight": 21,
                 "marginBottom": 20,
               },
@@ -356,7 +357,8 @@ exports[`ErrorModal renders correctly without an error 1`] = `
               Object {
                 "color": "#AAAAAA",
                 "fontSize": 15,
-                "fontWeight": "300",
+                "fontWeight": "400",
+                "letterSpacing": -0.24,
                 "lineHeight": 21,
                 "marginBottom": 20,
               },

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: ifIphoneX(54, 30),
+    top: ifIphoneX(60, 36),
     left: 10
   },
   title: {

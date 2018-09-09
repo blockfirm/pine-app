@@ -15,8 +15,7 @@ const styles = StyleSheet.create({
     color: '#FFD23F'
   },
   disabled: {
-    backgroundColor: 'white',
-    opacity: 0.7
+    backgroundColor: 'white'
   }
 });
 

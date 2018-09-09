@@ -7,10 +7,11 @@ const headerStyles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   title: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: '600',
     fontFamily: 'System',
-    color: '#26203D'
+    letterSpacing: -0.41,
+    color: 'black'
   }
 });
 

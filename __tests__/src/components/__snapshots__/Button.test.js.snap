@@ -119,6 +119,7 @@ exports[`Button renders correctly as disabled 1`] = `
         undefined,
         Object {
           "backgroundColor": "#B1AFB7",
+          "opacity": 0.7,
         },
         undefined,
       ]

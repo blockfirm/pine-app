@@ -7,8 +7,9 @@ const styles = StyleSheet.create({
   paragraph: {
     color: '#AAAAAA',
     fontSize: 15,
-    fontWeight: '300',
+    fontWeight: '400',
     lineHeight: 21,
+    letterSpacing: -0.24,
     marginBottom: 20
   }
 });

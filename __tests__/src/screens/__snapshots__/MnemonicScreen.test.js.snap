@@ -36,7 +36,8 @@ exports[`MnemonicScreen renders correctly 1`] = `
           Object {
             "color": "#AAAAAA",
             "fontSize": 15,
-            "fontWeight": "300",
+            "fontWeight": "400",
+            "letterSpacing": -0.24,
             "lineHeight": 21,
             "marginBottom": 20,
           },
@@ -49,7 +50,7 @@ exports[`MnemonicScreen renders correctly 1`] = `
       ]
     }
   >
-    Write down and store this recovery key in a safe place so you can recover your wallet if you lose or break your phone.
+    Write down and store this recovery key in a safe place – it's the only way you can recover your wallet if you would lose or break your phone.
   </Text>
   <MnemonicWordsContainer
     phrase="during bulb nominee acquire paddle next course stable govern eagle title wing"

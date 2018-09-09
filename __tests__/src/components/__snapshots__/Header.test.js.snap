@@ -21,10 +21,11 @@ exports[`Header renders correctly with showBackButton set to false 1`] = `
     style={
       Array [
         Object {
-          "color": "#26203D",
+          "color": "black",
           "fontFamily": "System",
-          "fontSize": 16,
+          "fontSize": 17,
           "fontWeight": "600",
+          "letterSpacing": -0.41,
         },
         Object {
           "left": 40,
@@ -75,7 +76,7 @@ exports[`Header renders correctly with showBackButton set to true 1`] = `
         "left": 10,
         "opacity": 1,
         "position": "absolute",
-        "top": 30,
+        "top": 36,
       }
     }
     testID={undefined}
@@ -94,22 +95,22 @@ exports[`Header renders correctly with showBackButton set to true 1`] = `
           Array [
             Object {
               "backgroundColor": "transparent",
-              "color": "#322A51",
-              "fontSize": 32,
+              "color": "#000000",
+              "fontSize": 20,
               "paddingLeft": 10,
               "paddingRight": 10,
             },
             undefined,
           ],
           Object {
-            "fontFamily": "Ionicons",
+            "fontFamily": "Entypo",
             "fontStyle": "normal",
             "fontWeight": "normal",
           },
         ]
       }
     >
-      
+      
     </Text>
   </View>
   <Text
@@ -119,10 +120,11 @@ exports[`Header renders correctly with showBackButton set to true 1`] = `
     style={
       Array [
         Object {
-          "color": "#26203D",
+          "color": "black",
           "fontFamily": "System",
-          "fontSize": 16,
+          "fontSize": 17,
           "fontWeight": "600",
+          "letterSpacing": -0.41,
         },
         Object {
           "left": 40,

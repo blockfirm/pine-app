@@ -17,7 +17,8 @@ exports[`Paragraph renders correctly 1`] = `
         Object {
           "color": "#AAAAAA",
           "fontSize": 15,
-          "fontWeight": "300",
+          "fontWeight": "400",
+          "letterSpacing": -0.24,
           "lineHeight": 21,
           "marginBottom": 20,
         },

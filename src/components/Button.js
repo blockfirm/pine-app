@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     letterSpacing: -0.41
   },
   disabled: {
-    backgroundColor: '#B1AFB7'
+    backgroundColor: '#B1AFB7',
+    opacity: 0.7
   },
   loader: {
     position: 'absolute',
