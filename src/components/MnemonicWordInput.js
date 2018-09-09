@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   number: {
     position: 'absolute',
-    top: windowDimensions.height < 600 ? 11 : 12.5,
+    top: windowDimensions.height < 600 ? 11 : 11.5,
     left: 7,
     fontSize: windowDimensions.height < 600 ? 11 : 13,
     fontWeight: 'bold',
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     width: 20
   },
   inputContainerStyle: {
-    paddingTop: windowDimensions.height < 600 ? 5 : 7
+    paddingTop: windowDimensions.height < 600 ? 5 : 6
   },
   input: {
     fontFamily: 'Menlo-Regular',

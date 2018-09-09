@@ -39,11 +39,11 @@ exports[`StyledInput renders correctly 1`] = `
     placeholder={undefined}
     placeholderTextColor="#DADADA"
     returnKeyType="done"
-    selectionColor="#26203D"
+    selectionColor="#3FA7D6"
     style={
       Array [
         Object {
-          "color": "#26203D",
+          "color": "#000000",
           "fontSize": 13,
           "height": 27,
           "letterSpacing": 1.45,
@@ -96,11 +96,11 @@ exports[`StyledInput renders correctly with border color 1`] = `
     placeholder={undefined}
     placeholderTextColor="#DADADA"
     returnKeyType={undefined}
-    selectionColor="#26203D"
+    selectionColor="#3FA7D6"
     style={
       Array [
         Object {
-          "color": "#26203D",
+          "color": "#000000",
           "fontSize": 13,
           "height": 27,
           "letterSpacing": 1.45,

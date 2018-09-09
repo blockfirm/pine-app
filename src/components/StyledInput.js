@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
 const BORDER_COLOR = '#DADADA';
-const BORDER_COLOR_FOCUS = '#26203D';
+const BORDER_COLOR_FOCUS = '#3FA7D6';
 
 const windowDimensions = Dimensions.get('window');
 
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   input: {
     fontSize: windowDimensions.width < 330 ? 11 : 13,
     letterSpacing: 1.45,
-    color: '#26203D',
+    color: '#000000',
     width: windowDimensions.width < 330 ? 240 : 278,
     height: 27
   }

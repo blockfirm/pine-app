@@ -29,7 +29,7 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
             "shadowRadius": 5,
           },
           Object {
-            "paddingTop": 7,
+            "paddingTop": 6,
           },
           Object {
             "borderColor": "#47D396",
@@ -50,11 +50,11 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
         placeholder={undefined}
         placeholderTextColor="#DADADA"
         returnKeyType="next"
-        selectionColor="#26203D"
+        selectionColor="#3FA7D6"
         style={
           Array [
             Object {
-              "color": "#26203D",
+              "color": "#000000",
               "fontSize": 13,
               "height": 27,
               "letterSpacing": 1.45,
@@ -98,7 +98,7 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
               "left": 7,
               "position": "absolute",
               "textAlign": "right",
-              "top": 12.5,
+              "top": 11.5,
               "width": 20,
             },
             Object {
@@ -144,7 +144,7 @@ exports[`MnemonicWordInput renders correctly 1`] = `
             "shadowRadius": 5,
           },
           Object {
-            "paddingTop": 7,
+            "paddingTop": 6,
           },
           Object {
             "borderColor": "#DADADA",
@@ -165,11 +165,11 @@ exports[`MnemonicWordInput renders correctly 1`] = `
         placeholder={undefined}
         placeholderTextColor="#DADADA"
         returnKeyType="next"
-        selectionColor="#26203D"
+        selectionColor="#3FA7D6"
         style={
           Array [
             Object {
-              "color": "#26203D",
+              "color": "#000000",
               "fontSize": 13,
               "height": 27,
               "letterSpacing": 1.45,
@@ -211,7 +211,7 @@ exports[`MnemonicWordInput renders correctly 1`] = `
               "left": 7,
               "position": "absolute",
               "textAlign": "right",
-              "top": 12.5,
+              "top": 11.5,
               "width": 20,
             },
             Object {},
@@ -255,7 +255,7 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
             "shadowRadius": 5,
           },
           Object {
-            "paddingTop": 7,
+            "paddingTop": 6,
           },
           Object {
             "borderColor": "#FF6968",
@@ -276,11 +276,11 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
         placeholder={undefined}
         placeholderTextColor="#DADADA"
         returnKeyType="next"
-        selectionColor="#26203D"
+        selectionColor="#3FA7D6"
         style={
           Array [
             Object {
-              "color": "#26203D",
+              "color": "#000000",
               "fontSize": 13,
               "height": 27,
               "letterSpacing": 1.45,
@@ -324,7 +324,7 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
               "left": 7,
               "position": "absolute",
               "textAlign": "right",
-              "top": 12.5,
+              "top": 11.5,
               "width": 20,
             },
             Object {

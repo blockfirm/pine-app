@@ -139,7 +139,6 @@ export default class ConfirmMnemonicScreen extends Component {
             <Footer>
               <Button
                 label='Confirm'
-                loadingLabel='Saving key...'
                 disabled={buttonDisabled}
                 fullWidth={this.state.keyboardState}
                 onPress={this._saveKey.bind(this)}
