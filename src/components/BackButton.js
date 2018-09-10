@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   icon: {
-    paddingLeft: 10,
     paddingRight: 10,
     fontSize: 20,
     color: '#000000',
