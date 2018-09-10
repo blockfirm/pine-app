@@ -30,6 +30,7 @@ exports[`StyledInput renders correctly 1`] = `
     allowFontScaling={true}
     autoCapitalize="none"
     autoCorrect={false}
+    editable={true}
     enablesReturnKeyAutomatically={true}
     keyboardType={undefined}
     onBlur={[Function]}
@@ -39,7 +40,7 @@ exports[`StyledInput renders correctly 1`] = `
     placeholder={undefined}
     placeholderTextColor="#DADADA"
     returnKeyType="done"
-    selectionColor="#3FA7D6"
+    selectionColor="#007AFF"
     style={
       Array [
         Object {
@@ -87,6 +88,7 @@ exports[`StyledInput renders correctly with border color 1`] = `
     allowFontScaling={true}
     autoCapitalize={undefined}
     autoCorrect={false}
+    editable={true}
     enablesReturnKeyAutomatically={true}
     keyboardType={undefined}
     onBlur={[Function]}
@@ -96,7 +98,7 @@ exports[`StyledInput renders correctly with border color 1`] = `
     placeholder={undefined}
     placeholderTextColor="#DADADA"
     returnKeyType={undefined}
-    selectionColor="#3FA7D6"
+    selectionColor="#007AFF"
     style={
       Array [
         Object {

@@ -48,6 +48,7 @@ export default class ImportMnemonicScreen extends Component {
 
   state = {
     phrase: '',
+    loading: false,
     keyboardState: false
   }
 
@@ -80,6 +81,8 @@ export default class ImportMnemonicScreen extends Component {
       xpub: publicKey
     };
 
+    this.setState({ loading: true });
+
     // Save key metadata with public key.
     return dispatch(keyActions.add(key))
       .then(() => {
@@ -99,6 +102,7 @@ export default class ImportMnemonicScreen extends Component {
       })
       .catch((error) => {
         dispatch(handleError(error));
+        this.setState({ loading: false });
       });
   }
 
@@ -121,12 +125,12 @@ export default class ImportMnemonicScreen extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss.bind(Keyboard)}>
         <View style={styles.view}>
-          <BaseScreen headerTitle='Import Wallet'>
+          <BaseScreen headerTitle='Recover Wallet'>
             <StatusBar barStyle='dark-content' />
 
             <View style={contentStyles}>
               <Paragraph style={styles.paragraph}>
-                Enter your recovery key to import an existing wallet.
+                Enter your recovery key to recover an existing wallet.
               </Paragraph>
             </View>
 
@@ -134,13 +138,13 @@ export default class ImportMnemonicScreen extends Component {
               <MnemonicInput
                 onChange={(phrase) => this.setState({ phrase })}
                 wordList={WORD_LIST}
+                disabled={this.state.loading}
               />
             </View>
 
             <Footer>
               <Button
-                label='Import Wallet'
-                loadingLabel='Importing...'
+                label='Recover'
                 disabled={buttonDisabled}
                 fullWidth={this.state.keyboardState}
                 onPress={this._importMnemonic.bind(this)}

@@ -41,6 +41,7 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
         allowFontScaling={true}
         autoCapitalize="none"
         autoCorrect={false}
+        editable={true}
         enablesReturnKeyAutomatically={true}
         keyboardType={undefined}
         onBlur={[Function]}
@@ -50,7 +51,7 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
         placeholder={undefined}
         placeholderTextColor="#DADADA"
         returnKeyType="next"
-        selectionColor="#3FA7D6"
+        selectionColor="#007AFF"
         style={
           Array [
             Object {
@@ -156,6 +157,7 @@ exports[`MnemonicWordInput renders correctly 1`] = `
         allowFontScaling={true}
         autoCapitalize="none"
         autoCorrect={false}
+        editable={true}
         enablesReturnKeyAutomatically={true}
         keyboardType={undefined}
         onBlur={[Function]}
@@ -165,7 +167,7 @@ exports[`MnemonicWordInput renders correctly 1`] = `
         placeholder={undefined}
         placeholderTextColor="#DADADA"
         returnKeyType="next"
-        selectionColor="#3FA7D6"
+        selectionColor="#007AFF"
         style={
           Array [
             Object {
@@ -267,6 +269,7 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
         allowFontScaling={true}
         autoCapitalize="none"
         autoCorrect={false}
+        editable={true}
         enablesReturnKeyAutomatically={true}
         keyboardType={undefined}
         onBlur={[Function]}
@@ -276,7 +279,7 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
         placeholder={undefined}
         placeholderTextColor="#DADADA"
         returnKeyType="next"
-        selectionColor="#3FA7D6"
+        selectionColor="#007AFF"
         style={
           Array [
             Object {

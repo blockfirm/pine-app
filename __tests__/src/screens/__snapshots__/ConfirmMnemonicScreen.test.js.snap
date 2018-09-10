@@ -138,6 +138,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -147,7 +148,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {
@@ -246,6 +247,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -255,7 +257,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {
@@ -354,6 +356,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -363,7 +366,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {
@@ -462,6 +465,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -471,7 +475,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {
@@ -570,6 +574,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -579,7 +584,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {
@@ -678,6 +683,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -687,7 +693,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {
@@ -786,6 +792,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -795,7 +802,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {
@@ -894,6 +901,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -903,7 +911,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {
@@ -1002,6 +1010,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -1011,7 +1020,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {
@@ -1110,6 +1119,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -1119,7 +1129,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {
@@ -1218,6 +1228,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -1227,7 +1238,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {
@@ -1326,6 +1337,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                editable={true}
                 enablesReturnKeyAutomatically={true}
                 keyboardType={undefined}
                 onBlur={[Function]}
@@ -1335,7 +1347,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="done"
-                selectionColor="#3FA7D6"
+                selectionColor="#007AFF"
                 style={
                   Array [
                     Object {

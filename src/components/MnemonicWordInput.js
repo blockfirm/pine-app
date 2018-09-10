@@ -83,6 +83,7 @@ export default class MnemonicWordInput extends Component {
             enforceLowercase={true}
             trim={true}
             borderColor={borderColor}
+            disabled={this.props.disabled}
             onChangeText={this.props.onChangeText}
             onSubmitEditing={this.props.onSubmitEditing}
           />
@@ -100,6 +101,7 @@ MnemonicWordInput.propTypes = {
   isCorrect: PropTypes.bool,
   isIncorrect: PropTypes.bool,
   autoTab: PropTypes.bool,
+  disabled: PropTypes.bool,
   onChangeText: PropTypes.func.isRequired,
   onSubmitEditing: PropTypes.func
 };

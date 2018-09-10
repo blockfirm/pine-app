@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
 const BORDER_COLOR = '#DADADA';
-const BORDER_COLOR_FOCUS = '#3FA7D6';
+const BORDER_COLOR_FOCUS = '#007AFF';
 
 const windowDimensions = Dimensions.get('window');
 
@@ -81,6 +81,8 @@ export default class StyledInput extends Component {
   }
 
   render() {
+    const editable = !this.props.disabled;
+
     const borderColor = {
       borderColor: this.props.borderColor || this.state.borderColor
     };
@@ -99,6 +101,7 @@ export default class StyledInput extends Component {
           keyboardType={this.props.keyboardType}
           returnKeyType={this.props.returnKeyType}
           enablesReturnKeyAutomatically={true}
+          editable={editable}
           onFocus={this._onFocus.bind(this)}
           onBlur={this._onBlur.bind(this)}
           onChangeText={(text) => this._onChangeText(text)}
@@ -120,6 +123,7 @@ StyledInput.propTypes = {
   enforceLowercase: PropTypes.bool,
   trim: PropTypes.bool,
   borderColor: PropTypes.string,
+  disabled: PropTypes.bool,
   onFocus: PropTypes.func,
   onChangeText: PropTypes.func,
   onSubmitEditing: PropTypes.func

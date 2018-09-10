@@ -74,6 +74,7 @@ export default class MnemonicInput extends Component {
         isCorrect={isCorrect}
         isIncorrect={isIncorrect}
         autoTab={autoTab}
+        disabled={this.props.disabled}
         onChangeText={this._onChangeText.bind(this, index)}
         onSubmitEditing={this._onSubmitEditing.bind(this, index)}
       />
@@ -102,6 +103,7 @@ export default class MnemonicInput extends Component {
 MnemonicInput.propTypes = {
   style: PropTypes.any,
   onChange: PropTypes.func,
+  disabled: PropTypes.bool,
   correctPhrase: PropTypes.string,
   wordList: PropTypes.array
 };
