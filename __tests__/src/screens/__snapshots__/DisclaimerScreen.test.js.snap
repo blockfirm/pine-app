@@ -47,7 +47,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
       ]
     }
   >
-    Read before you use Payla
+    Read before you use Payla 🧐
   </Text>
   <View
     style={
@@ -86,7 +86,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
         ]
       }
     >
-      Key Access
+      Access to Funds
     </Text>
     <Text
       accessible={true}
@@ -149,7 +149,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
         ]
       }
     >
-      Key Recovery
+      Wallet Recovery
     </Text>
     <Text
       accessible={true}

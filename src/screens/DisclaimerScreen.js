@@ -61,17 +61,17 @@ export default class DisclaimerScreen extends Component {
     return (
       <BaseScreen style={styles.view}>
         <Title style={styles.title}>
-          Read before you use Payla
+          Read before you use Payla 🧐
         </Title>
 
         <View style={styles.terms}>
-          <Title style={styles.subtitle}>Key Access</Title>
+          <Title style={styles.subtitle}>Access to Funds</Title>
           <Paragraph style={styles.paragraph}>
             Your private key is stored securely on the device and only you can access it.
             No company or third party can access your key and it never leaves the device.
           </Paragraph>
 
-          <Title style={styles.subtitle}>Key Recovery</Title>
+          <Title style={styles.subtitle}>Wallet Recovery</Title>
           <Paragraph style={styles.paragraph}>
             Make sure to store your recovery key in a safe place. Anyone with access to the recovery
             key can access your funds. It is also the only way to recover your wallet in case you would
