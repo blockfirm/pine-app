@@ -14,13 +14,16 @@ import BaseSettingsScreen from './BaseSettingsScreen';
 
 const styles = StyleSheet.create({
   view: {
-    padding: 20
+    padding: 20,
+    paddingTop: 35
   },
   title: {
-    fontFamily: 'Arial',
-    fontSize: 12,
-    fontWeight: '500',
+    fontSize: 13,
+    fontWeight: '700',
+    lineHeight: 15,
+    letterSpacing: -0.08,
     textAlign: 'left',
+    color: '#000000',
     marginTop: 10
   },
   paragraphWrapper: {
@@ -29,11 +32,11 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   paragraph: {
-    fontFamily: 'Arial',
-    fontSize: 12,
-    lineHeight: 14,
-    textAlign: 'justify',
-    color: '#000000'
+    fontSize: 13,
+    lineHeight: 15,
+    letterSpacing: -0.08,
+    color: '#000000',
+    marginBottom: 15
   }
 });
 

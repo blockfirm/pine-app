@@ -22,6 +22,7 @@ exports[`DoneButton renders correctly 1`] = `
     Object {
       "opacity": 1,
       "padding": 10,
+      "paddingRight": 16.5,
     }
   }
   testID={undefined}
@@ -45,9 +46,10 @@ exports[`DoneButton renders correctly 1`] = `
             "fontWeight": "400",
           },
           Object {
-            "color": "#322A51",
-            "fontSize": 16,
-            "fontWeight": "500",
+            "color": "#000000",
+            "fontSize": 17,
+            "fontWeight": "600",
+            "letterSpacing": 0.1,
           },
         ]
       }

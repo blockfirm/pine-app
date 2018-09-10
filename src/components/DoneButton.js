@@ -5,12 +5,14 @@ import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
   button: {
-    padding: 10
+    padding: 10,
+    paddingRight: 16.5
   },
   text: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#322A51'
+    fontSize: 17,
+    fontWeight: '600',
+    letterSpacing: 0.1,
+    color: '#000000'
   }
 });
 

@@ -28,10 +28,12 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     fontSize: windowDimensions.height < 600 ? 12 : 14,
-    textAlign: 'left'
+    textAlign: 'left',
+    lineHeight: 21
   },
   link: {
-    color: '#007AFF'
+    color: '#007AFF',
+    lineHeight: 21
   }
 });
 
@@ -78,9 +80,9 @@ export default class DisclaimerScreen extends Component {
 
           <Title style={styles.subtitle}>Terms and Conditions</Title>
           <Paragraph style={styles.paragraph}>
-            <Text>By pressing "I understand", you understand and agree to the terms above as well as the </Text>
+            <Text style={styles.paragraph}>By pressing "I understand", you understand and agree to the terms above as well as the </Text>
             <Text style={styles.link} onPress={this._showTermsAndConditionsModal.bind(this)}>Terms and Conditions</Text>
-            <Text>.</Text>
+            <Text style={styles.paragraph}>.</Text>
           </Paragraph>
         </View>
 
