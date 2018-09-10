@@ -40,8 +40,14 @@ export default class SplashScreen extends Component {
     // Load state, including settings, keys, and wallet data.
     dispatch(loadState())
       .then((state) => {
+        // Show the welcome screen if the wallet hasn't been set up.
         if (!state.settings.initialized) {
           return this._showWelcomeScreen();
+        }
+
+        // Show the disclaimer screen if the terms and conditions hasn't been accepted.
+        if (!state.settings.user.hasAcceptedTerms) {
+          return this._showDisclaimerScreen();
         }
 
         this._showHomeScreen();
@@ -63,6 +69,11 @@ export default class SplashScreen extends Component {
   _showWelcomeScreen() {
     const dispatch = this.props.dispatch;
     dispatch(navigateWithReset('Welcome'));
+  }
+
+  _showDisclaimerScreen() {
+    const dispatch = this.props.dispatch;
+    dispatch(navigateWithReset('Disclaimer'));
   }
 
   render() {

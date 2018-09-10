@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import { navigateWithReset } from '../actions';
+import * as settingsActions from '../actions/settings';
 import Title from '../components/Title';
 import Paragraph from '../components/Paragraph';
 import Button from '../components/Button';
@@ -53,7 +54,20 @@ export default class DisclaimerScreen extends Component {
     navigation.navigate('TermsAndConditionsModal', { isModal: true });
   }
 
+  _flagAsAccepted() {
+    const dispatch = this.props.dispatch;
+
+    const newSettings = {
+      user: {
+        hasAcceptedTerms: true
+      }
+    };
+
+    return dispatch(settingsActions.save(newSettings));
+  }
+
   _onUnderstand() {
+    this._flagAsAccepted();
     return this._showHomeScreen();
   }
 
