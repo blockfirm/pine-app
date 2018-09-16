@@ -3,6 +3,8 @@ import {
   BITCOIN_WALLET_UTXOS_INIT_SUCCESS
 } from '../../../../../../src/actions/bitcoin/wallet/utxos/init';
 
+import { save as saveUtxos } from '../../../../../../src/actions/bitcoin/wallet/utxos/save';
+
 const expectedUtxos = require('../__fixtures__/utxos');
 
 const dispatchMock = jest.fn((action) => {
@@ -31,6 +33,10 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
+jest.mock('../../../../../../src/actions/bitcoin/wallet/utxos/save', () => ({
+  save: jest.fn(() => Promise.resolve())
+}));
+
 describe('BITCOIN_WALLET_UTXOS_INIT_SUCCESS', () => {
   it('equals "BITCOIN_WALLET_UTXOS_INIT_SUCCESS"', () => {
     expect(BITCOIN_WALLET_UTXOS_INIT_SUCCESS).toBe('BITCOIN_WALLET_UTXOS_INIT_SUCCESS');
@@ -57,16 +63,29 @@ describe('init', () => {
   });
 
   it('dispatches an action of type BITCOIN_WALLET_UTXOS_INIT_SUCCESS with returned utxos', () => {
-    const utxos = initUtxos()(dispatchMock, getStateMock);
+    expect.hasAssertions();
 
-    expect(dispatchMock).toHaveBeenCalledWith({
-      type: BITCOIN_WALLET_UTXOS_INIT_SUCCESS,
-      utxos
+    return initUtxos()(dispatchMock, getStateMock).then((utxos) => {
+      expect(dispatchMock).toHaveBeenCalledWith({
+        type: BITCOIN_WALLET_UTXOS_INIT_SUCCESS,
+        utxos
+      });
     });
   });
 
-  it('returns a list of unspent transaction outputs for this wallet', () => {
-    const utxos = initUtxos()(dispatchMock, getStateMock);
-    expect(utxos).toEqual(expect.arrayContaining(expectedUtxos));
+  it('resolves to a list of unspent transaction outputs for this wallet', () => {
+    expect.hasAssertions();
+
+    return initUtxos()(dispatchMock, getStateMock).then((utxos) => {
+      expect(utxos).toEqual(expect.arrayContaining(expectedUtxos));
+    });
+  });
+
+  it('saves the state', () => {
+    expect.hasAssertions();
+
+    return initUtxos()(dispatchMock, getStateMock).then(() => {
+      expect(saveUtxos).toHaveBeenCalled();
+    });
   });
 });

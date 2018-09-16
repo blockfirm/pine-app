@@ -1,3 +1,5 @@
+import { save } from './save';
+
 export const BITCOIN_WALLET_UTXOS_INIT_SUCCESS = 'BITCOIN_WALLET_UTXOS_INIT_SUCCESS';
 
 const initSuccess = (utxos) => {
@@ -98,6 +100,7 @@ export const init = () => {
 
     dispatch(initSuccess(utxos));
 
-    return utxos;
+    // Persist utxos.
+    return dispatch(save()).then(() => utxos);
   };
 };
