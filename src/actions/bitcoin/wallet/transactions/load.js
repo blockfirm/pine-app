@@ -27,7 +27,7 @@ const loadFailure = (error) => {
 };
 
 /**
- * Action to load the stored transactions into the state. Returns a promise that
+ * Action to load persisted transactions into state. Returns a promise that
  * resolves to the loaded transactions as an array.
  */
 export const load = () => {

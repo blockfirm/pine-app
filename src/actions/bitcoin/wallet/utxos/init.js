@@ -74,7 +74,7 @@ const hasWalletAddress = (vout, externalAddresses, internalAddresses) => {
 
 /**
  * Action to do an initial scan of all transactions
- * to find unspent transaction outputs.
+ * to find and save unspent transaction outputs (utxos).
  */
 export const init = () => {
   return (dispatch, getState) => {
@@ -100,7 +100,7 @@ export const init = () => {
 
     dispatch(initSuccess(utxos));
 
-    // Persist utxos.
+    // Save utxos to persistent storage.
     return dispatch(save()).then(() => utxos);
   };
 };

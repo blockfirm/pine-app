@@ -14,10 +14,11 @@ const removeAllSuccess = () => {
 export const removeAll = () => {
   return (dispatch) => {
     /**
-     * The transactions are removed to the state by the reducer,
+     * The transactions are removed from the state by the reducer,
      * so this action must be dispatched before saving the state.
      */
     dispatch(removeAllSuccess());
+
     return dispatch(save());
   };
 };

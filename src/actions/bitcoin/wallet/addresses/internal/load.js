@@ -27,7 +27,7 @@ const loadFailure = (error) => {
 };
 
 /**
- * Action to load the stored addresses into the state. Returns a promise that
+ * Action to load persisted addresses into state. Returns a promise that
  * resolves to the loaded addresses as an object.
  */
 export const load = () => {

@@ -27,7 +27,7 @@ const loadFailure = (error) => {
 };
 
 /**
- * Action to load the stored utxos into the state. Returns a promise that
+ * Action to load persisted utxos into state. Returns a promise that
  * resolves to the loaded utxos as an array.
  */
 export const load = () => {

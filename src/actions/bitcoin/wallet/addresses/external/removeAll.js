@@ -14,10 +14,11 @@ const removeAllSuccess = () => {
 export const removeAll = () => {
   return (dispatch) => {
     /**
-     * The addresses are removed to the state by the reducer,
+     * The addresses are removed from the state by the reducer,
      * so this action must be dispatched before saving the state.
      */
     dispatch(removeAllSuccess());
+
     return dispatch(save());
   };
 };

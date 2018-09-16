@@ -21,6 +21,7 @@ export const add = (transactions) => {
      * so this action must be dispatched before saving the state.
      */
     dispatch(addSuccess(transactions));
+
     return dispatch(save()).then(() => transactions);
   };
 };
