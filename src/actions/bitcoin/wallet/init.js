@@ -2,6 +2,7 @@ import { findByAccount as findAddressesByAccount } from '../blockchain/addresses
 import { add as addExternalAddresses } from './addresses/external';
 import { add as addInternalAddresses } from './addresses/internal';
 import { add as addTransactions } from './transactions';
+import { update as updateUtxos } from './utxos';
 
 export const BITCOIN_WALLET_INIT_REQUEST = 'BITCOIN_WALLET_INIT_REQUEST';
 export const BITCOIN_WALLET_INIT_SUCCESS = 'BITCOIN_WALLET_INIT_SUCCESS';
@@ -90,6 +91,10 @@ export const init = () => {
     ];
 
     return Promise.all(promises)
+      .then(() => {
+        // Generate a utxo set.
+        return dispatch(updateUtxos());
+      })
       .then(() => {
         dispatch(initSuccess());
       })
