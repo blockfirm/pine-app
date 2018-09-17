@@ -1,6 +1,7 @@
 import { load as loadExternalAddresses } from './addresses/external';
 import { load as loadInternalAddresses } from './addresses/internal';
 import { load as loadTransactions } from './transactions';
+import { load as loadUtxos } from './utxos';
 
 export const BITCOIN_WALLET_LOAD_REQUEST = 'BITCOIN_WALLET_LOAD_REQUEST';
 export const BITCOIN_WALLET_LOAD_SUCCESS = 'BITCOIN_WALLET_LOAD_SUCCESS';
@@ -36,7 +37,8 @@ export const load = () => {
     const promises = [
       dispatch(loadExternalAddresses()),
       dispatch(loadInternalAddresses()),
-      dispatch(loadTransactions())
+      dispatch(loadTransactions()),
+      dispatch(loadUtxos())
     ];
 
     return Promise.all(promises)
