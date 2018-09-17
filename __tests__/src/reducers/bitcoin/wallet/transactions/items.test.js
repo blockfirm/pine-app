@@ -7,9 +7,9 @@ describe('transactionsItemsReducer', () => {
   });
 
   describe('when action is BITCOIN_WALLET_TRANSACTIONS_LOAD_SUCCESS', () => {
-    it('returns the addresses from the action', () => {
-      const oldState = { '2cfe40d0-9748-44e4-aa66-f83b61b5a83e': {} };
-      const actionTransactions = ['8d63e318-85e6-4b3d-be16-9b59305674f7'];
+    it('returns the transactions from the action', () => {
+      const oldState = [{ txid: '58a8362d-246a-415d-8199-b3583ab6028b' }];
+      const actionTransactions = [{ txid: '0cf576ee-df40-4a5c-ae11-346cc522f8b5' }];
 
       const action = {
         type: transactionsActions.BITCOIN_WALLET_TRANSACTIONS_LOAD_SUCCESS,
