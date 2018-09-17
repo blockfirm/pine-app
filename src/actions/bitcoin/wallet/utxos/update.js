@@ -1,10 +1,10 @@
 import { save } from './save';
 
-export const BITCOIN_WALLET_UTXOS_INIT_SUCCESS = 'BITCOIN_WALLET_UTXOS_INIT_SUCCESS';
+export const BITCOIN_WALLET_UTXOS_UPDATE_SUCCESS = 'BITCOIN_WALLET_UTXOS_UPDATE_SUCCESS';
 
-const initSuccess = (utxos) => {
+const updateSuccess = (utxos) => {
   return {
-    type: BITCOIN_WALLET_UTXOS_INIT_SUCCESS,
+    type: BITCOIN_WALLET_UTXOS_UPDATE_SUCCESS,
     utxos
   };
 };
@@ -73,10 +73,13 @@ const hasWalletAddress = (vout, externalAddresses, internalAddresses) => {
 };
 
 /**
- * Action to do an initial scan of all transactions
- * to find and save unspent transaction outputs (utxos).
+ * Action to do a scan of all transactions to find and save
+ * all unspent transaction outputs (utxos).
+ *
+ * This action recreates the entire utxo set each time and
+ * does not yet support incremental updates.
  */
-export const init = () => {
+export const update = () => {
   return (dispatch, getState) => {
     const wallet = getState().bitcoin.wallet;
     const transactions = wallet.transactions.items || [];
@@ -98,7 +101,7 @@ export const init = () => {
       return hasWalletAddress(vout, externalAddresses, internalAddresses);
     });
 
-    dispatch(initSuccess(utxos));
+    dispatch(updateSuccess(utxos));
 
     // Save utxos to persistent storage.
     return dispatch(save()).then(() => utxos);
