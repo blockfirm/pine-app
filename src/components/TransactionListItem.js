@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
+import BtcLabelContainer from '../containers/BtcLabelContainer';
 import TransactionIcon from './icons/TransactionIcon';
 import StyledText from './StyledText';
-import BtcLabel from './BtcLabel';
 import DateLabel from './DateLabel';
 
 const styles = StyleSheet.create({
@@ -118,7 +118,7 @@ export default class TransactionListItem extends Component {
           <DateLabel date={date} style={styles.dateLabel} />
         </View>
         <View style={styles.rightContent}>
-          <BtcLabel amount={amount} style={styles.btcLabel} />
+          <BtcLabelContainer amount={amount} style={styles.btcLabel} />
         </View>
       </View>
     );

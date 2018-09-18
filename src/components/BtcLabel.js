@@ -13,7 +13,7 @@ export default class BtcLabel extends Component {
 
     switch (unit) {
       case UNIT_MBTC:
-        label = amount / 1000;
+        label = (amount * 1000).toFixed(2);
         unitLabel = UNIT_MBTC;
         break;
 
