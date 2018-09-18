@@ -31,15 +31,16 @@ const getFailure = (error) => {
  *
  * @param {array} addresses - Array of bitcoin addresses (strings). Maximum 20 addresses.
  * @param {number} page - Page to load. Starts at 1.
+ * @param {boolean} reverse - Specifies if the transactions should be returned in reverse chronological order.
  */
-export const get = (addresses, page) => {
+export const get = (addresses, page, reverse = false) => {
   return (dispatch, getState) => {
     const settings = getState().settings;
     const options = { baseUrl: settings.api.baseUrl };
 
     dispatch(getRequest());
 
-    return api.bitcoin.transactions.get(addresses, page, options)
+    return api.bitcoin.transactions.get(addresses, page, reverse, options)
       .then((transactions) => {
         dispatch(getSuccess(transactions));
         return transactions;

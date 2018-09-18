@@ -9,35 +9,37 @@ global.fetch = jest.fn(() => Promise.resolve({
   })
 }));
 
-describe('get(addresses, page, options)', () => {
-  let fakeAddresses;
-  let fakePage;
-  let fakeOptions;
+describe('get(addresses, page, reverse, options)', () => {
+  let addresses;
+  let page;
+  let reverse;
+  let options;
   let returnValue;
 
   beforeEach(() => {
     fetch.mockClear();
 
-    fakeAddresses = [
+    addresses = [
       '62be50ad-6dad-4d57-868b-3ba76accf8de',
       '9ee7d667-deb5-44bc-a87a-1bbdfd306287'
     ];
 
-    fakePage = 1;
+    page = 1;
+    reverse = false;
 
-    fakeOptions = {
+    options = {
       baseUrl: 'f1818a98-8ba3-4b8d-b832-4d9864abfca8'
     };
 
-    returnValue = getTransactions(fakeAddresses, fakePage, fakeOptions);
+    returnValue = getTransactions(addresses, page, reverse, options);
   });
 
   it('is a function', () => {
     expect(typeof getTransactions).toBe('function');
   });
 
-  it('accepts three arguments', () => {
-    expect(getTransactions.length).toBe(3);
+  it('accepts four arguments', () => {
+    expect(getTransactions.length).toBe(4);
   });
 
   it('makes an HTTP request using fetch', () => {
@@ -49,10 +51,11 @@ describe('get(addresses, page, options)', () => {
   });
 
   describe('the HTTP request', () => {
-    it('is made to the url ${options.baseUrl}/bitcoins/transactions?addresses=62be50ad-6dad-4d57-868b-3ba76accf8de%2C9ee7d667-deb5-44bc-a87a-1bbdfd306287&page=1', () => {
+    it('is made to the url ${options.baseUrl}/bitcoins/transactions?addresses=62be50ad-6dad-4d57-868b-3ba76accf8de%2C9ee7d667-deb5-44bc-a87a-1bbdfd306287&page=1&reverse=0', () => {
       const queryParams = {
-        addresses: fakeAddresses.join(','),
-        page: fakePage
+        addresses: addresses.join(','),
+        page: page,
+        reverse: reverse ? '1' : '0'
       };
 
       const queryString = querystring.stringify(queryParams);
@@ -75,7 +78,7 @@ describe('get(addresses, page, options)', () => {
     it('rejects the returned promise with the error message from the response', () => {
       expect.hasAssertions();
 
-      return getTransactions(fakeAddresses, fakePage, fakeOptions).catch((error) => {
+      return getTransactions(addresses, page, reverse, options).catch((error) => {
         expect(error).toBeTruthy();
         expect(error.message).toBe('aeffecd9-2432-43b0-a440-2c5fe323b26b');
       });

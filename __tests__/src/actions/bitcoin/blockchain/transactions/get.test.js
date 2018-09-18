@@ -44,16 +44,18 @@ describe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_FAILURE', () => {
 });
 
 describe('get', () => {
-  let fakeAddresses;
-  let fakePage;
+  let addresses;
+  let page;
+  let reverse;
 
   beforeEach(() => {
-    fakeAddresses = [
+    addresses = [
       'ee8eed41-a60a-468b-82cb-380f2ed05e1f',
       '4a7c8a53-6be0-47c3-8afc-d2d3ddbaa1fd'
     ];
 
-    fakePage = 1;
+    page = 1;
+    reverse = false;
 
     api.bitcoin.transactions.get.mockClear();
   });
@@ -67,7 +69,7 @@ describe('get', () => {
   });
 
   it('returns a function', () => {
-    const returnValue = get(fakeAddresses, fakePage);
+    const returnValue = get(addresses, page, reverse);
     expect(typeof returnValue).toBe('function');
   });
 
@@ -75,7 +77,7 @@ describe('get', () => {
     let returnedFunction;
 
     beforeEach(() => {
-      returnedFunction = get(fakeAddresses, fakePage);
+      returnedFunction = get(addresses, page, reverse);
     });
 
     it('dispatches an action of type BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_REQUEST', () => {
@@ -95,7 +97,7 @@ describe('get', () => {
         };
 
         expect(api.bitcoin.transactions.get).toHaveBeenCalledTimes(1);
-        expect(api.bitcoin.transactions.get).toHaveBeenCalledWith(fakeAddresses, fakePage, expectedOptions);
+        expect(api.bitcoin.transactions.get).toHaveBeenCalledWith(addresses, page, reverse, expectedOptions);
       });
     });
 
@@ -132,7 +134,7 @@ describe('get', () => {
           new Error('9f6c19c9-b7ac-433a-be2b-cbc194e06d8c')
         ));
 
-        promise = get(fakeAddresses, fakePage)(dispatchMock, getStateMock);
+        promise = get(addresses, page, reverse)(dispatchMock, getStateMock);
       });
 
       it('rejects the returned promise', () => {
