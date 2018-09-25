@@ -46,6 +46,7 @@ describe('BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_FAILURE', () => {
 describe('get', () => {
   let addresses;
   let page;
+  let pageSize;
   let reverse;
 
   beforeEach(() => {
@@ -55,6 +56,7 @@ describe('get', () => {
     ];
 
     page = 1;
+    pageSize = 100;
     reverse = false;
 
     api.bitcoin.transactions.get.mockClear();
@@ -69,7 +71,7 @@ describe('get', () => {
   });
 
   it('returns a function', () => {
-    const returnValue = get(addresses, page, reverse);
+    const returnValue = get(addresses, page, pageSize, reverse);
     expect(typeof returnValue).toBe('function');
   });
 
@@ -77,7 +79,7 @@ describe('get', () => {
     let returnedFunction;
 
     beforeEach(() => {
-      returnedFunction = get(addresses, page, reverse);
+      returnedFunction = get(addresses, page, pageSize, reverse);
     });
 
     it('dispatches an action of type BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_REQUEST', () => {
@@ -97,7 +99,7 @@ describe('get', () => {
         };
 
         expect(api.bitcoin.transactions.get).toHaveBeenCalledTimes(1);
-        expect(api.bitcoin.transactions.get).toHaveBeenCalledWith(addresses, page, reverse, expectedOptions);
+        expect(api.bitcoin.transactions.get).toHaveBeenCalledWith(addresses, page, pageSize, reverse, expectedOptions);
       });
     });
 
@@ -134,7 +136,7 @@ describe('get', () => {
           new Error('9f6c19c9-b7ac-433a-be2b-cbc194e06d8c')
         ));
 
-        promise = get(addresses, page, reverse)(dispatchMock, getStateMock);
+        promise = get(addresses, page, pageSize, reverse)(dispatchMock, getStateMock);
       });
 
       it('rejects the returned promise', () => {
