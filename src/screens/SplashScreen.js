@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { navigateWithReset, load as loadState } from '../actions';
+import { sync as syncWallet } from '../actions/bitcoin/wallet';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -49,6 +50,9 @@ export default class SplashScreen extends Component {
         if (!state.settings.user.hasAcceptedTerms) {
           return this._showDisclaimerScreen();
         }
+
+        // Sync wallet with the blockchain to get new transactions.
+        dispatch(syncWallet());
 
         this._showHomeScreen();
       })
