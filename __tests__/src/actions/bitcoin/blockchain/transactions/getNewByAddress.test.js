@@ -160,6 +160,8 @@ describe('getNewByAddress', () => {
       ]
     };
 
+    expect.hasAssertions();
+
     return getNewByAddress(addresses, oldTransactions)(dispatchMock, getStateMock).then((transactions) => {
       expect(transactions).toMatchObject(expectedResult);
     });
