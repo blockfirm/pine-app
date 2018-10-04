@@ -40,7 +40,7 @@ export const updatePending = () => {
     const pendingTransactions = getPendingTransactions(transactions);
 
     const promises = pendingTransactions.map((transaction) => {
-      return getTransactionByTxid(transaction.txid);
+      return dispatch(getTransactionByTxid(transaction.txid));
     });
 
     return Promise.all(promises)
