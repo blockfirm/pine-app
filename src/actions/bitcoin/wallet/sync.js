@@ -80,6 +80,20 @@ const getNewTransactions = (dispatch, addresses, oldTransactions) => {
   return Promise.all(promises);
 };
 
+const getAllNewTransactions = (dispatch, getState) => {
+  const state = getState();
+  const externalAddresses = Object.keys(state.bitcoin.wallet.addresses.external.items);
+  const internalAddresses = Object.keys(state.bitcoin.wallet.addresses.internal.items);
+  const transactions = state.bitcoin.wallet.transactions.items;
+
+  const promises = [
+    getNewTransactions(dispatch, externalAddresses, transactions),
+    getNewTransactions(dispatch, internalAddresses, transactions)
+  ];
+
+  return Promise.all(promises);
+};
+
 /**
  * Action to sync the wallet by loading new transactions from
  * the bitcoin blockchain and updating pending ones.
@@ -88,21 +102,11 @@ export const sync = () => {
   return (dispatch, getState) => {
     dispatch(syncRequest());
 
-    const state = getState();
-    const externalAddresses = Object.keys(state.bitcoin.wallet.addresses.external.items);
-    const internalAddresses = Object.keys(state.bitcoin.wallet.addresses.internal.items);
-    const transactions = state.bitcoin.wallet.transactions.items;
-
     // First update pending transactions.
     return dispatch(updatePendingTransactions())
       .then(() => {
         // Then get new transactions.
-        const promises = [
-          getNewTransactions(dispatch, externalAddresses, transactions),
-          getNewTransactions(dispatch, internalAddresses, transactions)
-        ];
-
-        return Promise.all(promises);
+        return getAllNewTransactions(dispatch, getState);
       })
       .then(() => {
         // And last, update the utxo set.
