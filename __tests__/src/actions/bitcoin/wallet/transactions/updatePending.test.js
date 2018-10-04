@@ -6,6 +6,7 @@ import {
 } from '../../../../../../src/actions/bitcoin/wallet/transactions/updatePending';
 
 import { getByTxid as getTransactionByTxid } from '../../../../../../src/actions/bitcoin/blockchain/transactions/getByTxid';
+import { save as saveTransactions } from '../../../../../../src/actions/bitcoin/wallet/transactions/save';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -38,6 +39,10 @@ const unconfirmedTransactions = [
 
 jest.mock('../../../../../../src/actions/bitcoin/blockchain/transactions/getByTxid', () => ({
   getByTxid: jest.fn((txid) => Promise.resolve({ txid }))
+}));
+
+jest.mock('../../../../../../src/actions/bitcoin/wallet/transactions/save', () => ({
+  save: jest.fn(() => Promise.resolve())
 }));
 
 describe('BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_REQUEST', () => {
@@ -116,6 +121,14 @@ describe('updatePending', () => {
         type: BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS,
         transactions
       });
+    });
+  });
+
+  it('saves the state', () => {
+    expect.hasAssertions();
+
+    return updatePendingTransactions()(dispatchMock, getStateMock).then(() => {
+      expect(saveTransactions).toHaveBeenCalled();
     });
   });
 

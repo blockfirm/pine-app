@@ -1,4 +1,5 @@
 import { getByTxid as getTransactionByTxid } from '../../blockchain/transactions/getByTxid';
+import { save } from './save';
 
 export const BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_REQUEST = 'BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_REQUEST';
 export const BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS = 'BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS';
@@ -46,7 +47,7 @@ export const updatePending = () => {
     return Promise.all(promises)
       .then((newTransactions) => {
         dispatch(updatePendingSuccess(newTransactions));
-        return newTransactions;
+        return dispatch(save()).then(() => newTransactions);
       })
       .catch((error) => {
         dispatch(updatePendingFailure(error));
