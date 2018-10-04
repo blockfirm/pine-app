@@ -7,10 +7,15 @@ jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContai
 jest.mock('../../../src/containers/HeaderContainer', () => 'HeaderContainer');
 jest.mock('../../../src/containers/TransactionListContainer', () => 'TransactionListContainer');
 
+const storeMock = {
+  getState: jest.fn(() => ({})),
+  dispatch: jest.fn(() => Promise.resolve())
+};
+
 describe('HomeScreen', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
-      <HomeScreen />
+      <HomeScreen store={storeMock} />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
