@@ -60,7 +60,7 @@ export default class TransactionList extends Component {
   }
 
   render() {
-    const transactions = this.props.transactions.reverse();
+    const transactions = [...this.props.transactions].reverse();
     const sections = this._getSections(transactions);
 
     return (
