@@ -1,6 +1,10 @@
 import { getNewByAddress as getNewTransactionsByAddress } from '../blockchain/transactions/getNewByAddress';
-import { add as addTransactions } from './transactions';
 import { update as updateUtxos } from './utxos';
+
+import {
+  add as addTransactions,
+  updatePending as updatePendingTransactions
+} from './transactions';
 
 export const BITCOIN_WALLET_SYNC_REQUEST = 'BITCOIN_WALLET_SYNC_REQUEST';
 export const BITCOIN_WALLET_SYNC_SUCCESS = 'BITCOIN_WALLET_SYNC_SUCCESS';
@@ -78,7 +82,7 @@ const getNewTransactions = (dispatch, addresses, oldTransactions) => {
 
 /**
  * Action to sync the wallet by loading new transactions from
- * the bitcoin blockchain.
+ * the bitcoin blockchain and updating pending ones.
  */
 export const sync = () => {
   return (dispatch, getState) => {
@@ -89,14 +93,19 @@ export const sync = () => {
     const internalAddresses = Object.keys(state.bitcoin.wallet.addresses.internal.items);
     const transactions = state.bitcoin.wallet.transactions.items;
 
-    const promises = [
-      getNewTransactions(dispatch, externalAddresses, transactions),
-      getNewTransactions(dispatch, internalAddresses, transactions)
-    ];
-
-    return Promise.all(promises)
+    // First update pending transactions.
+    return dispatch(updatePendingTransactions())
       .then(() => {
-        // Update utxo set.
+        // Then get new transactions.
+        const promises = [
+          getNewTransactions(dispatch, externalAddresses, transactions),
+          getNewTransactions(dispatch, internalAddresses, transactions)
+        ];
+
+        return Promise.all(promises);
+      })
+      .then(() => {
+        // And last, update the utxo set.
         return dispatch(updateUtxos());
       })
       .then(() => {

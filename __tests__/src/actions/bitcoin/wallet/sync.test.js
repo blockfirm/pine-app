@@ -7,6 +7,7 @@ import {
 
 import { getNewByAddress as getNewTransactionsByAddress } from '../../../../../src/actions/bitcoin/blockchain/transactions/getNewByAddress';
 import { add as addTransactions } from '../../../../../src/actions/bitcoin/wallet/transactions/add';
+import { updatePending as updatePendingTransactions } from '../../../../../src/actions/bitcoin/wallet/transactions/updatePending';
 import { update as updateUtxos } from '../../../../../src/actions/bitcoin/wallet/utxos/update';
 
 const dispatchMock = jest.fn((action) => {
@@ -66,6 +67,10 @@ const getStateMock = jest.fn(() => ({
 
 jest.mock('../../../../../src/actions/bitcoin/wallet/transactions/add', () => ({
   add: jest.fn(() => Promise.resolve())
+}));
+
+jest.mock('../../../../../src/actions/bitcoin/wallet/transactions/updatePending', () => ({
+  updatePending: jest.fn(() => Promise.resolve())
 }));
 
 jest.mock('../../../../../src/actions/bitcoin/wallet/utxos/update', () => ({
@@ -231,6 +236,14 @@ describe('sync', () => {
 
     return sync()(dispatchMock, getStateMock).then(() => {
       expect(updateUtxos).toHaveBeenCalled();
+    });
+  });
+
+  it('updates pending transactions', () => {
+    expect.hasAssertions();
+
+    return sync()(dispatchMock, getStateMock).then(() => {
+      expect(updatePendingTransactions).toHaveBeenCalled();
     });
   });
 });
