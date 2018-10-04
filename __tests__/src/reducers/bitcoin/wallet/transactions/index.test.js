@@ -79,6 +79,18 @@ describe('transactionsReducer', () => {
     testAction(transactionsActions.BITCOIN_WALLET_TRANSACTIONS_SAVE_FAILURE);
   });
 
+  describe('when action is BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_REQUEST', () => {
+    testAction(transactionsActions.BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_REQUEST);
+  });
+
+  describe('when action is BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS', () => {
+    testAction(transactionsActions.BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS);
+  });
+
+  describe('when action is BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_FAILURE', () => {
+    testAction(transactionsActions.BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_FAILURE);
+  });
+
   describe('when action is an unknown type', () => {
     it('returns the old state', () => {
       const oldState = { error: 'c6bf4167-eeaa-4da1-8a04-0c88da8027af' };

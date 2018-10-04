@@ -15,6 +15,10 @@ const transactionsReducer = (state = {}, action) => {
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_SAVE_REQUEST:
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_SAVE_SUCCESS:
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_SAVE_FAILURE:
+
+    case transactionActions.BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_REQUEST:
+    case transactionActions.BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS:
+    case transactionActions.BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_FAILURE:
       return {
         ...state,
         error: error(state.error, action),

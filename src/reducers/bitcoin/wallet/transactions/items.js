@@ -26,6 +26,31 @@ const getUniqueTransactions = (oldTransactions, transactions) => {
   return uniqueTransactions;
 };
 
+/**
+ * Updates a list of transactions based on the transactions' txid.
+ *
+ * @param {array} oldTransactions - List of transactions.
+ * @param {array} transactions - List of transactions to update.
+ *
+ * @returns {array} A new updated list of transactions.
+ */
+const updateTransactions = (oldTransactions, transactions) => {
+  const newTxidMap = transactions.reduce((map, transaction) => {
+    map[transaction.txid] = transaction;
+    return map;
+  }, {});
+
+  const updatedTransactions = oldTransactions.map((transaction) => {
+    if (transaction.txid in newTxidMap) {
+      return newTxidMap[transaction.txid];
+    }
+
+    return transaction;
+  });
+
+  return updatedTransactions;
+};
+
 const itemsReducer = (state = [], action) => {
   let newState;
 
@@ -43,6 +68,9 @@ const itemsReducer = (state = [], action) => {
       newState.sort((a, b) => a.time - b.time);
 
       return newState;
+
+    case transactionActions.BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS:
+      return updateTransactions(state, action.transactions);
 
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_REMOVE_ALL_SUCCESS:
       return [];
