@@ -86,16 +86,10 @@ export default class Button extends Component {
       return;
     }
 
-    this.setState({ disabled: true });
-
-    // Delay showing the loading indicator so it's only shown for long-running operations.
-    setTimeout(() => {
-      if (!this._isMounted) {
-        return;
-      }
-
-      this.setState({ loading: true });
-    }, 500);
+    this.setState({
+      disabled: true,
+      loading: true
+    });
 
     promise.then(() => {
       if (!this._isMounted) {
