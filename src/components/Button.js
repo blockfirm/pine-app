@@ -7,6 +7,8 @@ const windowDimensions = Dimensions.get('window');
 const FULL_WIDTH = windowDimensions.width;
 const DEFAULT_WIDTH = FULL_WIDTH - 80;
 
+const PRESS_FREEZE_MS = 1000; // Don't allow another press until 1s after the previous press.
+
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#FFD23F',
@@ -78,9 +80,24 @@ export default class Button extends Component {
     this._isMounted = false;
   }
 
+  _shouldAllowPress() {
+    const lastPressTimestamp = this._lastPressTimestamp || 0;
+    const now = new Date().getTime();
+
+    // Don't allow too frequent presses.
+    return now - lastPressTimestamp > PRESS_FREEZE_MS;
+  }
+
   _onPress() {
     const onPress = this.props.onPress;
-    const promise = onPress ? onPress() : null;
+
+    if (!this._shouldAllowPress()) {
+      return;
+    }
+
+    this._lastPressTimestamp = new Date().getTime();
+
+    const promise = onPress();
 
     if (promise instanceof Promise === false) {
       return;
@@ -139,7 +156,7 @@ export default class Button extends Component {
 
 Button.propTypes = {
   label: PropTypes.string.isRequired,
-  onPress: PropTypes.func,
+  onPress: PropTypes.func.isRequired,
   style: PropTypes.any,
   labelStyle: PropTypes.any,
   disabledStyle: PropTypes.any,
