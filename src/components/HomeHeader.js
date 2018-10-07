@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 import headerStyles from '../styles/headerStyles';
+import SettingsIcon from '../components/icons/SettingsIcon';
 import BtcBalanceLabelContainer from '../containers/BtcBalanceLabelContainer';
 
 const STATUS_BAR_HEIGHT = ifIphoneX(44, 20);
@@ -23,11 +23,6 @@ const styles = StyleSheet.create({
     top: 9,
     right: 16.5
   },
-  icon: {
-    fontSize: 28,
-    color: '#000000',
-    backgroundColor: 'transparent'
-  },
   title: {
     position: 'absolute',
     left: 40,
@@ -43,7 +38,7 @@ export default class HomeHeader extends Component {
         <BtcBalanceLabelContainer style={[headerStyles.title, styles.title]} />
 
         <TouchableOpacity onPress={this.props.onSettingsPress} style={styles.settings}>
-          <Icon name='ios-settings' style={styles.icon} />
+          <SettingsIcon />
         </TouchableOpacity>
       </View>
     );
