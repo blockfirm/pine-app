@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class Header extends Component {
+export default class BackHeader extends Component {
   render() {
     const { showBackButton } = this.props;
 
@@ -46,7 +46,7 @@ export default class Header extends Component {
   }
 }
 
-Header.propTypes = {
+BackHeader.propTypes = {
   showBackButton: PropTypes.bool,
   onBackPress: PropTypes.func,
   backButtonIconStyle: PropTypes.any,

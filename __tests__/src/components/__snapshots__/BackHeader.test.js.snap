@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header renders correctly with showBackButton set to false 1`] = `
+exports[`BackHeader renders correctly with showBackButton set to false 1`] = `
 <View
   style={
     Object {
@@ -40,7 +40,7 @@ exports[`Header renders correctly with showBackButton set to false 1`] = `
 </View>
 `;
 
-exports[`Header renders correctly with showBackButton set to true 1`] = `
+exports[`BackHeader renders correctly with showBackButton set to true 1`] = `
 <View
   style={
     Object {

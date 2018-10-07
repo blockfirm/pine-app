@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 import ErrorBoundary from '../components/ErrorBoundary';
-import HeaderContainer from '../containers/HeaderContainer';
+import BackHeaderContainer from '../containers/BackHeaderContainer';
 
 const styles = StyleSheet.create({
   view: {
@@ -22,7 +22,7 @@ export default class BaseScreen extends Component {
     }
 
     return (
-      <HeaderContainer
+      <BackHeaderContainer
         backButtonIconStyle={this.props.backButtonIconStyle}
         title={this.props.headerTitle}
       />

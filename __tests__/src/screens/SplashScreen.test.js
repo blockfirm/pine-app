@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import SplashScreen from '../../../src/screens/SplashScreen';
 
 jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
-jest.mock('../../../src/containers/HeaderContainer', () => 'HeaderContainer');
+jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContainer');
 
 const storeMock = {
   getState: jest.fn(() => ({})),

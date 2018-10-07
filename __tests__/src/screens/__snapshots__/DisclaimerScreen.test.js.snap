@@ -15,7 +15,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
     ]
   }
 >
-  <HeaderContainer
+  <BackHeaderContainer
     backButtonIconStyle={undefined}
     title={undefined}
   />

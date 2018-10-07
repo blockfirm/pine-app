@@ -16,7 +16,7 @@ exports[`MnemonicScreen renders correctly 1`] = `
     ]
   }
 >
-  <HeaderContainer
+  <BackHeaderContainer
     backButtonIconStyle={undefined}
     title="Your Recovery Key"
   />

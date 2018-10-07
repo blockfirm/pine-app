@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import Header from '../components/Header';
+import BackHeader from '../components/BackHeader';
 
 const mapStateToProps = (state) => {
   return {
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-class HeaderContainer extends Component {
+class BackHeaderContainer extends Component {
   static propTypes = {
     nav: PropTypes.object,
     dispatch: PropTypes.func,
@@ -35,7 +35,7 @@ class HeaderContainer extends Component {
     const showBackButton = this._shouldShowBackButton();
 
     return (
-      <Header
+      <BackHeader
         showBackButton={showBackButton}
         onBackPress={this._onBackPress.bind(this)}
         backButtonIconStyle={this.props.backButtonIconStyle}
@@ -45,8 +45,8 @@ class HeaderContainer extends Component {
   }
 }
 
-const HeaderConnector = connect(
+const BackHeaderConnector = connect(
   mapStateToProps
-)(HeaderContainer);
+)(BackHeaderContainer);
 
-export default HeaderConnector;
+export default BackHeaderConnector;

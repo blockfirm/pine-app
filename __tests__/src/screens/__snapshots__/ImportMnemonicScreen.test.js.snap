@@ -37,7 +37,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
       ]
     }
   >
-    <HeaderContainer
+    <BackHeaderContainer
       backButtonIconStyle={undefined}
       title="Recover Wallet"
     />

@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import DisclaimerScreen from '../../../src/screens/DisclaimerScreen';
 
 jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
-jest.mock('../../../src/containers/HeaderContainer', () => 'HeaderContainer');
+jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContainer');
 
 const storeMock = {
   getState: jest.fn(() => ({})),

@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Header from '../../../src/components/Header';
+import BackHeader from '../../../src/components/BackHeader';
 
-describe('Header', () => {
+describe('BackHeader', () => {
   it('renders correctly with showBackButton set to false', () => {
     const tree = renderer.create(
-      <Header showBackButton={false} />
+      <BackHeader showBackButton={false} />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -13,7 +13,7 @@ describe('Header', () => {
 
   it('renders correctly with showBackButton set to true', () => {
     const tree = renderer.create(
-      <Header showBackButton={true} />
+      <BackHeader showBackButton={true} />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

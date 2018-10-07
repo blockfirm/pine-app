@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 import HomeScreen from '../../../src/screens/HomeScreen';
 
 jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
-jest.mock('../../../src/containers/HeaderContainer', () => 'HeaderContainer');
+jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContainer');
 jest.mock('../../../src/containers/TransactionListContainer', () => 'TransactionListContainer');
 jest.mock('../../../src/screens/TransactionsScreen', () => 'TransactionsScreen');
 

@@ -37,7 +37,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
       ]
     }
   >
-    <HeaderContainer
+    <BackHeaderContainer
       backButtonIconStyle={undefined}
       title="Confirm Recovery Key"
     />
