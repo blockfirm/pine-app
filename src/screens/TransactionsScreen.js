@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
 import TransactionListContainer from '../containers/TransactionListContainer';
-import HomeHeader from '../components/HomeHeader';
+import TransactionsScreenHeader from '../components/TransactionsScreenHeader';
 import BaseScreen from './BaseScreen';
 
 const styles = StyleSheet.create({
@@ -31,7 +31,7 @@ export default class TransactionsScreen extends Component {
   render() {
     return (
       <BaseScreen style={styles.view}>
-        <HomeHeader onSettingsPress={this._showSettings.bind(this)} />
+        <TransactionsScreenHeader onSettingsPress={this._showSettings.bind(this)} />
         <TransactionListContainer />
       </BaseScreen>
     );

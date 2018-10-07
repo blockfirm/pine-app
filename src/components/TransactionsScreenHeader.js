@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class HomeHeader extends Component {
+export default class TransactionsScreenHeader extends Component {
   render() {
     return (
       <View style={styles.header}>
@@ -45,6 +45,6 @@ export default class HomeHeader extends Component {
   }
 }
 
-HomeHeader.propTypes = {
+TransactionsScreenHeader.propTypes = {
   onSettingsPress: PropTypes.func
 };
