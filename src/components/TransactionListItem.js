@@ -13,23 +13,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'center',
-    padding: 15,
+    padding: 16.5,
     backgroundColor: 'white'
   },
   icon: {
-    marginRight: 15,
+    marginRight: 16.5,
     alignSelf: 'center'
   },
   title: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '600',
-    letterSpacing: 0.1
+    letterSpacing: -0.24,
+    lineHeight: 20
   },
   dateLabel: {
-    color: '#AAAAAA',
+    color: '#B1AFB7',
     fontSize: 12,
-    fontWeight: 'bold',
-    letterSpacing: -0.1
+    fontWeight: '600',
+    letterSpacing: 0.05
   },
   rightContent: {
     flex: 1,
@@ -37,8 +38,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   btcLabel: {
-    alignSelf: 'flex-end',
-    fontWeight: '600'
+    fontSize: 15,
+    fontWeight: '600',
+    alignSelf: 'flex-end'
   }
 });
 

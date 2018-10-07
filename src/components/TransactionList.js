@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, SectionList, View } from 'react-native';
 import PropTypes from 'prop-types';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 import moment from 'moment-timezone';
 
 import TransactionListItemContainer from '../containers/TransactionListItemContainer';
@@ -10,17 +11,22 @@ const styles = StyleSheet.create({
   list: {
     alignSelf: 'stretch'
   },
-  separator: {
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: '#f0f1f4',
-    marginLeft: 60
-  },
   sectionHeader: {
     backgroundColor: '#F6F6F6',
-    padding: 6
+    marginTop: 30,
+    marginBottom: 20,
+    padding: 6,
+    width: 87,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 12
   },
   sectionHeaderText: {
-    color: '#111111'
+    color: '#8A8A8F',
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 0.07
   }
 });
 
@@ -66,14 +72,12 @@ export default class TransactionList extends Component {
     return (
       <SectionList
         style={styles.list}
+        contentInset={{ bottom: ifIphoneX(34, 0) }}
         sections={sections}
         renderItem={({ item }) => (
           <TransactionListItemContainer transaction={item} />
         )}
         keyExtractor={(item) => item.txid}
-        ItemSeparatorComponent={({ highlighted }) => (
-          <View style={[styles.separator, highlighted && { marginLeft: 0 }]} />
-        )}
         renderSectionHeader={({ section: { title } }) => (
           <View style={styles.sectionHeader}>
             <StyledText style={styles.sectionHeaderText}>{title}</StyledText>
