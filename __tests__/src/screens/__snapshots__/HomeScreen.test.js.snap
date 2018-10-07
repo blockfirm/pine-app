@@ -2,26 +2,74 @@
 
 exports[`HomeScreen renders correctly 1`] = `
 <View
+  onLayout={[Function]}
   style={
     Array [
       Object {
-        "alignItems": "center",
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "transparent",
         "flex": 1,
-        "justifyContent": "center",
-        "padding": 40,
+        "position": "relative",
       },
-      Object {
-        "padding": 0,
-      },
+      undefined,
     ]
   }
 >
-  <HeaderContainer
-    backButtonIconStyle={undefined}
-    title={undefined}
-  />
-  <TransactionListContainer />
-  <ErrorModalContainer />
+  <RCTScrollView
+    automaticallyAdjustContentInsets={false}
+    autoplay={false}
+    autoplayDirection={true}
+    autoplayTimeout={2.5}
+    bounces={false}
+    contentContainerStyle={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        undefined,
+      ]
+    }
+    contentOffset={
+      Object {
+        "x": 0,
+      }
+    }
+    disableNextButton={false}
+    horizontal={true}
+    index={0}
+    loadMinimal={false}
+    loadMinimalSize={1}
+    loop={false}
+    onIndexChanged={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    pagingEnabled={true}
+    removeClippedSubviews={true}
+    scrollEventThrottle={16}
+    scrollsToTop={false}
+    showsButtons={false}
+    showsHorizontalScrollIndicator={false}
+    showsPagination={false}
+    showsVerticalScrollIndicator={false}
+    style={undefined}
+  >
+    <View>
+      <View
+        style={
+          Array [
+            Object {
+              "height": 1334,
+              "width": 750,
+            },
+            Object {
+              "backgroundColor": "transparent",
+            },
+          ]
+        }
+      >
+        <TransactionsScreen />
+      </View>
+    </View>
+  </RCTScrollView>
 </View>
 `;

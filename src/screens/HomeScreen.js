@@ -1,46 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Swiper from 'react-native-swiper';
 
 import { sync as syncWallet } from '../actions/bitcoin/wallet';
-import BtcBalanceLabelContainer from '../containers/BtcBalanceLabelContainer';
-import TransactionListContainer from '../containers/TransactionListContainer';
-import BaseScreen from './BaseScreen';
+import TransactionsScreen from './TransactionsScreen';
 
 const SYNC_WALLET_INTERVAL = 60 * 1000 * 1; // 1 minute.
 
-const styles = StyleSheet.create({
-  navigationIcon: {
-    fontSize: 28,
-    color: '#C0D2F3',
-    padding: 10
-  },
-  balanceLabel: {
-    color: '#C0D2F3',
-    padding: 10
-  },
-  view: {
-    padding: 0
-  }
-});
-
 @connect()
 export default class HomeScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    headerStyle: {
-      backgroundColor: '#26203D'
-    },
-    headerLeft: (
-      <TouchableOpacity onPress={() => { navigation.navigate('Settings'); }}>
-        <Icon name='ios-settings' style={styles.navigationIcon} />
-      </TouchableOpacity>
-    ),
-    headerRight: (
-      <BtcBalanceLabelContainer style={styles.balanceLabel} />
-    )
-  });
+  static navigationOptions = {
+    header: null
+  }
 
   componentDidMount() {
     const dispatch = this.props.dispatch;
@@ -57,10 +29,15 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <BaseScreen style={styles.view}>
-        <StatusBar barStyle='light-content' />
-        <TransactionListContainer />
-      </BaseScreen>
+      <Swiper
+        ref={(ref) => { this._swiper = ref; }}
+        index={0}
+        loop={false}
+        showsPagination={false}
+        scrollEventThrottle={16}
+      >
+        <TransactionsScreen />
+      </Swiper>
     );
   }
 }
