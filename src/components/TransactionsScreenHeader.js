@@ -18,8 +18,9 @@ const styles = StyleSheet.create({
   },
   settings: {
     position: 'absolute',
-    top: 9,
-    right: 16.5
+    top: 4,
+    right: 11.5,
+    padding: 5 // The padding makes it easier to press.
   },
   title: {
     position: 'absolute',
