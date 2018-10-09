@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import headerStyles from '../styles/headerStyles';
 import SettingsIcon from '../components/icons/SettingsIcon';
 import BtcBalanceLabelContainer from '../containers/BtcBalanceLabelContainer';
-
-const STATUS_BAR_HEIGHT = ifIphoneX(44, 20);
-const NAVBAR_HEIGHT = 44;
+import getStatusBarHeight from '../utils/getStatusBarHeight';
+import getNavBarHeight from '../utils/getNavBarHeight';
 
 const styles = StyleSheet.create({
   header: {
-    marginTop: STATUS_BAR_HEIGHT,
+    marginTop: getStatusBarHeight(),
     alignSelf: 'stretch',
     justifyContent: 'center',
     backgroundColor: 'transparent',
-    height: NAVBAR_HEIGHT
+    height: getNavBarHeight()
   },
   settings: {
     position: 'absolute',
