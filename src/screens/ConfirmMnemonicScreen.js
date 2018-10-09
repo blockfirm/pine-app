@@ -142,6 +142,7 @@ export default class ConfirmMnemonicScreen extends Component {
                 disabled={buttonDisabled}
                 fullWidth={this.state.keyboardState}
                 onPress={this._saveKey.bind(this)}
+                showLoader={true}
               />
               <KeyboardSpacer topSpacing={-30} onToggle={this._onKeyboardToggle.bind(this)} />
             </Footer>

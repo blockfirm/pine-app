@@ -79,6 +79,7 @@ export default class WelcomeScreen extends Component {
             label='Create a new wallet'
             onPress={this._createWallet.bind(this)}
             style={styles.button}
+            showLoader={true}
           />
 
           <Link

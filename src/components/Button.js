@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, View, Dimensions, Text, ActivityIndicator } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Dimensions, Text, ActivityIndicator, InteractionManager } from 'react-native';
 import PropTypes from 'prop-types';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
@@ -88,31 +88,26 @@ export default class Button extends Component {
     return now - lastPressTimestamp > PRESS_FREEZE_MS;
   }
 
-  _onPress() {
-    const onPress = this.props.onPress;
-
-    if (!this._shouldAllowPress()) {
-      return;
+  /**
+   * Triggered when the button is pressed and just
+   * before the external onPress function is called.
+   */
+  _onPressStarted() {
+    if (this.props.showLoader) {
+      this.setState({
+        disabled: true,
+        loading: true
+      });
     }
+  }
 
-    this._lastPressTimestamp = new Date().getTime();
-
-    const promise = onPress();
-
-    if (promise instanceof Promise === false) {
-      return;
-    }
-
-    this.setState({
-      disabled: true,
-      loading: true
-    });
-
-    promise.then(() => {
-      if (!this._isMounted) {
-        return;
-      }
-
+  /**
+   * Triggered when the external onPress function has been called.
+   * If onPress returns a promise, this method will be triggered
+   * once it has been resolved.
+   */
+  _onPressFinished() {
+    if (this.props.showLoader) {
       // Delay hiding the loading indicator to prevent flickering.
       setTimeout(() => {
         this.setState({
@@ -120,7 +115,39 @@ export default class Button extends Component {
           loading: false
         });
       }, 500);
+    }
+  }
+
+  _handleOnPress() {
+    const promise = this.props.onPress();
+
+    if (promise instanceof Promise === false) {
+      return this._onPressFinished();
+    }
+
+    promise.then(() => {
+      if (this._isMounted) {
+        this._onPressFinished();
+      }
     });
+  }
+
+  _onPress() {
+    if (!this._shouldAllowPress()) {
+      return;
+    }
+
+    this._lastPressTimestamp = new Date().getTime();
+    this._onPressStarted();
+
+    if (this.props.showLoader) {
+      // This makes sure that the loader shows before starting the task.
+      InteractionManager.runAfterInteractions(() => {
+        this._handleOnPress();
+      });
+    } else {
+      this._handleOnPress();
+    }
   }
 
   render() {
@@ -162,5 +189,6 @@ Button.propTypes = {
   disabledStyle: PropTypes.any,
   fullWidth: PropTypes.bool,
   disabled: PropTypes.bool,
+  showLoader: PropTypes.bool,
   loaderColor: PropTypes.string
 };
