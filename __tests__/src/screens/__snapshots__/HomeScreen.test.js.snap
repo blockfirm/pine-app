@@ -30,12 +30,12 @@ exports[`HomeScreen renders correctly 1`] = `
     }
     contentOffset={
       Object {
-        "x": 0,
+        "x": 750,
       }
     }
     disableNextButton={false}
     horizontal={true}
-    index={0}
+    index={1}
     loadMinimal={false}
     loadMinimalSize={1}
     loop={false}
@@ -45,7 +45,6 @@ exports[`HomeScreen renders correctly 1`] = `
     onScrollEndDrag={[Function]}
     pagingEnabled={true}
     removeClippedSubviews={true}
-    scrollEventThrottle={16}
     scrollsToTop={false}
     showsButtons={false}
     showsHorizontalScrollIndicator={false}
@@ -54,6 +53,98 @@ exports[`HomeScreen renders correctly 1`] = `
     style={undefined}
   >
     <View>
+      <View
+        style={
+          Array [
+            Object {
+              "height": 1334,
+              "width": 750,
+            },
+            Object {
+              "backgroundColor": "transparent",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#ffffff",
+                "flex": 1,
+                "justifyContent": "center",
+                "padding": 40,
+              },
+              Object {
+                "backgroundColor": "black",
+                "padding": 0,
+              },
+            ]
+          }
+        >
+          <BackHeaderContainer
+            backButtonIconStyle={undefined}
+            title={undefined}
+          />
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#000000",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              onBarCodeRead={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "height": 1334,
+                  "justifyContent": "center",
+                  "width": 750,
+                }
+              }
+            >
+              <View
+                colors={
+                  Array [
+                    "rgba(0, 0, 0, 0.3)",
+                    "rgba(0, 0, 0, 0.0)",
+                  ]
+                }
+                style={
+                  Object {
+                    "alignSelf": "stretch",
+                    "height": 30,
+                    "position": "absolute",
+                    "top": 0,
+                    "width": 750,
+                  }
+                }
+              />
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/qr-viewport.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 212,
+                    "position": "absolute",
+                    "width": 212,
+                  }
+                }
+              />
+            </View>
+          </View>
+          <ErrorModalContainer />
+        </View>
+      </View>
       <View
         style={
           Array [
