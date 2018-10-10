@@ -5,7 +5,7 @@ exports[`BaseSettingsScreen renders correctly 1`] = `
   style={
     Object {
       "alignSelf": "stretch",
-      "backgroundColor": "#EFEFF4",
+      "backgroundColor": "#EFEFF3",
       "flex": 1,
     }
   }
@@ -15,7 +15,7 @@ exports[`BaseSettingsScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "paddingTop": 30,
+            "paddingTop": 35,
           }
         }
       />

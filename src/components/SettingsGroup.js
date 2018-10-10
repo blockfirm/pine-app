@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#C8C8CC',
     borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    marginBottom: 30
+    marginBottom: 35
   }
 });
 

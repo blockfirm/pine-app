@@ -49,7 +49,7 @@ export default class MnemonicWords extends Component {
   _renderBlur() {
     return (
       <BlurView
-        style={styles.blur}
+        style={[styles.blur, this.props.blurStyle]}
         blurType='light'
         blurAmount={5}
       />
@@ -87,6 +87,7 @@ export default class MnemonicWords extends Component {
 MnemonicWords.propTypes = {
   phrase: PropTypes.string.isRequired,
   style: PropTypes.any,
+  blurStyle: PropTypes.any,
   onReveal: PropTypes.func,
   revealed: PropTypes.bool
 };

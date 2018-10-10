@@ -4,6 +4,7 @@ import renderer from 'react-test-renderer';
 import ShowMnemonicScreen from '../../../../src/screens/settings/ShowMnemonicScreen';
 
 jest.mock('../../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
+jest.mock('../../../../src/containers/MnemonicWordsContainer', () => 'MnemonicWordsContainer');
 
 const storeMock = {
   getState: jest.fn(() => ({

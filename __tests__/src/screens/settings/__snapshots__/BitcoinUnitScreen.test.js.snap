@@ -5,7 +5,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
   style={
     Object {
       "alignSelf": "stretch",
-      "backgroundColor": "#EFEFF4",
+      "backgroundColor": "#EFEFF3",
       "flex": 1,
     }
   }
@@ -15,7 +15,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "paddingTop": 30,
+            "paddingTop": 35,
           }
         }
       >
@@ -28,7 +28,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                 "borderBottomWidth": 0.5,
                 "borderTopColor": "#C8C8CC",
                 "borderTopWidth": 0.5,
-                "marginBottom": 30,
+                "marginBottom": 35,
               },
               undefined,
             ]
@@ -60,10 +60,11 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                   Object {
                     "borderBottomColor": "#C8C7CC",
                     "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingBottom": 12,
                     "paddingRight": 15,
-                    "paddingTop": 12,
                   },
                   undefined,
                 ]
@@ -82,7 +83,9 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                       "fontWeight": "400",
                     },
                     Object {
+                      "fontSize": 17,
                       "fontWeight": "400",
+                      "lineHeight": 22,
                     },
                   ]
                 }
@@ -102,9 +105,9 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                     Object {
                       "color": "#007AFF",
                       "fontSize": 28,
+                      "paddingTop": 2,
                       "position": "absolute",
                       "right": 15,
-                      "top": 8,
                     },
                     Object {
                       "fontFamily": "Ionicons",
@@ -144,10 +147,11 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                   Object {
                     "borderBottomColor": "#C8C7CC",
                     "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingBottom": 12,
                     "paddingRight": 15,
-                    "paddingTop": 12,
                   },
                   Object {
                     "borderBottomWidth": 0,
@@ -168,7 +172,9 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                       "fontWeight": "400",
                     },
                     Object {
+                      "fontSize": 17,
                       "fontWeight": "400",
+                      "lineHeight": 22,
                     },
                   ]
                 }
@@ -240,7 +246,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
           >
             BTC
           </Text>
-           is one bitcoin and will be displayed as ₿.
+           is one bitcoin and will be displayed as BTC.
         </Text>
         <Text
           accessible={true}
@@ -278,7 +284,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
           >
             mBTC
           </Text>
-           is one thousandth of a bitcoin and will be displayed as m₿.
+           is one thousandth of a bitcoin and will be displayed as mBTC.
         </Text>
       </View>
     </View>

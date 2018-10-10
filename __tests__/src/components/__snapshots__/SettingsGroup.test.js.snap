@@ -10,7 +10,7 @@ exports[`SettingsGroup renders correctly 1`] = `
         "borderBottomWidth": 0.5,
         "borderTopColor": "#C8C8CC",
         "borderTopWidth": 0.5,
-        "marginBottom": 30,
+        "marginBottom": 35,
       },
       undefined,
     ]

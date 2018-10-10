@@ -24,8 +24,7 @@ exports[`BackHeader renders correctly with showBackButton set to false 1`] = `
           "color": "black",
           "fontFamily": "System",
           "fontSize": 17,
-          "fontWeight": "600",
-          "letterSpacing": -0.41,
+          "fontWeight": "700",
         },
         Object {
           "left": 40,
@@ -122,8 +121,7 @@ exports[`BackHeader renders correctly with showBackButton set to true 1`] = `
           "color": "black",
           "fontFamily": "System",
           "fontSize": 17,
-          "fontWeight": "600",
-          "letterSpacing": -0.41,
+          "fontWeight": "700",
         },
         Object {
           "left": 40,

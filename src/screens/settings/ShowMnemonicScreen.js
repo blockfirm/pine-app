@@ -5,15 +5,22 @@ import { connect } from 'react-redux';
 
 import getMnemonicByKey from '../../crypto/getMnemonicByKey';
 import headerStyles from '../../styles/headerStyles';
+import MnemonicWordsContainer from '../../containers/MnemonicWordsContainer';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsDescription from '../../components/SettingsDescription';
-import MnemonicWords from '../../components/MnemonicWords';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
 const styles = StyleSheet.create({
   view: {
-    padding: 20
+    padding: 20,
+    overflow: 'hidden'
+  },
+  blur: {
+    top: -20,
+    bottom: -20,
+    left: -10,
+    right: -10
   }
 });
 
@@ -47,11 +54,11 @@ export default class ShowMnemonicScreen extends Component {
     return (
       <BaseSettingsScreen>
         <SettingsGroup style={styles.view}>
-          <MnemonicWords phrase={this.state.phrase} />
+          <MnemonicWordsContainer phrase={this.state.phrase} blurStyle={styles.blur} />
         </SettingsGroup>
         <SettingsDescription>
           Write down and store this recovery key in a safe place so you can recover
-          your wallet if you lose or break your phone.
+          your wallet if you would lose or break your phone.
         </SettingsDescription>
       </BaseSettingsScreen>
     );

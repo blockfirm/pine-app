@@ -2,15 +2,14 @@ import { StyleSheet } from 'react-native';
 
 const headerStyles = StyleSheet.create({
   header: {
-    backgroundColor: '#F9F9F9',
-    borderBottomColor: '#A6A6AA',
+    backgroundColor: '#F7F7F7',
+    borderBottomColor: '#B2B2B2',
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   title: {
     fontSize: 17,
-    fontWeight: '600',
+    fontWeight: '700',
     fontFamily: 'System',
-    letterSpacing: -0.41,
     color: 'black'
   }
 });

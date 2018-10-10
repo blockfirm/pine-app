@@ -4,6 +4,10 @@ import Icon from 'react-native-vector-icons/Entypo';
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
+  button: {
+    position: 'absolute',
+    left: 10
+  },
   icon: {
     paddingRight: 10,
     fontSize: 20,
@@ -15,7 +19,7 @@ const styles = StyleSheet.create({
 export default class BackButton extends Component {
   render() {
     return (
-      <TouchableOpacity onPress={this.props.onPress} style={this.props.style}>
+      <TouchableOpacity onPress={this.props.onPress} style={[styles.button, this.props.style]}>
         <Icon name='chevron-thin-left' style={[styles.icon, this.props.iconStyle]} />
       </TouchableOpacity>
     );

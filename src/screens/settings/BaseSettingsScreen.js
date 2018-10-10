@@ -7,10 +7,10 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: '#EFEFF4'
+    backgroundColor: '#EFEFF3'
   },
   childrenWrapper: {
-    paddingTop: 30
+    paddingTop: 35
   }
 });
 

@@ -20,7 +20,9 @@ exports[`BackButton renders correctly 1`] = `
   onStartShouldSetResponder={[Function]}
   style={
     Object {
+      "left": 10,
       "opacity": 1,
+      "position": "absolute",
     }
   }
   testID={undefined}

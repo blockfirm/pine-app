@@ -27,10 +27,11 @@ exports[`SettingsOption renders correctly 1`] = `
         Object {
           "borderBottomColor": "#C8C7CC",
           "borderBottomWidth": 0.5,
+          "flex": 1,
+          "height": 44,
+          "justifyContent": "center",
           "marginLeft": 15,
-          "paddingBottom": 12,
           "paddingRight": 15,
-          "paddingTop": 12,
         },
         undefined,
       ]
@@ -49,7 +50,9 @@ exports[`SettingsOption renders correctly 1`] = `
             "fontWeight": "400",
           },
           Object {
+            "fontSize": 17,
             "fontWeight": "400",
+            "lineHeight": 22,
           },
         ]
       }
@@ -87,10 +90,11 @@ exports[`SettingsOption renders correctly as the last item 1`] = `
         Object {
           "borderBottomColor": "#C8C7CC",
           "borderBottomWidth": 0.5,
+          "flex": 1,
+          "height": 44,
+          "justifyContent": "center",
           "marginLeft": 15,
-          "paddingBottom": 12,
           "paddingRight": 15,
-          "paddingTop": 12,
         },
         Object {
           "borderBottomWidth": 0,
@@ -111,7 +115,9 @@ exports[`SettingsOption renders correctly as the last item 1`] = `
             "fontWeight": "400",
           },
           Object {
+            "fontSize": 17,
             "fontWeight": "400",
+            "lineHeight": 22,
           },
         ]
       }

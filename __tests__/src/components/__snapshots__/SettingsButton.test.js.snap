@@ -27,10 +27,11 @@ exports[`SettingsButton renders correctly 1`] = `
         Object {
           "borderBottomColor": "#C8C7CC",
           "borderBottomWidth": 0.5,
+          "flex": 1,
+          "height": 44,
+          "justifyContent": "center",
           "marginLeft": 15,
-          "paddingBottom": 12,
           "paddingRight": 15,
-          "paddingTop": 12,
         },
         undefined,
       ]
@@ -50,8 +51,12 @@ exports[`SettingsButton renders correctly 1`] = `
           },
           Array [
             Object {
-              "color": "#007AFF",
+              "fontSize": 17,
               "fontWeight": "400",
+              "lineHeight": 22,
+            },
+            Object {
+              "color": "#007AFF",
             },
             undefined,
             undefined,
@@ -92,10 +97,11 @@ exports[`SettingsButton renders correctly as the last item 1`] = `
         Object {
           "borderBottomColor": "#C8C7CC",
           "borderBottomWidth": 0.5,
+          "flex": 1,
+          "height": 44,
+          "justifyContent": "center",
           "marginLeft": 15,
-          "paddingBottom": 12,
           "paddingRight": 15,
-          "paddingTop": 12,
         },
         Object {
           "borderBottomWidth": 0,
@@ -117,8 +123,12 @@ exports[`SettingsButton renders correctly as the last item 1`] = `
           },
           Array [
             Object {
-              "color": "#007AFF",
+              "fontSize": 17,
               "fontWeight": "400",
+              "lineHeight": 22,
+            },
+            Object {
+              "color": "#007AFF",
             },
             undefined,
             undefined,
@@ -159,10 +169,11 @@ exports[`SettingsButton renders correctly while loading 1`] = `
         Object {
           "borderBottomColor": "#C8C7CC",
           "borderBottomWidth": 0.5,
+          "flex": 1,
+          "height": 44,
+          "justifyContent": "center",
           "marginLeft": 15,
-          "paddingBottom": 12,
           "paddingRight": 15,
-          "paddingTop": 12,
         },
         undefined,
       ]
@@ -182,8 +193,12 @@ exports[`SettingsButton renders correctly while loading 1`] = `
           },
           Array [
             Object {
-              "color": "#007AFF",
+              "fontSize": 17,
               "fontWeight": "400",
+              "lineHeight": 22,
+            },
+            Object {
+              "color": "#007AFF",
             },
             undefined,
             Object {

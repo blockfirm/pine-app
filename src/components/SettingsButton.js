@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
+
+import settingsStyles from '../styles/settingsStyles';
 import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 12,
-    paddingBottom: 12,
-    paddingRight: 15,
-    marginLeft: 15,
-    borderBottomColor: '#C8C7CC',
-    borderBottomWidth: StyleSheet.hairlineWidth
-  },
   label: {
-    fontWeight: '400',
     color: '#007AFF'
   },
   destructive: {
@@ -43,11 +36,12 @@ export default class SettingsButton extends Component {
     const underlayColor = loading ? 'white' : '#FAFAFA';
 
     const containerStyles = [
-      styles.container,
+      settingsStyles.item,
       isLastItem ? { borderBottomWidth: 0 } : undefined
     ];
 
     const labelStyles = [
+      settingsStyles.label,
       styles.label,
       type === 'destructive' ? styles.destructive : undefined,
       loading ? styles.disabled : undefined

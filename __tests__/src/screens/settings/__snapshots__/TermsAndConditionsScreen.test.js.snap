@@ -5,7 +5,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
   style={
     Object {
       "alignSelf": "stretch",
-      "backgroundColor": "#EFEFF4",
+      "backgroundColor": "#EFEFF3",
       "flex": 1,
     }
   }
@@ -15,7 +15,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "paddingTop": 30,
+            "paddingTop": 35,
           }
         }
       >
@@ -28,7 +28,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 "borderBottomWidth": 0.5,
                 "borderTopColor": "#C8C8CC",
                 "borderTopWidth": 0.5,
-                "marginBottom": 30,
+                "marginBottom": 35,
               },
               Object {
                 "padding": 20,

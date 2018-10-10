@@ -894,13 +894,16 @@ exports[`MnemonicWords renders correctly 1`] = `
     blurAmount={5}
     blurType="light"
     style={
-      Object {
-        "bottom": -50,
-        "left": -10,
-        "position": "absolute",
-        "right": -10,
-        "top": -50,
-      }
+      Array [
+        Object {
+          "bottom": -50,
+          "left": -10,
+          "position": "absolute",
+          "right": -10,
+          "top": -50,
+        },
+        undefined,
+      ]
     }
   />
   <View

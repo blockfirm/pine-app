@@ -60,10 +60,10 @@ export default class BitcoinUnitScreen extends Component {
           Choose the unit in which bitcoin amounts should be displayed.
         </SettingsDescription>
         <SettingsDescription>
-          <StrongText>BTC</StrongText> is one bitcoin and will be displayed as ₿.
+          <StrongText>BTC</StrongText> is one bitcoin and will be displayed as BTC.
         </SettingsDescription>
         <SettingsDescription>
-          <StrongText>mBTC</StrongText> is one thousandth of a bitcoin and will be displayed as m₿.
+          <StrongText>mBTC</StrongText> is one thousandth of a bitcoin and will be displayed as mBTC.
         </SettingsDescription>
       </BaseSettingsScreen>
     );

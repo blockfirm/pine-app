@@ -5,7 +5,7 @@ exports[`AboutScreen renders correctly 1`] = `
   style={
     Object {
       "alignSelf": "stretch",
-      "backgroundColor": "#EFEFF4",
+      "backgroundColor": "#EFEFF3",
       "flex": 1,
     }
   }
@@ -15,7 +15,7 @@ exports[`AboutScreen renders correctly 1`] = `
       <View
         style={
           Object {
-            "paddingTop": 30,
+            "paddingTop": 35,
           }
         }
       >
@@ -28,7 +28,7 @@ exports[`AboutScreen renders correctly 1`] = `
                 "borderBottomWidth": 0.5,
                 "borderTopColor": "#C8C8CC",
                 "borderTopWidth": 0.5,
-                "marginBottom": 30,
+                "marginBottom": 35,
               },
               undefined,
             ]
@@ -40,10 +40,11 @@ exports[`AboutScreen renders correctly 1`] = `
                 Object {
                   "borderBottomColor": "#C8C7CC",
                   "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "height": 44,
+                  "justifyContent": "center",
                   "marginLeft": 15,
-                  "paddingBottom": 12,
                   "paddingRight": 15,
-                  "paddingTop": 12,
                 },
                 undefined,
               ]
@@ -62,7 +63,9 @@ exports[`AboutScreen renders correctly 1`] = `
                     "fontWeight": "400",
                   },
                   Object {
+                    "fontSize": 17,
                     "fontWeight": "400",
+                    "lineHeight": 22,
                   },
                 ]
               }
@@ -82,12 +85,15 @@ exports[`AboutScreen renders correctly 1`] = `
                     "fontWeight": "400",
                   },
                   Object {
+                    "backgroundColor": "transparent",
                     "color": "#8F8E94",
+                    "fontSize": 17,
+                    "fontWeight": "400",
+                    "lineHeight": 22,
                     "position": "absolute",
                     "right": 15,
                     "textAlign": "right",
-                    "top": 12,
-                    "width": 150,
+                    "width": 250,
                   },
                 ]
               }
@@ -101,10 +107,11 @@ exports[`AboutScreen renders correctly 1`] = `
                 Object {
                   "borderBottomColor": "#C8C7CC",
                   "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "height": 44,
+                  "justifyContent": "center",
                   "marginLeft": 15,
-                  "paddingBottom": 12,
                   "paddingRight": 15,
-                  "paddingTop": 12,
                 },
                 Object {
                   "borderBottomWidth": 0,
@@ -125,7 +132,9 @@ exports[`AboutScreen renders correctly 1`] = `
                     "fontWeight": "400",
                   },
                   Object {
+                    "fontSize": 17,
                     "fontWeight": "400",
+                    "lineHeight": 22,
                   },
                 ]
               }
@@ -145,12 +154,15 @@ exports[`AboutScreen renders correctly 1`] = `
                     "fontWeight": "400",
                   },
                   Object {
+                    "backgroundColor": "transparent",
                     "color": "#8F8E94",
+                    "fontSize": 17,
+                    "fontWeight": "400",
+                    "lineHeight": 22,
                     "position": "absolute",
                     "right": 15,
                     "textAlign": "right",
-                    "top": 12,
-                    "width": 150,
+                    "width": 250,
                   },
                 ]
               }
@@ -168,7 +180,7 @@ exports[`AboutScreen renders correctly 1`] = `
                 "borderBottomWidth": 0.5,
                 "borderTopColor": "#C8C8CC",
                 "borderTopWidth": 0.5,
-                "marginBottom": 30,
+                "marginBottom": 35,
               },
               undefined,
             ]
@@ -200,10 +212,11 @@ exports[`AboutScreen renders correctly 1`] = `
                   Object {
                     "borderBottomColor": "#C8C7CC",
                     "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingBottom": 12,
                     "paddingRight": 15,
-                    "paddingTop": 12,
                   },
                   Object {
                     "borderBottomWidth": 0,
@@ -224,7 +237,9 @@ exports[`AboutScreen renders correctly 1`] = `
                       "fontWeight": "400",
                     },
                     Object {
+                      "fontSize": 17,
                       "fontWeight": "400",
+                      "lineHeight": 22,
                     },
                   ]
                 }
@@ -243,15 +258,22 @@ exports[`AboutScreen renders correctly 1`] = `
                       "fontFamily": "System",
                       "fontWeight": "400",
                     },
-                    Object {
-                      "backgroundColor": "transparent",
-                      "color": "#8F8E94",
-                      "position": "absolute",
-                      "right": 30,
-                      "textAlign": "right",
-                      "top": 12,
-                      "width": 230,
-                    },
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "color": "#8F8E94",
+                        "fontSize": 17,
+                        "fontWeight": "400",
+                        "lineHeight": 22,
+                        "position": "absolute",
+                        "right": 15,
+                        "textAlign": "right",
+                        "width": 250,
+                      },
+                      Object {
+                        "right": 35,
+                      },
+                    ],
                   ]
                 }
               />
@@ -266,11 +288,11 @@ exports[`AboutScreen renders correctly 1`] = `
                       "fontSize": 12,
                     },
                     Object {
-                      "color": "#D1D1D6",
+                      "color": "#C7C7CC",
                       "fontSize": 20,
+                      "paddingTop": 2,
                       "position": "absolute",
                       "right": 15,
-                      "top": 11,
                     },
                     Object {
                       "fontFamily": "Ionicons",
@@ -294,7 +316,7 @@ exports[`AboutScreen renders correctly 1`] = `
                 "borderBottomWidth": 0.5,
                 "borderTopColor": "#C8C8CC",
                 "borderTopWidth": 0.5,
-                "marginBottom": 30,
+                "marginBottom": 35,
               },
               undefined,
             ]
@@ -326,10 +348,11 @@ exports[`AboutScreen renders correctly 1`] = `
                   Object {
                     "borderBottomColor": "#C8C7CC",
                     "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingBottom": 12,
                     "paddingRight": 15,
-                    "paddingTop": 12,
                   },
                   undefined,
                 ]
@@ -349,8 +372,12 @@ exports[`AboutScreen renders correctly 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#007AFF",
+                        "fontSize": 17,
                         "fontWeight": "400",
+                        "lineHeight": 22,
+                      },
+                      Object {
+                        "color": "#007AFF",
                       },
                       undefined,
                       undefined,
@@ -388,10 +415,11 @@ exports[`AboutScreen renders correctly 1`] = `
                   Object {
                     "borderBottomColor": "#C8C7CC",
                     "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingBottom": 12,
                     "paddingRight": 15,
-                    "paddingTop": 12,
                   },
                   Object {
                     "borderBottomWidth": 0,
@@ -413,8 +441,12 @@ exports[`AboutScreen renders correctly 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#007AFF",
+                        "fontSize": 17,
                         "fontWeight": "400",
+                        "lineHeight": 22,
+                      },
+                      Object {
+                        "color": "#007AFF",
                       },
                       undefined,
                       undefined,
