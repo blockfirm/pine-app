@@ -78,7 +78,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 ]
               }
             >
-              Last updated: April 03, 2018
+              Last updated: October 11, 2018
             </Text>
             <Text
               accessible={true}
@@ -294,7 +294,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 ]
               }
             >
-              The Service and its original content, features and functionality are and will remain the exclusive property of Blockfirm AB and its licensors. The Service is protected by copyright, trademark, and other laws of both the Sweden and foreign countries.
+              The Service and its original content, features and functionality are and will remain the exclusive property of Blockfirm AB and its licensors. The Service is protected by copyright, trademark, and other laws of both Sweden and foreign countries.
             </Text>
           </View>
           <Text
