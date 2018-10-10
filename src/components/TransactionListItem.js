@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 15,
     fontWeight: '600',
-    letterSpacing: -0.24,
     lineHeight: 20
   },
   dateLabel: {
