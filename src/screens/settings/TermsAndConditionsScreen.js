@@ -66,7 +66,7 @@ export default class TermsAndConditionsScreen extends Component {
         <SettingsGroup style={styles.view}>
           <View style={styles.paragraphWrapper}>
             <Paragraph style={styles.paragraph}>
-              Last updated: April 03, 2018
+              Last updated: October 11, 2018
             </Paragraph>
             <Paragraph style={styles.paragraph}>
               These Terms and Conditions ("Terms", "Terms and Conditions") govern your
