@@ -95,7 +95,7 @@ export default class TermsAndConditionsScreen extends Component {
             <Paragraph style={styles.paragraph}>
               The Service and its original content, features and functionality are and will
               remain the exclusive property of Blockfirm AB and its licensors. The Service is
-              protected by copyright, trademark, and other laws of both the Sweden and foreign
+              protected by copyright, trademark, and other laws of both Sweden and foreign
               countries.
             </Paragraph>
           </View>
