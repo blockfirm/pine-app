@@ -35,6 +35,10 @@ export default class AboutScreen extends Component {
     Linking.openURL(packageJson.bugs);
   }
 
+  _viewSourceCode() {
+    Linking.openURL(packageJson.repository.url);
+  }
+
   render() {
     return (
       <BaseSettingsScreen>
@@ -49,7 +53,8 @@ export default class AboutScreen extends Component {
 
         <SettingsGroup>
           <SettingsButton title='Visit Website' onPress={this._visitWebsite.bind(this)} />
-          <SettingsButton title='Report Issue' onPress={this._reportIssue.bind(this)} isLastItem={true} />
+          <SettingsButton title='Report Issue' onPress={this._reportIssue.bind(this)} />
+          <SettingsButton title='View Source Code' onPress={this._viewSourceCode.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );

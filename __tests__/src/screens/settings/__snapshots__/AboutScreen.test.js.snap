@@ -421,6 +421,73 @@ exports[`AboutScreen renders correctly 1`] = `
                     "marginLeft": 15,
                     "paddingRight": 15,
                   },
+                  undefined,
+                ]
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={undefined}
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Array [
+                      Object {
+                        "fontSize": 17,
+                        "fontWeight": "400",
+                        "lineHeight": 22,
+                      },
+                      Object {
+                        "color": "#007AFF",
+                      },
+                      undefined,
+                      undefined,
+                    ],
+                  ]
+                }
+              >
+                Report Issue
+              </Text>
+            </View>
+          </View>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#C8C7CC",
+                    "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
+                    "marginLeft": 15,
+                    "paddingRight": 15,
+                  },
                   Object {
                     "borderBottomWidth": 0,
                   },
@@ -454,7 +521,7 @@ exports[`AboutScreen renders correctly 1`] = `
                   ]
                 }
               >
-                Report Issue
+                View Source Code
               </Text>
             </View>
           </View>
