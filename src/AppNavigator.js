@@ -11,6 +11,7 @@ import HomeScreen from './screens/HomeScreen';
 import SettingsScreen from './screens/settings/SettingsScreen';
 import AboutScreen from './screens/settings/AboutScreen';
 import TermsAndConditionsScreen from './screens/settings/TermsAndConditionsScreen';
+import ServiceUrlScreen from './screens/settings/ServiceUrlScreen';
 import BitcoinUnitScreen from './screens/settings/BitcoinUnitScreen';
 import ShowMnemonicScreen from './screens/settings/ShowMnemonicScreen';
 
@@ -34,6 +35,7 @@ const SettingsCardNavigator = DismissableStackNavigator({
   Settings: { screen: SettingsScreen },
   About: { screen: AboutScreen },
   TermsAndConditions: { screen: TermsAndConditionsScreen },
+  ServiceUrl: { screen: ServiceUrlScreen },
   BitcoinUnit: { screen: BitcoinUnitScreen },
   ShowMnemonic: { screen: ShowMnemonicScreen }
 }, {
