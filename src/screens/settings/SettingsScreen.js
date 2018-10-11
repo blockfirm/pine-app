@@ -43,6 +43,11 @@ export default class SettingsScreen extends Component {
     navigation.navigate('BitcoinUnit');
   }
 
+  _showBitcoinFeeSettings() {
+    const navigation = this.props.navigation;
+    navigation.navigate('BitcoinFeeSettings');
+  }
+
   _showMnemonic() {
     const navigation = this.props.navigation;
     navigation.navigate('ShowMnemonic');
@@ -88,6 +93,7 @@ export default class SettingsScreen extends Component {
         <SettingsGroup>
           <SettingsLink name='Service URL' value={settings.api.baseUrl} onPress={this._showServiceUrl.bind(this)} />
           <SettingsLink name='Bitcoin Display Unit' value={settings.bitcoin.unit} onPress={this._showBitcoinUnit.bind(this)} />
+          <SettingsLink name='Bitcoin Transaction Fees' value={settings.bitcoin.fee.level} onPress={this._showBitcoinFeeSettings.bind(this)} />
           <SettingsLink name='Show Recovery Key' onPress={this._showMnemonic.bind(this)} isLastItem={true} />
         </SettingsGroup>
 

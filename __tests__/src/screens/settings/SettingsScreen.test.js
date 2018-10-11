@@ -12,7 +12,11 @@ const storeMock = {
         baseUrl: 'f02f296b-05f9-4db1-a35a-37a3eb3b3f56'
       },
       bitcoin: {
-        unit: 'BTC'
+        unit: 'BTC',
+        fee: {
+          level: 'Normal',
+          satoshisPerByte: 100
+        }
       }
     },
     keys: {

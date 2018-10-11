@@ -13,6 +13,8 @@ import AboutScreen from './screens/settings/AboutScreen';
 import TermsAndConditionsScreen from './screens/settings/TermsAndConditionsScreen';
 import ServiceUrlScreen from './screens/settings/ServiceUrlScreen';
 import BitcoinUnitScreen from './screens/settings/BitcoinUnitScreen';
+import BitcoinFeeSettingsScreen from './screens/settings/BitcoinFeeSettingsScreen';
+import SatoshisPerByteScreen from './screens/settings/SatoshisPerByteScreen';
 import ShowMnemonicScreen from './screens/settings/ShowMnemonicScreen';
 
 import DismissableStackNavigator from './DismissableStackNavigator';
@@ -37,6 +39,8 @@ const SettingsCardNavigator = DismissableStackNavigator({
   TermsAndConditions: { screen: TermsAndConditionsScreen },
   ServiceUrl: { screen: ServiceUrlScreen },
   BitcoinUnit: { screen: BitcoinUnitScreen },
+  BitcoinFeeSettings: { screen: BitcoinFeeSettingsScreen },
+  SatoshisPerByte: { screen: SatoshisPerByteScreen },
   ShowMnemonic: { screen: ShowMnemonicScreen }
 }, {
   headerMode: 'float'
