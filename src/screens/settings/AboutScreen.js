@@ -10,6 +10,7 @@ import SettingsAttribute from '../../components/SettingsAttribute';
 import SettingsButton from '../../components/SettingsButton';
 import SettingsLink from '../../components/SettingsLink';
 import BaseSettingsScreen from './BaseSettingsScreen';
+import config from '../../config';
 
 const packageJson = require('../../../package.json');
 
@@ -45,6 +46,10 @@ export default class AboutScreen extends Component {
         <SettingsGroup>
           <SettingsAttribute name='Version' value={packageJson.version} />
           <SettingsAttribute name='Copyright' value={packageJson.copyright} isLastItem={true} />
+        </SettingsGroup>
+
+        <SettingsGroup>
+          <SettingsAttribute name='Bitcoin Network' value={config.bitcoin.network} isLastItem={true} />
         </SettingsGroup>
 
         <SettingsGroup>
