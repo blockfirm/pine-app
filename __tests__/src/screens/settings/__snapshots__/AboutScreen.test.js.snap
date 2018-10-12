@@ -265,9 +265,7 @@ exports[`AboutScreen renders correctly 1`] = `
                   "marginLeft": 15,
                   "paddingRight": 15,
                 },
-                Object {
-                  "borderBottomWidth": 0,
-                },
+                undefined,
               ]
             }
           >
@@ -320,6 +318,75 @@ exports[`AboutScreen renders correctly 1`] = `
               }
             >
               BIP44
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "borderBottomColor": "#C8C7CC",
+                  "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "height": 44,
+                  "justifyContent": "center",
+                  "marginLeft": 15,
+                  "paddingRight": 15,
+                },
+                Object {
+                  "borderBottomWidth": 0,
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={undefined}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "fontSize": 17,
+                    "fontWeight": "400",
+                    "lineHeight": 22,
+                  },
+                ]
+              }
+            >
+              BIP44 Account Index
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "#8F8E94",
+                    "fontSize": 17,
+                    "fontWeight": "400",
+                    "lineHeight": 22,
+                    "position": "absolute",
+                    "right": 15,
+                    "textAlign": "right",
+                    "width": 250,
+                  },
+                ]
+              }
+            >
+              0
             </Text>
           </View>
         </View>
