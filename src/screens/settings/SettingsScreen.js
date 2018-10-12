@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { navigateWithReset, reset as resetApp } from '../../actions';
+import * as settingsActions from '../../actions/settings';
 import headerStyles from '../../styles/headerStyles';
 import DoneButton from '../../components/DoneButton';
 import SettingsGroup from '../../components/SettingsGroup';
@@ -53,7 +54,43 @@ export default class SettingsScreen extends Component {
     navigation.navigate('ShowMnemonic');
   }
 
-  _resetApp() {
+  _flagAsUninitialized() {
+    const dispatch = this.props.dispatch;
+
+    const newSettings = {
+      initialized: false
+    };
+
+    return dispatch(settingsActions.save(newSettings));
+  }
+
+  _recoverWallet() {
+    const dispatch = this.props.dispatch;
+
+    Alert.alert(
+      'Recover Another Wallet?',
+      'This will remove the current wallet. Are you sure you want to continue?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Recover',
+          style: 'destructive',
+          onPress: () => {
+            const keepSettings = true;
+
+            dispatch(resetApp(keepSettings)).then(() => {
+              this._flagAsUninitialized();
+              this.props.screenProps.dismiss();
+              dispatch(navigateWithReset('ImportMnemonic'));
+            });
+          }
+        }
+      ],
+      { cancelable: false }
+    );
+  }
+
+  _resetAppAndShowWelcomeScreen() {
     const dispatch = this.props.dispatch;
 
     return dispatch(resetApp())
@@ -74,7 +111,7 @@ export default class SettingsScreen extends Component {
         {
           text: 'Reset',
           style: 'destructive',
-          onPress: this._resetApp.bind(this)
+          onPress: this._resetAppAndShowWelcomeScreen.bind(this)
         }
       ],
       { cancelable: false }
@@ -99,7 +136,12 @@ export default class SettingsScreen extends Component {
 
         <SettingsGroup>
           <SettingsButton
-            title='Reset'
+            title='Recover Another Wallet'
+            type='destructive'
+            onPress={this._recoverWallet.bind(this)}
+          />
+          <SettingsButton
+            title='Erase Wallet and Settings'
             type='destructive'
             onPress={this._showResetAppConfirmation.bind(this)}
             isLastItem={true}

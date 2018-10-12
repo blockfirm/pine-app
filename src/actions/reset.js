@@ -40,7 +40,7 @@ const deleteKeys = (dispatch, keys) => {
 /**
  * Action to reset the app and remove all data from persistent storage and state.
  */
-export const reset = () => {
+export const reset = (keepSettings) => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
@@ -50,7 +50,7 @@ export const reset = () => {
     const promises = [
       deleteKeys(dispatch, keys),
       dispatch(resetBitcoinWallet()),
-      dispatch(resetSettings())
+      !keepSettings ? dispatch(resetSettings()) : null
     ];
 
     return Promise.all(promises)
