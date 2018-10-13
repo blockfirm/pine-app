@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Octicons';
 
 import settingsStyles from '../styles/settingsStyles';
 import StyledText from './StyledText';
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   checkmark: {
     position: 'absolute',
     right: 15,
-    fontSize: 28,
+    fontSize: 16,
     color: '#007AFF',
     paddingTop: 2
   }
@@ -34,7 +34,7 @@ export default class SettingsOption extends Component {
       <TouchableHighlight onPress={this._onPress.bind(this)} underlayColor={settingsStyles.underlayColor}>
         <View style={containerStyles}>
           <StyledText style={settingsStyles.label}>{name}</StyledText>
-          {isChecked ? <Icon name='ios-checkmark' style={styles.checkmark} /> : null}
+          {isChecked ? <Icon name='check' style={styles.checkmark} /> : null}
         </View>
       </TouchableHighlight>
     );
