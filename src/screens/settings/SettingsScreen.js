@@ -42,9 +42,9 @@ export default class SettingsScreen extends Component {
     return (
       <BaseSettingsScreen>
         <SettingsGroup>
-          <SettingsLink name='General' onPress={this._showGeneralSettings.bind(this)} />
-          <SettingsLink name='Security and Privacy' onPress={this._showSecurityAndPrivacySettings.bind(this)} />
-          <SettingsLink name='Bitcoin' onPress={this._showBitcoinSettings.bind(this)} isLastItem={true} />
+          <SettingsLink icon={SettingsLink.ICON_GEAR} name='General' onPress={this._showGeneralSettings.bind(this)} />
+          <SettingsLink icon={SettingsLink.ICON_LOCK} name='Security and Privacy' onPress={this._showSecurityAndPrivacySettings.bind(this)} />
+          <SettingsLink icon={SettingsLink.ICON_BITCOIN} name='Bitcoin' onPress={this._showBitcoinSettings.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );
