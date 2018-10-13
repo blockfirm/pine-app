@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 import QrCodeScanner from '../components/QrCodeScanner';
 import BaseScreen from './BaseScreen';
@@ -23,8 +24,12 @@ export default class CameraScreen extends Component {
   render() {
     return (
       <BaseScreen style={styles.view}>
-        <QrCodeScanner onScan={this._onScan.bind(this)} />
+        <QrCodeScanner showPreview={this.props.showPreview} onScan={this._onScan.bind(this)} />
       </BaseScreen>
     );
   }
 }
+
+CameraScreen.propTypes = {
+  showPreview: PropTypes.bool
+};

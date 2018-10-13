@@ -16,6 +16,8 @@ export default class HomeScreen extends Component {
     header: null
   }
 
+  state = {}
+
   componentDidMount() {
     const dispatch = this.props.dispatch;
 
@@ -33,10 +35,17 @@ export default class HomeScreen extends Component {
 
   _onIndexChanged(index) {
     const barStyle = index === 0 ? 'light-content' : 'dark-content';
+
     StatusBar.setBarStyle(barStyle);
+
+    this.setState({
+      activeIndex: index
+    });
   }
 
   render() {
+    const showCameraPreview = this.state.activeIndex === 0;
+
     return (
       <Swiper
         index={1}
@@ -44,7 +53,7 @@ export default class HomeScreen extends Component {
         showsPagination={false}
         onIndexChanged={this._onIndexChanged.bind(this)}
       >
-        <CameraScreen />
+        <CameraScreen showPreview={showCameraPreview} />
         <TransactionsScreen />
       </Swiper>
     );

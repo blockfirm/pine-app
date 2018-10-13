@@ -37,10 +37,24 @@ const styles = StyleSheet.create({
 });
 
 export default class QrCodeScanner extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.showPreview === this.props.showPreview) {
+      return true;
+    }
+
+    if (nextProps.showPreview) {
+      this._camera.resumePreview();
+    } else {
+      this._camera.pausePreview();
+    }
+
+    return false;
+  }
+
   render() {
     return (
       <View style={styles.view}>
-        <RNCamera style={styles.camera} onBarCodeRead={this.props.onScan}>
+        <RNCamera ref={(ref) => { this._camera = ref; }} style={styles.camera} onBarCodeRead={this.props.onScan}>
           <LinearGradient colors={['rgba(0, 0, 0, 0.3)', 'rgba(0, 0, 0, 0.0)']} style={styles.topGradient} />
           <Image source={require('../images/QRViewport.png')} style={styles.viewport} />
         </RNCamera>
@@ -50,5 +64,6 @@ export default class QrCodeScanner extends Component {
 }
 
 QrCodeScanner.propTypes = {
-  onScan: PropTypes.func.isRequired
+  onScan: PropTypes.func.isRequired,
+  showPreview: PropTypes.bool
 };
