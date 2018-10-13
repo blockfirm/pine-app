@@ -42,7 +42,7 @@ export default class QrCodeScanner extends Component {
       <View style={styles.view}>
         <RNCamera style={styles.camera} onBarCodeRead={this.props.onScan}>
           <LinearGradient colors={['rgba(0, 0, 0, 0.3)', 'rgba(0, 0, 0, 0.0)']} style={styles.topGradient} />
-          <Image source={require('../images/qr-viewport.png')} style={styles.viewport} />
+          <Image source={require('../images/QRViewport.png')} style={styles.viewport} />
         </RNCamera>
       </View>
     );

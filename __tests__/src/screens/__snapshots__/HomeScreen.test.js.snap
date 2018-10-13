@@ -129,7 +129,7 @@ exports[`HomeScreen renders correctly 1`] = `
               <Image
                 source={
                   Object {
-                    "testUri": "../../../src/images/qr-viewport.png",
+                    "testUri": "../../../src/images/QRViewport.png",
                   }
                 }
                 style={
