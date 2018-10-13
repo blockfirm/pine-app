@@ -184,9 +184,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                     "marginLeft": 15,
                     "paddingRight": 15,
                   },
-                  Object {
-                    "borderBottomWidth": 0,
-                  },
+                  undefined,
                 ]
               }
             >
@@ -272,142 +270,6 @@ exports[`SettingsScreen renders correctly 1`] = `
               </Text>
             </View>
           </View>
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "borderBottomColor": "#C8C8CC",
-                "borderBottomWidth": 0.5,
-                "borderTopColor": "#C8C8CC",
-                "borderTopWidth": 0.5,
-                "marginBottom": 35,
-              },
-              undefined,
-            ]
-          }
-        >
-          <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
-            accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
-            isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "borderBottomColor": "#C8C7CC",
-                    "borderBottomWidth": 0.5,
-                    "flex": 1,
-                    "height": 44,
-                    "justifyContent": "center",
-                    "marginLeft": 15,
-                    "paddingRight": 15,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
-                style={
-                  Array [
-                    Object {
-                      "color": "#000000",
-                      "fontFamily": "System",
-                      "fontWeight": "400",
-                    },
-                    Object {
-                      "fontSize": 17,
-                      "fontWeight": "400",
-                      "lineHeight": 22,
-                    },
-                  ]
-                }
-              >
-                Bitcoin Display Unit
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "color": "#000000",
-                      "fontFamily": "System",
-                      "fontWeight": "400",
-                    },
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "color": "#8F8E94",
-                        "fontSize": 17,
-                        "fontWeight": "400",
-                        "lineHeight": 22,
-                        "position": "absolute",
-                        "right": 15,
-                        "textAlign": "right",
-                        "width": 250,
-                      },
-                      Object {
-                        "right": 35,
-                      },
-                    ],
-                  ]
-                }
-              >
-                BTC
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "color": undefined,
-                      "fontSize": 12,
-                    },
-                    Object {
-                      "color": "#C7C7CC",
-                      "fontSize": 20,
-                      "paddingTop": 2,
-                      "position": "absolute",
-                      "right": 15,
-                    },
-                    Object {
-                      "fontFamily": "Ionicons",
-                      "fontStyle": "normal",
-                      "fontWeight": "normal",
-                    },
-                  ]
-                }
-              >
-                
-              </Text>
-            </View>
-          </View>
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
@@ -466,7 +328,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                   ]
                 }
               >
-                Bitcoin Transaction Fees
+                Bitcoin
               </Text>
               <Text
                 accessible={true}
@@ -498,9 +360,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-              >
-                Normal
-              </Text>
+              />
               <Text
                 accessible={true}
                 allowFontScaling={false}
