@@ -10,7 +10,6 @@ import SettingsAttribute from '../../components/SettingsAttribute';
 import SettingsButton from '../../components/SettingsButton';
 import SettingsLink from '../../components/SettingsLink';
 import BaseSettingsScreen from './BaseSettingsScreen';
-import config from '../../config';
 
 const packageJson = require('../../../package.json');
 const KEY_DERIVATION_METHOD = 'BIP44';
@@ -51,7 +50,6 @@ export default class AboutScreen extends Component {
         </SettingsGroup>
 
         <SettingsGroup>
-          <SettingsAttribute name='Bitcoin Network' value={config.bitcoin.network} />
           <SettingsAttribute name='Key Derivation Method' value={KEY_DERIVATION_METHOD} />
           <SettingsAttribute name='BIP44 Account Index' value={BIP44_ACCOUNT_INDEX.toString()} isLastItem={true} />
         </SettingsGroup>
