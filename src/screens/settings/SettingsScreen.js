@@ -10,8 +10,7 @@ import SettingsLink from '../../components/SettingsLink';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
 @connect((state) => ({
-  settings: state.settings,
-  keys: state.keys.items
+  settings: state.settings
 }))
 export default class SettingsScreen extends Component {
   static navigationOptions = ({ screenProps }) => ({
@@ -31,9 +30,9 @@ export default class SettingsScreen extends Component {
     navigation.navigate('GeneralSettings');
   }
 
-  _showServiceUrl() {
+  _showSecurityAndPrivacySettings() {
     const navigation = this.props.navigation;
-    navigation.navigate('ServiceUrl');
+    navigation.navigate('SecurityAndPrivacySettings');
   }
 
   _showBitcoinUnit() {
@@ -46,25 +45,19 @@ export default class SettingsScreen extends Component {
     navigation.navigate('BitcoinFeeSettings');
   }
 
-  _showMnemonic() {
-    const navigation = this.props.navigation;
-    navigation.navigate('ShowMnemonic');
-  }
-
   render() {
     const settings = this.props.settings;
 
     return (
       <BaseSettingsScreen>
         <SettingsGroup>
-          <SettingsLink name='General' onPress={this._showGeneralSettings.bind(this)} isLastItem={true} />
+          <SettingsLink name='General' onPress={this._showGeneralSettings.bind(this)} />
+          <SettingsLink name='Security and Privacy' onPress={this._showSecurityAndPrivacySettings.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
         <SettingsGroup>
-          <SettingsLink name='Service URL' value={settings.api.baseUrl} onPress={this._showServiceUrl.bind(this)} />
           <SettingsLink name='Bitcoin Display Unit' value={settings.bitcoin.unit} onPress={this._showBitcoinUnit.bind(this)} />
-          <SettingsLink name='Bitcoin Transaction Fees' value={settings.bitcoin.fee.level} onPress={this._showBitcoinFeeSettings.bind(this)} />
-          <SettingsLink name='Recovery Key' onPress={this._showMnemonic.bind(this)} isLastItem={true} />
+          <SettingsLink name='Bitcoin Transaction Fees' value={settings.bitcoin.fee.level} onPress={this._showBitcoinFeeSettings.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );
@@ -73,7 +66,6 @@ export default class SettingsScreen extends Component {
 
 SettingsScreen.propTypes = {
   settings: PropTypes.object,
-  keys: PropTypes.object,
   screenProps: PropTypes.object,
   dispatch: PropTypes.func,
   navigation: PropTypes.any

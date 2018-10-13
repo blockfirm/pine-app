@@ -10,6 +10,7 @@ import HomeScreen from './screens/HomeScreen';
 
 import SettingsScreen from './screens/settings/SettingsScreen';
 import GeneralSettingsScreen from './screens/settings/GeneralSettingsScreen';
+import SecurityAndPrivacySettingsScreen from './screens/settings/SecurityAndPrivacySettingsScreen';
 import AboutScreen from './screens/settings/AboutScreen';
 import TermsAndConditionsScreen from './screens/settings/TermsAndConditionsScreen';
 import ServiceUrlScreen from './screens/settings/ServiceUrlScreen';
@@ -37,6 +38,7 @@ const MainCardNavigator = StackNavigator({
 const SettingsCardNavigator = DismissableStackNavigator({
   Settings: { screen: SettingsScreen },
   GeneralSettings: { screen: GeneralSettingsScreen },
+  SecurityAndPrivacySettings: { screen: SecurityAndPrivacySettingsScreen },
   About: { screen: AboutScreen },
   TermsAndConditions: { screen: TermsAndConditionsScreen },
   ServiceUrl: { screen: ServiceUrlScreen },
