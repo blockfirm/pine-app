@@ -9,6 +9,7 @@ import DisclaimerScreen from './screens/DisclaimerScreen';
 import HomeScreen from './screens/HomeScreen';
 
 import SettingsScreen from './screens/settings/SettingsScreen';
+import GeneralSettingsScreen from './screens/settings/GeneralSettingsScreen';
 import AboutScreen from './screens/settings/AboutScreen';
 import TermsAndConditionsScreen from './screens/settings/TermsAndConditionsScreen';
 import ServiceUrlScreen from './screens/settings/ServiceUrlScreen';
@@ -35,6 +36,7 @@ const MainCardNavigator = StackNavigator({
 // eslint-disable-next-line new-cap
 const SettingsCardNavigator = DismissableStackNavigator({
   Settings: { screen: SettingsScreen },
+  GeneralSettings: { screen: GeneralSettingsScreen },
   About: { screen: AboutScreen },
   TermsAndConditions: { screen: TermsAndConditionsScreen },
   ServiceUrl: { screen: ServiceUrlScreen },
