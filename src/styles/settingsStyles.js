@@ -28,4 +28,6 @@ const settingsStyles = StyleSheet.create({
   }
 });
 
+settingsStyles.underlayColor = '#FAFAFA';
+
 export default settingsStyles;

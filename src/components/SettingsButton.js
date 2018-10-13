@@ -33,7 +33,7 @@ export default class SettingsButton extends Component {
   render() {
     const { isLastItem, type, loading } = this.props;
     const title = loading ? this.props.loadingTitle : this.props.title;
-    const underlayColor = loading ? 'white' : '#FAFAFA';
+    const underlayColor = loading ? 'white' : settingsStyles.underlayColor;
 
     const containerStyles = [
       settingsStyles.item,

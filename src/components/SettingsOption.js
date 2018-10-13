@@ -31,7 +31,7 @@ export default class SettingsOption extends Component {
     ];
 
     return (
-      <TouchableHighlight onPress={this._onPress.bind(this)} underlayColor='#FAFAFA'>
+      <TouchableHighlight onPress={this._onPress.bind(this)} underlayColor={settingsStyles.underlayColor}>
         <View style={containerStyles}>
           <StyledText style={settingsStyles.label}>{name}</StyledText>
           {isChecked ? <Icon name='ios-checkmark' style={styles.checkmark} /> : null}

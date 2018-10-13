@@ -67,7 +67,7 @@ export default class SettingsLink extends Component {
     ];
 
     return (
-      <TouchableHighlight onPress={this.props.onPress} underlayColor='#FAFAFA'>
+      <TouchableHighlight onPress={this.props.onPress} underlayColor={settingsStyles.underlayColor}>
         <View style={containerStyles}>
           { icon }
           <StyledText style={settingsStyles.label}>{this.props.name}</StyledText>
