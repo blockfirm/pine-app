@@ -34,6 +34,7 @@ exports[`SettingsLink renders correctly 1`] = `
           "paddingRight": 15,
         },
         undefined,
+        undefined,
       ]
     }
   >
@@ -156,6 +157,7 @@ exports[`SettingsLink renders correctly as the last item 1`] = `
           "marginLeft": 15,
           "paddingRight": 15,
         },
+        undefined,
         Object {
           "borderBottomWidth": 0,
         },

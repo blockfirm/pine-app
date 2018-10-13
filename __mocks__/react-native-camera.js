@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
-export default class Camera extends Component {
+export class RNCamera extends Component {
   render() {
     return (
       <View {...this.props}>
@@ -12,6 +12,6 @@ export default class Camera extends Component {
   }
 }
 
-Camera.propTypes = {
+RNCamera.propTypes = {
   children: PropTypes.node
 };

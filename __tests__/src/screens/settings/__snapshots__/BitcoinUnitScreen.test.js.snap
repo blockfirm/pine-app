@@ -104,20 +104,20 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                     },
                     Object {
                       "color": "#007AFF",
-                      "fontSize": 28,
+                      "fontSize": 16,
                       "paddingTop": 2,
                       "position": "absolute",
                       "right": 15,
                     },
                     Object {
-                      "fontFamily": "Ionicons",
+                      "fontFamily": "Octicons",
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
                   ]
                 }
               >
-                
+                
               </Text>
             </View>
           </View>

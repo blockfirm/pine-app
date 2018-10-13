@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Image, Dimensions } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
-import Camera from 'react-native-camera';
+import { RNCamera } from 'react-native-camera';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 
 const windowHeight = Dimensions.get('window').height;
@@ -40,10 +40,10 @@ export default class QrCodeScanner extends Component {
   render() {
     return (
       <View style={styles.view}>
-        <Camera style={styles.camera} onBarCodeRead={this.props.onScan}>
+        <RNCamera style={styles.camera} onBarCodeRead={this.props.onScan}>
           <LinearGradient colors={['rgba(0, 0, 0, 0.3)', 'rgba(0, 0, 0, 0.0)']} style={styles.topGradient} />
           <Image source={require('../images/qr-viewport.png')} style={styles.viewport} />
-        </Camera>
+        </RNCamera>
       </View>
     );
   }

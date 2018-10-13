@@ -66,10 +66,28 @@ exports[`SettingsScreen renders correctly 1`] = `
                     "marginLeft": 15,
                     "paddingRight": 15,
                   },
+                  Object {
+                    "marginLeft": 59,
+                  },
                   undefined,
                 ]
               }
             >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/icons/settings/Gear.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 29,
+                    "left": -44,
+                    "position": "absolute",
+                    "width": 29,
+                  }
+                }
+              />
               <Text
                 accessible={true}
                 allowFontScaling={true}
@@ -184,10 +202,28 @@ exports[`SettingsScreen renders correctly 1`] = `
                     "marginLeft": 15,
                     "paddingRight": 15,
                   },
+                  Object {
+                    "marginLeft": 59,
+                  },
                   undefined,
                 ]
               }
             >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/icons/settings/Lock.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 29,
+                    "left": -44,
+                    "position": "absolute",
+                    "width": 29,
+                  }
+                }
+              />
               <Text
                 accessible={true}
                 allowFontScaling={true}
@@ -303,11 +339,29 @@ exports[`SettingsScreen renders correctly 1`] = `
                     "paddingRight": 15,
                   },
                   Object {
+                    "marginLeft": 59,
+                  },
+                  Object {
                     "borderBottomWidth": 0,
                   },
                 ]
               }
             >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/icons/settings/Bitcoin.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 29,
+                    "left": -44,
+                    "position": "absolute",
+                    "width": 29,
+                  }
+                }
+              />
               <Text
                 accessible={true}
                 allowFontScaling={true}
