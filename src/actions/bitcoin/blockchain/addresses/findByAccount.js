@@ -1,9 +1,8 @@
-/* eslint-disable max-lines */
-import bitcoin from 'bitcoinjs-lib';
 import bip32 from 'bip32';
 import bip39 from 'bip39';
 import { getByAddress as getTransactionsByAddress } from '../transactions/getByAddress';
 import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
+import generateAddress from '../../../../crypto/bitcoin/generateAddress';
 
 export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST';
 export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS';
@@ -92,45 +91,6 @@ const getAddressGap = (addresses) => {
 };
 
 /**
- * Creates an address based on the bip32 standard.
- *
- * @param {object} node - A bip32 node.
- * @param {string} network - 'mainnet' or 'testnet'.
- */
-const getAddress = (node, network) => {
-  const p2pkh = bitcoin.payments.p2pkh({
-    pubkey: node.publicKey,
-    network: network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.mainnet
-  });
-
-  return p2pkh.address;
-};
-
-/**
- * Generates a BIP44 path based on the specified parameters.
- *
- * @param {object} addressInfo - An object describing an address using BIP44.
- * - @param {string} network - 'mainnet' or 'testnet'.
- * - @param {number} accountIndex - The index of the account starting at 0.
- * - @param {boolean} internal - Whether or not to generate a path for an internal address.
- * - @param {number} addressIndex - The index of the address starting at 0.
- */
-const getBip44Path = (addressInfo) => {
-  const {
-    network,
-    accountIndex,
-    internal,
-    addressIndex
-  } = addressInfo;
-
-  const purpose = 44; // BIP44
-  const coinType = network === 'testnet' ? 1 : 0; // Default to mainnet.
-  const change = internal ? 1 : 0; // 0 = external, 1 = internal change address
-
-  return `m/${purpose}'/${coinType}'/${accountIndex}'/${change}/${addressIndex}`;
-};
-
-/**
  * Generates a specified amount of addresses starting at `addressInfo.addressIndex`.
  *
  * @param {object} addressInfo - An object describing an address using BIP44.
@@ -147,10 +107,7 @@ const generateAddresses = (addressInfo, amount) => {
   const addresses = [];
 
   for (let i = addressIndexStart; i < addressIndexEnd; i++) {
-    const path = getBip44Path({ ...addressInfo, addressIndex: i });
-    const child = addressInfo.root.derivePath(path);
-    const address = getAddress(child, addressInfo.network);
-
+    const address = generateAddress({ ...addressInfo, addressIndex: i });
     addresses.push(address);
   }
 
