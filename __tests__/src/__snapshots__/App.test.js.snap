@@ -172,7 +172,7 @@ exports[`App renders correctly 1`] = `
                           },
                           Object {
                             "alignItems": "center",
-                            "backgroundColor": "#26203D",
+                            "backgroundColor": "#FFD23F",
                             "flex": 1,
                             "justifyContent": "center",
                           },
@@ -199,10 +199,10 @@ exports[`App renders correctly 1`] = `
                           style={
                             Array [
                               Object {
-                                "color": "#26203D",
+                                "color": "black",
                                 "fontFamily": "System",
-                                "fontSize": 16,
-                                "fontWeight": "600",
+                                "fontSize": 17,
+                                "fontWeight": "700",
                               },
                               Object {
                                 "left": 40,
@@ -223,8 +223,8 @@ exports[`App renders correctly 1`] = `
                         }
                         style={
                           Object {
-                            "height": 274,
-                            "width": 272,
+                            "height": 84,
+                            "width": 93,
                           }
                         }
                       />
@@ -248,7 +248,7 @@ exports[`App renders correctly 1`] = `
                       >
                         <ActivityIndicator
                           animating={true}
-                          color="#D2DCFF"
+                          color="#FFFFFF"
                           hidesWhenStopped={true}
                           size="small"
                           style={
@@ -399,7 +399,8 @@ exports[`App renders correctly 1`] = `
                                     Object {
                                       "color": "#AAAAAA",
                                       "fontSize": 15,
-                                      "fontWeight": "300",
+                                      "fontWeight": "400",
+                                      "letterSpacing": -0.24,
                                       "lineHeight": 21,
                                       "marginBottom": 20,
                                     },
