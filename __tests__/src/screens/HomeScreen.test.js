@@ -7,6 +7,7 @@ jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContai
 jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContainer');
 jest.mock('../../../src/containers/TransactionListContainer', () => 'TransactionListContainer');
 jest.mock('../../../src/screens/TransactionsScreen', () => 'TransactionsScreen');
+jest.mock('../../../src/screens/ReceiveScreen', () => 'ReceiveScreen');
 
 const storeMock = {
   getState: jest.fn(() => ({})),

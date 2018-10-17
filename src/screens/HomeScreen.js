@@ -7,6 +7,7 @@ import Swiper from 'react-native-swiper';
 import { sync as syncWallet } from '../actions/bitcoin/wallet';
 import TransactionsScreen from './TransactionsScreen';
 import CameraScreen from './CameraScreen';
+import ReceiveScreen from './ReceiveScreen';
 
 const SYNC_WALLET_INTERVAL = 60 * 1000 * 1; // 1 minute.
 
@@ -55,6 +56,7 @@ export default class HomeScreen extends Component {
       >
         <CameraScreen showPreview={showCameraPreview} />
         <TransactionsScreen />
+        <ReceiveScreen />
       </Swiper>
     );
   }

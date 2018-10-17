@@ -136,6 +136,21 @@ exports[`HomeScreen renders correctly 1`] = `
       >
         <TransactionsScreen />
       </View>
+      <View
+        style={
+          Array [
+            Object {
+              "height": 1334,
+              "width": 750,
+            },
+            Object {
+              "backgroundColor": "transparent",
+            },
+          ]
+        }
+      >
+        <ReceiveScreen />
+      </View>
     </View>
   </RCTScrollView>
 </View>
