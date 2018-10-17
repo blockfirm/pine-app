@@ -16,10 +16,11 @@ const getUnusedAddressRequest = () => {
   };
 };
 
-const getUnusedAddressSuccess = (address) => {
+const getUnusedAddressSuccess = (address, internal) => {
   return {
     type: BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS,
-    address
+    address,
+    internal
   };
 };
 
@@ -124,7 +125,7 @@ export const getUnusedAddress = (internal = false) => {
         return addAddress(dispatch, newAddress, internal);
       })
       .then((address) => {
-        dispatch(getUnusedAddressSuccess(address));
+        dispatch(getUnusedAddressSuccess(address, internal));
         return address;
       })
       .catch((error) => {

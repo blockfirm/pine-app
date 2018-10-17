@@ -2,6 +2,7 @@ import { load as loadExternalAddresses } from './addresses/external';
 import { load as loadInternalAddresses } from './addresses/internal';
 import { load as loadTransactions } from './transactions';
 import { load as loadUtxos } from './utxos';
+import { getUnusedAddress } from './getUnusedAddress';
 
 export const BITCOIN_WALLET_LOAD_REQUEST = 'BITCOIN_WALLET_LOAD_REQUEST';
 export const BITCOIN_WALLET_LOAD_SUCCESS = 'BITCOIN_WALLET_LOAD_SUCCESS';
@@ -42,6 +43,12 @@ export const load = () => {
     ];
 
     return Promise.all(promises)
+      .then(() => {
+        return Promise.all([
+          dispatch(getUnusedAddress()), // Load an unused external address into state.
+          dispatch(getUnusedAddress(true)) // Load an unused internal address into state.
+        ]);
+      })
       .then(() => {
         dispatch(loadSuccess());
       })

@@ -1,4 +1,5 @@
 import * as internalAddressActions from '../../../../../../../src/actions/bitcoin/wallet/addresses/internal';
+import * as walletActions from '../../../../../../../src/actions/bitcoin/wallet';
 import internalReducer from '../../../../../../../src/reducers/bitcoin/wallet/addresses/internal';
 
 jest.mock('../../../../../../../src/reducers/bitcoin/wallet/addresses/internal/error', () => {
@@ -9,6 +10,10 @@ jest.mock('../../../../../../../src/reducers/bitcoin/wallet/addresses/internal/i
   return jest.fn(() => 'af809498-7ab1-43d9-8d73-196fbf16e23c');
 });
 
+jest.mock('../../../../../../../src/reducers/bitcoin/wallet/addresses/internal/unused', () => {
+  return jest.fn(() => 'e5f607fc-b33c-4210-982e-356b1e085c85');
+});
+
 const testAction = (actionType) => {
   let newState;
 
@@ -16,6 +21,7 @@ const testAction = (actionType) => {
     const oldState = {
       attr: '0aa0bd80-af8d-48c4-9a69-92a4bb30010e',
       error: '829216d2-961e-48b5-8b2a-84ceb4226442',
+      unused: '85eb3c67-7575-4222-9244-d5a963825be3',
       items: {}
     };
 
@@ -39,6 +45,11 @@ const testAction = (actionType) => {
   it('sets .items to the return value from items()', () => {
     // This value is mocked at the top.
     expect(newState.items).toBe('af809498-7ab1-43d9-8d73-196fbf16e23c');
+  });
+
+  it('sets .unused to the return value from unused()', () => {
+    // This value is mocked at the top.
+    expect(newState.unused).toBe('e5f607fc-b33c-4210-982e-356b1e085c85');
   });
 };
 
@@ -77,6 +88,10 @@ describe('internalReducer', () => {
 
   describe('when action is BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_FAILURE', () => {
     testAction(internalAddressActions.BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_FAILURE);
+  });
+
+  describe('when action is BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS', () => {
+    testAction(walletActions.BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS);
   });
 
   describe('when action is an unknown type', () => {

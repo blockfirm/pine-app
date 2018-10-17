@@ -1,6 +1,8 @@
 import * as externalAddressActions from '../../../../../actions/bitcoin/wallet/addresses/external';
+import * as walletActions from '../../../../../actions/bitcoin/wallet';
 import error from './error';
 import items from './items';
+import unused from './unused';
 
 const externalReducer = (state = {}, action) => {
   switch (action.type) {
@@ -15,10 +17,13 @@ const externalReducer = (state = {}, action) => {
     case externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_REQUEST:
     case externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_SUCCESS:
     case externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_FAILURE:
+
+    case walletActions.BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS:
       return {
         ...state,
         error: error(state.error, action),
-        items: items(state.items, action)
+        items: items(state.items, action),
+        unused: unused(state.unused, action)
       };
 
     default:
