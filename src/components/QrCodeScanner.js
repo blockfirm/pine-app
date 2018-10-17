@@ -67,6 +67,8 @@ export default class QrCodeScanner extends Component {
   }
 
   _onCameraReady() {
+    this._camera.pausePreview();
+
     this.setState({
       cameraReady: true
     });
