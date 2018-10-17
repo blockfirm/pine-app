@@ -1,5 +1,6 @@
 import bip32 from 'bip32';
 import bip39 from 'bip39';
+
 import { getByAddress as getTransactionsByAddress } from '../transactions/getByAddress';
 import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
 import generateAddress from '../../../../crypto/bitcoin/generateAddress';
