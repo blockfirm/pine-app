@@ -1,32 +1,32 @@
 import bip32 from 'bip32';
 import bip39 from 'bip39';
 
-import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
-import generateAddress from '../../../crypto/bitcoin/generateAddress';
-import { add as addExternalAddress } from './addresses/external';
-import { add as addInternalAddress } from './addresses/internal';
+import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
+import generateAddress from '../../../../crypto/bitcoin/generateAddress';
+import { add as addExternalAddress } from './external';
+import { add as addInternalAddress } from './internal';
 
-export const BITCOIN_WALLET_GET_UNUSED_ADDRESS_REQUEST = 'BITCOIN_WALLET_GET_UNUSED_ADDRESS_REQUEST';
-export const BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS = 'BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS';
-export const BITCOIN_WALLET_GET_UNUSED_ADDRESS_FAILURE = 'BITCOIN_WALLET_GET_UNUSED_ADDRESS_FAILURE';
+export const BITCOIN_WALLET_ADDRESSES_GET_UNUSED_REQUEST = 'BITCOIN_WALLET_ADDRESSES_GET_UNUSED_REQUEST';
+export const BITCOIN_WALLET_ADDRESSES_GET_UNUSED_SUCCESS = 'BITCOIN_WALLET_ADDRESSES_GET_UNUSED_SUCCESS';
+export const BITCOIN_WALLET_ADDRESSES_GET_UNUSED_FAILURE = 'BITCOIN_WALLET_ADDRESSES_GET_UNUSED_FAILURE';
 
-const getUnusedAddressRequest = () => {
+const getUnusedRequest = () => {
   return {
-    type: BITCOIN_WALLET_GET_UNUSED_ADDRESS_REQUEST
+    type: BITCOIN_WALLET_ADDRESSES_GET_UNUSED_REQUEST
   };
 };
 
-const getUnusedAddressSuccess = (address, internal) => {
+const getUnusedSuccess = (address, internal) => {
   return {
-    type: BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS,
+    type: BITCOIN_WALLET_ADDRESSES_GET_UNUSED_SUCCESS,
     address,
     internal
   };
 };
 
-const getUnusedAddressFailure = (error) => {
+const getUnusedFailure = (error) => {
   return {
-    type: BITCOIN_WALLET_GET_UNUSED_ADDRESS_FAILURE,
+    type: BITCOIN_WALLET_ADDRESSES_GET_UNUSED_FAILURE,
     error
   };
 };
@@ -103,9 +103,9 @@ const addAddress = (dispatch, address, internal) => {
 /**
  * Action to get a new unused bitcoin address for this wallet.
  */
-export const getUnusedAddress = (internal = false) => {
+export const getUnused = (internal = false) => {
   return (dispatch, getState) => {
-    dispatch(getUnusedAddressRequest());
+    dispatch(getUnusedRequest());
 
     const state = getState();
     const keys = state.keys.items;
@@ -129,11 +129,11 @@ export const getUnusedAddress = (internal = false) => {
         return addAddress(dispatch, newAddress, internal);
       })
       .then((address) => {
-        dispatch(getUnusedAddressSuccess(address, internal));
+        dispatch(getUnusedSuccess(address, internal));
         return address;
       })
       .catch((error) => {
-        dispatch(getUnusedAddressFailure(error));
+        dispatch(getUnusedFailure(error));
         throw error;
       });
   };

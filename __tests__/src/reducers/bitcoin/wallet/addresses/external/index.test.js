@@ -1,6 +1,5 @@
 import * as externalAddressActions from '../../../../../../../src/actions/bitcoin/wallet/addresses/external';
 import * as addressActions from '../../../../../../../src/actions/bitcoin/wallet/addresses';
-import * as walletActions from '../../../../../../../src/actions/bitcoin/wallet';
 import externalReducer from '../../../../../../../src/reducers/bitcoin/wallet/addresses/external';
 
 jest.mock('../../../../../../../src/reducers/bitcoin/wallet/addresses/external/error', () => {
@@ -91,8 +90,8 @@ describe('externalReducer', () => {
     testAction(externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_FAILURE);
   });
 
-  describe('when action is BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS', () => {
-    testAction(walletActions.BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS);
+  describe('when action is BITCOIN_WALLET_ADDRESSES_GET_UNUSED_SUCCESS', () => {
+    testAction(addressActions.BITCOIN_WALLET_ADDRESSES_GET_UNUSED_SUCCESS);
   });
 
   describe('when action is BITCOIN_WALLET_ADDRESSES_FLAG_AS_USED', () => {
