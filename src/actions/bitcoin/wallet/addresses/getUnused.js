@@ -32,21 +32,6 @@ const getUnusedFailure = (error) => {
 };
 
 /**
- * Returns a map of all addresses found in the specified transactions.
- */
-const getUsedAddressMap = (transactions) => {
-  return transactions.reduce((addressMap, transaction) => {
-    transaction.vout.forEach((vout) => {
-      vout.scriptPubKey.addresses.forEach((address) => {
-        addressMap[address] = true;
-      });
-    });
-
-    return addressMap;
-  }, {});
-};
-
-/**
  * Generates an address based on the inputs.
  * The account is hardcoded to 0.
  */
@@ -60,22 +45,6 @@ const getAddressByIndex = (root, network, internal, index) => {
   };
 
   return generateAddress(addressInfo);
-};
-
-/**
- * Returns the current address index.
- */
-const getAddressIndex = (state, internal) => {
-  let allAddresses;
-
-  if (internal) {
-    allAddresses = Object.keys(state.bitcoin.wallet.addresses.internal.items);
-  } else {
-    allAddresses = Object.keys(state.bitcoin.wallet.addresses.external.items);
-  }
-
-  const index = allAddresses.length - 1;
-  return index < 0 ? 0 : index;
 };
 
 /**
@@ -100,33 +69,70 @@ const addAddress = (dispatch, address, internal) => {
   return promise.then(() => address);
 };
 
+const getCurrentAddressIndex = (state, internal) => {
+  let allAddresses;
+
+  if (internal) {
+    allAddresses = state.bitcoin.wallet.addresses.internal.items;
+  } else {
+    allAddresses = state.bitcoin.wallet.addresses.external.items;
+  }
+
+  const length = Object.keys(allAddresses).length;
+  const currentIndex = length > 0 ? length - 1 : 0;
+
+  return currentIndex;
+};
+
+const getExistingUnused = (state, internal) => {
+  let allAddresses;
+
+  if (internal) {
+    allAddresses = state.bitcoin.wallet.addresses.internal.items;
+  } else {
+    allAddresses = state.bitcoin.wallet.addresses.external.items;
+  }
+
+  const unusedAddress = Object.keys(allAddresses).find((address) => {
+    return !allAddresses[address].used;
+  });
+
+  return unusedAddress;
+};
+
+const getNewUnused = (state, internal) => {
+  const keys = state.keys.items;
+  const keyId = Object.keys(keys)[0];
+  const network = state.settings.bitcoin.network;
+
+  return getMnemonicByKey(keyId).then((mnemonic) => {
+    const seed = bip39.mnemonicToSeed(mnemonic);
+    const root = bip32.fromSeed(seed);
+    const currentIndex = getCurrentAddressIndex(state, internal);
+    const newAddress = getAddressByIndex(root, network, internal, currentIndex + 1);
+
+    return newAddress;
+  });
+};
+
 /**
- * Action to get a new unused bitcoin address for this wallet.
+ * Action to get an unused bitcoin address for this wallet.
  */
 export const getUnused = (internal = false) => {
   return (dispatch, getState) => {
     dispatch(getUnusedRequest());
 
     const state = getState();
-    const keys = state.keys.items;
-    const keyId = Object.keys(keys)[0];
-    const network = state.settings.bitcoin.network;
-    const transactions = state.bitcoin.wallet.transactions.items;
-    const usedAddressMap = getUsedAddressMap(transactions);
-    const currentIndex = getAddressIndex(state, internal);
+    const existingAddress = getExistingUnused(state, internal);
 
-    return getMnemonicByKey(keyId)
-      .then((mnemonic) => {
-        const seed = bip39.mnemonicToSeed(mnemonic);
-        const root = bip32.fromSeed(seed);
-        const lastAddress = getAddressByIndex(root, network, internal, currentIndex);
+    if (existingAddress) {
+      dispatch(getUnusedSuccess(existingAddress, internal));
+      return Promise.resolve(existingAddress);
+    }
 
-        if (!(lastAddress in usedAddressMap)) {
-          return lastAddress;
-        }
-
-        const newAddress = getAddressByIndex(root, network, internal, currentIndex + 1);
-        return addAddress(dispatch, newAddress, internal);
+    return getNewUnused(state, internal)
+      .then((address) => {
+        return addAddress(dispatch, address, internal);
       })
       .then((address) => {
         dispatch(getUnusedSuccess(address, internal));

@@ -29,44 +29,17 @@ const getStateMock = jest.fn(() => ({
   },
   bitcoin: {
     wallet: {
-      transactions: {
-        items: [
-          {
-            vout: [
-              {
-                scriptPubKey: {
-                  addresses: [
-                    'mjcyVnV7QobWh2HY7zsQrmizoyp5g2XsJb',
-                    'mxp61ayhfiEaCmLYiaaaKn5pZwFNPBMRbt'
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            vout: [
-              {
-                scriptPubKey: {
-                  addresses: [
-                    'munqYEEL88K3bGw7K5fn4rAGqHqqGM1ZXr'
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      },
       addresses: {
         external: {
           items: {
-            'mjcyVnV7QobWh2HY7zsQrmizoyp5g2XsJb': {},
-            'mxp61ayhfiEaCmLYiaaaKn5pZwFNPBMRbt': {}
+            'mjcyVnV7QobWh2HY7zsQrmizoyp5g2XsJb': { used: true },
+            'mxp61ayhfiEaCmLYiaaaKn5pZwFNPBMRbt': { used: true }
           }
         },
         internal: {
           items: {
-            'munqYEEL88K3bGw7K5fn4rAGqHqqGM1ZXr': {},
-            'muVNCbM3yqWnU4CxeBzqQyNXFAh1FHAxDU': {}
+            'munqYEEL88K3bGw7K5fn4rAGqHqqGM1ZXr': { used: true },
+            'muVNCbM3yqWnU4CxeBzqQyNXFAh1FHAxDU': { used: false }
           }
         }
       }
@@ -115,7 +88,7 @@ describe('getUnused', () => {
     addInternalAddress.mockClear();
   });
 
-  it('creates a new address if the last has already been used', () => {
+  it('creates a new address if there are no unused addresses', () => {
     expect.hasAssertions();
 
     return getUnused()(dispatchMock, getStateMock).then((address) => {
@@ -132,7 +105,7 @@ describe('getUnused', () => {
     });
   });
 
-  it('returns the last address if it has not been used yet', () => {
+  it('returns an existing unused address if there is any', () => {
     const internal = true;
 
     expect.hasAssertions();
