@@ -10,6 +10,7 @@ import { add as addTransactions } from '../../../../../src/actions/bitcoin/walle
 import { updatePending as updatePendingTransactions } from '../../../../../src/actions/bitcoin/wallet/transactions/updatePending';
 import { update as updateUtxos } from '../../../../../src/actions/bitcoin/wallet/utxos/update';
 import { flagAsUsed } from '../../../../../src/actions/bitcoin/wallet/addresses/flagAsUsed';
+import { getUnused as getUnusedAddress } from '../../../../../src/actions/bitcoin/wallet/addresses/getUnused';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -88,6 +89,10 @@ jest.mock('../../../../../src/actions/bitcoin/wallet/addresses/internal/save', (
 
 jest.mock('../../../../../src/actions/bitcoin/wallet/addresses/flagAsUsed', () => ({
   flagAsUsed: jest.fn(() => Promise.resolve())
+}));
+
+jest.mock('../../../../../src/actions/bitcoin/wallet/addresses/getUnused', () => ({
+  getUnused: jest.fn(() => Promise.resolve())
 }));
 
 jest.mock('../../../../../src/actions/bitcoin/blockchain/transactions/getNewByAddress', () => ({
@@ -256,6 +261,15 @@ describe('sync', () => {
       expect(flagAsUsed).toHaveBeenCalledWith([
         '6ccbe0f5-daba-4e7b-96be-003ad7eda843'
       ]);
+    });
+  });
+
+  it('updates the unused addresses in state', () => {
+    expect.hasAssertions();
+
+    return sync()(dispatchMock, getStateMock).then(() => {
+      expect(getUnusedAddress).toHaveBeenCalledWith();
+      expect(getUnusedAddress).toHaveBeenCalledWith(true);
     });
   });
 

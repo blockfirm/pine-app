@@ -1,6 +1,7 @@
 import { findByAccount as findAddressesByAccount } from '../blockchain/addresses/findByAccount';
 import { add as addExternalAddresses } from './addresses/external';
 import { add as addInternalAddresses } from './addresses/internal';
+import { getUnused as getUnusedAddress } from './addresses';
 import { add as addTransactions } from './transactions';
 import { update as updateUtxos } from './utxos';
 
@@ -91,6 +92,13 @@ export const init = () => {
     ];
 
     return Promise.all(promises)
+      .then(() => {
+        // Load an unused address into state.
+        return Promise.all([
+          dispatch(getUnusedAddress()), // External address.
+          dispatch(getUnusedAddress(true)) // Internal address.
+        ]);
+      })
       .then(() => {
         // Generate a utxo set.
         return dispatch(updateUtxos());

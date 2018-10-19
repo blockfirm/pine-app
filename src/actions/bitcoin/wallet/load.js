@@ -1,4 +1,3 @@
-import { getUnused as getUnusedAddress } from './addresses';
 import { load as loadExternalAddresses } from './addresses/external';
 import { load as loadInternalAddresses } from './addresses/internal';
 import { load as loadTransactions } from './transactions';
@@ -43,12 +42,6 @@ export const load = () => {
     ];
 
     return Promise.all(promises)
-      .then(() => {
-        return Promise.all([
-          dispatch(getUnusedAddress()), // Load an unused external address into state.
-          dispatch(getUnusedAddress(true)) // Load an unused internal address into state.
-        ]);
-      })
       .then(() => {
         dispatch(loadSuccess());
       })

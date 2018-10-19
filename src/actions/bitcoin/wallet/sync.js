@@ -2,7 +2,7 @@ import { getNewByAddress as getNewTransactionsByAddress } from '../blockchain/tr
 import { update as updateUtxos } from './utxos';
 import { save as saveExternalAddresses } from './addresses/external';
 import { save as saveInternalAddresses } from './addresses/internal';
-import { flagAsUsed } from './addresses/flagAsUsed';
+import { flagAsUsed, getUnused as getUnusedAddress } from './addresses';
 
 import {
   add as addTransactions,
@@ -128,12 +128,17 @@ export const sync = () => {
       })
       .then(() => {
         // Save addresses that has been flagged as used.
-        const savePromises = [
+        return Promise.all([
           dispatch(saveExternalAddresses()),
           dispatch(saveInternalAddresses())
-        ];
-
-        return Promise.all(savePromises);
+        ]);
+      })
+      .then(() => {
+        // Load an unused address into state.
+        return Promise.all([
+          dispatch(getUnusedAddress()), // External address.
+          dispatch(getUnusedAddress(true)) // Internal address.
+        ]);
       })
       .then(() => {
         // And last, update the utxo set.
