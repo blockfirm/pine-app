@@ -83,9 +83,13 @@ const getAddressIndex = (state, internal) => {
  * @returns {promise} that resolves when the address has been added.
  */
 const addAddress = (dispatch, address, internal) => {
-  // The addInternalAddress/addExternalAddress wants a map of addresses to add.
-  const addressMap = { [address]: {} };
   let promise;
+
+  const addressMap = {
+    [address]: {
+      used: false
+    }
+  };
 
   if (internal) {
     promise = dispatch(addInternalAddress(addressMap));

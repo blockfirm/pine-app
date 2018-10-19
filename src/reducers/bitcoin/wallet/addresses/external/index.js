@@ -1,4 +1,5 @@
 import * as externalAddressActions from '../../../../../actions/bitcoin/wallet/addresses/external';
+import * as addressActions from '../../../../../actions/bitcoin/wallet/addresses';
 import * as walletActions from '../../../../../actions/bitcoin/wallet';
 import error from './error';
 import items from './items';
@@ -19,6 +20,7 @@ const externalReducer = (state = {}, action) => {
     case externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_FAILURE:
 
     case walletActions.BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS:
+    case addressActions.BITCOIN_WALLET_ADDRESSES_FLAG_AS_USED:
       return {
         ...state,
         error: error(state.error, action),

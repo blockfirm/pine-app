@@ -127,7 +127,7 @@ describe('getUnusedAddress', () => {
     expect.hasAssertions();
 
     return getUnusedAddress()(dispatchMock, getStateMock).then((address) => {
-      const addressMap = { [address]: {} };
+      const addressMap = { [address]: { used: false } };
       expect(addExternalAddress).toHaveBeenCalledWith(addressMap);
     });
   });

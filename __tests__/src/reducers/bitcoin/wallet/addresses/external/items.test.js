@@ -1,3 +1,4 @@
+import * as addressActions from '../../../../../../../src/actions/bitcoin/wallet/addresses';
 import * as externalAddressActions from '../../../../../../../src/actions/bitcoin/wallet/addresses/external';
 import externalItemsReducer from '../../../../../../../src/reducers/bitcoin/wallet/addresses/external/items';
 
@@ -53,6 +54,36 @@ describe('externalItemsReducer', () => {
       const action = { type: externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS };
       const newState = externalItemsReducer(oldState, action);
       const expectedState = {};
+
+      expect(newState).toMatchObject(expectedState);
+    });
+  });
+
+  describe('when action is BITCOIN_WALLET_ADDRESSES_FLAG_AS_USED', () => {
+    it('flags the specified addresses as used', () => {
+      const oldState = {
+        '08bc912e-9953-43cf-a7cc-eb2167a33fb3': { used: true },
+        '446f7b42-bef7-4e18-b949-9d25d8c441a5': {},
+        'ae248c24-4f6f-463a-a8c0-fc404838eb77': {},
+        '6f157eea-d241-4bb0-a4ea-2eacedaf5465': {}
+      };
+
+      const expectedState = {
+        '08bc912e-9953-43cf-a7cc-eb2167a33fb3': { used: true },
+        '446f7b42-bef7-4e18-b949-9d25d8c441a5': { used: true },
+        'ae248c24-4f6f-463a-a8c0-fc404838eb77': {},
+        '6f157eea-d241-4bb0-a4ea-2eacedaf5465': { used: true }
+      };
+
+      const action = {
+        type: addressActions.BITCOIN_WALLET_ADDRESSES_FLAG_AS_USED,
+        addresses: [
+          '446f7b42-bef7-4e18-b949-9d25d8c441a5',
+          '6f157eea-d241-4bb0-a4ea-2eacedaf5465'
+        ]
+      };
+
+      const newState = externalItemsReducer(oldState, action);
 
       expect(newState).toMatchObject(expectedState);
     });

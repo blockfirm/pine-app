@@ -31,11 +31,11 @@ const getAddressMap = (addresses) => {
   const addressMap = {};
 
   addresses.forEach((address) => {
-    /**
-    * Set the value to an empty object since no metadata
-    * is stored about the address at the moment.
-    */
-    addressMap[address.address] = {};
+    const hasTransactions = address.transactions && address.transactions.length > 0;
+
+    addressMap[address.address] = {
+      used: hasTransactions
+    };
   });
 
   return addressMap;

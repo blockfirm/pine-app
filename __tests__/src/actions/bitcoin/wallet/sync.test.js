@@ -9,6 +9,7 @@ import { getNewByAddress as getNewTransactionsByAddress } from '../../../../../s
 import { add as addTransactions } from '../../../../../src/actions/bitcoin/wallet/transactions/add';
 import { updatePending as updatePendingTransactions } from '../../../../../src/actions/bitcoin/wallet/transactions/updatePending';
 import { update as updateUtxos } from '../../../../../src/actions/bitcoin/wallet/utxos/update';
+import { flagAsUsed } from '../../../../../src/actions/bitcoin/wallet/addresses/flagAsUsed';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -75,6 +76,18 @@ jest.mock('../../../../../src/actions/bitcoin/wallet/transactions/updatePending'
 
 jest.mock('../../../../../src/actions/bitcoin/wallet/utxos/update', () => ({
   update: jest.fn(() => Promise.resolve())
+}));
+
+jest.mock('../../../../../src/actions/bitcoin/wallet/addresses/external/save', () => ({
+  save: jest.fn(() => Promise.resolve())
+}));
+
+jest.mock('../../../../../src/actions/bitcoin/wallet/addresses/internal/save', () => ({
+  save: jest.fn(() => Promise.resolve())
+}));
+
+jest.mock('../../../../../src/actions/bitcoin/wallet/addresses/flagAsUsed', () => ({
+  flagAsUsed: jest.fn(() => Promise.resolve())
 }));
 
 jest.mock('../../../../../src/actions/bitcoin/blockchain/transactions/getNewByAddress', () => ({
@@ -228,6 +241,21 @@ describe('sync', () => {
       ];
 
       expect(getNewTransactionsByAddress).toHaveBeenCalledWith(expect.anything(), expectedOldTransactions);
+    });
+  });
+
+  it('flags used addresses as used', () => {
+    expect.hasAssertions();
+
+    return sync()(dispatchMock, getStateMock).then(() => {
+      expect(flagAsUsed).toHaveBeenCalledWith([
+        '2Mt4MnuchSfx7UqVSRU8jbtpJNRdQkRHudx',
+        'moYihV4R1FoSbnukt9sV3WqeFNHnvxfesx'
+      ]);
+
+      expect(flagAsUsed).toHaveBeenCalledWith([
+        '6ccbe0f5-daba-4e7b-96be-003ad7eda843'
+      ]);
     });
   });
 

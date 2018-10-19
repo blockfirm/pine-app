@@ -1,5 +1,8 @@
 import { getNewByAddress as getNewTransactionsByAddress } from '../blockchain/transactions/getNewByAddress';
 import { update as updateUtxos } from './utxos';
+import { save as saveExternalAddresses } from './addresses/external';
+import { save as saveInternalAddresses } from './addresses/internal';
+import { flagAsUsed } from './addresses/flagAsUsed';
 
 import {
   add as addTransactions,
@@ -29,6 +32,16 @@ const syncFailure = (error) => {
   };
 };
 
+/**
+ * Flags addresses found in the transaction list as being used.
+ */
+const flagAddressesAsUsed = (dispatch, addressTransactions) => {
+  const addresses = Object.keys(addressTransactions);
+  const usedAddresses = addresses.filter((address) => addressTransactions[address].length > 0);
+
+  dispatch(flagAsUsed(usedAddresses));
+};
+
 const concatTransactions = (addressTransactions) => {
   return Object.values(addressTransactions).reduce((accumulator, transactions) => {
     return accumulator.concat(transactions);
@@ -45,6 +58,11 @@ const concatTransactions = (addressTransactions) => {
  */
 const getNewTransactionsForBatch = (dispatch, addresses, oldTransactions) => {
   return dispatch(getNewTransactionsByAddress(addresses, oldTransactions))
+    .then((transactions) => {
+      // Flag addresses with transactions as used.
+      flagAddressesAsUsed(dispatch, transactions);
+      return transactions;
+    })
     .then((transactions) => {
       // Concat all transactions from all addresses.
       return concatTransactions(transactions);
@@ -107,6 +125,15 @@ export const sync = () => {
       .then(() => {
         // Then get new transactions.
         return getAllNewTransactions(dispatch, getState);
+      })
+      .then(() => {
+        // Save addresses that has been flagged as used.
+        const savePromises = [
+          dispatch(saveExternalAddresses()),
+          dispatch(saveInternalAddresses())
+        ];
+
+        return Promise.all(savePromises);
       })
       .then(() => {
         // And last, update the utxo set.

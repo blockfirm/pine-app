@@ -1,4 +1,5 @@
 import * as internalAddressActions from '../../../../../../../src/actions/bitcoin/wallet/addresses/internal';
+import * as addressActions from '../../../../../../../src/actions/bitcoin/wallet/addresses';
 import * as walletActions from '../../../../../../../src/actions/bitcoin/wallet';
 import internalReducer from '../../../../../../../src/reducers/bitcoin/wallet/addresses/internal';
 
@@ -92,6 +93,10 @@ describe('internalReducer', () => {
 
   describe('when action is BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS', () => {
     testAction(walletActions.BITCOIN_WALLET_GET_UNUSED_ADDRESS_SUCCESS);
+  });
+
+  describe('when action is BITCOIN_WALLET_ADDRESSES_FLAG_AS_USED', () => {
+    testAction(addressActions.BITCOIN_WALLET_ADDRESSES_FLAG_AS_USED);
   });
 
   describe('when action is an unknown type', () => {
