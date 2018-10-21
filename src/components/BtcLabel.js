@@ -4,6 +4,7 @@ import StyledText from './StyledText';
 
 const UNIT_BTC = 'BTC';
 const UNIT_MBTC = 'mBTC';
+const UNIT_SATS = 'Satoshis';
 
 export default class BtcLabel extends Component {
   render() {
@@ -15,6 +16,23 @@ export default class BtcLabel extends Component {
       case UNIT_MBTC:
         label = (amount * 1000).toFixed(2);
         unitLabel = UNIT_MBTC;
+        break;
+
+      case UNIT_SATS:
+        label = amount * 100000000;
+
+        if (label > 1000000) {
+          label /= 1000000;
+          unitLabel = 'Msats';
+        } else if (label > 1000) {
+          label /= 1000;
+          unitLabel = 'ksats';
+        } else {
+          unitLabel = 'sats';
+        }
+
+        label = label.toFixed(0);
+
         break;
 
       case UNIT_BTC:

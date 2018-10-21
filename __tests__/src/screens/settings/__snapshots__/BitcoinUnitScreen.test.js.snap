@@ -153,6 +153,66 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                     "marginLeft": 15,
                     "paddingRight": 15,
                   },
+                  undefined,
+                ]
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={undefined}
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Object {
+                      "fontSize": 17,
+                      "fontWeight": "400",
+                      "lineHeight": 22,
+                    },
+                  ]
+                }
+              >
+                mBTC
+              </Text>
+            </View>
+          </View>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#C8C7CC",
+                    "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
+                    "marginLeft": 15,
+                    "paddingRight": 15,
+                  },
                   Object {
                     "borderBottomWidth": 0,
                   },
@@ -179,7 +239,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                   ]
                 }
               >
-                mBTC
+                Satoshis
               </Text>
             </View>
           </View>
@@ -285,6 +345,44 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
             mBTC
           </Text>
            is one thousandth of a bitcoin and will be displayed as mBTC.
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#8A8A8F",
+                "fontSize": 13,
+                "lineHeight": 17,
+                "marginBottom": 30,
+                "marginTop": -20,
+                "paddingLeft": 15,
+                "paddingRight": 15,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "fontWeight": "600",
+              }
+            }
+          >
+            Satoshis
+          </Text>
+           is one hundred millionth of a bitcoin and will be displayed as sats, ksats, or Msats.
         </Text>
       </View>
     </View>

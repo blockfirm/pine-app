@@ -53,7 +53,8 @@ export default class BitcoinUnitScreen extends Component {
       <BaseSettingsScreen>
         <SettingsGroup>
           <SettingsOption name='BTC' value={this.state.unit} onSelect={this._onSelect.bind(this)} />
-          <SettingsOption name='mBTC' value={this.state.unit} onSelect={this._onSelect.bind(this)} isLastItem={true} />
+          <SettingsOption name='mBTC' value={this.state.unit} onSelect={this._onSelect.bind(this)} />
+          <SettingsOption name='Satoshis' value={this.state.unit} onSelect={this._onSelect.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
         <SettingsDescription>
@@ -64,6 +65,9 @@ export default class BitcoinUnitScreen extends Component {
         </SettingsDescription>
         <SettingsDescription>
           <StrongText>mBTC</StrongText> is one thousandth of a bitcoin and will be displayed as mBTC.
+        </SettingsDescription>
+        <SettingsDescription>
+          <StrongText>Satoshis</StrongText> is one hundred millionth of a bitcoin and will be displayed as sats, ksats, or Msats.
         </SettingsDescription>
       </BaseSettingsScreen>
     );
