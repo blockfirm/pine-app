@@ -10,8 +10,7 @@ import { handle as handleError } from '../actions/error/handle';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import saveMnemonicByKey from '../crypto/saveMnemonicByKey';
-import getPublicKeyFromMnemonic from '../crypto/getPublicKeyFromMnemonic';
-import getAccountPublicKeyFromMnemonic from '../crypto/getAccountPublicKeyFromMnemonic';
+import getKeyMetadata from '../crypto/getKeyMetadata';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -74,20 +73,14 @@ export default class ConfirmMnemonicScreen extends Component {
     const { params } = this.props.navigation.state;
     const mnemonic = params.mnemonic;
     const network = this.props.settings.bitcoin.network;
-    const publicKey = getPublicKeyFromMnemonic(mnemonic);
-    const accountPublicKey = getAccountPublicKeyFromMnemonic(mnemonic, network, 0);
-
-    const key = {
-      name: 'Default',
-      publicKey,
-      accountPublicKey
-    };
+    const accountIndex = 0;
+    const metadata = getKeyMetadata(mnemonic, network, accountIndex);
 
     // Save key metadata with public key.
-    return dispatch(keyActions.add(key))
+    return dispatch(keyActions.add(metadata))
       .then(() => {
         // Save mnemonic separately in Keychain.
-        return saveMnemonicByKey(mnemonic, key.id);
+        return saveMnemonicByKey(mnemonic, metadata.id);
       })
       .then(() => {
         // Flag that the user has set up the app for the first time.
