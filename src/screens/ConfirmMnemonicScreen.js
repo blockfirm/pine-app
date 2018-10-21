@@ -11,6 +11,7 @@ import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import saveMnemonicByKey from '../crypto/saveMnemonicByKey';
 import getPublicKeyFromMnemonic from '../crypto/getPublicKeyFromMnemonic';
+import getAccountPublicKeyFromMnemonic from '../crypto/getAccountPublicKeyFromMnemonic';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -36,7 +37,9 @@ const styles = StyleSheet.create({
   }
 });
 
-@connect()
+@connect((state) => ({
+  settings: state.settings
+}))
 export default class ConfirmMnemonicScreen extends Component {
   static navigationOptions = {
     header: null
@@ -70,11 +73,14 @@ export default class ConfirmMnemonicScreen extends Component {
     const dispatch = this.props.dispatch;
     const { params } = this.props.navigation.state;
     const mnemonic = params.mnemonic;
+    const network = this.props.settings.bitcoin.network;
     const publicKey = getPublicKeyFromMnemonic(mnemonic);
+    const accountPublicKey = getAccountPublicKeyFromMnemonic(mnemonic, network, 0);
 
     const key = {
       name: 'Default',
-      xpub: publicKey
+      publicKey,
+      accountPublicKey
     };
 
     // Save key metadata with public key.
@@ -157,5 +163,6 @@ export default class ConfirmMnemonicScreen extends Component {
 
 ConfirmMnemonicScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  settings: PropTypes.object
 };

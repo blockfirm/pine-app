@@ -7,8 +7,15 @@ jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContai
 jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContainer');
 
 const storeMock = {
-  getState: jest.fn(() => ({})),
-  dispatch: jest.fn()
+  getState: jest.fn(() => ({
+    settings: {
+      bitcoin: {
+        network: 'testnet'
+      }
+    }
+  })),
+  dispatch: jest.fn(),
+  subscribe: jest.fn()
 };
 
 describe('ImportMnemonicScreen', () => {

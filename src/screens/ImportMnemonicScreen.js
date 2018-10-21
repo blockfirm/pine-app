@@ -13,6 +13,7 @@ import * as settingsActions from '../actions/settings';
 import * as bitcoinWalletActions from '../actions/bitcoin/wallet';
 import saveMnemonicByKey from '../crypto/saveMnemonicByKey';
 import getPublicKeyFromMnemonic from '../crypto/getPublicKeyFromMnemonic';
+import getAccountPublicKeyFromMnemonic from '../crypto/getAccountPublicKeyFromMnemonic';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -40,7 +41,9 @@ const styles = StyleSheet.create({
   }
 });
 
-@connect()
+@connect((state) => ({
+  settings: state.settings
+}))
 export default class ImportMnemonicScreen extends Component {
   static navigationOptions = {
     header: null
@@ -74,11 +77,14 @@ export default class ImportMnemonicScreen extends Component {
   _importMnemonic() {
     const dispatch = this.props.dispatch;
     const mnemonic = this.state.phrase;
+    const network = this.props.settings.bitcoin.network;
     const publicKey = getPublicKeyFromMnemonic(mnemonic);
+    const accountPublicKey = getAccountPublicKeyFromMnemonic(mnemonic, network, 0);
 
     const key = {
       name: 'Default',
-      xpub: publicKey
+      publicKey,
+      accountPublicKey
     };
 
     this.setState({ loading: true });
@@ -162,5 +168,6 @@ export default class ImportMnemonicScreen extends Component {
 }
 
 ImportMnemonicScreen.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  settings: PropTypes.object
 };
