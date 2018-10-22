@@ -12,8 +12,8 @@ import SettingsLink from '../../components/SettingsLink';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
 const packageJson = require('../../../package.json');
-const KEY_DERIVATION_METHOD = 'BIP44';
-const BIP44_ACCOUNT_INDEX = 0;
+const KEY_DERIVATION_SCHEME = 'BIP49';
+const BIP49_ACCOUNT_INDEX = 0;
 
 @connect()
 export default class AboutScreen extends Component {
@@ -50,8 +50,8 @@ export default class AboutScreen extends Component {
         </SettingsGroup>
 
         <SettingsGroup>
-          <SettingsAttribute name='Key Derivation Method' value={KEY_DERIVATION_METHOD} />
-          <SettingsAttribute name='BIP44 Account Index' value={BIP44_ACCOUNT_INDEX.toString()} isLastItem={true} />
+          <SettingsAttribute name='Key Derivation Scheme' value={KEY_DERIVATION_SCHEME} />
+          <SettingsAttribute name='BIP49 Account Index' value={BIP49_ACCOUNT_INDEX.toString()} isLastItem={true} />
         </SettingsGroup>
 
         <SettingsGroup>

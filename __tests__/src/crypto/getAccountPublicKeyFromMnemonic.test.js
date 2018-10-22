@@ -14,7 +14,7 @@ describe('getAccountPublicKeyFromMnemonic', () => {
     const network = 'mainnet';
     const accountIndex = 0;
     const actualXpub = getAccountPublicKeyFromMnemonic(mnemonic, network, accountIndex);
-    const expectedXpub = 'xpub6CH1fB4u46pEeFwxKUqpcZ6QygCpCCZQupVnGrSApVfft9rBBYxzkVB48j1ZkSYBckz2VQPXzseDm2ZyVgL7PRmcT6FPwZtJQjLGDLa9A2D';
+    const expectedXpub = 'xpub6DSRbSVW1dLqzqg5Ty9qwoh3ycjU3fS8uHtuh8dXoXhx7umBt3rimmXV5ZgPVECdrjgnXVjTKVUxxaccr18DpxFd7daHBZtAGBHoayyHRRt';
 
     expect(actualXpub).toBe(expectedXpub);
   });

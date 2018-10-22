@@ -144,8 +144,8 @@ const getAddressesForAccount = (dispatch, addressInfo, result) => {
 };
 
 /**
- * Action to discover all addresses for BIP44 account #0.
- * <https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki>
+ * Action to discover all addresses for BIP49 account #0.
+ * <https://github.com/bitcoin/bips/blob/master/bip-0049.mediawiki>
  *
  * @param {boolean} internal - Whether or not to search for internal addresses (change addresses).
  */

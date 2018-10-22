@@ -25,7 +25,7 @@ describe('getKeyMetadata', () => {
     const network = 'mainnet';
     const accountIndex = 0;
     const metadata = getKeyMetadata(mnemonic, network, accountIndex);
-    const expectedAccountPublicKey = 'xpub6CH1fB4u46pEeFwxKUqpcZ6QygCpCCZQupVnGrSApVfft9rBBYxzkVB48j1ZkSYBckz2VQPXzseDm2ZyVgL7PRmcT6FPwZtJQjLGDLa9A2D';
+    const expectedAccountPublicKey = 'xpub6DSRbSVW1dLqzqg5Ty9qwoh3ycjU3fS8uHtuh8dXoXhx7umBt3rimmXV5ZgPVECdrjgnXVjTKVUxxaccr18DpxFd7daHBZtAGBHoayyHRRt';
 
     expect(metadata.accountPublicKey).toBe(expectedAccountPublicKey);
   });

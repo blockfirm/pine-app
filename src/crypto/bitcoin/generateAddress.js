@@ -6,18 +6,23 @@ const getBitcoinNetwork = (network) => {
 };
 
 /**
- * Creates an address based on the bip32 standard.
+ * Creates an address based on the bip49 standard.
  *
  * @param {object} node - A bip32 node.
  * @param {string} network - 'mainnet' or 'testnet'.
  */
 const getAddress = (node, network) => {
-  const p2pkh = bitcoin.payments.p2pkh({
+  const p2wpkh = bitcoin.payments.p2wpkh({
     pubkey: node.publicKey,
     network: getBitcoinNetwork(network)
   });
 
-  return p2pkh.address;
+  const p2sh = bitcoin.payments.p2sh({
+    redeem: p2wpkh,
+    network: getBitcoinNetwork(network)
+  });
+
+  return p2sh.address;
 };
 
 /**

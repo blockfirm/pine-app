@@ -42,11 +42,11 @@ const getStateMock = jest.fn(() => ({
 
 jest.mock('../../../../../../src/actions/bitcoin/blockchain/transactions/getByAddress', () => ({
   getByAddress: (addresses) => {
-    if (addresses.includes('mfzwDkHsb5xQEhsCam6CLAtsadrWDGoaxD')) {
+    if (addresses.includes('2NDcDTtA9ZeDZMbC861c6zHB2BL92eGCj9Z')) {
       // Mocking batch 1.
       return () => Promise.resolve({
-        mfzwDkHsb5xQEhsCam6CLAtsadrWDGoaxD: [],
-        moYihV4R1FoSbnukt9sV3WqeFNHnvxfesx: [
+        '2NDcDTtA9ZeDZMbC861c6zHB2BL92eGCj9Z': [],
+        '2N4kDxj2zLTm4xqqph8fQmtMgoK8DK9EugX': [
           {
             txid: '268b0e2f1c4f29d8aacf81d6581507cd1b0e4019f01e820fa9d799596084bcba'
           },
@@ -57,9 +57,9 @@ jest.mock('../../../../../../src/actions/bitcoin/blockchain/transactions/getByAd
             txid: 'a25368e98b7c735a32a3f1a5eae51d4aa521c06b5e5864e402805c7bc4909713'
           }
         ],
-        ms4rFPmgg1TSyGFyP5hFU3xbSoPsTq7d2f: [],
-        mqoeAawPQFwKQozx8LxMndXTMSznrzU3Rf: [],
-        mwt8HghoB84FnhxU5vxjaMkbWhWwpVuoM9: [
+        '2MzqAPaeZpovcGK6kky9bXruW46SARvKWfh': [],
+        '2NDe2kwveh29Wzt5J11m8Yz1DMaWaFnqbjq': [],
+        '2N4riAkgBNfMEpBbWYm8L7wiaR8yHMX9pwK': [
           {
             txid: 'b2f4cefaf86ef18bcad2763efbd53d95b94973b5eb03045e3351b5d18286c26b'
           },
@@ -67,43 +67,43 @@ jest.mock('../../../../../../src/actions/bitcoin/blockchain/transactions/getByAd
             txid: '90fb1fc847f6495f917c692404ac9a2128fe327cf8b6efeb0187fca5b8fa225f'
           }
         ],
-        n3sX3qZUojd3P9yATtvmudyf35NQ22z2wy: [],
-        myTSCau8UTFA6gLX6eZY8hpdn7CmNBnppv: [],
-        mhq7TKCaqbwkG1Cc7YF6cvu8yeLdmHxWmn: [],
-        moQaGuAUPKAMjSK289VxjsPN8LEqC16Hy5: [],
-        mkhvNJXSB9qbAtHPmVAFDd4EY2WS2dkDAr: []
+        '2MzykPH8BfaTbyPNm2LDYUCLwMCCF2YNZ6Q': [],
+        '2NDF2Ro8dojDhuqDv397gkdCsUDNXCAM4JW': [],
+        '2N5xUixrze7tZrBTGJB8NKe5zBHx2ytX7xD': [],
+        '2NBjAAH919RPXYZ1trqAGWLSrnKdRzn6DCR': [],
+        '2Mz3uxpD9r5shF2Vj38GJpRuHNH9MfJYVaU': []
       });
     }
 
-    if (addresses.includes('mgDFAzh7p77KvehcSFfJLEpvBTjggPY6Rf')) {
+    if (addresses.includes('2MwKrKevwkT8FCrnXg6AfGVMhSjATmrb9AP')) {
       // Mocking batch 2.
       return () => Promise.resolve({
-        mgDFAzh7p77KvehcSFfJLEpvBTjggPY6Rf: [],
-        mm5RDbAvm95J2K5LXWNyzJHBf23rEb5hxz: [],
-        mhGrKsoVuc4gK878bdTPTjsrAMQzv5B8rA: [],
-        moJPrSWQ9TwvEcCVw8H8aXbwZAWn4CmSav: [],
-        mrCRSZCNEJK8i9R3arrrK6sSUg1uRZnbEs: [],
-        mmZCrDKuNjxTHgDP7Jewgq1RJfV4LfAsLn: [],
-        n1567Ad37qkiyse76MoyStRPnQzm1x2gur: [],
-        mpae3a52rurkpkMUr9ywarB2kARdj8Koxj: [],
-        moBwMSXcNnwjZSA9RWTyejngy7f8oihR3F: [],
-        myu9rhaF92LyZ1TFTvT1YGQqkNstWnNxKz: []
+        '2MwKrKevwkT8FCrnXg6AfGVMhSjATmrb9AP': [],
+        '2N7FCcGzz1jZtt5gGAo2hTsg3wqb7ZfsTod': [],
+        '2N16xmu4AT7CcapEB1o5Bb41VXydAfwFLpn': [],
+        '2MxNSMcQW3bRFVmqSXE2boyaeM4oFtNMQ3b': [],
+        '2NCehXHMbHi6E3yrMa3VgtHmFsZpFVNukJg': [],
+        '2N8uBbChcZ1K444nbXBQNcuxt8SSN1Fvs8U': [],
+        '2NF2F5DmfJL8wSx1xTLRG5CrfL1FoJfZSx1': [],
+        '2NCpjFUo3dfQheBHbF1MjNark9UcCrwJZd9': [],
+        '2Mw8JPWPrdNQ7NPXvQ3ULhcR6wx51ZuW25c': [],
+        '2MzKfHq18FVQewtZFCKYQ9psdWCjDSrfo6v': []
       });
     }
 
-    if (addresses.includes('n2VusdnF19PNhUV71JYAcBPrtZLVrU9sV6')) {
+    if (addresses.includes('2NGKotZSjYHwdPLye2cLZst1xxtJYzLyQyH')) {
       // Mocking batch 3.
       return () => Promise.resolve({
-        n2VusdnF19PNhUV71JYAcBPrtZLVrU9sV6: [],
-        mpcRcVi4gREn6z2SatyRDCsxKBoQtWALuW: [],
-        mhcc5nseXigDngM59cT8GU7QS4YmocsUbx: [],
-        mfx6HGqnFbwH5F4QGZY76NttGk9J5SsvhS: [],
-        mhhCyY6GtGTPEDjG6Xz3Dv6LgJdUtJfX9n: [],
-        mgP7Z5BLa3PTcjuXcN1nQwUncfLHw4Huoo: [],
-        mk3xeuQiqaBqx8ChjYVADyUsmSk68tfDmL: [],
-        mpYgdRQcztNXcqVPvqonyRAGMQJ8wBuPaY: [],
-        moKbcq1oJp173MykfG3Ra9hGU2XMDCe5YL: [],
-        msrAVGNuWsMRDyDv8fQD1BHNoRWmem6suB: []
+        '2NGKotZSjYHwdPLye2cLZst1xxtJYzLyQyH': [],
+        '2Musqtac8yBaqJawBaYRCqXujsGktK1ryMK': [],
+        '2N8nHWNaBniUgnUnexuYmqiGqKCeW6jc1Q7': [],
+        '2MwMPpadUFbGjXG3fJByy3rq4EZqibXfnnr': [],
+        '2Mz7i8B2m4zatuU1LNkQysZPprrxodc2nZs': [],
+        '2MyMKZQim4twZyjrKAkbDGpmFGLEX2hdcc1': [],
+        '2MzQapxy4KbB1bvH87zhKuJu5bgU41QhA8L': [],
+        '2N9U6nNmSVJVBhn6eGsEawvGiQaBLCM2njz': [],
+        '2N3HPttK6KPXX6R2TnR3Dpr9h5mk4xh8ruy': [],
+        '2N6xUB4mGBgE1ZUT9ccsPcqhUYwdBrd3epg': []
       });
     }
   }
@@ -131,11 +131,11 @@ describe('findAll', () => {
   it('finds and returns all addresses with transactions for the account #0', () => {
     const expectedResult = [
       {
-        address: 'mfzwDkHsb5xQEhsCam6CLAtsadrWDGoaxD',
+        address: '2NDcDTtA9ZeDZMbC861c6zHB2BL92eGCj9Z',
         transactions: []
       },
       {
-        address: 'moYihV4R1FoSbnukt9sV3WqeFNHnvxfesx',
+        address: '2N4kDxj2zLTm4xqqph8fQmtMgoK8DK9EugX',
         transactions: [
           {
             txid: '268b0e2f1c4f29d8aacf81d6581507cd1b0e4019f01e820fa9d799596084bcba'
@@ -149,15 +149,15 @@ describe('findAll', () => {
         ]
       },
       {
-        address: 'ms4rFPmgg1TSyGFyP5hFU3xbSoPsTq7d2f',
+        address: '2MzqAPaeZpovcGK6kky9bXruW46SARvKWfh',
         transactions: []
       },
       {
-        address: 'mqoeAawPQFwKQozx8LxMndXTMSznrzU3Rf',
+        address: '2NDe2kwveh29Wzt5J11m8Yz1DMaWaFnqbjq',
         transactions: []
       },
       {
-        address: 'mwt8HghoB84FnhxU5vxjaMkbWhWwpVuoM9',
+        address: '2N4riAkgBNfMEpBbWYm8L7wiaR8yHMX9pwK',
         transactions: [
           {
             txid: 'b2f4cefaf86ef18bcad2763efbd53d95b94973b5eb03045e3351b5d18286c26b'

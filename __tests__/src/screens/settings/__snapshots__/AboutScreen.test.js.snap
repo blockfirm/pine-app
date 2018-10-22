@@ -222,7 +222,7 @@ exports[`AboutScreen renders correctly 1`] = `
                 ]
               }
             >
-              Key Derivation Method
+              Key Derivation Scheme
             </Text>
             <Text
               accessible={true}
@@ -250,7 +250,7 @@ exports[`AboutScreen renders correctly 1`] = `
                 ]
               }
             >
-              BIP44
+              BIP49
             </Text>
           </View>
           <View
@@ -291,7 +291,7 @@ exports[`AboutScreen renders correctly 1`] = `
                 ]
               }
             >
-              BIP44 Account Index
+              BIP49 Account Index
             </Text>
             <Text
               accessible={true}

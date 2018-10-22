@@ -87,7 +87,7 @@ describe('getUnused', () => {
     expect.hasAssertions();
 
     return getUnused()(dispatchMock, getStateMock).then((address) => {
-      expect(address).toBe('n1YhqSM6meuTyMhExoC77YftxCavekHbuu');
+      expect(address).toBe('2Mt3LTmqTPjsQ2bsEHeHtjWEeBGj361YUJm');
     });
   });
 

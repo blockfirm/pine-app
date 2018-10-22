@@ -13,7 +13,7 @@ import bip39 from 'bip39';
 const getAccountPublicKeyFromMnemonic = (mnemonic, network, accountIndex) => {
   const seed = bip39.mnemonicToSeed(mnemonic);
   const masterNode = bip32.fromSeed(seed);
-  const purpose = 44; // BIP44
+  const purpose = 49; // BIP49
   const coinType = network === 'testnet' ? 1 : 0; // Default to mainnet.
   const path = `m/${purpose}'/${coinType}'/${accountIndex}'`;
   const xpub = masterNode.derivePath(path).neutered().toBase58();
