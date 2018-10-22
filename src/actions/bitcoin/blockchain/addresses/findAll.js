@@ -1,29 +1,29 @@
 import { getByAddress as getTransactionsByAddress } from '../transactions/getByAddress';
 import generateAddress from '../../../../crypto/bitcoin/generateAddress';
 
-export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST';
-export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS';
-export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE';
+export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_REQUEST = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_REQUEST';
+export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_SUCCESS = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_SUCCESS';
+export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_FAILURE = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_FAILURE';
 
 const ADDRESS_SEARCH_SIZE = 10; // How many addresses to search transactions for each time.
 const ADDRESS_GAP_LIMIT = 20; // How many empty addresses in a row before stopping the search.
 
-const findByAccountRequest = () => {
+const findAllRequest = () => {
   return {
-    type: BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST
+    type: BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_REQUEST
   };
 };
 
-const findByAccountSuccess = (addresses) => {
+const findAllSuccess = (addresses) => {
   return {
-    type: BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS,
+    type: BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_SUCCESS,
     addresses
   };
 };
 
-const findByAccountFailure = (error) => {
+const findAllFailure = (error) => {
   return {
-    type: BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE,
+    type: BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_FAILURE,
     error
   };
 };
@@ -144,12 +144,12 @@ const getAddressesForAccount = (dispatch, addressInfo, result) => {
 };
 
 /**
- * Action to discover all addresses for a BIP44 account (hard-coded to 0 for now).
+ * Action to discover all addresses for BIP44 account #0.
  * <https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki>
  *
  * @param {boolean} internal - Whether or not to search for internal addresses (change addresses).
  */
-export const findByAccount = (internal = false) => {
+export const findAll = (internal = false) => {
   return (dispatch, getState) => {
     const state = getState();
     const network = state.settings.bitcoin.network;
@@ -164,15 +164,15 @@ export const findByAccount = (internal = false) => {
       index: 0
     };
 
-    dispatch(findByAccountRequest());
+    dispatch(findAllRequest());
 
     return getAddressesForAccount(dispatch, addressInfo)
       .then((addresses) => {
-        dispatch(findByAccountSuccess(addresses));
+        dispatch(findAllSuccess(addresses));
         return addresses;
       })
       .catch((error) => {
-        dispatch(findByAccountFailure(error));
+        dispatch(findAllFailure(error));
         throw error;
       });
   };

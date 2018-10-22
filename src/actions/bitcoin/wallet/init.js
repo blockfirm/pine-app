@@ -1,4 +1,4 @@
-import { findByAccount as findAddressesByAccount } from '../blockchain/addresses/findByAccount';
+import { findAll as findAllAddresses } from '../blockchain/addresses/findAll';
 import { add as addExternalAddresses } from './addresses/external';
 import { add as addInternalAddresses } from './addresses/internal';
 import { getUnused as getUnusedAddress } from './addresses';
@@ -55,11 +55,10 @@ const getTransactions = (addresses) => {
  * and persistent storage.
  *
  * @param {function} dispatch - A redux dispatch function.
- * @param {number} accountIndex - The index of the account starting at 0.
  * @param {boolean} internal - Whether or not to search for internal addresses (change addresses).
  */
-const findAndSaveAddresses = (dispatch, accountIndex, internal) => {
-  return dispatch(findAddressesByAccount(accountIndex, internal))
+const findAndSaveAddresses = (dispatch, internal) => {
+  return dispatch(findAllAddresses(internal))
     .then((addresses) => {
       // Save addresses.
       const addressMap = getAddressMap(addresses);
@@ -82,13 +81,11 @@ const findAndSaveAddresses = (dispatch, accountIndex, internal) => {
  */
 export const init = () => {
   return (dispatch) => {
-    const accountIndex = 0; // Only supports one account at the moment.
-
     dispatch(initRequest());
 
     const promises = [
-      findAndSaveAddresses(dispatch, accountIndex, false), // External addresses.
-      findAndSaveAddresses(dispatch, accountIndex, true) // Internal addresses.
+      findAndSaveAddresses(dispatch, false), // External addresses.
+      findAndSaveAddresses(dispatch, true) // Internal addresses.
     ];
 
     return Promise.all(promises)

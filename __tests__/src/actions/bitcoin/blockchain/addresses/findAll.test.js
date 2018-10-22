@@ -1,9 +1,9 @@
 import {
-  findByAccount,
-  BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST,
-  BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS,
-  BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE
-} from '../../../../../../src/actions/bitcoin/blockchain/addresses/findByAccount';
+  findAll,
+  BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_REQUEST,
+  BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_SUCCESS,
+  BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_FAILURE
+} from '../../../../../../src/actions/bitcoin/blockchain/addresses/findAll';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -109,28 +109,26 @@ jest.mock('../../../../../../src/actions/bitcoin/blockchain/transactions/getByAd
   }
 }));
 
-describe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST', () => {
-  it('equals "BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST"', () => {
-    expect(BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST).toBe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST');
+describe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_REQUEST', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_REQUEST"', () => {
+    expect(BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_REQUEST).toBe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_REQUEST');
   });
 });
 
-describe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS', () => {
-  it('equals "BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS"', () => {
-    expect(BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS).toBe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_SUCCESS');
+describe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_SUCCESS', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_SUCCESS"', () => {
+    expect(BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_SUCCESS).toBe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_SUCCESS');
   });
 });
 
-describe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE', () => {
-  it('equals "BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE"', () => {
-    expect(BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE).toBe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_FAILURE');
+describe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_FAILURE', () => {
+  it('equals "BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_FAILURE"', () => {
+    expect(BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_FAILURE).toBe('BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_ALL_FAILURE');
   });
 });
 
-describe('findByAccount', () => {
-  it('finds and returns all addresses with transactions for the specified account', () => {
-    const accountIndex = 0;
-
+describe('findAll', () => {
+  it('finds and returns all addresses with transactions for the account #0', () => {
     const expectedResult = [
       {
         address: 'mfzwDkHsb5xQEhsCam6CLAtsadrWDGoaxD',
@@ -171,7 +169,7 @@ describe('findByAccount', () => {
       }
     ];
 
-    return findByAccount(accountIndex)(dispatchMock, getStateMock).then((addresses) => {
+    return findAll()(dispatchMock, getStateMock).then((addresses) => {
       expect(addresses).toMatchObject(expectedResult);
     });
   });
