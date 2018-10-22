@@ -24,7 +24,9 @@ const getStateMock = jest.fn(() => ({
   },
   keys: {
     items: {
-      '411774c9-f047-41cc-a42c-aefee14177ae': {}
+      '411774c9-f047-41cc-a42c-aefee14177ae': {
+        accountPublicKey: 'xpub6BsPphQxmQgd2FzCSwiKtQkoUEGXtpaQH8LTSfLQjeKm1srsKifPDEhko9WQRzzYP6tBgUfBvQSg7JXKCyqXNWsJUALMUYx4aMuRMnwLvh4'
+      }
     }
   },
   bitcoin: {
@@ -46,13 +48,6 @@ const getStateMock = jest.fn(() => ({
     }
   }
 }));
-
-jest.mock('../../../../../../src/crypto/getMnemonicByKey', () => {
-  return jest.fn(() => {
-    const mnemonic = 'abuse boss fly battle rubber wasp afraid hamster guide essence vibrant tattoo';
-    return Promise.resolve(mnemonic);
-  });
-});
 
 jest.mock('../../../../../../src/actions/bitcoin/wallet/addresses/external/add', () => ({
   add: jest.fn(() => Promise.resolve())

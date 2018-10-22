@@ -1,7 +1,3 @@
-import bip32 from 'bip32';
-import bip39 from 'bip39';
-
-import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
 import generateAddress from '../../../../crypto/bitcoin/generateAddress';
 import { add as addExternalAddress } from './external';
 import { add as addInternalAddress } from './internal';
@@ -32,28 +28,10 @@ const getUnusedFailure = (error) => {
 };
 
 /**
- * Generates an address based on the inputs.
- * The account is hardcoded to 0.
- */
-const getAddressByIndex = (root, network, internal, index) => {
-  const addressInfo = {
-    root,
-    network,
-    accountIndex: 0,
-    internal,
-    addressIndex: index
-  };
-
-  return generateAddress(addressInfo);
-};
-
-/**
  * Adds an address to the state and persistent storage.
  * @returns {promise} that resolves when the address has been added.
  */
 const addAddress = (dispatch, address, internal) => {
-  let promise;
-
   const addressMap = {
     [address]: {
       used: false
@@ -61,12 +39,10 @@ const addAddress = (dispatch, address, internal) => {
   };
 
   if (internal) {
-    promise = dispatch(addInternalAddress(addressMap));
-  } else {
-    promise = dispatch(addExternalAddress(addressMap));
+    return dispatch(addInternalAddress(addressMap));
   }
 
-  return promise.then(() => address);
+  return dispatch(addExternalAddress(addressMap));
 };
 
 const getCurrentAddressIndex = (state, internal) => {
@@ -101,18 +77,14 @@ const getExistingUnused = (state, internal) => {
 };
 
 const getNewUnused = (state, internal) => {
+  const network = state.settings.bitcoin.network;
   const keys = state.keys.items;
   const keyId = Object.keys(keys)[0];
-  const network = state.settings.bitcoin.network;
+  const key = keys[keyId];
+  const currentIndex = getCurrentAddressIndex(state, internal);
+  const newAddress = generateAddress(key.accountPublicKey, network, internal, currentIndex + 1);
 
-  return getMnemonicByKey(keyId).then((mnemonic) => {
-    const seed = bip39.mnemonicToSeed(mnemonic);
-    const root = bip32.fromSeed(seed);
-    const currentIndex = getCurrentAddressIndex(state, internal);
-    const newAddress = getAddressByIndex(root, network, internal, currentIndex + 1);
-
-    return newAddress;
-  });
+  return newAddress;
 };
 
 /**
@@ -130,13 +102,12 @@ export const getUnused = (internal = false) => {
       return Promise.resolve(existingAddress);
     }
 
-    return getNewUnused(state, internal)
-      .then((address) => {
-        return addAddress(dispatch, address, internal);
-      })
-      .then((address) => {
-        dispatch(getUnusedSuccess(address, internal));
-        return address;
+    const newAddress = getNewUnused(state, internal);
+
+    return addAddress(dispatch, newAddress, internal)
+      .then(() => {
+        dispatch(getUnusedSuccess(newAddress, internal));
+        return newAddress;
       })
       .catch((error) => {
         dispatch(getUnusedFailure(error));

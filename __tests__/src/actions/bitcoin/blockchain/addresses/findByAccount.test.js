@@ -33,14 +33,12 @@ const getStateMock = jest.fn(() => ({
   },
   keys: {
     items: {
-      '83d1e71d-8934-4005-b926-ce8596cba7dd': {}
+      '83d1e71d-8934-4005-b926-ce8596cba7dd': {
+        accountPublicKey: 'xpub6D3W2Tmr2rSzPUSCf3ijRcn25GFcu4ZKxBAxzDDTNFscjcYRWU4EiMXhUZ8xfkwc25y7zPK5VHPAqS4SVvdrmMbKp87rveinkNNcdny3Hvf'
+      }
     }
   }
 }));
-
-jest.mock('../../../../../../src/crypto/getMnemonicByKey', () => {
-  return () => Promise.resolve('chicken approve topic suit shiver party whale holiday pitch source angry naive');
-});
 
 jest.mock('../../../../../../src/actions/bitcoin/blockchain/transactions/getByAddress', () => ({
   getByAddress: (addresses) => {

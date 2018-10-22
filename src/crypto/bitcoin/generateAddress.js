@@ -1,4 +1,9 @@
 import bitcoin from 'bitcoinjs-lib';
+import bip32 from 'bip32';
+
+const getBitcoinNetwork = (network) => {
+  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.mainnet;
+};
 
 /**
  * Creates an address based on the bip32 standard.
@@ -9,7 +14,7 @@ import bitcoin from 'bitcoinjs-lib';
 const getAddress = (node, network) => {
   const p2pkh = bitcoin.payments.p2pkh({
     pubkey: node.publicKey,
-    network: network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.mainnet
+    network: getBitcoinNetwork(network)
   });
 
   return p2pkh.address;
@@ -18,41 +23,28 @@ const getAddress = (node, network) => {
 /**
  * Generates a BIP44 path based on the specified parameters.
  *
- * @param {object} addressInfo - An object describing an address using BIP44.
- * - @param {string} network - 'mainnet' or 'testnet'.
- * - @param {number} accountIndex - The index of the account starting at 0.
- * - @param {boolean} internal - Whether or not to generate a path for an internal address.
- * - @param {number} addressIndex - The index of the address starting at 0.
+ * @param {boolean} internal - Whether or not to generate a path for an internal address.
+ * @param {number} addressIndex - The index of the address starting at 0.
  */
-const getBip44Path = (addressInfo) => {
-  const {
-    network,
-    accountIndex,
-    internal,
-    addressIndex
-  } = addressInfo;
-
-  const purpose = 44; // BIP44
-  const coinType = network === 'testnet' ? 1 : 0; // Default to mainnet.
+const getPath = (internal, addressIndex) => {
   const change = internal ? 1 : 0; // 0 = external, 1 = internal change address
-
-  return `m/${purpose}'/${coinType}'/${accountIndex}'/${change}/${addressIndex}`;
+  return `${change}/${addressIndex}`;
 };
 
 /**
- * Generates a bitcoin address based on `addressInfo`.
+ * Generates an internal or external address for the specified index.
  *
- * @param {object} addressInfo - An object describing the address using BIP44.
- * - @param {object} root - A bip32 root from a private key.
- * - @param {string} network - 'mainnet' or 'testnet'.
- * - @param {number} accountIndex - The index of the account to generate the address for.
- * - @param {boolean} internal - Whether or not to generate internal addresses (change addresses).
- * - @param {number} addressIndex - The index of the address to generate, starting at 0.
+ * @param {string} publicKey - Public key for account to use when deriving the address.
+ * @param {string} network - 'mainnet' or 'testnet'.
+ * @param {boolean} internal - Whether or not to generate internal addresses (change addresses).
+ * @param {number} index - The index of the address to generate, starting at 0.
+ *
+ * @returns {string} The generated address.
  */
-const generateAddress = (addressInfo) => {
-  const path = getBip44Path(addressInfo);
-  const child = addressInfo.root.derivePath(path);
-  const address = getAddress(child, addressInfo.network);
+const generateAddress = (publicKey, network, internal, index) => {
+  const path = getPath(internal, index);
+  const node = bip32.fromBase58(publicKey).derivePath(path);
+  const address = getAddress(node, network);
 
   return address;
 };

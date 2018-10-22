@@ -1,8 +1,4 @@
-import bip32 from 'bip32';
-import bip39 from 'bip39';
-
 import { getByAddress as getTransactionsByAddress } from '../transactions/getByAddress';
-import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
 import generateAddress from '../../../../crypto/bitcoin/generateAddress';
 
 export const BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST = 'BITCOIN_BLOCKCHAIN_ADDRESSES_FIND_BY_ACCOUNT_REQUEST';
@@ -92,23 +88,24 @@ const getAddressGap = (addresses) => {
 };
 
 /**
- * Generates a specified amount of addresses starting at `addressInfo.addressIndex`.
+ * Generates a specified amount of addresses starting at `addressInfo.index`.
  *
  * @param {object} addressInfo - An object describing an address using BIP44.
- * - @param {object} root - A bip32 root from a private key.
+ * - @param {string} publicKey - Public key for account to use when deriving the address.
  * - @param {string} network - 'mainnet' or 'testnet'.
- * - @param {number} accountIndex - The index of the account to generate addresses for.
- * - @param {boolean} internal - Whether or not to generate internal addresses (change addresses).
- * - @param {number} addressIndex - The address index to start generating addresses from.
+ * - @param {boolean} internal - Whether or not to search for internal addresses (change addresses).
+ * - @param {number} index - The index of the address starting at 0.
  * @param {number} amount - Number of addresses to generate.
  */
 const generateAddresses = (addressInfo, amount) => {
-  const addressIndexStart = addressInfo.addressIndex;
+  const { publicKey, network, internal } = addressInfo;
+
+  const addressIndexStart = addressInfo.index;
   const addressIndexEnd = addressIndexStart + amount;
   const addresses = [];
 
-  for (let i = addressIndexStart; i < addressIndexEnd; i++) {
-    const address = generateAddress({ ...addressInfo, addressIndex: i });
+  for (let index = addressIndexStart; index < addressIndexEnd; index++) {
+    const address = generateAddress(publicKey, network, internal, index);
     addresses.push(address);
   }
 
@@ -122,11 +119,10 @@ const generateAddresses = (addressInfo, amount) => {
  *
  * @param {function} dispatch - A redux dispatch function.
  * @param {object} addressInfo - An object describing an address using BIP44.
- * - @param {object} root - A bip32 root from a private key.
+ * - @param {string} publicKey - Public key for account to use when deriving the address.
  * - @param {string} network - 'mainnet' or 'testnet'.
- * - @param {number} accountIndex - The index of the account starting at 0.
  * - @param {boolean} internal - Whether or not to search for internal addresses (change addresses).
- * - @param {number} addressIndex - The index of the address starting at 0.
+ * - @param {number} index - The index of the address starting at 0.
  * @param {array} result - An aggregation of all addresses that has been searched and its transactions.
  */
 const getAddressesForAccount = (dispatch, addressInfo, result) => {
@@ -141,49 +137,43 @@ const getAddressesForAccount = (dispatch, addressInfo, result) => {
       return cleanResult(newResult, addressGap);
     }
 
-    addressInfo.addressIndex += ADDRESS_SEARCH_SIZE;
+    addressInfo.index += ADDRESS_SEARCH_SIZE;
 
     return getAddressesForAccount(dispatch, addressInfo, newResult);
   });
 };
 
 /**
- * Action to discover all addresses for a BIP44 account.
+ * Action to discover all addresses for a BIP44 account (hard-coded to 0 for now).
  * <https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki>
  *
- * @param {number} accountIndex - The index of the account starting at 0.
  * @param {boolean} internal - Whether or not to search for internal addresses (change addresses).
  */
-export const findByAccount = (accountIndex, internal = false) => {
+export const findByAccount = (internal = false) => {
   return (dispatch, getState) => {
     const state = getState();
+    const network = state.settings.bitcoin.network;
     const keys = state.keys.items;
     const keyId = Object.keys(keys)[0];
-    const network = state.settings.bitcoin.network;
+    const key = keys[keyId];
+
+    const addressInfo = {
+      publicKey: key.accountPublicKey,
+      network,
+      internal,
+      index: 0
+    };
 
     dispatch(findByAccountRequest());
 
-    return getMnemonicByKey(keyId).then((mnemonic) => {
-      const seed = bip39.mnemonicToSeed(mnemonic);
-      const root = bip32.fromSeed(seed);
-
-      const addressInfo = {
-        root,
-        network,
-        accountIndex,
-        internal,
-        addressIndex: 0
-      };
-
-      return getAddressesForAccount(dispatch, addressInfo)
-        .then((addresses) => {
-          dispatch(findByAccountSuccess(addresses));
-          return addresses;
-        })
-        .catch((error) => {
-          dispatch(findByAccountFailure(error));
-          throw error;
-        });
-    });
+    return getAddressesForAccount(dispatch, addressInfo)
+      .then((addresses) => {
+        dispatch(findByAccountSuccess(addresses));
+        return addresses;
+      })
+      .catch((error) => {
+        dispatch(findByAccountFailure(error));
+        throw error;
+      });
   };
 };
