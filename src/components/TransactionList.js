@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, SectionList, View } from 'react-native';
+import { StyleSheet, SectionList, View, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import moment from 'moment-timezone';
@@ -31,6 +31,20 @@ const styles = StyleSheet.create({
 });
 
 export default class TransactionList extends Component {
+  state = {
+    refreshing: false
+  }
+
+  _onRefresh() {
+    this.setState({ refreshing: true });
+
+    this.props.onRefresh().then(() => {
+      setTimeout(() => {
+        this.setState({ refreshing: false });
+      }, 500);
+    });
+  }
+
   _getSectionTitle(transaction) {
     if (!transaction.time) {
       return 'Pending';
@@ -83,11 +97,18 @@ export default class TransactionList extends Component {
             <StyledText style={styles.sectionHeaderText}>{title}</StyledText>
           </View>
         )}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }
       />
     );
   }
 }
 
 TransactionList.propTypes = {
-  transactions: PropTypes.array.isRequired
+  transactions: PropTypes.array.isRequired,
+  onRefresh: PropTypes.func.isRequired
 };

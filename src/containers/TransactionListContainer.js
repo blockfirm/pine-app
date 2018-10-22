@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import { sync as syncWallet } from '../actions/bitcoin/wallet';
 import TransactionList from '../components/TransactionList';
 
 const mapStateToProps = (state) => {
@@ -14,9 +16,17 @@ class TransactionListContainer extends Component {
     dispatch: PropTypes.func
   };
 
+  _onRefresh() {
+    const dispatch = this.props.dispatch;
+    return dispatch(syncWallet());
+  }
+
   render() {
     return (
-      <TransactionList {...this.props} />
+      <TransactionList
+        {...this.props}
+        onRefresh={this._onRefresh.bind(this)}
+      />
     );
   }
 }
