@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
-import StyledText from '../components/StyledText';
+import QRCode from 'react-qr-code';
 import BaseScreen from './BaseScreen';
 
 const styles = StyleSheet.create({
@@ -20,9 +19,12 @@ export default class ReceiveScreen extends Component {
   }
 
   render() {
+    const address = this.props.address;
+    const qrData = `bitcoin:${address}`;
+
     return (
       <BaseScreen style={styles.view}>
-        <StyledText>{this.props.address}</StyledText>
+        <QRCode value={qrData} size={200} />
       </BaseScreen>
     );
   }

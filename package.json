@@ -46,6 +46,7 @@
     "react-navigation": "^1.4.0",
     "react-navigation-redux-debouncer": "^0.0.2",
     "react-navigation-redux-helpers": "^1.0.3",
+    "react-qr-code": "^0.1.2",
     "react-redux": "^5.0.7",
     "readable-stream": "^2.3.5",
     "redux": "^3.7.2",
