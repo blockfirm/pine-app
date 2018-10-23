@@ -84,6 +84,10 @@ export default class Button extends Component {
     const lastPressTimestamp = this._lastPressTimestamp || 0;
     const now = new Date().getTime();
 
+    if (this.props.disableThrottling) {
+      return true;
+    }
+
     // Don't allow too frequent presses.
     return now - lastPressTimestamp > PRESS_FREEZE_MS;
   }
@@ -190,5 +194,6 @@ Button.propTypes = {
   fullWidth: PropTypes.bool,
   disabled: PropTypes.bool,
   showLoader: PropTypes.bool,
-  loaderColor: PropTypes.string
+  loaderColor: PropTypes.string,
+  disableThrottling: PropTypes.bool
 };
