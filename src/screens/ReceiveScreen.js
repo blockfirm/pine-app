@@ -33,9 +33,7 @@ export default class ReceiveScreen extends Component {
 
   _shareAddress() {
     const address = this.props.address;
-    const url = `${address}`;
-
-    Share.share({ message: url });
+    Share.share({ message: address });
   }
 
   render() {
