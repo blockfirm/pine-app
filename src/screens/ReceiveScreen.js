@@ -24,11 +24,20 @@ export default class ReceiveScreen extends Component {
     header: null
   }
 
+  state = {
+    copied: false
+  }
+
   _copyAddress() {
     const address = this.props.address;
 
     Clipboard.setString(address);
     ReactNativeHaptic.generate('notification');
+    this.setState({ copied: true });
+
+    setTimeout(() => {
+      this.setState({ copied: false });
+    }, 1000);
   }
 
   _shareAddress() {
@@ -39,6 +48,7 @@ export default class ReceiveScreen extends Component {
   render() {
     const address = this.props.address;
     const qrData = `bitcoin:${address}`;
+    const label = this.state.copied ? 'Copied' : 'Copy Address';
 
     return (
       <BaseScreen style={styles.view}>
@@ -48,8 +58,7 @@ export default class ReceiveScreen extends Component {
 
         <Footer>
           <Button
-            label='Copy Address'
-            disableThrottling={true}
+            label={label}
             onPress={this._copyAddress.bind(this)}
           />
         </Footer>
