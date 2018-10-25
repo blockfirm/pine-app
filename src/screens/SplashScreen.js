@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { navigateWithReset, load as loadState } from '../actions';
-import { sync as syncWallet } from '../actions/bitcoin/wallet';
+import * as walletActions from '../actions/bitcoin/wallet';
+import * as keyActions from '../actions/keys';
+import * as settingsActions from '../actions/settings';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -34,16 +36,19 @@ export default class SplashScreen extends Component {
   }
 
   constructor(props) {
-    super(...arguments);
-
     const dispatch = props.dispatch;
+
+    super(...arguments);
 
     // Load state, including settings, keys, and wallet data.
     dispatch(loadState())
       .then((state) => {
-        // Show the welcome screen if the wallet hasn't been set up.
+        /**
+         * Try to recover from iCloud or show the welcome screen
+         * if the wallet hasn't been set up.
+         */
         if (!state.settings.initialized) {
-          return this._showWelcomeScreen();
+          return this._initialize();
         }
 
         // Show the disclaimer screen if the terms and conditions hasn't been accepted.
@@ -52,7 +57,7 @@ export default class SplashScreen extends Component {
         }
 
         // Sync wallet with the blockchain to get new transactions.
-        dispatch(syncWallet());
+        dispatch(walletActions.sync());
 
         this._showHomeScreen();
       })
@@ -78,6 +83,49 @@ export default class SplashScreen extends Component {
   _showDisclaimerScreen() {
     const dispatch = this.props.dispatch;
     dispatch(navigateWithReset('Disclaimer'));
+  }
+
+  _flagAsInitialized() {
+    const dispatch = this.props.dispatch;
+
+    const newSettings = {
+      initialized: true
+    };
+
+    return dispatch(settingsActions.save(newSettings));
+  }
+
+  _tryRecover() {
+    const dispatch = this.props.dispatch;
+
+    return dispatch(keyActions.recover()).then((mnemonic) => {
+      if (!mnemonic) {
+        return;
+      }
+
+      return dispatch(keyActions.add(mnemonic))
+        .then(() => {
+          // Reset the wallet in case the last init didn't finish.
+          return dispatch(walletActions.reset());
+        })
+        .then(() => {
+          return dispatch(walletActions.init());
+        })
+        .then(() => {
+          this._flagAsInitialized();
+          return true;
+        });
+    });
+  }
+
+  _initialize() {
+    return this._tryRecover().then((recovered) => {
+      if (recovered) {
+        return this._showDisclaimerScreen();
+      }
+
+      this._showWelcomeScreen();
+    });
   }
 
   render() {

@@ -1,7 +1,10 @@
+import saveMnemonicByKey from '../../../../src/crypto/saveMnemonicByKey';
+
 import {
   add as addKey,
   KEYS_ADD_REQUEST,
-  KEYS_ADD_SUCCESS
+  KEYS_ADD_SUCCESS,
+  KEYS_ADD_FAILURE
 } from '../../../../src/actions/keys/add';
 
 const uuidRegex = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
@@ -14,9 +17,27 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
+const getStateMock = jest.fn(() => ({
+  settings: {
+    bitcoin: {
+      network: 'testnet'
+    }
+  }
+}));
+
 jest.mock('../../../../src/actions/keys/save', () => ({
   save: jest.fn(() => Promise.resolve())
 }));
+
+jest.mock('../../../../src/crypto/saveMnemonicByKey', () => {
+  return jest.fn(() => Promise.resolve());
+});
+
+jest.mock('../../../../src/crypto/getKeyMetadata', () => {
+  return () => ({
+    test: 'c802927d-ee35-42fe-983e-e248bfebf781'
+  });
+});
 
 describe('KEYS_ADD_REQUEST', () => {
   it('equals "KEYS_ADD_REQUEST"', () => {
@@ -30,11 +51,18 @@ describe('KEYS_ADD_SUCCESS', () => {
   });
 });
 
+describe('KEYS_ADD_FAILURE', () => {
+  it('equals "KEYS_ADD_FAILURE"', () => {
+    expect(KEYS_ADD_FAILURE).toBe('KEYS_ADD_FAILURE');
+  });
+});
+
 describe('add', () => {
-  let fakeKey;
+  let mnemonic;
 
   beforeEach(() => {
-    fakeKey = {};
+    mnemonic = 'test test test test test test test test test test test test';
+    saveMnemonicByKey.mockClear();
   });
 
   it('is a function', () => {
@@ -46,7 +74,7 @@ describe('add', () => {
   });
 
   it('returns a function', () => {
-    const returnValue = addKey(fakeKey);
+    const returnValue = addKey(mnemonic);
     expect(typeof returnValue).toBe('function');
   });
 
@@ -54,28 +82,35 @@ describe('add', () => {
     let returnedFunction;
 
     beforeEach(() => {
-      returnedFunction = addKey(fakeKey);
+      returnedFunction = addKey(mnemonic);
     });
 
     it('dispatches an action of type KEYS_ADD_REQUEST', () => {
-      returnedFunction(dispatchMock);
+      returnedFunction(dispatchMock, getStateMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
         type: KEYS_ADD_REQUEST
       });
     });
 
-    it('dispatches an action of type KEYS_ADD_SUCCESS with the key', () => {
-      returnedFunction(dispatchMock);
+    it('sets key.id to a uuid (v4)', () => {
+      expect.hasAssertions();
 
-      expect(dispatchMock).toHaveBeenCalledWith({
-        type: KEYS_ADD_SUCCESS,
-        key: fakeKey
+      return returnedFunction(dispatchMock, getStateMock).then((key) => {
+        expect(key.id).toMatch(uuidRegex);
+      });
+    });
+
+    it('saves the mnemonic with saveMnemonicByKey', () => {
+      expect.hasAssertions();
+
+      return returnedFunction(dispatchMock, getStateMock).then((key) => {
+        expect(saveMnemonicByKey).toHaveBeenCalledWith(mnemonic, key.id);
       });
     });
 
     it('returns a Promise', () => {
-      const returnValue = returnedFunction(dispatchMock);
+      const returnValue = returnedFunction(dispatchMock, getStateMock);
       expect(returnValue).toBeInstanceOf(Promise);
     });
 
@@ -83,34 +118,64 @@ describe('add', () => {
       let promise;
 
       beforeEach(() => {
-        promise = returnedFunction(dispatchMock);
+        promise = returnedFunction(dispatchMock, getStateMock);
       });
 
-      it('resolves to the passed key', () => {
+      it('resolves to the metadata', () => {
         expect.hasAssertions();
 
         return promise.then((key) => {
-          expect(key).toBe(fakeKey);
+          // This is mocked at the top of the file.
+          expect(key.test).toBe('c802927d-ee35-42fe-983e-e248bfebf781');
+        });
+      });
+
+      it('dispatches an action of type KEYS_ADD_SUCCESS with the metadata', () => {
+        expect.hasAssertions();
+
+        return promise.then(() => {
+          expect(dispatchMock).toHaveBeenCalledWith({
+            type: KEYS_ADD_SUCCESS,
+            key: expect.objectContaining({
+              test: 'c802927d-ee35-42fe-983e-e248bfebf781' // This is mocked at the top of the file.
+            })
+          });
         });
       });
     });
 
-    describe('when key.id is undefined', () => {
-      it('sets key.id to a uuid (v4)', () => {
-        fakeKey.id = undefined;
-        returnedFunction(dispatchMock);
-        expect(fakeKey.id).toMatch(uuidRegex);
+    describe('when the function fails', () => {
+      let promise;
+
+      beforeEach(() => {
+        // Make the function fail by returning a rejected promise from saveMnemonicByKey().
+        saveMnemonicByKey.mockImplementationOnce(() => Promise.reject(
+          new Error('ed03a78f-f465-4313-ba57-85e0c5ddb5e3')
+        ));
+
+        promise = addKey(mnemonic)(dispatchMock, getStateMock);
       });
-    });
 
-    describe('when key.id is defined', () => {
-      it('does not change key.id', () => {
-        const fakeId = 'f046249a-9c24-4fff-9597-4373469ab7e1';
+      it('rejects the returned promise', () => {
+        expect.hasAssertions();
 
-        fakeKey.id = fakeId;
-        returnedFunction(dispatchMock);
+        return promise.catch((error) => {
+          expect(error).toBeTruthy();
+          expect(error.message).toBe('ed03a78f-f465-4313-ba57-85e0c5ddb5e3');
+        });
+      });
 
-        expect(fakeKey.id).toMatch(fakeId);
+      it('dispatches an action of type KEYS_ADD_FAILURE with the error', () => {
+        expect.hasAssertions();
+
+        return promise.catch((error) => {
+          expect(error).toBeTruthy();
+
+          expect(dispatchMock).toHaveBeenCalledWith({
+            type: KEYS_ADD_FAILURE,
+            error
+          });
+        });
       });
     });
   });

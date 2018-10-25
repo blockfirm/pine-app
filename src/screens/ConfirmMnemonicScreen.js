@@ -9,8 +9,6 @@ import { navigateWithReset } from '../actions';
 import { handle as handleError } from '../actions/error/handle';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
-import saveMnemonicByKey from '../crypto/saveMnemonicByKey';
-import getKeyMetadata from '../crypto/getKeyMetadata';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -36,9 +34,7 @@ const styles = StyleSheet.create({
   }
 });
 
-@connect((state) => ({
-  settings: state.settings
-}))
+@connect()
 export default class ConfirmMnemonicScreen extends Component {
   static navigationOptions = {
     header: null
@@ -72,16 +68,9 @@ export default class ConfirmMnemonicScreen extends Component {
     const dispatch = this.props.dispatch;
     const { params } = this.props.navigation.state;
     const mnemonic = params.mnemonic;
-    const network = this.props.settings.bitcoin.network;
-    const accountIndex = 0;
-    const metadata = getKeyMetadata(mnemonic, network, accountIndex);
 
     // Save key metadata with public key.
-    return dispatch(keyActions.add(metadata))
-      .then(() => {
-        // Save mnemonic separately in Keychain.
-        return saveMnemonicByKey(mnemonic, metadata.id);
-      })
+    return dispatch(keyActions.add(mnemonic))
       .then(() => {
         // Flag that the user has set up the app for the first time.
         return this._flagAsInitialized();
@@ -156,6 +145,5 @@ export default class ConfirmMnemonicScreen extends Component {
 
 ConfirmMnemonicScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.any,
-  settings: PropTypes.object
+  navigation: PropTypes.any
 };

@@ -1,6 +1,6 @@
 import removeMnemonicByKey from '../crypto/removeMnemonicByKey';
 import { reset as resetBitcoinWallet } from './bitcoin/wallet';
-import { remove as removeKey } from './keys';
+import { remove as removeKey, removeBackup } from './keys';
 import { reset as resetSettings } from './settings';
 
 export const RESET_REQUEST = 'RESET_REQUEST';
@@ -38,7 +38,8 @@ const deleteKeys = (dispatch, keys) => {
 };
 
 /**
- * Action to reset the app and remove all data from persistent storage and state.
+ * Action to reset the app and remove all data from
+ * persistent storage, iCloud, and state.
  */
 export const reset = (keepSettings) => {
   return (dispatch, getState) => {
@@ -49,6 +50,7 @@ export const reset = (keepSettings) => {
 
     const promises = [
       deleteKeys(dispatch, keys),
+      dispatch(removeBackup()),
       dispatch(resetBitcoinWallet()),
       !keepSettings ? dispatch(resetSettings()) : null
     ];
