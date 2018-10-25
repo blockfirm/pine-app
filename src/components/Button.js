@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, View, Dimensions, Text, ActivityIndicator, InteractionManager } from 'react-native';
 import PropTypes from 'prop-types';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
+import ReactNativeHaptic from 'react-native-haptic';
 
 const windowDimensions = Dimensions.get('window');
 const FULL_WIDTH = windowDimensions.width;
@@ -120,6 +121,10 @@ export default class Button extends Component {
         });
       }, 500);
     }
+
+    if (this.props.hapticFeedback) {
+      ReactNativeHaptic.generate('notification');
+    }
   }
 
   _handleOnPress() {
@@ -143,6 +148,10 @@ export default class Button extends Component {
 
     this._lastPressTimestamp = new Date().getTime();
     this._onPressStarted();
+
+    if (this.props.hapticFeedback) {
+      ReactNativeHaptic.generate('selection');
+    }
 
     if (this.props.showLoader) {
       // This makes sure that the loader shows before starting the task.
@@ -195,5 +204,6 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   showLoader: PropTypes.bool,
   loaderColor: PropTypes.string,
-  disableThrottling: PropTypes.bool
+  disableThrottling: PropTypes.bool,
+  hapticFeedback: PropTypes.bool
 };
