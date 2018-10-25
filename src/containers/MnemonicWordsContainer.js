@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ReactNativeHaptic from 'react-native-haptic';
 
 import * as recoveryKeyActions from '../actions/recoveryKey';
 import MnemonicWords from '../components/MnemonicWords';
@@ -25,6 +26,8 @@ class MnemonicWordsContainer extends Component {
 
   _onReveal() {
     const dispatch = this.props.dispatch;
+
+    ReactNativeHaptic.generate('selection');
     dispatch(recoveryKeyActions.reveal());
   }
 
