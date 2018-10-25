@@ -43,10 +43,6 @@ export default class SplashScreen extends Component {
     // Load state, including settings, keys, and wallet data.
     dispatch(loadState())
       .then((state) => {
-        /**
-         * Try to recover from iCloud or show the welcome screen
-         * if the wallet hasn't been set up.
-         */
         if (!state.settings.initialized) {
           return this._initialize();
         }
@@ -119,6 +115,10 @@ export default class SplashScreen extends Component {
   }
 
   _initialize() {
+    /**
+     * Try to recover from iCloud or show the welcome screen
+     * if the wallet hasn't been set up.
+     */
     return this._tryRecover().then((recovered) => {
       if (recovered) {
         return this._showDisclaimerScreen();
