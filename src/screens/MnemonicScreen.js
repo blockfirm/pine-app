@@ -113,7 +113,7 @@ export default class MnemonicScreen extends Component {
 
   _showStoreInICloudConfirmation() {
     Alert.alert(
-      'Back up in iCloud?',
+      'Store in iCloud?',
       'Saving your recovery key in your iCloud account is potentially less secure than writing it down and storing it yourself.',
       [
         { text: 'Cancel', style: 'cancel' },
