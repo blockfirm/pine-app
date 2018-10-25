@@ -32,7 +32,9 @@ const loadFailure = (error) => {
  * into state.
  */
 export const load = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const state = getState();
+
     dispatch(loadRequest());
 
     const promises = [
@@ -44,11 +46,13 @@ export const load = () => {
 
     return Promise.all(promises)
       .then(() => {
-        // Load an unused address into state.
-        return Promise.all([
-          dispatch(getUnusedAddress()), // External address.
-          dispatch(getUnusedAddress(true)) // Internal address.
-        ]);
+        if (state.settings.initialized) {
+          // Load an unused address into state.
+          return Promise.all([
+            dispatch(getUnusedAddress()), // External address.
+            dispatch(getUnusedAddress(true)) // Internal address.
+          ]);
+        }
       })
       .then(() => {
         dispatch(loadSuccess());
