@@ -9,6 +9,7 @@ import { navigateWithReset } from '../actions';
 import { handle as handleError } from '../actions/error/handle';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
+import { getUnused as getUnusedAddress } from '../actions/bitcoin/wallet/addresses';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -74,6 +75,13 @@ export default class ConfirmMnemonicScreen extends Component {
       .then(() => {
         // Flag that the user has set up the app for the first time.
         return this._flagAsInitialized();
+      })
+      .then(() => {
+        // Load an unused address into state.
+        return Promise.all([
+          dispatch(getUnusedAddress()), // External address.
+          dispatch(getUnusedAddress(true)) // Internal address.
+        ]);
       })
       .then(() => {
         return this._showDisclaimerScreen();
