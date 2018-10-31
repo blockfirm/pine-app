@@ -121,10 +121,6 @@ export default class Button extends Component {
         });
       }, 500);
     }
-
-    if (this.props.hapticFeedback) {
-      ReactNativeHaptic.generate('notification');
-    }
   }
 
   _handleOnPress() {
@@ -135,6 +131,10 @@ export default class Button extends Component {
     }
 
     promise.then(() => {
+      if (this.props.hapticFeedback) {
+        ReactNativeHaptic.generate('notification');
+      }
+
       if (this._isMounted) {
         this._onPressFinished();
       }

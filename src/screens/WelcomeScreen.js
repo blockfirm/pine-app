@@ -3,7 +3,11 @@ import { StyleSheet, StatusBar, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { navigateWithReset } from '../actions';
 import { handle as handleError } from '../actions/error';
+import * as keyActions from '../actions/keys';
+import * as settingsActions from '../actions/settings';
+import { getUnused as getUnusedAddress } from '../actions/bitcoin/wallet/addresses';
 import generateMnemonic from '../crypto/generateMnemonic';
 import Footer from '../components/Footer';
 import WhiteButton from '../components/WhiteButton';
@@ -45,9 +49,19 @@ export default class WelcomeScreen extends Component {
     header: null
   }
 
-  _showMnemonicScreen(mnemonic) {
-    const navigation = this.props.navigation;
-    navigation.navigate('Mnemonic', { mnemonic });
+  _showDisclaimerScreen() {
+    const dispatch = this.props.dispatch;
+    return dispatch(navigateWithReset('Disclaimer'));
+  }
+
+  _flagAsInitialized() {
+    const dispatch = this.props.dispatch;
+
+    const newSettings = {
+      initialized: true
+    };
+
+    return dispatch(settingsActions.save(newSettings));
   }
 
   _createWallet() {
@@ -55,7 +69,26 @@ export default class WelcomeScreen extends Component {
 
     return generateMnemonic()
       .then((mnemonic) => {
-        this._showMnemonicScreen(mnemonic);
+        // Back up mnemonic in iCloud.
+        return dispatch(keyActions.backup(mnemonic)).then(() => mnemonic);
+      })
+      .then((mnemonic) => {
+        // Save key metadata with public key.
+        return dispatch(keyActions.add(mnemonic));
+      })
+      .then(() => {
+        // Flag that the user has set up the app for the first time.
+        return this._flagAsInitialized();
+      })
+      .then(() => {
+        // Load an unused address into state.
+        return Promise.all([
+          dispatch(getUnusedAddress()), // External address.
+          dispatch(getUnusedAddress(true)) // Internal address.
+        ]);
+      })
+      .then(() => {
+        this._showDisclaimerScreen();
       })
       .catch((error) => {
         dispatch(handleError(error));
