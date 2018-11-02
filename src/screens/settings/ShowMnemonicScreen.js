@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ReactNativeHaptic from 'react-native-haptic';
 
 import * as keyActions from '../../actions/keys';
 import getMnemonicByKey from '../../crypto/getMnemonicByKey';
@@ -67,6 +68,8 @@ export default class ShowMnemonicScreen extends Component {
     if (activate || this.props.hasCreatedBackup) {
       return this._updateICloudState(storeInICloud);
     }
+
+    ReactNativeHaptic.generate('notificationWarning');
 
     Alert.alert(
       'Missing Manual Backup',
