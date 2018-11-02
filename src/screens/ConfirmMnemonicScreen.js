@@ -83,7 +83,7 @@ export default class ConfirmMnemonicScreen extends Component {
     const navigation = this.props.navigation;
     const { isModal } = navigation.state.params;
 
-    this._flagAsBackedUp()
+    this._flagAsBackedUp();
 
     if (isModal) {
       this.props.screenProps.dismiss();
