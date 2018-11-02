@@ -6,6 +6,10 @@ const headerStyles = StyleSheet.create({
     borderBottomColor: '#B2B2B2',
     borderBottomWidth: StyleSheet.hairlineWidth
   },
+  whiteHeader: {
+    backgroundColor: '#ffffff',
+    borderBottomWidth: 0
+  },
   title: {
     fontSize: 17,
     fontWeight: '700',

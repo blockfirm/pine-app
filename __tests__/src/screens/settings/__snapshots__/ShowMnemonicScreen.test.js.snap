@@ -30,62 +30,6 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
                 "borderTopWidth": 0.5,
                 "marginBottom": 35,
               },
-              Object {
-                "overflow": "hidden",
-                "padding": 20,
-              },
-            ]
-          }
-        >
-          <MnemonicWordsContainer
-            blurStyle={
-              Object {
-                "bottom": -20,
-                "left": -10,
-                "right": -10,
-                "top": -20,
-              }
-            }
-            phrase=""
-          />
-        </View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          numberOfLines={undefined}
-          style={
-            Array [
-              Object {
-                "color": "#000000",
-                "fontFamily": "System",
-                "fontWeight": "400",
-              },
-              Object {
-                "color": "#8A8A8F",
-                "fontSize": 13,
-                "lineHeight": 17,
-                "marginBottom": 30,
-                "marginTop": -25,
-                "paddingLeft": 15,
-                "paddingRight": 15,
-              },
-            ]
-          }
-        >
-          Write down and store this recovery key in a safe place so you can recover your wallet if you would lose or break your phone.
-        </Text>
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "white",
-                "borderBottomColor": "#C8C8CC",
-                "borderBottomWidth": 0.5,
-                "borderTopColor": "#C8C8CC",
-                "borderTopWidth": 0.5,
-                "marginBottom": 35,
-              },
               undefined,
             ]
           }
@@ -194,7 +138,118 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
             ]
           }
         >
-          Saving your recovery key in your iCloud account is potentially less secure than writing it down and storing it yourself.
+          Saving your recovery key in iCloud is safe and convenient as long as you keep your iCloud account secure.
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "borderBottomColor": "#C8C8CC",
+                "borderBottomWidth": 0.5,
+                "borderTopColor": "#C8C8CC",
+                "borderTopWidth": 0.5,
+                "marginBottom": 35,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#C8C7CC",
+                    "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
+                    "marginLeft": 15,
+                    "paddingRight": 15,
+                  },
+                  Object {
+                    "borderBottomWidth": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                numberOfLines={undefined}
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Array [
+                      Object {
+                        "fontSize": 17,
+                        "fontWeight": "400",
+                        "lineHeight": 22,
+                      },
+                      Object {
+                        "color": "#007AFF",
+                      },
+                      undefined,
+                      undefined,
+                    ],
+                  ]
+                }
+              >
+                Back up Manually
+              </Text>
+            </View>
+          </View>
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          numberOfLines={undefined}
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#8A8A8F",
+                "fontSize": 13,
+                "lineHeight": 17,
+                "marginBottom": 30,
+                "marginTop": -25,
+                "paddingLeft": 15,
+                "paddingRight": 15,
+              },
+            ]
+          }
+        >
+          Backing up your recovery key manually on a piece of paper is a good alternative in case you would lose access to your iCloud account, or if you don't want to store your key in iCloud.
         </Text>
       </View>
     </View>

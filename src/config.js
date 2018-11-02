@@ -3,7 +3,10 @@ export default {
   initialized: false, // If false, show welcome screen
   user: {
     // The user must accept the Terms and Conditions before using the app.
-    hasAcceptedTerms: false
+    hasAcceptedTerms: false,
+
+    // Whether or not the user has manually backed up the recovery key.
+    hasCreatedBackup: false
   },
   api: {
     baseUrl: 'http://localhost:8080/v1'

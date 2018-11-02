@@ -23,7 +23,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
   testID={undefined}
 >
   <View
-    headerTitle="Confirm Recovery Key"
+    hideHeader={true}
     style={
       Array [
         Object {
@@ -37,10 +37,6 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
       ]
     }
   >
-    <BackHeaderContainer
-      backButtonIconStyle={undefined}
-      title="Confirm Recovery Key"
-    />
     <View
       style={
         Array [

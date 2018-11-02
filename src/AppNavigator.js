@@ -54,7 +54,9 @@ const SettingsCardNavigator = DismissableStackNavigator({
 
 // eslint-disable-next-line new-cap
 const ModalNavigator = DismissableStackNavigator({
-  TermsAndConditionsModal: { screen: TermsAndConditionsScreen }
+  TermsAndConditionsModal: { screen: TermsAndConditionsScreen },
+  MnemonicModal: { screen: MnemonicScreen },
+  ConfirmMnemonicModal: { screen: ConfirmMnemonicScreen }
 }, {
   headerMode: 'float'
 });

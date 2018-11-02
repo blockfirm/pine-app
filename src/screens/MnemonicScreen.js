@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar, Alert, ActivityIndicator, InteractionManager } from 'react-native';
+import { StyleSheet, StatusBar, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
-import { navigateWithReset } from '../actions';
-import { handle as handleError } from '../actions/error/handle';
-import * as keyActions from '../actions/keys';
-import * as settingsActions from '../actions/settings';
-import { getUnused as getUnusedAddress } from '../actions/bitcoin/wallet/addresses';
+import headerStyles from '../styles/headerStyles';
 import MnemonicWordsContainer from '../containers/MnemonicWordsContainer';
 import Paragraph from '../components/Paragraph';
 import Button from '../components/Button';
-import Link from '../components/Link';
+import BackButton from '../components/BackButton';
+import CancelButton from '../components/CancelButton';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -39,111 +36,31 @@ const styles = StyleSheet.create({
   recoveryKeyRevealed: state.recoveryKey.visible
 }))
 export default class MnemonicScreen extends Component {
-  static navigationOptions = {
-    header: null
-  }
+  static navigationOptions = ({ navigation, screenProps }) => {
+    const params = navigation.state.params;
+    const isModal = params ? params.isModal : false;
+    const headerLeft = isModal ? <Text /> : <BackButton onPress={() => { navigation.goBack(); }} />;
+    const headerRight = isModal ? <CancelButton onPress={screenProps.dismiss} /> : null;
 
-  state = {
-    storingInICloud: false
-  }
+    return {
+      title: 'Your Recovery Key',
+      headerTransparent: true,
+      headerStyle: headerStyles.whiteHeader,
+      headerTitleStyle: headerStyles.title,
+      headerLeft: headerLeft,
+      headerRight: headerRight,
+
+      // HACK: Hack to disable the back navigation when this is the initial screen.
+      gestureResponseDistance: isModal ? { horizontal: -1, vertical: 135 } : undefined
+    };
+  };
 
   _showConfirmMnemonicScreen() {
     const navigation = this.props.navigation;
-    const { params } = navigation.state;
-    const mnemonic = params.mnemonic;
+    const { mnemonic, isModal } = navigation.state.params;
+    const screenName = isModal ? 'ConfirmMnemonicModal' : 'ConfirmMnemonic';
 
-    navigation.navigate('ConfirmMnemonic', { mnemonic });
-  }
-
-  _showDisclaimerScreen() {
-    const dispatch = this.props.dispatch;
-    return dispatch(navigateWithReset('Disclaimer'));
-  }
-
-  _flagAsInitialized() {
-    const dispatch = this.props.dispatch;
-
-    const newSettings = {
-      initialized: true
-    };
-
-    return dispatch(settingsActions.save(newSettings));
-  }
-
-  _saveKey() {
-    const dispatch = this.props.dispatch;
-    const { params } = this.props.navigation.state;
-    const mnemonic = params.mnemonic;
-
-    // Save key metadata with public key.
-    return dispatch(keyActions.add(mnemonic))
-      .then(() => {
-        // Flag that the user has set up the app for the first time.
-        return this._flagAsInitialized();
-      })
-      .then(() => {
-        // Load an unused address into state.
-        return Promise.all([
-          dispatch(getUnusedAddress()), // External address.
-          dispatch(getUnusedAddress(true)) // Internal address.
-        ]);
-      })
-      .then(() => {
-        return this._showDisclaimerScreen();
-      })
-      .catch((error) => {
-        dispatch(handleError(error));
-      });
-  }
-
-  _storeInICloud() {
-    const dispatch = this.props.dispatch;
-    const { params } = this.props.navigation.state;
-    const mnemonic = params.mnemonic;
-
-    return dispatch(keyActions.backup(mnemonic))
-      .then(() => {
-        return this._saveKey();
-      })
-      .catch((error) => {
-        dispatch(handleError(error));
-        this.setState({ storingInICloud: false });
-      });
-  }
-
-  _showStoreInICloudConfirmation() {
-    Alert.alert(
-      'Store in iCloud?',
-      'Saving your recovery key in your iCloud account is potentially less secure than writing it down and storing it yourself.',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Store in iCloud',
-          onPress: () => {
-            this.setState({ storingInICloud: true });
-
-            InteractionManager.runAfterInteractions(() => {
-              this._storeInICloud();
-            });
-          }
-        }
-      ],
-      { cancelable: false }
-    );
-  }
-
-  _renderICloudLink() {
-    if (this.state.storingInICloud) {
-      return (
-        <ActivityIndicator animating={true} style={styles.loader} size='small' />
-      );
-    }
-
-    return (
-      <Link onPress={this._showStoreInICloudConfirmation.bind(this)} style={styles.link}>
-        Store in iCloud instead
-      </Link>
-    );
+    navigation.navigate(screenName, { mnemonic, isModal });
   }
 
   render() {
@@ -151,12 +68,11 @@ export default class MnemonicScreen extends Component {
     const mnemonic = params.mnemonic;
 
     return (
-      <BaseScreen headerTitle='Your Recovery Key'>
+      <BaseScreen hideHeader={true}>
         <StatusBar barStyle='dark-content' />
 
         <Paragraph style={styles.paragraph}>
-          Write down and store this recovery key in a safe place – it&#39;s the only
-          way you can recover your wallet if you would lose or break your phone.
+          Write down and store this recovery key in a safe place so you can recover your wallet if you would lose or break your phone.
         </Paragraph>
 
         <MnemonicWordsContainer phrase={mnemonic} style={styles.mnemonic} />
@@ -168,8 +84,6 @@ export default class MnemonicScreen extends Component {
             style={styles.button}
             disabled={!this.props.recoveryKeyRevealed}
           />
-
-          {this._renderICloudLink()}
         </Footer>
       </BaseScreen>
     );

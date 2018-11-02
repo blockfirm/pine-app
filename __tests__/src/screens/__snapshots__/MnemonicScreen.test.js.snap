@@ -2,7 +2,7 @@
 
 exports[`MnemonicScreen renders correctly 1`] = `
 <View
-  headerTitle="Your Recovery Key"
+  hideHeader={true}
   style={
     Array [
       Object {
@@ -16,10 +16,6 @@ exports[`MnemonicScreen renders correctly 1`] = `
     ]
   }
 >
-  <BackHeaderContainer
-    backButtonIconStyle={undefined}
-    title="Your Recovery Key"
-  />
   <Text
     accessible={true}
     allowFontScaling={true}
@@ -50,7 +46,7 @@ exports[`MnemonicScreen renders correctly 1`] = `
       ]
     }
   >
-    Write down and store this recovery key in a safe place – it's the only way you can recover your wallet if you would lose or break your phone.
+    Write down and store this recovery key in a safe place so you can recover your wallet if you would lose or break your phone.
   </Text>
   <MnemonicWordsContainer
     phrase="during bulb nominee acquire paddle next course stable govern eagle title wing"
@@ -152,67 +148,6 @@ exports[`MnemonicScreen renders correctly 1`] = `
           I have saved these words
         </Text>
       </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      collapsable={undefined}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "marginTop": 10,
-          "opacity": 1,
-          "padding": 15,
-        }
-      }
-      testID={undefined}
-      tvParallaxProperties={undefined}
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          numberOfLines={undefined}
-          style={
-            Array [
-              Object {
-                "color": "#000000",
-                "fontFamily": "System",
-                "fontWeight": "400",
-              },
-              Array [
-                Object {
-                  "color": "#007AFF",
-                  "fontFamily": "System",
-                  "fontSize": 16,
-                  "fontWeight": "600",
-                  "letterSpacing": -0.41,
-                },
-                undefined,
-              ],
-            ]
-          }
-        >
-          Store in iCloud instead
-        </Text>
-      </Text>
     </View>
   </View>
   <ErrorModalContainer />

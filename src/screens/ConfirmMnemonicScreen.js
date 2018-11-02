@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
+import headerStyles from '../styles/headerStyles';
 import { navigateWithReset } from '../actions';
-import { handle as handleError } from '../actions/error/handle';
-import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
-import { getUnused as getUnusedAddress } from '../actions/bitcoin/wallet/addresses';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
+import BackButton from '../components/BackButton';
+import CancelButton from '../components/CancelButton';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -37,9 +37,21 @@ const styles = StyleSheet.create({
 
 @connect()
 export default class ConfirmMnemonicScreen extends Component {
-  static navigationOptions = {
-    header: null
-  }
+  static navigationOptions = ({ navigation, screenProps }) => {
+    const params = navigation.state.params;
+    const isModal = params ? params.isModal : false;
+    const headerLeft = <BackButton onPress={() => { navigation.goBack(); }} />;
+    const headerRight = isModal ? <CancelButton onPress={screenProps.dismiss} /> : null;
+
+    return {
+      title: 'Confirm Recovery Key',
+      headerTransparent: true,
+      headerStyle: headerStyles.whiteHeader,
+      headerTitleStyle: headerStyles.title,
+      headerLeft: headerLeft,
+      headerRight: headerRight
+    };
+  };
 
   state = {
     phrase: '',
@@ -55,40 +67,27 @@ export default class ConfirmMnemonicScreen extends Component {
     return dispatch(navigateWithReset('Disclaimer'));
   }
 
-  _flagAsInitialized() {
+  _flagAsBackedUp() {
     const dispatch = this.props.dispatch;
 
     const newSettings = {
-      initialized: true
+      user: {
+        hasCreatedBackup: true
+      }
     };
 
     return dispatch(settingsActions.save(newSettings));
   }
 
-  _saveKey() {
-    const dispatch = this.props.dispatch;
-    const { params } = this.props.navigation.state;
-    const mnemonic = params.mnemonic;
+  _onConfirm() {
+    const navigation = this.props.navigation;
+    const { isModal } = navigation.state.params;
 
-    // Save key metadata with public key.
-    return dispatch(keyActions.add(mnemonic))
-      .then(() => {
-        // Flag that the user has set up the app for the first time.
-        return this._flagAsInitialized();
-      })
-      .then(() => {
-        // Load an unused address into state.
-        return Promise.all([
-          dispatch(getUnusedAddress()), // External address.
-          dispatch(getUnusedAddress(true)) // Internal address.
-        ]);
-      })
-      .then(() => {
-        return this._showDisclaimerScreen();
-      })
-      .catch((error) => {
-        dispatch(handleError(error));
-      });
+    this._flagAsBackedUp()
+
+    if (isModal) {
+      this.props.screenProps.dismiss();
+    }
   }
 
   _onChangePhrase(phrase) {
@@ -117,7 +116,7 @@ export default class ConfirmMnemonicScreen extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss.bind(Keyboard)}>
         <View style={styles.view}>
-          <BaseScreen headerTitle='Confirm Recovery Key'>
+          <BaseScreen hideHeader={true}>
             <View style={contentStyles}>
               <Paragraph style={styles.paragraph}>
                 To verify that you saved the words correctly,
@@ -137,7 +136,7 @@ export default class ConfirmMnemonicScreen extends Component {
                 label='Confirm'
                 disabled={buttonDisabled}
                 fullWidth={this.state.keyboardState}
-                onPress={this._saveKey.bind(this)}
+                onPress={this._onConfirm.bind(this)}
                 showLoader={true}
               />
               <KeyboardSpacer topSpacing={-30} onToggle={this._onKeyboardToggle.bind(this)} />
@@ -153,5 +152,6 @@ export default class ConfirmMnemonicScreen extends Component {
 
 ConfirmMnemonicScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  screenProps: PropTypes.object
 };
