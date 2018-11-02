@@ -8,6 +8,11 @@ jest.mock('../../../../src/containers/MnemonicWordsContainer', () => 'MnemonicWo
 
 const storeMock = {
   getState: jest.fn(() => ({
+    settings: {
+      user: {
+        hasCreatedBackup: false
+      }
+    },
     keys: {
       items: {
         'b62a06e9-7a1f-4862-a350-7af4505114c7': {

@@ -14,7 +14,8 @@ import SettingsDescription from '../../components/SettingsDescription';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
 @connect((state) => ({
-  keys: state.keys.items
+  keys: state.keys.items,
+  hasCreatedBackup: state.settings.user.hasCreatedBackup
 }))
 export default class ShowMnemonicScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -62,32 +63,19 @@ export default class ShowMnemonicScreen extends Component {
 
   _onStoreInICloudChange(storeInICloud) {
     const activate = !this.state.storeInICloud && storeInICloud;
-    let title;
-    let message;
-    let buttonText;
-    let buttonStyle;
 
-    if (activate) {
-      title = 'Back up in iCloud?';
-      message = 'Saving your recovery key in your iCloud account is potentially less secure than writing it down and storing it yourself.';
-      buttonText = 'Back up in iCloud';
-      buttonStyle = 'default';
-    } else {
-      title = 'Remove from iCloud?';
-      message = 'Only remove your recovery key from iCloud if you have written it down and stored it yourself first.';
-      buttonText = 'Remove from iCloud';
-      buttonStyle = 'destructive';
+    if (activate || this.props.hasCreatedBackup) {
+      return this._updateICloudState(storeInICloud);
     }
 
     Alert.alert(
-      title,
-      message,
+      'Missing Manual Backup',
+      'The recovery key can only be removed from iCloud if it has been manually backed up.',
       [
         { text: 'Cancel', style: 'cancel' },
         {
-          text: buttonText,
-          style: buttonStyle,
-          onPress: this._updateICloudState.bind(this, storeInICloud)
+          text: 'Back up Manually',
+          onPress: this._backUpManually.bind(this)
         }
       ],
       { cancelable: false }
@@ -133,5 +121,6 @@ export default class ShowMnemonicScreen extends Component {
 ShowMnemonicScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
-  keys: PropTypes.object
+  keys: PropTypes.object,
+  hasCreatedBackup: PropTypes.bool
 };
