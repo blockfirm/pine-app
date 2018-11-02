@@ -95,6 +95,8 @@ export default class ShowMnemonicScreen extends Component {
   }
 
   render() {
+    const hasCreatedBackup = this.props.hasCreatedBackup;
+
     return (
       <BaseSettingsScreen>
         <SettingsGroup>
@@ -110,7 +112,12 @@ export default class ShowMnemonicScreen extends Component {
         </SettingsDescription>
 
         <SettingsGroup>
-          <SettingsButton title='Back up Manually' onPress={this._backUpManually.bind(this)} isLastItem={true} />
+          <SettingsButton
+            title='Back up Manually'
+            showCheckmark={hasCreatedBackup}
+            onPress={this._backUpManually.bind(this)}
+            isLastItem={true}
+          />
         </SettingsGroup>
         <SettingsDescription>
           Backing up your recovery key manually on a piece of paper is a good alternative in case you would

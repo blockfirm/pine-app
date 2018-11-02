@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/Octicons';
 
 import settingsStyles from '../styles/settingsStyles';
 import StyledText from './StyledText';
@@ -20,6 +21,13 @@ const styles = StyleSheet.create({
     top: 1,
     right: 15,
     height: 42
+  },
+  checkmark: {
+    position: 'absolute',
+    right: 15,
+    fontSize: 16,
+    color: '#4CD964',
+    paddingTop: 2
   }
 });
 
@@ -31,7 +39,7 @@ export default class SettingsButton extends Component {
   }
 
   render() {
-    const { isLastItem, type, loading } = this.props;
+    const { isLastItem, type, loading, showCheckmark } = this.props;
     const title = loading ? this.props.loadingTitle : this.props.title;
     const underlayColor = loading ? 'white' : settingsStyles.underlayColor;
 
@@ -52,6 +60,7 @@ export default class SettingsButton extends Component {
         <View style={containerStyles}>
           <StyledText style={labelStyles}>{title}</StyledText>
           { loading ? <ActivityIndicator animating={true} color='#8A8A8F' style={styles.loader} size='small' /> : null }
+          { showCheckmark ? <Icon name='check' style={styles.checkmark} /> : null }
         </View>
       </TouchableHighlight>
     );
@@ -64,5 +73,6 @@ SettingsButton.propTypes = {
   type: PropTypes.string,
   isLastItem: PropTypes.bool,
   loading: PropTypes.bool,
-  loadingTitle: PropTypes.string
+  loadingTitle: PropTypes.string,
+  showCheckmark: PropTypes.bool
 };
