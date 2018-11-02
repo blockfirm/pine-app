@@ -132,7 +132,7 @@ export default class Button extends Component {
 
     promise.then(() => {
       if (this.props.hapticFeedback) {
-        ReactNativeHaptic.generate('notification');
+        ReactNativeHaptic.generate('notificationSuccess');
       }
 
       if (this._isMounted) {

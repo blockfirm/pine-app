@@ -32,7 +32,7 @@ export default class ReceiveScreen extends Component {
     const address = this.props.address;
 
     Clipboard.setString(address);
-    ReactNativeHaptic.generate('notification');
+    ReactNativeHaptic.generate('notificationSuccess');
     this.setState({ copied: true });
 
     setTimeout(() => {

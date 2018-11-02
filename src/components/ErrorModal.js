@@ -87,7 +87,7 @@ export default class ErrorModal extends Component {
       LayoutAnimation.spring();
 
       if (nextProps.error) {
-        ReactNativeHaptic.generate('impact');
+        ReactNativeHaptic.generate('notificationError');
       }
     }
   }
