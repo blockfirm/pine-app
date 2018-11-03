@@ -73,7 +73,7 @@ export default class WelcomeScreen extends Component {
         return dispatch(keyActions.backup(mnemonic)).then(() => mnemonic);
       })
       .then((mnemonic) => {
-        // Save key metadata with public key.
+        // Save key.
         return dispatch(keyActions.add(mnemonic));
       })
       .then(() => {
