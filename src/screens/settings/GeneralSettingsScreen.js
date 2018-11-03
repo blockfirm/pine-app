@@ -39,16 +39,16 @@ export default class GeneralSettingsScreen extends Component {
     return dispatch(settingsActions.save(newSettings));
   }
 
-  _recoverWallet() {
+  _showRemoveWalletConfirmation() {
     const dispatch = this.props.dispatch;
 
     Alert.alert(
-      'Recover Another Wallet?',
-      'This will remove the current wallet. Are you sure you want to continue?',
+      'Erase Wallet?',
+      'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
       [
         { text: 'Cancel', style: 'cancel' },
         {
-          text: 'Recover',
+          text: 'Erase Wallet',
           style: 'destructive',
           onPress: () => {
             const keepSettings = true;
@@ -56,7 +56,7 @@ export default class GeneralSettingsScreen extends Component {
             dispatch(resetApp(keepSettings)).then(() => {
               this._flagAsUninitialized();
               this.props.screenProps.dismiss();
-              dispatch(navigateWithReset('ImportMnemonic'));
+              dispatch(navigateWithReset('Welcome'));
             });
           }
         }
@@ -79,12 +79,12 @@ export default class GeneralSettingsScreen extends Component {
 
   _showResetAppConfirmation() {
     Alert.alert(
-      'Reset?',
-      'This will remove the wallet and reset all settings. You can only recover the wallet if you have your recovery key. Are you sure you want to continue?',
+      'Erase Wallet and Settings?',
+      'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
       [
         { text: 'Cancel', style: 'cancel' },
         {
-          text: 'Reset',
+          text: 'Erase Wallet and Settings',
           style: 'destructive',
           onPress: this._resetAppAndShowWelcomeScreen.bind(this)
         }
@@ -102,9 +102,9 @@ export default class GeneralSettingsScreen extends Component {
 
         <SettingsGroup>
           <SettingsButton
-            title='Recover Another Wallet'
+            title='Erase Wallet'
             type='destructive'
-            onPress={this._recoverWallet.bind(this)}
+            onPress={this._showRemoveWalletConfirmation.bind(this)}
           />
           <SettingsButton
             title='Erase Wallet and Settings'
