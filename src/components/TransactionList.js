@@ -35,14 +35,22 @@ export default class TransactionList extends Component {
     refreshing: false
   }
 
+  _onRefreshFinished() {
+    setTimeout(() => {
+      this.setState({ refreshing: false });
+    }, 500);
+  }
+
   _onRefresh() {
     this.setState({ refreshing: true });
 
-    this.props.onRefresh().then(() => {
-      setTimeout(() => {
-        this.setState({ refreshing: false });
-      }, 500);
-    });
+    this.props.onRefresh()
+      .then(() => {
+        this._onRefreshFinished();
+      })
+      .catch(() => {
+        this._onRefreshFinished();
+      });
   }
 
   _getSectionTitle(transaction) {
