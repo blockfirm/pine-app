@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { navigateWithReset, reset as resetApp } from '../../actions';
 import * as settingsActions from '../../actions/settings';
+import getMnemonicByKey from '../../crypto/getMnemonicByKey';
 import headerStyles from '../../styles/headerStyles';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
@@ -12,7 +13,9 @@ import SettingsButton from '../../components/SettingsButton';
 import SettingsLink from '../../components/SettingsLink';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
-@connect()
+@connect((state) => ({
+  keys: state.keys.items
+}))
 export default class GeneralSettingsScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'General',
@@ -39,6 +42,19 @@ export default class GeneralSettingsScreen extends Component {
     return dispatch(settingsActions.save(newSettings));
   }
 
+  _createManualBackup() {
+    const navigation = this.props.navigation;
+    const keys = Object.values(this.props.keys);
+    const defaultKey = keys[0];
+
+    return getMnemonicByKey(defaultKey.id).then((mnemonic) => {
+      navigation.navigate('MnemonicModal', {
+        mnemonic,
+        isModal: true
+      });
+    });
+  }
+
   _showRemoveWalletConfirmation() {
     const dispatch = this.props.dispatch;
 
@@ -47,6 +63,10 @@ export default class GeneralSettingsScreen extends Component {
       'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
       [
         { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Create Manual Backup',
+          onPress: this._createManualBackup.bind(this)
+        },
         {
           text: 'Erase Wallet',
           style: 'destructive',
@@ -84,6 +104,10 @@ export default class GeneralSettingsScreen extends Component {
       [
         { text: 'Cancel', style: 'cancel' },
         {
+          text: 'Create Manual Backup',
+          onPress: this._createManualBackup.bind(this)
+        },
+        {
           text: 'Erase Wallet and Settings',
           style: 'destructive',
           onPress: this._resetAppAndShowWelcomeScreen.bind(this)
@@ -119,5 +143,6 @@ export default class GeneralSettingsScreen extends Component {
 GeneralSettingsScreen.propTypes = {
   screenProps: PropTypes.object,
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  keys: PropTypes.object
 };
