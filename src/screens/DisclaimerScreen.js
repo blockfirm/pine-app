@@ -81,15 +81,15 @@ export default class DisclaimerScreen extends Component {
         <View style={styles.terms}>
           <Title style={styles.subtitle}>Access to Funds</Title>
           <Paragraph style={styles.paragraph}>
-            Your private key is stored securely on the device and only you can access it.
-            No company or third party can access your key and it never leaves the device.
+            You are the only one who can access your funds as long as you keep your phone, iCloud account,
+            and recovery key secure.
           </Paragraph>
 
           <Title style={styles.subtitle}>Wallet Recovery</Title>
           <Paragraph style={styles.paragraph}>
-            Make sure to store your recovery key in a safe place. Anyone with access to the recovery
-            key can access your funds. It is also the only way to recover your wallet in case you would
-            lose or break your phone.
+            The only way to recover a lost wallet is with the recovery key which is securely stored
+            in your iCloud account. You can also do a manual backup under Settings. No one can recover
+            lost funds for you if you lose your recovery key.
           </Paragraph>
 
           <Title style={styles.subtitle}>Terms and Conditions</Title>
