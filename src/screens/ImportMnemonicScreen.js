@@ -81,8 +81,12 @@ export default class ImportMnemonicScreen extends Component {
 
     this.setState({ loading: true });
 
-    // Save key.
-    return dispatch(keyActions.add(mnemonic))
+    // Back up mnemonic in iCloud.
+    return dispatch(keyActions.backup(mnemonic))
+      .then(() => {
+        // Save key.
+        return dispatch(keyActions.add(mnemonic));
+      })
       .then(() => {
         // Flag that the user has set up the app for the first time.
         return this._flagAsInitialized();
