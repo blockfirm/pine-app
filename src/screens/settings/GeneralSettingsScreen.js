@@ -30,7 +30,10 @@ export default class GeneralSettingsScreen extends Component {
     const dispatch = this.props.dispatch;
 
     const newSettings = {
-      initialized: false
+      initialized: false,
+      user: {
+        hasCreatedBackup: false
+      }
     };
 
     return dispatch(settingsActions.save(newSettings));
