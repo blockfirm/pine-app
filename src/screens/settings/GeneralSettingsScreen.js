@@ -103,12 +103,10 @@ export default class GeneralSettingsScreen extends Component {
         <SettingsGroup>
           <SettingsButton
             title='Erase Wallet'
-            type='destructive'
             onPress={this._showRemoveWalletConfirmation.bind(this)}
           />
           <SettingsButton
             title='Erase Wallet and Settings'
-            type='destructive'
             onPress={this._showResetAppConfirmation.bind(this)}
             isLastItem={true}
           />
