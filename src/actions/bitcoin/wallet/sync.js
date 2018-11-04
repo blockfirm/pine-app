@@ -149,7 +149,6 @@ export const sync = () => {
       })
       .catch((error) => {
         dispatch(syncFailure(error));
-        throw error;
       });
   };
 };

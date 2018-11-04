@@ -26,9 +26,7 @@ export default class HomeScreen extends Component {
 
     // Sync wallet with an interval.
     this._syncInterval = setInterval(() => {
-      dispatch(syncWallet()).catch(() => {
-        // Suppress errors.
-      });
+      dispatch(syncWallet());
     }, SYNC_WALLET_INTERVAL);
   }
 
