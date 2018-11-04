@@ -53,7 +53,9 @@ export default class SplashScreen extends Component {
         }
 
         // Sync wallet with the blockchain to get new transactions.
-        dispatch(walletActions.sync());
+        dispatch(walletActions.sync()).catch(() => {
+          // Suppress errors.
+        });
 
         this._showHomeScreen();
       })
