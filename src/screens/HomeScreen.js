@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, NetInfo } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Swiper from 'react-native-swiper';
@@ -26,7 +26,11 @@ export default class HomeScreen extends Component {
 
     // Sync wallet with an interval.
     this._syncInterval = setInterval(() => {
-      dispatch(syncWallet());
+      NetInfo.isConnected.fetch().then((isConnected) => {
+        if (isConnected) {
+          dispatch(syncWallet());
+        }
+      });
     }, SYNC_WALLET_INTERVAL);
   }
 

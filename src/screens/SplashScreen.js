@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, ActivityIndicator, StatusBar } from 'react-native';
+import { StyleSheet, Image, ActivityIndicator, StatusBar, NetInfo } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -53,7 +53,11 @@ export default class SplashScreen extends Component {
         }
 
         // Sync wallet with the blockchain to get new transactions.
-        dispatch(walletActions.sync());
+        NetInfo.isConnected.fetch().then((isConnected) => {
+          if (isConnected) {
+            dispatch(walletActions.sync());
+          }
+        });
 
         this._showHomeScreen();
       })
