@@ -27,15 +27,28 @@ export default class HomeScreen extends Component {
     // Sync wallet with an interval.
     this._syncInterval = setInterval(() => {
       NetInfo.isConnected.fetch().then((isConnected) => {
+        // Only sync if connected to the internet.
         if (isConnected) {
           dispatch(syncWallet());
         }
       });
     }, SYNC_WALLET_INTERVAL);
+
+    // Listen for internet connection changes and sync when online.
+    NetInfo.isConnected.addEventListener('connectionChange', this._onConnectionChange.bind(this));
   }
 
   componentWillUnmount() {
     clearInterval(this._syncInterval);
+    NetInfo.isConnected.removeEventListener('connectionChange', this._onConnectionChange);
+  }
+
+  _onConnectionChange(isConnected) {
+    const dispatch = this.props.dispatch;
+
+    if (isConnected) {
+      dispatch(syncWallet());
+    }
   }
 
   _onIndexChanged(index) {
