@@ -4,6 +4,7 @@ import errorReducer from './error';
 import settingsReducer from './settings';
 import keysReducer from './keys';
 import recoveryKeyReducer from './recoveryKey';
+import networkReducer from './network';
 
 const getRootReducer = (navReducer) => {
   const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const getRootReducer = (navReducer) => {
     error: errorReducer,
     settings: settingsReducer,
     keys: keysReducer,
-    recoveryKey: recoveryKeyReducer
+    recoveryKey: recoveryKeyReducer,
+    network: networkReducer
   });
 
   return rootReducer;

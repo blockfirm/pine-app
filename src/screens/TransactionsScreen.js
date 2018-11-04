@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
+import OfflineNoticeContainer from '../containers/OfflineNoticeContainer';
 import TransactionListContainer from '../containers/TransactionListContainer';
 import TransactionsScreenHeader from '../components/TransactionsScreenHeader';
-import OfflineNotice from '../components/OfflineNotice';
 import BaseScreen from './BaseScreen';
 
 const styles = StyleSheet.create({
@@ -33,7 +33,7 @@ export default class TransactionsScreen extends Component {
     return (
       <BaseScreen style={styles.view}>
         <TransactionsScreenHeader onSettingsPress={this._showSettings.bind(this)} />
-        <OfflineNotice />
+        <OfflineNoticeContainer />
         <TransactionListContainer />
       </BaseScreen>
     );

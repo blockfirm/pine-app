@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, LayoutAnimation, NetInfo } from 'react-native';
+import { StyleSheet, View, LayoutAnimation } from 'react-native';
+import PropTypes from 'prop-types';
 import StyledText from '../components/StyledText';
 
 const HEIGHT = 30;
+
+const COLOR_ERROR = '#FF3B30';
+const COLOR_WARNING = '#FF8D36';
+
+const LABEL_DISCONNECTED_FROM_INTERNET = 'No Internet Connection';
+const LABEL_DISCONNECTED_FROM_SERVER = 'Waiting for Network...';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,13 +17,19 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     height: HEIGHT + 15
   },
+  containerHidden: {
+    height: 0
+  },
   notice: {
-    backgroundColor: '#FF3B30',
+    backgroundColor: COLOR_ERROR,
     height: HEIGHT,
     marginTop: 0,
     alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  noticeHidden: {
+    marginTop: -45
   },
   text: {
     color: '#ffffff'
@@ -25,47 +38,69 @@ const styles = StyleSheet.create({
 
 export default class OfflineNotice extends Component {
   state = {
-    isConnected: true
+    isVisible: false,
+    backgroundColor: COLOR_ERROR,
+    label: LABEL_DISCONNECTED_FROM_INTERNET
   }
 
-  componentDidMount() {
-    // Get initial internet connection status.
-    NetInfo.isConnected.fetch().then(this._onConnectionChange.bind(this));
+  componentWillReceiveProps(nextProps) {
+    let isVisible = false;
+    let { backgroundColor, label } = this.state;
 
-    // Listen for internet connection changes.
-    NetInfo.isConnected.addEventListener('connectionChange', this._onConnectionChange.bind(this));
-  }
+    if (nextProps.isDisconnectedFromInternet || nextProps.isDisconnectedFromServer) {
+      isVisible = true;
+    }
 
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener('connectionChange', this._onConnectionChange);
-  }
+    if (nextProps.isDisconnectedFromInternet) {
+      backgroundColor = COLOR_ERROR;
+      label = LABEL_DISCONNECTED_FROM_INTERNET;
+    } else if (nextProps.isDisconnectedFromServer) {
+      backgroundColor = COLOR_WARNING;
+      label = LABEL_DISCONNECTED_FROM_SERVER;
+    }
 
-  _onConnectionChange(isConnected) {
-    LayoutAnimation.easeInEaseOut();
-    this.setState({ isConnected });
+    if (isVisible !== this.state.isVisible) {
+      LayoutAnimation.easeInEaseOut();
+    }
+
+    this.setState({
+      isVisible,
+      backgroundColor,
+      label
+    });
   }
 
   render() {
-    const isConnected = this.state.isConnected;
+    const {
+      isVisible,
+      backgroundColor,
+      label
+    } = this.state;
 
     const containerStyles = [
       styles.container,
-      isConnected ? { height: 0 } : null
+      !isVisible ? styles.containerHidden : null
     ];
 
     const noticeStyles = [
       styles.notice,
-      isConnected ? { marginTop: -45 } : null
+      { backgroundColor },
+      !isVisible ? styles.noticeHidden : null
     ];
 
     return (
       <View style={containerStyles}>
         <View style={noticeStyles}>
           <StyledText style={styles.text}>
-            No Internet Connection
+            {label}
           </StyledText>
         </View>
       </View>
     );
   }
 }
+
+OfflineNotice.propTypes = {
+  isDisconnectedFromInternet: PropTypes.bool,
+  isDisconnectedFromServer: PropTypes.bool
+};
