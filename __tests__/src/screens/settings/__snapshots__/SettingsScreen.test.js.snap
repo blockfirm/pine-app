@@ -35,15 +35,8 @@ exports[`SettingsScreen renders correctly 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -51,8 +44,6 @@ exports[`SettingsScreen renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -89,10 +80,6 @@ exports[`SettingsScreen renders correctly 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
                 style={
                   Array [
                     Object {
@@ -111,9 +98,6 @@ exports[`SettingsScreen renders correctly 1`] = `
                 General
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Array [
@@ -142,9 +126,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                 }
               />
               <Text
-                accessible={true}
                 allowFontScaling={false}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -163,6 +145,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
+                    Object {},
                   ]
                 }
               >
@@ -171,15 +154,8 @@ exports[`SettingsScreen renders correctly 1`] = `
             </View>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -187,8 +163,6 @@ exports[`SettingsScreen renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -225,10 +199,6 @@ exports[`SettingsScreen renders correctly 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
                 style={
                   Array [
                     Object {
@@ -247,9 +217,6 @@ exports[`SettingsScreen renders correctly 1`] = `
                 Security and Privacy
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Array [
@@ -278,9 +245,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                 }
               />
               <Text
-                accessible={true}
                 allowFontScaling={false}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -299,6 +264,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
+                    Object {},
                   ]
                 }
               >
@@ -307,15 +273,8 @@ exports[`SettingsScreen renders correctly 1`] = `
             </View>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -323,8 +282,6 @@ exports[`SettingsScreen renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -363,10 +320,6 @@ exports[`SettingsScreen renders correctly 1`] = `
                 }
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
                 style={
                   Array [
                     Object {
@@ -385,9 +338,6 @@ exports[`SettingsScreen renders correctly 1`] = `
                 Bitcoin
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Array [
@@ -416,9 +366,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                 }
               />
               <Text
-                accessible={true}
                 allowFontScaling={false}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -437,6 +385,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
+                    Object {},
                   ]
                 }
               >

@@ -4,11 +4,7 @@ exports[`ErrorBoundary renders correctly 1`] = `
 <View
   dispatch={[MockFunction]}
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     496f7017-d1ef-430c-a2da-b2a4ac094798
   </Text>
   <ErrorModalContainer />

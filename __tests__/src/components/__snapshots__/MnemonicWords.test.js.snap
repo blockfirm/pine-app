@@ -35,10 +35,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -63,10 +59,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -108,10 +100,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -136,10 +124,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -181,10 +165,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -209,10 +189,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -254,10 +230,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -282,10 +254,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -327,10 +295,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -355,10 +319,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -400,10 +360,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -428,10 +384,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -473,10 +425,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -501,10 +449,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -546,10 +490,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -574,10 +514,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -619,10 +555,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -647,10 +579,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -692,10 +620,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -720,10 +644,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -765,10 +685,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -793,10 +709,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -838,10 +750,6 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -866,10 +774,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         .
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -907,16 +811,8 @@ exports[`MnemonicWords renders correctly 1`] = `
     }
   />
   <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
     accessible={true}
-    collapsable={undefined}
-    hasTVPreferredFocus={undefined}
-    hitSlop={undefined}
     isTVSelectable={true}
-    nativeID={undefined}
-    onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -930,8 +826,6 @@ exports[`MnemonicWords renders correctly 1`] = `
         "position": "absolute",
       }
     }
-    testID={undefined}
-    tvParallaxProperties={undefined}
   >
     <View
       style={
@@ -941,9 +835,7 @@ exports[`MnemonicWords renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
         allowFontScaling={false}
-        ellipsizeMode="tail"
         style={
           Array [
             Object {
@@ -952,23 +844,20 @@ exports[`MnemonicWords renders correctly 1`] = `
             },
             Object {
               "color": "#007AFF",
-              "fontSize": 48,
+              "fontSize": 38,
             },
             Object {
               "fontFamily": "Ionicons",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
+            Object {},
           ]
         }
       >
         
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {

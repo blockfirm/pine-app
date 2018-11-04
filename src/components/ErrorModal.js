@@ -119,7 +119,7 @@ export default class ErrorModal extends Component {
         <View style={modalStyles}>
           <View style={styles.modalHeader}>
             <StyledText style={styles.modalHeaderText}>
-              <Icon name='ios-alert-outline' style={styles.modalHeaderIcon} />
+              <Icon name='ios-alert' style={styles.modalHeaderIcon} />
             </StyledText>
           </View>
 

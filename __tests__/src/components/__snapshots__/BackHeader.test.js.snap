@@ -15,16 +15,13 @@ exports[`BackHeader renders correctly with showBackButton set to false 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
           "color": "black",
           "fontFamily": "System",
           "fontSize": 17,
-          "fontWeight": "700",
+          "fontWeight": "600",
         },
         Object {
           "left": 40,
@@ -54,16 +51,8 @@ exports[`BackHeader renders correctly with showBackButton set to true 1`] = `
   }
 >
   <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
     accessible={true}
-    collapsable={undefined}
-    hasTVPreferredFocus={undefined}
-    hitSlop={undefined}
     isTVSelectable={true}
-    nativeID={undefined}
-    onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}
@@ -78,13 +67,9 @@ exports[`BackHeader renders correctly with showBackButton set to true 1`] = `
         "top": 36,
       }
     }
-    testID={undefined}
-    tvParallaxProperties={undefined}
   >
     <Text
-      accessible={true}
       allowFontScaling={false}
-      ellipsizeMode="tail"
       style={
         Array [
           Object {
@@ -105,6 +90,7 @@ exports[`BackHeader renders correctly with showBackButton set to true 1`] = `
             "fontStyle": "normal",
             "fontWeight": "normal",
           },
+          Object {},
         ]
       }
     >
@@ -112,16 +98,13 @@ exports[`BackHeader renders correctly with showBackButton set to true 1`] = `
     </Text>
   </View>
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
           "color": "black",
           "fontFamily": "System",
           "fontSize": 17,
-          "fontWeight": "700",
+          "fontWeight": "600",
         },
         Object {
           "left": 40,

@@ -16,11 +16,7 @@ exports[`SettingsGroup renders correctly 1`] = `
     ]
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     7ec4a1e5-7bc9-4e48-99cc-304d19ebc138
   </Text>
 </View>

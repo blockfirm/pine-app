@@ -2,20 +2,13 @@
 
 exports[`StrongText renders correctly 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Object {
       "fontWeight": "600",
     }
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     27125870-9efa-4ddd-b8fb-4f520751cd1d
   </Text>
 </Text>

@@ -15,10 +15,7 @@ exports[`BaseScreen renders correctly 1`] = `
     ]
   }
 >
-  <BackHeaderContainer
-    backButtonIconStyle={undefined}
-    title={undefined}
-  />
+  <BackHeaderContainer />
   <ErrorModalContainer />
 </View>
 `;

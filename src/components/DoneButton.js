@@ -6,7 +6,7 @@ import StyledText from './StyledText';
 const styles = StyleSheet.create({
   button: {
     padding: 10,
-    paddingRight: 16.5
+    paddingRight: 16
   },
   text: {
     fontSize: 17,

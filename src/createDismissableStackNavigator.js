@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import PropTypes from 'prop-types';
 
-const DismissableStackNavigator = (routes, options) => {
-  // eslint-disable-next-line new-cap
-  const StackNav = StackNavigator(routes, options);
+const createDismissableStackNavigator = (routes, options) => {
+  const StackNavigator = createStackNavigator(routes, options);
 
-  return class DismissableStackNav extends Component {
-    static router = StackNav.router;
+  return class DismissableStackNavigator extends Component {
+    static router = StackNavigator.router;
 
     static propTypes = {
       navigation: PropTypes.object,
@@ -23,7 +22,7 @@ const DismissableStackNavigator = (routes, options) => {
       };
 
       return (
-        <StackNav
+        <StackNavigator
           screenProps={props}
           navigation={this.props.navigation}
         />
@@ -32,4 +31,4 @@ const DismissableStackNavigator = (routes, options) => {
   };
 };
 
-export default DismissableStackNavigator;
+export default createDismissableStackNavigator;

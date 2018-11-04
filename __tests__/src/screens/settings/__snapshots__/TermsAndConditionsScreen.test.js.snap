@@ -47,10 +47,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -81,10 +77,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
               Last updated: October 11, 2018
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -115,10 +107,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
               These Terms and Conditions ("Terms", "Terms and Conditions") govern your relationship with Payla mobile application (the "Service") operated by Blockfirm AB ("us", "we", or "our").
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -149,10 +137,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
               Please read these Terms and Conditions carefully before using our Payla mobile application (the "Service").
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -183,10 +167,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
               Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -218,10 +198,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             </Text>
           </View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={undefined}
             style={
               Array [
                 Object {
@@ -241,7 +217,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 13,
-                    "fontWeight": "700",
+                    "fontWeight": "600",
                     "letterSpacing": -0.08,
                     "lineHeight": 15,
                     "marginTop": 10,
@@ -263,10 +239,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -298,10 +270,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             </Text>
           </View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={undefined}
             style={
               Array [
                 Object {
@@ -321,7 +289,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 13,
-                    "fontWeight": "700",
+                    "fontWeight": "600",
                     "letterSpacing": -0.08,
                     "lineHeight": 15,
                     "marginTop": 10,
@@ -343,10 +311,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -377,10 +341,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
               Our Service may contain links to third-party web sites or services that are not owned or controlled by Blockfirm AB.
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -411,10 +371,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
               Blockfirm AB has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that Blockfirm AB shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -446,10 +402,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             </Text>
           </View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={undefined}
             style={
               Array [
                 Object {
@@ -469,7 +421,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 13,
-                    "fontWeight": "700",
+                    "fontWeight": "600",
                     "letterSpacing": -0.08,
                     "lineHeight": 15,
                     "marginTop": 10,
@@ -491,10 +443,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -526,10 +474,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             </Text>
           </View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={undefined}
             style={
               Array [
                 Object {
@@ -549,7 +493,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 13,
-                    "fontWeight": "700",
+                    "fontWeight": "600",
                     "letterSpacing": -0.08,
                     "lineHeight": 15,
                     "marginTop": 10,
@@ -571,10 +515,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -605,10 +545,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
               Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non- infringement or course of performance.
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -640,10 +576,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             </Text>
           </View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={undefined}
             style={
               Array [
                 Object {
@@ -663,7 +595,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 13,
-                    "fontWeight": "700",
+                    "fontWeight": "600",
                     "letterSpacing": -0.08,
                     "lineHeight": 15,
                     "marginTop": 10,
@@ -685,10 +617,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -719,10 +647,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
               These Terms shall be governed and construed in accordance with the laws of Sweden, without regard to its conflict of law provisions.
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -754,10 +678,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             </Text>
           </View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={undefined}
             style={
               Array [
                 Object {
@@ -777,7 +697,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 13,
-                    "fontWeight": "700",
+                    "fontWeight": "600",
                     "letterSpacing": -0.08,
                     "lineHeight": 15,
                     "marginTop": 10,
@@ -799,10 +719,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -833,10 +749,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
               We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -868,10 +780,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             </Text>
           </View>
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-            numberOfLines={undefined}
             style={
               Array [
                 Object {
@@ -891,7 +799,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                   Object {
                     "color": "#000000",
                     "fontSize": 13,
-                    "fontWeight": "700",
+                    "fontWeight": "600",
                     "letterSpacing": -0.08,
                     "lineHeight": 15,
                     "marginTop": 10,
@@ -913,10 +821,6 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {

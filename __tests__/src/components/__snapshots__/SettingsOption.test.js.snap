@@ -2,15 +2,8 @@
 
 exports[`SettingsOption renders correctly 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -18,8 +11,6 @@ exports[`SettingsOption renders correctly 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={null}
-  testID={undefined}
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -38,10 +29,6 @@ exports[`SettingsOption renders correctly 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      numberOfLines={undefined}
       style={
         Array [
           Object {
@@ -65,15 +52,8 @@ exports[`SettingsOption renders correctly 1`] = `
 
 exports[`SettingsOption renders correctly as the last item 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
   accessible={true}
-  hasTVPreferredFocus={undefined}
-  hitSlop={undefined}
   isTVSelectable={true}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -81,8 +61,6 @@ exports[`SettingsOption renders correctly as the last item 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={null}
-  testID={undefined}
-  tvParallaxProperties={undefined}
 >
   <View
     style={
@@ -103,10 +81,6 @@ exports[`SettingsOption renders correctly as the last item 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      numberOfLines={undefined}
       style={
         Array [
           Object {

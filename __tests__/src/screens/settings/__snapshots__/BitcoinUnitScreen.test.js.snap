@@ -35,15 +35,8 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -51,8 +44,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -71,10 +62,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
                 style={
                   Array [
                     Object {
@@ -93,9 +80,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                 BTC
               </Text>
               <Text
-                accessible={true}
                 allowFontScaling={false}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -114,23 +99,17 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
+                    Object {},
                   ]
                 }
               >
-                
+                
               </Text>
             </View>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -138,8 +117,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -158,10 +135,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
                 style={
                   Array [
                     Object {
@@ -182,15 +155,8 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
             </View>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -198,8 +164,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -220,10 +184,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
                 style={
                   Array [
                     Object {
@@ -245,10 +205,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
           </View>
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          numberOfLines={undefined}
           style={
             Array [
               Object {
@@ -271,10 +227,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
           Choose the unit in which bitcoin amounts should be displayed.
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          numberOfLines={undefined}
           style={
             Array [
               Object {
@@ -295,9 +247,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "fontWeight": "600",
@@ -309,10 +258,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
            is one bitcoin and will be displayed as BTC.
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          numberOfLines={undefined}
           style={
             Array [
               Object {
@@ -333,9 +278,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "fontWeight": "600",
@@ -347,10 +289,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
            is one thousandth of a bitcoin and will be displayed as mBTC.
         </Text>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          numberOfLines={undefined}
           style={
             Array [
               Object {
@@ -371,9 +309,6 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "fontWeight": "600",

@@ -2,10 +2,6 @@
 
 exports[`Title renders correctly 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
-  numberOfLines={undefined}
   style={
     Array [
       Object {
@@ -27,11 +23,7 @@ exports[`Title renders correctly 1`] = `
     ]
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     32a29072-5334-4ad1-a86d-37f6c2639449
   </Text>
 </Text>

@@ -56,12 +56,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
           selectionColor="#007AFF"
@@ -87,14 +85,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -165,12 +159,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
           selectionColor="#007AFF"
@@ -196,14 +188,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -274,12 +262,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
           selectionColor="#007AFF"
@@ -305,14 +291,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -383,12 +365,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
           selectionColor="#007AFF"
@@ -414,14 +394,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -492,12 +468,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
           selectionColor="#007AFF"
@@ -523,14 +497,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -601,12 +571,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
           selectionColor="#007AFF"
@@ -632,14 +600,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -710,12 +674,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
           selectionColor="#007AFF"
@@ -741,14 +703,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -819,12 +777,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
           selectionColor="#007AFF"
@@ -850,14 +806,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -928,12 +880,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
           selectionColor="#007AFF"
@@ -959,14 +909,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -1037,12 +983,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
           selectionColor="#007AFF"
@@ -1068,14 +1012,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -1146,12 +1086,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
           selectionColor="#007AFF"
@@ -1177,14 +1115,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -1255,12 +1189,10 @@ exports[`MnemonicInput renders correctly 1`] = `
           autoCorrect={false}
           editable={true}
           enablesReturnKeyAutomatically={true}
-          keyboardType={undefined}
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
           onSubmitEditing={[Function]}
-          placeholder={undefined}
           placeholderTextColor="#DADADA"
           returnKeyType="done"
           selectionColor="#007AFF"
@@ -1286,14 +1218,10 @@ exports[`MnemonicInput renders correctly 1`] = `
               ],
             ]
           }
-          value={undefined}
+          underlineColorAndroid="transparent"
         />
       </View>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {

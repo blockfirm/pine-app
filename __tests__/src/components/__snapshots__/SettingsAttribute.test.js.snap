@@ -18,10 +18,6 @@ exports[`SettingsAttribute renders correctly 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    numberOfLines={undefined}
     style={
       Array [
         Object {
@@ -40,9 +36,6 @@ exports[`SettingsAttribute renders correctly 1`] = `
     8e69990a-32bf-4daf-9a40-2be6c45dad18
   </Text>
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     numberOfLines={1}
     style={
       Array [
@@ -90,10 +83,6 @@ exports[`SettingsAttribute renders correctly as the last item 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    numberOfLines={undefined}
     style={
       Array [
         Object {
@@ -112,9 +101,6 @@ exports[`SettingsAttribute renders correctly as the last item 1`] = `
     8e69990a-32bf-4daf-9a40-2be6c45dad18
   </Text>
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     numberOfLines={1}
     style={
       Array [

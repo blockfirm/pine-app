@@ -15,9 +15,6 @@ exports[`SettingsInput renders correctly 1`] = `
     allowFontScaling={true}
     autoFocus={true}
     clearButtonMode="always"
-    keyboardType={undefined}
-    onChangeText={undefined}
-    onSubmitEditing={undefined}
     placeholder="f69225ae-ee9b-4e45-9688-4a74ae3b82e9"
     placeholderTextColor="#8E8E93"
     returnKeyType="done"
@@ -30,6 +27,7 @@ exports[`SettingsInput renders correctly 1`] = `
         "fontWeight": "400",
       }
     }
+    underlineColorAndroid="transparent"
     value="5f2d5a31-66cc-438f-9136-085e1c8ceb2b"
   />
 </View>

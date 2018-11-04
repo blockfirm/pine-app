@@ -22,10 +22,6 @@ exports[`MnemonicWord renders correctly 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      numberOfLines={undefined}
       style={
         Array [
           Object {
@@ -50,10 +46,6 @@ exports[`MnemonicWord renders correctly 1`] = `
       .
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      numberOfLines={undefined}
       style={
         Array [
           Object {

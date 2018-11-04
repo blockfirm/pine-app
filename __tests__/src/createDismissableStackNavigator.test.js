@@ -1,30 +1,28 @@
 import React, { Component } from 'react';
 import renderer from 'react-test-renderer';
-import DismissableStackNavigator from '../../src/DismissableStackNavigator';
+import createDismissableStackNavigator from '../../src/createDismissableStackNavigator';
 
 jest.mock('react-navigation', () => ({
-  StackNavigator: () => 'StackNav'
+  createStackNavigator: () => 'StackNavigator'
 }));
 
-describe('DismissableStackNavigator(routes, options)', () => {
+describe('createDismissableStackNavigator(routes, options)', () => {
   it('is a function', () => {
-    expect(typeof DismissableStackNavigator).toBe('function');
+    expect(typeof createDismissableStackNavigator).toBe('function');
   });
 
   it('accepts two arguments', () => {
-    expect(DismissableStackNavigator.length).toBe(2);
+    expect(createDismissableStackNavigator.length).toBe(2);
   });
 
   it('returns a component', () => {
-    // eslint-disable-next-line new-cap
-    const DismissableStackNav = DismissableStackNavigator();
-    expect(DismissableStackNav.prototype).toBeInstanceOf(Component);
+    const DismissableStackNavigator = createDismissableStackNavigator();
+    expect(DismissableStackNavigator.prototype).toBeInstanceOf(Component);
   });
 
   describe('the component', () => {
     it('renders correctly', () => {
-      // eslint-disable-next-line new-cap
-      const DismissableStackNav = DismissableStackNavigator();
+      const DismissableStackNavigator = createDismissableStackNavigator();
 
       const navigationMock = {
         state: {
@@ -34,7 +32,7 @@ describe('DismissableStackNavigator(routes, options)', () => {
       };
 
       const tree = renderer.create(
-        <DismissableStackNav
+        <DismissableStackNavigator
           screenProps={{}}
           navigation={navigationMock}
         />

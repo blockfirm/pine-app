@@ -114,7 +114,7 @@ export default class ShowMnemonicScreen extends Component {
         <SettingsGroup>
           <SettingsButton
             title='Back up Manually'
-            showCheckmark={hasCreatedBackup}
+            showCheckmark={Boolean(hasCreatedBackup)}
             onPress={this._backUpManually.bind(this)}
             isLastItem={true}
           />

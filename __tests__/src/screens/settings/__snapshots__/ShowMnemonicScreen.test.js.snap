@@ -53,10 +53,6 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -95,19 +91,14 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
               }
             >
               <RCTSwitch
-                disabled={false}
                 onChange={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                onValueChange={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "height": 31,
-                      "width": 51,
-                    },
-                    undefined,
-                  ]
+                  Object {
+                    "height": 31,
+                    "width": 51,
+                  }
                 }
                 value={false}
               />
@@ -115,10 +106,6 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
           </View>
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          numberOfLines={undefined}
           style={
             Array [
               Object {
@@ -156,15 +143,8 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -172,8 +152,6 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -194,10 +172,6 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
                 style={
                   Array [
                     Object {
@@ -226,10 +200,6 @@ exports[`ShowMnemonicScreen renders correctly 1`] = `
           </View>
         </View>
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          numberOfLines={undefined}
           style={
             Array [
               Object {

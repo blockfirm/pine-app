@@ -12,7 +12,7 @@ const headerStyles = StyleSheet.create({
   },
   title: {
     fontSize: 17,
-    fontWeight: '700',
+    fontWeight: '600',
     fontFamily: 'System',
     color: 'black'
   }

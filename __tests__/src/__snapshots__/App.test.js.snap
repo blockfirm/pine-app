@@ -4,11 +4,9 @@ exports[`App renders correctly 1`] = `
 <View
   onLayout={[Function]}
   style={
-    Array [
-      Object {
-        "flex": 1,
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
   <View
@@ -29,6 +27,7 @@ exports[`App renders correctly 1`] = `
         Object {
           "flex": 1,
           "flexDirection": "column-reverse",
+          "overflow": "hidden",
         },
         Object {
           "backgroundColor": "#000",
@@ -44,14 +43,15 @@ exports[`App renders correctly 1`] = `
       }
     >
       <View
-        collapsable={undefined}
+        accessibilityElementsHidden={false}
         pointerEvents="auto"
         style={
           Object {
-            "backgroundColor": "#EFEFF4",
+            "backgroundColor": "#E9E9EF",
             "bottom": 0,
             "left": 0,
             "opacity": 1,
+            "paddingTop": 0,
             "position": "absolute",
             "right": 0,
             "shadowColor": "black",
@@ -76,11 +76,9 @@ exports[`App renders correctly 1`] = `
         <View
           onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         >
           <View
@@ -101,6 +99,7 @@ exports[`App renders correctly 1`] = `
                 Object {
                   "flex": 1,
                   "flexDirection": "column-reverse",
+                  "overflow": "hidden",
                 },
                 Object {
                   "backgroundColor": "#000",
@@ -116,14 +115,15 @@ exports[`App renders correctly 1`] = `
               }
             >
               <View
-                collapsable={undefined}
+                accessibilityElementsHidden={false}
                 pointerEvents="auto"
                 style={
                   Object {
-                    "backgroundColor": "#EFEFF4",
+                    "backgroundColor": "#E9E9EF",
                     "bottom": 0,
                     "left": 0,
                     "opacity": 1,
+                    "paddingTop": 0,
                     "position": "absolute",
                     "right": 0,
                     "shadowColor": "black",
@@ -150,6 +150,7 @@ exports[`App renders correctly 1`] = `
                     Object {
                       "flex": 1,
                       "flexDirection": "column-reverse",
+                      "overflow": "hidden",
                     }
                   }
                 >
@@ -193,16 +194,13 @@ exports[`App renders correctly 1`] = `
                         }
                       >
                         <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
                           style={
                             Array [
                               Object {
                                 "color": "black",
                                 "fontFamily": "System",
                                 "fontSize": 17,
-                                "fontWeight": "700",
+                                "fontWeight": "600",
                               },
                               Object {
                                 "left": 40,
@@ -229,7 +227,6 @@ exports[`App renders correctly 1`] = `
                         }
                       />
                       <View
-                        pointerEvents={undefined}
                         style={
                           Array [
                             Object {
@@ -329,10 +326,6 @@ exports[`App renders correctly 1`] = `
                             }
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
-                              numberOfLines={undefined}
                               style={
                                 Array [
                                   Object {
@@ -350,9 +343,7 @@ exports[`App renders correctly 1`] = `
                               }
                             >
                               <Text
-                                accessible={true}
                                 allowFontScaling={false}
-                                ellipsizeMode="tail"
                                 style={
                                   Array [
                                     Object {
@@ -367,10 +358,11 @@ exports[`App renders correctly 1`] = `
                                       "fontStyle": "normal",
                                       "fontWeight": "normal",
                                     },
+                                    Object {},
                                   ]
                                 }
                               >
-                                
+                                
                               </Text>
                             </Text>
                           </View>
@@ -384,10 +376,6 @@ exports[`App renders correctly 1`] = `
                             }
                           >
                             <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              ellipsizeMode="tail"
-                              numberOfLines={undefined}
                               style={
                                 Array [
                                   Object {
@@ -416,15 +404,8 @@ exports[`App renders correctly 1`] = `
                           </View>
                           <View>
                             <View
-                              accessibilityComponentType={undefined}
-                              accessibilityLabel={undefined}
-                              accessibilityTraits={undefined}
                               accessible={true}
-                              hasTVPreferredFocus={undefined}
-                              hitSlop={undefined}
                               isTVSelectable={true}
-                              nativeID={undefined}
-                              onLayout={undefined}
                               onResponderGrant={[Function]}
                               onResponderMove={[Function]}
                               onResponderRelease={[Function]}
@@ -441,20 +422,11 @@ exports[`App renders correctly 1`] = `
                                   "padding": 15,
                                 }
                               }
-                              testID={undefined}
-                              tvParallaxProperties={undefined}
                             >
                               <Text
-                                accessible={true}
-                                allowFontScaling={true}
-                                ellipsizeMode="tail"
                                 style={null}
                               >
                                 <Text
-                                  accessible={true}
-                                  allowFontScaling={true}
-                                  ellipsizeMode="tail"
-                                  numberOfLines={undefined}
                                   style={
                                     Array [
                                       Object {

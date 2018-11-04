@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
 import AppNavigator from './AppNavigator';
-import AppWithNavigationState from './AppWithNavigationState';
+import getAppWithNavigationState from './getAppWithNavigationState';
 import createStore from './createStore';
 
 const navReducer = (state, action) => {
@@ -11,6 +11,7 @@ const navReducer = (state, action) => {
 };
 
 const store = createStore(navReducer);
+const AppWithNavigationState = getAppWithNavigationState();
 
 export default class App extends Component {
   render() {

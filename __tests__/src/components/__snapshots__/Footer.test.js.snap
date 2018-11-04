@@ -2,7 +2,6 @@
 
 exports[`Footer renders correctly 1`] = `
 <View
-  pointerEvents={undefined}
   style={
     Array [
       Object {
@@ -17,11 +16,7 @@ exports[`Footer renders correctly 1`] = `
     ]
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     0750eb7b-6bc0-4142-82e2-035068d50726
   </Text>
 </View>

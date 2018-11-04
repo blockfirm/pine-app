@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DismissableStackNavigator(routes, options) the component renders correctly 1`] = `
-<StackNav
+exports[`createDismissableStackNavigator(routes, options) the component renders correctly 1`] = `
+<StackNavigator
   navigation={
     Object {
       "goBack": [Function],

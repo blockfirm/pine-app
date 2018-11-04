@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   revealIcon: {
     color: '#007AFF',
-    fontSize: 48
+    fontSize: 38
   },
   revealText: {
     color: '#007AFF'

@@ -2,10 +2,6 @@
 
 exports[`Paragraph renders correctly 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
-  numberOfLines={undefined}
   style={
     Array [
       Object {
@@ -27,11 +23,7 @@ exports[`Paragraph renders correctly 1`] = `
     ]
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     111b4b5f-5b3a-46ef-9ffb-7e6c67e56f78
   </Text>
 </Text>

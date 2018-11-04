@@ -51,10 +51,6 @@ exports[`AboutScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -73,9 +69,6 @@ exports[`AboutScreen renders correctly 1`] = `
               Version
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               numberOfLines={1}
               style={
                 Array [
@@ -120,10 +113,6 @@ exports[`AboutScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -142,9 +131,6 @@ exports[`AboutScreen renders correctly 1`] = `
               Copyright
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               numberOfLines={1}
               style={
                 Array [
@@ -203,10 +189,6 @@ exports[`AboutScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -225,9 +207,6 @@ exports[`AboutScreen renders correctly 1`] = `
               Key Derivation Scheme
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               numberOfLines={1}
               style={
                 Array [
@@ -272,10 +251,6 @@ exports[`AboutScreen renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -294,9 +269,6 @@ exports[`AboutScreen renders correctly 1`] = `
               BIP49 Account Index
             </Text>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               numberOfLines={1}
               style={
                 Array [
@@ -339,15 +311,8 @@ exports[`AboutScreen renders correctly 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -355,8 +320,6 @@ exports[`AboutScreen renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -378,10 +341,6 @@ exports[`AboutScreen renders correctly 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
                 style={
                   Array [
                     Object {
@@ -400,9 +359,6 @@ exports[`AboutScreen renders correctly 1`] = `
                 Terms and Conditions
               </Text>
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
                   Array [
@@ -431,9 +387,7 @@ exports[`AboutScreen renders correctly 1`] = `
                 }
               />
               <Text
-                accessible={true}
                 allowFontScaling={false}
-                ellipsizeMode="tail"
                 style={
                   Array [
                     Object {
@@ -452,6 +406,7 @@ exports[`AboutScreen renders correctly 1`] = `
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
+                    Object {},
                   ]
                 }
               >
@@ -476,15 +431,8 @@ exports[`AboutScreen renders correctly 1`] = `
           }
         >
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -492,8 +440,6 @@ exports[`AboutScreen renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -512,10 +458,6 @@ exports[`AboutScreen renders correctly 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
                 style={
                   Array [
                     Object {
@@ -543,15 +485,8 @@ exports[`AboutScreen renders correctly 1`] = `
             </View>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -559,8 +494,6 @@ exports[`AboutScreen renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -579,10 +512,6 @@ exports[`AboutScreen renders correctly 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
                 style={
                   Array [
                     Object {
@@ -610,15 +539,8 @@ exports[`AboutScreen renders correctly 1`] = `
             </View>
           </View>
           <View
-            accessibilityComponentType={undefined}
-            accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
             accessible={true}
-            hasTVPreferredFocus={undefined}
-            hitSlop={undefined}
             isTVSelectable={true}
-            nativeID={undefined}
-            onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
             onResponderRelease={[Function]}
@@ -626,8 +548,6 @@ exports[`AboutScreen renders correctly 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={null}
-            testID={undefined}
-            tvParallaxProperties={undefined}
           >
             <View
               style={
@@ -648,10 +568,6 @@ exports[`AboutScreen renders correctly 1`] = `
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
-                numberOfLines={undefined}
                 style={
                   Array [
                     Object {

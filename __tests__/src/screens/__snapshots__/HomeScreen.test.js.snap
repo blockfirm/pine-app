@@ -50,7 +50,6 @@ exports[`HomeScreen renders correctly 1`] = `
     showsHorizontalScrollIndicator={false}
     showsPagination={false}
     showsVerticalScrollIndicator={false}
-    style={undefined}
   >
     <View>
       <View
@@ -83,10 +82,7 @@ exports[`HomeScreen renders correctly 1`] = `
             ]
           }
         >
-          <BackHeaderContainer
-            backButtonIconStyle={undefined}
-            title={undefined}
-          />
+          <BackHeaderContainer />
           <View
             style={
               Object {

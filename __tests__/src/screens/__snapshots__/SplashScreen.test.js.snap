@@ -20,10 +20,7 @@ exports[`SplashScreen renders correctly 1`] = `
     ]
   }
 >
-  <BackHeaderContainer
-    backButtonIconStyle={undefined}
-    title={undefined}
-  />
+  <BackHeaderContainer />
   <Image
     source={
       Object {
@@ -38,7 +35,6 @@ exports[`SplashScreen renders correctly 1`] = `
     }
   />
   <View
-    pointerEvents={undefined}
     style={
       Array [
         Object {

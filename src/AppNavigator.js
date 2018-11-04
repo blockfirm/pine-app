@@ -1,4 +1,4 @@
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 import SplashScreen from './screens/SplashScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
@@ -20,10 +20,9 @@ import BitcoinFeeSettingsScreen from './screens/settings/BitcoinFeeSettingsScree
 import SatoshisPerByteScreen from './screens/settings/SatoshisPerByteScreen';
 import ShowMnemonicScreen from './screens/settings/ShowMnemonicScreen';
 
-import DismissableStackNavigator from './DismissableStackNavigator';
+import createDismissableStackNavigator from './createDismissableStackNavigator';
 
-// eslint-disable-next-line new-cap
-const MainCardNavigator = StackNavigator({
+const MainCardNavigator = createStackNavigator({
   Splash: { screen: SplashScreen },
   Welcome: { screen: WelcomeScreen },
   Mnemonic: { screen: MnemonicScreen },
@@ -35,8 +34,7 @@ const MainCardNavigator = StackNavigator({
   headerMode: 'screen'
 });
 
-// eslint-disable-next-line new-cap
-const SettingsCardNavigator = DismissableStackNavigator({
+const SettingsCardNavigator = createDismissableStackNavigator({
   Settings: { screen: SettingsScreen },
   GeneralSettings: { screen: GeneralSettingsScreen },
   SecurityAndPrivacySettings: { screen: SecurityAndPrivacySettingsScreen },
@@ -52,8 +50,7 @@ const SettingsCardNavigator = DismissableStackNavigator({
   headerMode: 'float'
 });
 
-// eslint-disable-next-line new-cap
-const ModalNavigator = DismissableStackNavigator({
+const ModalNavigator = createDismissableStackNavigator({
   TermsAndConditionsModal: { screen: TermsAndConditionsScreen },
   MnemonicModal: { screen: MnemonicScreen },
   ConfirmMnemonicModal: { screen: ConfirmMnemonicScreen }
@@ -61,8 +58,7 @@ const ModalNavigator = DismissableStackNavigator({
   headerMode: 'float'
 });
 
-// eslint-disable-next-line new-cap
-const MainModalNavigator = StackNavigator({
+const MainModalNavigator = createStackNavigator({
   MainCardNavigator: { screen: MainCardNavigator },
   SettingsCardNavigator: { screen: SettingsCardNavigator },
   ModalNavigator: { screen: ModalNavigator }

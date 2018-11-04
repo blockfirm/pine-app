@@ -2,13 +2,7 @@
 
 exports[`ImportMnemonicScreen renders correctly 1`] = `
 <View
-  accessibilityComponentType={undefined}
-  accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
   accessible={true}
-  hitSlop={undefined}
-  nativeID={undefined}
-  onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -20,7 +14,6 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
       "flex": 1,
     }
   }
-  testID={undefined}
 >
   <View
     headerTitle="Recover Wallet"
@@ -38,7 +31,6 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
     }
   >
     <BackHeaderContainer
-      backButtonIconStyle={undefined}
       title="Recover Wallet"
     />
     <View
@@ -54,10 +46,6 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        numberOfLines={undefined}
         style={
           Array [
             Object {
@@ -140,12 +128,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
                 selectionColor="#007AFF"
@@ -171,14 +157,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -249,12 +231,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
                 selectionColor="#007AFF"
@@ -280,14 +260,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -358,12 +334,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
                 selectionColor="#007AFF"
@@ -389,14 +363,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -467,12 +437,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
                 selectionColor="#007AFF"
@@ -498,14 +466,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -576,12 +540,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
                 selectionColor="#007AFF"
@@ -607,14 +569,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -685,12 +643,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
                 selectionColor="#007AFF"
@@ -716,14 +672,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -794,12 +746,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
                 selectionColor="#007AFF"
@@ -825,14 +775,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -903,12 +849,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
                 selectionColor="#007AFF"
@@ -934,14 +878,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -1012,12 +952,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
                 selectionColor="#007AFF"
@@ -1043,14 +981,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -1121,12 +1055,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
                 selectionColor="#007AFF"
@@ -1152,14 +1084,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -1230,12 +1158,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="next"
                 selectionColor="#007AFF"
@@ -1261,14 +1187,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -1339,12 +1261,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 autoCorrect={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
-                keyboardType={undefined}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
                 onSubmitEditing={[Function]}
-                placeholder={undefined}
                 placeholderTextColor="#DADADA"
                 returnKeyType="done"
                 selectionColor="#007AFF"
@@ -1370,14 +1290,10 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
-                value={undefined}
+                underlineColorAndroid="transparent"
               />
             </View>
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              numberOfLines={undefined}
               style={
                 Array [
                   Object {
@@ -1409,7 +1325,6 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
       </View>
     </View>
     <View
-      pointerEvents={undefined}
       style={
         Array [
           Object {
@@ -1425,16 +1340,8 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
       }
     >
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
         accessible={true}
-        collapsable={undefined}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -1446,8 +1353,6 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
             "opacity": 1,
           }
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
       >
         <View
           style={
@@ -1482,9 +1387,6 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
             }
           />
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Array [
                 Object {
