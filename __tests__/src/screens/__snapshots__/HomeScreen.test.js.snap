@@ -102,6 +102,7 @@ exports[`HomeScreen renders correctly 1`] = `
                 </Link>
               }
               onCameraReady={[Function]}
+              pendingAuthorizationView={<Component />}
               style={
                 Object {
                   "alignItems": "center",
