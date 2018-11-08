@@ -1,68 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HomeScreen renders correctly 1`] = `
-<View
-  onLayout={[Function]}
-  style={
+<RCTScrollView
+  bounces={false}
+  data={
     Array [
       Object {
-        "backgroundColor": "transparent",
-        "flex": 1,
-        "position": "relative",
+        "key": "camera",
+        "screen": <CameraScreen
+          showPreview={false}
+        />,
       },
-      undefined,
+      Object {
+        "key": "transactions",
+        "screen": <TransactionsScreen />,
+      },
+      Object {
+        "key": "receive",
+        "screen": <ReceiveScreen />,
+      },
     ]
   }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  getItemLayout={[Function]}
+  horizontal={true}
+  initialNumToRender={10}
+  initialScrollIndex={1}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  pagingEnabled={true}
+  renderItem={[Function]}
+  scrollEventThrottle={16}
+  showsHorizontalScrollIndicator={false}
+  stickyHeaderIndices={Array []}
+  style={
+    Object {
+      "alignSelf": "stretch",
+      "flex": 1,
+    }
+  }
+  updateCellsBatchingPeriod={50}
+  viewabilityConfigCallbackPairs={Array []}
+  windowSize={21}
 >
-  <RCTScrollView
-    automaticallyAdjustContentInsets={false}
-    autoplay={false}
-    autoplayDirection={true}
-    autoplayTimeout={2.5}
-    bounces={false}
-    contentContainerStyle={
-      Array [
-        Object {
-          "backgroundColor": "transparent",
-        },
-        undefined,
-      ]
-    }
-    contentOffset={
-      Object {
-        "x": 750,
+  <View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "row",
+          },
+          null,
+        ]
       }
-    }
-    disableNextButton={false}
-    horizontal={true}
-    index={1}
-    loadMinimal={false}
-    loadMinimalSize={1}
-    loop={false}
-    onIndexChanged={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    pagingEnabled={true}
-    removeClippedSubviews={true}
-    scrollsToTop={false}
-    showsButtons={false}
-    showsHorizontalScrollIndicator={false}
-    showsPagination={false}
-    showsVerticalScrollIndicator={false}
-  >
-    <View>
+    >
       <View
         style={
-          Array [
-            Object {
-              "height": 1334,
-              "width": 750,
-            },
-            Object {
-              "backgroundColor": "transparent",
-            },
-          ]
+          Object {
+            "height": 1334,
+            "width": 750,
+          }
         }
       >
         <View
@@ -119,37 +126,49 @@ exports[`HomeScreen renders correctly 1`] = `
           <ErrorModalContainer />
         </View>
       </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "row",
+          },
+          null,
+        ]
+      }
+    >
       <View
         style={
-          Array [
-            Object {
-              "height": 1334,
-              "width": 750,
-            },
-            Object {
-              "backgroundColor": "transparent",
-            },
-          ]
+          Object {
+            "height": 1334,
+            "width": 750,
+          }
         }
       >
         <TransactionsScreen />
       </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "row",
+          },
+          null,
+        ]
+      }
+    >
       <View
         style={
-          Array [
-            Object {
-              "height": 1334,
-              "width": 750,
-            },
-            Object {
-              "backgroundColor": "transparent",
-            },
-          ]
+          Object {
+            "height": 1334,
+            "width": 750,
+          }
         }
       >
         <ReceiveScreen />
       </View>
     </View>
-  </RCTScrollView>
-</View>
+  </View>
+</RCTScrollView>
 `;

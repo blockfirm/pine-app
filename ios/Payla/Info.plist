@@ -40,7 +40,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>For scanning QR codes.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
