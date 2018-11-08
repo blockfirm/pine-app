@@ -8,6 +8,7 @@ exports[`HomeScreen renders correctly 1`] = `
       Object {
         "key": "camera",
         "screen": <CameraScreen
+          onBackPress={[Function]}
           showPreview={false}
         />,
       },
@@ -122,6 +123,117 @@ exports[`HomeScreen renders correctly 1`] = `
                 }
               }
             />
+          </View>
+          <View
+            style={
+              Object {
+                "alignSelf": "stretch",
+                "backgroundColor": "transparent",
+                "height": 44,
+                "justifyContent": "center",
+                "left": 0,
+                "marginTop": 20,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                  },
+                  Array [
+                    Object {
+                      "color": "black",
+                      "fontFamily": "System",
+                      "fontSize": 17,
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "color": "white",
+                      "left": 40,
+                      "position": "absolute",
+                      "right": 40,
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "textShadowColor": "rgba(0, 0, 0, 0.75)",
+                      "textShadowOffset": Object {
+                        "height": 0.1,
+                        "width": -0.1,
+                      },
+                      "textShadowRadius": 1,
+                    },
+                  ],
+                ]
+              }
+            >
+              Send Bitcoin
+            </Text>
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                  "padding": 5,
+                  "position": "absolute",
+                  "right": 11.5,
+                }
+              }
+            >
+              <Text
+                allowFontScaling={false}
+                style={
+                  Array [
+                    Object {
+                      "color": undefined,
+                      "fontSize": 12,
+                    },
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "color": "#000000",
+                        "fontSize": 20,
+                        "paddingLeft": 10,
+                      },
+                      Array [
+                        Object {
+                          "color": "#ffffff",
+                        },
+                        Object {
+                          "textShadowColor": "rgba(0, 0, 0, 0.75)",
+                          "textShadowOffset": Object {
+                            "height": 0.1,
+                            "width": -0.1,
+                          },
+                          "textShadowRadius": 1,
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": "Entypo",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
           </View>
           <ErrorModalContainer />
         </View>

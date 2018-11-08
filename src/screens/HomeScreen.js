@@ -116,17 +116,27 @@ export default class HomeScreen extends Component {
     return showCameraPreview;
   }
 
+  _scrollToHome() {
+    this._flatList.scrollToIndex({
+      animated: true,
+      index: DEFAULT_SCREEN_INDEX
+    });
+  }
+
   render() {
     const showCameraPreview = this._shouldShowCameraPreview();
 
     const screens = [
-      { key: 'camera', screen: <CameraScreen showPreview={showCameraPreview} /> },
+      { key: 'camera', screen: <CameraScreen showPreview={showCameraPreview} onBackPress={this._scrollToHome.bind(this)} /> },
       { key: 'transactions', screen: <TransactionsScreen /> },
       { key: 'receive', screen: <ReceiveScreen /> }
     ];
 
     return (
       <FlatList
+        ref={(flatList) => {
+          this._flatList = flatList;
+        }}
         bounces={false}
         getItemLayout={(data, index) => ({
           length: WINDOW_WIDTH,
