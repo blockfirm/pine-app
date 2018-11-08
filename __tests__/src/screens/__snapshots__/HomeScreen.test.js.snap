@@ -188,6 +188,7 @@ exports[`HomeScreen renders correctly 1`] = `
                 Object {
                   "opacity": 1,
                   "padding": 5,
+                  "paddingTop": 7,
                   "position": "absolute",
                   "right": 11.5,
                 }

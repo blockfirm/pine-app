@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
   },
   backButton: {
     right: 11.5,
-    padding: 5
+    padding: 5,
+    paddingTop: 7
   },
   backIcon: {
     color: '#ffffff'
