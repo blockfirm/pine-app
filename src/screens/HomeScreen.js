@@ -129,7 +129,7 @@ export default class HomeScreen extends Component {
     const screens = [
       { key: 'camera', screen: <CameraScreen showPreview={showCameraPreview} onBackPress={this._scrollToHome.bind(this)} /> },
       { key: 'transactions', screen: <TransactionsScreen /> },
-      { key: 'receive', screen: <ReceiveScreen /> }
+      { key: 'receive', screen: <ReceiveScreen onBackPress={this._scrollToHome.bind(this)} /> }
     ];
 
     return (

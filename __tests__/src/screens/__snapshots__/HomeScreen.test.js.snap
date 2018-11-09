@@ -18,7 +18,9 @@ exports[`HomeScreen renders correctly 1`] = `
       },
       Object {
         "key": "receive",
-        "screen": <ReceiveScreen />,
+        "screen": <ReceiveScreen
+          onBackPress={[Function]}
+        />,
       },
     ]
   }
@@ -279,7 +281,9 @@ exports[`HomeScreen renders correctly 1`] = `
           }
         }
       >
-        <ReceiveScreen />
+        <ReceiveScreen
+          onBackPress={[Function]}
+        />
       </View>
     </View>
   </View>

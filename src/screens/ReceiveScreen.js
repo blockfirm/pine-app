@@ -52,7 +52,7 @@ export default class ReceiveScreen extends Component {
 
     return (
       <BaseScreen style={styles.view}>
-        <ReceiveScreenHeader onSharePress={this._shareAddress.bind(this)} />
+        <ReceiveScreenHeader onSharePress={this._shareAddress.bind(this)} onBackPress={this.props.onBackPress} />
 
         <QRCode value={qrData} size={200} />
 
@@ -69,5 +69,6 @@ export default class ReceiveScreen extends Component {
 
 ReceiveScreen.propTypes = {
   dispatch: PropTypes.func,
-  address: PropTypes.string
+  address: PropTypes.string,
+  onBackPress: PropTypes.func
 };
