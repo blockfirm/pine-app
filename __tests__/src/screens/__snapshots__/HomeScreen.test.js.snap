@@ -13,7 +13,7 @@ exports[`HomeScreen renders correctly 1`] = `
         />,
       },
       Object {
-        "key": "transactions",
+        "key": "home",
         "screen": <TransactionsScreen />,
       },
       Object {
@@ -240,6 +240,26 @@ exports[`HomeScreen renders correctly 1`] = `
           </View>
           <ErrorModalContainer />
         </View>
+        <View
+          pointerEvents="none"
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "backgroundColor": "black",
+              },
+              Object {
+                "opacity": 1,
+              },
+            ]
+          }
+        />
       </View>
     </View>
     <View
@@ -261,6 +281,26 @@ exports[`HomeScreen renders correctly 1`] = `
         }
       >
         <TransactionsScreen />
+        <View
+          pointerEvents="none"
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+              Object {
+                "opacity": 0,
+              },
+            ]
+          }
+        />
       </View>
     </View>
     <View
@@ -283,6 +323,28 @@ exports[`HomeScreen renders correctly 1`] = `
       >
         <ReceiveScreen
           onBackPress={[Function]}
+        />
+        <View
+          pointerEvents="none"
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "backgroundColor": "white",
+                "borderColor": "gray",
+                "borderLeftWidth": 0.5,
+              },
+              Object {
+                "opacity": 1,
+              },
+            ]
+          }
         />
       </View>
     </View>
