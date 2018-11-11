@@ -11,13 +11,22 @@ const styles = StyleSheet.create({
     bottom: ifIphoneX(54, 30),
     left: 40,
     right: 40
+  },
+  withToolbar: {
+    marginBottom: 90
   }
 });
 
 export default class Footer extends Component {
   render() {
+    const toolbarStyles = [
+      styles.footer,
+      this.props.hasToolbar ? styles.withToolbar : null,
+      this.props.style
+    ];
+
     return (
-      <View style={[styles.footer, this.props.style]} pointerEvents={this.props.pointerEvents}>
+      <View style={toolbarStyles} pointerEvents={this.props.pointerEvents}>
         {this.props.children}
       </View>
     );
@@ -27,5 +36,6 @@ export default class Footer extends Component {
 Footer.propTypes = {
   style: PropTypes.any,
   pointerEvents: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
+  hasToolbar: PropTypes.bool
 };

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReceiveIcon renders default icon correctly 1`] = `
+<View>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/icons/toolbar/Receive.png",
+      }
+    }
+    style={
+      Object {
+        "height": 50,
+        "width": 50,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`ReceiveIcon renders white icon correctly 1`] = `
+<View>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/icons/toolbar/ReceiveWhite.png",
+      }
+    }
+    style={
+      Object {
+        "height": 50,
+        "width": 50,
+      }
+    }
+  />
+</View>
+`;

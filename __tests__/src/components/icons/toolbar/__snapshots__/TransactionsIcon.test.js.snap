@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TransactionsIcon renders default icon correctly 1`] = `
+<View>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/icons/toolbar/Transactions.png",
+      }
+    }
+    style={
+      Object {
+        "height": 50,
+        "width": 50,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`TransactionsIcon renders white icon correctly 1`] = `
+<View>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/icons/toolbar/TransactionsWhite.png",
+      }
+    }
+    style={
+      Object {
+        "height": 50,
+        "width": 50,
+      }
+    }
+  />
+</View>
+`;

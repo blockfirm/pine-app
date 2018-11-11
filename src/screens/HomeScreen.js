@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { sync as syncWallet } from '../actions/bitcoin/wallet';
+import Toolbar from '../components/toolbar/Toolbar';
 import TransactionsScreen from './TransactionsScreen';
 import CameraScreen from './CameraScreen';
 import ReceiveScreen from './ReceiveScreen';
@@ -35,10 +36,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'black'
   },
   overlayHome: {
-    backgroundColor: 'white'
+    backgroundColor: '#FEFEFE'
   },
   overlayReceive: {
-    backgroundColor: 'white',
+    backgroundColor: '#FEFEFE',
     borderColor: 'gray',
     borderLeftWidth: StyleSheet.hairlineWidth
   }
@@ -150,6 +151,8 @@ export default class HomeScreen extends Component {
   _onScroll(event) {
     this._setOverlayOpacities(event);
     this._setScrollingToIndex(event);
+
+    this._contentOffsetX = event.nativeEvent.contentOffset.x;
   }
 
   _shouldShowCameraPreview() {
@@ -163,6 +166,13 @@ export default class HomeScreen extends Component {
     this._flatList.scrollToIndex({
       animated: true,
       index: DEFAULT_SCREEN_INDEX
+    });
+  }
+
+  _onToolbarPress(index) {
+    this._flatList.scrollToIndex({
+      animated: true,
+      index
     });
   }
 
@@ -206,27 +216,33 @@ export default class HomeScreen extends Component {
     ];
 
     return (
-      <FlatList
-        ref={(flatList) => {
-          this._flatList = flatList;
-        }}
-        bounces={false}
-        getItemLayout={(data, index) => ({
-          length: WINDOW_WIDTH,
-          offset: WINDOW_WIDTH * index,
-          index
-        })}
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled={true}
-        horizontal={true}
-        style={styles.view}
-        data={screens}
-        renderItem={this._renderScreen.bind(this)}
-        initialScrollIndex={DEFAULT_SCREEN_INDEX}
-        onMomentumScrollEnd={this._onMomentumScrollEnd.bind(this)}
-        onScroll={this._onScroll.bind(this)}
-        scrollEventThrottle={16}
-      />
+      <View style={styles.view}>
+        <FlatList
+          ref={(flatList) => {
+            this._flatList = flatList;
+          }}
+          bounces={false}
+          getItemLayout={(data, index) => ({
+            length: WINDOW_WIDTH,
+            offset: WINDOW_WIDTH * index,
+            index
+          })}
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled={true}
+          horizontal={true}
+          style={styles.view}
+          data={screens}
+          renderItem={this._renderScreen.bind(this)}
+          initialScrollIndex={DEFAULT_SCREEN_INDEX}
+          onMomentumScrollEnd={this._onMomentumScrollEnd.bind(this)}
+          onScroll={this._onScroll.bind(this)}
+          scrollEventThrottle={16}
+        />
+        <Toolbar
+          onPress={this._onToolbarPress.bind(this)}
+          contentOffsetX={this._contentOffsetX}
+        />
+      </View>
     );
   }
 }

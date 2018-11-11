@@ -7,8 +7,8 @@ import { RNCamera } from 'react-native-camera';
 import Link from '../components/Link';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 
-const windowHeight = Dimensions.get('window').height;
-const windowWidth = Dimensions.get('window').width;
+const WINDOW_HEIGHT = Dimensions.get('window').height;
+const WINDOW_WIDTH = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   view: {
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: windowHeight,
-    width: windowWidth,
+    height: WINDOW_HEIGHT,
+    width: WINDOW_WIDTH,
     position: 'absolute',
     backgroundColor: '#000000'
   },
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     position: 'absolute',
     top: 0,
-    width: windowWidth,
+    width: WINDOW_WIDTH,
     height: getStatusBarHeight() + 10
   }
 });

@@ -1,77 +1,406 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HomeScreen renders correctly 1`] = `
-<RCTScrollView
-  bounces={false}
-  data={
-    Array [
-      Object {
-        "key": "camera",
-        "screen": <CameraScreen
-          onBackPress={[Function]}
-          showPreview={false}
-        />,
-      },
-      Object {
-        "key": "home",
-        "screen": <TransactionsScreen />,
-      },
-      Object {
-        "key": "receive",
-        "screen": <ReceiveScreen
-          onBackPress={[Function]}
-        />,
-      },
-    ]
-  }
-  disableVirtualization={false}
-  getItem={[Function]}
-  getItemCount={[Function]}
-  getItemLayout={[Function]}
-  horizontal={true}
-  initialNumToRender={10}
-  initialScrollIndex={1}
-  keyExtractor={[Function]}
-  maxToRenderPerBatch={10}
-  numColumns={1}
-  onContentSizeChange={[Function]}
-  onEndReachedThreshold={2}
-  onLayout={[Function]}
-  onMomentumScrollEnd={[Function]}
-  onScroll={[Function]}
-  onScrollBeginDrag={[Function]}
-  onScrollEndDrag={[Function]}
-  pagingEnabled={true}
-  renderItem={[Function]}
-  scrollEventThrottle={16}
-  showsHorizontalScrollIndicator={false}
-  stickyHeaderIndices={Array []}
+<View
   style={
     Object {
       "alignSelf": "stretch",
       "flex": 1,
     }
   }
-  updateCellsBatchingPeriod={50}
-  viewabilityConfigCallbackPairs={Array []}
-  windowSize={21}
 >
-  <View>
-    <View
-      style={
-        Array [
-          Object {
-            "flexDirection": "row",
-          },
-          null,
-        ]
+  <RCTScrollView
+    bounces={false}
+    data={
+      Array [
+        Object {
+          "key": "camera",
+          "screen": <CameraScreen
+            onBackPress={[Function]}
+            showPreview={false}
+          />,
+        },
+        Object {
+          "key": "home",
+          "screen": <TransactionsScreen />,
+        },
+        Object {
+          "key": "receive",
+          "screen": <ReceiveScreen
+            onBackPress={[Function]}
+          />,
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    getItemLayout={[Function]}
+    horizontal={true}
+    initialNumToRender={10}
+    initialScrollIndex={1}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    pagingEnabled={true}
+    renderItem={[Function]}
+    scrollEventThrottle={16}
+    showsHorizontalScrollIndicator={false}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "alignSelf": "stretch",
+        "flex": 1,
       }
-    >
+    }
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
       <View
         style={
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+            null,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 1334,
+              "width": 750,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "padding": 40,
+                },
+                Object {
+                  "backgroundColor": "black",
+                  "padding": 0,
+                },
+              ]
+            }
+          >
+            <BackHeaderContainer />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "flex": 1,
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <View
+                notAuthorizedView={
+                  <Link
+                    onPress={[Function]}
+                  >
+                    Enable Camera Access
+                  </Link>
+                }
+                onCameraReady={[Function]}
+                pendingAuthorizationView={<Component />}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#000000",
+                    "flex": 1,
+                    "height": 1334,
+                    "justifyContent": "center",
+                    "position": "absolute",
+                    "width": 750,
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "alignSelf": "stretch",
+                  "backgroundColor": "transparent",
+                  "height": 44,
+                  "justifyContent": "center",
+                  "left": 0,
+                  "marginTop": 20,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Array [
+                      Object {
+                        "color": "black",
+                        "fontFamily": "System",
+                        "fontSize": 17,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "color": "white",
+                        "left": 40,
+                        "position": "absolute",
+                        "right": 40,
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "textShadowColor": "rgba(0, 0, 0, 0.75)",
+                        "textShadowOffset": Object {
+                          "height": 0.1,
+                          "width": -0.1,
+                        },
+                        "textShadowRadius": 1,
+                      },
+                    ],
+                  ]
+                }
+              >
+                Send Bitcoin
+              </Text>
+              <View
+                accessible={true}
+                isTVSelectable={true}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                    "padding": 5,
+                    "paddingTop": 7,
+                    "position": "absolute",
+                    "right": 11.5,
+                  }
+                }
+              >
+                <Text
+                  allowFontScaling={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": undefined,
+                        "fontSize": 12,
+                      },
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "color": "#000000",
+                          "fontSize": 20,
+                          "paddingLeft": 10,
+                        },
+                        Array [
+                          Object {
+                            "color": "#ffffff",
+                          },
+                          Object {
+                            "textShadowColor": "rgba(0, 0, 0, 0.75)",
+                            "textShadowOffset": Object {
+                              "height": 0.1,
+                              "width": -0.1,
+                            },
+                            "textShadowRadius": 1,
+                          },
+                        ],
+                      ],
+                      Object {
+                        "fontFamily": "Entypo",
+                        "fontStyle": "normal",
+                        "fontWeight": "normal",
+                      },
+                      Object {},
+                    ]
+                  }
+                >
+                  
+                </Text>
+              </View>
+            </View>
+            <ErrorModalContainer />
+          </View>
+          <View
+            pointerEvents="none"
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "black",
+                },
+                Object {
+                  "opacity": 1,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+            null,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 1334,
+              "width": 750,
+            }
+          }
+        >
+          <TransactionsScreen />
+          <View
+            pointerEvents="none"
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "#FEFEFE",
+                },
+                Object {
+                  "opacity": 0,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+            null,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 1334,
+              "width": 750,
+            }
+          }
+        >
+          <ReceiveScreen
+            onBackPress={[Function]}
+          />
+          <View
+            pointerEvents="none"
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "#FEFEFE",
+                  "borderColor": "gray",
+                  "borderLeftWidth": 0.5,
+                },
+                Object {
+                  "opacity": 1,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "bottom": 0,
+          "flex": 1,
+          "flexDirection": "row",
+          "height": 90,
+          "justifyContent": "space-between",
+          "left": 25,
+          "marginBottom": 0,
+          "position": "absolute",
+          "right": 25,
+        },
+        Object {
+          "left": 25,
+          "right": 25,
+        },
+      ]
+    }
+  >
+    <View>
+      <View
+        accessible={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
           Object {
-            "height": 1334,
-            "width": 750,
+            "alignItems": "center",
+            "flex": 1,
+            "height": 50,
+            "justifyContent": "center",
+            "transform": Array [
+              Object {
+                "scale": 1,
+              },
+            ],
+            "width": 50,
           }
         }
       >
@@ -79,275 +408,230 @@ exports[`HomeScreen renders correctly 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#ffffff",
-                "flex": 1,
-                "justifyContent": "center",
-                "padding": 40,
-              },
-              Object {
-                "backgroundColor": "black",
-                "padding": 0,
-              },
-            ]
-          }
-        >
-          <BackHeaderContainer />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "alignSelf": "stretch",
-                "flex": 1,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              notAuthorizedView={
-                <Link
-                  onPress={[Function]}
-                >
-                  Enable Camera Access
-                </Link>
-              }
-              onCameraReady={[Function]}
-              pendingAuthorizationView={<Component />}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#000000",
-                  "flex": 1,
-                  "height": 1334,
-                  "justifyContent": "center",
-                  "position": "absolute",
-                  "width": 750,
-                }
-              }
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "alignSelf": "stretch",
-                "backgroundColor": "transparent",
-                "height": 44,
-                "justifyContent": "center",
-                "left": 0,
-                "marginTop": 20,
                 "position": "absolute",
-                "right": 0,
-                "top": 0,
-              }
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#000000",
-                    "fontFamily": "System",
-                    "fontWeight": "400",
-                  },
-                  Array [
-                    Object {
-                      "color": "black",
-                      "fontFamily": "System",
-                      "fontSize": 17,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "white",
-                      "left": 40,
-                      "position": "absolute",
-                      "right": 40,
-                      "textAlign": "center",
-                    },
-                    Object {
-                      "textShadowColor": "rgba(0, 0, 0, 0.75)",
-                      "textShadowOffset": Object {
-                        "height": 0.1,
-                        "width": -0.1,
-                      },
-                      "textShadowRadius": 1,
-                    },
-                  ],
-                ]
-              }
-            >
-              Send Bitcoin
-            </Text>
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                  "padding": 5,
-                  "paddingTop": 7,
-                  "position": "absolute",
-                  "right": 11.5,
-                }
-              }
-            >
-              <Text
-                allowFontScaling={false}
-                style={
-                  Array [
-                    Object {
-                      "color": undefined,
-                      "fontSize": 12,
-                    },
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "color": "#000000",
-                        "fontSize": 20,
-                        "paddingLeft": 10,
-                      },
-                      Array [
-                        Object {
-                          "color": "#ffffff",
-                        },
-                        Object {
-                          "textShadowColor": "rgba(0, 0, 0, 0.75)",
-                          "textShadowOffset": Object {
-                            "height": 0.1,
-                            "width": -0.1,
-                          },
-                          "textShadowRadius": 1,
-                        },
-                      ],
-                    ],
-                    Object {
-                      "fontFamily": "Entypo",
-                      "fontStyle": "normal",
-                      "fontWeight": "normal",
-                    },
-                    Object {},
-                  ]
-                }
-              >
-                
-              </Text>
-            </View>
-          </View>
-          <ErrorModalContainer />
-        </View>
-        <View
-          pointerEvents="none"
-          style={
-            Array [
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              },
-              Object {
-                "backgroundColor": "black",
               },
               Object {
                 "opacity": 1,
               },
             ]
           }
-        />
-      </View>
-    </View>
-    <View
-      style={
-        Array [
-          Object {
-            "flexDirection": "row",
-          },
-          null,
-        ]
-      }
-    >
-      <View
-        style={
-          Object {
-            "height": 1334,
-            "width": 750,
-          }
-        }
-      >
-        <TransactionsScreen />
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/icons/toolbar/Send.png",
+              }
+            }
+            style={
+              Object {
+                "height": 50,
+                "width": 50,
+              }
+            }
+          />
+        </View>
         <View
-          pointerEvents="none"
           style={
             Array [
               Object {
-                "bottom": 0,
-                "left": 0,
                 "position": "absolute",
-                "right": 0,
-                "top": 0,
-              },
-              Object {
-                "backgroundColor": "white",
               },
               Object {
                 "opacity": 0,
               },
             ]
           }
-        />
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/icons/toolbar/SendWhite.png",
+              }
+            }
+            style={
+              Object {
+                "height": 50,
+                "width": 50,
+              }
+            }
+          />
+        </View>
       </View>
     </View>
-    <View
-      style={
-        Array [
-          Object {
-            "flexDirection": "row",
-          },
-          null,
-        ]
-      }
-    >
+    <View>
       <View
+        accessible={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "height": 1334,
-            "width": 750,
+            "alignItems": "center",
+            "flex": 1,
+            "height": 50,
+            "justifyContent": "center",
+            "transform": Array [
+              Object {
+                "scale": 1,
+              },
+            ],
+            "width": 50,
           }
         }
       >
-        <ReceiveScreen
-          onBackPress={[Function]}
-        />
         <View
-          pointerEvents="none"
           style={
             Array [
               Object {
-                "bottom": 0,
-                "left": 0,
                 "position": "absolute",
-                "right": 0,
-                "top": 0,
-              },
-              Object {
-                "backgroundColor": "white",
-                "borderColor": "gray",
-                "borderLeftWidth": 0.5,
               },
               Object {
                 "opacity": 1,
               },
             ]
           }
-        />
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/icons/toolbar/Transactions.png",
+              }
+            }
+            style={
+              Object {
+                "height": 50,
+                "width": 50,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "position": "absolute",
+              },
+              Object {
+                "opacity": 0,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/icons/toolbar/TransactionsWhite.png",
+              }
+            }
+            style={
+              Object {
+                "height": 50,
+                "width": 50,
+              }
+            }
+          />
+        </View>
       </View>
     </View>
+    <View>
+      <View
+        accessible={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "height": 50,
+            "justifyContent": "center",
+            "transform": Array [
+              Object {
+                "scale": 1,
+              },
+            ],
+            "width": 50,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "position": "absolute",
+              },
+              Object {
+                "opacity": 1,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/icons/toolbar/Receive.png",
+              }
+            }
+            style={
+              Object {
+                "height": 50,
+                "width": 50,
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "position": "absolute",
+              },
+              Object {
+                "opacity": 0,
+              },
+            ]
+          }
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/images/icons/toolbar/ReceiveWhite.png",
+              }
+            }
+            style={
+              Object {
+                "height": 50,
+                "width": 50,
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#B1AFB7",
+            "borderRadius": 5,
+            "bottom": 10,
+            "height": 5,
+            "position": "absolute",
+            "width": 5,
+          },
+          Object {
+            "left": NaN,
+          },
+          null,
+        ]
+      }
+    />
   </View>
-</RCTScrollView>
+</View>
 `;

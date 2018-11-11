@@ -1,0 +1,279 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toolbar renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "bottom": 0,
+        "flex": 1,
+        "flexDirection": "row",
+        "height": 90,
+        "justifyContent": "space-between",
+        "left": 25,
+        "marginBottom": 0,
+        "position": "absolute",
+        "right": 25,
+      },
+      Object {
+        "left": 25,
+        "right": 25,
+      },
+    ]
+  }
+>
+  <View>
+    <View
+      accessible={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "height": 50,
+          "justifyContent": "center",
+          "transform": Array [
+            Object {
+              "scale": 1,
+            },
+          ],
+          "width": 50,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "position": "absolute",
+            },
+            Object {
+              "opacity": 1,
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/icons/toolbar/Send.png",
+            }
+          }
+          style={
+            Object {
+              "height": 50,
+              "width": 50,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "position": "absolute",
+            },
+            Object {
+              "opacity": 0,
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/icons/toolbar/SendWhite.png",
+            }
+          }
+          style={
+            Object {
+              "height": 50,
+              "width": 50,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+  <View>
+    <View
+      accessible={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "height": 50,
+          "justifyContent": "center",
+          "transform": Array [
+            Object {
+              "scale": 1,
+            },
+          ],
+          "width": 50,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "position": "absolute",
+            },
+            Object {
+              "opacity": 1,
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/icons/toolbar/Transactions.png",
+            }
+          }
+          style={
+            Object {
+              "height": 50,
+              "width": 50,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "position": "absolute",
+            },
+            Object {
+              "opacity": 0,
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/icons/toolbar/TransactionsWhite.png",
+            }
+          }
+          style={
+            Object {
+              "height": 50,
+              "width": 50,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+  <View>
+    <View
+      accessible={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "height": 50,
+          "justifyContent": "center",
+          "transform": Array [
+            Object {
+              "scale": 1,
+            },
+          ],
+          "width": 50,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "position": "absolute",
+            },
+            Object {
+              "opacity": 1,
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/icons/toolbar/Receive.png",
+            }
+          }
+          style={
+            Object {
+              "height": 50,
+              "width": 50,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "position": "absolute",
+            },
+            Object {
+              "opacity": 0,
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/images/icons/toolbar/ReceiveWhite.png",
+            }
+          }
+          style={
+            Object {
+              "height": 50,
+              "width": 50,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#B1AFB7",
+          "borderRadius": 5,
+          "bottom": 10,
+          "height": 5,
+          "position": "absolute",
+          "width": 5,
+        },
+        Object {
+          "left": NaN,
+        },
+        null,
+      ]
+    }
+  />
+</View>
+`;

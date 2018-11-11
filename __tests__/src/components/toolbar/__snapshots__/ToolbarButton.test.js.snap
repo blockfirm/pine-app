@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToolbarButton renders correctly 1`] = `
+<View>
+  <View
+    accessible={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "height": 50,
+        "justifyContent": "center",
+        "transform": Array [
+          Object {
+            "scale": 1,
+          },
+        ],
+        "width": 50,
+      }
+    }
+  >
+    <Icon
+      style={
+        Array [
+          Object {
+            "position": "absolute",
+          },
+          Object {
+            "opacity": 1,
+          },
+        ]
+      }
+    />
+    <Icon
+      style={
+        Array [
+          Object {
+            "position": "absolute",
+          },
+          Object {
+            "opacity": 0,
+          },
+        ]
+      }
+      white={true}
+    />
+  </View>
+</View>
+`;

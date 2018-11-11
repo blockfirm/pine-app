@@ -259,6 +259,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
           "position": "absolute",
           "right": 40,
         },
+        null,
         undefined,
       ]
     }

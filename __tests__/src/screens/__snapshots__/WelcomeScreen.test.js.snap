@@ -46,6 +46,7 @@ exports[`WelcomeScreen renders correctly 1`] = `
           "position": "absolute",
           "right": 40,
         },
+        null,
         Object {
           "backgroundColor": "transparent",
         },

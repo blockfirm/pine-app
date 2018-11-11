@@ -56,7 +56,7 @@ export default class ReceiveScreen extends Component {
 
         <QRCode value={qrData} size={200} />
 
-        <Footer>
+        <Footer hasToolbar={true}>
           <Button
             label={label}
             onPress={this._copyAddress.bind(this)}
