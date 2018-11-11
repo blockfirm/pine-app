@@ -33,9 +33,9 @@ const styles = StyleSheet.create({
   },
   share: {
     position: 'absolute',
-    top: 4,
-    right: 15.5,
-    padding: 5 // The padding makes it easier to press.
+    top: 0,
+    right: 11.5,
+    padding: 9 // The padding makes it easier to press.
   }
 });
 
