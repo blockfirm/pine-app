@@ -1,6 +1,6 @@
-import { BITCOIN_WALLET_SYNC_SUCCESS, BITCOIN_WALLET_SYNC_FAILURE } from '../actions/bitcoin/wallet/sync';
+import { BITCOIN_WALLET_SYNC_SUCCESS, BITCOIN_WALLET_SYNC_FAILURE } from '../../actions/bitcoin/wallet/sync';
 
-const network = (state = {}, action) => {
+const server = (state = {}, action) => {
   switch (action.type) {
     case BITCOIN_WALLET_SYNC_SUCCESS:
       return {
@@ -19,4 +19,4 @@ const network = (state = {}, action) => {
   }
 };
 
-export default network;
+export default server;

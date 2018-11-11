@@ -10,8 +10,15 @@ jest.mock('../../../src/screens/TransactionsScreen', () => 'TransactionsScreen')
 jest.mock('../../../src/screens/ReceiveScreen', () => 'ReceiveScreen');
 
 const storeMock = {
-  getState: jest.fn(() => ({})),
-  dispatch: jest.fn(() => Promise.resolve())
+  getState: jest.fn(() => ({
+    network: {
+      internet: {
+        disconnected: false
+      }
+    }
+  })),
+  dispatch: jest.fn(() => Promise.resolve()),
+  subscribe: jest.fn()
 };
 
 describe('HomeScreen', () => {

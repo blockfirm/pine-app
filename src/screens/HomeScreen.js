@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StatusBar, NetInfo, View, StyleSheet, FlatList, Dimensions } from 'react-native';
+import { StatusBar, View, StyleSheet, FlatList, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -45,7 +45,9 @@ const styles = StyleSheet.create({
   }
 });
 
-@connect()
+@connect((state) => ({
+  isDisconnectedFromInternet: state.network.internet.disconnected
+}))
 export default class HomeScreen extends Component {
   static navigationOptions = {
     header: null
@@ -66,29 +68,15 @@ export default class HomeScreen extends Component {
 
     // Sync wallet with an interval.
     this._syncInterval = setInterval(() => {
-      NetInfo.isConnected.fetch().then((isConnected) => {
-        // Only sync if connected to the internet.
-        if (isConnected) {
-          dispatch(syncWallet());
-        }
-      });
+      // Only sync if connected to the internet.
+      if (!this.props.isDisconnectedFromInternet) {
+        dispatch(syncWallet());
+      }
     }, SYNC_WALLET_INTERVAL);
-
-    // Listen for internet connection changes and sync when online.
-    NetInfo.isConnected.addEventListener('connectionChange', this._onConnectionChange.bind(this));
   }
 
   componentWillUnmount() {
     clearInterval(this._syncInterval);
-    NetInfo.isConnected.removeEventListener('connectionChange', this._onConnectionChange);
-  }
-
-  _onConnectionChange(isConnected) {
-    const dispatch = this.props.dispatch;
-
-    if (isConnected) {
-      dispatch(syncWallet());
-    }
   }
 
   _onIndexChanged(index) {
@@ -248,5 +236,6 @@ export default class HomeScreen extends Component {
 }
 
 HomeScreen.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  isDisconnectedFromInternet: PropTypes.bool
 };
