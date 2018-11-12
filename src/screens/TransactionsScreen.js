@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
@@ -47,7 +47,13 @@ export default class TransactionsScreen extends Component {
         <OfflineNoticeContainer />
         <TransactionListContainer />
 
-        <LinearGradient colors={['rgba(255, 255, 255, 0.0)', 'rgba(255, 255, 255, 1.0)']} style={styles.bottomGradient} />
+        <View style={styles.bottomGradient} pointerEvents='none'>
+          <LinearGradient
+            colors={['rgba(255, 255, 255, 0.0)', 'rgba(255, 255, 255, 1.0)']}
+            locations={[0.1, 0.7]}
+            style={styles.bottomGradient}
+          />
+        </View>
       </BaseScreen>
     );
   }
