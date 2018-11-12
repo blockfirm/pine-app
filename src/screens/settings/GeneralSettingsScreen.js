@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert } from 'react-native';
+import { ActionSheetIOS } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -57,32 +57,26 @@ export default class GeneralSettingsScreen extends Component {
 
   _showRemoveWalletConfirmation() {
     const dispatch = this.props.dispatch;
+    const keepSettings = true;
 
-    Alert.alert(
-      'Erase Wallet?',
-      'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Create Manual Backup',
-          onPress: this._createManualBackup.bind(this)
-        },
-        {
-          text: 'Erase Wallet',
-          style: 'destructive',
-          onPress: () => {
-            const keepSettings = true;
+    ActionSheetIOS.showActionSheetWithOptions({
+      message: 'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
+      options: ['Cancel', 'Erase Wallet', 'Create Manual Backup'],
+      destructiveButtonIndex: 1,
+      cancelButtonIndex: 0
+    }, (buttonIndex) => {
+      switch (buttonIndex) {
+        case 1: // Erase Wallet.
+          return dispatch(resetApp(keepSettings)).then(() => {
+            this._flagAsUninitialized();
+            this.props.screenProps.dismiss();
+            dispatch(navigateWithReset('Welcome'));
+          });
 
-            dispatch(resetApp(keepSettings)).then(() => {
-              this._flagAsUninitialized();
-              this.props.screenProps.dismiss();
-              dispatch(navigateWithReset('Welcome'));
-            });
-          }
-        }
-      ],
-      { cancelable: false }
-    );
+        case 2: // Create Manual Backup.
+          return this._createManualBackup();
+      }
+    });
   }
 
   _resetAppAndShowWelcomeScreen() {
@@ -98,23 +92,20 @@ export default class GeneralSettingsScreen extends Component {
   }
 
   _showResetAppConfirmation() {
-    Alert.alert(
-      'Erase Wallet and Settings?',
-      'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Create Manual Backup',
-          onPress: this._createManualBackup.bind(this)
-        },
-        {
-          text: 'Erase Wallet and Settings',
-          style: 'destructive',
-          onPress: this._resetAppAndShowWelcomeScreen.bind(this)
-        }
-      ],
-      { cancelable: false }
-    );
+    ActionSheetIOS.showActionSheetWithOptions({
+      message: 'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
+      options: ['Cancel', 'Erase Wallet and Settings', 'Create Manual Backup'],
+      destructiveButtonIndex: 1,
+      cancelButtonIndex: 0
+    }, (buttonIndex) => {
+      switch (buttonIndex) {
+        case 1: // Erase Wallet and Settings.
+          return this._resetAppAndShowWelcomeScreen();
+
+        case 2: // Create Manual Backup.
+          return this._createManualBackup();
+      }
+    });
   }
 
   render() {
