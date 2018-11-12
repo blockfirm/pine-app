@@ -90,18 +90,23 @@ export default class BitcoinFeeSettingsScreen extends Component {
           confirmed in the next block. Choosing a low or custom level might leave your transaction
           in an unconfirmed state for a long time.
         </SettingsDescription>
+
+        <SettingsDescription />
+
         <SettingsDescription>
-          <StrongText>High</StrongText> is 150% of the estimated fee.
+          <StrongText>High</StrongText> is 150% of the normal fee.
         </SettingsDescription>
         <SettingsDescription>
-          <StrongText>Normal</StrongText> is 100% of the estimated fee.
+          <StrongText>Normal</StrongText> is 100% of the estimated fee of getting confirmed in the next block (~10 mins).
         </SettingsDescription>
         <SettingsDescription>
-          <StrongText>Low</StrongText> is 50% of the estimated fee.
+          <StrongText>Low</StrongText> is 50% of the normal fee.
         </SettingsDescription>
         <SettingsDescription>
-          <StrongText>Very Low</StrongText> is 25% of the estimated fee.
+          <StrongText>Very Low</StrongText> is 25% of the normal fee.
         </SettingsDescription>
+
+        <SettingsDescription />
 
         <SettingsDescription>
           All fees goes to the miner who mines the block containing your transaction. Payla or its
