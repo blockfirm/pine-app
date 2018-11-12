@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const headerStyles = StyleSheet.create({
   header: {
-    backgroundColor: '#F7F7F7',
-    borderBottomColor: '#B2B2B2',
+    backgroundColor: '#ffffff',
+    borderBottomColor: '#A7A7AB',
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   whiteHeader: {
