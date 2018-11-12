@@ -36,9 +36,14 @@ export default class TransactionList extends Component {
   }
 
   _onRefreshFinished() {
+    /**
+     * Wait 1s before hiding the spinner. This is to make it
+     * more clear to the user that the refresh actually took
+     * place.
+     */
     setTimeout(() => {
       this.setState({ refreshing: false });
-    }, 500);
+    }, 1000);
   }
 
   _onRefresh() {
