@@ -25,14 +25,13 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    this._isConnectedToInternet = null;
+
     // Get initial app state.
     this._appState = AppState.currentState;
 
     // Listen for app state changes (e.g. when app becomes active).
     AppState.addEventListener('change', this._onAppStateChange);
-
-    // Get initial internet connection status.
-    this._updateInternetConnectionStatus();
 
     // Listen for internet connection changes.
     NetInfo.isConnected.addEventListener('connectionChange', this._onConnectionChange);
@@ -59,10 +58,15 @@ export default class App extends Component {
   _onConnectionChange(isConnected) {
     if (isConnected) {
       store.dispatch(internetActions.connected());
-      store.dispatch(syncWallet());
+
+      if (this._isConnectedToInternet !== null) {
+        store.dispatch(syncWallet());
+      }
     } else {
       store.dispatch(internetActions.disconnected());
     }
+
+    this._isConnectedToInternet = isConnected;
   }
 
   render() {
