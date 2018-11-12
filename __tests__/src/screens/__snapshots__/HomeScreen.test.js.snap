@@ -176,12 +176,6 @@ exports[`HomeScreen renders correctly 1`] = `
                       <Button
                         label="Paste Address"
                         onPress={[Function]}
-                        pointerEvents="auto"
-                        style={
-                          Object {
-                            "backgroundColor": "rgba(255, 255, 255, 0.5)",
-                          }
-                        }
                       />
                     </ContentView>
                   </Component>

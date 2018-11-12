@@ -7,6 +7,7 @@ import { RNCamera } from 'react-native-camera';
 import ContentView from '../components/ContentView';
 import Paragraph from '../components/Paragraph';
 import Button from '../components/Button';
+import VibrancyButton from '../components/VibrancyButton';
 import Link from '../components/Link';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 
@@ -53,9 +54,6 @@ const styles = StyleSheet.create({
   viewport: {
     width: 212,
     height: 212
-  },
-  button: {
-    backgroundColor: 'rgba(255, 255, 255, 0.5)'
   }
 });
 
@@ -111,6 +109,14 @@ export default class QrCodeScanner extends Component {
     return <Link onPress={this._goToAppSettings.bind(this)}>Enable Camera Access</Link>;
   }
 
+  _renderButton(cameraAuthorized) {
+    if (cameraAuthorized) {
+      return <VibrancyButton label='Paste Address' onPress={() => {}} />;
+    }
+
+    return <Button label='Paste Address' onPress={() => {}} />;
+  }
+
   _renderCameraContent(cameraAuthorized) {
     return (
       <View style={styles.view}>
@@ -122,13 +128,7 @@ export default class QrCodeScanner extends Component {
           </Paragraph>
 
           { this._renderViewport(cameraAuthorized) }
-
-          <Button
-            pointerEvents='auto'
-            label='Paste Address'
-            onPress={() => {}}
-            style={styles.button}
-          />
+          { this._renderButton(cameraAuthorized) }
         </ContentView>
       </View>
     );
