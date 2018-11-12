@@ -98,8 +98,7 @@ const getNewTransactions = (dispatch, addresses, oldTransactions) => {
   return Promise.all(promises);
 };
 
-const getAllNewTransactions = (dispatch, getState) => {
-  const state = getState();
+const getAllNewTransactions = (dispatch, state) => {
   const externalAddresses = Object.keys(state.bitcoin.wallet.addresses.external.items);
   const internalAddresses = Object.keys(state.bitcoin.wallet.addresses.internal.items);
   const transactions = state.bitcoin.wallet.transactions.items;
@@ -118,13 +117,19 @@ const getAllNewTransactions = (dispatch, getState) => {
  */
 export const sync = () => {
   return (dispatch, getState) => {
+    const state = getState();
+
+    if (state.bitcoin.wallet.syncing) {
+      return Promise.resolve();
+    }
+
     dispatch(syncRequest());
 
     // First update pending transactions.
     return dispatch(updatePendingTransactions())
       .then(() => {
         // Then get new transactions.
-        return getAllNewTransactions(dispatch, getState);
+        return getAllNewTransactions(dispatch, state);
       })
       .then(() => {
         // Save addresses that has been flagged as used.
