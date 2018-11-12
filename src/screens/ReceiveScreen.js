@@ -7,12 +7,17 @@ import ReactNativeHaptic from 'react-native-haptic';
 
 import BaseScreen from './BaseScreen';
 import ReceiveScreenHeader from '../components/ReceiveScreenHeader';
-import Footer from '../components/Footer';
+import ContentView from '../components/ContentView';
+import Paragraph from '../components/Paragraph';
 import Button from '../components/Button';
 
 const styles = StyleSheet.create({
   view: {
     padding: 0
+  },
+  text: {
+    textAlign: 'center',
+    marginBottom: 0
   }
 });
 
@@ -54,14 +59,18 @@ export default class ReceiveScreen extends Component {
       <BaseScreen style={styles.view}>
         <ReceiveScreenHeader onSharePress={this._shareAddress.bind(this)} onBackPress={this.props.onBackPress} />
 
-        <QRCode value={qrData} size={200} />
+        <ContentView hasToolbar={true}>
+          <Paragraph style={styles.text}>
+            Show this QR code or share your address with someone who should send you bitcoin.
+          </Paragraph>
 
-        <Footer hasToolbar={true}>
+          <QRCode value={qrData} size={200} />
+
           <Button
             label={label}
             onPress={this._copyAddress.bind(this)}
           />
-        </Footer>
+        </ContentView>
       </BaseScreen>
     );
   }

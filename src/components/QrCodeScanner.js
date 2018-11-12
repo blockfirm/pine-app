@@ -4,6 +4,9 @@ import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import { RNCamera } from 'react-native-camera';
 
+import ContentView from '../components/ContentView';
+import Paragraph from '../components/Paragraph';
+import Button from '../components/Button';
 import Link from '../components/Link';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 
@@ -26,17 +29,33 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#000000'
   },
-  viewport: {
-    width: 212,
-    height: 212,
-    position: 'absolute'
-  },
   topGradient: {
     alignSelf: 'stretch',
     position: 'absolute',
     top: 0,
     width: WINDOW_WIDTH,
     height: getStatusBarHeight() + 10
+  },
+  content: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0
+  },
+  text: {
+    maxWidth: 200,
+    color: 'white',
+    textAlign: 'center',
+    marginBottom: 0,
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: -0.1, height: 0.1 },
+    textShadowRadius: 1
+  },
+  viewport: {
+    width: 212,
+    height: 212
+  },
+  button: {
+    backgroundColor: 'rgba(255, 255, 255, 0.5)'
   }
 });
 
@@ -84,23 +103,47 @@ export default class QrCodeScanner extends Component {
     }, 1000);
   }
 
-  _renderNotAuthorizedView() {
+  _renderViewport(cameraAuthorized) {
+    if (cameraAuthorized) {
+      return <Image source={require('../images/QRViewport.png')} style={styles.viewport} />;
+    }
+
+    return <Link onPress={this._goToAppSettings.bind(this)}>Enable Camera Access</Link>;
+  }
+
+  _renderCameraContent(cameraAuthorized) {
     return (
-      <Link onPress={this._goToAppSettings.bind(this)}>Enable Camera Access</Link>
+      <View style={styles.view}>
+        <LinearGradient colors={['rgba(0, 0, 0, 0.3)', 'rgba(0, 0, 0, 0.0)']} style={styles.topGradient} />
+
+        <ContentView hasToolbar={true} style={styles.content}>
+          <Paragraph style={styles.text}>
+            Scan a QR code or paste an address to send bitcoin.
+          </Paragraph>
+
+          { this._renderViewport(cameraAuthorized) }
+
+          <Button
+            pointerEvents='auto'
+            label='Paste Address'
+            onPress={() => {}}
+            style={styles.button}
+          />
+        </ContentView>
+      </View>
     );
   }
 
-  _renderCameraContent() {
+  _renderCameraNotAuthorized() {
+    return this._renderCameraContent(false);
+  }
+
+  _renderCameraAuthorized() {
     if (!this.state.cameraReady) {
       return;
     }
 
-    return (
-      <View style={styles.view}>
-        <LinearGradient colors={['rgba(0, 0, 0, 0.3)', 'rgba(0, 0, 0, 0.0)']} style={styles.topGradient} />
-        <Image source={require('../images/QRViewport.png')} style={styles.viewport} />
-      </View>
-    );
+    return this._renderCameraContent(true);
   }
 
   render() {
@@ -112,10 +155,10 @@ export default class QrCodeScanner extends Component {
           }}
           style={styles.camera}
           onCameraReady={this._onCameraReady.bind(this)}
-          notAuthorizedView={this._renderNotAuthorizedView()}
+          notAuthorizedView={this._renderCameraNotAuthorized()}
           pendingAuthorizationView={<View />}
         />
-        { this._renderCameraContent() }
+        { this._renderCameraAuthorized() }
       </View>
     );
   }

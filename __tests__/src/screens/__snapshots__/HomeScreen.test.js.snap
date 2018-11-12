@@ -113,11 +113,78 @@ exports[`HomeScreen renders correctly 1`] = `
             >
               <View
                 notAuthorizedView={
-                  <Link
-                    onPress={[Function]}
+                  <Component
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "alignSelf": "stretch",
+                        "flex": 1,
+                        "justifyContent": "center",
+                      }
+                    }
                   >
-                    Enable Camera Access
-                  </Link>
+                    <LinearGradient
+                      colors={
+                        Array [
+                          "rgba(0, 0, 0, 0.3)",
+                          "rgba(0, 0, 0, 0.0)",
+                        ]
+                      }
+                      style={
+                        Object {
+                          "alignSelf": "stretch",
+                          "height": 30,
+                          "position": "absolute",
+                          "top": 0,
+                          "width": 750,
+                        }
+                      }
+                    />
+                    <ContentView
+                      hasToolbar={true}
+                      style={
+                        Object {
+                          "bottom": 0,
+                          "position": "absolute",
+                          "top": 0,
+                        }
+                      }
+                    >
+                      <Paragraph
+                        style={
+                          Object {
+                            "color": "white",
+                            "marginBottom": 0,
+                            "maxWidth": 200,
+                            "textAlign": "center",
+                            "textShadowColor": "rgba(0, 0, 0, 0.75)",
+                            "textShadowOffset": Object {
+                              "height": 0.1,
+                              "width": -0.1,
+                            },
+                            "textShadowRadius": 1,
+                          }
+                        }
+                      >
+                        Scan a QR code or paste an address to send bitcoin.
+                      </Paragraph>
+                      <Link
+                        onPress={[Function]}
+                      >
+                        Enable Camera Access
+                      </Link>
+                      <Button
+                        label="Paste Address"
+                        onPress={[Function]}
+                        pointerEvents="auto"
+                        style={
+                          Object {
+                            "backgroundColor": "rgba(255, 255, 255, 0.5)",
+                          }
+                        }
+                      />
+                    </ContentView>
+                  </Component>
                 }
                 onCameraReady={[Function]}
                 pendingAuthorizationView={<Component />}
