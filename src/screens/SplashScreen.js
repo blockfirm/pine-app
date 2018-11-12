@@ -52,6 +52,8 @@ export default class SplashScreen extends Component {
           return this._showDisclaimerScreen();
         }
 
+        // Sync wallet in background and show Home screen.
+        dispatch(walletActions.sync());
         this._showHomeScreen();
       })
       .then(() => {
