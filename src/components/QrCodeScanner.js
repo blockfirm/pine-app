@@ -80,6 +80,10 @@ export default class QrCodeScanner extends Component {
     return false;
   }
 
+  _onPaste() {
+    this.props.onReceivedAddress();
+  }
+
   _goToAppSettings() {
     Linking.openURL('app-settings:');
   }
@@ -111,10 +115,10 @@ export default class QrCodeScanner extends Component {
 
   _renderButton(cameraAuthorized) {
     if (cameraAuthorized) {
-      return <VibrancyButton label='Paste Address' onPress={() => {}} />;
+      return <VibrancyButton label='Paste Address' onPress={this._onPaste.bind(this)} />;
     }
 
-    return <Button label='Paste Address' onPress={() => {}} />;
+    return <Button label='Paste Address' onPress={this._onPaste.bind(this)} />;
   }
 
   _renderCameraContent(cameraAuthorized) {
@@ -165,6 +169,6 @@ export default class QrCodeScanner extends Component {
 }
 
 QrCodeScanner.propTypes = {
-  onScan: PropTypes.func.isRequired,
+  onReceivedAddress: PropTypes.func.isRequired,
   showPreview: PropTypes.bool
 };
