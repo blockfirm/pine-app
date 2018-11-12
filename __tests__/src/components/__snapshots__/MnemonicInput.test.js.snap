@@ -62,6 +62,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [
@@ -165,6 +166,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [
@@ -268,6 +270,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [
@@ -371,6 +374,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [
@@ -474,6 +478,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [
@@ -577,6 +582,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [
@@ -680,6 +686,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [
@@ -783,6 +790,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [
@@ -886,6 +894,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [
@@ -989,6 +998,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [
@@ -1092,6 +1102,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="next"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [
@@ -1195,6 +1206,7 @@ exports[`MnemonicInput renders correctly 1`] = `
           onSubmitEditing={[Function]}
           placeholderTextColor="#DADADA"
           returnKeyType="done"
+          secureTextEntry={true}
           selectionColor="#007AFF"
           style={
             Array [

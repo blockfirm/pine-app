@@ -86,6 +86,7 @@ export default class MnemonicWordInput extends Component {
             disabled={this.props.disabled}
             onChangeText={this.props.onChangeText}
             onSubmitEditing={this.props.onSubmitEditing}
+            secureTextEntry={true}
           />
           <StyledText style={[styles.number, colorStyle]}>
             {index + 1}.

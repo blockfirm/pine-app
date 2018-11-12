@@ -48,6 +48,7 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
         onFocus={[Function]}
         placeholderTextColor="#DADADA"
         returnKeyType="next"
+        secureTextEntry={true}
         selectionColor="#007AFF"
         style={
           Array [
@@ -157,6 +158,7 @@ exports[`MnemonicWordInput renders correctly 1`] = `
         onFocus={[Function]}
         placeholderTextColor="#DADADA"
         returnKeyType="next"
+        secureTextEntry={true}
         selectionColor="#007AFF"
         style={
           Array [
@@ -262,6 +264,7 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
         onFocus={[Function]}
         placeholderTextColor="#DADADA"
         returnKeyType="next"
+        secureTextEntry={true}
         selectionColor="#007AFF"
         style={
           Array [

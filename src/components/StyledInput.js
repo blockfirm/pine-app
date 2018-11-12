@@ -106,6 +106,7 @@ export default class StyledInput extends Component {
           onBlur={this._onBlur.bind(this)}
           onChangeText={(text) => this._onChangeText(text)}
           onSubmitEditing={this.props.onSubmitEditing}
+          secureTextEntry={this.props.secureTextEntry}
         />
       </View>
     );
@@ -126,5 +127,6 @@ StyledInput.propTypes = {
   disabled: PropTypes.bool,
   onFocus: PropTypes.func,
   onChangeText: PropTypes.func,
-  onSubmitEditing: PropTypes.func
+  onSubmitEditing: PropTypes.func,
+  secureTextEntry: PropTypes.bool
 };
