@@ -60,13 +60,21 @@ export default class App extends Component {
       store.dispatch(internetActions.connected());
 
       if (this._isConnectedToInternet !== null) {
-        store.dispatch(syncWallet());
+        this._syncWallet();
       }
     } else {
       store.dispatch(internetActions.disconnected());
     }
 
     this._isConnectedToInternet = isConnected;
+  }
+
+  _syncWallet() {
+    const state = store.getState();
+
+    if (state.settings.initialized) {
+      store.dispatch(syncWallet());
+    }
   }
 
   render() {
