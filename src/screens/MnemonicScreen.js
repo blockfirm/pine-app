@@ -47,20 +47,16 @@ export default class MnemonicScreen extends Component {
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
-      headerLeft: headerLeft,
-      headerRight: headerRight,
-
-      // HACK: Hack to disable the back navigation when this is the initial screen.
-      gestureResponseDistance: isModal ? { horizontal: -1, vertical: 135 } : undefined
+      headerLeft,
+      headerRight
     };
   };
 
   _showConfirmMnemonicScreen() {
     const navigation = this.props.navigation;
     const { mnemonic, isModal } = navigation.state.params;
-    const screenName = isModal ? 'ConfirmMnemonicModal' : 'ConfirmMnemonic';
 
-    navigation.navigate(screenName, { mnemonic, isModal });
+    navigation.navigate('ConfirmMnemonic', { mnemonic, isModal });
   }
 
   render() {

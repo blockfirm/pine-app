@@ -4,10 +4,11 @@ import ConfirmMnemonicScreen from '../screens/ConfirmMnemonicScreen';
 import createDismissableStackNavigator from '../createDismissableStackNavigator';
 
 const BackUpMnemonicNavigator = createDismissableStackNavigator({
-  MnemonicModal: { screen: MnemonicScreen },
-  ConfirmMnemonicModal: { screen: ConfirmMnemonicScreen }
+  Mnemonic: { screen: MnemonicScreen },
+  ConfirmMnemonic: { screen: ConfirmMnemonicScreen }
 }, {
-  headerMode: 'float'
+  headerMode: 'float',
+  initialRouteName: 'Mnemonic'
 });
 
 export default BackUpMnemonicNavigator;

@@ -88,7 +88,7 @@ export default class ShowMnemonicScreen extends Component {
   _backUpManually() {
     const navigation = this.props.navigation;
 
-    navigation.navigate('MnemonicModal', {
+    navigation.navigate('BackUpMnemonic', {
       mnemonic: this.state.phrase,
       isModal: true
     });

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -16,11 +15,7 @@ export default class SettingsScreen extends Component {
     headerStyle: headerStyles.header,
     headerTitleStyle: headerStyles.title,
     headerBackTitle: null,
-    headerRight: (<DoneButton onPress={screenProps.dismiss} />),
-
-    // HACK: Hack to disable the back navigation on the initial settings screen.
-    headerLeft: (<Text />),
-    gestureResponseDistance: { horizontal: -1, vertical: 135 }
+    headerRight: (<DoneButton onPress={screenProps.dismiss} />)
   });
 
   _showGeneralSettings() {

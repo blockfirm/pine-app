@@ -25,7 +25,8 @@ const SettingsNavigator = createDismissableStackNavigator({
   SatoshisPerByte: { screen: SatoshisPerByteScreen },
   ShowMnemonic: { screen: ShowMnemonicScreen }
 }, {
-  headerMode: 'float'
+  headerMode: 'float',
+  initialRouteName: 'Settings'
 });
 
 export default SettingsNavigator;

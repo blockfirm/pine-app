@@ -52,11 +52,8 @@ export default class TermsAndConditionsScreen extends Component {
       title: 'Terms and Conditions',
       headerStyle: headerStyles.header,
       headerTitleStyle: headerStyles.title,
-      headerLeft: headerLeft,
-      headerRight: headerRight,
-
-      // HACK: Hack to disable the back navigation when this is the initial screen.
-      gestureResponseDistance: isModal ? { horizontal: -1, vertical: 135 } : undefined
+      headerLeft,
+      headerRight
     };
   };
 

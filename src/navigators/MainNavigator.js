@@ -17,7 +17,8 @@ const MainNavigator = createStackNavigator({
   Disclaimer: { screen: DisclaimerScreen },
   Home: { screen: HomeScreen }
 }, {
-  headerMode: 'screen'
+  headerMode: 'screen',
+  initialRouteName: 'Splash'
 });
 
 export default MainNavigator;

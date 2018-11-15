@@ -51,7 +51,7 @@ export default class DisclaimerScreen extends Component {
 
   _showTermsAndConditionsModal() {
     const navigation = this.props.navigation;
-    navigation.navigate('TermsAndConditionsModal', { isModal: true });
+    navigation.navigate('TermsAndConditions', { isModal: true });
   }
 
   _flagAsAccepted() {
