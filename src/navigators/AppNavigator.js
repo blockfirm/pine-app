@@ -1,13 +1,15 @@
 import { createStackNavigator } from 'react-navigation';
 
 import MainNavigator from './MainNavigator';
-import ModalNavigator from './ModalNavigator';
+import TermsAndConditionsModalNavigator from './TermsAndConditionsModalNavigator';
 import SettingsNavigator from './SettingsNavigator';
+import BackUpMnemonicNavigator from './BackUpMnemonicNavigator';
 
 const AppNavigator = createStackNavigator({
   MainNavigator: { screen: MainNavigator },
-  ModalNavigator: { screen: ModalNavigator },
-  SettingsNavigator: { screen: SettingsNavigator }
+  TermsAndConditionsModalNavigator: { screen: TermsAndConditionsModalNavigator },
+  SettingsNavigator: { screen: SettingsNavigator },
+  BackUpMnemonicNavigator: { screen: BackUpMnemonicNavigator }
 }, {
   mode: 'modal',
   headerMode: 'none'
