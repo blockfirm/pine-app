@@ -12,7 +12,7 @@ import ShowMnemonicScreen from '../screens/settings/ShowMnemonicScreen';
 
 import createDismissableStackNavigator from '../createDismissableStackNavigator';
 
-const SettingsCardNavigator = createDismissableStackNavigator({
+const SettingsNavigator = createDismissableStackNavigator({
   Settings: { screen: SettingsScreen },
   GeneralSettings: { screen: GeneralSettingsScreen },
   SecurityAndPrivacySettings: { screen: SecurityAndPrivacySettingsScreen },
@@ -28,4 +28,4 @@ const SettingsCardNavigator = createDismissableStackNavigator({
   headerMode: 'float'
 });
 
-export default SettingsCardNavigator;
+export default SettingsNavigator;

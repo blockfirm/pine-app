@@ -8,7 +8,7 @@ import ImportMnemonicScreen from '../screens/ImportMnemonicScreen';
 import DisclaimerScreen from '../screens/DisclaimerScreen';
 import HomeScreen from '../screens/HomeScreen';
 
-const MainCardNavigator = createStackNavigator({
+const MainNavigator = createStackNavigator({
   Splash: { screen: SplashScreen },
   Welcome: { screen: WelcomeScreen },
   Mnemonic: { screen: MnemonicScreen },
@@ -20,4 +20,4 @@ const MainCardNavigator = createStackNavigator({
   headerMode: 'screen'
 });
 
-export default MainCardNavigator;
+export default MainNavigator;

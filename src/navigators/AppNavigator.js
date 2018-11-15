@@ -1,13 +1,13 @@
 import { createStackNavigator } from 'react-navigation';
 
-import MainCardNavigator from './MainCardNavigator';
+import MainNavigator from './MainNavigator';
 import ModalNavigator from './ModalNavigator';
-import SettingsCardNavigator from './SettingsCardNavigator';
+import SettingsNavigator from './SettingsNavigator';
 
 const AppNavigator = createStackNavigator({
-  MainCardNavigator: { screen: MainCardNavigator },
+  MainNavigator: { screen: MainNavigator },
   ModalNavigator: { screen: ModalNavigator },
-  SettingsCardNavigator: { screen: SettingsCardNavigator }
+  SettingsNavigator: { screen: SettingsNavigator }
 }, {
   mode: 'modal',
   headerMode: 'none'
