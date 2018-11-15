@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import { sync as syncWallet } from './actions/bitcoin/wallet';
 import * as internetActions from './actions/network/internet';
-import AppNavigator from './AppNavigator';
+import AppNavigator from './navigators/AppNavigator';
 import getAppWithNavigationState from './getAppWithNavigationState';
 import createStore from './createStore';
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { reduxifyNavigator } from 'react-navigation-redux-helpers';
-import AppNavigator from './AppNavigator';
+import AppNavigator from './navigators/AppNavigator';
 
 const getAppWithNavigationState = () => {
   const App = reduxifyNavigator(AppNavigator, 'root');
