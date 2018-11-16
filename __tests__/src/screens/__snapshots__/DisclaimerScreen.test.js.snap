@@ -40,7 +40,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
       ]
     }
   >
-    Read before you use Payla 🧐
+    Read before you use Pine 🧐
   </Text>
   <View
     style={

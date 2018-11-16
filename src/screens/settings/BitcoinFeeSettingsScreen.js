@@ -109,7 +109,7 @@ export default class BitcoinFeeSettingsScreen extends Component {
         <SettingsDescription />
 
         <SettingsDescription>
-          All fees goes to the miner who mines the block containing your transaction. Payla or its
+          All fees goes to the miner who mines the block containing your transaction. Pine or its
           developers does not charge any fees.
         </SettingsDescription>
       </BaseSettingsScreen>

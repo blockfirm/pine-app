@@ -74,7 +74,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 ]
               }
             >
-              Last updated: October 11, 2018
+              Last updated: November 16, 2018
             </Text>
             <Text
               style={
@@ -104,7 +104,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 ]
               }
             >
-              These Terms and Conditions ("Terms", "Terms and Conditions") govern your relationship with Payla mobile application (the "Service") operated by Blockfirm AB ("us", "we", or "our").
+              These Terms and Conditions ("Terms", "Terms and Conditions") govern your relationship with Pine mobile application (the "Service") operated by Blockfirm AB ("us", "we", or "our").
             </Text>
             <Text
               style={
@@ -134,7 +134,7 @@ exports[`TermsAndConditionsScreen renders correctly 1`] = `
                 ]
               }
             >
-              Please read these Terms and Conditions carefully before using our Payla mobile application (the "Service").
+              Please read these Terms and Conditions carefully before using our Pine mobile application (the "Service").
             </Text>
             <Text
               style={

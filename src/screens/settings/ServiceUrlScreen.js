@@ -13,7 +13,7 @@ import SettingsButton from '../../components/SettingsButton';
 import BaseSettingsScreen from './BaseSettingsScreen';
 import config from '../../config';
 
-const PAYLA_API_REPO_URL = 'https://github.com/blockfirm/payla-api';
+const PINE_API_REPO_URL = 'https://github.com/blockfirm/pine-api';
 
 @connect((state) => ({
   settings: state.settings
@@ -42,8 +42,8 @@ export default class ServiceUrlScreen extends Component {
     this.props.navigation.goBack();
   }
 
-  _visitPaylaAPIRepo() {
-    Linking.openURL(PAYLA_API_REPO_URL);
+  _visitPineAPIRepo() {
+    Linking.openURL(PINE_API_REPO_URL);
   }
 
   _save() {
@@ -75,12 +75,12 @@ export default class ServiceUrlScreen extends Component {
 
         <SettingsDescription>
           The Service URL is used to communicate with an API to retrieve and submit information
-          to the blockchain. By default this service is provided by Payla, but you can host your
+          to the blockchain. By default this service is provided by Pine, but you can host your
           own service and enter its URL here.
         </SettingsDescription>
 
         <SettingsGroup>
-          <SettingsButton title='Host Your Own Service' onPress={this._visitPaylaAPIRepo.bind(this)} isLastItem={true} />
+          <SettingsButton title='Host Your Own Service' onPress={this._visitPineAPIRepo.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );

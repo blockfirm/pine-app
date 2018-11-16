@@ -63,15 +63,15 @@ export default class TermsAndConditionsScreen extends Component {
         <SettingsGroup style={styles.view}>
           <View style={styles.paragraphWrapper}>
             <Paragraph style={styles.paragraph}>
-              Last updated: October 11, 2018
+              Last updated: November 16, 2018
             </Paragraph>
             <Paragraph style={styles.paragraph}>
               These Terms and Conditions ("Terms", "Terms and Conditions") govern your
-              relationship with Payla mobile application (the "Service") operated by
+              relationship with Pine mobile application (the "Service") operated by
               Blockfirm AB ("us", "we", or "our").
             </Paragraph>
             <Paragraph style={styles.paragraph}>
-              Please read these Terms and Conditions carefully before using our Payla
+              Please read these Terms and Conditions carefully before using our Pine
               mobile application (the "Service").
             </Paragraph>
             <Paragraph style={styles.paragraph}>

@@ -1,7 +1,7 @@
-Contributing to Payla
+Contributing to Pine
 =====================
 
-We're glad that you'd like to help us make Payla even better. But first,
+We're glad that you'd like to help us make Pine even better. But first,
 read these guidelines and instructions.
 
 ## Setting up the environment
@@ -27,8 +27,8 @@ Download and install Xcode from
 
 ### Clone the repository
 
-	$ git clone https://github.com/blockfirm/payla-app.git
-	$ cd payla-app
+	$ git clone https://github.com/blockfirm/pine-app.git
+	$ cd pine-app
 
 ### Install dependencies
 
@@ -97,7 +97,7 @@ releasing new versions.
 
 ## Roadmap
 
-We're using [Issues](https://github.com/blockfirm/payla-app/issues) on
+We're using [Issues](https://github.com/blockfirm/pine-app/issues) on
 GitHub to plan our milestones. That include new features as well as bug fixes.
 
 ## Reporting security issues
@@ -106,7 +106,7 @@ We appreciate all security related reports. Please send them to <timothy@blockfi
 
 ## Reporting bugs
 
-To report a bug or another issue, please [submit a new issue](https://github.com/blockfirm/payla-app/issues/new) on GitHub.
+To report a bug or another issue, please [submit a new issue](https://github.com/blockfirm/pine-app/issues/new) on GitHub.
 
 Describe your issue with steps of how to reproduce it, and if not obvious, what
 the expected behavior should be. Also include information about your system
@@ -115,5 +115,5 @@ the expected behavior should be. Also include information about your system
 ## Discussion and feedback
 
 As there are no channels set up for general discussion, we are using
-[GitHub Issues](https://github.com/blockfirm/payla-app/issues) for now.
+[GitHub Issues](https://github.com/blockfirm/pine-app/issues) for now.
 Tag your issue as a `Question`.

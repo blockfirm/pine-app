@@ -75,7 +75,7 @@ export default class DisclaimerScreen extends Component {
     return (
       <BaseScreen style={styles.view}>
         <Title style={styles.title}>
-          Read before you use Payla 🧐
+          Read before you use Pine 🧐
         </Title>
 
         <View style={styles.terms}>

@@ -1,12 +1,11 @@
-Payla
-=====
+Pine Wallet
+===========
 
-[![GitHub Release](https://img.shields.io/github/release/blockfirm/payla-app.svg?style=flat-square)](https://github.com/blockfirm/payla-app/releases)
-[![Build Status](https://img.shields.io/travis/blockfirm/payla-app.svg?branch=master&style=flat-square)](https://travis-ci.org/blockfirm/payla-app)
-[![Coverage Status](https://img.shields.io/coveralls/blockfirm/payla-app.svg?style=flat-square)](https://coveralls.io/r/blockfirm/payla-app)
+[![GitHub Release](https://img.shields.io/github/release/blockfirm/pine-app.svg?style=flat-square)](https://github.com/blockfirm/pine-app/releases)
+[![Build Status](https://img.shields.io/travis/blockfirm/pine-app.svg?branch=master&style=flat-square)](https://travis-ci.org/blockfirm/pine-app)
+[![Coverage Status](https://img.shields.io/coveralls/blockfirm/pine-app.svg?style=flat-square)](https://coveralls.io/r/blockfirm/pine-app)
 
-Payla is an open-source cryptocurrency wallet that lets you pay your friends and purchases with
-whatever crypto you want.
+[Pine](https://pinewallet.co) is an open-source bitcoin wallet for sending and receiving money among your friends.
 
 ## Getting Started
 
@@ -36,10 +35,10 @@ Or follow the instructions here: <https://yarnpkg.com/en/docs/install>
 
 ## Contributing
 
-Want to help us making Payla better? Great, but first read the
+Want to help us making Pine better? Great, but first read the
 [CONTRIBUTING.md](CONTRIBUTING.md) file for instructions.
 
 ## Licensing
 
-Payla is licensed under the Apache License, Version 2.0.
+Pine is licensed under the Apache License, Version 2.0.
 See [LICENSE](LICENSE) for full license text.
