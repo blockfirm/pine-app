@@ -1,5 +1,5 @@
 Contributing to Pine
-=====================
+====================
 
 We're glad that you'd like to help us make Pine even better. But first,
 read these guidelines and instructions.
@@ -114,6 +114,5 @@ the expected behavior should be. Also include information about your system
 
 ## Discussion and feedback
 
-As there are no channels set up for general discussion, we are using
-[GitHub Issues](https://github.com/blockfirm/pine-app/issues) for now.
-Tag your issue as a `Question`.
+Use the [Telegram group](https://t.me/pinewallet) or [GitHub Issues](https://github.com/blockfirm/pine-app/issues) for general discussions.
+Tag your issue as a `Question`. You can also tweet us at [@pinewalletco](https://twitter.com/pinewalletco).
