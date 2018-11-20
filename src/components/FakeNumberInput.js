@@ -152,6 +152,7 @@ export default class FakeNumberInput extends Component {
 
     const textStyles = [
       styles.text,
+      this.props.color ? { color: this.props.color } : null,
       { fontSize },
       value === '' ? styles.placeholder : null
     ];
@@ -177,5 +178,6 @@ export default class FakeNumberInput extends Component {
 
 FakeNumberInput.propTypes = {
   style: PropTypes.any,
+  color: PropTypes.string,
   value: PropTypes.string
 };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
@@ -14,11 +14,13 @@ import ContentView from '../components/ContentView';
 import Footer from '../components/Footer';
 import CancelButton from '../components/CancelButton';
 import UnitPickerTitle from '../components/UnitPickerTitle';
+import StyledText from '../components/StyledText';
 import BaseScreen from './BaseScreen';
 
 const UNIT_BTC = 'BTC';
 const UNIT_MBTC = 'mBTC';
 const UNIT_SATOSHIS = 'Satoshis';
+const ERROR_COLOR = '#FF3B30';
 
 const styles = StyleSheet.create({
   view: {
@@ -31,10 +33,21 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 50
+  },
+  errorText: {
+    color: ERROR_COLOR,
+    fontSize: 12,
+    textAlign: 'center',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 70
   }
 });
 
-@connect()
+@connect((state) => ({
+  balance: state.bitcoin.wallet.balance
+}))
 export default class EnterAmountScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     const { unit } = navigation.state.params;
@@ -54,7 +67,8 @@ export default class EnterAmountScreen extends Component {
   };
 
   state = {
-    amount: ''
+    amount: '',
+    insufficientFunds: false
   }
 
   componentDidMount() {
@@ -67,9 +81,8 @@ export default class EnterAmountScreen extends Component {
     const unit = this.props.navigation.state.params.unit;
 
     if (unit !== prevUnit) {
-      this.setState({
-        amount: this._sanitizeAmount(amount)
-      });
+      const sanitizedAmount = this._sanitizeAmount(amount);
+      this._setAmount(sanitizedAmount);
     }
   }
 
@@ -87,10 +100,12 @@ export default class EnterAmountScreen extends Component {
         integer = integer.slice(0, 8);
         fractional = fractional && fractional.slice(0, 8);
         break;
+
       case UNIT_MBTC:
         integer = integer.slice(0, 11);
         fractional = fractional && fractional.slice(0, 5);
         break;
+
       case UNIT_SATOSHIS:
         integer = integer.slice(0, 16);
         integer = integer === '0' ? '' : integer;
@@ -135,35 +150,81 @@ export default class EnterAmountScreen extends Component {
     return sanitized;
   }
 
-  _onInput(value) {
-    const amount = this.state.amount + value;
+  _convertToBtc(amount, unit) {
+    if (!amount) {
+      return 0;
+    }
 
-    this.setState({ 
-      amount: this._sanitizeAmount(amount)
-    });
+    switch (unit) {
+      case UNIT_BTC:
+        return parseFloat(amount);
+
+      case UNIT_MBTC:
+        return parseFloat(amount) / 1000;
+
+      case UNIT_SATOSHIS:
+        return parseInt(amount) / 100000000;
+    }
+  }
+
+  _checkBalance(amount) {
+    const { balance } = this.props;
+    const { unit } = this.props.navigation.state.params;
+    const amountBtc = this._convertToBtc(amount, unit);
+    const insufficientFunds = balance < amountBtc;
+
+    this.setState({ insufficientFunds });
+  }
+
+  _setAmount(amount) {
+    this._checkBalance(amount);
+    this.setState({ amount });
+  }
+
+  _onInput(value) {
+    const amount = `${this.state.amount}${value}`;
+    const sanitizedAmount = this._sanitizeAmount(amount);
+
+    this._setAmount(sanitizedAmount);
   }
   
   _onDelete(isLongPress) {
-    const { amount } = this.state;
+    let amount = this.state.amount;
 
     if (isLongPress && amount.length > 0) {
       ReactNativeHaptic.generate('selection');
-      return this.setState({ amount: '' });
+      amount = '';
+    } else {
+      amount = amount.slice(0, -1);
     }
 
-    this.setState({
-      amount: amount.slice(0, -1)
-    });
+    this._setAmount(amount);
+  }
+
+  _renderError() {
+    const { insufficientFunds } = this.state;
+
+    if (insufficientFunds) {
+      return (
+        <StyledText style={styles.errorText}>
+          You don't have enough funds to send this amount.
+        </StyledText>
+      );
+    }
+
+    return null;
   }
 
   render() {
-    const { amount } = this.state;
-    const disabled = parseFloat(amount || 0) === 0;
+    const { amount, insufficientFunds } = this.state;
+    const disabled = insufficientFunds || parseFloat(amount || 0) === 0;
+    const textColor = insufficientFunds ? ERROR_COLOR : undefined;
 
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
         <ContentView style={styles.content}>
-          <FakeNumberInput value={amount} style={styles.input} />
+          <FakeNumberInput value={amount} style={styles.input} color={textColor} />
+          {this._renderError()}
           <Button label='Review and Pay' disabled={disabled} onPress={() => {}} />
         </ContentView>
 
@@ -178,5 +239,6 @@ export default class EnterAmountScreen extends Component {
 
 EnterAmountScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
+  balance: PropTypes.number
 };
