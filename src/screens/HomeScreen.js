@@ -196,11 +196,12 @@ export default class HomeScreen extends Component {
 
   render() {
     const showCameraPreview = this._shouldShowCameraPreview();
+    const props = { navigation: this.props.navigation };
 
     const screens = [
-      { key: 'camera', screen: <CameraScreen showPreview={showCameraPreview} onBackPress={this._scrollToHome.bind(this)} /> },
-      { key: 'home', screen: <TransactionsScreen /> },
-      { key: 'receive', screen: <ReceiveScreen onBackPress={this._scrollToHome.bind(this)} /> }
+      { key: 'camera', screen: <CameraScreen {...props} showPreview={showCameraPreview} onBackPress={this._scrollToHome.bind(this)} /> },
+      { key: 'home', screen: <TransactionsScreen {...props} /> },
+      { key: 'receive', screen: <ReceiveScreen {...props} onBackPress={this._scrollToHome.bind(this)} /> }
     ];
 
     return (
@@ -237,5 +238,6 @@ export default class HomeScreen extends Component {
 
 HomeScreen.propTypes = {
   dispatch: PropTypes.func,
+  navigation: PropTypes.any,
   isDisconnectedFromInternet: PropTypes.bool
 };

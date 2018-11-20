@@ -8,6 +8,7 @@ jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContai
 jest.mock('../../../src/containers/TransactionListContainer', () => 'TransactionListContainer');
 jest.mock('../../../src/screens/TransactionsScreen', () => 'TransactionsScreen');
 jest.mock('../../../src/screens/ReceiveScreen', () => 'ReceiveScreen');
+jest.mock('../../../src/screens/CameraScreen', () => 'CameraScreen');
 
 const storeMock = {
   getState: jest.fn(() => ({

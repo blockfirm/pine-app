@@ -6,11 +6,11 @@ import StyledText from './StyledText';
 const styles = StyleSheet.create({
   button: {
     padding: 10,
-    paddingRight: 16.5
+    paddingLeft: 16,
+    paddingRight: 16
   },
   text: {
     fontSize: 17,
-    letterSpacing: 0.1,
     color: '#000000'
   }
 });
