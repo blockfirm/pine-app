@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Animated, Easing, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Animated, Easing, Dimensions, Clipboard } from 'react-native';
 import PropTypes from 'prop-types';
+import ToolTip from 'react-native-tooltip';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const MAX_FONT_SIZE = 70;
@@ -51,6 +52,7 @@ export default class FakeNumberInput extends Component {
 
     this._caretAnim = new Animated.Value(1);
     this._onLayout = this._onLayout.bind(this);
+    this._onPaste = this._onPaste.bind(this);
   }
 
   componentDidMount() {
@@ -145,6 +147,20 @@ export default class FakeNumberInput extends Component {
     });
   }
 
+  _onPaste() {
+    if (!this.props.onPaste) {
+      return;
+    }
+
+    Clipboard.getString().then((string) => {
+      const number = parseFloat(string);
+
+      if (!isNaN(number) && number > 0) {
+        this.props.onPaste(number.toString());
+      }
+    });
+  }
+
   render() {
     const caretAnim = this._caretAnim;
     const value = this._addThousandsSeparators(this.props.value);
@@ -169,7 +185,15 @@ export default class FakeNumberInput extends Component {
 
     return (
       <View style={[styles.view, this.props.style]} onLayout={this._onLayout}>
-        <Text style={textStyles}>{value || 0}</Text>
+        <ToolTip
+          actions={[
+            { text: 'Paste', onPress: this._onPaste }
+          ]}
+          underlayColor='white'
+          activeOpacity={1}
+        >
+          <Text style={textStyles}>{value || 0}</Text>
+        </ToolTip>
         <Animated.View style={caretStyles} />
       </View>
     );
@@ -179,5 +203,6 @@ export default class FakeNumberInput extends Component {
 FakeNumberInput.propTypes = {
   style: PropTypes.any,
   color: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.string,
+  onPaste: PropTypes.func
 };

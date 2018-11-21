@@ -201,6 +201,11 @@ export default class EnterAmountScreen extends Component {
     this._setAmount(amount);
   }
 
+  _onPaste(value) {
+    const amount = this._sanitizeAmount(value);
+    this._setAmount(amount);
+  }
+
   _renderError() {
     const { insufficientFunds } = this.state;
 
@@ -223,7 +228,12 @@ export default class EnterAmountScreen extends Component {
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
         <ContentView style={styles.content}>
-          <FakeNumberInput value={amount} style={styles.input} color={textColor} />
+          <FakeNumberInput
+            value={amount}
+            style={styles.input}
+            color={textColor}
+            onPaste={this._onPaste.bind(this)}
+          />
           {this._renderError()}
           <Button label='Review and Pay' disabled={disabled} onPress={() => {}} />
         </ContentView>

@@ -42,6 +42,7 @@
     "react-native-linear-gradient": "^2.4.2",
     "react-native-randombytes": "^3.0.0",
     "react-native-text-gradient": "^0.0.16",
+    "react-native-tooltip": "^5.2.0",
     "react-native-vector-icons": "^6.0.2",
     "react-navigation": "^2.18.2",
     "react-navigation-redux-helpers": "^2.0.8",
