@@ -19,14 +19,14 @@ export default class SecurityAndPrivacySettingsScreen extends Component {
     headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />)
   });
 
-  _showServiceUrl() {
+  _showServiceUrlScreen() {
     const navigation = this.props.navigation;
     navigation.navigate('ServiceUrl');
   }
 
-  _showMnemonic() {
+  _showRecoveryKeyScreen() {
     const navigation = this.props.navigation;
-    navigation.navigate('ShowMnemonic');
+    navigation.navigate('RecoveryKey');
   }
 
   render() {
@@ -35,8 +35,8 @@ export default class SecurityAndPrivacySettingsScreen extends Component {
     return (
       <BaseSettingsScreen>
         <SettingsGroup>
-          <SettingsLink name='Service URL' value={settings.api.baseUrl} onPress={this._showServiceUrl.bind(this)} />
-          <SettingsLink name='Recovery Key' onPress={this._showMnemonic.bind(this)} isLastItem={true} />
+          <SettingsLink name='Service URL' value={settings.api.baseUrl} onPress={this._showServiceUrlScreen.bind(this)} />
+          <SettingsLink name='Recovery Key' onPress={this._showRecoveryKeyScreen.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );

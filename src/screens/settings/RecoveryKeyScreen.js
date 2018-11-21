@@ -18,7 +18,7 @@ import BaseSettingsScreen from './BaseSettingsScreen';
   keys: state.keys.items,
   hasCreatedBackup: state.settings.user.hasCreatedBackup
 }))
-export default class ShowMnemonicScreen extends Component {
+export default class RecoveryKeyScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Recovery Key',
     headerStyle: headerStyles.header,
@@ -128,7 +128,7 @@ export default class ShowMnemonicScreen extends Component {
   }
 }
 
-ShowMnemonicScreen.propTypes = {
+RecoveryKeyScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   keys: PropTypes.object,

@@ -1,7 +1,7 @@
 import 'react-native';
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ShowMnemonicScreen from '../../../../src/screens/settings/ShowMnemonicScreen';
+import RecoveryKeyScreen from '../../../../src/screens/settings/RecoveryKeyScreen';
 
 jest.mock('../../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
 jest.mock('../../../../src/containers/MnemonicWordsContainer', () => 'MnemonicWordsContainer');
@@ -32,10 +32,10 @@ const navigationMock = {
   }
 };
 
-describe('ShowMnemonicScreen', () => {
+describe('RecoveryKeyScreen', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
-      <ShowMnemonicScreen store={storeMock} navigation={navigationMock} />
+      <RecoveryKeyScreen store={storeMock} navigation={navigationMock} />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
