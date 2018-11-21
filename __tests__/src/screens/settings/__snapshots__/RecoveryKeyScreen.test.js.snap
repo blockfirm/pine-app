@@ -82,7 +82,7 @@ exports[`RecoveryKeyScreen renders correctly 1`] = `
                     "position": "absolute",
                     "right": 15,
                     "textAlign": "right",
-                    "width": 250,
+                    "width": "60%",
                   },
                   Object {
                     "width": null,

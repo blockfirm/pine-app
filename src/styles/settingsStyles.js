@@ -22,7 +22,7 @@ const settingsStyles = StyleSheet.create({
     lineHeight: 22,
     position: 'absolute',
     right: 15,
-    width: 250,
+    width: '60%',
     color: '#8F8E94',
     backgroundColor: 'transparent'
   }

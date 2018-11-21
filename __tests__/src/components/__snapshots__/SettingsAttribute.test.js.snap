@@ -53,7 +53,7 @@ exports[`SettingsAttribute renders correctly 1`] = `
           "position": "absolute",
           "right": 15,
           "textAlign": "right",
-          "width": 250,
+          "width": "60%",
         },
       ]
     }
@@ -118,7 +118,7 @@ exports[`SettingsAttribute renders correctly as the last item 1`] = `
           "position": "absolute",
           "right": 15,
           "textAlign": "right",
-          "width": 250,
+          "width": "60%",
         },
       ]
     }

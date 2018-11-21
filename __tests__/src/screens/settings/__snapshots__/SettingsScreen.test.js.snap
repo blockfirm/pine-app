@@ -116,7 +116,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                         "position": "absolute",
                         "right": 15,
                         "textAlign": "right",
-                        "width": 250,
+                        "width": "60%",
                       },
                       Object {
                         "right": 35,
@@ -235,7 +235,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                         "position": "absolute",
                         "right": 15,
                         "textAlign": "right",
-                        "width": 250,
+                        "width": "60%",
                       },
                       Object {
                         "right": 35,
@@ -356,7 +356,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                         "position": "absolute",
                         "right": 15,
                         "textAlign": "right",
-                        "width": 250,
+                        "width": "60%",
                       },
                       Object {
                         "right": 35,
