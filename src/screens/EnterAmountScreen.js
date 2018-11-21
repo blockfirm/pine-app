@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import { StyleSheet, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
@@ -5,6 +6,13 @@ import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import ReactNativeHaptic from 'react-native-haptic';
+
+import {
+  UNIT_BTC,
+  UNIT_MBTC,
+  UNIT_SATOSHIS,
+  convert as convertBitcoin
+} from '../crypto/bitcoin/convert';
 
 import headerStyles from '../styles/headerStyles';
 import FakeNumberInput from '../components/FakeNumberInput';
@@ -17,9 +25,6 @@ import UnitPickerTitle from '../components/UnitPickerTitle';
 import StyledText from '../components/StyledText';
 import BaseScreen from './BaseScreen';
 
-const UNIT_BTC = 'BTC';
-const UNIT_MBTC = 'mBTC';
-const UNIT_SATOSHIS = 'Satoshis';
 const ERROR_COLOR = '#FF3B30';
 
 const styles = StyleSheet.create({
@@ -72,6 +77,16 @@ export default class EnterAmountScreen extends Component {
   }
 
   componentDidMount() {
+    // Note: The amount is specified in BTC.
+    const amountBtc = this.props.navigation.state.params.amount;
+    const displayUnit = this.props.navigation.state.params.unit;
+
+    if (amountBtc) {
+      const amount = convertBitcoin(amountBtc, UNIT_BTC, displayUnit);
+      const sanitizedAmount = this._sanitizeAmount(amount.toString());
+      this._setAmount(sanitizedAmount);
+    }
+
     StatusBar.setBarStyle('dark-content');
   }
   
@@ -150,27 +165,10 @@ export default class EnterAmountScreen extends Component {
     return sanitized;
   }
 
-  _convertToBtc(amount, unit) {
-    if (!amount) {
-      return 0;
-    }
-
-    switch (unit) {
-      case UNIT_BTC:
-        return parseFloat(amount);
-
-      case UNIT_MBTC:
-        return parseFloat(amount) / 1000;
-
-      case UNIT_SATOSHIS:
-        return parseInt(amount) / 100000000;
-    }
-  }
-
   _checkBalance(amount) {
     const { balance } = this.props;
     const { unit } = this.props.navigation.state.params;
-    const amountBtc = this._convertToBtc(amount, unit);
+    const amountBtc = convertBitcoin(parseFloat(amount), unit, UNIT_BTC);
     const insufficientFunds = balance < amountBtc;
 
     this.setState({ insufficientFunds });

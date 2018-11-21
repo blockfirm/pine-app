@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactNativeHaptic from 'react-native-haptic';
 
+import QrCodeScannerContainer from '../containers/QrCodeScannerContainer';
 import CameraScreenHeader from '../components/CameraScreenHeader';
-import QrCodeScanner from '../components/QrCodeScanner';
 import BaseScreen from './BaseScreen';
 
 const styles = StyleSheet.create({
@@ -23,25 +23,26 @@ export default class CameraScreen extends Component {
     header: null
   }
 
-  _showEnterAmountScreen(address) {
+  _showEnterAmountScreen(address, amount) {
     const navigation = this.props.navigation;
     const unit = this.props.settings.bitcoin.unit;
 
     navigation.navigate('Send', {
       address,
-      unit
+      amount, // Amount in BTC.
+      unit // Unit to display the amount in.
     });
   }
 
-  _onReceivedAddress() {
+  _onReceiveAddress(address, amount) {
     ReactNativeHaptic.generate('notificationSuccess');
-    this._showEnterAmountScreen('');
+    this._showEnterAmountScreen(address, amount);
   }
 
   render() {
     return (
       <BaseScreen style={styles.view}>
-        <QrCodeScanner showPreview={this.props.showPreview} onReceivedAddress={this._onReceivedAddress.bind(this)} />
+        <QrCodeScannerContainer showPreview={this.props.showPreview} onReceiveAddress={this._onReceiveAddress.bind(this)} />
         <CameraScreenHeader onBackPress={this.props.onBackPress} />
       </BaseScreen>
     );

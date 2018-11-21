@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Dimensions, Linking } from 'react-native';
+import { StyleSheet, View, Image, Dimensions, Linking, Clipboard } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import { RNCamera } from 'react-native-camera';
@@ -10,6 +10,7 @@ import Button from '../components/Button';
 import VibrancyButton from '../components/VibrancyButton';
 import Link from '../components/Link';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
+import getPaymentInfoFromString from '../crypto/bitcoin/getPaymentInfoFromString';
 
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 const WINDOW_WIDTH = Dimensions.get('window').width;
@@ -81,7 +82,14 @@ export default class QrCodeScanner extends Component {
   }
 
   _onPaste() {
-    this.props.onReceivedAddress();
+    Clipboard.getString().then((string) => {
+      const network = this.props.network;
+      const paymentInfo = getPaymentInfoFromString(string, network);
+
+      if (paymentInfo) {
+        this.props.onReceiveAddress(paymentInfo.address, paymentInfo.amount);
+      }
+    });
   }
 
   _goToAppSettings() {
@@ -169,6 +177,7 @@ export default class QrCodeScanner extends Component {
 }
 
 QrCodeScanner.propTypes = {
-  onReceivedAddress: PropTypes.func.isRequired,
-  showPreview: PropTypes.bool
+  onReceiveAddress: PropTypes.func.isRequired,
+  showPreview: PropTypes.bool,
+  network: PropTypes.string
 };
