@@ -60,7 +60,7 @@ export default class GeneralSettingsScreen extends Component {
     const keepSettings = true;
 
     ActionSheetIOS.showActionSheetWithOptions({
-      message: 'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
+      title: 'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
       options: ['Cancel', 'Erase Wallet', 'Create Manual Backup'],
       destructiveButtonIndex: 1,
       cancelButtonIndex: 0
@@ -93,7 +93,7 @@ export default class GeneralSettingsScreen extends Component {
 
   _showResetAppConfirmation() {
     ActionSheetIOS.showActionSheetWithOptions({
-      message: 'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
+      title: 'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
       options: ['Cancel', 'Erase Wallet and Settings', 'Create Manual Backup'],
       destructiveButtonIndex: 1,
       cancelButtonIndex: 0
