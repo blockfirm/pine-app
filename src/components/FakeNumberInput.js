@@ -192,7 +192,7 @@ export default class FakeNumberInput extends Component {
           underlayColor='white'
           activeOpacity={1}
         >
-          <Text style={textStyles}>{value || 0}</Text>
+          <Text style={textStyles} numberOfLines={1}>{value || 0}</Text>
         </ToolTip>
         <Animated.View style={caretStyles} />
       </View>
