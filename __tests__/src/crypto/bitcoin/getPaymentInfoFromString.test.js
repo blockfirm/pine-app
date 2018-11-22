@@ -66,6 +66,13 @@ describe('getPaymentInfoFromString', () => {
       expect(paymentInfo.address).toBe('2MvQNs9R4qwbfiBaEtbCq8EgUfUxhccHyqm');
       expect(paymentInfo.amount).toBeUndefined();
     });
+
+    it('trims whitespace from the passed string', () => {
+      const address = ' 2MvQNs9R4qwbfiBaEtbCq8EgUfUxhccHyqm\t\n';
+      const paymentInfo = getPaymentInfoFromString(address, 'testnet');
+
+      expect(paymentInfo.address).toBe('2MvQNs9R4qwbfiBaEtbCq8EgUfUxhccHyqm');
+    });
   });
 
   describe('when the bitcoin address is for the wrong network', () => {

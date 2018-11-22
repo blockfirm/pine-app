@@ -35,6 +35,10 @@ const getPaymentInfoFromString = (string, network) => {
     return;
   }
 
+  // Trim in case the user accidentally also copied some whitespace.
+  // eslint-disable-next-line no-param-reassign
+  string = string.trim();
+
   if (string.search(/^bitcoin/i) === 0) {
     // Try to decode the bitcoin URI.
     const decoded = decodeBitcoinUri(string);
