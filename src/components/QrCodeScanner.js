@@ -81,15 +81,21 @@ export default class QrCodeScanner extends Component {
     return false;
   }
 
-  _onPaste() {
-    Clipboard.getString().then((string) => {
-      const network = this.props.network;
-      const paymentInfo = getPaymentInfoFromString(string, network);
+  _onReceiveData(data) {
+    const network = this.props.network;
+    const paymentInfo = getPaymentInfoFromString(data, network);
 
-      if (paymentInfo) {
-        this.props.onReceiveAddress(paymentInfo.address, paymentInfo.amount);
-      }
-    });
+    if (paymentInfo) {
+      this.props.onReceiveAddress(paymentInfo.address, paymentInfo.amount);
+    }
+  }
+
+  _onPaste() {
+    Clipboard.getString().then(this._onReceiveData.bind(this));
+  }
+
+  _onBarCodeRead({ data }) {
+    this._onReceiveData(data);
   }
 
   _goToAppSettings() {
@@ -169,6 +175,7 @@ export default class QrCodeScanner extends Component {
           onCameraReady={this._onCameraReady.bind(this)}
           notAuthorizedView={this._renderCameraNotAuthorized()}
           pendingAuthorizationView={<View />}
+          onBarCodeRead={this._onBarCodeRead.bind(this)}
         />
         { this._renderCameraAuthorized() }
       </View>

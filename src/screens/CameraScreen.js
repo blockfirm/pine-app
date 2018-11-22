@@ -23,6 +23,30 @@ export default class CameraScreen extends Component {
     header: null
   }
 
+  state = {
+    pauseCamera: false
+  }
+
+  componentDidMount() {
+    const { navigation } = this.props;
+
+    this._willFocusListener = navigation.addListener('willFocus', this.componentWillFocus.bind(this));
+    this._willBlurListener = navigation.addListener('willBlur', this.componentWillBlur.bind(this));
+  }
+
+  componentWillUnmount() {
+    this._willFocusListener.remove();
+    this._willBlurListener.remove();
+  }
+
+  componentWillFocus() {
+    this.setState({ pauseCamera: false });
+  }
+
+  componentWillBlur() {
+    this.setState({ pauseCamera: true });
+  }
+
   _showEnterAmountScreen(address, amount) {
     const navigation = this.props.navigation;
     const unit = this.props.settings.bitcoin.unit;
@@ -35,14 +59,21 @@ export default class CameraScreen extends Component {
   }
 
   _onReceiveAddress(address, amount) {
-    ReactNativeHaptic.generate('notificationSuccess');
-    this._showEnterAmountScreen(address, amount);
+    const showPreview = this.props.showPreview && !this.state.pauseCamera;
+    const isFocused = this.props.navigation.isFocused();
+
+    if (showPreview && isFocused) {
+      ReactNativeHaptic.generate('notificationSuccess');
+      this._showEnterAmountScreen(address, amount);
+    }
   }
 
   render() {
+    const showPreview = this.props.showPreview && !this.state.pauseCamera;
+
     return (
       <BaseScreen style={styles.view}>
-        <QrCodeScannerContainer showPreview={this.props.showPreview} onReceiveAddress={this._onReceiveAddress.bind(this)} />
+        <QrCodeScannerContainer showPreview={showPreview} onReceiveAddress={this._onReceiveAddress.bind(this)} />
         <CameraScreenHeader onBackPress={this.props.onBackPress} />
       </BaseScreen>
     );
