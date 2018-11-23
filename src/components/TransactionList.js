@@ -99,7 +99,7 @@ export default class TransactionList extends Component {
     return (
       <SectionList
         style={styles.list}
-        contentInset={{ bottom: ifIphoneX(34, 0) }}
+        contentInset={{ bottom: ifIphoneX(124, 90) }}
         sections={sections}
         renderItem={({ item }) => (
           <TransactionListItemContainer transaction={item} />
