@@ -6,8 +6,8 @@ import ReactNativeHaptic from 'react-native-haptic';
 import StyledText from './StyledText';
 import StyledInput from './StyledInput';
 
-const SUCCESS_COLOR = '#47D396';
-const FAILURE_COLOR = '#FF6968';
+const SUCCESS_COLOR = '#4CD964';
+const FAILURE_COLOR = '#FF3B30';
 
 const windowDimensions = Dimensions.get('window');
 

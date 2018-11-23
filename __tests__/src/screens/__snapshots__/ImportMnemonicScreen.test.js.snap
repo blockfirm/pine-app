@@ -126,8 +126,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -158,6 +166,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -230,8 +239,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -262,6 +279,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -334,8 +352,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -366,6 +392,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -438,8 +465,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -470,6 +505,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -542,8 +578,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -574,6 +618,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -646,8 +691,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -678,6 +731,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -750,8 +804,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -782,6 +844,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -854,8 +917,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -886,6 +957,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -958,8 +1030,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -990,6 +1070,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -1062,8 +1143,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -1094,6 +1183,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -1166,8 +1256,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -1198,6 +1296,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -1270,8 +1369,16 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
+                disabled={false}
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -1302,6 +1409,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>

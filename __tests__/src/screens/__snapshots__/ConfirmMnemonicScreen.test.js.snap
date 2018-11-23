@@ -123,8 +123,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -155,6 +162,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -227,8 +235,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -259,6 +274,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -331,8 +347,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -363,6 +386,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -435,8 +459,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -467,6 +498,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -539,8 +571,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -571,6 +610,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -643,8 +683,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -675,6 +722,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -747,8 +795,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -779,6 +834,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -851,8 +907,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -883,6 +946,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -955,8 +1019,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -987,6 +1058,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -1059,8 +1131,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -1091,6 +1170,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -1163,8 +1243,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -1195,6 +1282,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
@@ -1267,8 +1355,15 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                 allowFontScaling={true}
                 autoCapitalize="none"
                 autoCorrect={false}
+                borderColor={null}
+                containerStyle={
+                  Object {
+                    "paddingTop": 6,
+                  }
+                }
                 editable={true}
                 enablesReturnKeyAutomatically={true}
+                enforceLowercase={true}
                 onBlur={[Function]}
                 onChangeText={[Function]}
                 onFocus={[Function]}
@@ -1299,6 +1394,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     ],
                   ]
                 }
+                trim={true}
                 underlineColorAndroid="transparent"
               />
             </View>
