@@ -8,8 +8,8 @@ const HEIGHT = 30;
 const COLOR_ERROR = '#FF3B30';
 const COLOR_WARNING = '#FF8D36';
 
-const LABEL_DISCONNECTED_FROM_INTERNET = 'No Internet Connection';
-const LABEL_DISCONNECTED_FROM_SERVER = 'Waiting for Network...';
+const LABEL_DISCONNECTED_FROM_INTERNET = 'No Internet Connection 🤳';
+const LABEL_DISCONNECTED_FROM_SERVER = 'Waiting for Network... 😴';
 
 const styles = StyleSheet.create({
   container: {
