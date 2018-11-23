@@ -158,6 +158,7 @@ export default class ImportMnemonicScreen extends Component {
                 fullWidth={this.state.keyboardState}
                 onPress={this._importMnemonic.bind(this)}
                 showLoader={true}
+                hapticFeedback={true}
               />
               <KeyboardSpacer topSpacing={-30} onToggle={this._onKeyboardToggle.bind(this)} />
             </Footer>
