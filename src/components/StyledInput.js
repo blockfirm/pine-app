@@ -90,23 +90,18 @@ export default class StyledInput extends Component {
     return (
       <View style={[styles.container, this.props.containerStyle, borderColor]}>
         <TextInput
+          {...this.props}
           ref={(ref) => { this._input = ref; }}
           style={[styles.input, this.props.style]}
           autoCorrect={false}
-          autoCapitalize={this.props.autoCapitalize}
           value={this.state.value}
-          placeholder={this.props.placeholder}
           placeholderTextColor={BORDER_COLOR}
           selectionColor={BORDER_COLOR_FOCUS}
-          keyboardType={this.props.keyboardType}
-          returnKeyType={this.props.returnKeyType}
           enablesReturnKeyAutomatically={true}
           editable={editable}
           onFocus={this._onFocus.bind(this)}
           onBlur={this._onBlur.bind(this)}
           onChangeText={(text) => this._onChangeText(text)}
-          onSubmitEditing={this.props.onSubmitEditing}
-          secureTextEntry={this.props.secureTextEntry}
         />
       </View>
     );
@@ -117,16 +112,10 @@ StyledInput.propTypes = {
   style: PropTypes.any,
   containerStyle: PropTypes.any,
   value: PropTypes.string,
-  placeholder: PropTypes.string,
-  autoCapitalize: PropTypes.string,
-  keyboardType: PropTypes.string,
-  returnKeyType: PropTypes.string,
   enforceLowercase: PropTypes.bool,
   trim: PropTypes.bool,
   borderColor: PropTypes.string,
   disabled: PropTypes.bool,
   onFocus: PropTypes.func,
-  onChangeText: PropTypes.func,
-  onSubmitEditing: PropTypes.func,
-  secureTextEntry: PropTypes.bool
+  onChangeText: PropTypes.func
 };
