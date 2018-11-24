@@ -31,7 +31,7 @@ exports[`WelcomeScreen renders correctly 1`] = `
       Object {
         "height": 57,
         "marginBottom": 150,
-        "width": 127,
+        "width": 128,
       }
     }
   />
