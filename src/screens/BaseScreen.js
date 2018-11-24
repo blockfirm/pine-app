@@ -22,10 +22,7 @@ export default class BaseScreen extends Component {
     }
 
     return (
-      <BackHeaderContainer
-        backButtonIconStyle={this.props.backButtonIconStyle}
-        title={this.props.headerTitle}
-      />
+      <BackHeaderContainer title={this.props.headerTitle} />
     );
   }
 
@@ -41,7 +38,6 @@ export default class BaseScreen extends Component {
 
 BaseScreen.propTypes = {
   style: PropTypes.any,
-  backButtonIconStyle: PropTypes.any,
   headerTitle: PropTypes.string,
   hideHeader: PropTypes.bool,
   children: PropTypes.node

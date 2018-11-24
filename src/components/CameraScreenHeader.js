@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import headerStyles from '../styles/headerStyles';
-import ForwardButton from '../components/ForwardButton';
+import ForwardWhiteButton from '../components/ForwardWhiteButton';
 import StyledText from '../components/StyledText';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
@@ -21,12 +21,7 @@ const styles = StyleSheet.create({
     height: getNavBarHeight()
   },
   backButton: {
-    right: 11.5,
-    padding: 5,
-    paddingTop: 7
-  },
-  backIcon: {
-    color: '#ffffff'
+    padding: 5
   },
   title: {
     position: 'absolute',
@@ -50,10 +45,9 @@ export default class CameraScreenHeader extends Component {
           Send Bitcoin
         </StyledText>
 
-        <ForwardButton
+        <ForwardWhiteButton
           onPress={this.props.onBackPress}
           style={styles.backButton}
-          iconStyle={[styles.backIcon, styles.textShadow]}
         />
       </View>
     );

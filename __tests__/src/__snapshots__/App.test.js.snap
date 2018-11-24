@@ -183,13 +183,15 @@ exports[`App renders correctly 1`] = `
                       <View
                         style={
                           Object {
+                            "alignSelf": "stretch",
                             "backgroundColor": "transparent",
-                            "height": 42,
+                            "height": 44,
+                            "justifyContent": "center",
                             "left": 0,
+                            "marginTop": 20,
                             "position": "absolute",
                             "right": 0,
                             "top": 0,
-                            "zIndex": 1000,
                           }
                         }
                       >
@@ -207,7 +209,6 @@ exports[`App renders correctly 1`] = `
                                 "position": "absolute",
                                 "right": 40,
                                 "textAlign": "center",
-                                "top": 36,
                               },
                             ]
                           }

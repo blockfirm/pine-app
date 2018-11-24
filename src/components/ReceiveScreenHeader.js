@@ -21,10 +21,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0
   },
-  backButton: {
-    padding: 5,
-    paddingTop: 7
-  },
   title: {
     position: 'absolute',
     left: 40,
@@ -43,7 +39,7 @@ export default class ReceiveScreenHeader extends Component {
   render() {
     return (
       <View style={styles.header}>
-        <BackButton onPress={this.props.onBackPress} style={styles.backButton} />
+        <BackButton onPress={this.props.onBackPress} />
 
         <StyledText style={[headerStyles.title, styles.title, styles.textShadow]}>
           Receive Bitcoin

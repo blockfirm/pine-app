@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Entypo';
 import PropTypes from 'prop-types';
+import BackIcon from './icons/BackIcon';
 
 const styles = StyleSheet.create({
   button: {
     position: 'absolute',
-    left: 10
+    left: 5
   },
   icon: {
-    paddingRight: 10,
-    fontSize: 20,
-    color: '#000000',
-    backgroundColor: 'transparent'
+    padding: 10
   }
 });
 
@@ -20,7 +17,7 @@ export default class BackButton extends Component {
   render() {
     return (
       <TouchableOpacity onPress={this.props.onPress} style={[styles.button, this.props.style]}>
-        <Icon name='chevron-thin-left' style={[styles.icon, this.props.iconStyle]} />
+        <BackIcon style={[styles.icon, this.props.iconStyle]} />
       </TouchableOpacity>
     );
   }

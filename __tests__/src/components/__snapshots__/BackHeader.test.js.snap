@@ -4,13 +4,15 @@ exports[`BackHeader renders correctly with showBackButton set to false 1`] = `
 <View
   style={
     Object {
+      "alignSelf": "stretch",
       "backgroundColor": "transparent",
-      "height": 42,
+      "height": 44,
+      "justifyContent": "center",
       "left": 0,
+      "marginTop": 20,
       "position": "absolute",
       "right": 0,
       "top": 0,
-      "zIndex": 1000,
     }
   }
 >
@@ -28,7 +30,6 @@ exports[`BackHeader renders correctly with showBackButton set to false 1`] = `
           "position": "absolute",
           "right": 40,
           "textAlign": "center",
-          "top": 36,
         },
       ]
     }
@@ -40,13 +41,15 @@ exports[`BackHeader renders correctly with showBackButton set to true 1`] = `
 <View
   style={
     Object {
+      "alignSelf": "stretch",
       "backgroundColor": "transparent",
-      "height": 42,
+      "height": 44,
+      "justifyContent": "center",
       "left": 0,
+      "marginTop": 20,
       "position": "absolute",
       "right": 0,
       "top": 0,
-      "zIndex": 1000,
     }
   }
 >
@@ -61,41 +64,36 @@ exports[`BackHeader renders correctly with showBackButton set to true 1`] = `
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "left": 10,
+        "left": 5,
         "opacity": 1,
         "position": "absolute",
-        "top": 36,
       }
     }
   >
-    <Text
-      allowFontScaling={false}
+    <View
       style={
         Array [
           Object {
-            "color": undefined,
-            "fontSize": 12,
+            "padding": 10,
           },
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-              "color": "#000000",
-              "fontSize": 20,
-              "paddingRight": 10,
-            },
-            undefined,
-          ],
-          Object {
-            "fontFamily": "Entypo",
-            "fontStyle": "normal",
-            "fontWeight": "normal",
-          },
-          Object {},
+          undefined,
         ]
       }
     >
-      
-    </Text>
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/images/icons/Back.png",
+          }
+        }
+        style={
+          Object {
+            "height": 17,
+            "width": 10,
+          }
+        }
+      />
+    </View>
   </View>
   <Text
     style={
@@ -111,7 +109,6 @@ exports[`BackHeader renders correctly with showBackButton set to true 1`] = `
           "position": "absolute",
           "right": 40,
           "textAlign": "center",
-          "top": 36,
         },
       ]
     }
