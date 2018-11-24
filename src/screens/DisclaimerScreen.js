@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
@@ -17,24 +17,33 @@ const TITLE_MARGIN_BOTTOM = windowDimensions.height < 600 ? 20 : 30;
 
 const styles = StyleSheet.create({
   title: {
+    textAlign: 'left',
+    alignSelf: 'flex-start',
+    fontSize: 50,
+    fontWeight: '800',
+    lineHeight: 44,
     marginBottom: ifIphoneX(40, TITLE_MARGIN_BOTTOM)
   },
   subtitle: {
-    fontSize: windowDimensions.height < 600 ? 12 : 14,
+    fontSize: 15,
+    fontWeight: '700',
     textAlign: 'left'
   },
   terms: {
     alignItems: 'flex-start',
-    marginBottom: ifIphoneX(40, 50)
+    marginBottom: 90
   },
   paragraph: {
-    fontSize: windowDimensions.height < 600 ? 12 : 14,
+    fontSize: 15,
+    textAlign: 'left'
+  },
+  finePrint: {
+    fontSize: 12,
     textAlign: 'left',
-    lineHeight: 21
+    lineHeight: 16
   },
   link: {
-    color: '#007AFF',
-    lineHeight: 21
+    color: '#007AFF'
   }
 });
 
@@ -74,33 +83,33 @@ export default class DisclaimerScreen extends Component {
   render() {
     return (
       <BaseScreen style={styles.view}>
+        <StatusBar barStyle='dark-content' />
+
         <Title style={styles.title}>
-          Read before you use Pine 🧐
+          Welcome to <Text style={{ color: '#FFD200' }}>Pine</Text>
         </Title>
 
         <View style={styles.terms}>
           <Title style={styles.subtitle}>Access to Funds</Title>
           <Paragraph style={styles.paragraph}>
-            You are the only one who can access your funds as long as you keep your phone, iCloud account,
+            Only you are in control of your funds. Keep your phone, iCloud account
             and recovery key secure.
           </Paragraph>
 
           <Title style={styles.subtitle}>Wallet Recovery</Title>
           <Paragraph style={styles.paragraph}>
-            The only way to recover a lost wallet is with the recovery key which is securely stored
-            in your iCloud account. You can also do a manual backup under Settings. No one can recover
-            lost funds for you if you lose your recovery key.
-          </Paragraph>
-
-          <Title style={styles.subtitle}>Terms and Conditions</Title>
-          <Paragraph style={styles.paragraph}>
-            <Text style={styles.paragraph}>By pressing "I understand", you understand and agree to the terms above as well as the </Text>
-            <Text style={styles.link} onPress={this._showTermsAndConditionsModal.bind(this)}>Terms and Conditions</Text>
-            <Text style={styles.paragraph}>.</Text>
+            Your recovery key is securely stored in your iCloud account. You can also do a manual backup under Settings.
+            It's not possible to recover your wallet without it.
           </Paragraph>
         </View>
 
         <Footer>
+          <Paragraph style={styles.finePrint}>
+            <Text style={styles.finePrint}>By pressing "I understand", you have read and agree to the terms above as well as the </Text>
+            <Text style={[styles.finePrint, styles.link]} onPress={this._showTermsAndConditionsModal.bind(this)}>Terms and Conditions</Text>
+            <Text style={styles.finePrint}>.</Text>
+          </Paragraph>
+
           <Button label='I understand' onPress={this._onUnderstand.bind(this)} />
         </Footer>
       </BaseScreen>

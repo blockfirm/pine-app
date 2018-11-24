@@ -34,19 +34,33 @@ exports[`DisclaimerScreen renders correctly 1`] = `
             "textAlign": "center",
           },
           Object {
+            "alignSelf": "flex-start",
+            "fontSize": 50,
+            "fontWeight": "800",
+            "lineHeight": 44,
             "marginBottom": 30,
+            "textAlign": "left",
           },
         ],
       ]
     }
   >
-    Read before you use Pine 🧐
+    Welcome to 
+    <Text
+      style={
+        Object {
+          "color": "#FFD200",
+        }
+      }
+    >
+      Pine
+    </Text>
   </Text>
   <View
     style={
       Object {
         "alignItems": "flex-start",
-        "marginBottom": 50,
+        "marginBottom": 90,
       }
     }
   >
@@ -68,7 +82,8 @@ exports[`DisclaimerScreen renders correctly 1`] = `
               "textAlign": "center",
             },
             Object {
-              "fontSize": 14,
+              "fontSize": 15,
+              "fontWeight": "700",
               "textAlign": "left",
             },
           ],
@@ -95,15 +110,14 @@ exports[`DisclaimerScreen renders correctly 1`] = `
               "marginBottom": 20,
             },
             Object {
-              "fontSize": 14,
-              "lineHeight": 21,
+              "fontSize": 15,
               "textAlign": "left",
             },
           ],
         ]
       }
     >
-      You are the only one who can access your funds as long as you keep your phone, iCloud account, and recovery key secure.
+      Only you are in control of your funds. Keep your phone, iCloud account and recovery key secure.
     </Text>
     <Text
       style={
@@ -123,7 +137,8 @@ exports[`DisclaimerScreen renders correctly 1`] = `
               "textAlign": "center",
             },
             Object {
-              "fontSize": 14,
+              "fontSize": 15,
+              "fontWeight": "700",
               "textAlign": "left",
             },
           ],
@@ -150,102 +165,14 @@ exports[`DisclaimerScreen renders correctly 1`] = `
               "marginBottom": 20,
             },
             Object {
-              "fontSize": 14,
-              "lineHeight": 21,
-              "textAlign": "left",
-            },
-          ],
-        ]
-      }
-    >
-      The only way to recover a lost wallet is with the recovery key which is securely stored in your iCloud account. You can also do a manual backup under Settings. No one can recover lost funds for you if you lose your recovery key.
-    </Text>
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#000000",
-            "fontFamily": "System",
-            "fontWeight": "400",
-          },
-          Array [
-            Object {
-              "color": "#26203D",
-              "fontSize": 18,
-              "fontWeight": "600",
-              "letterSpacing": 0.36,
-              "marginBottom": 10,
-              "textAlign": "center",
-            },
-            Object {
-              "fontSize": 14,
-              "textAlign": "left",
-            },
-          ],
-        ]
-      }
-    >
-      Terms and Conditions
-    </Text>
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#000000",
-            "fontFamily": "System",
-            "fontWeight": "400",
-          },
-          Array [
-            Object {
-              "color": "#AAAAAA",
               "fontSize": 15,
-              "fontWeight": "400",
-              "letterSpacing": -0.24,
-              "lineHeight": 21,
-              "marginBottom": 20,
-            },
-            Object {
-              "fontSize": 14,
-              "lineHeight": 21,
               "textAlign": "left",
             },
           ],
         ]
       }
     >
-      <Text
-        style={
-          Object {
-            "fontSize": 14,
-            "lineHeight": 21,
-            "textAlign": "left",
-          }
-        }
-      >
-        By pressing "I understand", you understand and agree to the terms above as well as the 
-      </Text>
-      <Text
-        onPress={[Function]}
-        style={
-          Object {
-            "color": "#007AFF",
-            "lineHeight": 21,
-          }
-        }
-      >
-        Terms and Conditions
-      </Text>
-      <Text
-        style={
-          Object {
-            "fontSize": 14,
-            "lineHeight": 21,
-            "textAlign": "left",
-          }
-        }
-      >
-        .
-      </Text>
+      Your recovery key is securely stored in your iCloud account. You can also do a manual backup under Settings. It's not possible to recover your wallet without it.
     </Text>
   </View>
   <View
@@ -264,6 +191,72 @@ exports[`DisclaimerScreen renders correctly 1`] = `
       ]
     }
   >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "#AAAAAA",
+              "fontSize": 15,
+              "fontWeight": "400",
+              "letterSpacing": -0.24,
+              "lineHeight": 21,
+              "marginBottom": 20,
+            },
+            Object {
+              "fontSize": 12,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 12,
+            "lineHeight": 16,
+            "textAlign": "left",
+          }
+        }
+      >
+        By pressing "I understand", you have read and agree to the terms above as well as the 
+      </Text>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "fontSize": 12,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#007AFF",
+            },
+          ]
+        }
+      >
+        Terms and Conditions
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 12,
+            "lineHeight": 16,
+            "textAlign": "left",
+          }
+        }
+      >
+        .
+      </Text>
+    </Text>
     <View
       accessible={true}
       isTVSelectable={true}
