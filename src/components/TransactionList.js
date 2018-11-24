@@ -5,6 +5,7 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 import moment from 'moment-timezone';
 
 import TransactionListItemContainer from '../containers/TransactionListItemContainer';
+import TransactionListEmptyContainer from '../containers/TransactionListEmptyContainer';
 import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
@@ -92,9 +93,19 @@ export default class TransactionList extends Component {
     }));
   }
 
+  _renderEmptyList() {
+    return (
+      <TransactionListEmptyContainer />
+    );
+  }
+
   render() {
     const transactions = [...this.props.transactions].reverse();
     const sections = this._getSections(transactions);
+
+    if (!transactions.length) {
+      return this._renderEmptyList();
+    }
 
     return (
       <SectionList
