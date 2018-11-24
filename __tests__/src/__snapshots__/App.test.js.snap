@@ -222,8 +222,8 @@ exports[`App renders correctly 1`] = `
                         }
                         style={
                           Object {
-                            "height": 84,
-                            "width": 93,
+                            "height": 57,
+                            "width": 127,
                           }
                         }
                       />

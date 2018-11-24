@@ -29,9 +29,9 @@ exports[`WelcomeScreen renders correctly 1`] = `
     }
     style={
       Object {
-        "height": 84,
+        "height": 57,
         "marginBottom": 150,
-        "width": 93,
+        "width": 127,
       }
     }
   />
