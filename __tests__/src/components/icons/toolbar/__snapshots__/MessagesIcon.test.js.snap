@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TransactionsIcon renders default icon correctly 1`] = `
+exports[`MessagesIcon renders default icon correctly 1`] = `
 <View>
   <Image
     source={
       Object {
-        "testUri": "../../../src/images/icons/toolbar/Transactions.png",
+        "testUri": "../../../src/images/icons/toolbar/Messages.png",
       }
     }
     style={
@@ -18,12 +18,12 @@ exports[`TransactionsIcon renders default icon correctly 1`] = `
 </View>
 `;
 
-exports[`TransactionsIcon renders white icon correctly 1`] = `
+exports[`MessagesIcon renders white icon correctly 1`] = `
 <View>
   <Image
     source={
       Object {
-        "testUri": "../../../src/images/icons/toolbar/TransactionsWhite.png",
+        "testUri": "../../../src/images/icons/toolbar/MessagesWhite.png",
       }
     }
     style={

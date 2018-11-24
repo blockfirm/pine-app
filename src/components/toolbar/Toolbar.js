@@ -5,7 +5,7 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import ToolbarButton from './ToolbarButton';
 import SendIcon from '../icons/toolbar/SendIcon';
-import TransactionsIcon from '../icons/toolbar/TransactionsIcon';
+import MessagesIcon from '../icons/toolbar/MessagesIcon';
 import ReceiveIcon from '../icons/toolbar/ReceiveIcon';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
@@ -153,7 +153,7 @@ export default class Toolbar extends Component {
     return (
       <View style={[styles.toolbar, positionStyle]}>
         <ToolbarButton Icon={SendIcon} onPress={this._onPress.bind(this, 0)} whiteOpacity={sendButtonWhiteOpacity} />
-        <ToolbarButton Icon={TransactionsIcon} onPress={this._onPress.bind(this, 1)} whiteOpacity={transactionsButtonWhiteOpacity} />
+        <ToolbarButton Icon={MessagesIcon} onPress={this._onPress.bind(this, 1)} whiteOpacity={transactionsButtonWhiteOpacity} />
         <ToolbarButton Icon={ReceiveIcon} onPress={this._onPress.bind(this, 2)} whiteOpacity={receiveButtonWhiteOpacity} />
 
         {this._renderDot(positionStyle)}

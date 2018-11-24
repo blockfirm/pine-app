@@ -336,7 +336,7 @@ exports[`HomeScreen renders correctly 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/icons/toolbar/Transactions.png",
+                "testUri": "../../../src/images/icons/toolbar/Messages.png",
               }
             }
             style={
@@ -362,7 +362,7 @@ exports[`HomeScreen renders correctly 1`] = `
           <Image
             source={
               Object {
-                "testUri": "../../../src/images/icons/toolbar/TransactionsWhite.png",
+                "testUri": "../../../src/images/icons/toolbar/MessagesWhite.png",
               }
             }
             style={

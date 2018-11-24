@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import TransactionsIcon from '../../../../../src/components/icons/toolbar/TransactionsIcon';
+import MessagesIcon from '../../../../../src/components/icons/toolbar/MessagesIcon';
 
-describe('TransactionsIcon', () => {
+describe('MessagesIcon', () => {
   it('renders default icon correctly', () => {
     const tree = renderer.create(
-      <TransactionsIcon />
+      <MessagesIcon />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -13,7 +13,7 @@ describe('TransactionsIcon', () => {
 
   it('renders white icon correctly', () => {
     const tree = renderer.create(
-      <TransactionsIcon white={true} />
+      <MessagesIcon white={true} />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
