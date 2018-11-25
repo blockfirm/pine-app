@@ -204,6 +204,19 @@ export default class EnterAmountScreen extends Component {
     this._setAmount(amount);
   }
 
+  _reviewAndPay() {
+    const navigation = this.props.navigation;
+    const { amount } = this.state;
+    const { address, unit } = navigation.state.params;
+    const amountBtc = convertBitcoin(parseFloat(amount), unit, UNIT_BTC);
+
+    navigation.navigate('ReviewAndPay', {
+      address,
+      amountBtc,
+      displayUnit: unit
+    });
+  }
+
   _renderError() {
     const { insufficientFunds } = this.state;
 
@@ -233,7 +246,7 @@ export default class EnterAmountScreen extends Component {
             onPaste={this._onPaste.bind(this)}
           />
           {this._renderError()}
-          <Button label='Review and Pay' disabled={disabled} onPress={() => {}} />
+          <Button label='Review and Pay' disabled={disabled} onPress={this._reviewAndPay.bind(this)} />
         </ContentView>
 
         <NumberPad
