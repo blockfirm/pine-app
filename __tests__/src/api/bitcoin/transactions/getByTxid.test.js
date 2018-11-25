@@ -42,7 +42,7 @@ describe('getByTxid(txid, options)', () => {
   });
 
   describe('the HTTP request', () => {
-    it('is made to the url ${options.baseUrl}/bitcoins/transactions/${txid}', () => {
+    it('is made to the url ${options.baseUrl}/bitcoin/transactions/${txid}', () => {
       const expectedUrl = `ff2d3ec9-40fa-498f-963e-b33cd3ed70d3/bitcoin/transactions/${txid}`;
       expect(fetch).toHaveBeenCalledWith(expectedUrl);
     });
