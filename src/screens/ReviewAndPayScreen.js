@@ -1,9 +1,12 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import bitcoin from 'bitcoinjs-lib';
 import coinSelect from 'coinselect';
+import bip32 from 'bip32';
+import bip39 from 'bip39';
 
 import {
   UNIT_BTC,
@@ -12,6 +15,8 @@ import {
   convert as convertBitcoin
 } from '../crypto/bitcoin/convert';
 
+import getMnemonicByKey from '../crypto/getMnemonicByKey';
+import * as keyActions from '../actions/keys';
 import { handle as handleError } from '../actions/error/handle';
 import { getEstimate as getFeeEstimate } from '../actions/bitcoin/fees';
 import headerStyles from '../styles/headerStyles';
@@ -38,7 +43,9 @@ const getBitcoinNetwork = (network) => {
 };
 
 @connect((state) => ({
+  keys: state.keys.items,
   utxos: state.bitcoin.wallet.utxos.items,
+  addresses: state.bitcoin.wallet.addresses,
   changeAddress: state.bitcoin.wallet.addresses.internal.unused,
   network: state.settings.bitcoin.network
 }))
@@ -77,9 +84,10 @@ export default class ReviewAndPayScreen extends Component {
       const satoshis = convertBitcoin(utxo.value, UNIT_BTC, UNIT_SATOSHIS);
 
       return {
-        txId: utxo.txid,
+        txid: utxo.txid,
         vout: utxo.n,
-        value: satoshis
+        value: satoshis,
+        addresses: utxo.scriptPubKey.addresses
       };
     });
   }
@@ -95,14 +103,7 @@ export default class ReviewAndPayScreen extends Component {
       value: satoshis
     }];
 
-    const { inputs, outputs, fee } = coinSelect(utxos, targets, feeRate);
-
-    // No solution was found.
-    if (!inputs || !outputs) {
-      return;
-    };
-
-    return { inputs, outputs, fee };
+    return coinSelect(utxos, targets, feeRate);
   }
 
   _createTransaction(satoshisPerByte) {
@@ -111,8 +112,13 @@ export default class ReviewAndPayScreen extends Component {
     const bitcoinNetwork = getBitcoinNetwork(this.props.network);
     const transactionBuilder = new bitcoin.TransactionBuilder(bitcoinNetwork);
 
+    if (!inputs || !outputs) {
+      const error = new Error('Unable to create transaction');
+      return dispatch(handleError(error));
+    }
+
     inputs.forEach((input) => {
-      transactionBuilder.addInput(input.txId, input.vout);
+      transactionBuilder.addInput(input.txid, input.vout);
     });
 
     outputs.forEach((output) => {
@@ -120,10 +126,106 @@ export default class ReviewAndPayScreen extends Component {
       transactionBuilder.addOutput(output.address, output.value);
     });
 
+    this._inputs = inputs;
+
     this.setState({
       transaction: transactionBuilder,
       fee
     });
+  }
+
+  _getAddressIndex(address) {
+    const externalAddresses = this.props.addresses.external.items;
+    const internalAddresses = this.props.addresses.internal.items;
+
+    if (address in externalAddresses) {
+      return {
+        addressIndex: externalAddresses[address].index,
+        internal: false
+      };
+    }
+
+    if (address in internalAddresses) {
+      return {
+        addressIndex: internalAddresses[address].index,
+        internal: true
+      };
+    }
+
+    return {};
+  }
+
+  _getHDNodeForAddressIndex(addressIndex, internal, mnemonic) {
+    const seed = bip39.mnemonicToSeed(mnemonic);
+    const masterNode = bip32.fromSeed(seed);
+
+    const purpose = 49; // BIP49
+    const coinType = this.props.network === 'testnet' ? 1 : 0; // Default to mainnet.
+    const accountIndex = 0;
+    const change = Number(internal); // 0 = external, 1 = internal change address
+    const path = `m/${purpose}'/${coinType}'/${accountIndex}/${change}/${addressIndex}'`;
+    const node = masterNode.derivePath(path);
+
+    return node;
+  }
+
+  _getKeyPairForAddress(address, mnemonic) {
+    const { addressIndex, internal } = this._getAddressIndex(address);
+
+    if (addressIndex === undefined) {
+      return;
+    }
+
+    const node = this._getHDNodeForAddressIndex(addressIndex, internal, mnemonic);
+    const bitcoinNetwork = getBitcoinNetwork(this.props.network);
+    const keyPair = bitcoin.ECPair.fromPrivateKey(node.privateKey, { network: bitcoinNetwork });
+
+    return keyPair;
+  }
+
+  _getRedeemScript(keyPair) {
+    const p2wpkh = bitcoin.payments.p2wpkh({
+      pubkey: keyPair.publicKey,
+      network: getBitcoinNetwork(this.props.network)
+    });
+
+    return p2wpkh.output;
+  }
+
+  _getMnemonic() {
+    const dispatch = this.props.dispatch;
+    const keys = Object.values(this.props.keys);
+    const defaultKey = keys[0];
+
+    return getMnemonicByKey(defaultKey.id);
+  }
+
+  _signAndPay() {
+    const dispatch = this.props.dispatch;
+    const inputs = this._inputs;
+    const transaction = this.state.transaction;
+
+    return this._getMnemonic()
+      .then((mnemonic) => {
+        // Sign all the inputs.
+        inputs.forEach((input, index) => {
+          const addressKeys = input.addresses.map((address) => {
+            return this._getKeyPairForAddress(address, mnemonic);
+          });
+
+          const keyPair = addressKeys.find(key => key);
+          const redeemScript = this._getRedeemScript(keyPair);
+
+          transaction.sign(index, keyPair, redeemScript, null, input.value);
+        });
+      })
+      .then(() => {
+        // Build the transaction.
+        return transaction.build().toHex();
+      })
+      .catch((error) => {
+        dispatch(handleError(error));
+      });
   }
 
   render() {
@@ -156,7 +258,13 @@ export default class ReviewAndPayScreen extends Component {
           </View>
         </ContentView>
         <Footer>
-          <Button label='Pay' disabled={!Boolean(transaction)} onPress={() => {}} />
+          <Button
+            label='Pay'
+            disabled={!Boolean(transaction)}
+            onPress={this._signAndPay.bind(this)}
+            showLoader={false}
+            hapticFeedback={true}
+          />
         </Footer>
       </BaseScreen>
     );
@@ -166,7 +274,9 @@ export default class ReviewAndPayScreen extends Component {
 ReviewAndPayScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.object,
+  keys: PropTypes.object,
   utxos: PropTypes.array,
+  addresses: PropTypes.object,
   changeAddress: PropTypes.string,
   network: PropTypes.string
 };
