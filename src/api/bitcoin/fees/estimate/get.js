@@ -5,7 +5,8 @@
  * @param {object} options - Object containing the property 'baseUrl'.
  */
 const get = (numberOfBlocks, options) => {
-  const url = `${options.baseUrl}/bitcoin/fees/estimate?numberOfBlocks=${numberOfBlocks}`;
+  const numberOfBlocksParam = Number(numberOfBlocks) || 1;
+  const url = `${options.baseUrl}/bitcoin/fees/estimate?numberOfBlocks=${numberOfBlocksParam}`;
 
   return fetch(url)
     .then((response) => {
