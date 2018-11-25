@@ -1,3 +1,4 @@
+import * as fees from './fees';
 import * as transactions from './transactions';
 
-export { transactions };
+export { fees, transactions };
