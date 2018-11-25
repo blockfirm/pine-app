@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 }))
 export default class EnterAmountScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
-    const { unit } = navigation.state.params;
+    const { displayUnit } = navigation.state.params;
 
     const headerLeft = <CancelButton onPress={() => {
       screenProps.dismiss();
@@ -63,7 +63,7 @@ export default class EnterAmountScreen extends Component {
     }}/>;
 
     return {
-      headerTitle: <UnitPickerTitle unit={unit} navigation={navigation} />,
+      headerTitle: <UnitPickerTitle unit={displayUnit} navigation={navigation} />,
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
@@ -77,9 +77,7 @@ export default class EnterAmountScreen extends Component {
   }
 
   componentDidMount() {
-    // Note: The amount is specified in BTC.
-    const amountBtc = this.props.navigation.state.params.amount;
-    const displayUnit = this.props.navigation.state.params.unit;
+    const { amountBtc, displayUnit } = this.props.navigation.state.params;
 
     if (amountBtc) {
       const amount = convertBitcoin(amountBtc, UNIT_BTC, displayUnit);
@@ -92,10 +90,10 @@ export default class EnterAmountScreen extends Component {
   
   componentDidUpdate(prevProps) {
     const { amount } = this.state;
-    const prevUnit = prevProps.navigation.state.params.unit;
-    const unit = this.props.navigation.state.params.unit;
+    const prevDisplayUnit = prevProps.navigation.state.params.displayUnit;
+    const displayUnit = this.props.navigation.state.params.displayUnit;
 
-    if (unit !== prevUnit) {
+    if (displayUnit !== prevDisplayUnit) {
       const sanitizedAmount = this._sanitizeAmount(amount);
       this._setAmount(sanitizedAmount);
     }
@@ -138,7 +136,7 @@ export default class EnterAmountScreen extends Component {
   _sanitizeAmount(amount) {
     let sanitized = amount;
 
-    const { unit } = this.props.navigation.state.params;
+    const { displayUnit } = this.props.navigation.state.params;
     const lastChar = sanitized.slice(-1);
     const periods = sanitized.match(/\./g);
     const periodCount = periods ? periods.length : 0;
@@ -160,15 +158,15 @@ export default class EnterAmountScreen extends Component {
     sanitized = sanitized.replace(/^[0]+([\d]+)/, '$1');
 
     // Last, enforce the length of the input.
-    sanitized = this._enforceInputLengths(sanitized, unit);
+    sanitized = this._enforceInputLengths(sanitized, displayUnit);
 
     return sanitized;
   }
 
   _checkBalance(amount) {
     const { balance } = this.props;
-    const { unit } = this.props.navigation.state.params;
-    const amountBtc = convertBitcoin(parseFloat(amount), unit, UNIT_BTC);
+    const { displayUnit } = this.props.navigation.state.params;
+    const amountBtc = convertBitcoin(parseFloat(amount), displayUnit, UNIT_BTC);
     const insufficientFunds = balance < amountBtc;
 
     this.setState({ insufficientFunds });
@@ -207,13 +205,13 @@ export default class EnterAmountScreen extends Component {
   _reviewAndPay() {
     const navigation = this.props.navigation;
     const { amount } = this.state;
-    const { address, unit } = navigation.state.params;
-    const amountBtc = convertBitcoin(parseFloat(amount), unit, UNIT_BTC);
+    const { address, displayUnit } = navigation.state.params;
+    const amountBtc = convertBitcoin(parseFloat(amount), displayUnit, UNIT_BTC);
 
     navigation.navigate('ReviewAndPay', {
       address,
       amountBtc,
-      displayUnit: unit
+      displayUnit
     });
   }
 

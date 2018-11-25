@@ -53,8 +53,8 @@ export default class CameraScreen extends Component {
 
     navigation.navigate('Send', {
       address,
-      amount, // Amount in BTC.
-      unit // Unit to display the amount in.
+      amountBtc: amount,
+      displayUnit: unit
     });
   }
 

@@ -32,7 +32,7 @@ export default class UnitPickerTitle extends Component {
     }, (buttonIndex) => {
       if (buttonIndex !== 0) {
         const unit = UNITS[buttonIndex - 1];
-        this.props.navigation.setParams({ unit });
+        this.props.navigation.setParams({ displayUnit: unit });
       }
     });
   }
