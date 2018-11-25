@@ -31,10 +31,11 @@ const initFailure = (error) => {
 const getAddressMap = (addresses) => {
   const addressMap = {};
 
-  addresses.forEach((address) => {
+  addresses.forEach((address, index) => {
     const hasTransactions = address.transactions && address.transactions.length > 0;
 
     addressMap[address.address] = {
+      index,
       used: hasTransactions
     };
   });

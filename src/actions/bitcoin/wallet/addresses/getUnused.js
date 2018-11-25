@@ -31,9 +31,10 @@ const getUnusedFailure = (error) => {
  * Adds an address to the state and persistent storage.
  * @returns {promise} that resolves when the address has been added.
  */
-const addAddress = (dispatch, address, internal) => {
+const addAddress = (dispatch, address, index, internal) => {
   const addressMap = {
     [address]: {
+      index,
       used: false
     }
   };
@@ -82,9 +83,13 @@ const getNewUnused = (state, internal) => {
   const keyId = Object.keys(keys)[0];
   const key = keys[keyId];
   const currentIndex = getCurrentAddressIndex(state, internal);
-  const newAddress = generateAddress(key.accountPublicKey, network, internal, currentIndex + 1);
+  const nextIndex = currentIndex + 1;
+  const newAddress = generateAddress(key.accountPublicKey, network, internal, nextIndex);
 
-  return newAddress;
+  return {
+    address: newAddress,
+    index: nextIndex
+  };
 };
 
 /**
@@ -102,12 +107,12 @@ export const getUnused = (internal = false) => {
       return Promise.resolve(existingAddress);
     }
 
-    const newAddress = getNewUnused(state, internal);
+    const { address, index } = getNewUnused(state, internal);
 
-    return addAddress(dispatch, newAddress, internal)
+    return addAddress(dispatch, address, index, internal)
       .then(() => {
-        dispatch(getUnusedSuccess(newAddress, internal));
-        return newAddress;
+        dispatch(getUnusedSuccess(address, internal));
+        return address;
       })
       .catch((error) => {
         dispatch(getUnusedFailure(error));
