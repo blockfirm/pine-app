@@ -21,6 +21,7 @@ import * as keyActions from '../actions/keys';
 import { handle as handleError } from '../actions/error/handle';
 import { getEstimate as getFeeEstimate } from '../actions/bitcoin/fees';
 import { post as postTransaction } from '../actions/bitcoin/blockchain/transactions/post';
+import { sync as syncWallet } from '../actions/bitcoin/wallet';
 import headerStyles from '../styles/headerStyles';
 import Button from '../components/Button';
 import BackButton from '../components/BackButton';
@@ -223,6 +224,7 @@ export default class ReviewAndPayScreen extends Component {
       })
       .then(() => {
         // The transaction was successfully sent!
+        dispatch(syncWallet());
         ReactNativeHaptic.generate('notificationSuccess');
         this.props.screenProps.dismiss();
       })
