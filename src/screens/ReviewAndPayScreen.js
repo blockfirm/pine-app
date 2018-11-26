@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ReactNativeHaptic from 'react-native-haptic';
 import bitcoin from 'bitcoinjs-lib';
 import coinSelect from 'coinselect';
 import bip32 from 'bip32';
@@ -19,6 +20,7 @@ import getMnemonicByKey from '../crypto/getMnemonicByKey';
 import * as keyActions from '../actions/keys';
 import { handle as handleError } from '../actions/error/handle';
 import { getEstimate as getFeeEstimate } from '../actions/bitcoin/fees';
+import { post as postTransaction } from '../actions/bitcoin/blockchain/transactions/post';
 import headerStyles from '../styles/headerStyles';
 import Button from '../components/Button';
 import BackButton from '../components/BackButton';
@@ -107,6 +109,7 @@ export default class ReviewAndPayScreen extends Component {
   }
 
   _createTransaction(satoshisPerByte) {
+    const dispatch = this.props.dispatch;
     const { changeAddress } = this.props;
     const { inputs, outputs, fee } = this._selectUtxos(satoshisPerByte);
     const bitcoinNetwork = getBitcoinNetwork(this.props.network);
@@ -155,20 +158,6 @@ export default class ReviewAndPayScreen extends Component {
     return {};
   }
 
-  _getHDNodeForAddressIndex(addressIndex, internal, mnemonic) {
-    const seed = bip39.mnemonicToSeed(mnemonic);
-    const masterNode = bip32.fromSeed(seed);
-
-    const purpose = 49; // BIP49
-    const coinType = this.props.network === 'testnet' ? 1 : 0; // Default to mainnet.
-    const accountIndex = 0;
-    const change = Number(internal); // 0 = external, 1 = internal change address
-    const path = `m/${purpose}'/${coinType}'/${accountIndex}/${change}/${addressIndex}'`;
-    const node = masterNode.derivePath(path);
-
-    return node;
-  }
-
   _getKeyPairForAddress(address, mnemonic) {
     const { addressIndex, internal } = this._getAddressIndex(address);
 
@@ -176,11 +165,17 @@ export default class ReviewAndPayScreen extends Component {
       return;
     }
 
-    const node = this._getHDNodeForAddressIndex(addressIndex, internal, mnemonic);
-    const bitcoinNetwork = getBitcoinNetwork(this.props.network);
-    const keyPair = bitcoin.ECPair.fromPrivateKey(node.privateKey, { network: bitcoinNetwork });
+    const seed = bip39.mnemonicToSeed(mnemonic);
+    const masterNode = bip32.fromSeed(seed, getBitcoinNetwork(this.props.network));
 
-    return keyPair;
+    const purpose = 49; // BIP49
+    const coinType = this.props.network === 'testnet' ? 1 : 0; // Default to mainnet.
+    const accountIndex = 0;
+    const change = Number(internal); // 0 = external, 1 = internal change address
+    const path = `m/${purpose}'/${coinType}'/${accountIndex}'/${change}/${addressIndex}`;
+    const node = masterNode.derivePath(path);
+
+    return node;
   }
 
   _getRedeemScript(keyPair) {
@@ -193,7 +188,6 @@ export default class ReviewAndPayScreen extends Component {
   }
 
   _getMnemonic() {
-    const dispatch = this.props.dispatch;
     const keys = Object.values(this.props.keys);
     const defaultKey = keys[0];
 
@@ -222,6 +216,15 @@ export default class ReviewAndPayScreen extends Component {
       .then(() => {
         // Build the transaction.
         return transaction.build().toHex();
+      })
+      .then((rawTransaction) => {
+        // Broadcast the transaction.
+        return dispatch(postTransaction(rawTransaction));
+      })
+      .then(() => {
+        // The transaction was successfully sent!
+        ReactNativeHaptic.generate('notificationSuccess');
+        this.props.screenProps.dismiss();
       })
       .catch((error) => {
         dispatch(handleError(error));
@@ -274,6 +277,7 @@ export default class ReviewAndPayScreen extends Component {
 ReviewAndPayScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.object,
+  screenProps: PropTypes.object,
   keys: PropTypes.object,
   utxos: PropTypes.array,
   addresses: PropTypes.object,
