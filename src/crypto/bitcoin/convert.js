@@ -43,6 +43,7 @@ export const convert = (amount, fromUnit, toUnit) => {
       return btc * 1000;
 
     case UNIT_SATOSHIS:
-      return btc * 100000000;
+      // Make sure satoshis is an integer.
+      return Math.round(btc * 100000000);
   }
 };
