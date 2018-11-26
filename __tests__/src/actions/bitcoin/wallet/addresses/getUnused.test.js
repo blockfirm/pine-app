@@ -19,7 +19,7 @@ const dispatchMock = jest.fn((action) => {
 const getStateMock = jest.fn(() => ({
   settings: {
     bitcoin: {
-      network: 'testnet'
+      network: 'mainnet'
     }
   },
   keys: {
@@ -87,7 +87,7 @@ describe('getUnused', () => {
     expect.hasAssertions();
 
     return getUnused()(dispatchMock, getStateMock).then((address) => {
-      expect(address).toBe('2Mt3LTmqTPjsQ2bsEHeHtjWEeBGj361YUJm');
+      expect(address).toBe('32V8Q2uRnHN3ppEgcWg27ZFNxvWsPCvtaW');
     });
   });
 

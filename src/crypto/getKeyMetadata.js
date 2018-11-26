@@ -2,7 +2,7 @@ import getPublicKeyFromMnemonic from './getPublicKeyFromMnemonic';
 import getAccountPublicKeyFromMnemonic from './getAccountPublicKeyFromMnemonic';
 
 const getKeyMetadata = (mnemonic, network, accountIndex) => {
-  const publicKey = getPublicKeyFromMnemonic(mnemonic);
+  const publicKey = getPublicKeyFromMnemonic(mnemonic, network);
   const accountPublicKey = getAccountPublicKeyFromMnemonic(mnemonic, network, accountIndex);
 
   const metadata = {

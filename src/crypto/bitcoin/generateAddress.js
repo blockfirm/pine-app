@@ -48,7 +48,8 @@ const getPath = (internal, addressIndex) => {
  */
 const generateAddress = (publicKey, network, internal, index) => {
   const path = getPath(internal, index);
-  const node = bip32.fromBase58(publicKey).derivePath(path);
+  const bitcoinNetwork = getBitcoinNetwork(network);
+  const node = bip32.fromBase58(publicKey, bitcoinNetwork).derivePath(path);
   const address = getAddress(node, network);
 
   return address;
