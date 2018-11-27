@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
   content: {
     justifyContent: 'flex-start',
     alignItems: 'flex-start'
+  },
+  errorText: {
+    color: '#FF3B30'
   }
 });
 
@@ -65,7 +68,8 @@ export default class ReviewAndPayScreen extends Component {
 
   state = {
     transaction: null,
-    fee: null
+    fee: null,
+    cannotAffordFee: false
   }
 
   componentDidMount() {
@@ -110,15 +114,14 @@ export default class ReviewAndPayScreen extends Component {
   }
 
   _createTransaction(satoshisPerByte) {
-    const dispatch = this.props.dispatch;
     const { changeAddress } = this.props;
     const { inputs, outputs, fee } = this._selectUtxos(satoshisPerByte);
     const bitcoinNetwork = getBitcoinNetwork(this.props.network);
     const transactionBuilder = new bitcoin.TransactionBuilder(bitcoinNetwork);
 
     if (!inputs || !outputs) {
-      const error = new Error('Unable to create transaction');
-      return dispatch(handleError(error));
+      this.setState({ cannotAffordFee: true });
+      return;
     }
 
     inputs.forEach((input) => {
@@ -233,6 +236,32 @@ export default class ReviewAndPayScreen extends Component {
       });
   }
 
+  _renderFeeSection() {
+    const { displayUnit } = this.props.navigation.state.params;
+    const { fee, cannotAffordFee } = this.state;
+    const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
+
+    if (cannotAffordFee) {
+      return (
+        <View>
+          <StyledText>Fee: </StyledText>
+          <StyledText style={styles.errorText}>
+            Not enough funds to pay for the transaction fee.
+          </StyledText>
+        </View>
+      );
+    }
+
+    return (
+      <View>
+        <StyledText>Fee: </StyledText>
+        {
+          feeBtc ? <BtcLabel amount={feeBtc} unit={displayUnit} /> : <ActivityIndicator size='small' />
+        }
+      </View>
+    );
+  }
+
   render() {
     const { address, amountBtc, displayUnit } = this.props.navigation.state.params;
     const { transaction, fee } = this.state;
@@ -250,12 +279,7 @@ export default class ReviewAndPayScreen extends Component {
               Amount: <BtcLabel amount={amountBtc} unit={displayUnit} />
             </StyledText>
           </View>
-          <View>
-            <StyledText>Fee: </StyledText>
-            {
-              feeBtc ? <BtcLabel amount={feeBtc} unit={displayUnit} /> : <ActivityIndicator size='small' />
-            }
-          </View>
+          {this._renderFeeSection()}
           <View>
             <StyledText>
               Total: <BtcLabel amount={totalAmount} unit={displayUnit} />
