@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactNativeHaptic from 'react-native-haptic';
 import bitcoin from 'bitcoinjs-lib';
-import coinSelect from 'coinselect';
 import bip32 from 'bip32';
 import bip39 from 'bip39';
 
@@ -19,7 +18,7 @@ import {
 import getMnemonicByKey from '../crypto/getMnemonicByKey';
 import * as keyActions from '../actions/keys';
 import { handle as handleError } from '../actions/error/handle';
-import { getEstimate as getFeeEstimate } from '../actions/bitcoin/fees';
+import { create as createTransaction } from '../actions/bitcoin/wallet/transactions/create';
 import { post as postTransaction } from '../actions/bitcoin/blockchain/transactions/post';
 import { sync as syncWallet } from '../actions/bitcoin/wallet';
 import headerStyles from '../styles/headerStyles';
@@ -50,9 +49,7 @@ const getBitcoinNetwork = (network) => {
 
 @connect((state) => ({
   keys: state.keys.items,
-  utxos: state.bitcoin.wallet.utxos.items,
   addresses: state.bitcoin.wallet.addresses,
-  changeAddress: state.bitcoin.wallet.addresses.internal.unused,
   network: state.settings.bitcoin.network
 }))
 export default class ReviewAndPayScreen extends Component {
@@ -68,77 +65,27 @@ export default class ReviewAndPayScreen extends Component {
 
   state = {
     transaction: null,
+    inputs: null,
     fee: null,
     cannotAffordFee: false
   }
 
   componentDidMount() {
     const dispatch = this.props.dispatch;
+    const { address, amountBtc } = this.props.navigation.state.params;
 
-    // Get transaction fee estimate.
-    dispatch(getFeeEstimate())
-      .then((satoshisPerByte) => {
-        // Create a transaction.
-        this._createTransaction(satoshisPerByte);
+    // Create a transaction.
+    dispatch(createTransaction(amountBtc, address))
+      .then(({ transaction, inputs, fee }) => {
+        if (fee === undefined) {
+          return this.setState({ cannotAffordFee: true });
+        }
+
+        this.setState({ transaction, inputs, fee });
       })
       .catch((error) => {
         dispatch(handleError(error));
       });
-  }
-
-  _getUtxos() {
-    return this.props.utxos.map((utxo) => {
-      const satoshis = convertBitcoin(utxo.value, UNIT_BTC, UNIT_SATOSHIS);
-
-      return {
-        txid: utxo.txid,
-        vout: utxo.n,
-        value: satoshis,
-        addresses: utxo.scriptPubKey.addresses
-      };
-    });
-  }
-
-  _selectUtxos(satoshisPerByte) {
-    const feeRate = Math.round(satoshisPerByte) || 1; // coinSelect doesn't support decimal fee rates.
-    const { address, amountBtc } = this.props.navigation.state.params;
-    const satoshis = convertBitcoin(amountBtc, UNIT_BTC, UNIT_SATOSHIS);
-    const utxos = this._getUtxos();
-
-    const targets = [{
-      address,
-      value: satoshis
-    }];
-
-    return coinSelect(utxos, targets, feeRate);
-  }
-
-  _createTransaction(satoshisPerByte) {
-    const { changeAddress } = this.props;
-    const { inputs, outputs, fee } = this._selectUtxos(satoshisPerByte);
-    const bitcoinNetwork = getBitcoinNetwork(this.props.network);
-    const transactionBuilder = new bitcoin.TransactionBuilder(bitcoinNetwork);
-
-    if (!inputs || !outputs) {
-      this.setState({ cannotAffordFee: true });
-      return;
-    }
-
-    inputs.forEach((input) => {
-      transactionBuilder.addInput(input.txid, input.vout);
-    });
-
-    outputs.forEach((output) => {
-      output.address = output.address || changeAddress;
-      transactionBuilder.addOutput(output.address, output.value);
-    });
-
-    this._inputs = inputs;
-
-    this.setState({
-      transaction: transactionBuilder,
-      fee
-    });
   }
 
   _getAddressIndex(address) {
@@ -200,8 +147,8 @@ export default class ReviewAndPayScreen extends Component {
 
   _signAndPay() {
     const dispatch = this.props.dispatch;
-    const inputs = this._inputs;
     const transaction = this.state.transaction;
+    const inputs = this.state.inputs;
 
     return this._getMnemonic()
       .then((mnemonic) => {
@@ -305,8 +252,6 @@ ReviewAndPayScreen.propTypes = {
   navigation: PropTypes.object,
   screenProps: PropTypes.object,
   keys: PropTypes.object,
-  utxos: PropTypes.array,
   addresses: PropTypes.object,
-  changeAddress: PropTypes.string,
   network: PropTypes.string
 };
