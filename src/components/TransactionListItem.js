@@ -85,23 +85,21 @@ export default class TransactionListItem extends Component {
   _getIconType(transaction, amount) {
     const confirmations = transaction.confirmations;
 
-    if (confirmations > 5) {
-      return amount < 0 ? TransactionIcon.TYPE_SEND_STAGE_3 : TransactionIcon.TYPE_RECEIVE_STAGE_3;
-    } else if (confirmations > 0) {
-      return amount < 0 ? TransactionIcon.TYPE_SEND_STAGE_2 : TransactionIcon.TYPE_RECEIVE_STAGE_2;
+    if (confirmations) {
+      return amount < 0 ? TransactionIcon.TYPE_SENT : TransactionIcon.TYPE_RECEIVED;
     }
 
-    return amount < 0 ? TransactionIcon.TYPE_SEND_STAGE_1 : TransactionIcon.TYPE_RECEIVE_STAGE_1;
+    return amount < 0 ? TransactionIcon.TYPE_SENDING : TransactionIcon.TYPE_RECEIVING;
   }
 
   _getTitle(transaction, amount) {
     const confirmations = transaction.confirmations;
 
-    if (!confirmations) {
-      return amount < 0 ? 'Sending' : 'Receiving';
+    if (confirmations) {
+      return amount < 0 ? 'Sent' : 'Received';
     }
 
-    return amount < 0 ? 'Sent' : 'Received';
+    return amount < 0 ? 'Sending' : 'Receiving';
   }
 
   render() {

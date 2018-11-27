@@ -9,29 +9,23 @@ const styles = StyleSheet.create({
   }
 });
 
-const TYPE_RECEIVE_STAGE_1 = 'RECEIVE_STAGE_1';
-const TYPE_RECEIVE_STAGE_2 = 'RECEIVE_STAGE_2';
-const TYPE_RECEIVE_STAGE_3 = 'RECEIVE_STAGE_3';
-const TYPE_SEND_STAGE_1 = 'SEND_STAGE_1';
-const TYPE_SEND_STAGE_2 = 'SEND_STAGE_2';
-const TYPE_SEND_STAGE_3 = 'SEND_STAGE_3';
+const TYPE_RECEIVING = 'RECEIVING';
+const TYPE_RECEIVED = 'RECEIVED';
+const TYPE_SENDING = 'SENDING';
+const TYPE_SENT = 'SENT';
 
 const IMAGES = {
-  [TYPE_RECEIVE_STAGE_1]: require('../../images/icons/ReceiveStage1.png'),
-  [TYPE_RECEIVE_STAGE_2]: require('../../images/icons/ReceiveStage2.png'),
-  [TYPE_RECEIVE_STAGE_3]: require('../../images/icons/ReceiveStage3.png'),
-  [TYPE_SEND_STAGE_1]: require('../../images/icons/SendStage1.png'),
-  [TYPE_SEND_STAGE_2]: require('../../images/icons/SendStage2.png'),
-  [TYPE_SEND_STAGE_3]: require('../../images/icons/SendStage3.png')
+  [TYPE_RECEIVING]: require('../../images/icons/Receiving.png'),
+  [TYPE_RECEIVED]: require('../../images/icons/Received.png'),
+  [TYPE_SENDING]: require('../../images/icons/Sending.png'),
+  [TYPE_SENT]: require('../../images/icons/Sent.png')
 };
 
 export default class TransactionIcon extends Component {
-  static TYPE_RECEIVE_STAGE_1 = TYPE_RECEIVE_STAGE_1;
-  static TYPE_RECEIVE_STAGE_2 = TYPE_RECEIVE_STAGE_2;
-  static TYPE_RECEIVE_STAGE_3 = TYPE_RECEIVE_STAGE_3;
-  static TYPE_SEND_STAGE_1 = TYPE_SEND_STAGE_1;
-  static TYPE_SEND_STAGE_2 = TYPE_SEND_STAGE_2;
-  static TYPE_SEND_STAGE_3 = TYPE_SEND_STAGE_3;
+  static TYPE_RECEIVING = TYPE_RECEIVING;
+  static TYPE_RECEIVED = TYPE_RECEIVED;
+  static TYPE_SENDING = TYPE_SENDING;
+  static TYPE_SENT = TYPE_SENT;
 
   render() {
     const image = IMAGES[this.props.type];
