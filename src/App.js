@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { AppState, NetInfo } from 'react-native';
+import { AppState, NetInfo, View } from 'react-native';
 import { Provider } from 'react-redux';
 
 import { sync as syncWallet } from './actions/bitcoin/wallet';
 import * as internetActions from './actions/network/internet';
 import AppNavigator from './navigators/AppNavigator';
+import ErrorModalContainer from './containers/ErrorModalContainer';
 import getAppWithNavigationState from './getAppWithNavigationState';
 import createStore from './createStore';
 
@@ -80,7 +81,10 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AppWithNavigationState />
+        <View style={{ flex: 1, alignSelf: 'stretch' }}>
+          <AppWithNavigationState />
+          <ErrorModalContainer />
+        </View>
       </Provider>
     );
   }

@@ -133,6 +133,5 @@ exports[`MnemonicScreen renders correctly 1`] = `
       </View>
     </View>
   </View>
-  <ErrorModalContainer />
 </View>
 `;

@@ -64,6 +64,5 @@ exports[`SplashScreen renders correctly 1`] = `
       }
     />
   </View>
-  <ErrorModalContainer />
 </View>
 `;

@@ -181,6 +181,5 @@ exports[`WelcomeScreen renders correctly 1`] = `
       </Text>
     </View>
   </View>
-  <ErrorModalContainer />
 </View>
 `;

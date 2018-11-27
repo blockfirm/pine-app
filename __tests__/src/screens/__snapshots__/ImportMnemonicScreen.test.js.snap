@@ -1559,7 +1559,6 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
         ]
       }
     />
-    <ErrorModalContainer />
   </View>
 </View>
 `;

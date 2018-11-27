@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
-
 import { handle as handleError } from '../actions/error';
-import ErrorModalContainer from '../containers/ErrorModalContainer';
 
 export default class ErrorBoundary extends Component {
   componentDidCatch(error) {
@@ -15,7 +13,6 @@ export default class ErrorBoundary extends Component {
     return (
       <View {...this.props}>
         {this.props.children}
-        <ErrorModalContainer />
       </View>
     );
   }

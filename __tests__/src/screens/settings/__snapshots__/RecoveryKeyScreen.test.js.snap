@@ -224,6 +224,5 @@ exports[`RecoveryKeyScreen renders correctly 1`] = `
       </View>
     </View>
   </RCTScrollView>
-  <ErrorModalContainer />
 </View>
 `;

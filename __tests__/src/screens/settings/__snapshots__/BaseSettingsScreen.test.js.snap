@@ -21,6 +21,5 @@ exports[`BaseSettingsScreen renders correctly 1`] = `
       />
     </View>
   </RCTScrollView>
-  <ErrorModalContainer />
 </View>
 `;

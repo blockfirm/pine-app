@@ -322,6 +322,5 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
       </View>
     </View>
   </RCTScrollView>
-  <ErrorModalContainer />
 </View>
 `;

@@ -16,6 +16,5 @@ exports[`BaseScreen renders correctly 1`] = `
   }
 >
   <BackHeaderContainer />
-  <ErrorModalContainer />
 </View>
 `;
