@@ -138,6 +138,21 @@ export default class ReviewAndPayScreen extends Component {
     return p2wpkh.output;
   }
 
+  _signInputs(mnemonic) {
+    const { transaction, inputs } = this.state;
+
+    inputs.forEach((input, index) => {
+      const addressKeys = input.addresses.map((address) => {
+        return this._getKeyPairForAddress(address, mnemonic);
+      });
+
+      const keyPair = addressKeys.find(key => key);
+      const redeemScript = this._getRedeemScript(keyPair);
+
+      transaction.sign(index, keyPair, redeemScript, null, input.value);
+    });
+  }
+
   _getMnemonic() {
     const keys = Object.values(this.props.keys);
     const defaultKey = keys[0];
@@ -148,21 +163,11 @@ export default class ReviewAndPayScreen extends Component {
   _signAndPay() {
     const dispatch = this.props.dispatch;
     const transaction = this.state.transaction;
-    const inputs = this.state.inputs;
 
     return this._getMnemonic()
       .then((mnemonic) => {
         // Sign all the inputs.
-        inputs.forEach((input, index) => {
-          const addressKeys = input.addresses.map((address) => {
-            return this._getKeyPairForAddress(address, mnemonic);
-          });
-
-          const keyPair = addressKeys.find(key => key);
-          const redeemScript = this._getRedeemScript(keyPair);
-
-          transaction.sign(index, keyPair, redeemScript, null, input.value);
-        });
+        this._signInputs(mnemonic);
       })
       .then(() => {
         // Build the transaction.
