@@ -89,11 +89,11 @@ const formatSatoshis = (amount) => {
   return number;
 };
 
-const formatAmount = (amount, unit) => {
-  const unitLabel = getUnitLabel(unit);
+const formatAmount = (amount, unit, hideUnit) => {
+  const unitLabel = hideUnit ? '' : getUnitLabel(unit);
 
   if (!amount) {
-    return `0 ${unitLabel}`;
+    return `0 ${unitLabel}`.trim();
   }
 
   let number;
@@ -119,16 +119,16 @@ const formatAmount = (amount, unit) => {
   number.suffix = number.suffix || '';
 
   if (!number.fractional) {
-    return `${number.integer}${number.suffix} ${unitLabel}`;
+    return `${number.integer}${number.suffix} ${unitLabel}`.trim();
   }
 
-  return `${number.integer}.${number.fractional}${number.suffix} ${unitLabel}`;
+  return `${number.integer}.${number.fractional}${number.suffix} ${unitLabel}`.trim();
 };
 
 export default class BtcLabel extends Component {
   render() {
-    const { amount, unit } = this.props;
-    const label = formatAmount(amount, unit);
+    const { amount, unit, hideUnit } = this.props;
+    const label = formatAmount(amount, unit, hideUnit);
 
     return (
       <StyledText style={this.props.style}>
@@ -141,5 +141,6 @@ export default class BtcLabel extends Component {
 BtcLabel.propTypes = {
   style: PropTypes.any,
   amount: PropTypes.number.isRequired,
-  unit: PropTypes.string
+  unit: PropTypes.string,
+  hideUnit: PropTypes.bool
 };

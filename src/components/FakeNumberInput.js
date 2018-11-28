@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Animated, Easing, Dimensions, Clipboard } from 'react-native';
+import { StyleSheet, View, Animated, Easing, Clipboard } from 'react-native';
 import PropTypes from 'prop-types';
 import ToolTip from 'react-native-tooltip';
+import AutoFontSize from './AutoFontSize';
 
-const WINDOW_WIDTH = Dimensions.get('window').width;
-const MAX_FONT_SIZE = 70;
-const FONT_RESIZE_FACTOR = 0.75;
 const CARET_HEIGHT_RATIO = 1.2;
 const CARET_MARGIN_LEFT_RATIO = 0.0167;
 
@@ -17,7 +15,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    fontSize: MAX_FONT_SIZE,
     fontWeight: '300',
     letterSpacing: -0.1,
     color: '#007AFF'
@@ -26,7 +23,7 @@ const styles = StyleSheet.create({
     color: '#C8C7CC'
   },
   caret: {
-    height: MAX_FONT_SIZE * CARET_HEIGHT_RATIO,
+    height: AutoFontSize.MAX_FONT_SIZE * CARET_HEIGHT_RATIO,
     width: 2,
     borderRadius: 1,
     backgroundColor: '#426BF2',
@@ -44,14 +41,14 @@ const reverseString = (string) => {
 
 export default class FakeNumberInput extends Component {
   state = {
-    fontSize: MAX_FONT_SIZE
+    fontSize: AutoFontSize.MAX_FONT_SIZE
   }
 
   constructor() {
     super(...arguments);
 
     this._caretAnim = new Animated.Value(1);
-    this._onLayout = this._onLayout.bind(this);
+    this._onFontResize = this._onFontResize.bind(this);
     this._onPaste = this._onPaste.bind(this);
   }
 
@@ -129,24 +126,6 @@ export default class FakeNumberInput extends Component {
     return `${maskedInteger}.${fractional}`;
   }
 
-  /**
-   * Automatically changes the font size of the number when it grows.
-   */
-  _onLayout(event) {
-    const { width } = event.nativeEvent.layout;
-    let { fontSize } = this.state;
-
-    if (width > WINDOW_WIDTH - 100) {
-      fontSize = Math.floor(this.state.fontSize * FONT_RESIZE_FACTOR);
-    } else if (width < WINDOW_WIDTH - 200) {
-      fontSize = Math.ceil(this.state.fontSize / FONT_RESIZE_FACTOR);
-    }
-
-    this.setState({
-      fontSize: Math.min(fontSize, MAX_FONT_SIZE)
-    });
-  }
-
   _onPaste() {
     if (!this.props.onPaste) {
       return;
@@ -161,6 +140,10 @@ export default class FakeNumberInput extends Component {
     });
   }
 
+  _onFontResize(fontSize) {
+    this.setState({ fontSize });
+  }
+
   render() {
     const caretAnim = this._caretAnim;
     const value = this._addThousandsSeparators(this.props.value);
@@ -169,7 +152,6 @@ export default class FakeNumberInput extends Component {
     const textStyles = [
       styles.text,
       this.props.color ? { color: this.props.color } : null,
-      { fontSize },
       value === '' ? styles.placeholder : null
     ];
 
@@ -184,7 +166,7 @@ export default class FakeNumberInput extends Component {
     ];
 
     return (
-      <View style={[styles.view, this.props.style]} onLayout={this._onLayout}>
+      <View style={[styles.view, this.props.style]}>
         <ToolTip
           actions={[
             { text: 'Paste', onPress: this._onPaste }
@@ -192,7 +174,9 @@ export default class FakeNumberInput extends Component {
           underlayColor='white'
           activeOpacity={1}
         >
-          <Text style={textStyles} numberOfLines={1}>{value || 0}</Text>
+          <AutoFontSize onFontResize={this._onFontResize} style={textStyles}>
+            {value || 0}
+          </AutoFontSize>
         </ToolTip>
         <Animated.View style={caretStyles} />
       </View>

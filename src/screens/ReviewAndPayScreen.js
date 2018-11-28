@@ -27,7 +27,9 @@ import Button from '../components/Button';
 import BackButton from '../components/BackButton';
 import ContentView from '../components/ContentView';
 import StyledText from '../components/StyledText';
+import AutoFontSize from '../components/AutoFontSize';
 import BtcLabel from '../components/BtcLabel';
+import UnitLabel from '../components/UnitLabel';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -38,8 +40,36 @@ const styles = StyleSheet.create({
     padding: 0
   },
   content: {
+    alignSelf: 'stretch',
+    paddingTop: 10,
+    paddingLeft: 16,
+    paddingRight: 16,
     justifyContent: 'flex-start',
     alignItems: 'flex-start'
+  },
+  amountContainer: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    padding: 30,
+    backgroundColor: '#FBFBFB',
+    borderColor: '#C3C2C6',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 16,
+    marginBottom: 20
+  },
+  payTitle: {
+    color: '#B1AFB7',
+    fontSize: 17
+  },
+  amount: {
+    textAlign: 'center',
+    fontWeight: '300',
+    letterSpacing: -0.1,
+    color: '#007AFF'
+  },
+  amountUnit: {
+    color: '#B1AFB7',
+    fontSize: 17
   },
   errorText: {
     color: '#FF3B30'
@@ -228,13 +258,17 @@ export default class ReviewAndPayScreen extends Component {
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
         <ContentView style={styles.content}>
-          <View>
-            <StyledText>To: {address}</StyledText>
+          <View style={styles.amountContainer}>
+            <StyledText style={styles.payTitle}>PAY</StyledText>
+            <View>
+              <AutoFontSize margin={150}>
+                <BtcLabel amount={amountBtc} unit={displayUnit} hideUnit={true} style={styles.amount} />
+              </AutoFontSize>
+            </View>
+            <UnitLabel unit={displayUnit} style={styles.amountUnit} />
           </View>
           <View>
-            <StyledText>
-              Amount: <BtcLabel amount={amountBtc} unit={displayUnit} />
-            </StyledText>
+            <StyledText>To: {address}</StyledText>
           </View>
           {this._renderFeeSection()}
           <View>

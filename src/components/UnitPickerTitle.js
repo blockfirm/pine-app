@@ -6,7 +6,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import headerStyles from '../styles/headerStyles';
 import StyledText from './StyledText';
 
-const UNITS = ['BTC', 'mBTC', 'Satoshis'];
+const UNIT_BTC = 'BTC';
+const UNIT_MBTC = 'mBTC';
+const UNIT_SATOSHIS = 'Satoshis';
+const UNITS = [UNIT_BTC, UNIT_MBTC, UNIT_SATOSHIS];
 
 const styles = StyleSheet.create({
   wrapper: {
