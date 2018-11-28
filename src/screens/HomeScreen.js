@@ -4,6 +4,7 @@ import { StatusBar, View, StyleSheet, FlatList, Dimensions } from 'react-native'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { setHomeScreenIndex } from '../actions/setHomeScreenIndex';
 import { sync as syncWallet } from '../actions/bitcoin/wallet';
 import Toolbar from '../components/toolbar/Toolbar';
 import TransactionsScreen from './TransactionsScreen';
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
+  homeScreenIndex: state.homeScreen.index,
   isDisconnectedFromInternet: state.network.internet.disconnected
 }))
 export default class HomeScreen extends Component {
@@ -79,11 +81,32 @@ export default class HomeScreen extends Component {
     clearInterval(this._syncInterval);
   }
 
+  componentDidUpdate(prevProps) {
+    const { homeScreenIndex } = this.props;
+
+    /**
+     * Scroll to the homeScreenIndex if modified externally.
+     * This is used by the Send modal to make sure the transaction
+     * view is shown after a successful payment.
+     */
+    if (homeScreenIndex !== undefined && homeScreenIndex !== this.state.activeIndex) {
+      this.setState({ activeIndex: homeScreenIndex });
+
+      this._flatList.scrollToIndex({
+        animated: false,
+        index: homeScreenIndex
+      });
+    }
+  }
+
   _onIndexChanged(index) {
+    const { dispatch } = this.props;
     const barStyle = index === 0 ? 'light-content' : 'dark-content';
 
     StatusBar.setBarStyle(barStyle);
     this.setState({ activeIndex: index });
+
+    dispatch(setHomeScreenIndex(index));
   }
 
   _onMomentumScrollEnd(event) {

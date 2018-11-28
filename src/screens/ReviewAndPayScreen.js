@@ -16,6 +16,7 @@ import {
 } from '../crypto/bitcoin/convert';
 
 import getMnemonicByKey from '../crypto/getMnemonicByKey';
+import { setHomeScreenIndex } from '../actions/setHomeScreenIndex';
 import * as keyActions from '../actions/keys';
 import { handle as handleError } from '../actions/error/handle';
 import { create as createTransaction } from '../actions/bitcoin/wallet/transactions/create';
@@ -29,6 +30,8 @@ import StyledText from '../components/StyledText';
 import BtcLabel from '../components/BtcLabel';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
+
+const HOME_SCREEN_INDEX_TRANSACTIONS = 1;
 
 const styles = StyleSheet.create({
   view: {
@@ -178,8 +181,10 @@ export default class ReviewAndPayScreen extends Component {
         return dispatch(postTransaction(rawTransaction));
       })
       .then(() => {
-        // The transaction was successfully sent!
+        // The payment was successfully sent!
+        dispatch(setHomeScreenIndex(HOME_SCREEN_INDEX_TRANSACTIONS));
         dispatch(syncWallet());
+
         ReactNativeHaptic.generate('notificationSuccess');
         this.props.screenProps.dismiss();
       })

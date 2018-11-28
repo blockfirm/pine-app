@@ -16,6 +16,9 @@ const storeMock = {
       internet: {
         disconnected: false
       }
+    },
+    homeScreen: {
+      index: 1
     }
   })),
   dispatch: jest.fn(() => Promise.resolve()),
