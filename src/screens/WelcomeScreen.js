@@ -113,6 +113,7 @@ export default class WelcomeScreen extends Component {
             onPress={this._createWallet.bind(this)}
             style={styles.button}
             showLoader={true}
+            runAfterInteractions={true}
             hapticFeedback={true}
           />
 

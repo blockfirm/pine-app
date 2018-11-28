@@ -248,7 +248,7 @@ export default class ReviewAndPayScreen extends Component {
             label='Pay'
             disabled={!Boolean(transaction)}
             onPress={this._signAndPay.bind(this)}
-            showLoader={false}
+            showLoader={true}
             hapticFeedback={true}
           />
         </Footer>

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, View, Dimensions, Text, ActivityIndicator, InteractionManager } from 'react-native';
 import PropTypes from 'prop-types';
@@ -142,6 +143,8 @@ export default class Button extends Component {
   }
 
   _onPress() {
+    const { hapticFeedback, runAfterInteractions } = this.props;
+
     if (!this._shouldAllowPress()) {
       return;
     }
@@ -149,12 +152,12 @@ export default class Button extends Component {
     this._lastPressTimestamp = new Date().getTime();
     this._onPressStarted();
 
-    if (this.props.hapticFeedback) {
+    if (hapticFeedback) {
       ReactNativeHaptic.generate('selection');
     }
 
-    if (this.props.showLoader) {
-      // This makes sure that the loader shows before starting the task.
+    if (runAfterInteractions) {
+      // This makes sure that animations related to interaction runs before starting the task.
       InteractionManager.runAfterInteractions(() => {
         this._handleOnPress();
       });
@@ -205,5 +208,6 @@ Button.propTypes = {
   showLoader: PropTypes.bool,
   loaderColor: PropTypes.string,
   disableThrottling: PropTypes.bool,
-  hapticFeedback: PropTypes.bool
+  hapticFeedback: PropTypes.bool,
+  runAfterInteractions: PropTypes.bool
 };
