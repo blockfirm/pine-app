@@ -31,6 +31,7 @@ import AutoFontSize from '../components/AutoFontSize';
 import BtcLabel from '../components/BtcLabel';
 import UnitLabel from '../components/UnitLabel';
 import AddressLabel from '../components/AddressLabel';
+import FeeLabel from '../components/FeeLabel';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -250,29 +251,25 @@ export default class ReviewAndPayScreen extends Component {
       });
   }
 
-  _renderFeeSection() {
-    const { displayUnit } = this.props.navigation.state.params;
+  _renderFee() {
+    const { amountBtc, displayUnit } = this.props.navigation.state.params;
     const { fee, cannotAffordFee } = this.state;
     const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
 
     if (cannotAffordFee) {
       return (
-        <View>
-          <StyledText>Fee: </StyledText>
-          <StyledText style={styles.errorText}>
-            Not enough funds to pay for the transaction fee.
-          </StyledText>
-        </View>
+        <StyledText style={styles.errorText}>
+          Not enough funds to pay for the transaction fee.
+        </StyledText>
       );
     }
 
+    if (!feeBtc) {
+      return <ActivityIndicator size='small' />;
+    }
+
     return (
-      <View>
-        <StyledText>Fee: </StyledText>
-        {
-          feeBtc ? <BtcLabel amount={feeBtc} unit={displayUnit} /> : <ActivityIndicator size='small' />
-        }
-      </View>
+      <FeeLabel fee={feeBtc} amount={amountBtc} unit={displayUnit} style={styles.label} />
     );
   }
 
@@ -299,7 +296,12 @@ export default class ReviewAndPayScreen extends Component {
               <StyledText style={styles.label}>To</StyledText>
               <AddressLabel address={address} style={styles.value} />
             </View>
-            {this._renderFeeSection()}
+            <View style={styles.detail}>
+              <StyledText style={styles.label}>Fee</StyledText>
+              <View style={styles.value}>
+                {this._renderFee()}
+              </View>
+            </View>
             <View>
               <StyledText>
                 Total: <BtcLabel amount={totalAmount} unit={displayUnit} />

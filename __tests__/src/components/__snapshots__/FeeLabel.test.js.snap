@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeeLabel renders high fees correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        undefined,
+      ]
+    }
+  >
+    0.15 BTC
+  </Text>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#8A8A8F",
+        "borderRadius": 2,
+        "height": 3,
+        "marginHorizontal": 10,
+        "width": 3,
+      }
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Array [
+          undefined,
+          Object {
+            "color": "#FF3B30",
+          },
+        ],
+      ]
+    }
+  >
+    30%
+  </Text>
+</View>
+`;
+
+exports[`FeeLabel renders low fees correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        undefined,
+      ]
+    }
+  >
+    0.001 BTC
+  </Text>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#8A8A8F",
+        "borderRadius": 2,
+        "height": 3,
+        "marginHorizontal": 10,
+        "width": 3,
+      }
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Array [
+          undefined,
+          null,
+        ],
+      ]
+    }
+  >
+    0.10%
+  </Text>
+</View>
+`;
+
+exports[`FeeLabel renders medium fees correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        undefined,
+      ]
+    }
+  >
+    0.12 BTC
+  </Text>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#8A8A8F",
+        "borderRadius": 2,
+        "height": 3,
+        "marginHorizontal": 10,
+        "width": 3,
+      }
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Array [
+          undefined,
+          Object {
+            "color": "#FF9500",
+          },
+        ],
+      ]
+    }
+  >
+    6.0%
+  </Text>
+</View>
+`;
