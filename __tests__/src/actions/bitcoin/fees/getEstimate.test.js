@@ -13,6 +13,12 @@ const getStateMock = jest.fn(() => ({
   settings: {
     api: {
       baseUrl: 'aa3e79cc-7467-4785-92f9-05c59ea3b7ea'
+    },
+    bitcoin: {
+      fee: {
+        level: 'Normal',
+        satoshisPerByte: 100
+      }
     }
   }
 }));
@@ -148,6 +154,135 @@ describe('getEstimate', () => {
           });
         });
       });
+    });
+  });
+
+  describe('when the fee level has been set to High', () => {
+    it('increases the estimated fee rate by 150%', () => {
+      expect.hasAssertions();
+
+      getStateMock.mockImplementationOnce(() => ({
+        settings: {
+          api: {
+            baseUrl: 'aa3e79cc-7467-4785-92f9-05c59ea3b7ea'
+          },
+          bitcoin: {
+            fee: {
+              level: 'High',
+              satoshisPerByte: 100
+            }
+          }
+        }
+      }));
+
+      return getEstimate()(dispatchMock, getStateMock).then((satoshisPerByte) => {
+        const expectedFeeRate = 4.7 * 1.5;
+        expect(satoshisPerByte).toBe(expectedFeeRate);
+      });
+    });
+  });
+
+  describe('when the fee level has been set to Normal', () => {
+    it('leaves the estimated fee rate at 100%', () => {
+      expect.hasAssertions();
+
+      getStateMock.mockImplementationOnce(() => ({
+        settings: {
+          api: {
+            baseUrl: 'aa3e79cc-7467-4785-92f9-05c59ea3b7ea'
+          },
+          bitcoin: {
+            fee: {
+              level: 'Normal',
+              satoshisPerByte: 100
+            }
+          }
+        }
+      }));
+
+      return getEstimate()(dispatchMock, getStateMock).then((satoshisPerByte) => {
+        const expectedFeeRate = 4.7;
+        expect(satoshisPerByte).toBe(expectedFeeRate);
+      });
+    });
+  });
+
+  describe('when the fee level has been set to Low', () => {
+    it('decreases the estimated fee rate by 50%', () => {
+      expect.hasAssertions();
+
+      getStateMock.mockImplementationOnce(() => ({
+        settings: {
+          api: {
+            baseUrl: 'aa3e79cc-7467-4785-92f9-05c59ea3b7ea'
+          },
+          bitcoin: {
+            fee: {
+              level: 'Low',
+              satoshisPerByte: 100
+            }
+          }
+        }
+      }));
+
+      return getEstimate()(dispatchMock, getStateMock).then((satoshisPerByte) => {
+        const expectedFeeRate = 4.7 * 0.5;
+        expect(satoshisPerByte).toBe(expectedFeeRate);
+      });
+    });
+  });
+
+  describe('when the fee level has been set to Very Low', () => {
+    it('decreases the estimated fee rate by 75%', () => {
+      expect.hasAssertions();
+
+      getStateMock.mockImplementationOnce(() => ({
+        settings: {
+          api: {
+            baseUrl: 'aa3e79cc-7467-4785-92f9-05c59ea3b7ea'
+          },
+          bitcoin: {
+            fee: {
+              level: 'Very Low',
+              satoshisPerByte: 100
+            }
+          }
+        }
+      }));
+
+      return getEstimate()(dispatchMock, getStateMock).then((satoshisPerByte) => {
+        const expectedFeeRate = 4.7 * 0.25;
+        expect(satoshisPerByte).toBe(expectedFeeRate);
+      });
+    });
+  });
+
+  describe('when the fee level has been set to Custom', () => {
+    it('returns the custom fee rate', () => {
+      expect.hasAssertions();
+
+      getStateMock.mockImplementationOnce(() => ({
+        settings: {
+          api: {
+            baseUrl: 'aa3e79cc-7467-4785-92f9-05c59ea3b7ea'
+          },
+          bitcoin: {
+            fee: {
+              level: 'Custom',
+              satoshisPerByte: 384
+            }
+          }
+        }
+      }));
+
+      return getEstimate()(dispatchMock, getStateMock).then((satoshisPerByte) => {
+        const expectedFeeRate = 384;
+        expect(satoshisPerByte).toBe(expectedFeeRate);
+      });
+    });
+
+    it('does not call the API to get an estimate', () => {
+      expect(api.bitcoin.fees.estimate.get).toHaveBeenCalledTimes(0);
     });
   });
 });
