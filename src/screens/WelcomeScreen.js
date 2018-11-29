@@ -14,6 +14,8 @@ import WhiteButton from '../components/WhiteButton';
 import Link from '../components/Link';
 import BaseScreen from './BaseScreen';
 
+const illustration = require('../images/illustrations/Welcome.png');
+
 const styles = StyleSheet.create({
   view: {
     flex: 1,
@@ -21,9 +23,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFD23F'
   },
-  logo: {
-    width: 128,
-    height: 57,
+  illustration: {
+    width: 168,
+    height: 220,
     marginBottom: 150
   },
   footer: {
@@ -103,9 +105,9 @@ export default class WelcomeScreen extends Component {
   render() {
     return (
       <BaseScreen style={styles.view} hideHeader={true}>
-        <StatusBar barStyle='light-content' />
+        <StatusBar barStyle='dark-content' />
 
-        <Image source={{ uri: 'LaunchScreenLogo' }} style={styles.logo} />
+        <Image source={illustration} style={styles.illustration} />
 
         <Footer style={styles.footer}>
           <WhiteButton

@@ -24,14 +24,14 @@ exports[`WelcomeScreen renders correctly 1`] = `
   <Image
     source={
       Object {
-        "uri": "LaunchScreenLogo",
+        "testUri": "../../../src/images/illustrations/Welcome.png",
       }
     }
     style={
       Object {
-        "height": 57,
+        "height": 220,
         "marginBottom": 150,
-        "width": 128,
+        "width": 168,
       }
     }
   />

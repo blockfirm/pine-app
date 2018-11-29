@@ -8,15 +8,17 @@ import StyledText from './StyledText';
 import Paragraph from './Paragraph';
 import Link from './Link';
 
+const illustration = require('../images/illustrations/AskForBitcoin.png');
+
 const styles = StyleSheet.create({
   view: {
     marginTop: 0,
     justifyContent: 'center'
   },
   illustration: {
-    width: 235,
-    height: 177,
-    marginBottom: 20
+    width: 133,
+    height: 132,
+    marginBottom: 50
   },
   title: {
     color: '#949494'
@@ -40,11 +42,9 @@ export default class TransactionListEmpty extends Component {
   }
 
   render() {
-    const image = require('../images/illustrations/IWantMyBitcoin.png');
-
     return (
       <ContentView style={styles.view} hasToolbar={true}>
-        <Image source={image} style={styles.illustration} />
+        <Image source={illustration} style={styles.illustration} />
 
         <StyledText style={[headerStyles.title, styles.title]}>
           Your wallet looks empty

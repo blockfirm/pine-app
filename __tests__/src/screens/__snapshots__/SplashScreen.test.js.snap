@@ -13,7 +13,7 @@ exports[`SplashScreen renders correctly 1`] = `
       },
       Object {
         "alignItems": "center",
-        "backgroundColor": "#FFD23F",
+        "backgroundColor": "#FFD200",
         "flex": 1,
         "justifyContent": "center",
       },
