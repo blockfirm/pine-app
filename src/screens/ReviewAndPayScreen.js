@@ -30,6 +30,7 @@ import StyledText from '../components/StyledText';
 import AutoFontSize from '../components/AutoFontSize';
 import BtcLabel from '../components/BtcLabel';
 import UnitLabel from '../components/UnitLabel';
+import AddressLabel from '../components/AddressLabel';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -41,9 +42,9 @@ const styles = StyleSheet.create({
   },
   content: {
     alignSelf: 'stretch',
-    paddingTop: 10,
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingTop: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
     justifyContent: 'flex-start',
     alignItems: 'flex-start'
   },
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     borderColor: '#C3C2C6',
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 16,
-    marginBottom: 20
+    margin: 16
   },
   payTitle: {
     color: '#B1AFB7',
@@ -70,6 +71,32 @@ const styles = StyleSheet.create({
   amountUnit: {
     color: '#B1AFB7',
     fontSize: 17
+  },
+  details: {
+    alignSelf: 'stretch',
+    marginTop: 16,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: '#EFEEF0'
+  },
+  detail: {
+    paddingVertical: 16,
+    paddingRight: 16,
+    paddingLeft: 0,
+    marginLeft: 16,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: '#EFEEF0'
+  },
+  label: {
+    color: '#8A8A8F',
+    fontSize: 15
+  },
+  value: {
+    color: '#8A8A8F',
+    fontSize: 15,
+    position: 'absolute',
+    right: 16,
+    top: 16
   },
   errorText: {
     color: '#FF3B30'
@@ -267,14 +294,17 @@ export default class ReviewAndPayScreen extends Component {
             </View>
             <UnitLabel unit={displayUnit} style={styles.amountUnit} />
           </View>
-          <View>
-            <StyledText>To: {address}</StyledText>
-          </View>
-          {this._renderFeeSection()}
-          <View>
-            <StyledText>
-              Total: <BtcLabel amount={totalAmount} unit={displayUnit} />
-            </StyledText>
+          <View style={styles.details}>
+            <View style={styles.detail}>
+              <StyledText style={styles.label}>To</StyledText>
+              <AddressLabel address={address} style={styles.value} />
+            </View>
+            {this._renderFeeSection()}
+            <View>
+              <StyledText>
+                Total: <BtcLabel amount={totalAmount} unit={displayUnit} />
+              </StyledText>
+            </View>
           </View>
         </ContentView>
         <Footer>
