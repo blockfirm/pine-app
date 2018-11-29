@@ -88,6 +88,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: '#EFEEF0'
   },
+  lastDetail: {
+    borderBottomWidth: 0
+  },
   label: {
     color: '#8A8A8F',
     fontSize: 15
@@ -101,6 +104,10 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: '#FF3B30'
+  },
+  bold: {
+    fontWeight: '600',
+    color: 'black'
   }
 });
 
@@ -302,10 +309,9 @@ export default class ReviewAndPayScreen extends Component {
                 {this._renderFee()}
               </View>
             </View>
-            <View>
-              <StyledText>
-                Total: <BtcLabel amount={totalAmount} unit={displayUnit} />
-              </StyledText>
+            <View style={[styles.detail, styles.lastDetail]}>
+              <StyledText style={[styles.label, styles.bold]}>You Pay</StyledText>
+              <BtcLabel amount={totalAmount} unit={displayUnit} style={[styles.value, styles.bold]} />
             </View>
           </View>
         </ContentView>
