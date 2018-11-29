@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 12
+    borderRadius: SECTION_HEADER_HEIGHT / 2
   },
   sectionHeaderText: {
     color: '#8A8A8F',
