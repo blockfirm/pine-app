@@ -11,7 +11,7 @@ import TransactionsScreen from './TransactionsScreen';
 import CameraScreen from './CameraScreen';
 import ReceiveScreen from './ReceiveScreen';
 
-const SYNC_WALLET_INTERVAL = 60 * 1000 * 1; // 1 minute.
+const SYNC_WALLET_INTERVAL = 10 * 1000; // 10 seconds.
 const DEFAULT_SCREEN_INDEX = 1;
 
 const WINDOW_HEIGHT = Dimensions.get('window').height;
