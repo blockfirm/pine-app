@@ -137,14 +137,18 @@ export default class ReviewAndPayScreen extends Component {
     transaction: null,
     inputs: null,
     fee: null,
-    cannotAffordFee: false
+    cannotAffordFee: false,
+    isSigned: false
   }
 
   componentDidMount() {
+    this._createTransaction();
+  }
+
+  _createTransaction() {
     const dispatch = this.props.dispatch;
     const { address, amountBtc } = this.props.navigation.state.params;
 
-    // Create a transaction.
     dispatch(createTransaction(amountBtc, address))
       .then(({ transaction, inputs, fee }) => {
         if (fee === undefined) {
@@ -221,6 +225,8 @@ export default class ReviewAndPayScreen extends Component {
 
       transaction.sign(index, keyPair, redeemScript, null, input.value);
     });
+
+    this.setState({ isSigned: true });
   }
 
   _getMnemonic() {
@@ -232,12 +238,14 @@ export default class ReviewAndPayScreen extends Component {
 
   _signAndPay() {
     const dispatch = this.props.dispatch;
-    const transaction = this.state.transaction;
+    const { transaction, isSigned } = this.state;
 
     return this._getMnemonic()
       .then((mnemonic) => {
         // Sign all the inputs.
-        this._signInputs(mnemonic);
+        if (!isSigned) {
+          this._signInputs(mnemonic);
+        }
       })
       .then(() => {
         // Build the transaction.
