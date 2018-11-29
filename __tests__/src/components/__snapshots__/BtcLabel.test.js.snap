@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`BtcLabel when unit is BTC renders -0.02784 BTC correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  -
+  2.784M sats
+</Text>
+`;
+
 exports[`BtcLabel when unit is BTC renders 0 BTC correctly 1`] = `
 <Text
   style={
@@ -119,6 +137,24 @@ exports[`BtcLabel when unit is BTC renders 4000 BTC correctly 1`] = `
 </Text>
 `;
 
+exports[`BtcLabel when unit is Satoshis renders -0.08 BTC correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  -
+  8M sats
+</Text>
+`;
+
 exports[`BtcLabel when unit is Satoshis renders 0 BTC correctly 1`] = `
 <Text
   style={
@@ -184,6 +220,24 @@ exports[`BtcLabel when unit is Satoshis renders 2 BTC correctly 1`] = `
   }
 >
   200M sats
+</Text>
+`;
+
+exports[`BtcLabel when unit is mBTC renders -1.4234 BTC correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  -
+  1 423.4 mBTC
 </Text>
 `;
 

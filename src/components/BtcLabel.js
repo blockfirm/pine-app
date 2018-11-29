@@ -128,11 +128,12 @@ const formatAmount = (amount, unit, hideUnit) => {
 export default class BtcLabel extends Component {
   render() {
     const { amount, unit, hideUnit } = this.props;
-    const label = formatAmount(amount, unit, hideUnit);
+    const absoluteAmount = Math.abs(amount);
+    const label = formatAmount(absoluteAmount, unit, hideUnit);
 
     return (
       <StyledText style={this.props.style}>
-        {label}
+        { amount < 0 ? '-' : null }{label}
       </StyledText>
     );
   }

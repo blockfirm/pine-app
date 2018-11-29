@@ -63,6 +63,14 @@ describe('BtcLabel', () => {
 
       expect(tree).toMatchSnapshot();
     });
+
+    it('renders -0.02784 BTC correctly', () => {
+      const tree = renderer.create(
+        <BtcLabel amount={-0.02784} unit={UNIT_SATOSHIS} />
+      ).toJSON();
+
+      expect(tree).toMatchSnapshot();
+    });
   });
 
   describe('when unit is mBTC', () => {
@@ -97,6 +105,14 @@ describe('BtcLabel', () => {
 
       expect(tree).toMatchSnapshot();
     });
+
+    it('renders -1.4234 BTC correctly', () => {
+      const tree = renderer.create(
+        <BtcLabel amount={-1.4234} unit={UNIT_MBTC} />
+      ).toJSON();
+
+      expect(tree).toMatchSnapshot();
+    });
   });
 
   describe('when unit is Satoshis', () => {
@@ -127,6 +143,14 @@ describe('BtcLabel', () => {
     it('renders 0.00000002 BTC correctly', () => {
       const tree = renderer.create(
         <BtcLabel amount={0.00000002} unit={UNIT_SATOSHIS} />
+      ).toJSON();
+
+      expect(tree).toMatchSnapshot();
+    });
+
+    it('renders -0.08 BTC correctly', () => {
+      const tree = renderer.create(
+        <BtcLabel amount={-0.08} unit={UNIT_SATOSHIS} />
       ).toJSON();
 
       expect(tree).toMatchSnapshot();
