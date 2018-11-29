@@ -73,7 +73,7 @@ const formatSatoshis = (amount) => {
     satoshis /= 1000000;
     suffix = 'M';
     amountString = satoshis.toFixed(6);
-  } else if (satoshis > 1000) {
+  } else if (satoshis > 100000) {
     satoshis /= 1000;
     suffix = 'k';
     amountString = satoshis.toFixed(3);
