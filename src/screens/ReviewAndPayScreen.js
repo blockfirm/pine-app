@@ -256,10 +256,12 @@ export default class ReviewAndPayScreen extends Component {
         return dispatch(postTransaction(rawTransaction));
       })
       .then(() => {
-        // The payment was successfully sent!
+        // Sync wallet before finishing.
         dispatch(setHomeScreenIndex(HOME_SCREEN_INDEX_TRANSACTIONS));
-        dispatch(syncWallet());
-
+        return dispatch(syncWallet());
+      })
+      .then(() => {
+        // The payment was successfully sent.
         ReactNativeHaptic.generate('notificationSuccess');
         this.props.screenProps.dismiss();
       })
