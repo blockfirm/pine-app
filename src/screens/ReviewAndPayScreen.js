@@ -53,21 +53,20 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     alignItems: 'center',
     padding: 30,
-    backgroundColor: '#FBFBFB',
-    borderColor: '#C3C2C6',
-    borderWidth: StyleSheet.hairlineWidth,
+    backgroundColor: '#FAFAFA',
     borderRadius: 16,
     margin: 16
   },
   payTitle: {
     color: '#B1AFB7',
-    fontSize: 17
+    fontSize: 17,
+    letterSpacing: 0.07
   },
   amount: {
     textAlign: 'center',
-    fontWeight: '300',
+    fontWeight: '400',
     letterSpacing: -0.1,
-    color: '#007AFF'
+    color: '#262626'
   },
   amountUnit: {
     color: '#B1AFB7',
