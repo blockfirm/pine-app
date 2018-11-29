@@ -21,10 +21,15 @@ class TransactionListContainer extends Component {
     return dispatch(syncWallet());
   }
 
+  scrollToTop() {
+    this._transactionList.scrollToTop();
+  }
+
   render() {
     return (
       <TransactionList
         {...this.props}
+        ref={ref => { this._transactionList = ref; }}
         onRefresh={this._onRefresh.bind(this)}
       />
     );
@@ -32,7 +37,10 @@ class TransactionListContainer extends Component {
 }
 
 const TransactionListConnector = connect(
-  mapStateToProps
+  mapStateToProps,
+  null,
+  null,
+  { withRef: true }
 )(TransactionListContainer);
 
 export default TransactionListConnector;

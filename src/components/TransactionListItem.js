@@ -9,6 +9,7 @@ import DateLabel from './DateLabel';
 
 const styles = StyleSheet.create({
   item: {
+    height: 68,
     flex: 1,
     flexDirection: 'row',
     alignSelf: 'stretch',

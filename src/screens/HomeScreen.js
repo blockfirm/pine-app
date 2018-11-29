@@ -181,10 +181,17 @@ export default class HomeScreen extends Component {
   }
 
   _onToolbarPress(index) {
+    const { activeIndex } = this.state;
+
     this._flatList.scrollToIndex({
       animated: true,
       index
     });
+
+    // Scroll to top if the transactions button is pressed while already on this screen.
+    if (index === DEFAULT_SCREEN_INDEX && index === activeIndex) {
+      this._transactionsScreen.scrollToTop();
+    }
   }
 
   _renderScreen({ item }) {
@@ -223,7 +230,7 @@ export default class HomeScreen extends Component {
 
     const screens = [
       { key: 'camera', screen: <CameraScreen {...props} showPreview={showCameraPreview} onBackPress={this._scrollToHome.bind(this)} /> },
-      { key: 'home', screen: <TransactionsScreen {...props} /> },
+      { key: 'home', screen: <TransactionsScreen {...props} ref={ref => { this._transactionsScreen = ref && ref.getWrappedInstance(); }} /> },
       { key: 'receive', screen: <ReceiveScreen {...props} onBackPress={this._scrollToHome.bind(this)} /> }
     ];
 

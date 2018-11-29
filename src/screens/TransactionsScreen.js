@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   }
 });
 
-@connect()
+@connect(null, null, null, { withRef: true })
 export default class TransactionsScreen extends Component {
   static navigationOptions = {
     header: null
@@ -40,12 +40,16 @@ export default class TransactionsScreen extends Component {
     );
   }
 
+  scrollToTop() {
+    this._transactionList.scrollToTop();
+  }
+
   render() {
     return (
       <BaseScreen style={styles.view}>
         <TransactionsScreenHeader onSettingsPress={this._showSettings.bind(this)} />
         <OfflineNoticeContainer />
-        <TransactionListContainer />
+        <TransactionListContainer ref={ref => { this._transactionList = ref && ref.getWrappedInstance(); }} />
 
         <View style={styles.bottomGradient} pointerEvents='none'>
           <LinearGradient

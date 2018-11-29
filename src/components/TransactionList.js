@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import { StyleSheet, SectionList, View, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
+import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import moment from 'moment-timezone';
 
 import TransactionListItemContainer from '../containers/TransactionListItemContainer';
 import TransactionListEmptyContainer from '../containers/TransactionListEmptyContainer';
 import StyledText from './StyledText';
+
+const SECTION_HEADER_HEIGHT = 26;
+const SECTION_HEADER_MARGIN_TOP = 30;
+const SECTION_HEADER_MARGIN_BOTTOM = 20;
+const ITEM_HEIGHT = 68;
 
 const styles = StyleSheet.create({
   list: {
@@ -14,10 +20,11 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     backgroundColor: '#F6F6F6',
-    marginTop: 30,
-    marginBottom: 20,
+    marginTop: SECTION_HEADER_MARGIN_TOP,
+    marginBottom: SECTION_HEADER_MARGIN_BOTTOM,
     padding: 6,
     width: 87,
+    height: SECTION_HEADER_HEIGHT,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -34,6 +41,17 @@ const styles = StyleSheet.create({
 export default class TransactionList extends Component {
   state = {
     refreshing: false
+  }
+
+  constructor() {
+    super(...arguments);
+
+    this._getItemLayout = sectionListGetItemLayout({
+      getItemHeight: () => ITEM_HEIGHT,
+      getSectionHeaderHeight: () => (
+        SECTION_HEADER_HEIGHT + SECTION_HEADER_MARGIN_TOP + SECTION_HEADER_MARGIN_BOTTOM
+      )
+    });
   }
 
   _onRefreshFinished() {
@@ -99,6 +117,13 @@ export default class TransactionList extends Component {
     );
   }
 
+  scrollToTop() {
+    this._list.scrollToLocation({
+      sectionIndex: 0,
+      itemIndex: -1
+    });
+  }
+
   render() {
     const transactions = [...this.props.transactions].reverse();
     const sections = this._getSections(transactions);
@@ -109,6 +134,7 @@ export default class TransactionList extends Component {
 
     return (
       <SectionList
+        ref={(ref) => { this._list = ref; }}
         style={styles.list}
         contentInset={{ bottom: ifIphoneX(124, 90) }}
         sections={sections}
@@ -116,6 +142,7 @@ export default class TransactionList extends Component {
           <TransactionListItemContainer transaction={item} />
         )}
         keyExtractor={(item) => item.txid}
+        getItemLayout={this._getItemLayout}
         renderSectionHeader={({ section: { title } }) => (
           <View style={styles.sectionHeader}>
             <StyledText style={styles.sectionHeaderText}>{title}</StyledText>
