@@ -58,7 +58,7 @@ export default class BitcoinUnitScreen extends Component {
       <BaseSettingsScreen>
         <SettingsTitle>Balance Preview</SettingsTitle>
         <SettingsGroup>
-          <View style={[settingsStyles.item, { borderBottomWidth: 0 }]}>
+          <View style={[settingsStyles.item, { borderBottomWidth: 0, alignItems: 'center' }]}>
             <BtcLabel amount={this.props.balance} unit={this.state.unit} style={settingsStyles.label} />
           </View>
         </SettingsGroup>

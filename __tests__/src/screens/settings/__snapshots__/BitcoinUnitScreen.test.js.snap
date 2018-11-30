@@ -69,6 +69,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
                   "paddingRight": 15,
                 },
                 Object {
+                  "alignItems": "center",
                   "borderBottomWidth": 0,
                 },
               ]
