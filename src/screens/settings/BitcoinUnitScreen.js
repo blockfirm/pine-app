@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { save as saveSettings } from '../../actions/settings/save';
 import headerStyles from '../../styles/headerStyles';
+import settingsStyles from '../../styles/settingsStyles';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsOption from '../../components/SettingsOption';
 import SettingsDescription from '../../components/SettingsDescription';
+import SettingsTitle from '../../components/SettingsTitle';
 import StrongText from '../../components/StrongText';
+import BtcLabel from '../../components/BtcLabel';
 import BaseSettingsScreen from './BaseSettingsScreen';
 import config from '../../config';
 
 @connect((state) => ({
-  settings: state.settings
+  settings: state.settings,
+  balance: state.bitcoin.wallet.balance
 }))
 export default class BitcoinUnitScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -51,6 +56,17 @@ export default class BitcoinUnitScreen extends Component {
   render() {
     return (
       <BaseSettingsScreen>
+        <SettingsTitle>Balance Preview</SettingsTitle>
+        <SettingsGroup>
+          <View style={[settingsStyles.item, { borderBottomWidth: 0 }]}>
+            <BtcLabel amount={this.props.balance} unit={this.state.unit} style={settingsStyles.label} />
+          </View>
+        </SettingsGroup>
+        <SettingsDescription>
+          This is how your current wallet balance will look like with the selected unit below.
+        </SettingsDescription>
+
+        <SettingsTitle>Display Unit</SettingsTitle>
         <SettingsGroup>
           <SettingsOption name='BTC' value={this.state.unit} onSelect={this._onSelect.bind(this)} />
           <SettingsOption name='mBTC' value={this.state.unit} onSelect={this._onSelect.bind(this)} />
@@ -60,6 +76,7 @@ export default class BitcoinUnitScreen extends Component {
         <SettingsDescription>
           Choose the unit in which bitcoin amounts should be displayed.
         </SettingsDescription>
+        <SettingsDescription />
         <SettingsDescription>
           <StrongText>BTC</StrongText> is one bitcoin and will be displayed as BTC.
         </SettingsDescription>
@@ -67,7 +84,7 @@ export default class BitcoinUnitScreen extends Component {
           <StrongText>mBTC</StrongText> is one thousandth of a bitcoin and will be displayed as mBTC.
         </SettingsDescription>
         <SettingsDescription>
-          <StrongText>Satoshis</StrongText> is one hundred millionth of a bitcoin and will be displayed as sats, ksats, or Msats.
+          <StrongText>Satoshi</StrongText> is one hundred millionth of a bitcoin and will be displayed as sats.
         </SettingsDescription>
       </BaseSettingsScreen>
     );
@@ -76,6 +93,7 @@ export default class BitcoinUnitScreen extends Component {
 
 BitcoinUnitScreen.propTypes = {
   settings: PropTypes.object,
+  balance: PropTypes.number,
   dispatch: PropTypes.func,
   navigation: PropTypes.any
 };

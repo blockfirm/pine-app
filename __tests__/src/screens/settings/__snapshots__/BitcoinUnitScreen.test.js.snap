@@ -19,6 +19,125 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
           }
         }
       >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#8A8A8F",
+                "fontSize": 13,
+                "lineHeight": 17,
+                "marginBottom": 5.5,
+                "paddingLeft": 15,
+                "paddingRight": 15,
+                "textTransform": "uppercase",
+              },
+            ]
+          }
+        >
+          Balance Preview
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "borderBottomColor": "#C8C8CC",
+                "borderBottomWidth": 0.5,
+                "borderTopColor": "#C8C8CC",
+                "borderTopWidth": 0.5,
+                "marginBottom": 35,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderBottomColor": "#C8C7CC",
+                  "borderBottomWidth": 0.5,
+                  "flex": 1,
+                  "height": 44,
+                  "justifyContent": "center",
+                  "marginLeft": 15,
+                  "paddingRight": 15,
+                },
+                Object {
+                  "borderBottomWidth": 0,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#000000",
+                    "fontFamily": "System",
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "fontSize": 17,
+                    "fontWeight": "400",
+                    "lineHeight": 22,
+                  },
+                ]
+              }
+            >
+              1.37484 BTC
+            </Text>
+          </View>
+        </View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#8A8A8F",
+                "fontSize": 13,
+                "lineHeight": 17,
+                "marginBottom": 30,
+                "marginTop": -25,
+                "paddingLeft": 15,
+                "paddingRight": 15,
+              },
+            ]
+          }
+        >
+          This is how your current wallet balance will look like with the selected unit below.
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#8A8A8F",
+                "fontSize": 13,
+                "lineHeight": 17,
+                "marginBottom": 5.5,
+                "paddingLeft": 15,
+                "paddingRight": 15,
+                "textTransform": "uppercase",
+              },
+            ]
+          }
+        >
+          Display Unit
+        </Text>
         <View
           style={
             Array [
@@ -245,6 +364,26 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
               },
             ]
           }
+        />
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontWeight": "400",
+              },
+              Object {
+                "color": "#8A8A8F",
+                "fontSize": 13,
+                "lineHeight": 17,
+                "marginBottom": 30,
+                "marginTop": -25,
+                "paddingLeft": 15,
+                "paddingRight": 15,
+              },
+            ]
+          }
         >
           <Text
             style={
@@ -315,9 +454,9 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
               }
             }
           >
-            Satoshis
+            Satoshi
           </Text>
-           is one hundred millionth of a bitcoin and will be displayed as sats, ksats, or Msats.
+           is one hundred millionth of a bitcoin and will be displayed as sats.
         </Text>
       </View>
     </View>

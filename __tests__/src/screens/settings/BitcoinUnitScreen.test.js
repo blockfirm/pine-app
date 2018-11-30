@@ -11,6 +11,11 @@ const storeMock = {
       bitcoin: {
         unit: 'BTC'
       }
+    },
+    bitcoin: {
+      wallet: {
+        balance: 1.37484
+      }
     }
   })),
   dispatch: jest.fn(),
