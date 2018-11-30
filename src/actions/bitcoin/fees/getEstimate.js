@@ -4,11 +4,11 @@ export const BITCOIN_FEES_GET_ESTIMATE_REQUEST = 'BITCOIN_FEES_GET_ESTIMATE_REQU
 export const BITCOIN_FEES_GET_ESTIMATE_SUCCESS = 'BITCOIN_FEES_GET_ESTIMATE_SUCCESS';
 export const BITCOIN_FEES_GET_ESTIMATE_FAILURE = 'BITCOIN_FEES_GET_ESTIMATE_FAILURE';
 
-const FEE_LEVEL_HIGH = 'high';
-const FEE_LEVEL_NORMAL = 'normal';
-const FEE_LEVEL_LOW = 'low';
-const FEE_LEVEL_VERY_LOW = 'very low';
-const FEE_LEVEL_CUSTOM = 'custom';
+export const FEE_LEVEL_HIGH = 'high';
+export const FEE_LEVEL_NORMAL = 'normal';
+export const FEE_LEVEL_LOW = 'low';
+export const FEE_LEVEL_VERY_LOW = 'very low';
+export const FEE_LEVEL_CUSTOM = 'custom';
 
 const getEstimateRequest = () => {
   return {
@@ -33,7 +33,7 @@ const getEstimateFailure = (error) => {
 /**
  * Adjusts a fee rate according to the preferred fee level.
  */
-const adjustFeeRate = (satoshisPerByte, feeLevel) => {
+export const adjustFeeRate = (satoshisPerByte, feeLevel) => {
   switch (feeLevel.toLowerCase()) {
     case FEE_LEVEL_HIGH:
       return satoshisPerByte * 1.5; // 150%
@@ -54,10 +54,11 @@ const adjustFeeRate = (satoshisPerByte, feeLevel) => {
  * Action to get a transaction fee rate estimate.
  *
  * @param {number} numberOfBlocks - Number of blocks until confirmation. Defaults to 1.
+ * @param {boolean} ignoreFeeLevel - Whether or not to ignore the fee level settings. Defaults to false.
  *
  * @returns {number} The estimated fee rate in satoshis per byte.
  */
-export const getEstimate = (numberOfBlocks) => {
+export const getEstimate = (numberOfBlocks = 1, ignoreFeeLevel) => {
   return (dispatch, getState) => {
     const settings = getState().settings;
     const feeSettings = settings.bitcoin.fee;
@@ -66,7 +67,7 @@ export const getEstimate = (numberOfBlocks) => {
     dispatch(getEstimateRequest());
 
     // Return fee directly if it's set to custom.
-    if (feeSettings.level.toLowerCase() === FEE_LEVEL_CUSTOM) {
+    if (!ignoreFeeLevel && feeSettings.level.toLowerCase() === FEE_LEVEL_CUSTOM) {
       const satoshisPerByte = parseFloat(feeSettings.satoshisPerByte);
       dispatch(getEstimateSuccess(satoshisPerByte));
       return Promise.resolve(satoshisPerByte);
@@ -74,6 +75,11 @@ export const getEstimate = (numberOfBlocks) => {
 
     return api.bitcoin.fees.estimate.get(numberOfBlocks, options)
       .then((satoshisPerByte) => {
+        if (ignoreFeeLevel) {
+          dispatch(getEstimateSuccess(satoshisPerByte));
+          return satoshisPerByte;
+        }
+
         // Adjust fee rate according to settings before returning.
         const adjustedFeeRate = adjustFeeRate(satoshisPerByte, feeSettings.level);
         dispatch(getEstimateSuccess(adjustedFeeRate));

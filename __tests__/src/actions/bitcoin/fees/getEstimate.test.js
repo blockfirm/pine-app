@@ -60,10 +60,6 @@ describe('getEstimate', () => {
     expect(typeof getEstimate).toBe('function');
   });
 
-  it('accepts one argument', () => {
-    expect(getEstimate.length).toBe(1);
-  });
-
   it('returns a function', () => {
     const returnValue = getEstimate();
     expect(typeof returnValue).toBe('function');
@@ -93,7 +89,7 @@ describe('getEstimate', () => {
         };
 
         expect(api.bitcoin.fees.estimate.get).toHaveBeenCalledTimes(1);
-        expect(api.bitcoin.fees.estimate.get).toHaveBeenCalledWith(undefined, expectedOptions);
+        expect(api.bitcoin.fees.estimate.get).toHaveBeenCalledWith(1, expectedOptions);
       });
     });
 
@@ -283,6 +279,35 @@ describe('getEstimate', () => {
 
     it('does not call the API to get an estimate', () => {
       expect(api.bitcoin.fees.estimate.get).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  describe('when ignoreFeeLevel is set to true', () => {
+    it('returns the fee from the API and does not adjust the fee', () => {
+      const numberOfBlocks = 1;
+      const ignoreFeeLevel = true;
+
+      expect.hasAssertions();
+
+      getStateMock.mockImplementationOnce(() => ({
+        settings: {
+          api: {
+            baseUrl: 'aa3e79cc-7467-4785-92f9-05c59ea3b7ea'
+          },
+          bitcoin: {
+            fee: {
+              level: 'Custom',
+              satoshisPerByte: 9582
+            }
+          }
+        }
+      }));
+
+      return getEstimate(numberOfBlocks, ignoreFeeLevel)(dispatchMock, getStateMock)
+        .then((satoshisPerByte) => {
+          const expectedFeeRate = 4.7;
+          expect(satoshisPerByte).toBe(expectedFeeRate);
+        });
     });
   });
 });
