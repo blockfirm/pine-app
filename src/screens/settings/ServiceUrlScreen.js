@@ -66,7 +66,7 @@ export default class ServiceUrlScreen extends Component {
         </SettingsGroup>
 
         <SettingsDescription>
-          The URL should start with either "http://" or "https://" and end with "/v1".
+          The URL should start with either “http://” or “https://” and end with “/v1”.
         </SettingsDescription>
       </BaseSettingsScreen>
     );
