@@ -9,11 +9,8 @@ import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsInput from '../../components/SettingsInput';
 import SettingsDescription from '../../components/SettingsDescription';
-import SettingsButton from '../../components/SettingsButton';
 import BaseSettingsScreen from './BaseSettingsScreen';
 import config from '../../config';
-
-const PINE_API_REPO_URL = 'https://github.com/blockfirm/pine-api';
 
 @connect((state) => ({
   settings: state.settings
@@ -40,10 +37,6 @@ export default class ServiceUrlScreen extends Component {
 
   _goBack() {
     this.props.navigation.goBack();
-  }
-
-  _visitPineAPIRepo() {
-    Linking.openURL(PINE_API_REPO_URL);
   }
 
   _save() {
@@ -74,14 +67,8 @@ export default class ServiceUrlScreen extends Component {
         </SettingsGroup>
 
         <SettingsDescription>
-          The Service URL is used to communicate with an API to retrieve and submit information
-          to the blockchain. By default this service is provided by Pine, but you can host your
-          own service and enter its URL here.
+          The URL should start with either "http://" or "https://" and end with "/v1".
         </SettingsDescription>
-
-        <SettingsGroup>
-          <SettingsButton title='Host Your Own Service' onPress={this._visitPineAPIRepo.bind(this)} isLastItem={true} />
-        </SettingsGroup>
       </BaseSettingsScreen>
     );
   }
