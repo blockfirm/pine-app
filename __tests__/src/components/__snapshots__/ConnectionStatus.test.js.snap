@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConnectionStatus renders Connected correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderRadius": 5,
+          "height": 9,
+          "marginLeft": -21,
+          "marginRight": 12,
+          "width": 9,
+        },
+        Object {
+          "backgroundColor": "#4CD964",
+        },
+      ]
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Object {
+          "fontSize": 15,
+          "fontWeight": "600",
+        },
+      ]
+    }
+  >
+    Connected
+  </Text>
+</View>
+`;
+
+exports[`ConnectionStatus renders Inconsistent Networks correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderRadius": 5,
+          "height": 9,
+          "marginLeft": -21,
+          "marginRight": 12,
+          "width": 9,
+        },
+        Object {
+          "backgroundColor": "#FF8D36",
+        },
+      ]
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Object {
+          "fontSize": 15,
+          "fontWeight": "600",
+        },
+      ]
+    }
+  >
+    Inconsistent Networks
+  </Text>
+</View>
+`;
+
+exports[`ConnectionStatus renders Not Connected correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderRadius": 5,
+          "height": 9,
+          "marginLeft": -21,
+          "marginRight": 12,
+          "width": 9,
+        },
+        Object {
+          "backgroundColor": "#FF3B30",
+        },
+      ]
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Object {
+          "fontSize": 15,
+          "fontWeight": "600",
+        },
+      ]
+    }
+  >
+    Not Connected
+  </Text>
+</View>
+`;
+
+exports[`ConnectionStatus renders Server Not Connected to Node correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderRadius": 5,
+          "height": 9,
+          "marginLeft": -21,
+          "marginRight": 12,
+          "width": 9,
+        },
+        Object {
+          "backgroundColor": "#FF3B30",
+        },
+      ]
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Object {
+          "fontSize": 15,
+          "fontWeight": "600",
+        },
+      ]
+    }
+  >
+    Server Not Connected to Node
+  </Text>
+</View>
+`;

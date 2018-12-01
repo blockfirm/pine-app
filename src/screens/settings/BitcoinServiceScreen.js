@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Linking } from 'react-native';
+import { Linking, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import headerStyles from '../../styles/headerStyles';
+import settingsStyles from '../../styles/settingsStyles';
+import ConnectionStatusContainer from '../../containers/ConnectionStatusContainer';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsDescription from '../../components/SettingsDescription';
@@ -39,7 +41,13 @@ export default class BitcoinServiceScreen extends Component {
     return (
       <BaseSettingsScreen>
         <SettingsGroup>
-          <SettingsLink name='Service URL' value={settings.api.baseUrl} onPress={this._showServiceUrlScreen.bind(this)} />
+          <View style={[settingsStyles.item, { borderBottomWidth: 0, alignItems: 'center' }]}>
+            <ConnectionStatusContainer />
+          </View>
+        </SettingsGroup>
+
+        <SettingsGroup>
+          <SettingsLink name='Service URL' value={settings.api.baseUrl} onPress={this._showServiceUrlScreen.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
         <SettingsDescription>
