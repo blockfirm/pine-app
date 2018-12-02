@@ -118,10 +118,12 @@ export default class TransactionList extends Component {
   }
 
   scrollToTop() {
-    this._list.scrollToLocation({
-      sectionIndex: 0,
-      itemIndex: -1
-    });
+    if (this._list) {
+      this._list.scrollToLocation({
+        sectionIndex: 0,
+        itemIndex: -1
+      });
+    }
   }
 
   render() {

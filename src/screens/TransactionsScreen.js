@@ -41,7 +41,9 @@ export default class TransactionsScreen extends Component {
   }
 
   scrollToTop() {
-    this._transactionList.scrollToTop();
+    if (this._transactionList) {
+      this._transactionList.scrollToTop();
+    }
   }
 
   render() {
