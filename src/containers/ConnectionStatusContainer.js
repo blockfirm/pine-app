@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { getInfo as getServerInfo } from '../actions/network/server/getInfo';
 import ConnectionStatus from '../components/ConnectionStatus';
 
+const UPDATE_INTERVAL = 3000;
+
 const mapStateToProps = (state) => {
   return {
     settings: state.settings,
@@ -18,7 +20,7 @@ class ConnectionStatusContainer extends Component {
     settings: PropTypes.object
   };
 
-  componentDidMount() {
+  _updateServerStatus() {
     const { dispatch } = this.props;
 
     dispatch(getServerInfo()).catch(() => {
@@ -26,14 +28,24 @@ class ConnectionStatusContainer extends Component {
     });
   }
 
+  componentDidMount() {
+    this._updateServerStatus();
+
+    this._updateInterval = setInterval(() => {
+      this._updateServerStatus();
+    }, UPDATE_INTERVAL);
+  }
+
   componentDidUpdate(prevProps) {
-    const { dispatch, settings } = this.props;
+    const { settings } = this.props;
 
     if (prevProps.settings.api.baseUrl !== settings.api.baseUrl) {
-      dispatch(getServerInfo()).catch(() => {
-        // Suppress server errors (will be handled by the reducer).
-      });
+      this._updateServerStatus();
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._updateInterval);
   }
 
   render() {
