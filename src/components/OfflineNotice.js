@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
     alignSelf: 'stretch',
-    height: HEIGHT + 15
+    height: HEIGHT
   },
   containerHidden: {
     height: 0
