@@ -1451,7 +1451,7 @@
       }
     ],
     "blockhash": "00000000000b5a7b7f74cb404d11b7cebb8672223028fc8daab5e3263fd9c2b4",
-    "confirmations": 144749,
+    "confirmations": 0,
     "time": 1516651952,
     "blocktime": 1516651952
   },
@@ -2046,7 +2046,7 @@
       }
     ],
     "blockhash": "0000000000000004b2c72cbffd686a2db8ae6fc3b8c49c039a3f14a130ad295e",
-    "confirmations": 22403,
+    "confirmations": 0,
     "time": 1533842687,
     "blocktime": 1533842687
   }

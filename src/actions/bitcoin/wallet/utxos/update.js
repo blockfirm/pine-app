@@ -19,7 +19,8 @@ const getVouts = (transactions) => {
     const transactionVouts = transaction.vout.map((vout) => {
       return {
         ...vout,
-        txid: transaction.txid
+        txid: transaction.txid,
+        confirmed: transaction.confirmations > 0
       };
     });
 

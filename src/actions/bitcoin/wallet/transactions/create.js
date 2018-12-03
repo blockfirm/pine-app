@@ -39,8 +39,12 @@ const getBitcoinNetwork = (network) => {
   return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.mainnet;
 };
 
+const getConfirmedUtxos = (utxos) => {
+  return utxos.filter((utxo) => utxo.confirmed);
+};
+
 /**
- * Transforms the utxo set into a structure understood by coinselect algorithm.
+ * Transforms the utxo set into a structure understood by the coinselect algorithm.
  */
 const transformUtxos = (utxos) => {
   return utxos.map((utxo) => {
@@ -121,6 +125,7 @@ export const create = (amountBtc, toAddress) => {
 
     const state = getState();
     const utxos = state.bitcoin.wallet.utxos.items;
+    const confirmedUtxos = getConfirmedUtxos(utxos);
     const changeAddress = state.bitcoin.wallet.addresses.internal.unused;
     const network = state.settings.bitcoin.network;
 
@@ -129,7 +134,7 @@ export const create = (amountBtc, toAddress) => {
       .then((satoshisPerByte) => {
         // Create a transaction.
         const { transaction, inputs, fee } = createTransaction(
-          utxos,
+          confirmedUtxos,
           amountBtc,
           toAddress,
           changeAddress,
