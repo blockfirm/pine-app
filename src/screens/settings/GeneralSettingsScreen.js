@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActionSheetIOS } from 'react-native';
+import { ActionSheetIOS, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -14,7 +14,9 @@ import SettingsLink from '../../components/SettingsLink';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
 @connect((state) => ({
-  keys: state.keys.items
+  keys: state.keys.items,
+  hasCreatedBackup: state.settings.user.hasCreatedBackup,
+  balance: state.bitcoin.wallet.balance
 }))
 export default class GeneralSettingsScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -55,9 +57,42 @@ export default class GeneralSettingsScreen extends Component {
     });
   }
 
+  _canErase() {
+    // Cannot remove a wallet with funds in it that hasn't been backed up.
+    const { hasCreatedBackup, balance } = this.props;
+    return balance === 0 || hasCreatedBackup;
+  }
+
+  _showWalletNotEmptyAlert() {
+    Alert.alert(
+      'Wallet Not Empty',
+      'Cannot erase a non-empty wallet that has not been manually backed up.',
+      [
+        { text: 'Create Manual Backup', onPress: this._createManualBackup.bind(this) },
+        { text: 'Cancel', style: 'cancel' }
+      ],
+      { cancelable: false }
+    );
+  }
+
+  _removeWallet(keepSettings) {
+    return dispatch(resetApp(keepSettings)).then(() => {
+      if (keepSettings) {
+        this._flagAsUninitialized();
+      }
+
+      this.props.screenProps.dismiss();
+      dispatch(navigateWithReset('Welcome'));
+    });
+  }
+
   _showRemoveWalletConfirmation() {
     const dispatch = this.props.dispatch;
     const keepSettings = true;
+
+    if (!this._canErase()) {
+      return this._showWalletNotEmptyAlert();
+    }
 
     ActionSheetIOS.showActionSheetWithOptions({
       title: 'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
@@ -67,11 +102,7 @@ export default class GeneralSettingsScreen extends Component {
     }, (buttonIndex) => {
       switch (buttonIndex) {
         case 1: // Erase Wallet.
-          return dispatch(resetApp(keepSettings)).then(() => {
-            this._flagAsUninitialized();
-            this.props.screenProps.dismiss();
-            dispatch(navigateWithReset('Welcome'));
-          });
+          return this._removeWallet(keepSettings);
 
         case 2: // Create Manual Backup.
           return this._createManualBackup();
@@ -79,19 +110,11 @@ export default class GeneralSettingsScreen extends Component {
     });
   }
 
-  _resetAppAndShowWelcomeScreen() {
-    const dispatch = this.props.dispatch;
-
-    return dispatch(resetApp())
-      .then(() => {
-        this.props.screenProps.dismiss();
-      })
-      .then(() => {
-        dispatch(navigateWithReset('Welcome'));
-      });
-  }
-
   _showResetAppConfirmation() {
+    if (!this._canErase()) {
+      return this._showWalletNotEmptyAlert();
+    }
+
     ActionSheetIOS.showActionSheetWithOptions({
       title: 'This will erase the wallet from your device and iCloud account. You can only recover it if you have made a manual backup of your recovery key.',
       options: ['Cancel', 'Erase Wallet and Settings', 'Create Manual Backup'],
@@ -100,7 +123,7 @@ export default class GeneralSettingsScreen extends Component {
     }, (buttonIndex) => {
       switch (buttonIndex) {
         case 1: // Erase Wallet and Settings.
-          return this._resetAppAndShowWelcomeScreen();
+          return this._removeWallet();
 
         case 2: // Create Manual Backup.
           return this._createManualBackup();
@@ -135,5 +158,7 @@ GeneralSettingsScreen.propTypes = {
   screenProps: PropTypes.object,
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
-  keys: PropTypes.object
+  keys: PropTypes.object,
+  hasCreatedBackup: PropTypes.bool,
+  balance: PropTypes.number
 };
