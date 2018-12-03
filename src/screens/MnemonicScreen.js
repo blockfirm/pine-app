@@ -68,7 +68,7 @@ export default class MnemonicScreen extends Component {
         <StatusBar barStyle='dark-content' />
 
         <Paragraph style={styles.paragraph}>
-          Write down and store this recovery key in a safe place so you can recover your wallet if you would lose or break your phone.
+          Write down and store this recovery key in a safe place so you can recover your account if you would lose or break your phone.
         </Paragraph>
 
         <MnemonicWordsContainer phrase={mnemonic} style={styles.mnemonic} />

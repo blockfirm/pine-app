@@ -63,7 +63,7 @@ export default class BitcoinUnitScreen extends Component {
           </View>
         </SettingsGroup>
         <SettingsDescription>
-          This is how your current wallet balance will look like with the selected unit below.
+          This is how your current account balance looks like with the selected unit below.
         </SettingsDescription>
 
         <SettingsTitle>Display Unit</SettingsTitle>

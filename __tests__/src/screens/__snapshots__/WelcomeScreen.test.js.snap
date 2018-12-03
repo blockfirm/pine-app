@@ -130,7 +130,7 @@ exports[`WelcomeScreen renders correctly 1`] = `
             ]
           }
         >
-          Create a new wallet
+          Create a new account
         </Text>
       </View>
     </View>
@@ -176,7 +176,7 @@ exports[`WelcomeScreen renders correctly 1`] = `
             ]
           }
         >
-          Recover existing wallet
+          Recover existing account
         </Text>
       </Text>
     </View>

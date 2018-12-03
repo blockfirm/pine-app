@@ -96,10 +96,10 @@ export default class DisclaimerScreen extends Component {
             and recovery key secure.
           </Paragraph>
 
-          <Title style={styles.subtitle}>Wallet Recovery</Title>
+          <Title style={styles.subtitle}>Account Recovery</Title>
           <Paragraph style={styles.paragraph}>
             Your recovery key is securely stored in your iCloud account. You can also do a manual backup under Settings.
-            It's not possible to recover your wallet without it.
+            It's not possible to recover your account or funds without it.
           </Paragraph>
         </View>
 

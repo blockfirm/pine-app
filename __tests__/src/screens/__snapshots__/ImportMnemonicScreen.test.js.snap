@@ -16,7 +16,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
   }
 >
   <View
-    headerTitle="Recover Wallet"
+    headerTitle="Recover Account"
     style={
       Array [
         Object {
@@ -31,7 +31,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
     }
   >
     <BackHeaderContainer
-      title="Recover Wallet"
+      title="Recover Account"
     />
     <View
       style={
@@ -69,7 +69,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
           ]
         }
       >
-        Enter your recovery key to recover an existing wallet.
+        Enter your recovery key to recover an existing account.
       </Text>
     </View>
     <View>

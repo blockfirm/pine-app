@@ -115,7 +115,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
             ]
           }
         >
-          This is how your current wallet balance will look like with the selected unit below.
+          This is how your current account balance looks like with the selected unit below.
         </Text>
         <Text
           style={

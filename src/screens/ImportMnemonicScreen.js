@@ -134,12 +134,12 @@ export default class ImportMnemonicScreen extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss.bind(Keyboard)}>
         <View style={styles.view}>
-          <BaseScreen headerTitle='Recover Wallet'>
+          <BaseScreen headerTitle='Recover Account'>
             <StatusBar barStyle='dark-content' />
 
             <View style={contentStyles}>
               <Paragraph style={styles.paragraph}>
-                Enter your recovery key to recover an existing wallet.
+                Enter your recovery key to recover an existing account.
               </Paragraph>
             </View>
 

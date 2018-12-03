@@ -42,7 +42,7 @@ exports[`MnemonicScreen renders correctly 1`] = `
       ]
     }
   >
-    Write down and store this recovery key in a safe place so you can recover your wallet if you would lose or break your phone.
+    Write down and store this recovery key in a safe place so you can recover your account if you would lose or break your phone.
   </Text>
   <MnemonicWordsContainer
     phrase="during bulb nominee acquire paddle next course stable govern eagle title wing"

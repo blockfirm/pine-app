@@ -47,11 +47,11 @@ export default class TransactionListEmpty extends Component {
         <Image source={illustration} style={styles.illustration} />
 
         <StyledText style={[headerStyles.title, styles.title]}>
-          Your wallet looks empty
+          Your Account Looks Empty
         </StyledText>
         <Paragraph style={styles.paragraph}>
           Have any friends who owe you money?
-          Ask them to pay you in bitcoin!
+          Ask them to pay you with bitcoin!
         </Paragraph>
         <Link onPress={this._shareAddress.bind(this)} labelStyle={styles.link}>
           Share Your Address

@@ -190,6 +190,7 @@ exports[`RecoveryKeyScreen renders correctly 1`] = `
                       },
                       undefined,
                       undefined,
+                      undefined,
                     ],
                   ]
                 }

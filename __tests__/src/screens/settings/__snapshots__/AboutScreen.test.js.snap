@@ -476,6 +476,7 @@ exports[`AboutScreen renders correctly 1`] = `
                       },
                       undefined,
                       undefined,
+                      undefined,
                     ],
                   ]
                 }
@@ -528,6 +529,7 @@ exports[`AboutScreen renders correctly 1`] = `
                       Object {
                         "color": "#007AFF",
                       },
+                      undefined,
                       undefined,
                       undefined,
                     ],
@@ -584,6 +586,7 @@ exports[`AboutScreen renders correctly 1`] = `
                       Object {
                         "color": "#007AFF",
                       },
+                      undefined,
                       undefined,
                       undefined,
                     ],

@@ -111,7 +111,7 @@ export default class WelcomeScreen extends Component {
 
         <Footer style={styles.footer}>
           <WhiteButton
-            label='Create a new wallet'
+            label='Create a new account'
             onPress={this._createWallet.bind(this)}
             style={styles.button}
             showLoader={true}
@@ -124,7 +124,7 @@ export default class WelcomeScreen extends Component {
             style={styles.link}
             labelStyle={styles.linkLabel}
           >
-            Recover existing wallet
+            Recover existing account
           </Link>
         </Footer>
       </BaseScreen>

@@ -145,7 +145,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
         ]
       }
     >
-      Wallet Recovery
+      Account Recovery
     </Text>
     <Text
       style={
@@ -172,7 +172,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
         ]
       }
     >
-      Your recovery key is securely stored in your iCloud account. You can also do a manual backup under Settings. It's not possible to recover your wallet without it.
+      Your recovery key is securely stored in your iCloud account. You can also do a manual backup under Settings. It's not possible to recover your account or funds without it.
     </Text>
   </View>
   <View

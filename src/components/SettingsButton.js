@@ -51,6 +51,7 @@ export default class SettingsButton extends Component {
     const labelStyles = [
       settingsStyles.label,
       styles.label,
+      this.props.style,
       type === 'destructive' ? styles.destructive : undefined,
       loading ? styles.disabled : undefined
     ];
@@ -68,6 +69,7 @@ export default class SettingsButton extends Component {
 }
 
 SettingsButton.propTypes = {
+  style: PropTypes.any,
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
   type: PropTypes.string,
