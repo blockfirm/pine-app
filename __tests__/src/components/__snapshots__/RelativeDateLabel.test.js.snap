@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RelativeDateLabel renders correctly when date is now 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  Now
+</Text>
+`;
+
+exports[`RelativeDateLabel renders correctly when date was 1 month ago but still the same year 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  October 29
+</Text>
+`;
+
+exports[`RelativeDateLabel renders correctly when date was 1 week ago 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  November 22
+</Text>
+`;
+
+exports[`RelativeDateLabel renders correctly when date was 1 year ago 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  November 29, 2017
+</Text>
+`;
+
+exports[`RelativeDateLabel renders correctly when date was 2 days ago but still the same week 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  Tuesday, 20:59
+</Text>
+`;
+
+exports[`RelativeDateLabel renders correctly when date was 2 hours ago but still the same day 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  2 hours ago
+</Text>
+`;
+
+exports[`RelativeDateLabel renders correctly when date was 2 weeks ago but still the same month 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  November 15
+</Text>
+`;
+
+exports[`RelativeDateLabel renders correctly when date was yesterday 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  Yesterday, 20:59
+</Text>
+`;

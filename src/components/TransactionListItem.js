@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import BtcLabelContainer from '../containers/BtcLabelContainer';
 import TransactionIcon from './icons/TransactionIcon';
 import StyledText from './StyledText';
-import DateLabel from './DateLabel';
+import RelativeDateLabel from './RelativeDateLabel';
 
 const styles = StyleSheet.create({
   item: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   dateLabel: {
     color: '#B1AFB7',
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: '500',
     letterSpacing: 0.05
   },
   rightContent: {
@@ -115,7 +115,7 @@ export default class TransactionListItem extends Component {
         <TransactionIcon style={styles.icon} type={transactionIconType} />
         <View>
           <StyledText style={styles.title}>{title}</StyledText>
-          <DateLabel date={date} style={styles.dateLabel} />
+          <RelativeDateLabel date={date} style={styles.dateLabel} />
         </View>
         <View style={styles.rightContent}>
           <BtcLabelContainer amount={amount} style={styles.btcLabel} />
