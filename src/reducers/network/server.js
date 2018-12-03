@@ -18,12 +18,14 @@ const server = (state = {}, action) => {
     case NETWORK_SERVER_GET_INFO_SUCCESS:
       return {
         ...state,
+        disconnected: !action.info.isConnected,
         info: { ...action.info }
       };
 
     case NETWORK_SERVER_GET_INFO_FAILURE:
       return {
         ...state,
+        disconnected: true,
         info: null
       };
 
