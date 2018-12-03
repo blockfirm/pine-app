@@ -42,7 +42,15 @@ const updateTransactions = (oldTransactions, transactions) => {
 
   const updatedTransactions = oldTransactions.map((transaction) => {
     if (transaction.txid in newTxidMap) {
-      return newTxidMap[transaction.txid];
+      /**
+       * Return the new transaction but with the old time. That's because
+       * unconfirmed transactions will always have the current time until
+       * they are confirmed. This should be fixed in the btcd node to use
+       * the time it was added to the mempool instead.
+       */
+      const newTransaction = newTxidMap[transaction.txid];
+      newTransaction.time = transaction.time;
+      return newTransaction;
     }
 
     return transaction;
