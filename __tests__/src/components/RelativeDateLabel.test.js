@@ -5,6 +5,7 @@ import moment from 'moment-timezone';
 import RelativeDateLabel from '../../../src/components/RelativeDateLabel';
 
 const RealDate = Date;
+const realUtcOffset = moment().utcOffset();
 
 const mockDate = (fakeDate) => {
   global.Date = class extends RealDate {
@@ -23,10 +24,12 @@ const unmockDate = () => {
 
 describe('RelativeDateLabel', () => {
   beforeAll(() => {
+    moment().utcOffset(120);
     mockDate('29 November, 2018, 21:59 GMT+02:00');
   });
 
   afterAll(() => {
+    moment().utcOffset(realUtcOffset);
     unmockDate();
   });
 
