@@ -76,6 +76,8 @@ export default class GeneralSettingsScreen extends Component {
   }
 
   _removeWallet(keepSettings) {
+    const dispatch = this.props.dispatch;
+
     return dispatch(resetApp(keepSettings)).then(() => {
       if (keepSettings) {
         this._flagAsUninitialized();
@@ -87,7 +89,6 @@ export default class GeneralSettingsScreen extends Component {
   }
 
   _showRemoveWalletConfirmation() {
-    const dispatch = this.props.dispatch;
     const keepSettings = true;
 
     if (!this._canErase()) {
