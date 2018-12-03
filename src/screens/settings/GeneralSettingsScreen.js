@@ -50,7 +50,7 @@ export default class GeneralSettingsScreen extends Component {
     const defaultKey = keys[0];
 
     return getMnemonicByKey(defaultKey.id).then((mnemonic) => {
-      navigation.navigate('MnemonicModal', {
+      navigation.navigate('BackUpMnemonic', {
         mnemonic,
         isModal: true
       });
