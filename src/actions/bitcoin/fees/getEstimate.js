@@ -31,6 +31,14 @@ const getEstimateFailure = (error) => {
 };
 
 /**
+ * Rounds the fee rate to the nearest satoshi because the coin
+ * selection algorithm doesn't support decimal fee rates.
+ */
+const roundFeeRate = (feeRate) => {
+  return Math.round(feeRate) || 1;
+};
+
+/**
  * Adjusts a fee rate according to the preferred fee level.
  */
 export const adjustFeeRate = (satoshisPerByte, feeLevel) => {
@@ -68,22 +76,26 @@ export const getEstimate = (numberOfBlocks = 1, ignoreFeeLevel) => {
 
     // Return fee directly if it's set to custom.
     if (!ignoreFeeLevel && feeSettings.level.toLowerCase() === FEE_LEVEL_CUSTOM) {
-      const satoshisPerByte = parseFloat(feeSettings.satoshisPerByte);
+      const satoshisPerByte = roundFeeRate(feeSettings.satoshisPerByte);
       dispatch(getEstimateSuccess(satoshisPerByte));
       return Promise.resolve(satoshisPerByte);
     }
 
     return api.bitcoin.fees.estimate.get(numberOfBlocks, options)
       .then((satoshisPerByte) => {
+        let roundedFeeRate;
+
         if (ignoreFeeLevel) {
-          dispatch(getEstimateSuccess(satoshisPerByte));
-          return satoshisPerByte;
+          roundedFeeRate = roundFeeRate(satoshisPerByte);
+          dispatch(getEstimateSuccess(roundedFeeRate));
+          return roundedFeeRate;
         }
 
         // Adjust fee rate according to settings before returning.
         const adjustedFeeRate = adjustFeeRate(satoshisPerByte, feeSettings.level);
-        dispatch(getEstimateSuccess(adjustedFeeRate));
-        return adjustedFeeRate;
+        roundedFeeRate = roundFeeRate(adjustedFeeRate);
+        dispatch(getEstimateSuccess(roundedFeeRate));
+        return roundedFeeRate;
       })
       .catch((error) => {
         dispatch(getEstimateFailure(error));

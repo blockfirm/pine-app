@@ -82,7 +82,7 @@ const getStateMock = jest.fn(() => ({
 }));
 
 jest.mock('../../../../../../src/actions/bitcoin/fees/getEstimate', () => ({
-  getEstimate: jest.fn(() => Promise.resolve(3.4))
+  getEstimate: jest.fn(() => Promise.resolve(3))
 }));
 
 describe('BITCOIN_WALLET_TRANSACTIONS_CREATE_REQUEST', () => {

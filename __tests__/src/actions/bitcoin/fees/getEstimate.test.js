@@ -172,7 +172,7 @@ describe('getEstimate', () => {
       }));
 
       return getEstimate()(dispatchMock, getStateMock).then((satoshisPerByte) => {
-        const expectedFeeRate = 4.7 * 1.5;
+        const expectedFeeRate = Math.round(4.7 * 1.5);
         expect(satoshisPerByte).toBe(expectedFeeRate);
       });
     });
@@ -197,7 +197,7 @@ describe('getEstimate', () => {
       }));
 
       return getEstimate()(dispatchMock, getStateMock).then((satoshisPerByte) => {
-        const expectedFeeRate = 4.7;
+        const expectedFeeRate = Math.round(4.7);
         expect(satoshisPerByte).toBe(expectedFeeRate);
       });
     });
@@ -222,7 +222,7 @@ describe('getEstimate', () => {
       }));
 
       return getEstimate()(dispatchMock, getStateMock).then((satoshisPerByte) => {
-        const expectedFeeRate = 4.7 * 0.5;
+        const expectedFeeRate = Math.round(4.7 * 0.5);
         expect(satoshisPerByte).toBe(expectedFeeRate);
       });
     });
@@ -247,7 +247,7 @@ describe('getEstimate', () => {
       }));
 
       return getEstimate()(dispatchMock, getStateMock).then((satoshisPerByte) => {
-        const expectedFeeRate = 4.7 * 0.25;
+        const expectedFeeRate = Math.round(4.7 * 0.25);
         expect(satoshisPerByte).toBe(expectedFeeRate);
       });
     });
@@ -305,7 +305,7 @@ describe('getEstimate', () => {
 
       return getEstimate(numberOfBlocks, ignoreFeeLevel)(dispatchMock, getStateMock)
         .then((satoshisPerByte) => {
-          const expectedFeeRate = 4.7;
+          const expectedFeeRate = Math.round(4.7);
           expect(satoshisPerByte).toBe(expectedFeeRate);
         });
     });

@@ -64,7 +64,6 @@ const transformUtxos = (utxos) => {
  * Returns an object containing the created inputs, outputs (for change), and the fee.
  */
 const selectUtxos = (utxos, amountBtc, toAddress, satoshisPerByte) => {
-  const feeRate = Math.round(satoshisPerByte) || 1; // `coinSelect` doesn't support decimal fee rates.
   const satoshis = convertBitcoin(amountBtc, UNIT_BTC, UNIT_SATOSHIS);
   const transformedUtxos = transformUtxos(utxos);
 
@@ -73,7 +72,7 @@ const selectUtxos = (utxos, amountBtc, toAddress, satoshisPerByte) => {
     value: satoshis
   }];
 
-  return coinSelect(transformedUtxos, targets, feeRate);
+  return coinSelect(transformedUtxos, targets, satoshisPerByte);
 };
 
 /**
