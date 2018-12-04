@@ -72,7 +72,7 @@ export default class GeneralSettingsScreen extends Component {
   _showWalletNotEmptyAlert() {
     Alert.alert(
       'Account Not Empty',
-      'Cannot erase a non-empty account that has not been manually backed up.',
+      'You cannot sign out from a non-empty account that has not been manually backed up. You would not have been able to sign back in again.',
       [
         { text: 'Create Manual Backup', onPress: this._createManualBackup.bind(this) },
         { text: 'Cancel', style: 'cancel' }
@@ -100,7 +100,7 @@ export default class GeneralSettingsScreen extends Component {
     }
 
     ActionSheetIOS.showActionSheetWithOptions({
-      title: 'This will erase the account from your device and iCloud account. You can only recover it if you have a manual backup of the recovery key.',
+      title: 'This will sign out your account from this device and iCloud. You can only sign back in if you have a manual backup of the recovery key.',
       options: ['Cancel', 'Sign Out', 'Create Manual Backup'],
       destructiveButtonIndex: 1,
       cancelButtonIndex: 0
