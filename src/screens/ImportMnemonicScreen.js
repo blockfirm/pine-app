@@ -100,13 +100,6 @@ export default class ImportMnemonicScreen extends Component {
         return dispatch(bitcoinWalletActions.init());
       })
       .then(() => {
-        // Load an unused address into state.
-        return Promise.all([
-          dispatch(getUnusedAddress()), // External address.
-          dispatch(getUnusedAddress(true)) // Internal address.
-        ]);
-      })
-      .then(() => {
         return this._showDisclaimerScreen();
       })
       .catch((error) => {
