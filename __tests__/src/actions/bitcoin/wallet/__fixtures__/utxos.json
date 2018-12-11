@@ -12,7 +12,8 @@
     },
     "txid": "67336238da27a2afb83091c7039452f12b3ecf1156a63cedc19b0a4cf57afd59",
     "value": 0.10624246,
-    "confirmed": true
+    "confirmed": true,
+    "internal": true
   },
   {
     "n": 1,
@@ -27,7 +28,8 @@
     },
     "txid": "903f01240ee017d0cee202a367deaabe4a810c4599278aa8900cec2dff573219",
     "value": 0.23909878,
-    "confirmed": true
+    "confirmed": true,
+    "internal": true
   },
   {
     "n": 1,
@@ -42,7 +44,8 @@
     },
     "txid": "af4ab6ff65a28d1ec7b312bf7b6ad85f82abbef8b966710fbb9f7a5ac0a5b5d7",
     "value": 0.5992992,
-    "confirmed": true
+    "confirmed": true,
+    "internal": true
   },
   {
     "n": 0,
@@ -57,7 +60,8 @@
     },
     "txid": "62afaeb47e211ef0afcab4570ddc5e8d6da87db9f4112fbab1e41af87537e009",
     "value": 0.00163507,
-    "confirmed": true
+    "confirmed": false,
+    "internal": true
   },
   {
     "n": 1,
@@ -72,7 +76,8 @@
     },
     "txid": "62afaeb47e211ef0afcab4570ddc5e8d6da87db9f4112fbab1e41af87537e009",
     "value": 0.006,
-    "confirmed": true
+    "confirmed": false,
+    "internal": false
   },
   {
     "n": 0,
@@ -87,6 +92,7 @@
     },
     "txid": "cf96bc613bacf72b21277c5524cb010cba5afda6204c486dcd947b5aa007bda3",
     "value": 0.00187419,
-    "confirmed": false
+    "confirmed": false,
+    "internal":  true
   }
 ]

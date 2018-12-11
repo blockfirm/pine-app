@@ -74,6 +74,19 @@ const hasWalletAddress = (vout, externalAddresses, internalAddresses) => {
 };
 
 /**
+ * Flags UTXOs as internal by setting `internal` to true if the UTXO pays
+ * to an internal address (change address).
+ *
+ * @param {array} utxos - List of UTXOs.
+ * @param {object} internalAddresses - Set of internal addresses in the format { <address>: {} }.
+ */
+const flagInternalUtxos = (utxos, internalAddresses) => {
+  utxos.forEach((utxo) => {
+    utxo.internal = hasWalletAddress(utxo, {}, internalAddresses);
+  });
+};
+
+/**
  * Action to do a scan of all transactions to find and save
  * all unspent transaction outputs (utxos).
  *
@@ -98,9 +111,12 @@ export const update = () => {
     });
 
     // Filter outputs that pays to an address in this wallet.
-    utxos = utxos.filter((vout) => {
-      return hasWalletAddress(vout, externalAddresses, internalAddresses);
+    utxos = utxos.filter((utxo) => {
+      return hasWalletAddress(utxo, externalAddresses, internalAddresses);
     });
+
+    // Flag internal UTXOs (change).
+    flagInternalUtxos(utxos, internalAddresses);
 
     dispatch(updateSuccess(utxos));
 
