@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactNativeHaptic from 'react-native-haptic';
-import TouchID from 'react-native-touch-id';
 
+import authentication from '../authentication';
 import * as recoveryKeyActions from '../actions/recoveryKey';
 import MnemonicWords from '../components/MnemonicWords';
 
@@ -30,23 +30,11 @@ class MnemonicWordsContainer extends Component {
 
     ReactNativeHaptic.generate('selection');
 
-    return TouchID.authenticate(null, { passcodeFallback: true })
-      .then(() => {
+    return authentication.authenticate().then((authenticated) => {
+      if (authenticated) {
         dispatch(recoveryKeyActions.reveal());
-      })
-      .catch((error) => {
-        /**
-         * Suppress all errors except if the user doesn't have any
-         * way of authenticating, then proceed.
-         */
-        switch (error.name) {
-          case 'LAErrorPasscodeNotSet':
-          case 'LAErrorTouchIDNotAvailable':
-          case 'LAErrorTouchIDNotEnrolled':
-          case 'RCTTouchIDNotSupported':
-            dispatch(recoveryKeyActions.reveal());
-        }
-      });
+      }
+    });
   }
 
   render() {

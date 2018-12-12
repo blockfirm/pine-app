@@ -7,7 +7,6 @@ import ReactNativeHaptic from 'react-native-haptic';
 import bitcoin from 'bitcoinjs-lib';
 import bip32 from 'bip32';
 import bip39 from 'bip39';
-import TouchID from 'react-native-touch-id';
 
 import {
   UNIT_BTC,
@@ -16,6 +15,7 @@ import {
   convert as convertBitcoin
 } from '../crypto/bitcoin/convert';
 
+import authentication from '../authentication';
 import getMnemonicByKey from '../crypto/getMnemonicByKey';
 import { setHomeScreenIndex } from '../actions/setHomeScreenIndex';
 import * as keyActions from '../actions/keys';
@@ -148,13 +148,9 @@ export default class ReviewAndPayScreen extends Component {
 
   componentDidMount() {
     // Get the supported biometry authentication type.
-    TouchID.isSupported()
-      .then((biometryType) => {
-        this.setState({ biometryType });
-      })
-      .catch(() => {
-        // Suppress errors.
-      });
+    authentication.getSupportedBiometryType().then((biometryType) => {
+      this.setState({ biometryType });
+    });
 
     this._createTransaction();
   }
@@ -285,23 +281,11 @@ export default class ReviewAndPayScreen extends Component {
   }
 
   _authenticateAndPay() {
-    return TouchID.authenticate(null, { passcodeFallback: true })
-      .then(() => {
+    return authentication.authenticate().then((authenticated) => {
+      if (authenticated) {
         return this._signAndPay();
-      })
-      .catch((error) => {
-        /**
-         * Suppress all errors except if the user doesn't have any
-         * way of authenticating, then proceed with the payment.
-         */
-        switch (error.name) {
-          case 'LAErrorPasscodeNotSet':
-          case 'LAErrorTouchIDNotAvailable':
-          case 'LAErrorTouchIDNotEnrolled':
-          case 'RCTTouchIDNotSupported':
-            return this._signAndPay();
-        }
-      });
+      }
+    });
   }
 
   _getButtonLabel() {
