@@ -7,6 +7,7 @@ import ReactNativeHaptic from 'react-native-haptic';
 import bitcoin from 'bitcoinjs-lib';
 import bip32 from 'bip32';
 import bip39 from 'bip39';
+import TouchID from 'react-native-touch-id';
 
 import {
   UNIT_BTC,
@@ -34,6 +35,9 @@ import AddressLabel from '../components/AddressLabel';
 import FeeLabel from '../components/FeeLabel';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
+
+const BIOMETRY_TYPE_TOUCH_ID = 'TouchID';
+const BIOMETRY_TYPE_FACE_ID = 'FaceID';
 
 const HOME_SCREEN_INDEX_TRANSACTIONS = 1;
 
@@ -134,6 +138,7 @@ export default class ReviewAndPayScreen extends Component {
   };
 
   state = {
+    biometryType: null,
     transaction: null,
     inputs: null,
     fee: null,
@@ -142,6 +147,15 @@ export default class ReviewAndPayScreen extends Component {
   }
 
   componentDidMount() {
+    // Get the supported biometry authentication type.
+    TouchID.isSupported()
+      .then((biometryType) => {
+        this.setState({ biometryType });
+      })
+      .catch(() => {
+        // Suppress errors.
+      });
+
     this._createTransaction();
   }
 
@@ -270,6 +284,29 @@ export default class ReviewAndPayScreen extends Component {
       });
   }
 
+  _authenticateAndPay() {
+    return TouchID.authenticate(null, { passcodeFallback: true })
+      .then(() => {
+        return this._signAndPay();
+      })
+      .catch(() => {
+        // Suppress authenticating errors.
+      });
+  }
+
+  _getButtonLabel() {
+    switch (this.state.biometryType) {
+      case BIOMETRY_TYPE_TOUCH_ID:
+        return 'Pay with Touch ID';
+
+      case BIOMETRY_TYPE_FACE_ID:
+        return 'Pay with Face ID';
+
+      default:
+        return 'Pay';
+    }
+  }
+
   _renderFee() {
     const { amountBtc, displayUnit } = this.props.navigation.state.params;
     const { fee, cannotAffordFee } = this.state;
@@ -329,9 +366,9 @@ export default class ReviewAndPayScreen extends Component {
         </ContentView>
         <Footer>
           <Button
-            label='Pay'
+            label={this._getButtonLabel()}
             disabled={!Boolean(transaction)}
-            onPress={this._signAndPay.bind(this)}
+            onPress={this._authenticateAndPay.bind(this)}
             showLoader={true}
             hapticFeedback={true}
           />

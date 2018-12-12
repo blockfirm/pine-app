@@ -37,6 +37,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>For scanning QR codes.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>For signing transactions.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIAppFonts</key>

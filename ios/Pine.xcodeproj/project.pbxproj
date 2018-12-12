@@ -57,6 +57,7 @@
 		C3F0431D1AFC4529972CA301 /* libReactNativeHaptic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9732121F0313439D9FEB5786 /* libReactNativeHaptic.a */; };
 		C8CA4782E5D648069E297239 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E0E3EE469A1A480AA31145A7 /* MaterialIcons.ttf */; };
 		D094FE5E513749E286793606 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CB9DAC695594892A97DD29A /* SimpleLineIcons.ttf */; };
+		D351D15DF7E84DFEA4C7C370 /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F73575E2A26444B38FCCECE9 /* libTouchID.a */; };
 		D9D3AE8E03214D4EA40E7DE3 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3ABA7FF249E4FDE8BE3B152 /* Zocial.ttf */; };
 		E2C6464669B54BC6A7898FCD /* libicloudstorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3A6965C4B24FFCA4B8A793 /* libicloudstorage.a */; };
 		E462BF00BAD1486AB0C07F23 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA8CBCF7EED74D16BD0F12CA /* Octicons.ttf */; };
@@ -170,6 +171,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 4681C02C1B05271A004D67D4;
 			remoteInfo = ToolTipMenuTests;
+		};
+		1C8B89BB21C19D590095144C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F8FEC42AF7374CA7B1894B25 /* TouchID.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = TouchID;
 		};
 		1C9C80F8216BFE33006F154E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -529,7 +537,9 @@
 		F38267599CC74C1AAAABF90F /* RNRandomBytes.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNRandomBytes.xcodeproj; path = "../node_modules/react-native-randombytes/RNRandomBytes.xcodeproj"; sourceTree = "<group>"; };
 		F56B4B7A30034DC889D51661 /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 		F61473D4B12D40E1A765CA7C /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		F73575E2A26444B38FCCECE9 /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		F78B8F2AA80947F4809F6C75 /* libRNKeychain.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNKeychain.a; sourceTree = "<group>"; };
+		F8FEC42AF7374CA7B1894B25 /* TouchID.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = TouchID.xcodeproj; path = "../node_modules/react-native-touch-id/TouchID.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -569,6 +579,7 @@
 				BE4A42C8FD764B648F3A072C /* libRNCamera.a in Frameworks */,
 				E2C6464669B54BC6A7898FCD /* libicloudstorage.a in Frameworks */,
 				1C5ED08D21A4E23400C90B08 /* libToolTipMenu.a in Frameworks */,
+				D351D15DF7E84DFEA4C7C370 /* libTouchID.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +759,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1C8B89B821C19D590095144C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C8B89BC21C19D590095144C /* libTouchID.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		1C9C80F5216BFE33006F154E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,6 +787,7 @@
 				ACF52BAC5A3E4B578CE48EB1 /* libBVLinearGradient.a */,
 				E7C4F40FBC044F58A69C8009 /* libRNCamera.a */,
 				6C3A6965C4B24FFCA4B8A793 /* libicloudstorage.a */,
+				F73575E2A26444B38FCCECE9 /* libTouchID.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -899,6 +919,7 @@
 				D9AA97588E004A6499ABC1D3 /* BVLinearGradient.xcodeproj */,
 				F2F7A0C57B964087B9DC7D81 /* RNCamera.xcodeproj */,
 				C4F354DA11A14E8B8B3A1B38 /* icloudstorage.xcodeproj */,
+				F8FEC42AF7374CA7B1894B25 /* TouchID.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1160,6 +1181,10 @@
 					ProductGroup = 1C5ED05021A4E20500C90B08 /* Products */;
 					ProjectRef = 1C5ED04F21A4E20500C90B08 /* ToolTipMenu.xcodeproj */;
 				},
+				{
+					ProductGroup = 1C8B89B821C19D590095144C /* Products */;
+					ProjectRef = F8FEC42AF7374CA7B1894B25 /* TouchID.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1268,6 +1293,13 @@
 			fileType = wrapper.cfbundle;
 			path = ToolTipMenuTests.xctest;
 			remoteRef = 1C5ED08B21A4E20500C90B08 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1C8B89BC21C19D590095144C /* libTouchID.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTouchID.a;
+			remoteRef = 1C8B89BB21C19D590095144C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		1C9C80F9216BFE33006F154E /* libRNCamera.a */ = {
@@ -1722,12 +1754,14 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-icloudstore",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 				INFOPLIST_FILE = PineTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1764,12 +1798,14 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-icloudstore",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 				INFOPLIST_FILE = PineTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1808,6 +1844,7 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-icloudstore",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 				INFOPLIST_FILE = Pine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1840,6 +1877,7 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-icloudstore",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 				INFOPLIST_FILE = Pine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1878,11 +1916,13 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-icloudstore",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 				INFOPLIST_FILE = "Pine-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1929,11 +1969,13 @@
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-icloudstore",
+					"$(SRCROOT)/../node_modules/react-native-touch-id",
 				);
 				INFOPLIST_FILE = "Pine-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1980,6 +2022,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "se.blockfirm.Pine-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2004,6 +2047,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
