@@ -289,8 +289,18 @@ export default class ReviewAndPayScreen extends Component {
       .then(() => {
         return this._signAndPay();
       })
-      .catch(() => {
-        // Suppress authenticating errors.
+      .catch((error) => {
+        /**
+         * Suppress all errors except if the user doesn't have any
+         * way of authenticating, then proceed with the payment.
+         */
+        switch (error.name) {
+          case 'LAErrorPasscodeNotSet':
+          case 'LAErrorTouchIDNotAvailable':
+          case 'LAErrorTouchIDNotEnrolled':
+          case 'RCTTouchIDNotSupported':
+            return this._signAndPay();
+        }
       });
   }
 

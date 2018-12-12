@@ -34,8 +34,18 @@ class MnemonicWordsContainer extends Component {
       .then(() => {
         dispatch(recoveryKeyActions.reveal());
       })
-      .catch(() => {
-        // Suppress authenticating errors.
+      .catch((error) => {
+        /**
+         * Suppress all errors except if the user doesn't have any
+         * way of authenticating, then proceed.
+         */
+        switch (error.name) {
+          case 'LAErrorPasscodeNotSet':
+          case 'LAErrorTouchIDNotAvailable':
+          case 'LAErrorTouchIDNotEnrolled':
+          case 'RCTTouchIDNotSupported':
+            dispatch(recoveryKeyActions.reveal());
+        }
       });
   }
 
