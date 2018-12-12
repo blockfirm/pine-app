@@ -58,7 +58,7 @@ export default class RelativeDateLabel extends Component {
     const relativeDate = moment(date).fromNow(withoutSuffix);
 
     if (relativeDate === 'Now') {
-      return relativeDate;
+      return 'Just now';
     }
 
     return `${relativeDate} ago`;

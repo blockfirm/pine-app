@@ -13,7 +13,7 @@ exports[`RelativeDateLabel renders correctly when date is now 1`] = `
     ]
   }
 >
-  Now
+  Just now
 </Text>
 `;
 
