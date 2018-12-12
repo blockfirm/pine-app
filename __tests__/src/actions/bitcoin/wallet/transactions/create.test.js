@@ -38,7 +38,8 @@ const getStateMock = jest.fn(() => ({
             scriptPubKey: {
               addresses: ['2MvzGBQU8VKUR8S4sLLoNFZCamRbU9j98Lp']
             },
-            confirmed: true
+            confirmed: false,
+            internal: true
           },
           {
             txid: '0d62b11a6cd06678a8635bf206ebd622af30a7ea57c71ac704c9455189dd51bc',
@@ -47,7 +48,8 @@ const getStateMock = jest.fn(() => ({
             scriptPubKey: {
               addresses: ['2MtWpuXrUEWah6ufhCZ5wQMqtpncbv4B68C']
             },
-            confirmed: true
+            confirmed: true,
+            internal: true
           },
           {
             txid: '0d62b11a6cd06678a8635bf206ebd622af30a7ea57c71ac704c9455189dd51bc',
@@ -56,7 +58,8 @@ const getStateMock = jest.fn(() => ({
             scriptPubKey: {
               addresses: ['2MtWpuXrUEWah6ufhCZ5wQMqtpncbv4B68C']
             },
-            confirmed: true
+            confirmed: true,
+            internal: false
           },
           {
             txid: 'cf96bc613bacf72b21277c5524cb010cba5afda6204c486dcd947b5aa007bda3',
@@ -65,7 +68,8 @@ const getStateMock = jest.fn(() => ({
             scriptPubKey: {
               addresses: ['mzQQ9EFnPit8a2aW1bDkn72AhXmpUSL7Vi']
             },
-            confirmed: false
+            confirmed: false,
+            internal: false
           }
         ]
       },

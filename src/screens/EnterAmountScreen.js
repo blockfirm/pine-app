@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
-  confirmedBalance: state.bitcoin.wallet.confirmedBalance
+  spendableBalance: state.bitcoin.wallet.spendableBalance
 }))
 export default class EnterAmountScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -164,10 +164,10 @@ export default class EnterAmountScreen extends Component {
   }
 
   _checkBalance(amount) {
-    const { confirmedBalance } = this.props;
+    const { spendableBalance } = this.props;
     const { displayUnit } = this.props.navigation.state.params;
     const amountBtc = convertBitcoin(parseFloat(amount), displayUnit, UNIT_BTC);
-    const insufficientFunds = confirmedBalance < amountBtc;
+    const insufficientFunds = amountBtc > spendableBalance;
 
     this.setState({ insufficientFunds });
   }
@@ -259,5 +259,5 @@ export default class EnterAmountScreen extends Component {
 EnterAmountScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.object,
-  confirmedBalance: PropTypes.number
+  spendableBalance: PropTypes.number
 };

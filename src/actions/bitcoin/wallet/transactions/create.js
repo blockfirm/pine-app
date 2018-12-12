@@ -39,8 +39,12 @@ const getBitcoinNetwork = (network) => {
   return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.mainnet;
 };
 
-const getConfirmedUtxos = (utxos) => {
-  return utxos.filter((utxo) => utxo.confirmed);
+const getSpendableUtxos = (utxos) => {
+  /**
+   * Spendable UTXOs includes all confirmed UTXOs
+   * and all unconfirmed internal (change) UTXOs.
+   */
+  return utxos.filter((utxo) => utxo.confirmed || utxo.internal);
 };
 
 /**
@@ -124,7 +128,7 @@ export const create = (amountBtc, toAddress) => {
 
     const state = getState();
     const utxos = state.bitcoin.wallet.utxos.items;
-    const confirmedUtxos = getConfirmedUtxos(utxos);
+    const spendableUtxos = getSpendableUtxos(utxos);
     const changeAddress = state.bitcoin.wallet.addresses.internal.unused;
     const network = state.settings.bitcoin.network;
 
@@ -133,7 +137,7 @@ export const create = (amountBtc, toAddress) => {
       .then((satoshisPerByte) => {
         // Create a transaction.
         const { transaction, inputs, fee } = createTransaction(
-          confirmedUtxos,
+          spendableUtxos,
           amountBtc,
           toAddress,
           changeAddress,
