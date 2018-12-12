@@ -113,13 +113,15 @@ export default class Button extends Component {
    * once it has been resolved.
    */
   _onPressFinished() {
-    if (this.props.showLoader) {
+    if (this.props.showLoader && this._isMounted) {
       // Delay hiding the loading indicator to prevent flickering.
       setTimeout(() => {
-        this.setState({
-          disabled: false,
-          loading: false
-        });
+        if (this._isMounted) {
+          this.setState({
+            disabled: false,
+            loading: false
+          });
+        }
       }, 500);
     }
   }
@@ -136,9 +138,7 @@ export default class Button extends Component {
         ReactNativeHaptic.generate('notificationSuccess');
       }
 
-      if (this._isMounted) {
-        this._onPressFinished();
-      }
+      this._onPressFinished();
     });
   }
 
