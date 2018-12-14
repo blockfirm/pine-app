@@ -1,0 +1,68 @@
+import { AppState, NetInfo } from 'react-native';
+import { sync as syncWallet } from '../actions/bitcoin/wallet';
+import * as internetActions from '../actions/network/internet';
+
+export default class ConnectionStatusService {
+  constructor(store) {
+    this.store = store;
+
+    this._onAppStateChange = this._onAppStateChange.bind(this);
+    this._onConnectionChange = this._onConnectionChange.bind(this);
+  }
+
+  start() {
+    this._isConnectedToInternet = null;
+
+    // Get initial app state.
+    this._appState = AppState.currentState;
+
+    // Listen for app state changes (e.g. when app becomes active).
+    AppState.addEventListener('change', this._onAppStateChange);
+
+    // Listen for internet connection changes.
+    NetInfo.isConnected.addEventListener('connectionChange', this._onConnectionChange);
+  }
+
+  stop() {
+    AppState.removeEventListener('change', this._onAppStateChange);
+    NetInfo.isConnected.removeEventListener('connectionChange', this._onConnectionChange);
+  }
+
+  _onAppStateChange(nextAppState) {
+    if (this._appState.match(/inactive|background/) && nextAppState === 'active') {
+      // The app has come to the foreground.
+      this._updateInternetConnectionStatus();
+    }
+
+    this._appState = nextAppState;
+  }
+
+  _updateInternetConnectionStatus() {
+    NetInfo.isConnected.fetch().then(this._onConnectionChange);
+  }
+
+  _onConnectionChange(isConnected) {
+    const { store } = this;
+
+    if (isConnected) {
+      store.dispatch(internetActions.connected());
+
+      if (this._isConnectedToInternet !== null) {
+        this._syncWallet();
+      }
+    } else {
+      store.dispatch(internetActions.disconnected());
+    }
+
+    this._isConnectedToInternet = isConnected;
+  }
+
+  _syncWallet() {
+    const { store } = this;
+    const state = store.getState();
+
+    if (state.settings.initialized) {
+      store.dispatch(syncWallet());
+    }
+  }
+}
