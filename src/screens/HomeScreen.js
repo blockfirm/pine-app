@@ -5,13 +5,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { setHomeScreenIndex } from '../actions/setHomeScreenIndex';
-import { sync as syncWallet } from '../actions/bitcoin/wallet';
 import Toolbar from '../components/toolbar/Toolbar';
 import TransactionsScreen from './TransactionsScreen';
 import CameraScreen from './CameraScreen';
 import ReceiveScreen from './ReceiveScreen';
 
-const SYNC_WALLET_INTERVAL = 10 * 1000; // 10 seconds.
 const DEFAULT_SCREEN_INDEX = 1;
 
 const WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -47,8 +45,7 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
-  homeScreenIndex: state.homeScreen.index,
-  isDisconnectedFromInternet: state.network.internet.disconnected
+  homeScreenIndex: state.homeScreen.index
 }))
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -64,21 +61,7 @@ export default class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    const dispatch = this.props.dispatch;
-
     StatusBar.setBarStyle('dark-content');
-
-    // Sync wallet with an interval.
-    this._syncInterval = setInterval(() => {
-      // Only sync if connected to the internet.
-      if (!this.props.isDisconnectedFromInternet) {
-        dispatch(syncWallet());
-      }
-    }, SYNC_WALLET_INTERVAL);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this._syncInterval);
   }
 
   componentDidUpdate(prevProps) {
@@ -268,6 +251,5 @@ export default class HomeScreen extends Component {
 
 HomeScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.any,
-  isDisconnectedFromInternet: PropTypes.bool
+  navigation: PropTypes.any
 };
