@@ -6,6 +6,7 @@ import keysReducer from './keys';
 import recoveryKeyReducer from './recoveryKey';
 import networkReducer from './network';
 import homeScreenReducer from './homeScreen';
+import notificationsReducer from './notifications';
 
 const getRootReducer = (navReducer) => {
   const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const getRootReducer = (navReducer) => {
     keys: keysReducer,
     recoveryKey: recoveryKeyReducer,
     network: networkReducer,
-    homeScreen: homeScreenReducer
+    homeScreen: homeScreenReducer,
+    notifications: notificationsReducer
   });
 
   return rootReducer;

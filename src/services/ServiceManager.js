@@ -1,7 +1,9 @@
 import ConnectionStatusService from './ConnectionStatusService';
+import NotificationService from './NotificationService';
 
 const serviceClasses = [
-  ConnectionStatusService
+  ConnectionStatusService,
+  NotificationService
 ];
 
 export default class ServiceManager {
