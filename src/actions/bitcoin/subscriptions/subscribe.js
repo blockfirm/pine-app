@@ -37,11 +37,11 @@ const getChunks = (list, chunkSize) => {
   return chunks;
 };
 
-const subscribeForAddresses = (dispatch, deviceToken, addresses, options) => {
+const subscribeForAddresses = (dispatch, deviceToken, addresses, apiOptions) => {
   const addressChunks = getChunks(addresses, CHUNK_SIZE);
 
   const promises = addressChunks.map((chunk) => {
-    return api.bitcoin.subscriptions.post(deviceToken, chunk, options);
+    return api.bitcoin.subscriptions.post(deviceToken, chunk, apiOptions);
   });
 
   return Promise.all(promises);
@@ -50,17 +50,17 @@ const subscribeForAddresses = (dispatch, deviceToken, addresses, options) => {
 /**
  * Action to subscribe to push notifications for a list of addresses.
  *
- * @param {string} deviceToken - iOS device token to send notifications to.
  * @param {array} addresses - Bitcoin addresses to subscribe to.
  */
-export const subscribe = (deviceToken, addresses) => {
+export const subscribe = (addresses) => {
   return (dispatch, getState) => {
-    const settings = getState().settings;
-    const options = { baseUrl: settings.api.baseUrl };
+    const state = getState();
+    const apiOptions = { baseUrl: state.settings.api.baseUrl };
+    const deviceToken = state.notifications.deviceToken;
 
     dispatch(subscribeRequest());
 
-    return subscribeForAddresses(dispatch, deviceToken, addresses, options)
+    return subscribeForAddresses(dispatch, deviceToken, addresses, apiOptions)
       .then(() => {
         dispatch(subscribeSuccess());
       })

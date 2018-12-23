@@ -14,6 +14,9 @@ const getStateMock = jest.fn(() => ({
     api: {
       baseUrl: 'c9ac232e-c24e-4064-8a6b-26f9881c316e'
     }
+  },
+  notifications: {
+    deviceToken: '164af9d3-f56e-4f8e-8f17-8f68510c605e'
   }
 }));
 
@@ -44,12 +47,9 @@ describe('BITCOIN_SUBSCRIPTIONS_SUBSCRIBE_FAILURE', () => {
 });
 
 describe('subscribe', () => {
-  let fakeDeviceToken;
   let fakeAddresses;
 
   beforeEach(() => {
-    fakeDeviceToken = '43e53b6d-e298-4404-9672-303357873330';
-
     fakeAddresses = [
       'bc2c7948-fb6f-493e-a405-8c3c14d996f4',
       '323c00ae-c181-414d-b19f-a9c6a39b733f',
@@ -72,7 +72,7 @@ describe('subscribe', () => {
     let returnedFunction;
 
     beforeEach(() => {
-      returnedFunction = subscribe(fakeDeviceToken, fakeAddresses);
+      returnedFunction = subscribe(fakeAddresses);
     });
 
     it('dispatches an action of type BITCOIN_SUBSCRIPTIONS_SUBSCRIBE_REQUEST', () => {
@@ -83,16 +83,18 @@ describe('subscribe', () => {
       });
     });
 
-    it('subscribes the addresses with api.bitcoin.subscriptions.post()', () => {
+    it('subscribes the addresses with api.bitcoin.subscriptions.post() with the device token from state', () => {
       expect.hasAssertions();
 
       return returnedFunction(dispatchMock, getStateMock).then(() => {
+        const expectedDeviceToken = '164af9d3-f56e-4f8e-8f17-8f68510c605e';
+
         const expectedOptions = {
           baseUrl: 'c9ac232e-c24e-4064-8a6b-26f9881c316e'
         };
 
         expect(api.bitcoin.subscriptions.post).toHaveBeenCalledTimes(1);
-        expect(api.bitcoin.subscriptions.post).toHaveBeenCalledWith(fakeDeviceToken, fakeAddresses, expectedOptions);
+        expect(api.bitcoin.subscriptions.post).toHaveBeenCalledWith(expectedDeviceToken, fakeAddresses, expectedOptions);
       });
     });
 
@@ -128,7 +130,7 @@ describe('subscribe', () => {
           new Error('3fcd554c-43f8-4666-97a1-73f3881282a3')
         ));
 
-        promise = subscribe(fakeDeviceToken, fakeAddresses)(dispatchMock, getStateMock);
+        promise = subscribe(fakeAddresses)(dispatchMock, getStateMock);
       });
 
       it('rejects the returned promise', () => {
@@ -165,14 +167,15 @@ describe('subscribe', () => {
 
       expect.hasAssertions();
 
-      return subscribe(fakeDeviceToken, manyAddresses)(dispatchMock, getStateMock)
+      return subscribe(manyAddresses)(dispatchMock, getStateMock)
         .then(() => {
+          const expectedDeviceToken = '164af9d3-f56e-4f8e-8f17-8f68510c605e';
           const firstChunk = manyAddresses.slice(0, 1000);
           const secondChunk = manyAddresses.slice(1000, 1300);
 
           expect(api.bitcoin.subscriptions.post).toHaveBeenCalledTimes(2);
-          expect(api.bitcoin.subscriptions.post).toHaveBeenCalledWith(fakeDeviceToken, firstChunk, expect.any(Object));
-          expect(api.bitcoin.subscriptions.post).toHaveBeenCalledWith(fakeDeviceToken, secondChunk, expect.any(Object));
+          expect(api.bitcoin.subscriptions.post).toHaveBeenCalledWith(expectedDeviceToken, firstChunk, expect.any(Object));
+          expect(api.bitcoin.subscriptions.post).toHaveBeenCalledWith(expectedDeviceToken, secondChunk, expect.any(Object));
         });
     });
   });
