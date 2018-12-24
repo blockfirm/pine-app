@@ -32,6 +32,10 @@ export const unsubscribe = () => {
     const apiOptions = { baseUrl: state.settings.api.baseUrl };
     const deviceToken = state.notifications.deviceToken;
 
+    if (!deviceToken) {
+      return;
+    }
+
     dispatch(unsubscribeRequest());
 
     return api.bitcoin.subscriptions.deleteByDeviceToken(deviceToken, apiOptions)
