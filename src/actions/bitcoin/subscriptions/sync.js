@@ -60,12 +60,19 @@ export const sync = () => {
     const state = getState();
     const externalAddresses = getSortedAddresses(state.bitcoin.wallet.addresses.external.items);
 
+    if (externalAddresses.length === 0) {
+      return;
+    }
+
     dispatch(syncRequest());
 
     return dispatch(getSubscriptionCount())
       .then((numberOfSubscriptions) => {
         const newAddresses = externalAddresses.slice(numberOfSubscriptions);
-        return dispatch(subscribe(newAddresses));
+
+        if (newAddresses.length > 0) {
+          return dispatch(subscribe(newAddresses));
+        }
       })
       .then(() => {
         dispatch(syncSuccess());
