@@ -17,6 +17,9 @@ const dispatchMock = jest.fn((action) => {
 });
 
 const getStateMock = jest.fn(() => ({
+  notifications: {
+    deviceToken: '2dfa2f8c-9d40-4b85-b3a7-50d8a10c23d1'
+  },
   bitcoin: {
     wallet: {
       addresses: {

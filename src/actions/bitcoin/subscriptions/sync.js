@@ -59,8 +59,9 @@ export const sync = () => {
   return (dispatch, getState) => {
     const state = getState();
     const externalAddresses = getSortedAddresses(state.bitcoin.wallet.addresses.external.items);
+    const deviceToken = state.notifications.deviceToken;
 
-    if (externalAddresses.length === 0) {
+    if (externalAddresses.length === 0 || !deviceToken) {
       return;
     }
 
