@@ -33,7 +33,7 @@ export const unsubscribe = () => {
     const deviceToken = state.notifications.deviceToken;
 
     if (!deviceToken) {
-      return;
+      return Promise.resolve();
     }
 
     dispatch(unsubscribeRequest());

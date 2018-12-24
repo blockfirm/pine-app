@@ -59,7 +59,7 @@ export const subscribe = (addresses) => {
     const deviceToken = state.notifications.deviceToken;
 
     if (!deviceToken) {
-      return;
+      return Promise.resolve();
     }
 
     dispatch(subscribeRequest());

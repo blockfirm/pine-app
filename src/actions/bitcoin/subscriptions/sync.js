@@ -62,7 +62,7 @@ export const sync = () => {
     const deviceToken = state.notifications.deviceToken;
 
     if (externalAddresses.length === 0 || !deviceToken) {
-      return;
+      return Promise.resolve();
     }
 
     dispatch(syncRequest());
