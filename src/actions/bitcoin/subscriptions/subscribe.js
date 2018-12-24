@@ -58,6 +58,10 @@ export const subscribe = (addresses) => {
     const apiOptions = { baseUrl: state.settings.api.baseUrl };
     const deviceToken = state.notifications.deviceToken;
 
+    if (!deviceToken) {
+      return;
+    }
+
     dispatch(subscribeRequest());
 
     return subscribeForAddresses(dispatch, deviceToken, addresses, apiOptions)
