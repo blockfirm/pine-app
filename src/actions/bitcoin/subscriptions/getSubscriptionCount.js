@@ -34,6 +34,10 @@ export const getSubscriptionCount = () => {
     const apiOptions = { baseUrl: state.settings.api.baseUrl };
     const deviceToken = state.notifications.deviceToken;
 
+    if (!deviceToken) {
+      return Promise.resolve(0);
+    }
+
     dispatch(getSubscriptionCountRequest());
 
     return api.bitcoin.subscriptions.getByDeviceToken(deviceToken, apiOptions)
