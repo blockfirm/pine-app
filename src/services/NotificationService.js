@@ -12,6 +12,8 @@ export default class NotificationService {
   }
 
   start() {
+    PushNotificationIOS.setApplicationIconBadgeNumber(0);
+
     PushNotificationIOS.addEventListener('register', this._onRegister);
     PushNotificationIOS.addEventListener('registrationError', this._onRegisterError);
 
