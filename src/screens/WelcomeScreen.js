@@ -8,6 +8,7 @@ import { handle as handleError } from '../actions/error';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import { getUnused as getUnusedAddress } from '../actions/bitcoin/wallet/addresses';
+import { sync as syncSubscriptions } from '../actions/bitcoin/subscriptions/sync';
 import generateMnemonic from '../crypto/generateMnemonic';
 import Footer from '../components/Footer';
 import WhiteButton from '../components/WhiteButton';
@@ -88,6 +89,9 @@ export default class WelcomeScreen extends Component {
           dispatch(getUnusedAddress()), // External address.
           dispatch(getUnusedAddress(true)) // Internal address.
         ]);
+      })
+      .then(() => {
+        return dispatch(syncSubscriptions());
       })
       .then(() => {
         this._showDisclaimerScreen();
