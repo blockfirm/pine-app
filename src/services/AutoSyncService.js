@@ -1,6 +1,6 @@
 import { sync as syncWallet } from '../actions/bitcoin/wallet';
 
-const SYNC_INTERVAL = 10 * 1000; // 10 seconds.
+const SYNC_INTERVAL = 30 * 1000; // 30 seconds.
 
 export default class AutoSyncService {
   constructor(store) {
