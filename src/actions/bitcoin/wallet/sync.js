@@ -1,4 +1,5 @@
 import { getNewByAddress as getNewTransactionsByAddress } from '../blockchain/transactions/getNewByAddress';
+import { sync as syncSubscriptions } from '../subscriptions/sync';
 import { update as updateUtxos } from './utxos';
 import { save as saveExternalAddresses } from './addresses/external';
 import { save as saveInternalAddresses } from './addresses/internal';
@@ -148,6 +149,10 @@ export const sync = () => {
       .then(() => {
         // And last, update the utxo set.
         return dispatch(updateUtxos());
+      })
+      .then(() => {
+        // Subscribe to push notifications.
+        return dispatch(syncSubscriptions());
       })
       .then(() => {
         dispatch(syncSuccess());

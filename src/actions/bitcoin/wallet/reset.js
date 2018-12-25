@@ -1,3 +1,4 @@
+import { unsubscribe } from '../subscriptions/unsubscribe';
 import { removeAll as removeAllExternalAddresses } from './addresses/external';
 import { removeAll as removeAllInternalAddresses } from './addresses/internal';
 import { removeAll as removeAllTransactions } from './transactions';
@@ -27,8 +28,8 @@ const resetFailure = (error) => {
 };
 
 /**
- * Action to reset the bitcoin wallet by removing all
- * its addresses, transactions, and utxos.
+ * Action to reset the bitcoin wallet by removing all its addresses,
+ * transactions, and utxos and unsubscribing from push notifications.
  */
 export const reset = () => {
   return (dispatch) => {
@@ -38,7 +39,8 @@ export const reset = () => {
       dispatch(removeAllExternalAddresses()),
       dispatch(removeAllInternalAddresses()),
       dispatch(removeAllTransactions()),
-      dispatch(removeAllUtxos())
+      dispatch(removeAllUtxos()),
+      dispatch(unsubscribe())
     ];
 
     return Promise.all(promises)
