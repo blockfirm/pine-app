@@ -2,7 +2,7 @@ import deleteByDeviceToken from '../../../../../src/api/bitcoin/subscriptions/de
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,
-  json: () => undefined
+  json: () => Promise.resolve()
 }));
 
 describe('deleteByDeviceToken(deviceToken, options)', () => {
@@ -66,7 +66,7 @@ describe('deleteByDeviceToken(deviceToken, options)', () => {
     beforeEach(() => {
       global.fetch.mockImplementationOnce(() => Promise.resolve({
         ok: true,
-        json: () => ({
+        json: () => Promise.resolve({
           error: '3ca2e864-8c62-463c-a6be-851a6f2ad9bb'
         })
       }));
@@ -79,6 +79,21 @@ describe('deleteByDeviceToken(deviceToken, options)', () => {
         expect(error).toBeTruthy();
         expect(error.message).toBe('3ca2e864-8c62-463c-a6be-851a6f2ad9bb');
       });
+    });
+  });
+
+  describe('when the response is empty (success)', () => {
+    beforeEach(() => {
+      global.fetch.mockImplementationOnce(() => Promise.resolve({
+        ok: true,
+        json: () => Promise.reject()
+      }));
+    });
+
+    it('resolves the returned promise without any errors', () => {
+      const promise = deleteByDeviceToken(fakeDeviceToken, fakeOptions);
+      expect.assertions(1);
+      return expect(promise).resolves.toBeTruthy();
     });
   });
 });

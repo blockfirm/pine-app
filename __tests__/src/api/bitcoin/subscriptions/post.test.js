@@ -2,7 +2,7 @@ import postSubscription from '../../../../../src/api/bitcoin/subscriptions/post'
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,
-  json: () => undefined
+  json: () => Promise.resolve()
 }));
 
 describe('post(deviceToken, addresses, options)', () => {
@@ -85,7 +85,7 @@ describe('post(deviceToken, addresses, options)', () => {
     beforeEach(() => {
       global.fetch.mockImplementationOnce(() => Promise.resolve({
         ok: true,
-        json: () => ({
+        json: () => Promise.resolve({
           error: '20671a82-5813-4b27-a612-bdcb3620a88e'
         })
       }));
@@ -98,6 +98,21 @@ describe('post(deviceToken, addresses, options)', () => {
         expect(error).toBeTruthy();
         expect(error.message).toBe('20671a82-5813-4b27-a612-bdcb3620a88e');
       });
+    });
+  });
+
+  describe('when the response is empty (success)', () => {
+    beforeEach(() => {
+      global.fetch.mockImplementationOnce(() => Promise.resolve({
+        ok: true,
+        json: () => Promise.reject()
+      }));
+    });
+
+    it('resolves the returned promise without any errors', () => {
+      const promise = postSubscription(fakeDeviceToken, fakeAddresses, fakeOptions);
+      expect.assertions(1);
+      return expect(promise).resolves.toBeTruthy();
     });
   });
 });

@@ -23,7 +23,10 @@ const post = (deviceToken, addresses, options) => {
 
   return fetch(url, fetchOptions)
     .then((response) => {
-      return response.json();
+      return response.json().catch(() => {
+        // Suppress JSON parsing errors.
+        return {};
+      });
     })
     .then((response) => {
       if (response.error !== undefined) {
