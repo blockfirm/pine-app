@@ -18,5 +18,9 @@ export default {
       level: 'Normal', // One of: 'High', 'Normal', 'Low', 'Very Low', 'Custom'
       satoshisPerByte: 100 // Only used when level is set to 'Custom'
     }
+  },
+  currency: {
+    primary: 'BTC',
+    secondary: 'USD'
   }
 };

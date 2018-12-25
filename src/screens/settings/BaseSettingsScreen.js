@@ -19,7 +19,7 @@ export default class BaseSettingsScreen extends Component {
     return (
       <ErrorBoundary {...this.props} style={styles.view}>
         <ScrollView>
-          <View style={styles.childrenWrapper}>
+          <View style={[styles.childrenWrapper, this.props.wrapperStyle]}>
             {this.props.children}
           </View>
         </ScrollView>
@@ -29,5 +29,6 @@ export default class BaseSettingsScreen extends Component {
 }
 
 BaseSettingsScreen.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  wrapperStyle: PropTypes.any
 };

@@ -10,6 +10,7 @@ import BitcoinUnitScreen from '../screens/settings/BitcoinUnitScreen';
 import BitcoinFeeSettingsScreen from '../screens/settings/BitcoinFeeSettingsScreen';
 import SatoshisPerByteScreen from '../screens/settings/SatoshisPerByteScreen';
 import RecoveryKeyScreen from '../screens/settings/RecoveryKeyScreen';
+import SelectCurrencyScreen from '../screens/settings/SelectCurrencyScreen';
 
 import createDismissableStackNavigator from '../createDismissableStackNavigator';
 
@@ -25,7 +26,8 @@ const SettingsNavigator = createDismissableStackNavigator({
   BitcoinUnit: { screen: BitcoinUnitScreen },
   BitcoinFeeSettings: { screen: BitcoinFeeSettingsScreen },
   SatoshisPerByte: { screen: SatoshisPerByteScreen },
-  RecoveryKey: { screen: RecoveryKeyScreen }
+  RecoveryKey: { screen: RecoveryKeyScreen },
+  SelectCurrency: { screen: SelectCurrencyScreen }
 }, {
   headerMode: 'float',
   initialRouteName: 'Settings'

@@ -11,6 +11,7 @@ import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsButton from '../../components/SettingsButton';
 import SettingsLink from '../../components/SettingsLink';
+import SettingsTitle from '../../components/SettingsTitle';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
 const styles = StyleSheet.create({
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
 @connect((state) => ({
   keys: state.keys.items,
   hasCreatedBackup: state.settings.user.hasCreatedBackup,
+  currency: state.settings.currency,
   balance: state.bitcoin.wallet.balance
 }))
 export default class GeneralSettingsScreen extends Component {
@@ -35,6 +37,22 @@ export default class GeneralSettingsScreen extends Component {
   _showAbout() {
     const navigation = this.props.navigation;
     navigation.navigate('About');
+  }
+
+  _showPrimaryCurrency() {
+    const navigation = this.props.navigation;
+
+    navigation.navigate('SelectCurrency', {
+      type: 'primary'
+    });
+  }
+
+  _showSecondaryCurrency() {
+    const navigation = this.props.navigation;
+
+    navigation.navigate('SelectCurrency', {
+      type: 'secondary'
+    });
   }
 
   _flagAsUninitialized() {
@@ -122,6 +140,12 @@ export default class GeneralSettingsScreen extends Component {
           <SettingsLink name='About' onPress={this._showAbout.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
+        <SettingsTitle>Display Currencies</SettingsTitle>
+        <SettingsGroup>
+          <SettingsLink name='Primary Currency' value={this.props.currency.primary} onPress={this._showPrimaryCurrency.bind(this)}  />
+          <SettingsLink name='Secondary Currency' value={this.props.currency.secondary} onPress={this._showSecondaryCurrency.bind(this)} isLastItem={true} />
+        </SettingsGroup>
+
         <SettingsGroup>
           <SettingsButton
             title='Sign Out'
@@ -142,5 +166,6 @@ GeneralSettingsScreen.propTypes = {
   navigation: PropTypes.any,
   keys: PropTypes.object,
   hasCreatedBackup: PropTypes.bool,
+  currency: PropTypes.object,
   balance: PropTypes.number
 };

@@ -14,9 +14,12 @@ exports[`RecoveryKeyScreen renders correctly 1`] = `
     <View>
       <View
         style={
-          Object {
-            "paddingTop": 35,
-          }
+          Array [
+            Object {
+              "paddingTop": 35,
+            },
+            undefined,
+          ]
         }
       >
         <View
