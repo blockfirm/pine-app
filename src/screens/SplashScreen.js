@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { navigateWithReset, load as loadState } from '../actions';
 import * as walletActions from '../actions/bitcoin/wallet';
+import { get as getFiatRates } from '../actions/bitcoin/fiatRates';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import Footer from '../components/Footer';
@@ -43,6 +44,9 @@ export default class SplashScreen extends Component {
     // Load state, including settings, keys, and wallet data.
     dispatch(loadState())
       .then((state) => {
+        // Get initial fiat exchange rates asynchronously.
+        dispatch(getFiatRates());
+
         if (!state.settings.initialized) {
           return this._initialize();
         }
