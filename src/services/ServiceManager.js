@@ -1,10 +1,12 @@
 import AutoSyncService from './AutoSyncService';
 import ConnectionStatusService from './ConnectionStatusService';
+import FiatRatesService from './FiatRatesService';
 import NotificationService from './NotificationService';
 
 const serviceClasses = [
   AutoSyncService,
   ConnectionStatusService,
+  FiatRatesService,
   NotificationService
 ];
 
