@@ -24,6 +24,7 @@ import { create as createTransaction } from '../actions/bitcoin/wallet/transacti
 import { post as postTransaction } from '../actions/bitcoin/blockchain/transactions/post';
 import { sync as syncWallet } from '../actions/bitcoin/wallet';
 import headerStyles from '../styles/headerStyles';
+import CurrencyLabelContainer from '../containers/CurrencyLabelContainer';
 import Button from '../components/Button';
 import BackButton from '../components/BackButton';
 import ContentView from '../components/ContentView';
@@ -98,12 +99,24 @@ const styles = StyleSheet.create({
     color: '#8A8A8F',
     fontSize: 15
   },
+  valueWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
   value: {
     color: '#8A8A8F',
     fontSize: 15,
     position: 'absolute',
     right: 16,
     top: 16
+  },
+  bullet: {
+    marginHorizontal: 10,
+    height: 3,
+    width: 3,
+    borderRadius: 2,
+    backgroundColor: '#8A8A8F'
   },
   address: {
     fontSize: 14
@@ -323,11 +336,24 @@ export default class ReviewAndPayScreen extends Component {
     );
   }
 
-  render() {
-    const { address, amountBtc, displayUnit } = this.props.navigation.state.params;
-    const { transaction, fee } = this.state;
+  _renderTotal() {
+    const { amountBtc } = this.props.navigation.state.params;
+    const { fee } = this.state;
     const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
     const totalAmount = amountBtc + feeBtc;
+
+    return (
+      <View style={styles.valueWrapper}>
+        <CurrencyLabelContainer amountBtc={totalAmount} currencyType='primary' style={[styles.label, styles.bold]} />
+        <View style={styles.bullet} />
+        <CurrencyLabelContainer amountBtc={totalAmount} currencyType='secondary' style={styles.label} />
+      </View>
+    );
+  }
+
+  render() {
+    const { address, amountBtc, displayUnit } = this.props.navigation.state.params;
+    const { transaction } = this.state;
 
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
@@ -354,7 +380,9 @@ export default class ReviewAndPayScreen extends Component {
             </View>
             <View style={[styles.detail, styles.lastDetail]}>
               <StyledText style={[styles.label, styles.bold]}>You Pay</StyledText>
-              <BtcLabel amount={totalAmount} unit={displayUnit} style={[styles.value, styles.bold]} />
+              <View style={styles.value}>
+                {this._renderTotal()}
+              </View>
             </View>
           </View>
         </ContentView>
