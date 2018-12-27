@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
-import BtcLabelContainer from '../containers/BtcLabelContainer';
+import CurrencyContainer from '../containers/CurrencyContainer';
 import TransactionIcon from './icons/TransactionIcon';
 import StyledText from './StyledText';
 import RelativeDateLabel from './RelativeDateLabel';
@@ -37,10 +37,16 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
-  btcLabel: {
+  primaryCurrencyLabel: {
     fontSize: 15,
     fontWeight: '600',
     alignSelf: 'flex-end'
+  },
+  secondaryCurrencyLabel: {
+    fontSize: 15,
+    fontWeight: '500',
+    alignSelf: 'flex-end',
+    color: '#B1AFB7'
   }
 });
 
@@ -118,7 +124,8 @@ export default class TransactionListItem extends Component {
           <RelativeDateLabel date={date} style={styles.dateLabel} />
         </View>
         <View style={styles.rightContent}>
-          <BtcLabelContainer amount={amount} style={styles.btcLabel} />
+          <CurrencyContainer amountBtc={amount} currencyType='primary' style={styles.primaryCurrencyLabel} />
+          <CurrencyContainer amountBtc={amount} currencyType='secondary' style={styles.secondaryCurrencyLabel} />
         </View>
       </View>
     );
