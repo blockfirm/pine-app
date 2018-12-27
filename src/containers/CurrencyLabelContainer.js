@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-class CurrencyContainer extends Component {
+class CurrencyLabelContainer extends Component {
   static propTypes = {
     amountBtc: PropTypes.number,
     fiatRates: PropTypes.object,
@@ -57,8 +57,8 @@ class CurrencyContainer extends Component {
   }
 }
 
-const CurrencyConnector = connect(
+const CurrencyLabelConnector = connect(
   mapStateToProps
-)(CurrencyContainer);
+)(CurrencyLabelContainer);
 
-export default CurrencyConnector;
+export default CurrencyLabelConnector;
