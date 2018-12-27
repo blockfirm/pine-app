@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import SearchBar from 'react-native-search-bar';
 
 import { save as saveSettings } from '../../actions/settings';
+import { get as getFiatRates } from '../../actions/bitcoin/fiatRates';
 import headerStyles from '../../styles/headerStyles';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
@@ -54,7 +55,10 @@ export default class SelectCurrencyScreen extends Component {
   }
 
   componentWillUnmount() {
+    const dispatch = this.props.dispatch;
+
     this._save();
+    dispatch(getFiatRates());
   }
 
   _save() {
