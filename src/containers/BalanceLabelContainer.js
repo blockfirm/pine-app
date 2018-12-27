@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import BtcLabelContainer from './BtcLabelContainer';
+
+import CurrencyLabelContainer from './CurrencyLabelContainer';
 
 const mapStateToProps = (state) => {
   return {
@@ -9,23 +10,23 @@ const mapStateToProps = (state) => {
   };
 };
 
-class BtcBalanceLabelContainer extends Component {
+class BalanceLabelContainer extends Component {
   static propTypes = {
     balance: PropTypes.number
   };
 
   render() {
     return (
-      <BtcLabelContainer
+      <CurrencyLabelContainer
         {...this.props}
-        amount={this.props.balance}
+        amountBtc={this.props.balance}
       />
     );
   }
 }
 
-const BtcBalanceLabelConnector = connect(
+const BalanceLabelConnector = connect(
   mapStateToProps
-)(BtcBalanceLabelContainer);
+)(BalanceLabelContainer);
 
-export default BtcBalanceLabelConnector;
+export default BalanceLabelConnector;
