@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end'
   },
   secondaryCurrencyLabel: {
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: '500',
     alignSelf: 'flex-end',
     color: '#B1AFB7'
