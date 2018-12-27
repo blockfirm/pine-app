@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FiatLabel when currency is SEK renders 0 SEK correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  0 SEK
+</Text>
+`;
+
+exports[`FiatLabel when currency is SEK renders 2 SEK correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  2 SEK
+</Text>
+`;
+
+exports[`FiatLabel when currency is SEK renders 2.00 SEK correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  2 SEK
+</Text>
+`;
+
+exports[`FiatLabel when currency is SEK renders 2.30 SEK correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  2.30 SEK
+</Text>
+`;
+
+exports[`FiatLabel when currency is SEK renders 4000 SEK correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  4 000 SEK
+</Text>
+`;
+
+exports[`FiatLabel when currency is USD renders 0 USD correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  0 USD
+</Text>
+`;
+
+exports[`FiatLabel when currency is USD renders 2 USD correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  2 USD
+</Text>
+`;
+
+exports[`FiatLabel when currency is USD renders 2.00 USD correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  2 USD
+</Text>
+`;
+
+exports[`FiatLabel when currency is USD renders 2.30 USD correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  2.30 USD
+</Text>
+`;
+
+exports[`FiatLabel when currency is USD renders 4000 USD correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  4 000 USD
+</Text>
+`;
