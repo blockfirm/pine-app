@@ -22,7 +22,8 @@
     "Promise": true,
     "global": true,
     "Buffer": true,
-    "__DEV__": true
+    "__DEV__": true,
+    "Set": true
   },
   "rules": {
     "eqeqeq": ["error", "smart"],

@@ -8,6 +8,8 @@ import QrCodeScannerContainer from '../containers/QrCodeScannerContainer';
 import CameraScreenHeader from '../components/CameraScreenHeader';
 import BaseScreen from './BaseScreen';
 
+const CURRENCY_BTC = 'BTC';
+
 const styles = StyleSheet.create({
   view: {
     padding: 0,
@@ -49,12 +51,14 @@ export default class CameraScreen extends Component {
 
   _showEnterAmountScreen(address, amount) {
     const navigation = this.props.navigation;
+    const primaryCurrency = this.props.settings.currency.primary;
     const unit = this.props.settings.bitcoin.unit;
 
     navigation.navigate('Send', {
       address,
       amountBtc: amount,
-      displayUnit: unit
+      displayCurrency: primaryCurrency,
+      displayUnit: primaryCurrency === CURRENCY_BTC ? unit : null
     });
   }
 

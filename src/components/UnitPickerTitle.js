@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import headerStyles from '../styles/headerStyles';
 import StyledText from './StyledText';
 
+const CURRENCY_BTC = 'BTC';
+
 const UNIT_BTC = 'BTC';
 const UNIT_MBTC = 'mBTC';
 const UNIT_SATOSHIS = 'Satoshis';
@@ -28,25 +30,49 @@ const styles = StyleSheet.create({
 
 export default class UnitPickerTitle extends Component {
   _showOptions() {
+    const denominations = new Set(UNITS);
+
+    denominations.add(this.props.primaryCurrency);
+    denominations.add(this.props.secondaryCurrency);
+
+    const options = ['Cancel', ...denominations];
+
     ActionSheetIOS.showActionSheetWithOptions({
-      title: 'Pick a Unit:',
-      options: ['Cancel', ...UNITS],
-      cancelButtonIndex: 0
+      title: 'Pick Denomination Currency or Unit:',
+      cancelButtonIndex: 0,
+      options
     }, (buttonIndex) => {
-      if (buttonIndex !== 0) {
-        const unit = UNITS[buttonIndex - 1];
-        this.props.navigation.setParams({ displayUnit: unit });
+      if (buttonIndex === 0) {
+        return; // Cancel
       }
+
+      const denomination = options[buttonIndex];
+      this._updateNavigationParams(denomination);
     });
   }
 
+  _updateNavigationParams(denomination) {
+    if (UNITS.indexOf(denomination) > -1) {
+      this.props.navigation.setParams({
+        displayCurrency: CURRENCY_BTC,
+        displayUnit: denomination
+      });
+    } else {
+      this.props.navigation.setParams({
+        displayCurrency: denomination,
+        displayUnit: null
+      });
+    }
+  }
+
   render() {
-    const { unit } = this.props;
+    const { currency, unit } = this.props;
+    const title = currency === CURRENCY_BTC ? unit : currency;
 
     return (
       <TouchableOpacity onPress={this._showOptions.bind(this)}>
         <View style={styles.wrapper}>
-          <StyledText style={headerStyles.title}>{unit}</StyledText>
+          <StyledText style={headerStyles.title}>{title}</StyledText>
           <Icon name='ios-arrow-down' style={styles.arrow} />
         </View>
       </TouchableOpacity>
@@ -56,5 +82,8 @@ export default class UnitPickerTitle extends Component {
 
 UnitPickerTitle.propTypes = {
   navigation: PropTypes.object,
+  primaryCurrency: PropTypes.string,
+  secondaryCurrency: PropTypes.string,
+  currency: PropTypes.string,
   unit: PropTypes.string
 };

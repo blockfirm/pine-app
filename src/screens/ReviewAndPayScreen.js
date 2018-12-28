@@ -137,7 +137,8 @@ const getBitcoinNetwork = (network) => {
 @connect((state) => ({
   keys: state.keys.items,
   addresses: state.bitcoin.wallet.addresses,
-  network: state.settings.bitcoin.network
+  network: state.settings.bitcoin.network,
+  defaultBitcoinUnit: state.settings.bitcoin.unit
 }))
 export default class ReviewAndPayScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -314,8 +315,16 @@ export default class ReviewAndPayScreen extends Component {
     }
   }
 
+  _getBtcDisplayUnit() {
+    const navigationParams = this.props.navigation.state.params;
+    const displayUnit = navigationParams.displayUnit || this.props.defaultBitcoinUnit;
+
+    return displayUnit;
+  }
+
   _renderFee() {
-    const { amountBtc, displayUnit } = this.props.navigation.state.params;
+    const displayUnit = this._getBtcDisplayUnit();
+    const { amountBtc } = this.props.navigation.state.params;
     const { fee, cannotAffordFee } = this.state;
     const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
 
@@ -352,7 +361,8 @@ export default class ReviewAndPayScreen extends Component {
   }
 
   render() {
-    const { address, amountBtc, displayUnit } = this.props.navigation.state.params;
+    const displayUnit = this._getBtcDisplayUnit();
+    const { address, amountBtc } = this.props.navigation.state.params;
     const { transaction } = this.state;
 
     return (
@@ -406,5 +416,6 @@ ReviewAndPayScreen.propTypes = {
   screenProps: PropTypes.object,
   keys: PropTypes.object,
   addresses: PropTypes.object,
-  network: PropTypes.string
+  network: PropTypes.string,
+  defaultBitcoinUnit: PropTypes.string
 };
