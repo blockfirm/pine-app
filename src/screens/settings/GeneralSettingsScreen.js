@@ -39,14 +39,6 @@ export default class GeneralSettingsScreen extends Component {
     navigation.navigate('About');
   }
 
-  _showPrimaryCurrency() {
-    const navigation = this.props.navigation;
-
-    navigation.navigate('SelectCurrency', {
-      type: 'primary'
-    });
-  }
-
   _showSecondaryCurrency() {
     const navigation = this.props.navigation;
 
@@ -140,9 +132,8 @@ export default class GeneralSettingsScreen extends Component {
           <SettingsLink name='About' onPress={this._showAbout.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
-        <SettingsTitle>Display Currencies</SettingsTitle>
+        <SettingsTitle>Display Currency</SettingsTitle>
         <SettingsGroup>
-          <SettingsLink name='Primary Currency' value={this.props.currency.primary} onPress={this._showPrimaryCurrency.bind(this)}  />
           <SettingsLink name='Secondary Currency' value={this.props.currency.secondary} onPress={this._showSecondaryCurrency.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
