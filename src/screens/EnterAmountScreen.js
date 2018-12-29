@@ -14,6 +14,7 @@ import {
   convert as convertBitcoin
 } from '../crypto/bitcoin/convert';
 
+import { handle as handleError } from '../actions/error';
 import headerStyles from '../styles/headerStyles';
 import UnitPickerTitleContainer from '../containers/UnitPickerTitleContainer';
 import FakeNumberInput from '../components/FakeNumberInput';
@@ -110,7 +111,8 @@ export default class EnterAmountScreen extends Component {
     if (displayCurrency === CURRENCY_BTC) {
       amountBtc = convertBitcoin(parseFloat(amount), displayUnit, UNIT_BTC);
     } else {
-      amountBtc = parseFloat(amount) / this.props.fiatRates[displayCurrency];
+      const fiatRate = this.props.fiatRates[displayCurrency];
+      amountBtc = fiatRate ? (parseFloat(amount) / fiatRate) : 0;
     }
 
     return amountBtc;
@@ -224,10 +226,16 @@ export default class EnterAmountScreen extends Component {
   }
 
   _reviewAndPay() {
-    const navigation = this.props.navigation;
+    const { dispatch, navigation } = this.props;
     const { amount } = this.state;
     const { address, displayCurrency, displayUnit } = navigation.state.params;
     const amountBtc = this._getBtcAmount(amount);
+
+    if (!amountBtc && displayCurrency !== CURRENCY_BTC) {
+      return dispatch(handleError(
+        new Error(`Unable to get BTC/${displayCurrency} exchange rate. Please try again later.`)
+      ));
+    }
 
     navigation.navigate('ReviewAndPay', {
       address,

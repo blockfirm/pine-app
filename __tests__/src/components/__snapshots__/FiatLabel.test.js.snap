@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FiatLabel when amount is null renders correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  - SEK
+</Text>
+`;
+
 exports[`FiatLabel when currency is SEK renders 0 SEK correctly 1`] = `
 <Text
   style={

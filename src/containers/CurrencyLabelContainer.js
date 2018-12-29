@@ -34,7 +34,8 @@ class CurrencyLabelContainer extends Component {
   _renderFiatLabel() {
     const { amountBtc, fiatRates, settings, currencyType } = this.props;
     const currency = settings.currency[currencyType];
-    const amountFiat = fiatRates[currency] * amountBtc;
+    const fiatRate = fiatRates[currency];
+    const amountFiat = fiatRate ? fiatRate * amountBtc : null;
 
     return (
       <FiatLabel

@@ -3,6 +3,16 @@ import renderer from 'react-test-renderer';
 import FiatLabel from '../../../src/components/FiatLabel';
 
 describe('FiatLabel', () => {
+  describe('when amount is null', () => {
+    it('renders correctly', () => {
+      const tree = renderer.create(
+        <FiatLabel amount={null} currency='SEK' />
+      ).toJSON();
+
+      expect(tree).toMatchSnapshot();
+    });
+  });
+
   describe('when currency is USD', () => {
     it('renders 0 USD correctly', () => {
       const tree = renderer.create(

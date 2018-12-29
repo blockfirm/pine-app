@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import StyledText from './StyledText';
 
 const formatAmount = (amount, currency) => {
+  if (amount === null) {
+    return `- ${currency}`;
+  }
+
   if (!amount) {
     return `0 ${currency}`;
   }
@@ -37,6 +41,6 @@ export default class FiatLabel extends Component {
 
 FiatLabel.propTypes = {
   style: PropTypes.any,
-  amount: PropTypes.number.isRequired,
+  amount: PropTypes.number,
   currency: PropTypes.string.isRequired
 };
