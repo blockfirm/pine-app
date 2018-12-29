@@ -52,7 +52,6 @@ export const get = () => {
       })
       .catch((error) => {
         dispatch(getFailure(error));
-        throw error;
       });
   };
 };

@@ -185,24 +185,20 @@ describe('getFiatRates', () => {
         promise = getFiatRates()(dispatchMock, getStateMock);
       });
 
-      it('rejects the returned promise', () => {
+      it('suppresses the error', () => {
         expect.hasAssertions();
-
-        return promise.catch((error) => {
-          expect(error).toBeTruthy();
-          expect(error.message).toBe('100a495c-143a-4f46-a174-058aa63484df');
-        });
+        return expect(promise).resolves.toBe(undefined);
       });
 
       it('dispatches an action of type BITCOIN_FIAT_RATES_GET_FAILURE with the error', () => {
         expect.hasAssertions();
 
-        return promise.catch((error) => {
-          expect(error).toBeTruthy();
-
+        return promise.then(() => {
           expect(dispatchMock).toHaveBeenCalledWith({
             type: BITCOIN_FIAT_RATES_GET_FAILURE,
-            error
+            error: expect.objectContaining({
+              message: '100a495c-143a-4f46-a174-058aa63484df'
+            })
           });
         });
       });
