@@ -1,6 +1,330 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DisclaimerScreen renders correctly 1`] = `
+exports[`DisclaimerScreen renders correctly when user has a manual backup (not using iCloud as backup) 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#ffffff",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 40,
+      },
+      undefined,
+    ]
+  }
+>
+  <BackHeaderContainer />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#000000",
+          "fontFamily": "System",
+          "fontWeight": "400",
+        },
+        Array [
+          Object {
+            "color": "#26203D",
+            "fontSize": 18,
+            "fontWeight": "600",
+            "letterSpacing": 0.36,
+            "marginBottom": 10,
+            "textAlign": "center",
+          },
+          Object {
+            "alignSelf": "flex-start",
+            "fontSize": 50,
+            "fontWeight": "800",
+            "lineHeight": 44,
+            "marginBottom": 30,
+            "textAlign": "left",
+          },
+        ],
+      ]
+    }
+  >
+    Welcome to 
+    <Text
+      style={
+        Object {
+          "color": "#FFD200",
+        }
+      }
+    >
+      Pine
+    </Text>
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "marginBottom": 90,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "#26203D",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "letterSpacing": 0.36,
+              "marginBottom": 10,
+              "textAlign": "center",
+            },
+            Object {
+              "fontSize": 15,
+              "fontWeight": "700",
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      Access to Funds
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "#AAAAAA",
+              "fontSize": 15,
+              "fontWeight": "400",
+              "letterSpacing": -0.24,
+              "lineHeight": 21,
+              "marginBottom": 20,
+            },
+            Object {
+              "fontSize": 15,
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      Only you are in control of your funds. Keep your phone and recovery key secure.
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "#26203D",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "letterSpacing": 0.36,
+              "marginBottom": 10,
+              "textAlign": "center",
+            },
+            Object {
+              "fontSize": 15,
+              "fontWeight": "700",
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      Account Recovery
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "#AAAAAA",
+              "fontSize": 15,
+              "fontWeight": "400",
+              "letterSpacing": -0.24,
+              "lineHeight": 21,
+              "marginBottom": 20,
+            },
+            Object {
+              "fontSize": 15,
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      Keep your recovery key secure – it's the only way to recover your account and funds if you would lose or break your phone.
+    </Text>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "bottom": 30,
+          "left": 40,
+          "position": "absolute",
+          "right": 40,
+        },
+        null,
+        undefined,
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "#AAAAAA",
+              "fontSize": 15,
+              "fontWeight": "400",
+              "letterSpacing": -0.24,
+              "lineHeight": 21,
+              "marginBottom": 20,
+            },
+            Object {
+              "fontSize": 12,
+              "lineHeight": 16,
+              "textAlign": "center",
+            },
+          ],
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 12,
+            "lineHeight": 16,
+            "textAlign": "center",
+          }
+        }
+      >
+        By pressing "I understand", you have read and agree to the terms above as well as the 
+      </Text>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "fontSize": 12,
+              "lineHeight": 16,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#007AFF",
+            },
+          ]
+        }
+      >
+        Terms and Conditions
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 12,
+            "lineHeight": 16,
+            "textAlign": "center",
+          }
+        }
+      >
+        .
+      </Text>
+    </Text>
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#FFD23F",
+              "borderRadius": 25,
+              "height": 50,
+              "justifyContent": "center",
+              "width": 670,
+            },
+            undefined,
+          ]
+        }
+      >
+        <ActivityIndicator
+          animating={false}
+          color="#FFFFFF"
+          hidesWhenStopped={true}
+          size="small"
+          style={
+            Object {
+              "height": 12,
+              "position": "absolute",
+            }
+          }
+        />
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "white",
+                "fontFamily": "System",
+                "fontSize": 16,
+                "fontWeight": "600",
+                "letterSpacing": -0.41,
+              },
+              undefined,
+              Object {
+                "opacity": 1,
+              },
+            ]
+          }
+        >
+          I understand
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`DisclaimerScreen renders correctly when user has no manual backup (using iCloud as backup) 1`] = `
 <View
   style={
     Array [
@@ -211,7 +535,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
             Object {
               "fontSize": 12,
               "lineHeight": 16,
-              "textAlign": "left",
+              "textAlign": "center",
             },
           ],
         ]
@@ -222,7 +546,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
           Object {
             "fontSize": 12,
             "lineHeight": 16,
-            "textAlign": "left",
+            "textAlign": "center",
           }
         }
       >
@@ -235,7 +559,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
             Object {
               "fontSize": 12,
               "lineHeight": 16,
-              "textAlign": "left",
+              "textAlign": "center",
             },
             Object {
               "color": "#007AFF",
@@ -250,7 +574,7 @@ exports[`DisclaimerScreen renders correctly 1`] = `
           Object {
             "fontSize": 12,
             "lineHeight": 16,
-            "textAlign": "left",
+            "textAlign": "center",
           }
         }
       >

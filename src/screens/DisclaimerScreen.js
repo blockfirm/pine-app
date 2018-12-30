@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   finePrint: {
     fontSize: 12,
-    textAlign: 'left',
+    textAlign: 'center',
     lineHeight: 16
   },
   link: {
@@ -47,7 +47,9 @@ const styles = StyleSheet.create({
   }
 });
 
-@connect()
+@connect((state) => ({
+  hasCreatedBackup: state.settings.user.hasCreatedBackup
+}))
 export default class DisclaimerScreen extends Component {
   static navigationOptions = {
     header: null
@@ -80,6 +82,22 @@ export default class DisclaimerScreen extends Component {
     return this._showHomeScreen();
   }
 
+  _getAccessToFundsText() {
+    if (this.props.hasCreatedBackup) {
+      return 'Only you are in control of your funds. Keep your phone and recovery key secure.';
+    }
+
+    return 'Only you are in control of your funds. Keep your phone, iCloud account and recovery key secure.';
+  }
+
+  _getAccountRecoveryText() {
+    if (this.props.hasCreatedBackup) {
+      return 'Keep your recovery key secure – it\'s the only way to recover your account and funds if you would lose or break your phone.';
+    }
+
+    return 'Your recovery key is securely stored in your iCloud account. You can also do a manual backup under Settings. It\'s not possible to recover your account or funds without it.';
+  }
+
   render() {
     return (
       <BaseScreen style={styles.view}>
@@ -92,14 +110,12 @@ export default class DisclaimerScreen extends Component {
         <View style={styles.terms}>
           <Title style={styles.subtitle}>Access to Funds</Title>
           <Paragraph style={styles.paragraph}>
-            Only you are in control of your funds. Keep your phone, iCloud account
-            and recovery key secure.
+            {this._getAccessToFundsText()}
           </Paragraph>
 
           <Title style={styles.subtitle}>Account Recovery</Title>
           <Paragraph style={styles.paragraph}>
-            Your recovery key is securely stored in your iCloud account. You can also do a manual backup under Settings.
-            It's not possible to recover your account or funds without it.
+            {this._getAccountRecoveryText()}
           </Paragraph>
         </View>
 
@@ -119,5 +135,6 @@ export default class DisclaimerScreen extends Component {
 
 DisclaimerScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  hasCreatedBackup: PropTypes.bool
 };
