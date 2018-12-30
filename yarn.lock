@@ -5058,6 +5058,10 @@ react-native-haptic@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-haptic/-/react-native-haptic-1.0.9.tgz#d39ceea53b068b635b3dba6e343c01cc3e1a5cd0"
 
+react-native-icloud-account-status@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-icloud-account-status/-/react-native-icloud-account-status-1.0.1.tgz#2fd27ae8f2bce631c86e2176533b029b9ca91715"
+
 react-native-icloudstore@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/react-native-icloudstore/-/react-native-icloudstore-0.9.0.tgz#415cf2ca79e71eb501024079f3b76f9b82d3d587"

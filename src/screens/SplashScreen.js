@@ -8,6 +8,7 @@ import * as walletActions from '../actions/bitcoin/wallet';
 import { get as getFiatRates } from '../actions/bitcoin/fiatRates';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
+import getMnemonicByKey from '../crypto/getMnemonicByKey';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -51,6 +52,12 @@ export default class SplashScreen extends Component {
           return this._initialize();
         }
 
+        if (state.settings.user.forceManualBackup && !state.settings.user.hasCreatedBackup) {
+          return this._getMnemonicFromState(state).then((mnemonic) => {
+            return this._showBackUpMnemonicScreen(mnemonic);
+          })
+        }
+
         // Show the disclaimer screen if the terms and conditions hasn't been accepted.
         if (!state.settings.user.hasAcceptedTerms) {
           return this._showDisclaimerScreen();
@@ -63,6 +70,13 @@ export default class SplashScreen extends Component {
       .then(() => {
         this._showStatusBar();
       });
+  }
+
+  _getMnemonicFromState(state) {
+    const keys = Object.values(state.keys.items);
+    const defaultKey = keys[0];
+
+    return getMnemonicByKey(defaultKey.id);
   }
 
   _showStatusBar() {
@@ -82,6 +96,11 @@ export default class SplashScreen extends Component {
   _showDisclaimerScreen() {
     const dispatch = this.props.dispatch;
     dispatch(navigateWithReset('Disclaimer'));
+  }
+
+  _showBackUpMnemonicScreen(mnemonic) {
+    const dispatch = this.props.dispatch;
+    return dispatch(navigateWithReset('Mnemonic', { mnemonic }));
   }
 
   _flagAsInitialized() {

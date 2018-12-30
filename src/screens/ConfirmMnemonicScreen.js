@@ -9,6 +9,7 @@ import ReactNativeHaptic from 'react-native-haptic';
 import headerStyles from '../styles/headerStyles';
 import { navigateWithReset } from '../actions';
 import * as settingsActions from '../actions/settings';
+import { sync as syncWallet } from '../actions/bitcoin/wallet/sync';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -49,8 +50,8 @@ export default class ConfirmMnemonicScreen extends Component {
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
-      headerLeft: headerLeft,
-      headerRight: headerRight
+      headerLeft,
+      headerRight
     };
   };
 
@@ -73,7 +74,8 @@ export default class ConfirmMnemonicScreen extends Component {
 
     const newSettings = {
       user: {
-        hasCreatedBackup: true
+        hasCreatedBackup: true,
+        forceManualBackup: false
       }
     };
 
@@ -81,15 +83,19 @@ export default class ConfirmMnemonicScreen extends Component {
   }
 
   _onConfirm() {
-    const navigation = this.props.navigation;
+    const { dispatch, navigation } = this.props;
     const { isModal } = navigation.state.params;
 
     this._flagAsBackedUp();
 
-    if (isModal) {
-      ReactNativeHaptic.generate('notificationSuccess');
-      this.props.screenProps.dismiss();
+    if (!isModal) {
+      return dispatch(syncWallet()).then(() => {
+        this._showDisclaimerScreen();
+      });
     }
+
+    ReactNativeHaptic.generate('notificationSuccess');
+    this.props.screenProps.dismiss();
   }
 
   _onChangePhrase(phrase) {

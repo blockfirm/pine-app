@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { StyleSheet, StatusBar, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import iCloudAccountStatus from 'react-native-icloud-account-status';
 
 import { navigateWithReset } from '../actions';
 import { handle as handleError } from '../actions/error';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
-import { getUnused as getUnusedAddress } from '../actions/bitcoin/wallet/addresses';
-import { sync as syncSubscriptions } from '../actions/bitcoin/subscriptions/sync';
+import { sync as syncWallet } from '../actions/bitcoin/wallet/sync';
 import generateMnemonic from '../crypto/generateMnemonic';
 import Footer from '../components/Footer';
 import WhiteButton from '../components/WhiteButton';
@@ -57,6 +57,11 @@ export default class WelcomeScreen extends Component {
     return dispatch(navigateWithReset('Disclaimer'));
   }
 
+  _showBackUpMnemonicScreen(mnemonic) {
+    const dispatch = this.props.dispatch;
+    return dispatch(navigateWithReset('Mnemonic', { mnemonic }));
+  }
+
   _flagAsInitialized() {
     const dispatch = this.props.dispatch;
 
@@ -67,16 +72,38 @@ export default class WelcomeScreen extends Component {
     return dispatch(settingsActions.save(newSettings));
   }
 
-  _createWallet() {
+  _forceManualBackup(mnemonic) {
     const dispatch = this.props.dispatch;
 
+    const newSettings = {
+      user: {
+        forceManualBackup: true
+      }
+    };
+
+    dispatch(settingsActions.save(newSettings));
+    this._showBackUpMnemonicScreen(mnemonic);
+  }
+
+  _createWallet() {
+    const dispatch = this.props.dispatch;
+    let mnemonic = null;
+    let isBackedUpInICloud = false;
+
     return generateMnemonic()
-      .then((mnemonic) => {
-        // Back up mnemonic in iCloud.
-        return dispatch(keyActions.backup(mnemonic)).then(() => mnemonic);
+      .then((newMnemonic) => {
+        mnemonic = newMnemonic;
+
+        return iCloudAccountStatus.getStatus().then((accountStatus) => {
+          if (accountStatus === iCloudAccountStatus.STATUS_AVAILABLE) {
+            // Back up mnemonic in iCloud.
+            isBackedUpInICloud = true;
+            return dispatch(keyActions.backup(mnemonic));
+          }
+        });
       })
-      .then((mnemonic) => {
-        // Save key.
+      .then(() => {
+        // Save mnemonic.
         return dispatch(keyActions.add(mnemonic));
       })
       .then(() => {
@@ -84,17 +111,14 @@ export default class WelcomeScreen extends Component {
         return this._flagAsInitialized();
       })
       .then(() => {
-        // Load an unused address into state.
-        return Promise.all([
-          dispatch(getUnusedAddress()), // External address.
-          dispatch(getUnusedAddress(true)) // Internal address.
-        ]);
-      })
-      .then(() => {
-        return dispatch(syncSubscriptions());
-      })
-      .then(() => {
-        this._showDisclaimerScreen();
+        if (!isBackedUpInICloud) {
+          // Force manual backup if iCloud is not available.
+          return this._forceManualBackup(mnemonic);
+        }
+
+        return dispatch(syncWallet()).then(() => {
+          this._showDisclaimerScreen();
+        });
       })
       .catch((error) => {
         dispatch(handleError(error));

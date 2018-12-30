@@ -6,7 +6,14 @@ export default {
     hasAcceptedTerms: false,
 
     // Whether or not the user has manually backed up the recovery key.
-    hasCreatedBackup: false
+    hasCreatedBackup: false,
+
+    /**
+     * This will be set to true if the user needs to do a manual backup
+     * due to iCloud not being available. It will return back to false
+     * once the user performs a manual back up.
+     */
+    forceManualBackup: false
   },
   api: {
     baseUrl: 'http://localhost:8080/v1'

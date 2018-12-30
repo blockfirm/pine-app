@@ -39,7 +39,6 @@ export default class MnemonicScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     const params = navigation.state.params;
     const isModal = params ? params.isModal : false;
-    const headerLeft = isModal ? <Text /> : <BackButton onPress={() => { navigation.goBack(); }} />;
     const headerRight = isModal ? <CancelButton onPress={screenProps.dismiss} /> : null;
 
     return {
@@ -47,7 +46,6 @@ export default class MnemonicScreen extends Component {
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
-      headerLeft,
       headerRight
     };
   };
