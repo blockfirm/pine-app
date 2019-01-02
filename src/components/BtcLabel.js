@@ -56,7 +56,7 @@ const formatBtc = (amount) => {
 };
 
 const formatMBtc = (amount) => {
-  const amountString = (amount * 1000).toFixed(11);
+  const amountString = (amount * 1000).toFixed(5);
   const number = splitNumber(amountString);
 
   number.fractional = trimTrailingZeros(number.fractional);
