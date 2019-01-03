@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import { useScreens } from 'react-native-screens';
 import PropTypes from 'prop-types';
 
 import ErrorModalContainer from './containers/ErrorModalContainer';
 import ServiceManager from './services/ServiceManager';
 import getAppWithNavigationState from './getAppWithNavigationState';
+
+useScreens();
 
 export default class App extends Component {
   constructor(props) {
