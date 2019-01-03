@@ -19,10 +19,7 @@ const TITLES = {
   'secondary': 'Secondary Currency'
 };
 
-const CURRENCY_BTC = 'BTC';
-
 const CURRENCIES = [
-  CURRENCY_BTC,
   ...fiatCurrencies
 ].sort();
 
