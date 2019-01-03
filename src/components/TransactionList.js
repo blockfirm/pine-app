@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     marginTop: SECTION_HEADER_MARGIN_TOP,
     marginBottom: SECTION_HEADER_MARGIN_BOTTOM,
     padding: 6,
-    width: 87,
+    paddingHorizontal: 12,
     height: SECTION_HEADER_HEIGHT,
     alignSelf: 'center',
     alignItems: 'center',
