@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Provider } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import AppNavigator from './navigators/AppNavigator';
 import ErrorModalContainer from './containers/ErrorModalContainer';
 import ServiceManager from './services/ServiceManager';
 import getAppWithNavigationState from './getAppWithNavigationState';
-import createStore from './createStore';
-
-const navReducer = (state, action) => {
-  const nextState = AppNavigator.router.getStateForAction(action, state);
-  return nextState || state;
-};
-
-const store = createStore(navReducer);
-const AppWithNavigationState = getAppWithNavigationState();
 
 export default class App extends Component {
-  constructor() {
+  constructor(props) {
     super(...arguments);
-    this._services = new ServiceManager(store);
+
+    this._services = new ServiceManager(props.store);
+    this.AppWithNavigationState = getAppWithNavigationState();
   }
 
   componentDidMount() {
@@ -31,13 +23,17 @@ export default class App extends Component {
   }
 
   render() {
+    const { AppWithNavigationState } = this;
+
     return (
-      <Provider store={store}>
-        <View style={{ flex: 1, alignSelf: 'stretch' }}>
-          <AppWithNavigationState />
-          <ErrorModalContainer />
-        </View>
-      </Provider>
+      <View style={{ flex: 1, alignSelf: 'stretch' }}>
+        <AppWithNavigationState />
+        <ErrorModalContainer />
+      </View>
     );
   }
 }
+
+App.propTypes = {
+  store: PropTypes.any.isRequired
+};
