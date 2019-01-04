@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
+import Bullet from './typography/Bullet';
 import StyledText from './StyledText';
 import BtcLabel from './BtcLabel';
 
@@ -13,13 +14,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center'
-  },
-  bullet: {
-    marginHorizontal: 10,
-    height: 3,
-    width: 3,
-    borderRadius: 2,
-    backgroundColor: '#8A8A8F'
   }
 });
 
@@ -67,7 +61,7 @@ export default class FeeLabel extends Component {
     return (
       <View style={[styles.wrapper, this.props.style]}>
         <BtcLabel amount={fee} unit={unit} style={this.props.style} />
-        <View style={styles.bullet} />
+        <Bullet />
         <StyledText style={percentageStyles}>{percentage}</StyledText>
       </View>
     );

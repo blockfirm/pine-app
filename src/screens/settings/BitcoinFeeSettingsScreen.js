@@ -18,6 +18,7 @@ import SettingsDescription from '../../components/SettingsDescription';
 import SettingsTitle from '../../components/SettingsTitle';
 import StrongText from '../../components/StrongText';
 import StyledText from '../../components/StyledText';
+import Bullet from '../../components/typography/Bullet';
 import BaseSettingsScreen from './BaseSettingsScreen';
 import config from '../../config';
 
@@ -29,13 +30,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center'
-  },
-  bullet: {
-    marginHorizontal: 10,
-    height: 3,
-    width: 3,
-    borderRadius: 2,
-    backgroundColor: '#8A8A8F'
   },
   fiat: {
     color: '#8A8A8F'
@@ -139,7 +133,7 @@ export default class BitcoinFeeSettingsScreen extends Component {
     return (
       <View style={styles.fees}>
         <CurrencyLabelContainer amountBtc={estimatedFeeBtc} currencyType='primary' style={settingsStyles.label} />
-        <View style={styles.bullet} />
+        <Bullet />
         <CurrencyLabelContainer amountBtc={estimatedFeeBtc} currencyType='secondary' style={[settingsStyles.label, styles.fiat]} />
       </View>
     );

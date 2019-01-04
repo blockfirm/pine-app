@@ -25,6 +25,7 @@ import { post as postTransaction } from '../actions/bitcoin/blockchain/transacti
 import { sync as syncWallet } from '../actions/bitcoin/wallet';
 import headerStyles from '../styles/headerStyles';
 import CurrencyLabelContainer from '../containers/CurrencyLabelContainer';
+import Bullet from '../components/typography/Bullet';
 import Button from '../components/Button';
 import BackButton from '../components/BackButton';
 import ContentView from '../components/ContentView';
@@ -110,13 +111,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 16,
     top: 16
-  },
-  bullet: {
-    marginHorizontal: 10,
-    height: 3,
-    width: 3,
-    borderRadius: 2,
-    backgroundColor: '#8A8A8F'
   },
   address: {
     fontSize: 14
@@ -354,7 +348,7 @@ export default class ReviewAndPayScreen extends Component {
     return (
       <View style={styles.valueWrapper}>
         <CurrencyLabelContainer amountBtc={totalAmount} currencyType='primary' style={[styles.label, styles.bold]} />
-        <View style={styles.bullet} />
+        <Bullet />
         <CurrencyLabelContainer amountBtc={totalAmount} currencyType='secondary' style={styles.label} />
       </View>
     );

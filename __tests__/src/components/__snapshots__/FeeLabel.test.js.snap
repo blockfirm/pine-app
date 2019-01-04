@@ -29,13 +29,16 @@ exports[`FeeLabel renders high fees correctly 1`] = `
   </Text>
   <View
     style={
-      Object {
-        "backgroundColor": "#8A8A8F",
-        "borderRadius": 2,
-        "height": 3,
-        "marginHorizontal": 10,
-        "width": 3,
-      }
+      Array [
+        Object {
+          "backgroundColor": "#8A8A8F",
+          "borderRadius": 2,
+          "height": 3,
+          "marginHorizontal": 10,
+          "width": 3,
+        },
+        undefined,
+      ]
     }
   />
   <Text
@@ -89,13 +92,16 @@ exports[`FeeLabel renders low fees correctly 1`] = `
   </Text>
   <View
     style={
-      Object {
-        "backgroundColor": "#8A8A8F",
-        "borderRadius": 2,
-        "height": 3,
-        "marginHorizontal": 10,
-        "width": 3,
-      }
+      Array [
+        Object {
+          "backgroundColor": "#8A8A8F",
+          "borderRadius": 2,
+          "height": 3,
+          "marginHorizontal": 10,
+          "width": 3,
+        },
+        undefined,
+      ]
     }
   />
   <Text
@@ -147,13 +153,16 @@ exports[`FeeLabel renders medium fees correctly 1`] = `
   </Text>
   <View
     style={
-      Object {
-        "backgroundColor": "#8A8A8F",
-        "borderRadius": 2,
-        "height": 3,
-        "marginHorizontal": 10,
-        "width": 3,
-      }
+      Array [
+        Object {
+          "backgroundColor": "#8A8A8F",
+          "borderRadius": 2,
+          "height": 3,
+          "marginHorizontal": 10,
+          "width": 3,
+        },
+        undefined,
+      ]
     }
   />
   <Text
