@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { View, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -9,6 +9,7 @@ import { save as saveSettings } from '../../actions/settings';
 import { FEE_LEVEL_CUSTOM, getEstimate as getFeeEstimate, adjustFeeRate } from '../../actions/bitcoin/fees/getEstimate';
 import headerStyles from '../../styles/headerStyles';
 import settingsStyles from '../../styles/settingsStyles';
+import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsOption from '../../components/SettingsOption';
@@ -17,12 +18,29 @@ import SettingsDescription from '../../components/SettingsDescription';
 import SettingsTitle from '../../components/SettingsTitle';
 import StrongText from '../../components/StrongText';
 import StyledText from '../../components/StyledText';
-import BtcLabel from '../../components/BtcLabel';
 import BaseSettingsScreen from './BaseSettingsScreen';
 import config from '../../config';
 
 const AVERAGE_TRANSACTION_SIZE_BYTES = 225;
 const ERROR_COLOR = '#FF3B30';
+
+const styles = StyleSheet.create({
+  fees: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  bullet: {
+    marginHorizontal: 10,
+    height: 3,
+    width: 3,
+    borderRadius: 2,
+    backgroundColor: '#8A8A8F'
+  },
+  fiat: {
+    color: '#8A8A8F'
+  }
+});
 
 @connect((state) => ({
   settings: state.settings
@@ -119,7 +137,11 @@ export default class BitcoinFeeSettingsScreen extends Component {
     const estimatedFeeBtc = convertBitcoin(estimatedFee, UNIT_SATOSHIS, UNIT_BTC);
 
     return (
-      <BtcLabel amount={estimatedFeeBtc} unit={this.props.settings.bitcoin.unit} style={settingsStyles.label} />
+      <View style={styles.fees}>
+        <CurrencyLabelContainer amountBtc={estimatedFeeBtc} currencyType='primary' style={settingsStyles.label} />
+        <View style={styles.bullet} />
+        <CurrencyLabelContainer amountBtc={estimatedFeeBtc} currencyType='secondary' style={[settingsStyles.label, styles.fiat]} />
+      </View>
     );
   }
 
