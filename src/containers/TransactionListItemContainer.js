@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import { disableScroll } from '../actions';
 import TransactionListItem from '../components/TransactionListItem';
 
 const mapStateToProps = (state) => {
@@ -16,9 +18,30 @@ class TransactionListItemContainer extends Component {
     transaction: PropTypes.object.isRequired
   };
 
+  constructor() {
+    super(...arguments);
+
+    this._onPeekIn = this._onPeekIn.bind(this);
+    this._onPeekOut = this._onPeekOut.bind(this);
+  }
+
+  _onPeekIn() {
+    const { dispatch } = this.props;
+    dispatch(disableScroll(true));
+  }
+
+  _onPeekOut() {
+    const { dispatch } = this.props;
+    dispatch(disableScroll(false));
+  }
+
   render() {
     return (
-      <TransactionListItem {...this.props} />
+      <TransactionListItem
+        {...this.props}
+        onPeekIn={this._onPeekIn}
+        onPeekOut={this._onPeekOut}
+      />
     );
   }
 }

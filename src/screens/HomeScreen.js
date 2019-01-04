@@ -251,5 +251,6 @@ export default class HomeScreen extends Component {
 
 HomeScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  homeScreenIndex: PropTypes.number
 };

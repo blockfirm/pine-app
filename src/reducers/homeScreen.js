@@ -1,4 +1,5 @@
 import { SET_HOME_SCREEN_INDEX } from '../actions/setHomeScreenIndex';
+import { DISABLE_SCROLL } from '../actions/disableScroll';
 
 const homeScreen = (state = {}, action) => {
   switch (action.type) {
@@ -6,6 +7,12 @@ const homeScreen = (state = {}, action) => {
       return {
         ...state,
         index: action.index
+      };
+
+    case DISABLE_SCROLL:
+      return {
+        ...state,
+        scrollDisabled: action.disable
       };
 
     default:

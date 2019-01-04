@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
+import { Navigation } from 'react-native-navigation';
 
 import CurrencyLabelContainer from '../containers/CurrencyLabelContainer';
 import TransactionIcon from './icons/TransactionIcon';
@@ -63,6 +64,11 @@ const hasWalletAddress = (vout, externalAddresses, internalAddresses) => {
 };
 
 export default class TransactionListItem extends Component {
+  constructor() {
+    super(...arguments);
+    this._handlePress = this._handlePress.bind(this);
+  }
+
   _getAmount(transaction) {
     const { externalAddresses, internalAddresses } = this.props;
 
@@ -109,6 +115,23 @@ export default class TransactionListItem extends Component {
     return amount < 0 ? 'Sending' : 'Receiving';
   }
 
+  _handlePress(event) {
+    const reactTag = event && event.reactTag;
+
+    Navigation.push('Pine', {
+      component: {
+        name: 'TransactionDetails',
+        options: {
+          preview: reactTag ? {
+            reactTag,
+            height: 300,
+            commit: true
+          } : undefined
+        }
+      }
+    });
+  }
+
   render() {
     const transaction = this.props.transaction;
     const date = transaction.time ? new Date(transaction.time * 1000) : new Date();
@@ -117,17 +140,25 @@ export default class TransactionListItem extends Component {
     const transactionIconType = this._getIconType(transaction, amount);
 
     return (
-      <View style={styles.item}>
-        <TransactionIcon style={styles.icon} type={transactionIconType} />
-        <View>
-          <StyledText style={styles.title}>{title}</StyledText>
-          <RelativeDateLabel date={date} style={styles.dateLabel} />
+      <Navigation.TouchablePreview
+        touchableComponent={TouchableHighlight}
+        onPress={this._handlePress}
+        onPressIn={this._handlePress}
+        onPeekIn={this.props.onPeekIn}
+        onPeekOut={this.props.onPeekOut}
+      >
+        <View style={styles.item} >
+          <TransactionIcon style={styles.icon} type={transactionIconType} />
+          <View>
+            <StyledText style={styles.title}>{title}</StyledText>
+            <RelativeDateLabel date={date} style={styles.dateLabel} />
+          </View>
+          <View style={styles.rightContent}>
+            <CurrencyLabelContainer amountBtc={amount} currencyType='primary' style={styles.primaryCurrencyLabel} />
+            <CurrencyLabelContainer amountBtc={amount} currencyType='secondary' style={styles.secondaryCurrencyLabel} />
+          </View>
         </View>
-        <View style={styles.rightContent}>
-          <CurrencyLabelContainer amountBtc={amount} currencyType='primary' style={styles.primaryCurrencyLabel} />
-          <CurrencyLabelContainer amountBtc={amount} currencyType='secondary' style={styles.secondaryCurrencyLabel} />
-        </View>
-      </View>
+      </Navigation.TouchablePreview>
     );
   }
 }
@@ -135,5 +166,7 @@ export default class TransactionListItem extends Component {
 TransactionListItem.propTypes = {
   transaction: PropTypes.object.isRequired,
   externalAddresses: PropTypes.object,
-  internalAddresses: PropTypes.object
+  internalAddresses: PropTypes.object,
+  onPeekIn: PropTypes.func,
+  onPeekOut: PropTypes.func
 };

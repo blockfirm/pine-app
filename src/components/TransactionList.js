@@ -175,6 +175,7 @@ export default class TransactionList extends Component {
             onRefresh={this._onRefresh.bind(this)}
           />
         }
+        scrollEnabled={!this.props.scrollDisabled}
       />
     );
   }
@@ -182,5 +183,6 @@ export default class TransactionList extends Component {
 
 TransactionList.propTypes = {
   transactions: PropTypes.array.isRequired,
-  onRefresh: PropTypes.func.isRequired
+  onRefresh: PropTypes.func.isRequired,
+  scrollDisabled: PropTypes.bool
 };

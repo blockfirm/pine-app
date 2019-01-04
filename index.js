@@ -3,6 +3,7 @@ import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
 
 import App from './src/App';
+import TransactionDetailsScreen from './src/screens/TransactionDetailsScreen';
 import createStore from './src/createStore';
 import AppNavigator from './src/navigators/AppNavigator';
 
@@ -21,6 +22,7 @@ const store = createStore(navReducer);
  * and Pop with 3D Touch on iOS.
  */
 Navigation.registerComponentWithRedux('Pine', () => App, Provider, store);
+Navigation.registerComponentWithRedux('TransactionDetails', () => TransactionDetailsScreen, Provider, store);
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setDefaultOptions({
@@ -38,6 +40,7 @@ Navigation.events().registerAppLaunchedListener(() => {
         id: 'App',
         children: [{
           component: {
+            id: 'Pine',
             name: 'Pine',
             passProps: { store }
           }
