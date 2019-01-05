@@ -48,7 +48,7 @@ export default class TransactionsScreen extends Component {
 
   render() {
     return (
-      <BaseScreen style={styles.view}>
+      <BaseScreen hideHeader={true} style={styles.view}>
         <TransactionsScreenHeader onSettingsPress={this._showSettings.bind(this)} />
         <OfflineNoticeContainer />
         <TransactionListContainer ref={ref => { this._transactionList = ref && ref.getWrappedInstance(); }} />
