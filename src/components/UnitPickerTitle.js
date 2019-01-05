@@ -38,7 +38,7 @@ export default class UnitPickerTitle extends Component {
     const options = ['Cancel', ...denominations];
 
     ActionSheetIOS.showActionSheetWithOptions({
-      title: 'Pick Denomination Currency or Unit:',
+      title: 'Pick Denomination Unit:',
       cancelButtonIndex: 0,
       options
     }, (buttonIndex) => {
