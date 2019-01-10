@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactNativeHaptic from 'react-native-haptic';
@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     justifyContent: 'flex-start',
     alignItems: 'flex-start'
+  },
+  scroll: {
+    alignSelf: 'stretch'
   },
   amountContainer: {
     alignSelf: 'stretch',
@@ -362,33 +365,35 @@ export default class ReviewAndPayScreen extends Component {
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
         <ContentView style={styles.content}>
-          <View style={styles.amountContainer}>
-            <StyledText style={styles.payTitle}>PAY</StyledText>
-            <View>
-              <AutoFontSize margin={150}>
-                <BtcLabel amount={amountBtc} unit={displayUnit} hideUnit={true} style={styles.amount} />
-              </AutoFontSize>
+          <ScrollView style={styles.scroll}>
+            <View style={styles.amountContainer}>
+              <StyledText style={styles.payTitle}>PAY</StyledText>
+              <View>
+                <AutoFontSize margin={150}>
+                  <BtcLabel amount={amountBtc} unit={displayUnit} hideUnit={true} style={styles.amount} />
+                </AutoFontSize>
+              </View>
+              <UnitLabel unit={displayUnit} style={styles.amountUnit} />
             </View>
-            <UnitLabel unit={displayUnit} style={styles.amountUnit} />
-          </View>
-          <View style={styles.details}>
-            <View style={styles.detail}>
-              <StyledText style={styles.label}>To</StyledText>
-              <AddressLabel address={address} style={[styles.value, styles.address]} />
-            </View>
-            <View style={styles.detail}>
-              <StyledText style={styles.label}>Fee</StyledText>
-              <View style={styles.value}>
-                {this._renderFee()}
+            <View style={styles.details}>
+              <View style={styles.detail}>
+                <StyledText style={styles.label}>To</StyledText>
+                <AddressLabel address={address} style={[styles.value, styles.address]} />
+              </View>
+              <View style={styles.detail}>
+                <StyledText style={styles.label}>Fee</StyledText>
+                <View style={styles.value}>
+                  {this._renderFee()}
+                </View>
+              </View>
+              <View style={[styles.detail, styles.lastDetail]}>
+                <StyledText style={[styles.label, styles.bold]}>You Pay</StyledText>
+                <View style={styles.value}>
+                  {this._renderTotal()}
+                </View>
               </View>
             </View>
-            <View style={[styles.detail, styles.lastDetail]}>
-              <StyledText style={[styles.label, styles.bold]}>You Pay</StyledText>
-              <View style={styles.value}>
-                {this._renderTotal()}
-              </View>
-            </View>
-          </View>
+          </ScrollView>
         </ContentView>
         <Footer>
           <Button
