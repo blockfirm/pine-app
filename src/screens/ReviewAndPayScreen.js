@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     alignItems: 'center',
     padding: 30,
-    backgroundColor: '#FAFAFA',
-    borderRadius: 16,
+    backgroundColor: '#EFF0F8',
+    borderRadius: 8,
     margin: 16
   },
   payTitle: {
-    color: '#B1AFB7',
+    color: '#AAAAAA',
     fontSize: 17,
     letterSpacing: 0.07
   },
@@ -75,32 +75,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '400',
     letterSpacing: -0.1,
-    color: '#262626'
+    color: '#000000'
   },
   amountUnit: {
-    color: '#B1AFB7',
+    color: '#AAAAAA',
     fontSize: 17
   },
   details: {
     alignSelf: 'stretch',
     marginTop: 16,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: '#EFEEF0'
+    marginHorizontal: 16
   },
   detail: {
     paddingVertical: 16,
-    paddingRight: 16,
-    paddingLeft: 0,
-    marginLeft: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: '#EFEEF0'
+    borderColor: '#ECECEC'
   },
   lastDetail: {
     borderBottomWidth: 0
   },
   label: {
-    color: '#8A8A8F',
+    color: '#8E8E93',
     fontSize: 15
   },
   valueWrapper: {
@@ -109,14 +104,15 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   value: {
-    color: '#8A8A8F',
+    color: '#000000',
     fontSize: 15,
     position: 'absolute',
-    right: 16,
+    right: 0,
     top: 16
   },
-  address: {
-    fontSize: 14
+  valueLabel: {
+    color: '#000000',
+    fontSize: 15
   },
   errorText: {
     color: '#FF3B30'
@@ -338,7 +334,7 @@ export default class ReviewAndPayScreen extends Component {
     }
 
     return (
-      <FeeLabel fee={feeBtc} amount={amountBtc} unit={displayUnit} style={styles.label} />
+      <FeeLabel fee={feeBtc} amount={amountBtc} unit={displayUnit} style={styles.valueLabel} />
     );
   }
 
@@ -350,9 +346,9 @@ export default class ReviewAndPayScreen extends Component {
 
     return (
       <View style={styles.valueWrapper}>
-        <CurrencyLabelContainer amountBtc={totalAmount} currencyType='primary' style={[styles.label, styles.bold]} />
+        <CurrencyLabelContainer amountBtc={totalAmount} currencyType='primary' style={[styles.valueLabel, styles.bold]} />
         <Bullet />
-        <CurrencyLabelContainer amountBtc={totalAmount} currencyType='secondary' style={styles.label} />
+        <CurrencyLabelContainer amountBtc={totalAmount} currencyType='secondary' style={styles.valueLabel} />
       </View>
     );
   }
@@ -378,7 +374,7 @@ export default class ReviewAndPayScreen extends Component {
             <View style={styles.details}>
               <View style={styles.detail}>
                 <StyledText style={styles.label}>To</StyledText>
-                <AddressLabel address={address} style={[styles.value, styles.address]} />
+                <AddressLabel address={address} style={styles.value} />
               </View>
               <View style={styles.detail}>
                 <StyledText style={styles.label}>Fee</StyledText>

@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 const STUB_LENGTH = 8;
-
-const styles = StyleSheet.create({
-  label: {
-    fontFamily: 'Menlo'
-  }
-});
 
 export default class AddressLabel extends Component {
   _getShortenedAddress() {
@@ -28,7 +22,7 @@ export default class AddressLabel extends Component {
     const shortenedAddress = this._getShortenedAddress();
 
     return (
-      <Text style={[styles.label, this.props.style]}>
+      <Text style={this.props.style}>
         {shortenedAddress}
       </Text>
     );

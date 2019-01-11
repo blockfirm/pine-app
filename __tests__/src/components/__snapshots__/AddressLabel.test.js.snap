@@ -1,31 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AddressLabel renders an address correctly 1`] = `
-<Text
-  style={
-    Array [
-      Object {
-        "fontFamily": "Menlo",
-      },
-      undefined,
-    ]
-  }
->
+<Text>
   moYihV4R...Hnvxfesx
 </Text>
 `;
 
 exports[`AddressLabel renders an empty address correctly 1`] = `
-<Text
-  style={
-    Array [
-      Object {
-        "fontFamily": "Menlo",
-      },
-      undefined,
-    ]
-  }
->
+<Text>
   
 </Text>
 `;
