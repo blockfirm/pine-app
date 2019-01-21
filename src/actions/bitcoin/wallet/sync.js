@@ -1,3 +1,4 @@
+import { InteractionManager } from 'react-native';
 import { getNewByAddress as getNewTransactionsByAddress } from '../blockchain/transactions/getNewByAddress';
 import { sync as syncSubscriptions } from '../subscriptions/sync';
 import { update as updateUtxos } from './utxos';
@@ -33,6 +34,12 @@ const syncFailure = (error) => {
   };
 };
 
+const waitForInteractions = () => {
+  return new Promise((resolve) => {
+    InteractionManager.runAfterInteractions(resolve);
+  });
+};
+
 /**
  * Flags addresses found in the transaction list as being used.
  */
@@ -58,7 +65,13 @@ const concatTransactions = (addressTransactions) => {
  * @param {array} oldTransactions - List of old transactions. Used to identify old transactions.
  */
 const getNewTransactionsForBatch = (dispatch, addresses, oldTransactions) => {
-  return dispatch(getNewTransactionsByAddress(addresses, oldTransactions))
+  return waitForInteractions()
+    .then(() => {
+      return dispatch(getNewTransactionsByAddress(addresses, oldTransactions));
+    })
+    .then((transactions) => {
+      return waitForInteractions().then(() => transactions);
+    })
     .then((transactions) => {
       // Flag addresses with transactions as used.
       flagAddressesAsUsed(dispatch, transactions);
@@ -131,6 +144,9 @@ export const sync = () => {
       .then(() => {
         // Then get new transactions.
         return getAllNewTransactions(dispatch, state);
+      })
+      .then(() => {
+        return waitForInteractions();
       })
       .then(() => {
         // Save addresses that has been flagged as used.
