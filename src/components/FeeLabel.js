@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 export default class FeeLabel extends Component {
   _getPercentage() {
     const { amount, fee } = this.props;
-    return fee / amount * 100;
+    return fee / Math.abs(amount) * 100;
   }
 
   _getPercentageColor() {

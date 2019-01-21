@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
+import getTransactionAmount from '../crypto/bitcoin/getTransactionAmount';
+import TransactionTitleContainer from '../containers/transaction/TransactionTitleContainer';
 import CurrencyLabelContainer from '../containers/CurrencyLabelContainer';
 import TransactionIcon from './icons/TransactionIcon';
-import StyledText from './StyledText';
 import RelativeDateLabel from './RelativeDateLabel';
 
 const styles = StyleSheet.create({
@@ -50,43 +51,10 @@ const styles = StyleSheet.create({
   }
 });
 
-const hasExternalWalletAddress = (vout, externalAddresses) => {
-  return vout.scriptPubKey.addresses.some((address) => {
-    return address in externalAddresses;
-  });
-};
-
-const hasWalletAddress = (vout, externalAddresses, internalAddresses) => {
-  return vout.scriptPubKey.addresses.some((address) => {
-    return address in externalAddresses || address in internalAddresses;
-  });
-};
-
 export default class TransactionListItem extends Component {
-  _getAmount(transaction) {
-    const { externalAddresses, internalAddresses } = this.props;
-
-    const externalVouts = transaction.vout.filter((vout) => {
-      return hasExternalWalletAddress(vout, externalAddresses);
-    });
-
-    if (externalVouts.length > 0) {
-      const amount = externalVouts.reduce((sum, vout) => {
-        return sum + vout.value;
-      }, 0);
-
-      return amount;
-    }
-
-    const recipientVouts = transaction.vout.filter((vout) => {
-      return !hasWalletAddress(vout, externalAddresses, internalAddresses);
-    });
-
-    const amount = recipientVouts.reduce((sum, vout) => {
-      return sum + vout.value;
-    }, 0);
-
-    return -amount;
+  _getAmount() {
+    const { transaction, externalAddresses, internalAddresses } = this.props;
+    return getTransactionAmount(transaction, externalAddresses, internalAddresses);
   }
 
   _getIconType(transaction, amount) {
@@ -99,35 +67,24 @@ export default class TransactionListItem extends Component {
     return amount < 0 ? TransactionIcon.TYPE_SENDING : TransactionIcon.TYPE_RECEIVING;
   }
 
-  _getTitle(transaction, amount) {
-    const confirmations = transaction.confirmations;
-
-    if (confirmations) {
-      return amount < 0 ? 'Sent' : 'Received';
-    }
-
-    return amount < 0 ? 'Sending' : 'Receiving';
-  }
-
   render() {
     const transaction = this.props.transaction;
     const date = transaction.time ? new Date(transaction.time * 1000) : new Date();
-    const amount = this._getAmount(transaction);
-    const title = this._getTitle(transaction, amount);
+    const amount = this._getAmount();
     const transactionIconType = this._getIconType(transaction, amount);
 
     return (
-      <View style={styles.item}>
+      <TouchableOpacity onPress={this.props.onPress} style={styles.item}>
         <TransactionIcon style={styles.icon} type={transactionIconType} />
         <View>
-          <StyledText style={styles.title}>{title}</StyledText>
+          <TransactionTitleContainer transaction={transaction} style={styles.title} />
           <RelativeDateLabel date={date} style={styles.dateLabel} />
         </View>
         <View style={styles.rightContent}>
           <CurrencyLabelContainer amountBtc={amount} currencyType='primary' style={styles.primaryCurrencyLabel} />
           <CurrencyLabelContainer amountBtc={amount} currencyType='secondary' style={styles.secondaryCurrencyLabel} />
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
@@ -135,5 +92,6 @@ export default class TransactionListItem extends Component {
 TransactionListItem.propTypes = {
   transaction: PropTypes.object.isRequired,
   externalAddresses: PropTypes.object,
-  internalAddresses: PropTypes.object
+  internalAddresses: PropTypes.object,
+  onPress: PropTypes.func
 };

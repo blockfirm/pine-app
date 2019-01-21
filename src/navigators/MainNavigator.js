@@ -7,6 +7,7 @@ import ConfirmMnemonicScreen from '../screens/ConfirmMnemonicScreen';
 import ImportMnemonicScreen from '../screens/ImportMnemonicScreen';
 import DisclaimerScreen from '../screens/DisclaimerScreen';
 import HomeScreen from '../screens/HomeScreen';
+import TransactionDetailsScreen from '../screens/TransactionDetailsScreen';
 
 const MainNavigator = createStackNavigator({
   Splash: { screen: SplashScreen },
@@ -15,7 +16,8 @@ const MainNavigator = createStackNavigator({
   ConfirmMnemonic: { screen: ConfirmMnemonicScreen },
   ImportMnemonic: { screen: ImportMnemonicScreen },
   Disclaimer: { screen: DisclaimerScreen },
-  Home: { screen: HomeScreen }
+  Home: { screen: HomeScreen },
+  TransactionDetails: { screen: TransactionDetailsScreen }
 }, {
   headerMode: 'screen',
   initialRouteName: 'Splash'
