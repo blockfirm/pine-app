@@ -62,22 +62,19 @@ const updateTransactions = (oldTransactions, transactions) => {
 };
 
 const itemsReducer = (state = [], action) => {
-  let newState;
-
   switch (action.type) {
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_LOAD_SUCCESS:
       return action.transactions;
 
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_ADD_SUCCESS:
-      newState = [
-        ...state,
-        ...getUniqueTransactions(state, action.transactions)
-      ];
+      getUniqueTransactions(state, action.transactions).forEach((transaction) => {
+        state.push(transaction);
+      });
 
       // Sort ascending on time.
-      newState.sort((a, b) => a.time - b.time);
+      state.sort((a, b) => a.time - b.time);
 
-      return newState;
+      return state;
 
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS:
       return updateTransactions(state, action.transactions);
