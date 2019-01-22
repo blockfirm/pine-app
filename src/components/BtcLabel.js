@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import formatNumber from '../localization/formatNumber';
+
+import { formatNumber } from '../localization';
 import StyledText from './StyledText';
 
 const UNIT_BTC = 'BTC';

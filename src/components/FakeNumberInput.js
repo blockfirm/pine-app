@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Animated, Easing, Clipboard } from 'react-native';
 import PropTypes from 'prop-types';
 import ToolTip from 'react-native-tooltip';
+
+import { DECIMAL_SEPARATOR, THOUSANDS_SEPARATOR } from '../localization';
 import AutoFontSize from './AutoFontSize';
 
 const CARET_HEIGHT_RATIO = 1.2;
@@ -107,7 +109,7 @@ export default class FakeNumberInput extends Component {
       return value;
     }
 
-    const parts = value.split('.');
+    const parts = value.split(DECIMAL_SEPARATOR);
     const integer = parts[0];
     const fractional = parts[1];
 
@@ -116,14 +118,14 @@ export default class FakeNumberInput extends Component {
     }
 
     const reversedInteger = reverseString(integer);
-    const maskedReversedInteger = reversedInteger.match(/.{1,3}/g).join(' ');
+    const maskedReversedInteger = reversedInteger.match(/.{1,3}/g).join(THOUSANDS_SEPARATOR);
     const maskedInteger = reverseString(maskedReversedInteger);
 
     if (fractional === undefined) {
       return maskedInteger;
     }
 
-    return `${maskedInteger}.${fractional}`;
+    return `${maskedInteger}${DECIMAL_SEPARATOR}${fractional}`;
   }
 
   _onPaste() {
@@ -132,7 +134,12 @@ export default class FakeNumberInput extends Component {
     }
 
     Clipboard.getString().then((string) => {
-      const number = parseFloat(string);
+      if (typeof string !== 'string') {
+        return;
+      }
+
+      const normalized = string.replace(DECIMAL_SEPARATOR, '.');
+      const number = parseFloat(normalized);
 
       if (!isNaN(number) && number > 0) {
         this.props.onPaste(number.toString());

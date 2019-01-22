@@ -24,6 +24,7 @@ import ContentView from '../components/ContentView';
 import Footer from '../components/Footer';
 import CancelButton from '../components/CancelButton';
 import StyledText from '../components/StyledText';
+import { DECIMAL_SEPARATOR } from '../localization';
 import BaseScreen from './BaseScreen';
 
 const CURRENCY_BTC = 'BTC';
@@ -104,15 +105,24 @@ export default class EnterAmountScreen extends Component {
     }
   }
 
+  _getNormalizedAmount(amount) {
+    if (!amount) {
+      return 0;
+    }
+
+    return parseFloat(amount.replace(DECIMAL_SEPARATOR, '.'));
+  }
+
   _getBtcAmount(amount) {
+    const normalizedAmount = this._getNormalizedAmount(amount);
     const { displayCurrency, displayUnit } = this.props.navigation.state.params;
     let amountBtc = 0;
 
     if (displayCurrency === CURRENCY_BTC) {
-      amountBtc = convertBitcoin(parseFloat(amount), displayUnit, UNIT_BTC);
+      amountBtc = convertBitcoin(normalizedAmount, displayUnit, UNIT_BTC);
     } else {
       const fiatRate = this.props.fiatRates[displayCurrency];
-      amountBtc = fiatRate ? (parseFloat(amount) / fiatRate) : 0;
+      amountBtc = fiatRate ? (normalizedAmount / fiatRate) : 0;
     }
 
     return amountBtc;
@@ -123,7 +133,7 @@ export default class EnterAmountScreen extends Component {
       return amount;
     }
 
-    const parts = amount.split('.');
+    const parts = amount.split(DECIMAL_SEPARATOR);
     let integer = parts[0];
     let fractional = parts[1];
 
@@ -154,25 +164,25 @@ export default class EnterAmountScreen extends Component {
       return integer;
     }
 
-    return `${integer}.${fractional}`;
+    return `${integer}${DECIMAL_SEPARATOR}${fractional}`;
   }
 
   _sanitizeAmount(amount) {
-    let sanitized = amount;
+    let sanitized = amount.replace('.', DECIMAL_SEPARATOR);
 
     const { displayCurrency, displayUnit } = this.props.navigation.state.params;
     const lastChar = sanitized.slice(-1);
-    const periods = sanitized.match(/\./g);
+    const periods = sanitized.match(DECIMAL_SEPARATOR);
     const periodCount = periods ? periods.length : 0;
 
     // Only allow one decimal place.
-    if (lastChar === '.' && periodCount > 1) {
+    if (lastChar === DECIMAL_SEPARATOR && periodCount > 1) {
       sanitized = sanitized.slice(0, -1);
     }
 
     // Add 0 if amount starts with period.
-    if (sanitized === '.') {
-      sanitized = '0.';
+    if (sanitized === DECIMAL_SEPARATOR) {
+      sanitized = '0' + DECIMAL_SEPARATOR;
     }
 
     // Remove multiple leading zeros.
@@ -261,7 +271,7 @@ export default class EnterAmountScreen extends Component {
 
   render() {
     const { amount, insufficientFunds } = this.state;
-    const disabled = insufficientFunds || parseFloat(amount || 0) === 0;
+    const disabled = insufficientFunds || this._getNormalizedAmount(amount) === 0;
     const textColor = insufficientFunds ? ERROR_COLOR : undefined;
 
     return (

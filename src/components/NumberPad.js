@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, Dimensions, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
+
+import { DECIMAL_SEPARATOR } from '../localization';
 import DeleteIcon from './icons/keyboard/DeleteIcon';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
@@ -100,7 +102,7 @@ export default class NumberPad extends Component {
       this._renderKey('8'),
       this._renderKey('9', styles.right),
 
-      this._renderKey('.', styles.left),
+      this._renderKey(DECIMAL_SEPARATOR, styles.left),
       this._renderKey('0'),
       this._renderDeleteKey()
     ];
