@@ -14,7 +14,7 @@ exports[`BtcLabel when unit is BTC renders -0.02784 BTC correctly 1`] = `
   }
 >
   -
-  2.784M sats
+  2,784,000 sats
 </Text>
 `;
 
@@ -133,7 +133,7 @@ exports[`BtcLabel when unit is BTC renders 4000 BTC correctly 1`] = `
     ]
   }
 >
-  4 000 BTC
+  4,000 BTC
 </Text>
 `;
 
@@ -151,7 +151,7 @@ exports[`BtcLabel when unit is Satoshis renders -0.08 BTC correctly 1`] = `
   }
 >
   -
-  8M sats
+  8,000,000 sats
 </Text>
 `;
 
@@ -202,7 +202,7 @@ exports[`BtcLabel when unit is Satoshis renders 0.00002001 BTC correctly 1`] = `
     ]
   }
 >
-  2 001 sats
+  2,001 sats
 </Text>
 `;
 
@@ -219,7 +219,7 @@ exports[`BtcLabel when unit is Satoshis renders 2 BTC correctly 1`] = `
     ]
   }
 >
-  200M sats
+  200,000,000 sats
 </Text>
 `;
 
@@ -237,7 +237,7 @@ exports[`BtcLabel when unit is mBTC renders -1.4234 BTC correctly 1`] = `
   }
 >
   -
-  1 423.4 mBTC
+  1,423.4 mBTC
 </Text>
 `;
 
@@ -305,7 +305,7 @@ exports[`BtcLabel when unit is mBTC renders 2 BTC correctly 1`] = `
     ]
   }
 >
-  2 000 mBTC
+  2,000 mBTC
 </Text>
 `;
 

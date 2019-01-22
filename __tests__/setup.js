@@ -4,3 +4,7 @@ jest.mock('Settings', () => ({
 }));
 
 jest.mock('../src/config');
+
+jest.mock('../src/localization/getLocale', () => {
+  return () => 'en_US';
+});

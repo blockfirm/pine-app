@@ -1,26 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import formatNumber from '../localization/formatNumber';
 import StyledText from './StyledText';
 
 const UNIT_BTC = 'BTC';
 const UNIT_MBTC = 'mBTC';
 const UNIT_SATOSHIS = 'Satoshis';
-
-const splitNumber = (number) => {
-  const parts = number.split('.');
-  const integer = parts[0];
-  const fractional = parts[1];
-
-  return { integer, fractional };
-};
-
-const trimTrailingZeros = (number) => {
-  if (!number) {
-    return '';
-  }
-
-  return number.replace(/[0]+$/, '');
-};
 
 const getUnitLabel = (unit) => {
   if (unit === UNIT_SATOSHIS) {
@@ -30,63 +15,16 @@ const getUnitLabel = (unit) => {
   return unit;
 };
 
-const reverseString = (string) => {
-  return string.split('').reverse().join('');
-};
-
-const addThousandsSeparators = (integer) => {
-  if (!integer || integer.length < 4) {
-    return integer;
-  }
-
-  const reversedInteger = reverseString(integer);
-  const maskedReversedInteger = reversedInteger.match(/.{1,3}/g).join(' ');
-  const maskedInteger = reverseString(maskedReversedInteger);
-
-  return maskedInteger;
-};
-
 const formatBtc = (amount) => {
-  const amountString = amount.toFixed(8);
-  const number = splitNumber(amountString);
-
-  number.fractional = trimTrailingZeros(number.fractional);
-
-  return number;
+  return amount.toFixed(8);
 };
 
 const formatMBtc = (amount) => {
-  const amountString = (amount * 1000).toFixed(5);
-  const number = splitNumber(amountString);
-
-  number.fractional = trimTrailingZeros(number.fractional);
-
-  return number;
+  return (amount * 1000).toFixed(5);
 };
 
 const formatSatoshis = (amount) => {
-  let satoshis = amount * 100000000;
-  let amountString;
-  let suffix = '';
-
-  if (satoshis > 1000000) {
-    satoshis /= 1000000;
-    suffix = 'M';
-    amountString = satoshis.toFixed(6);
-  } else if (satoshis > 100000) {
-    satoshis /= 1000;
-    suffix = 'k';
-    amountString = satoshis.toFixed(3);
-  } else {
-    amountString = satoshis.toFixed(0);
-  }
-
-  const number = splitNumber(amountString);
-
-  number.fractional = trimTrailingZeros(number.fractional);
-  number.suffix = suffix;
-
-  return number;
+  return (amount * 100000000).toFixed(0);
 };
 
 const formatAmount = (amount, unit, hideUnit) => {
@@ -96,33 +34,28 @@ const formatAmount = (amount, unit, hideUnit) => {
     return `0 ${unitLabel}`.trim();
   }
 
-  let number;
+  let amountString;
 
   switch (unit) {
     case UNIT_BTC:
-      number = formatBtc(amount);
+      amountString = formatBtc(amount);
       break;
 
     case UNIT_MBTC:
-      number = formatMBtc(amount);
+      amountString = formatMBtc(amount);
       break;
 
     case UNIT_SATOSHIS:
-      number = formatSatoshis(amount);
+      amountString = formatSatoshis(amount);
       break;
 
     default:
       return '❓';
   }
 
-  number.integer = addThousandsSeparators(number.integer);
-  number.suffix = number.suffix || '';
+  amountString = formatNumber(amountString);
 
-  if (!number.fractional) {
-    return `${number.integer}${number.suffix} ${unitLabel}`.trim();
-  }
-
-  return `${number.integer}.${number.fractional}${number.suffix} ${unitLabel}`.trim();
+  return `${amountString} ${unitLabel}`.trim();
 };
 
 export default class BtcLabel extends Component {
