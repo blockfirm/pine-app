@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 
-import { formatTime } from '../localization';
+import { formatTime, REGION_LOCALE } from '../localization';
 import StyledText from './StyledText';
 
 const UPDATE_INTERVAL = 60 * 1000; // Every minute.
+
+// Use English as language until other languages are supported.
+const DATE_LOCALE = `en-${REGION_LOCALE}`;
 
 moment.updateLocale('en', {
   relativeTime: {
@@ -86,10 +89,10 @@ export default class RelativeDateLabel extends Component {
     }
 
     if (momentDate.isSame(now, 'year')) {
-      return momentDate.format('MMMM D');
+      return date.toLocaleDateString(DATE_LOCALE, { month: 'long', day: 'numeric' });
     }
 
-    return momentDate.format('MMMM D, YYYY');
+    return date.toLocaleDateString(DATE_LOCALE, { year: 'numeric', month: 'long', day: 'numeric' });
   }
 
   render() {
