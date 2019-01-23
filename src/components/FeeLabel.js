@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { formatPercentage } from '../localization';
 import Bullet from './typography/Bullet';
 import StyledText from './StyledText';
 import BtcLabel from './BtcLabel';
@@ -37,15 +38,7 @@ export default class FeeLabel extends Component {
 
   _renderFeePercentage() {
     const percentage = this._getPercentage();
-    let label;
-
-    if (percentage > 100) {
-      label = Math.round(percentage).toString();
-    } else {
-      label = percentage.toPrecision(2);
-    }
-
-    return `${label}%`;
+    return formatPercentage(percentage);
   }
 
   render() {
