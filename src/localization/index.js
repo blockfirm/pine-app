@@ -9,3 +9,4 @@ export { default as THOUSANDS_SEPARATOR } from './thousandsSeparator';
 export { default as formatCurrency } from './formatCurrency';
 export { default as formatNumber } from './formatNumber';
 export { default as formatPercentage } from './formatPercentage';
+export { default as formatTime } from './formatTime';

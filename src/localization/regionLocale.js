@@ -1,5 +1,5 @@
 import LOCALE from './locale';
 
-const REGION_LOCALE = LOCALE.split('_')[1];
+const REGION_LOCALE = LOCALE.split('-')[1];
 
 export default REGION_LOCALE;

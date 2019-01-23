@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
+
+import { formatTime } from '../localization';
 import StyledText from './StyledText';
 
 const UPDATE_INTERVAL = 60 * 1000; // Every minute.
@@ -68,7 +70,7 @@ export default class RelativeDateLabel extends Component {
     const momentDate = moment(date);
     const now = moment();
     const yesterday = moment().subtract(1, 'days');
-    const time = momentDate.format('HH:mm');
+    const time = formatTime(date);
 
     if (momentDate.isSame(now, 'day')) {
       return this._getRelativeDate(date);

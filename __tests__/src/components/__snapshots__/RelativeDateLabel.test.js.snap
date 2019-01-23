@@ -81,7 +81,7 @@ exports[`RelativeDateLabel renders correctly when date was 2 days ago but still 
     ]
   }
 >
-  Tuesday, 20:59
+  Tuesday, 8:59 PM
 </Text>
 `;
 
@@ -132,6 +132,6 @@ exports[`RelativeDateLabel renders correctly when date was yesterday 1`] = `
     ]
   }
 >
-  Yesterday, 20:59
+  Yesterday, 8:59 PM
 </Text>
 `;
