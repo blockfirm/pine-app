@@ -17,6 +17,23 @@ exports[`FiatLabel when amount is null renders correctly 1`] = `
 </Text>
 `;
 
+exports[`FiatLabel when currency is SEK renders -300.5 SEK correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  -300.50 kr
+</Text>
+`;
+
 exports[`FiatLabel when currency is SEK renders 0 SEK correctly 1`] = `
 <Text
   style={
@@ -30,7 +47,7 @@ exports[`FiatLabel when currency is SEK renders 0 SEK correctly 1`] = `
     ]
   }
 >
-  0 SEK
+  0 kr
 </Text>
 `;
 
@@ -47,7 +64,7 @@ exports[`FiatLabel when currency is SEK renders 2 SEK correctly 1`] = `
     ]
   }
 >
-  2 SEK
+  2 kr
 </Text>
 `;
 
@@ -64,7 +81,7 @@ exports[`FiatLabel when currency is SEK renders 2.00 SEK correctly 1`] = `
     ]
   }
 >
-  2 SEK
+  2 kr
 </Text>
 `;
 
@@ -81,7 +98,7 @@ exports[`FiatLabel when currency is SEK renders 2.30 SEK correctly 1`] = `
     ]
   }
 >
-  2.30 SEK
+  2.30 kr
 </Text>
 `;
 
@@ -98,7 +115,24 @@ exports[`FiatLabel when currency is SEK renders 4000 SEK correctly 1`] = `
     ]
   }
 >
-  4,000 SEK
+  4,000 kr
+</Text>
+`;
+
+exports[`FiatLabel when currency is USD renders -20.5 USD correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      undefined,
+    ]
+  }
+>
+  -$20.50
 </Text>
 `;
 
@@ -115,7 +149,7 @@ exports[`FiatLabel when currency is USD renders 0 USD correctly 1`] = `
     ]
   }
 >
-  0 USD
+  $0
 </Text>
 `;
 
@@ -132,7 +166,7 @@ exports[`FiatLabel when currency is USD renders 2 USD correctly 1`] = `
     ]
   }
 >
-  2 USD
+  $2
 </Text>
 `;
 
@@ -149,7 +183,7 @@ exports[`FiatLabel when currency is USD renders 2.00 USD correctly 1`] = `
     ]
   }
 >
-  2 USD
+  $2
 </Text>
 `;
 
@@ -166,7 +200,7 @@ exports[`FiatLabel when currency is USD renders 2.30 USD correctly 1`] = `
     ]
   }
 >
-  2.30 USD
+  $2.30
 </Text>
 `;
 
@@ -183,6 +217,6 @@ exports[`FiatLabel when currency is USD renders 4000 USD correctly 1`] = `
     ]
   }
 >
-  4,000 USD
+  $4,000
 </Text>
 `;

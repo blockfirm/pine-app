@@ -53,6 +53,14 @@ describe('FiatLabel', () => {
 
       expect(tree).toMatchSnapshot();
     });
+
+    it('renders -20.5 USD correctly', () => {
+      const tree = renderer.create(
+        <FiatLabel amount={-20.5} currency='USD' />
+      ).toJSON();
+
+      expect(tree).toMatchSnapshot();
+    });
   });
 
   describe('when currency is SEK', () => {
@@ -91,6 +99,14 @@ describe('FiatLabel', () => {
     it('renders 4000 SEK correctly', () => {
       const tree = renderer.create(
         <FiatLabel amount={4000} currency='SEK' />
+      ).toJSON();
+
+      expect(tree).toMatchSnapshot();
+    });
+
+    it('renders -300.5 SEK correctly', () => {
+      const tree = renderer.create(
+        <FiatLabel amount={-300.5} currency='SEK' />
       ).toJSON();
 
       expect(tree).toMatchSnapshot();

@@ -1,10 +1,10 @@
-import getDecimalSeparator from './getDecimalSeparator';
-import getThousandsSeparator from './getThousandsSeparator';
+export { default as FIAT_CURRENCIES } from './currencies/fiatCurrencies';
+export { default as FIAT_CURRENCY_SYMBOLS } from './currencies/fiatSymbols';
 
-export { default as getLocale } from './getLocale';
-export { default as getRegionLocale } from './getRegionLocale';
+export { default as LOCALE } from './locale';
+export { default as REGION_LOCALE } from './regionLocale';
+export { default as DECIMAL_SEPARATOR } from './decimalSeparator';
+export { default as THOUSANDS_SEPARATOR } from './thousandsSeparator';
+
+export { default as formatCurrency } from './formatCurrency';
 export { default as formatNumber } from './formatNumber';
-export { getDecimalSeparator, getThousandsSeparator };
-
-export const DECIMAL_SEPARATOR = getDecimalSeparator();
-export const THOUSANDS_SEPARATOR = getThousandsSeparator();

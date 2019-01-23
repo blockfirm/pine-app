@@ -1,6 +1,4 @@
-import getRegionLocale from './getRegionLocale';
-
-const regionLocale = getRegionLocale();
+import REGION_LOCALE from './regionLocale';
 
 const formatNumber = (number) => {
   const formatOptions = {
@@ -8,7 +6,7 @@ const formatNumber = (number) => {
     maximumFractionDigits: 20
   };
 
-  return new Intl.NumberFormat(regionLocale, formatOptions).format(number);
+  return new Intl.NumberFormat(REGION_LOCALE, formatOptions).format(number);
 };
 
 export default formatNumber;

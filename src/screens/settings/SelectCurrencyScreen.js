@@ -11,17 +11,13 @@ import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsOption from '../../components/SettingsOption';
 import BaseSettingsScreen from './BaseSettingsScreen';
-import fiatCurrencies from '../../currencies/fiat';
+import { FIAT_CURRENCIES } from '../../localization';
 import config from '../../config';
 
 const TITLES = {
   'primary': 'Primary Currency',
   'secondary': 'Secondary Currency'
 };
-
-const CURRENCIES = [
-  ...fiatCurrencies
-].sort();
 
 const styles = StyleSheet.create({
   view: {
@@ -80,7 +76,7 @@ export default class SelectCurrencyScreen extends Component {
 
   _renderOptions() {
     let searchTerm = this.state.searchTerm || '';
-    let visibleCurrencies = CURRENCIES;
+    let visibleCurrencies = FIAT_CURRENCIES;
 
     searchTerm = searchTerm.toLowerCase().trim();
 
