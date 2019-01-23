@@ -98,7 +98,7 @@ exports[`FiatLabel when currency is SEK renders 4000 SEK correctly 1`] = `
     ]
   }
 >
-  4 000 SEK
+  4,000 SEK
 </Text>
 `;
 
@@ -183,6 +183,6 @@ exports[`FiatLabel when currency is USD renders 4000 USD correctly 1`] = `
     ]
   }
 >
-  4 000 USD
+  4,000 USD
 </Text>
 `;

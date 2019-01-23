@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import { getRegionLocale, DECIMAL_SEPARATOR } from '../localization';
 import StyledText from './StyledText';
 
 const formatAmount = (amount, currency) => {
   if (amount === null) {
     return `- ${currency}`;
-  }
-
-  if (!amount) {
-    return `0 ${currency}`;
   }
 
   const formatOptions = {
@@ -17,11 +15,13 @@ const formatAmount = (amount, currency) => {
     currency
   };
 
-  let formattedAmount = new Intl.NumberFormat('en-US', formatOptions).format(amount);
+  let formattedAmount = new Intl.NumberFormat(getRegionLocale(), formatOptions).format(amount);
 
-  formattedAmount = formattedAmount.replace(currency, '');
-  formattedAmount = formattedAmount.replace(',', ' ');
-  formattedAmount = formattedAmount.replace('.00', '');
+  // Remove the currency code - it will be added at the end (some locales will add it as a prefix).
+  formattedAmount = formattedAmount.replace(currency, '').trim();
+
+  // Remove decimals when they're all zeros, e.g. '.00'.
+  formattedAmount = formattedAmount.replace(new RegExp(`\\${DECIMAL_SEPARATOR}[0]+$`), '');
 
   return `${formattedAmount} ${currency}`;
 };
