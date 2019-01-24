@@ -2,8 +2,7 @@ import TouchID from 'react-native-touch-id';
 
 const authenticate = () => {
   const options = {
-    passcodeFallback: true, // Use passcode if the user doesn't have Touch ID or Face ID.
-    fallbackLabel: ''
+    passcodeFallback: true // Use passcode if the user doesn't have Touch ID or Face ID.
   };
 
   return TouchID.authenticate(null, options)
