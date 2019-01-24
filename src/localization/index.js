@@ -3,6 +3,7 @@ export { default as FIAT_CURRENCY_SYMBOLS } from './currencies/fiatSymbols';
 
 export { default as LOCALE } from './locale';
 export { default as REGION_LOCALE } from './regionLocale';
+export { default as REGION_CURRENCY } from './regionCurrency';
 export { default as DECIMAL_SEPARATOR } from './decimalSeparator';
 export { default as THOUSANDS_SEPARATOR } from './thousandsSeparator';
 

@@ -1,3 +1,6 @@
+/**
+ * List of supported ISO 4217 currency codes.
+ */
 export default [
   'AED',
   'AFN',

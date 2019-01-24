@@ -1,4 +1,6 @@
 /* eslint-disable lines-around-comment */
+import { REGION_CURRENCY } from './localization';
+
 export default {
   initialized: false, // If false, show welcome screen
   user: {
@@ -28,6 +30,6 @@ export default {
   },
   currency: {
     primary: 'BTC',
-    secondary: 'USD'
+    secondary: REGION_CURRENCY
   }
 };
