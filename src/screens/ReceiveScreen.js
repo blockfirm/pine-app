@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Clipboard, Share } from 'react-native';
+import { StyleSheet, Clipboard, Share, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import QRCode from 'react-qr-code';
@@ -10,6 +10,7 @@ import ReceiveScreenHeader from '../components/ReceiveScreenHeader';
 import ContentView from '../components/ContentView';
 import Paragraph from '../components/Paragraph';
 import Button from '../components/Button';
+import AddressLabel from '../components/AddressLabel';
 
 const styles = StyleSheet.create({
   view: {
@@ -18,6 +19,11 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     marginBottom: 0
+  },
+  address: {
+    textAlign: 'center',
+    color: '#AAAAAA',
+    marginTop: 15
   }
 });
 
@@ -64,7 +70,10 @@ export default class ReceiveScreen extends Component {
             Show this QR code or share your address with someone who should send you bitcoin.
           </Paragraph>
 
-          <QRCode value={qrData} size={200} />
+          <View>
+            <QRCode value={qrData} size={200} />
+            <AddressLabel address={address} textStyle={styles.address} tooltipArrowDirection='up' />
+          </View>
 
           <Button
             label={label}

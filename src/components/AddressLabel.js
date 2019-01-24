@@ -40,6 +40,7 @@ export default class AddressLabel extends Component {
           ]}
           underlayColor='white'
           activeOpacity={1}
+          arrowDirection={this.props.tooltipArrowDirection}
         >
           <Text style={this.props.textStyle}>
             {shortenedAddress}
@@ -53,5 +54,6 @@ export default class AddressLabel extends Component {
 AddressLabel.propTypes = {
   style: PropTypes.any,
   textStyle: PropTypes.any,
+  tooltipArrowDirection: PropTypes.string,
   address: PropTypes.string
 };
