@@ -13,8 +13,8 @@
   "bugs": "https://github.com/blockfirm/pine-app/issues",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest --forceExit --maxWorkers=4",
-    "test-coverage": "jest --coverage --forceExit --maxWorkers=4",
+    "test": "TZ='Europe/Stockholm' jest --forceExit --maxWorkers=4",
+    "test-coverage": "TZ='Europe/Stockholm' jest --coverage --forceExit --maxWorkers=4",
     "lint": "./node_modules/.bin/eslint --ext .js index.js src/ __tests__/ __mocks__/",
     "coveralls": "npm run test-coverage && cat ./coverage/lcov.info | node_modules/.bin/coveralls"
   },
