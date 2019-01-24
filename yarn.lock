@@ -5131,7 +5131,7 @@ react-native-tooltip@^5.2.0:
 
 "react-native-touch-id@git+https://github.com/blockfirm/react-native-touch-id.git":
   version "4.3.0"
-  resolved "git+https://github.com/blockfirm/react-native-touch-id.git#8fc309742457dda0840bc4dab102d477065b0aeb"
+  resolved "git+https://github.com/blockfirm/react-native-touch-id.git#8681177791df01b108a1db40a5b3cacb53060bed"
 
 react-native-vector-icons@^6.0.2:
   version "6.0.2"
