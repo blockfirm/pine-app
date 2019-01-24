@@ -239,7 +239,7 @@ export default class TransactionDetailsScreen extends Component {
           <ScrollView style={styles.details}>
             <View style={styles.detail}>
               <StyledText style={styles.label}>To</StyledText>
-              <AddressLabel address={address} style={styles.value} />
+              <AddressLabel address={address} style={styles.value} textStyle={styles.valueLabel} />
             </View>
             <View style={styles.detail}>
               <StyledText style={styles.label}>Fee { !isOutgoing ? '(Paid by Sender)' : '' }</StyledText>

@@ -1,13 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AddressLabel renders an address correctly 1`] = `
-<Text>
-  moYihV4R...Hnvxfesx
-</Text>
+<View>
+  <RCTToolTipText
+    onBlur={[Function]}
+    onChange={[Function]}
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={null}
+    >
+      <View
+        style={null}
+      >
+        <Text>
+          moYihV4R...Hnvxfesx
+        </Text>
+      </View>
+    </View>
+  </RCTToolTipText>
+</View>
 `;
 
 exports[`AddressLabel renders an empty address correctly 1`] = `
-<Text>
-  
-</Text>
+<View>
+  <RCTToolTipText
+    onBlur={[Function]}
+    onChange={[Function]}
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={null}
+    >
+      <View
+        style={null}
+      >
+        <Text>
+          
+        </Text>
+      </View>
+    </View>
+  </RCTToolTipText>
+</View>
 `;

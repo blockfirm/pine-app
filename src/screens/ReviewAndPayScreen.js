@@ -374,7 +374,7 @@ export default class ReviewAndPayScreen extends Component {
             <View style={styles.details}>
               <View style={styles.detail}>
                 <StyledText style={styles.label}>To</StyledText>
-                <AddressLabel address={address} style={styles.value} />
+                <AddressLabel address={address} style={styles.value} textStyle={styles.valueLabel} />
               </View>
               <View style={styles.detail}>
                 <StyledText style={styles.label}>Fee</StyledText>
