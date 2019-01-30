@@ -52,9 +52,9 @@ export default class WelcomeScreen extends Component {
     header: null
   }
 
-  _showDisclaimerScreen() {
+  _showCreatePineAddressScreen() {
     const dispatch = this.props.dispatch;
-    return dispatch(navigateWithReset('Disclaimer'));
+    return dispatch(navigateWithReset('CreatePineAddress'));
   }
 
   _showBackUpMnemonicScreen(mnemonic) {
@@ -117,7 +117,7 @@ export default class WelcomeScreen extends Component {
         }
 
         return dispatch(syncWallet()).then(() => {
-          this._showDisclaimerScreen();
+          this._showCreatePineAddressScreen();
         });
       })
       .catch((error) => {

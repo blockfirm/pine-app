@@ -55,7 +55,12 @@ export default class SplashScreen extends Component {
         if (state.settings.user.forceManualBackup && !state.settings.user.hasCreatedBackup) {
           return this._getMnemonicFromState(state).then((mnemonic) => {
             return this._showBackUpMnemonicScreen(mnemonic);
-          })
+          });
+        }
+
+        // Show the create pine address screen if pine address is missing.
+        if (!state.settings.user.pineAddress) {
+          return this._showCreatePineAddressScreen();
         }
 
         // Show the disclaimer screen if the terms and conditions hasn't been accepted.
@@ -96,6 +101,11 @@ export default class SplashScreen extends Component {
   _showDisclaimerScreen() {
     const dispatch = this.props.dispatch;
     dispatch(navigateWithReset('Disclaimer'));
+  }
+
+  _showCreatePineAddressScreen() {
+    const dispatch = this.props.dispatch;
+    dispatch(navigateWithReset('CreatePineAddress'));
   }
 
   _showBackUpMnemonicScreen(mnemonic) {

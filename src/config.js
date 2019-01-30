@@ -15,7 +15,10 @@ export default {
      * due to iCloud not being available. It will return back to false
      * once the user performs a manual back up.
      */
-    forceManualBackup: false
+    forceManualBackup: false,
+
+    // Pine address that the user is signed in with.
+    pineAddress: ''
   },
   api: {
     baseUrl: 'http://localhost:8080/v1'

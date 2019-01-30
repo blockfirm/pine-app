@@ -64,9 +64,9 @@ export default class ConfirmMnemonicScreen extends Component {
     this.setState({ keyboardState });
   }
 
-  _showDisclaimerScreen() {
+  _showCreatePineAddressScreen() {
     const dispatch = this.props.dispatch;
-    return dispatch(navigateWithReset('Disclaimer'));
+    return dispatch(navigateWithReset('CreatePineAddress'));
   }
 
   _flagAsBackedUp() {
@@ -90,7 +90,7 @@ export default class ConfirmMnemonicScreen extends Component {
 
     if (!isModal) {
       return dispatch(syncWallet()).then(() => {
-        this._showDisclaimerScreen();
+        this._showCreatePineAddressScreen();
       });
     }
 
