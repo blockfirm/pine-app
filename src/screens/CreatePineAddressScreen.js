@@ -122,6 +122,8 @@ export default class CreatePineAddressScreen extends Component {
           this.setState({ error: 'Username has already been taken' });
         } else if (error.message.indexOf('reserved') > -1) {
           this.setState({ error: 'Username is reserved' });
+        } else if (error.message.indexOf('too short') > -1) {
+          this.setState({ error: 'Username is too short' });
         } else {
           this.setState({ error: error.message });
         }
