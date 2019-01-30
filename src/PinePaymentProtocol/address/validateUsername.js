@@ -1,5 +1,9 @@
 const VALID_USERNAME_REGEXP = new RegExp('^[a-z0-9\\._]+$');
-const USERNAME_LENGTH_LIMIT = 30;
+const USERNAME_MAX_LENGTH = 30;
+
+export class UsernameEmptyError extends Error {}
+export class UsernameTooLongError extends Error {}
+export class UsernameContainsInvalidCharsError extends Error {}
 
 /**
  * Validates a username of a Pine Address.
@@ -10,21 +14,23 @@ const USERNAME_LENGTH_LIMIT = 30;
  * - Maximum 30 characters
  * - Only contains alphanumeric characters (lowercase a-z, 0-9), underscores (_), and periods (.)
  *
+ * (Keep in mind that each server can impose their own rules.)
+ *
  * @param {string} username - The username to validate.
  *
  * @returns {boolean} True if the username is valid, otherwise it throws an error.
  */
 const validateUsername = (username) => {
   if (!username) {
-    throw new Error('The username cannot be empty');
+    throw new UsernameEmptyError('The username cannot be empty');
   }
 
-  if (username.length > USERNAME_LENGTH_LIMIT) {
-    throw new Error('The username is too long');
+  if (username.length > USERNAME_MAX_LENGTH) {
+    throw new UsernameTooLongError('The username is too long');
   }
 
   if (!VALID_USERNAME_REGEXP.test(username)) {
-    throw new Error('The username is invalid');
+    throw new UsernameContainsInvalidCharsError('The username contains invalid characters');
   }
 
   return true;
