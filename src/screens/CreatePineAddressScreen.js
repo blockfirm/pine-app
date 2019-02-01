@@ -92,11 +92,18 @@ export default class CreatePineAddressScreen extends Component {
     return dispatch(navigateWithReset('Disclaimer'));
   }
 
-  _savePineAddress(pineAddress) {
+  _saveUserProfile(pineAddress, user) {
     const { dispatch } = this.props;
 
     const newSettings = {
-      user: { pineAddress }
+      user: {
+        profile: {
+          id: user.id,
+          publicKey: user.publicKey,
+          displayName: user.displayName || user.username,
+          pineAddress
+        }
+      }
     };
 
     return dispatch(settingsActions.save(newSettings));
@@ -114,7 +121,7 @@ export default class CreatePineAddressScreen extends Component {
         return createUser(pineAddress, mnemonic);
       })
       .then((user) => {
-        this._savePineAddress(pineAddress);
+        this._saveUserProfile(pineAddress, user);
         this._showDisclaimerScreen();
       })
       .catch((error) => {
@@ -181,7 +188,7 @@ export default class CreatePineAddressScreen extends Component {
             autoFocus={true}
             autoCorrect={false}
             autoCapitalize='none'
-            maxLength={30}
+            maxLength={20}
             value={this.state.username}
             onChangeText={(text) => this._onChangeText(text)}
           />

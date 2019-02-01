@@ -17,8 +17,10 @@ export default {
      */
     forceManualBackup: false,
 
-    // Pine address that the user is signed in with.
-    pineAddress: ''
+    profile: {
+      // Pine address that the user is signed in with.
+      pineAddress: ''
+    }
   },
   api: {
     baseUrl: 'http://localhost:8080/v1'

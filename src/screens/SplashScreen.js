@@ -59,7 +59,7 @@ export default class SplashScreen extends Component {
         }
 
         // Show the create pine address screen if pine address is missing.
-        if (!state.settings.user.pineAddress) {
+        if (!state.settings.user.profile.pineAddress) {
           return this._showCreatePineAddressScreen();
         }
 

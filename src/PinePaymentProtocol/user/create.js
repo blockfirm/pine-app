@@ -32,7 +32,7 @@ const create = (pineAddress, mnemonic) => {
       return response.json();
     })
     .then((response) => {
-      if (response.id !== userId) {
+      if (response.id !== userId || response.publicKey !== body.publicKey) {
         throw new Error(response.error || 'Unknown error when creating user');
       }
 

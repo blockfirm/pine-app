@@ -1,4 +1,5 @@
 import SettingsScreen from '../screens/settings/SettingsScreen';
+import ProfileScreen from '../screens/settings/ProfileScreen';
 import GeneralSettingsScreen from '../screens/settings/GeneralSettingsScreen';
 import SecurityAndPrivacySettingsScreen from '../screens/settings/SecurityAndPrivacySettingsScreen';
 import BitcoinSettingsScreen from '../screens/settings/BitcoinSettingsScreen';
@@ -16,6 +17,7 @@ import createDismissableStackNavigator from '../createDismissableStackNavigator'
 
 const SettingsNavigator = createDismissableStackNavigator({
   Settings: { screen: SettingsScreen },
+  Profile: { screen: ProfileScreen },
   GeneralSettings: { screen: GeneralSettingsScreen },
   SecurityAndPrivacySettings: { screen: SecurityAndPrivacySettingsScreen },
   BitcoinSettings: { screen: BitcoinSettingsScreen },

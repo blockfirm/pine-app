@@ -80,9 +80,9 @@ export default class SettingsLink extends Component {
 }
 
 SettingsLink.propTypes = {
-  icon: PropTypes.string,
-  name: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
+  icon: PropTypes.string,
+  name: PropTypes.string,
   value: PropTypes.string,
   isLastItem: PropTypes.bool
 };
