@@ -40,7 +40,7 @@ export const reset = () => {
       dispatch(removeAllInternalAddresses()),
       dispatch(removeAllTransactions()),
       dispatch(removeAllUtxos()),
-      dispatch(unsubscribe())
+      dispatch(unsubscribe()).catch(() => { /* Suppress unsubscription errors */ })
     ];
 
     return Promise.all(promises)
