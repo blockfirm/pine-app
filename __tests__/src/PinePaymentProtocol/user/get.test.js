@@ -2,10 +2,10 @@ import getUser from '../../../../src/PinePaymentProtocol/user/get';
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,
-  json: () => ({
+  json: () => ([{
     id: '6f9ec449-269a-4b4f-aa79-732259b1f316',
     username: 'timothy'
-  })
+  }])
 }));
 
 describe('get', () => {
@@ -47,22 +47,52 @@ describe('get', () => {
     });
 
     describe('the HTTP request', () => {
-      it('is made to the url https://_pine.pine.cash/v1/users/timothy', () => {
-        const expectedUrl = 'https://_pine.pine.cash/v1/users/timothy';
+      it('is made to the url https://_pine.pine.cash/v1/users?username=timothy', () => {
+        const expectedUrl = 'https://_pine.pine.cash/v1/users?username=timothy';
         expect(fetch).toHaveBeenCalledWith(expectedUrl);
       });
     });
 
-    describe('when the response is missing an id', () => {
-      beforeEach(() => {
+    describe('when the response is not an array', () => {
+      it('rejects the returned promise with an error', () => {
+        expect.hasAssertions();
+
         global.fetch.mockImplementationOnce(() => Promise.resolve({
           ok: true,
           json: () => ({})
         }));
-      });
 
+        return getUser(address).catch((error) => {
+          expect(error).toBeTruthy();
+          expect(error.message).toContain('Unknown error');
+        });
+      });
+    });
+
+    describe('when the response is an empty array', () => {
       it('rejects the returned promise with an error', () => {
         expect.hasAssertions();
+
+        global.fetch.mockImplementationOnce(() => Promise.resolve({
+          ok: true,
+          json: () => ([])
+        }));
+
+        return getUser(address).catch((error) => {
+          expect(error).toBeTruthy();
+          expect(error.message).toContain('Unknown error');
+        });
+      });
+    });
+
+    describe('when the response is missing an id', () => {
+      it('rejects the returned promise with an error', () => {
+        expect.hasAssertions();
+
+        global.fetch.mockImplementationOnce(() => Promise.resolve({
+          ok: true,
+          json: () => ([{}])
+        }));
 
         return getUser(address).catch((error) => {
           expect(error).toBeTruthy();
@@ -72,17 +102,15 @@ describe('get', () => {
     });
 
     describe('when the response is an error', () => {
-      beforeEach(() => {
+      it('rejects the returned promise with the error message from the response', () => {
+        expect.hasAssertions();
+
         global.fetch.mockImplementationOnce(() => Promise.resolve({
           ok: true,
           json: () => ({
             error: 'ac094566-7887-48e4-9e67-4173a47e7241'
           })
         }));
-      });
-
-      it('rejects the returned promise with the error message from the response', () => {
-        expect.hasAssertions();
 
         return getUser(address).catch((error) => {
           expect(error).toBeTruthy();
