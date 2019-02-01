@@ -14,6 +14,7 @@ import SettingsLink from '../../components/SettingsLink';
 import SettingsButton from '../../components/SettingsButton';
 import Avatar from '../../components/Avatar';
 import StyledText from '../../components/StyledText';
+import CopyText from '../../components/CopyText';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
 const styles = StyleSheet.create({
@@ -139,7 +140,9 @@ export default class ProfileScreen extends Component {
           <Avatar size={80} />
           <View>
             <StyledText style={styles.displayName} numberOfLines={1}>{displayName}</StyledText>
-            <StyledText style={styles.address} numberOfLines={1}>{pineAddress}</StyledText>
+            <CopyText copyText={pineAddress} underlayColor='#EFEFF3' tooltipArrowDirection='up'>
+              <StyledText style={styles.address} numberOfLines={1}>{pineAddress}</StyledText>
+            </CopyText>
           </View>
         </View>
 
