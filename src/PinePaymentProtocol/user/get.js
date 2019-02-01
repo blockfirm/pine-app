@@ -15,11 +15,13 @@ const get = (pineAddress) => {
         throw new Error(response.error || 'Unknown error when getting user');
       }
 
-      if (!response[0] || !response[0].id || response[0].username !== username) {
+      const user = response[0];
+
+      if (!user || !user.id || user.username !== username) {
         throw new Error('Unknown error when getting user');
       }
 
-      return response[0];
+      return user;
     });
 };
 
