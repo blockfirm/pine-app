@@ -1,5 +1,5 @@
 const VALID_USERNAME_REGEXP = new RegExp('^[a-z0-9\\._]+$');
-const USERNAME_MAX_LENGTH = 30;
+const USERNAME_MAX_LENGTH = 20;
 
 export class UsernameEmptyError extends Error {}
 export class UsernameTooLongError extends Error {}
@@ -11,7 +11,7 @@ export class UsernameContainsInvalidCharsError extends Error {}
  * A valid username is:
  *
  * - Minimum 1 character
- * - Maximum 30 characters
+ * - Maximum 20 characters
  * - Only contains alphanumeric characters (lowercase a-z, 0-9), underscores (_), and periods (.)
  *
  * (Keep in mind that each server can impose their own rules.)
