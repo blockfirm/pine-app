@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Clipboard } from 'react-native';
+import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import ToolTip from 'react-native-tooltip';
+import CopyText from './CopyText';
 
 const STUB_LENGTH = 8;
 
 export default class AddressLabel extends Component {
-  constructor() {
-    super(...arguments);
-    this._onCopy = this._onCopy.bind(this);
-  }
-
-  _onCopy() {
-    const { address } = this.props;
-    Clipboard.setString(address);
-  }
-
   _getShortenedAddress() {
     const { address } = this.props;
 
@@ -30,22 +20,16 @@ export default class AddressLabel extends Component {
   }
 
   render() {
+    const { address } = this.props;
     const shortenedAddress = this._getShortenedAddress();
 
     return (
       <View style={this.props.style}>
-        <ToolTip
-          actions={[
-            { text: 'Copy', onPress: this._onCopy }
-          ]}
-          underlayColor='white'
-          activeOpacity={1}
-          arrowDirection={this.props.tooltipArrowDirection}
-        >
+        <CopyText copyText={address} tooltipArrowDirection={this.props.tooltipArrowDirection}>
           <Text style={this.props.textStyle}>
             {shortenedAddress}
           </Text>
-        </ToolTip>
+        </CopyText>
       </View>
     );
   }
