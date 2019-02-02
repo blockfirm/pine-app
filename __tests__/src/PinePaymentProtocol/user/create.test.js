@@ -58,15 +58,15 @@ describe('create', () => {
           expect(options.headers['Content-Type']).toBe('application/json');
         });
 
+        it('has header "Authorization" set to a signature of the request', () => {
+          expect(options.headers).toBeTruthy();
+          expect(options.headers['Authorization']).toBe('Basic QXVDOHp3aHJoV01jdkM4Rm9XQXhKQTdIbk11Qno1VzVuOkh6SXQ2WTUrV2ZabVRseElVZ0FnSCtrK0IxUC9Md0Z6SExjeFdLSHkwMDdwT0l0ZG4zakpCYWI2TEZtTWRUekM0M0dRUGdnMjdrWDZYWTluMmwraUwrVT0=');
+        });
+
         describe('the body', () => {
           it('is JSON string', () => {
             const body = JSON.parse(options.body);
             expect(typeof body).toBe('object');
-          });
-
-          it('has id set to "AuC8zwhrhWMcvC8FoWAxJA7HnMuBz5W5n"', () => {
-            const body = JSON.parse(options.body);
-            expect(body.id).toBe('AuC8zwhrhWMcvC8FoWAxJA7HnMuBz5W5n');
           });
 
           it('has publicKey set to "6wwD1rXXJWq47AgwntDgbqqmby6NqUqbNmjU2V4wVo4qS2zWyF"', () => {
@@ -77,11 +77,6 @@ describe('create', () => {
           it('has username set to "timothy"', () => {
             const body = JSON.parse(options.body);
             expect(body.username).toBe('timothy');
-          });
-
-          it('has signature set to "HxpNIuGN53r4qbh1VGD7KWcCA824FH+iuV/nrmiApIe2I5t2cG7HuwDCKmHWZkaPEJh4oX9jIuHpbCDKfkbbOIE="', () => {
-            const body = JSON.parse(options.body);
-            expect(body.signature).toBe('HxpNIuGN53r4qbh1VGD7KWcCA824FH+iuV/nrmiApIe2I5t2cG7HuwDCKmHWZkaPEJh4oX9jIuHpbCDKfkbbOIE=');
           });
         });
       });
