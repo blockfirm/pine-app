@@ -29,11 +29,17 @@ const create = (pineAddress, mnemonic) => {
 
   return fetch(url, fetchOptions)
     .then((response) => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      }
+
+      return response.json().then((error) => {
+        throw new Error(error.message);
+      });
     })
     .then((response) => {
       if (response.id !== userId || response.publicKey !== body.publicKey) {
-        throw new Error(response.error || 'Unknown error when creating user');
+        throw new Error('Unknown error when creating user');
       }
 
       return response;

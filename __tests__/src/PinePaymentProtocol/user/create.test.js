@@ -2,7 +2,7 @@ import create from '../../../../src/PinePaymentProtocol/user/create';
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,
-  json: () => ({
+  json: () => Promise.resolve({
     id: '856d3ed9-68e5-4fca-a4a8-aa8a1baef10d'
   })
 }));
@@ -91,7 +91,7 @@ describe('create', () => {
       beforeEach(() => {
         global.fetch.mockImplementationOnce(() => Promise.resolve({
           ok: true,
-          json: () => ({})
+          json: () => Promise.resolve({})
         }));
       });
 
@@ -108,9 +108,9 @@ describe('create', () => {
     describe('when the response is an error', () => {
       beforeEach(() => {
         global.fetch.mockImplementationOnce(() => Promise.resolve({
-          ok: true,
-          json: () => ({
-            error: '066345d6-4476-4d26-b670-f4e43ea952f7'
+          ok: false,
+          json: () => Promise.resolve({
+            message: '066345d6-4476-4d26-b670-f4e43ea952f7'
           })
         }));
       });

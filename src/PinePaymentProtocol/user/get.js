@@ -8,11 +8,17 @@ const get = (pineAddress) => {
 
   return fetch(url)
     .then((response) => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      }
+
+      return response.json().then((error) => {
+        throw new Error(error.message);
+      });
     })
     .then((response) => {
       if (!Array.isArray(response)) {
-        throw new Error(response.error || 'Unknown error when getting user');
+        throw new Error('Unknown error when getting user');
       }
 
       const user = response[0];

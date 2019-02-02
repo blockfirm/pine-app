@@ -6,11 +6,17 @@ const getById = (id, hostname) => {
 
   return fetch(url)
     .then((response) => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      }
+
+      return response.json().then((error) => {
+        throw new Error(error.message);
+      });
     })
     .then((response) => {
       if (response.id !== id) {
-        throw new Error(response.error || 'Unknown error when getting user');
+        throw new Error('Unknown error when getting user');
       }
 
       return response;

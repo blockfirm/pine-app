@@ -2,7 +2,7 @@ import getUserById from '../../../../src/PinePaymentProtocol/user/getById';
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,
-  json: () => ({
+  json: () => Promise.resolve({
     id: 'AH3zqC5iaYyKdmPyZmwgjiHM1hwttxNGr',
     username: 'timothy'
   })
@@ -61,7 +61,7 @@ describe('getById', () => {
 
         global.fetch.mockImplementationOnce(() => Promise.resolve({
           ok: true,
-          json: () => ({})
+          json: () => Promise.resolve({})
         }));
 
         return getUserById(userId, hostname).catch((error) => {
@@ -76,9 +76,9 @@ describe('getById', () => {
         expect.hasAssertions();
 
         global.fetch.mockImplementationOnce(() => Promise.resolve({
-          ok: true,
-          json: () => ({
-            error: 'ac094566-7887-48e4-9e67-4173a47e7241'
+          ok: false,
+          json: () => Promise.resolve({
+            message: 'ac094566-7887-48e4-9e67-4173a47e7241'
           })
         }));
 

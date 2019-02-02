@@ -2,7 +2,7 @@ import getUser from '../../../../src/PinePaymentProtocol/user/get';
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,
-  json: () => ([{
+  json: () => Promise.resolve([{
     id: '6f9ec449-269a-4b4f-aa79-732259b1f316',
     username: 'timothy'
   }])
@@ -59,7 +59,7 @@ describe('get', () => {
 
         global.fetch.mockImplementationOnce(() => Promise.resolve({
           ok: true,
-          json: () => ({})
+          json: () => Promise.resolve({})
         }));
 
         return getUser(address).catch((error) => {
@@ -75,7 +75,7 @@ describe('get', () => {
 
         global.fetch.mockImplementationOnce(() => Promise.resolve({
           ok: true,
-          json: () => ([])
+          json: () => Promise.resolve([])
         }));
 
         return getUser(address).catch((error) => {
@@ -91,7 +91,7 @@ describe('get', () => {
 
         global.fetch.mockImplementationOnce(() => Promise.resolve({
           ok: true,
-          json: () => ([{}])
+          json: () => Promise.resolve([{}])
         }));
 
         return getUser(address).catch((error) => {
@@ -106,9 +106,9 @@ describe('get', () => {
         expect.hasAssertions();
 
         global.fetch.mockImplementationOnce(() => Promise.resolve({
-          ok: true,
-          json: () => ({
-            error: 'ac094566-7887-48e4-9e67-4173a47e7241'
+          ok: false,
+          json: () => Promise.resolve({
+            message: 'ac094566-7887-48e4-9e67-4173a47e7241'
           })
         }));
 
