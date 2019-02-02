@@ -64,7 +64,7 @@ describe('create', () => {
         });
 
         describe('the body', () => {
-          it('is JSON string', () => {
+          it('is a JSON string', () => {
             const body = JSON.parse(options.body);
             expect(typeof body).toBe('object');
           });
