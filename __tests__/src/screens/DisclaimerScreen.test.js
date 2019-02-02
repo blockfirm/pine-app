@@ -18,7 +18,10 @@ describe('DisclaimerScreen', () => {
       getState: jest.fn(() => ({
         settings: {
           user: {
-            hasCreatedBackup: false
+            hasCreatedBackup: false,
+            profile: {
+              pineAddress: 'timothy@pine.cash'
+            }
           }
         }
       })),
@@ -38,7 +41,10 @@ describe('DisclaimerScreen', () => {
       getState: jest.fn(() => ({
         settings: {
           user: {
-            hasCreatedBackup: true
+            hasCreatedBackup: true,
+            profile: {
+              pineAddress: 'timothy@pine.cash'
+            }
           }
         }
       })),

@@ -90,6 +90,82 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
         ]
       }
     >
+      Your Pine Address
+    </Text>
+    <RCTToolTipText
+      onBlur={[Function]}
+      onChange={[Function]}
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={null}
+      >
+        <View
+          style={null}
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "System",
+                  "fontWeight": "400",
+                },
+                Array [
+                  Object {
+                    "color": "#AAAAAA",
+                    "fontSize": 15,
+                    "fontWeight": "400",
+                    "letterSpacing": -0.24,
+                    "lineHeight": 21,
+                    "marginBottom": 20,
+                  },
+                  Object {
+                    "fontSize": 15,
+                    "textAlign": "left",
+                  },
+                ],
+              ]
+            }
+          >
+            timothy@pine.cash
+          </Text>
+        </View>
+      </View>
+    </RCTToolTipText>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "#26203D",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "letterSpacing": 0.36,
+              "marginBottom": 10,
+              "textAlign": "center",
+            },
+            Object {
+              "fontSize": 15,
+              "fontWeight": "700",
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
       Access to Funds
     </Text>
     <Text
@@ -388,6 +464,82 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
       }
     }
   >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontWeight": "400",
+          },
+          Array [
+            Object {
+              "color": "#26203D",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "letterSpacing": 0.36,
+              "marginBottom": 10,
+              "textAlign": "center",
+            },
+            Object {
+              "fontSize": 15,
+              "fontWeight": "700",
+              "textAlign": "left",
+            },
+          ],
+        ]
+      }
+    >
+      Your Pine Address
+    </Text>
+    <RCTToolTipText
+      onBlur={[Function]}
+      onChange={[Function]}
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={null}
+      >
+        <View
+          style={null}
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "System",
+                  "fontWeight": "400",
+                },
+                Array [
+                  Object {
+                    "color": "#AAAAAA",
+                    "fontSize": 15,
+                    "fontWeight": "400",
+                    "letterSpacing": -0.24,
+                    "lineHeight": 21,
+                    "marginBottom": 20,
+                  },
+                  Object {
+                    "fontSize": 15,
+                    "textAlign": "left",
+                  },
+                ],
+              ]
+            }
+          >
+            timothy@pine.cash
+          </Text>
+        </View>
+      </View>
+    </RCTToolTipText>
     <Text
       style={
         Array [

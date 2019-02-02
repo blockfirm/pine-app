@@ -8,6 +8,7 @@ import { navigateWithReset } from '../actions';
 import * as settingsActions from '../actions/settings';
 import Title from '../components/Title';
 import Paragraph from '../components/Paragraph';
+import CopyText from '../components/CopyText';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
@@ -48,7 +49,8 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
-  hasCreatedBackup: state.settings.user.hasCreatedBackup
+  hasCreatedBackup: state.settings.user.hasCreatedBackup,
+  pineAddress: state.settings.user.profile.pineAddress
 }))
 export default class DisclaimerScreen extends Component {
   static navigationOptions = {
@@ -99,6 +101,8 @@ export default class DisclaimerScreen extends Component {
   }
 
   render() {
+    const { pineAddress } = this.props;
+
     return (
       <BaseScreen style={styles.view}>
         <StatusBar barStyle='dark-content' />
@@ -108,6 +112,13 @@ export default class DisclaimerScreen extends Component {
         </Title>
 
         <View style={styles.terms}>
+          <Title style={styles.subtitle}>Your Pine Address</Title>
+          <CopyText CopyText={pineAddress}>
+            <Paragraph style={styles.paragraph}>
+              {pineAddress}
+            </Paragraph>
+          </CopyText>
+
           <Title style={styles.subtitle}>Access to Funds</Title>
           <Paragraph style={styles.paragraph}>
             {this._getAccessToFundsText()}
@@ -136,5 +147,6 @@ export default class DisclaimerScreen extends Component {
 DisclaimerScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
-  hasCreatedBackup: PropTypes.bool
+  hasCreatedBackup: PropTypes.bool,
+  pineAddress: PropTypes.string
 };
