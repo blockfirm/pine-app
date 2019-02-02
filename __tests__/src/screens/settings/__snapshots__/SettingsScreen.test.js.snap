@@ -58,15 +58,15 @@ exports[`SettingsScreen renders correctly 1`] = `
                     "height": 44,
                     "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingRight": 15,
+                    "paddingRight": 30,
                   },
                   Object {
-                    "alignItems": "center",
                     "borderBottomWidth": 0,
-                    "flexDirection": "row",
-                    "height": null,
-                    "justifyContent": "flex-start",
-                    "paddingVertical": 10,
+                    "height": 60,
+                    "justifyContent": "center",
+                    "marginVertical": 10,
+                    "paddingLeft": 75,
+                    "paddingRight": 30,
                   },
                 ]
               }
@@ -74,7 +74,7 @@ exports[`SettingsScreen renders correctly 1`] = `
               <View
                 style={
                   Object {
-                    "marginRight": 15,
+                    "position": "absolute",
                   }
                 }
               >
@@ -192,7 +192,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                     "height": 44,
                     "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingRight": 15,
+                    "paddingRight": 30,
                   },
                   Object {
                     "marginLeft": 59,
@@ -217,6 +217,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                 }
               />
               <Text
+                numberOfLines={1}
                 style={
                   Array [
                     Object {
@@ -311,7 +312,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                     "height": 44,
                     "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingRight": 15,
+                    "paddingRight": 30,
                   },
                   Object {
                     "marginLeft": 59,
@@ -336,6 +337,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                 }
               />
               <Text
+                numberOfLines={1}
                 style={
                   Array [
                     Object {
@@ -430,7 +432,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                     "height": 44,
                     "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingRight": 15,
+                    "paddingRight": 30,
                   },
                   Object {
                     "marginLeft": 59,
@@ -457,6 +459,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                 }
               />
               <Text
+                numberOfLines={1}
                 style={
                   Array [
                     Object {

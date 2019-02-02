@@ -19,6 +19,7 @@ import BaseSettingsScreen from './BaseSettingsScreen';
 
 const styles = StyleSheet.create({
   profile: {
+    paddingHorizontal: 15,
     marginBottom: 35,
     alignItems: 'center'
   },
@@ -130,6 +131,11 @@ export default class ProfileScreen extends Component {
     });
   }
 
+  _showDisplayNameScreen() {
+    const navigation = this.props.navigation;
+    navigation.navigate('DisplayName');
+  }
+
   render() {
     const { userProfile } = this.props;
     const { pineAddress, displayName } = userProfile;
@@ -148,7 +154,7 @@ export default class ProfileScreen extends Component {
 
         <SettingsTitle>Display Name</SettingsTitle>
         <SettingsGroup>
-          <SettingsLink name={displayName} onPress={() => {}} isLastItem={true} />
+          <SettingsLink name={displayName} onPress={this._showDisplayNameScreen.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
         <SettingsGroup>

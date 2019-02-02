@@ -70,7 +70,7 @@ export default class SettingsLink extends Component {
       <TouchableHighlight onPress={this.props.onPress} underlayColor={settingsStyles.underlayColor}>
         <View style={containerStyles}>
           { icon }
-          <StyledText style={settingsStyles.label}>{this.props.name}</StyledText>
+          <StyledText style={settingsStyles.label} numberOfLines={1}>{this.props.name}</StyledText>
           <StyledText style={[settingsStyles.value, styles.value]} numberOfLines={1}>{this.props.value}</StyledText>
           <Icon name='ios-arrow-forward' style={styles.chevron} />
         </View>

@@ -47,7 +47,7 @@ exports[`RecoveryKeyScreen renders correctly 1`] = `
                   "height": 44,
                   "justifyContent": "center",
                   "marginLeft": 15,
-                  "paddingRight": 15,
+                  "paddingRight": 30,
                 },
                 Object {
                   "borderBottomWidth": 0,
@@ -166,7 +166,7 @@ exports[`RecoveryKeyScreen renders correctly 1`] = `
                     "height": 44,
                     "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingRight": 15,
+                    "paddingRight": 30,
                   },
                   Object {
                     "borderBottomWidth": 0,

@@ -5,7 +5,7 @@ const settingsStyles = StyleSheet.create({
     flex: 1,
     height: 44,
     justifyContent: 'center',
-    paddingRight: 15,
+    paddingRight: 30,
     marginLeft: 15,
     borderBottomColor: '#C8C7CC',
     borderBottomWidth: StyleSheet.hairlineWidth

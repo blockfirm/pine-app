@@ -47,7 +47,7 @@ exports[`AboutScreen renders correctly 1`] = `
                   "height": 44,
                   "justifyContent": "center",
                   "marginLeft": 15,
-                  "paddingRight": 15,
+                  "paddingRight": 30,
                 },
                 undefined,
               ]
@@ -107,7 +107,7 @@ exports[`AboutScreen renders correctly 1`] = `
                   "height": 44,
                   "justifyContent": "center",
                   "marginLeft": 15,
-                  "paddingRight": 15,
+                  "paddingRight": 30,
                 },
                 Object {
                   "borderBottomWidth": 0,
@@ -185,7 +185,7 @@ exports[`AboutScreen renders correctly 1`] = `
                   "height": 44,
                   "justifyContent": "center",
                   "marginLeft": 15,
-                  "paddingRight": 15,
+                  "paddingRight": 30,
                 },
                 undefined,
               ]
@@ -245,7 +245,7 @@ exports[`AboutScreen renders correctly 1`] = `
                   "height": 44,
                   "justifyContent": "center",
                   "marginLeft": 15,
-                  "paddingRight": 15,
+                  "paddingRight": 30,
                 },
                 Object {
                   "borderBottomWidth": 0,
@@ -334,7 +334,7 @@ exports[`AboutScreen renders correctly 1`] = `
                     "height": 44,
                     "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingRight": 15,
+                    "paddingRight": 30,
                   },
                   undefined,
                   Object {
@@ -344,6 +344,7 @@ exports[`AboutScreen renders correctly 1`] = `
               }
             >
               <Text
+                numberOfLines={1}
                 style={
                   Array [
                     Object {
@@ -454,7 +455,7 @@ exports[`AboutScreen renders correctly 1`] = `
                     "height": 44,
                     "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingRight": 15,
+                    "paddingRight": 30,
                   },
                   undefined,
                 ]
@@ -509,7 +510,7 @@ exports[`AboutScreen renders correctly 1`] = `
                     "height": 44,
                     "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingRight": 15,
+                    "paddingRight": 30,
                   },
                   undefined,
                 ]
@@ -564,7 +565,7 @@ exports[`AboutScreen renders correctly 1`] = `
                     "height": 44,
                     "justifyContent": "center",
                     "marginLeft": 15,
-                    "paddingRight": 15,
+                    "paddingRight": 30,
                   },
                   Object {
                     "borderBottomWidth": 0,

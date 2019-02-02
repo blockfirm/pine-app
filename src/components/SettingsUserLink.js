@@ -9,15 +9,15 @@ import Avatar from './Avatar';
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: null,
+    height: 60,
     borderBottomWidth: 0,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    paddingVertical: 10
+    justifyContent: 'center',
+    marginVertical: 10,
+    paddingLeft: 75,
+    paddingRight: 30
   },
   avatarWrapper: {
-    marginRight: 15
+    position: 'absolute'
   },
   displayName: {
     fontSize: 22,

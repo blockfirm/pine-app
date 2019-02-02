@@ -22,7 +22,7 @@ exports[`SettingsLink renders correctly 1`] = `
           "height": 44,
           "justifyContent": "center",
           "marginLeft": 15,
-          "paddingRight": 15,
+          "paddingRight": 30,
         },
         undefined,
         undefined,
@@ -30,6 +30,7 @@ exports[`SettingsLink renders correctly 1`] = `
     }
   >
     <Text
+      numberOfLines={1}
       style={
         Array [
           Object {
@@ -129,7 +130,7 @@ exports[`SettingsLink renders correctly as the last item 1`] = `
           "height": 44,
           "justifyContent": "center",
           "marginLeft": 15,
-          "paddingRight": 15,
+          "paddingRight": 30,
         },
         undefined,
         Object {
@@ -139,6 +140,7 @@ exports[`SettingsLink renders correctly as the last item 1`] = `
     }
   >
     <Text
+      numberOfLines={1}
       style={
         Array [
           Object {

@@ -11,7 +11,7 @@ exports[`SettingsAttribute renders correctly 1`] = `
         "height": 44,
         "justifyContent": "center",
         "marginLeft": 15,
-        "paddingRight": 15,
+        "paddingRight": 30,
       },
       undefined,
     ]
@@ -74,7 +74,7 @@ exports[`SettingsAttribute renders correctly as the last item 1`] = `
         "height": 44,
         "justifyContent": "center",
         "marginLeft": 15,
-        "paddingRight": 15,
+        "paddingRight": 30,
       },
       Object {
         "borderBottomWidth": 0,

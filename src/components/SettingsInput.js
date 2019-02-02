@@ -33,6 +33,7 @@ export default class SettingsInput extends Component {
           returnKeyType='done'
           onChangeText={this.props.onChangeText}
           onSubmitEditing={this.props.onSubmitEditing}
+          maxLength={this.props.maxLength}
         />
       </View>
     );
@@ -44,5 +45,6 @@ SettingsInput.propTypes = {
   placeholder: PropTypes.string,
   keyboardType: PropTypes.string,
   onChangeText: PropTypes.func,
-  onSubmitEditing: PropTypes.func
+  onSubmitEditing: PropTypes.func,
+  maxLength: PropTypes.number
 };
