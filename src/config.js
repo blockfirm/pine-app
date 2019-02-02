@@ -3,6 +3,7 @@ import { REGION_CURRENCY } from './localization';
 
 export default {
   initialized: false, // If false, show welcome screen
+  defaultPineAddressHostname: '192.168.1.199',
   user: {
     // The user must accept the Terms and Conditions before using the app.
     hasAcceptedTerms: false,

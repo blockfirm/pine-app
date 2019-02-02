@@ -12,6 +12,8 @@ import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import * as bitcoinWalletActions from '../actions/bitcoin/wallet';
 import { getUnused as getUnusedAddress } from '../actions/bitcoin/wallet/addresses';
+import { getById as getUserById } from '../PinePaymentProtocol/user';
+import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../PinePaymentProtocol/crypto';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -57,6 +59,11 @@ export default class ImportMnemonicScreen extends Component {
     this.setState({ keyboardState });
   }
 
+  _showCreatePineAddressScreen() {
+    const dispatch = this.props.dispatch;
+    return dispatch(navigateWithReset('CreatePineAddress'));
+  }
+
   _showDisclaimerScreen() {
     const dispatch = this.props.dispatch;
     return dispatch(navigateWithReset('Disclaimer'));
@@ -78,6 +85,7 @@ export default class ImportMnemonicScreen extends Component {
   _importMnemonic() {
     const dispatch = this.props.dispatch;
     const mnemonic = this.state.phrase;
+    const { defaultPineAddressHostname } = this.props.settings;
 
     this.setState({ loading: true });
 
@@ -100,6 +108,21 @@ export default class ImportMnemonicScreen extends Component {
         return dispatch(bitcoinWalletActions.init());
       })
       .then(() => {
+        // Try to recover a Pine user for the mnemonic.
+        const keyPair = getKeyPairFromMnemonic(mnemonic);
+        const userId = getUserIdFromPublicKey(keyPair.publicKey);
+        return getUserById(userId, defaultPineAddressHostname).catch(() => {});
+      })
+      .then((user) => {
+        if (!user) {
+          // No Pine user was found for the mnemonic, ask user to create one.
+          return this._showCreatePineAddressScreen();
+        }
+
+        // A Pine user was found for the mnemonic, save it to settings.
+        const pineAddress = `${user.username}@${defaultPineAddressHostname}`;
+        dispatch(settingsActions.saveUserProfile(pineAddress, user));
+
         return this._showDisclaimerScreen();
       })
       .catch((error) => {

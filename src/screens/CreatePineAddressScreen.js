@@ -23,7 +23,6 @@ import StyledText from '../components/StyledText';
 import BaseScreen from './BaseScreen';
 
 const TOP_MARGIN = getStatusBarHeight() + getNavBarHeight();
-const DEFAULT_PINE_DOMAIN = '192.168.1.199';
 
 const styles = StyleSheet.create({
   view: {
@@ -59,7 +58,8 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
-  keys: state.keys.items
+  keys: state.keys.items,
+  defaultPineAddressHostname: state.settings.defaultPineAddressHostname
 }))
 export default class CreatePineAddressScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -76,11 +76,15 @@ export default class CreatePineAddressScreen extends Component {
     };
   };
 
-  state = {
-    domain: DEFAULT_PINE_DOMAIN,
-    username: '',
-    error: ''
-  };
+  constructor(props) {
+    super(...arguments);
+
+    this.state = {
+      domain: props.defaultPineAddressHostname,
+      username: '',
+      error: ''
+    };
+  }
 
   componentDidMount() {
     this.props.navigation.setParams({ canSubmit: false });
@@ -90,23 +94,6 @@ export default class CreatePineAddressScreen extends Component {
   _showDisclaimerScreen() {
     const { dispatch } = this.props;
     return dispatch(navigateWithReset('Disclaimer'));
-  }
-
-  _saveUserProfile(pineAddress, user) {
-    const { dispatch } = this.props;
-
-    const newSettings = {
-      user: {
-        profile: {
-          id: user.id,
-          publicKey: user.publicKey,
-          displayName: user.displayName || user.username,
-          pineAddress
-        }
-      }
-    };
-
-    return dispatch(settingsActions.save(newSettings));
   }
 
   _onSubmit() {
@@ -121,7 +108,7 @@ export default class CreatePineAddressScreen extends Component {
         return createUser(pineAddress, mnemonic);
       })
       .then((user) => {
-        this._saveUserProfile(pineAddress, user);
+        dispatch(settingsActions.saveUserProfile(pineAddress, user));
         this._showDisclaimerScreen();
       })
       .catch((error) => {
@@ -209,5 +196,6 @@ export default class CreatePineAddressScreen extends Component {
 CreatePineAddressScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
-  keys: PropTypes.object
+  keys: PropTypes.object,
+  defaultPineAddressHostname: PropTypes.string
 };
