@@ -9,6 +9,8 @@ import { get as getFiatRates } from '../actions/bitcoin/fiatRates';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import getMnemonicByKey from '../crypto/getMnemonicByKey';
+import { getById as getUserById } from '../PinePaymentProtocol/user';
+import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../PinePaymentProtocol/crypto';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -49,7 +51,7 @@ export default class SplashScreen extends Component {
         dispatch(getFiatRates());
 
         if (!state.settings.initialized) {
-          return this._initialize();
+          return this._initialize(state);
         }
 
         if (state.settings.user.forceManualBackup && !state.settings.user.hasCreatedBackup) {
@@ -141,22 +143,50 @@ export default class SplashScreen extends Component {
         })
         .then(() => {
           this._flagAsInitialized();
-          return true;
+          return mnemonic;
         });
     });
   }
 
-  _initialize() {
+  _tryRecoverUser(mnemonic, defaultPineAddressHostname) {
+    // Try to recover a Pine user for the mnemonic.
+    const dispatch = this.props.dispatch;
+    const keyPair = getKeyPairFromMnemonic(mnemonic);
+    const userId = getUserIdFromPublicKey(keyPair.publicKey);
+
+    return getUserById(userId, defaultPineAddressHostname)
+      .catch(() => {})
+      .then((user) => {
+        if (user) {
+          // A Pine user was found for the mnemonic, save it to settings.
+          const pineAddress = `${user.username}@${defaultPineAddressHostname}`;
+          dispatch(settingsActions.saveUserProfile(pineAddress, user));
+        }
+
+        return user;
+      });
+  }
+
+  _initialize(state) {
+    const { defaultPineAddressHostname } = state.settings;
+
     /**
      * Try to recover from iCloud or show the welcome screen
      * if the wallet hasn't been set up.
      */
-    return this._tryRecover().then((recovered) => {
-      if (recovered) {
-        return this._showDisclaimerScreen();
+    return this._tryRecover().then((mnemonic) => {
+      if (!mnemonic) {
+        return this._showWelcomeScreen();
       }
 
-      this._showWelcomeScreen();
+      return this._tryRecoverUser(mnemonic, defaultPineAddressHostname).then((user) => {
+        if (!user) {
+          // No Pine user was found for the mnemonic, ask user to create one.
+          return this._showCreatePineAddressScreen();
+        }
+
+        return this._showDisclaimerScreen();
+      });
     });
   }
 
