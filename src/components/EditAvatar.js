@@ -54,6 +54,8 @@ export default class EditAvatar extends Component {
 
     const options = {
       title: '',
+      takePhotoButtonTitle: 'Take Photo',
+      chooseFromLibraryButtonTitle: 'Choose Photo',
       mediaType: 'photo',
       allowsEditing: true,
       maxWidth: IMAGE_SIZE,
