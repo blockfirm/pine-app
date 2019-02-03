@@ -90,7 +90,7 @@ describe('update', () => {
       it('rejects the returned promise with an error', () => {
         expect.hasAssertions();
 
-        return update(address, mnemonic).catch((error) => {
+        return update(address, user, mnemonic).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toContain('Unknown error');
         });
@@ -110,7 +110,7 @@ describe('update', () => {
       it('rejects the returned promise with the error message from the response', () => {
         expect.hasAssertions();
 
-        return update(address, mnemonic).catch((error) => {
+        return update(address, user, mnemonic).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toBe('112c85a8-37f8-42cb-8474-4478a1e8c18e');
         });
