@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import { navigateWithReset, reset as resetApp } from '../../actions';
 import * as settingsActions from '../../actions/settings';
+import { handle as handleError } from '../../actions/error';
+import { avatar } from '../../PinePaymentProtocol/user';
 import getMnemonicByKey from '../../crypto/getMnemonicByKey';
 import headerStyles from '../../styles/headerStyles';
 import BackButton from '../../components/BackButton';
@@ -12,8 +14,8 @@ import SettingsTitle from '../../components/SettingsTitle';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsLink from '../../components/SettingsLink';
 import SettingsButton from '../../components/SettingsButton';
-import Avatar from '../../components/Avatar';
 import StyledText from '../../components/StyledText';
+import EditAvatar from '../../components/EditAvatar';
 import CopyText from '../../components/CopyText';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
@@ -66,12 +68,17 @@ export default class ProfileScreen extends Component {
     return dispatch(settingsActions.save(newSettings));
   }
 
-  _createManualBackup() {
-    const navigation = this.props.navigation;
+  _getMnemonic() {
     const keys = Object.values(this.props.keys);
     const defaultKey = keys[0];
 
-    return getMnemonicByKey(defaultKey.id).then((mnemonic) => {
+    return getMnemonicByKey(defaultKey.id);
+  }
+
+  _createManualBackup() {
+    const navigation = this.props.navigation;
+
+    return this._getMnemonic().then((mnemonic) => {
       navigation.navigate('BackUpMnemonic', {
         mnemonic,
         isModal: true
@@ -136,6 +143,25 @@ export default class ProfileScreen extends Component {
     navigation.navigate('DisplayName');
   }
 
+  _onSelectAvatar(response) {
+    const { dispatch } = this.props;
+    const { pineAddress } = this.props.userProfile;
+
+    if (response.error) {
+      return dispatch(handleError(error));
+    }
+
+    if (response.didCancel) {
+      return;
+    }
+
+    return this._getMnemonic().then((mnemonic) => {
+      return avatar.set(pineAddress, response.data, mnemonic).catch((error) => {
+        dispatch(handleError(error));
+      });
+    });
+  }
+
   render() {
     const { userProfile } = this.props;
     const { pineAddress, displayName } = userProfile;
@@ -143,7 +169,7 @@ export default class ProfileScreen extends Component {
     return (
       <BaseSettingsScreen>
         <View style={styles.profile}>
-          <Avatar size={80} />
+          <EditAvatar onSelect={this._onSelectAvatar.bind(this)} />
           <View>
             <StyledText style={styles.displayName} numberOfLines={1}>{displayName}</StyledText>
             <CopyText copyText={pineAddress} underlayColor='#EFEFF3' tooltipArrowDirection='up'>
