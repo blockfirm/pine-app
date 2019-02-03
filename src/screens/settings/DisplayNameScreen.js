@@ -62,11 +62,14 @@ export default class DisplayNameScreen extends Component {
 
   _saveUserProfile(user) {
     const { dispatch } = this.props;
+    const { username } = this.state;
     const { displayName } = user;
 
     dispatch(saveSettings({
       user: {
-        profile: { displayName }
+        profile: {
+          displayName: displayName || username
+        }
       }
     }));
   }
