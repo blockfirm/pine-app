@@ -9,11 +9,38 @@ const DEFAULT_SIZE = 60;
 const styles = StyleSheet.create({
   wrapper: {
     borderRadius: 100,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    backgroundColor: '#D2D5D9'
   }
 });
 
 export default class Avatar extends Component {
+  state = {
+    error: false
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    let { error } = state;
+
+    if (props.checksum !== state.checksum) {
+      error = false;
+    }
+
+    return {
+      checksum: props.checksum,
+      error
+    };
+  }
+
+  constructor() {
+    super(...arguments);
+    this._onError = this._onError.bind(this);
+  }
+
+  _onError() {
+    this.setState({ error: true });
+  }
+
   _getSizeStyle() {
     const size = this.props.size || DEFAULT_SIZE;
 
@@ -43,9 +70,10 @@ export default class Avatar extends Component {
   }
 
   render() {
+    const { error } = this.state;
     const { pineAddress } = this.props;
 
-    if (!pineAddress) {
+    if (!pineAddress || error) {
       return this._renderPlaceholder();
     }
 
@@ -54,7 +82,7 @@ export default class Avatar extends Component {
 
     return (
       <View style={[styles.wrapper, sizeStyle]}>
-        <Image source={{ uri }} style={sizeStyle} />
+        <Image source={{ uri }} style={sizeStyle} onError={this._onError} />
       </View>
     );
   }

@@ -82,6 +82,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#D2D5D9",
                         "borderRadius": 100,
                         "overflow": "hidden",
                       },
@@ -93,6 +94,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                   }
                 >
                   <Image
+                    onError={[Function]}
                     source={
                       Object {
                         "uri": "https://_pine.pine.cash/v1/users/timothy/avatar?byUsername=1&c=null",
