@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import ImagePicker from 'react-native-image-picker';
+import ImageCropPicker from 'react-native-image-crop-picker';
 
 import Avatar from './Avatar';
 import StyledText from './StyledText';
@@ -47,6 +48,50 @@ export default class EditAvatar extends Component {
     loading: false
   }
 
+  _cropAvatar(image) {
+    const options = {
+      path: image.uri,
+      width: IMAGE_SIZE,
+      height: IMAGE_SIZE,
+      includeBase64: true,
+      cropperCircleOverlay: true,
+      compressImageQuality: IMAGE_QUALITY
+    };
+
+    ImageCropPicker.openCropper(options)
+      .then((croppedImage) => {
+        const promise = this.props.onSelect(croppedImage);
+
+        if (promise instanceof Promise) {
+          this.setState({ loading: true });
+
+          promise.finally(() => {
+            this.setState({ loading: false });
+          });
+        }
+      })
+      .catch((error) => {
+        if (error.code === 'E_PICKER_CANCELLED') {
+          // User cancelled cropping, suppress error.
+          return;
+        }
+
+        throw error;
+      });
+  }
+
+  _onSelectAvatar(response) {
+    if (response.error) {
+      return this.props.onSelect(null, response.error);
+    }
+
+    if (response.didCancel) {
+      return;
+    }
+
+    this._cropAvatar(response);
+  }
+
   _selectAvatar() {
     if (this.state.loading) {
       return;
@@ -57,23 +102,12 @@ export default class EditAvatar extends Component {
       takePhotoButtonTitle: 'Take Photo',
       chooseFromLibraryButtonTitle: 'Choose Photo',
       mediaType: 'photo',
-      allowsEditing: true,
-      maxWidth: IMAGE_SIZE,
-      maxHeight: IMAGE_SIZE,
-      quality: IMAGE_QUALITY
+      allowsEditing: false,
+      quality: IMAGE_QUALITY,
+      noData: true
     };
 
-    ImagePicker.showImagePicker(options, (response) => {
-      const promise = this.props.onSelect(response);
-
-      if (promise instanceof Promise) {
-        this.setState({ loading: true });
-
-        promise.finally(() => {
-          this.setState({ loading: false });
-        });
-      }
-    });
+    ImagePicker.showImagePicker(options, this._onSelectAvatar.bind(this));
   }
 
   _renderEditOverlay() {

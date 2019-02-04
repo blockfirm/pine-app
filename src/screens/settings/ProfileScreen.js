@@ -143,21 +143,17 @@ export default class ProfileScreen extends Component {
     navigation.navigate('DisplayName');
   }
 
-  _onSelectAvatar(response) {
+  _onSelectAvatar(image, error) {
     const { dispatch } = this.props;
     const { pineAddress } = this.props.userProfile;
 
-    if (response.error) {
+    if (error) {
       return dispatch(handleError(error));
     }
 
-    if (response.didCancel) {
-      return;
-    }
-
     return this._getMnemonic().then((mnemonic) => {
-      return avatar.set(pineAddress, response.data, mnemonic).catch((error) => {
-        dispatch(handleError(error));
+      return avatar.set(pineAddress, image.data, mnemonic).catch((setError) => {
+        dispatch(handleError(setError));
       });
     });
   }
