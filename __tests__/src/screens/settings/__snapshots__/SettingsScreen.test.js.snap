@@ -78,19 +78,34 @@ exports[`SettingsScreen renders correctly 1`] = `
                   }
                 }
               >
-                <Image
-                  source={
-                    Object {
-                      "testUri": "../../../src/images/AvatarPlaceholder.png",
-                    }
-                  }
+                <View
                   style={
-                    Object {
-                      "height": 60,
-                      "width": 60,
-                    }
+                    Array [
+                      Object {
+                        "borderRadius": 100,
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "height": 60,
+                        "width": 60,
+                      },
+                    ]
                   }
-                />
+                >
+                  <Image
+                    source={
+                      Object {
+                        "uri": "https://_pine.pine.cash/v1/users/timothy/avatar?byUsername=1&c=null",
+                      }
+                    }
+                    style={
+                      Object {
+                        "height": 60,
+                        "width": 60,
+                      }
+                    }
+                  />
+                </View>
               </View>
               <View>
                 <Text

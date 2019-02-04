@@ -135,10 +135,13 @@ export default class EditAvatar extends Component {
   }
 
   render() {
+    const { pineAddress, checksum } = this.props;
+
     return (
       <TouchableOpacity onPress={this._selectAvatar.bind(this)}>
         <View style={styles.wrapper}>
-          <Avatar size={AVATAR_SIZE} />
+          <Avatar size={AVATAR_SIZE} pineAddress={pineAddress} checksum={checksum} />
+
           {this._renderEditOverlay()}
           {this._renderLoader()}
         </View>
@@ -148,5 +151,7 @@ export default class EditAvatar extends Component {
 }
 
 EditAvatar.propTypes = {
-  onSelect: PropTypes.func
+  onSelect: PropTypes.func.isRequired,
+  pineAddress: PropTypes.string,
+  checksum: PropTypes.string
 };

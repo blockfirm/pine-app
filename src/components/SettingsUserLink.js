@@ -37,13 +37,14 @@ const styles = StyleSheet.create({
 
 export default class SettingsUserLink extends Component {
   render() {
-    const { pineAddress, displayName } = this.props.user;
+    const { pineAddress, displayName, avatar } = this.props.user;
+    const avatarChecksum = avatar ? avatar.checksum : null;
 
     return (
       <TouchableHighlight onPress={this.props.onPress} underlayColor={settingsStyles.underlayColor}>
         <View style={[settingsStyles.item, styles.wrapper]}>
           <View style={styles.avatarWrapper}>
-            <Avatar />
+            <Avatar pineAddress={pineAddress} checksum={avatarChecksum} />
           </View>
           <View>
             <StyledText style={styles.displayName} numberOfLines={1}>{displayName}</StyledText>

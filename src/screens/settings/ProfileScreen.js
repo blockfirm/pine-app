@@ -143,6 +143,20 @@ export default class ProfileScreen extends Component {
     navigation.navigate('DisplayName');
   }
 
+  _saveAvatarChecksum(checksum) {
+    const { dispatch } = this.props;
+
+    const newSettings = {
+      user: {
+        profile: {
+          avatar: { checksum }
+        }
+      }
+    };
+
+    dispatch(settingsActions.save(newSettings));
+  }
+
   _onSelectAvatar(image, error) {
     const { dispatch } = this.props;
     const { pineAddress } = this.props.userProfile;
@@ -152,20 +166,29 @@ export default class ProfileScreen extends Component {
     }
 
     return this._getMnemonic().then((mnemonic) => {
-      return avatar.set(pineAddress, image.data, mnemonic).catch((setError) => {
-        dispatch(handleError(setError));
-      });
+      return avatar.set(pineAddress, image.data, mnemonic)
+        .then((avatar) => {
+          this._saveAvatarChecksum(avatar.checksum);
+        })
+        .catch((setError) => {
+          dispatch(handleError(setError));
+        });
     });
   }
 
   render() {
     const { userProfile } = this.props;
-    const { pineAddress, displayName } = userProfile;
+    const { pineAddress, displayName, avatar } = userProfile;
+    const avatarChecksum = avatar ? avatar.checksum : null;
 
     return (
       <BaseSettingsScreen>
         <View style={styles.profile}>
-          <EditAvatar onSelect={this._onSelectAvatar.bind(this)} />
+          <EditAvatar
+            onSelect={this._onSelectAvatar.bind(this)}
+            pineAddress={pineAddress}
+            checksum={avatarChecksum}
+          />
           <View>
             <StyledText style={styles.displayName} numberOfLines={1}>{displayName}</StyledText>
             <CopyText copyText={pineAddress} underlayColor='#EFEFF3' tooltipArrowDirection='up'>
