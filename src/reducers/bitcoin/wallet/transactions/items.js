@@ -45,14 +45,21 @@ const updateTransactions = (oldTransactions, transactions) => {
     if (transaction.txid in newTxidMap) {
       const newTransaction = newTxidMap[transaction.txid];
 
+      if (newTransaction.confirmations === transaction.confirmations) {
+        return transaction;
+      }
+
       /**
-       * It's important to only update certain fields of the transaction instead of
-       * replacing it because the updated transaction doesn't contain all the
-       * information, such as `prevOut`.
+       * It's important to only update certain fields of the old transaction
+       * instead of replacing it with the new because the updated transaction
+       * doesn't contain all the information, such as `prevOut`.
        */
-      transaction.blockhash = newTransaction.blockhash;
-      transaction.blocktime = newTransaction.blocktime;
-      transaction.confirmations = newTransaction.confirmations;
+      return {
+        ...transaction,
+        blockhash: newTransaction.blockhash,
+        blocktime: newTransaction.blocktime,
+        confirmations: newTransaction.confirmations
+      };
     }
 
     return transaction;
