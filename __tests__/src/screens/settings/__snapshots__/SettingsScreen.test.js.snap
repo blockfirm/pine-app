@@ -94,10 +94,9 @@ exports[`SettingsScreen renders correctly 1`] = `
                   }
                 >
                   <Image
-                    onError={[Function]}
                     source={
                       Object {
-                        "uri": "https://_pine.pine.cash/v1/users/timothy/avatar?byUsername=1&c=null",
+                        "testUri": "../../../src/images/AvatarPlaceholder.png",
                       }
                     }
                     style={

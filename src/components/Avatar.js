@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import { CachedImage } from 'react-native-cached-image';
 import { parse as parseAddress, resolveBaseUrl } from '../PinePaymentProtocol/address';
 
 const AVATAR_PLACEHOLDER = require('../images/AvatarPlaceholder.png');
@@ -71,9 +72,9 @@ export default class Avatar extends Component {
 
   render() {
     const { error } = this.state;
-    const { pineAddress } = this.props;
+    const { pineAddress, checksum } = this.props;
 
-    if (!pineAddress || error) {
+    if (!pineAddress || !checksum || error) {
       return this._renderPlaceholder();
     }
 
@@ -82,7 +83,13 @@ export default class Avatar extends Component {
 
     return (
       <View style={[styles.wrapper, sizeStyle]}>
-        <Image source={{ uri }} style={sizeStyle} onError={this._onError} />
+        <CachedImage
+          source={{ uri }}
+          loadingIndicator={View}
+          style={sizeStyle}
+          onError={this._onError}
+          useQueryParamsInCacheKey={true}
+        />
       </View>
     );
   }

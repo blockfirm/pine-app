@@ -33,6 +33,7 @@ export const saveUserProfile = (pineAddress, user) => {
           id: user.id,
           publicKey: user.publicKey,
           displayName: user.displayName || user.username,
+          avatar: user.avatar,
           pineAddress
         }
       }
