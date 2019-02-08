@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '600',
     letterSpacing: 0.1,
-    color: '#000000'
+    color: '#007AFF'
   },
   disabled: {
     color: '#E2E2E2'
