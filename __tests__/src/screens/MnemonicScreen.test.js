@@ -24,7 +24,8 @@ describe('MnemonicScreen', () => {
     const navigationMock = {
       state: {
         params: { mnemonic }
-      }
+      },
+      setParams: jest.fn()
     };
 
     const tree = renderer.create(

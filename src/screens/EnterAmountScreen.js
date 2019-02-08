@@ -23,6 +23,7 @@ import Button from '../components/Button';
 import ContentView from '../components/ContentView';
 import Footer from '../components/Footer';
 import CancelButton from '../components/CancelButton';
+import HeaderButton from '../components/buttons/HeaderButton';
 import StyledText from '../components/StyledText';
 import { DECIMAL_SEPARATOR } from '../localization';
 import BaseScreen from './BaseScreen';
@@ -35,9 +36,10 @@ const styles = StyleSheet.create({
     padding: 0
   },
   content: {
+    alignSelf: 'stretch',
     paddingLeft: 0,
     paddingRight: 0,
-    marginBottom: 30
+    marginBottom: 0
   },
   input: {
     marginBottom: 50
@@ -47,9 +49,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
     position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 70
+    left: 40,
+    right: 40,
+    bottom: 20
   }
 });
 
@@ -60,18 +62,22 @@ const styles = StyleSheet.create({
 export default class EnterAmountScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     const { displayCurrency, displayUnit } = navigation.state.params;
+    const canSubmit = navigation.getParam('canSubmit');
+    const submit = navigation.getParam('submit');
+    const headerRight = <HeaderButton label='Next' onPress={submit} disabled={!canSubmit} />;
 
     const headerLeft = <CancelButton onPress={() => {
       screenProps.dismiss();
       StatusBar.setBarStyle('light-content');
-    }}/>;
+    }} />;
 
     return {
       headerTitle: <UnitPickerTitleContainer currency={displayCurrency} unit={displayUnit} navigation={navigation} />,
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
-      headerLeft
+      headerLeft,
+      headerRight
     };
   };
 
@@ -83,6 +89,9 @@ export default class EnterAmountScreen extends Component {
   componentDidMount() {
     const { amountBtc, displayCurrency, displayUnit } = this.props.navigation.state.params;
 
+    this.props.navigation.setParams({ canSubmit: false });
+    this.props.navigation.setParams({ submit: this._reviewAndPay.bind(this) });
+
     if (amountBtc && displayUnit) {
       const amount = convertBitcoin(amountBtc, UNIT_BTC, displayUnit);
       const sanitizedAmount = this._sanitizeAmount(amount.toString());
@@ -92,7 +101,7 @@ export default class EnterAmountScreen extends Component {
     StatusBar.setBarStyle('dark-content');
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { amount } = this.state;
     const prevDisplayCurrency = prevProps.navigation.state.params.displayCurrency;
     const displayCurrency = this.props.navigation.state.params.displayCurrency;
@@ -103,6 +112,13 @@ export default class EnterAmountScreen extends Component {
       const sanitizedAmount = this._sanitizeAmount(amount);
       this._setAmount(sanitizedAmount);
     }
+  }
+
+  _updateHeaderState() {
+    const { amount, insufficientFunds } = this.state;
+    const canSubmit = !insufficientFunds && this._getNormalizedAmount(amount) > 0;
+
+    this.props.navigation.setParams({ canSubmit });
   }
 
   _getNormalizedAmount(amount) {
@@ -207,7 +223,10 @@ export default class EnterAmountScreen extends Component {
 
   _setAmount(amount) {
     this._checkBalance(amount);
-    this.setState({ amount });
+
+    this.setState({ amount }, () => {
+      this._updateHeaderState();
+    });
   }
 
   _onInput(value) {
@@ -271,7 +290,6 @@ export default class EnterAmountScreen extends Component {
 
   render() {
     const { amount, insufficientFunds } = this.state;
-    const disabled = insufficientFunds || this._getNormalizedAmount(amount) === 0;
     const textColor = insufficientFunds ? ERROR_COLOR : undefined;
 
     return (
@@ -284,7 +302,6 @@ export default class EnterAmountScreen extends Component {
             onPaste={this._onPaste.bind(this)}
           />
           {this._renderError()}
-          <Button label='Review and Pay' disabled={disabled} onPress={this._reviewAndPay.bind(this)} />
         </ContentView>
 
         <NumberPad

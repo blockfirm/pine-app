@@ -48,90 +48,9 @@ exports[`MnemonicScreen renders correctly 1`] = `
     phrase="during bulb nominee acquire paddle next course stable govern eagle title wing"
     style={
       Object {
-        "marginBottom": 10,
-        "marginTop": 10,
+        "marginTop": 20,
       }
     }
   />
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "bottom": 30,
-          "left": 40,
-          "position": "absolute",
-          "right": 40,
-        },
-        null,
-        undefined,
-      ]
-    }
-  >
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "opacity": 1,
-        }
-      }
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFD23F",
-              "borderRadius": 25,
-              "height": 50,
-              "justifyContent": "center",
-              "width": 670,
-            },
-            undefined,
-          ]
-        }
-      >
-        <ActivityIndicator
-          animating={false}
-          color="#FFFFFF"
-          hidesWhenStopped={true}
-          size="small"
-          style={
-            Object {
-              "height": 12,
-              "position": "absolute",
-            }
-          }
-        />
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "white",
-                "fontFamily": "System",
-                "fontSize": 16,
-                "fontWeight": "600",
-                "letterSpacing": -0.41,
-              },
-              undefined,
-              Object {
-                "opacity": 1,
-              },
-            ]
-          }
-        >
-          I have saved these words
-        </Text>
-      </View>
-    </View>
-  </View>
 </View>
 `;

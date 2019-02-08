@@ -10,25 +10,18 @@ import Paragraph from '../components/Paragraph';
 import Button from '../components/Button';
 import BackButton from '../components/BackButton';
 import CancelButton from '../components/CancelButton';
+import HeaderButton from '../components/buttons/HeaderButton';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
 const styles = StyleSheet.create({
   mnemonic: {
-    marginTop: 10,
-    marginBottom: 10
+    marginTop: 20
   },
   paragraph: {
     textAlign: 'center',
     position: 'absolute',
     top: ifIphoneX(140, 85)
-  },
-  link: {
-    marginTop: 10
-  },
-  loader: {
-    marginTop: 24.5,
-    marginBottom: 15
   }
 });
 
@@ -37,18 +30,35 @@ const styles = StyleSheet.create({
 }))
 export default class MnemonicScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
-    const params = navigation.state.params;
-    const isModal = params ? params.isModal : false;
-    const headerRight = isModal ? <CancelButton onPress={screenProps.dismiss} /> : null;
+    const isModal = navigation.getParam('isModal') || false;
+    const canSubmit = navigation.getParam('canSubmit');
+    const submit = navigation.getParam('submit');
+    const headerLeft = isModal ? <CancelButton onPress={screenProps.dismiss} /> : undefined;
+    const headerRight = <HeaderButton label='Next' onPress={submit} disabled={!canSubmit} />;
 
     return {
       title: 'Your Recovery Key',
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
+      headerLeft,
       headerRight
     };
   };
+
+  componentDidMount() {
+    this.props.navigation.setParams({ canSubmit: false });
+    this.props.navigation.setParams({ submit: this._showConfirmMnemonicScreen.bind(this) });
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevRecoveryKeyRevealed = prevProps.recoveryKeyRevealed;
+    const recoveryKeyRevealed = this.props.recoveryKeyRevealed;
+
+    if (recoveryKeyRevealed && !prevRecoveryKeyRevealed) {
+      this.props.navigation.setParams({ canSubmit: true });
+    }
+  }
 
   _showConfirmMnemonicScreen() {
     const navigation = this.props.navigation;
@@ -70,15 +80,6 @@ export default class MnemonicScreen extends Component {
         </Paragraph>
 
         <MnemonicWordsContainer phrase={mnemonic} style={styles.mnemonic} />
-
-        <Footer>
-          <Button
-            label='I have saved these words'
-            onPress={this._showConfirmMnemonicScreen.bind(this)}
-            style={styles.button}
-            disabled={!this.props.recoveryKeyRevealed}
-          />
-        </Footer>
       </BaseScreen>
     );
   }

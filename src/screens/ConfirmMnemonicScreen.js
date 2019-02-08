@@ -14,7 +14,6 @@ import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
 import BackButton from '../components/BackButton';
-import CancelButton from '../components/CancelButton';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -43,15 +42,13 @@ export default class ConfirmMnemonicScreen extends Component {
     const params = navigation.state.params;
     const isModal = params ? params.isModal : false;
     const headerLeft = <BackButton onPress={() => { navigation.goBack(); }} />;
-    const headerRight = isModal ? <CancelButton onPress={screenProps.dismiss} /> : null;
 
     return {
       title: 'Confirm Recovery Key',
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
-      headerLeft,
-      headerRight
+      headerLeft
     };
   };
 
