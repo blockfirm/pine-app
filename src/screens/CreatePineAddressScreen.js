@@ -68,7 +68,7 @@ export default class CreatePineAddressScreen extends Component {
     const headerRight = <HeaderButton label='Next' onPress={submit} disabled={nextIsDisabled} />;
 
     return {
-      title: 'Enter a Username',
+      title: 'Pick a Username',
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
