@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
+import KeepAwake from 'react-native-keep-awake';
 import bip39 from 'bip39';
 
 import { navigateWithReset } from '../actions';
@@ -55,6 +56,10 @@ export default class ImportMnemonicScreen extends Component {
     keyboardState: false
   }
 
+  componentWillUnmount() {
+    KeepAwake.deactivate();
+  }
+
   _onKeyboardToggle(keyboardState) {
     this.setState({ keyboardState });
   }
@@ -88,6 +93,7 @@ export default class ImportMnemonicScreen extends Component {
     const { defaultPineAddressHostname } = this.props.settings;
 
     this.setState({ loading: true });
+    KeepAwake.activate();
 
     // Wait 300ms for the keyboard to animate away.
     return new Promise(resolve => setTimeout(resolve, 300))
@@ -128,6 +134,7 @@ export default class ImportMnemonicScreen extends Component {
       .catch((error) => {
         dispatch(handleError(error));
         this.setState({ loading: false });
+        KeepAwake.deactivate();
       });
   }
 
