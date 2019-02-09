@@ -40,7 +40,10 @@ export default class ServiceUrlScreen extends Component {
 
   _save() {
     const dispatch = this.props.dispatch;
-    const serviceUrl = this.state.serviceUrl || config.api.baseUrl;
+    let serviceUrl = this.state.serviceUrl || config.api.baseUrl;
+
+    // Remove trailing slash.
+    serviceUrl = serviceUrl.replace(/\/$/, '');
 
     dispatch(saveSettings({
       api: {
