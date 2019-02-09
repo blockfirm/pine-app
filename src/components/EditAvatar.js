@@ -102,6 +102,7 @@ export default class EditAvatar extends Component {
       takePhotoButtonTitle: 'Take Photo',
       chooseFromLibraryButtonTitle: 'Choose Photo',
       mediaType: 'photo',
+      cameraType: 'front',
       allowsEditing: false,
       quality: IMAGE_QUALITY,
       noData: true
