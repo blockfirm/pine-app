@@ -6,7 +6,7 @@
  * @param {object} options - Object containing the property 'baseUrl'.
  */
 const post = (deviceToken, addresses, options) => {
-  const url = `${options.baseUrl}/bitcoin/subscriptions`;
+  const url = `${options.baseUrl}/v1/bitcoin/subscriptions`;
 
   const body = {
     deviceToken,

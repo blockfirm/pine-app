@@ -41,8 +41,8 @@ describe('post(rawTransaction, options)', () => {
   });
 
   describe('the HTTP request', () => {
-    it('is made to the url ${options.baseUrl}/bitcoin/transactions', () => {
-      const expectedUrl = '6a5d1a54-a707-449d-b866-1c29c9a21dc8/bitcoin/transactions';
+    it('is made to the url ${options.baseUrl}/v1/bitcoin/transactions', () => {
+      const expectedUrl = '6a5d1a54-a707-449d-b866-1c29c9a21dc8/v1/bitcoin/transactions';
       expect(fetch).toHaveBeenCalledWith(expectedUrl, expect.anything());
     });
 

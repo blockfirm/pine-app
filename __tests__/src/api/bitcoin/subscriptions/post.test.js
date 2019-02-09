@@ -45,8 +45,8 @@ describe('post(deviceToken, addresses, options)', () => {
   });
 
   describe('the HTTP request', () => {
-    it('is made to the url ${options.baseUrl}/bitcoin/subscriptions', () => {
-      const expectedUrl = '9cd19902-bf03-4f71-91a5-de6d864f2a40/bitcoin/subscriptions';
+    it('is made to the url ${options.baseUrl}/v1/bitcoin/subscriptions', () => {
+      const expectedUrl = '9cd19902-bf03-4f71-91a5-de6d864f2a40/v1/bitcoin/subscriptions';
       expect(fetch).toHaveBeenCalledWith(expectedUrl, expect.anything());
     });
 

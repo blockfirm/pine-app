@@ -47,8 +47,8 @@ describe('get(options)', () => {
   });
 
   describe('the HTTP request', () => {
-    it('is made to the url ${options.baseUrl}/info', () => {
-      const expectedUrl = '377b301c-9723-48fc-82a6-238217d71b23/info';
+    it('is made to the url ${options.baseUrl}/v1/info', () => {
+      const expectedUrl = '377b301c-9723-48fc-82a6-238217d71b23/v1/info';
       expect(fetch).toHaveBeenCalledWith(expectedUrl);
     });
   });

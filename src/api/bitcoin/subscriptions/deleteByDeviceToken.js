@@ -5,7 +5,7 @@
  * @param {object} options - Object containing the property 'baseUrl'.
  */
 const deleteByDeviceToken = (deviceToken, options) => {
-  const url = `${options.baseUrl}/bitcoin/subscriptions/${deviceToken}`;
+  const url = `${options.baseUrl}/v1/bitcoin/subscriptions/${deviceToken}`;
 
   const fetchOptions = {
     method: 'DELETE'

@@ -54,9 +54,9 @@ describe('get(currencies, options)', () => {
   });
 
   describe('the HTTP request', () => {
-    it('is made to the url ${options.baseUrl}/bitcoin/fiatrates?currencies=${currencies}', () => {
+    it('is made to the url ${options.baseUrl}/v1/bitcoin/fiatrates?currencies=${currencies}', () => {
       const currenciesParam = encodeURIComponent(currencies.join(','));
-      const expectedUrl = `348510c6-a029-4bef-980d-379df5d58bd2/bitcoin/fiatrates?currencies=${currenciesParam}`;
+      const expectedUrl = `348510c6-a029-4bef-980d-379df5d58bd2/v1/bitcoin/fiatrates?currencies=${currenciesParam}`;
       expect(fetch).toHaveBeenCalledWith(expectedUrl);
     });
   });

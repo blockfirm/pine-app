@@ -1,5 +1,5 @@
 const post = (rawTransaction, options) => {
-  const url = `${options.baseUrl}/bitcoin/transactions`;
+  const url = `${options.baseUrl}/v1/bitcoin/transactions`;
 
   const body = {
     transaction: rawTransaction

@@ -5,7 +5,7 @@
  * @param {object} options - Object containing the property 'baseUrl'.
  */
 const getByDeviceToken = (deviceToken, options) => {
-  const url = `${options.baseUrl}/bitcoin/subscriptions/${deviceToken}`;
+  const url = `${options.baseUrl}/v1/bitcoin/subscriptions/${deviceToken}`;
 
   return fetch(url)
     .then((response) => {

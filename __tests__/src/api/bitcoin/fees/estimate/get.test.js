@@ -50,8 +50,8 @@ describe('get(numberOfBlocks, options)', () => {
   });
 
   describe('the HTTP request', () => {
-    it('is made to the url ${options.baseUrl}/bitcoin/fees/estimate?numberOfBlocks=${numberOfBlocks}', () => {
-      const expectedUrl = `31980d28-13fc-4af1-9879-5d1c8a3db35d/bitcoin/fees/estimate?numberOfBlocks=${numberOfBlocks}`;
+    it('is made to the url ${options.baseUrl}/v1/bitcoin/fees/estimate?numberOfBlocks=${numberOfBlocks}', () => {
+      const expectedUrl = `31980d28-13fc-4af1-9879-5d1c8a3db35d/v1/bitcoin/fees/estimate?numberOfBlocks=${numberOfBlocks}`;
       expect(fetch).toHaveBeenCalledWith(expectedUrl);
     });
   });

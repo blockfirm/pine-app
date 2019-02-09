@@ -6,7 +6,7 @@
  */
 const get = (currencies, options) => {
   const currenciesParam = encodeURIComponent(currencies.join(','));
-  const url = `${options.baseUrl}/bitcoin/fiatrates?currencies=${currenciesParam}`;
+  const url = `${options.baseUrl}/v1/bitcoin/fiatrates?currencies=${currenciesParam}`;
 
   return fetch(url)
     .then((response) => {

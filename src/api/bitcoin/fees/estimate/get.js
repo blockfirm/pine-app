@@ -6,7 +6,7 @@
  */
 const get = (numberOfBlocks, options) => {
   const numberOfBlocksParam = Number(numberOfBlocks) || 1;
-  const url = `${options.baseUrl}/bitcoin/fees/estimate?numberOfBlocks=${numberOfBlocksParam}`;
+  const url = `${options.baseUrl}/v1/bitcoin/fees/estimate?numberOfBlocks=${numberOfBlocksParam}`;
 
   return fetch(url)
     .then((response) => {

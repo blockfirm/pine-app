@@ -2,7 +2,7 @@
 const get = (addresses, page, pageSize, reverse, options) => {
   const addressesParam = encodeURIComponent(addresses.join(','));
   const reverseParam = reverse ? '1' : '0';
-  const url = `${options.baseUrl}/bitcoin/transactions?addresses=${addressesParam}&page=${page}&page_size=${pageSize}&reverse=${reverseParam}`;
+  const url = `${options.baseUrl}/v1/bitcoin/transactions?addresses=${addressesParam}&page=${page}&page_size=${pageSize}&reverse=${reverseParam}`;
 
   return fetch(url)
     .then((response) => {

@@ -24,7 +24,7 @@ export default {
     }
   },
   api: {
-    baseUrl: 'http://localhost:8080/v1'
+    baseUrl: 'http://localhost:8080'
   },
   bitcoin: {
     network: 'testnet', // 'mainnet' or 'testnet'

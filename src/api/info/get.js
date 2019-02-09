@@ -4,7 +4,7 @@
  * @param {object} options - Object containing the property 'baseUrl'.
  */
 const get = (options) => {
-  const url = `${options.baseUrl}/info`;
+  const url = `${options.baseUrl}/v1/info`;
 
   return fetch(url)
     .then((response) => {

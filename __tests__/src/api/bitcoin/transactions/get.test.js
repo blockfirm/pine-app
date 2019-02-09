@@ -53,7 +53,7 @@ describe('get(addresses, page, pageSize, reverse, options)', () => {
   });
 
   describe('the HTTP request', () => {
-    it('is made to the url ${options.baseUrl}/bitcoin/transactions?addresses=62be50ad-6dad-4d57-868b-3ba76accf8de%2C9ee7d667-deb5-44bc-a87a-1bbdfd306287&page=1&page_size=100&reverse=0', () => {
+    it('is made to the url ${options.baseUrl}/v1/bitcoin/transactions?addresses=62be50ad-6dad-4d57-868b-3ba76accf8de%2C9ee7d667-deb5-44bc-a87a-1bbdfd306287&page=1&page_size=100&reverse=0', () => {
       const queryParams = {
         addresses: addresses.join(','),
         page: page,
@@ -63,7 +63,7 @@ describe('get(addresses, page, pageSize, reverse, options)', () => {
       };
 
       const queryString = querystring.stringify(queryParams);
-      const expectedUrl = `f1818a98-8ba3-4b8d-b832-4d9864abfca8/bitcoin/transactions?${queryString}`;
+      const expectedUrl = `f1818a98-8ba3-4b8d-b832-4d9864abfca8/v1/bitcoin/transactions?${queryString}`;
 
       expect(fetch).toHaveBeenCalledWith(expectedUrl);
     });

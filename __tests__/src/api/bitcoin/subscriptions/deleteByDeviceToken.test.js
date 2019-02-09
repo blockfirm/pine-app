@@ -39,8 +39,8 @@ describe('deleteByDeviceToken(deviceToken, options)', () => {
   });
 
   describe('the HTTP request', () => {
-    it('is made to the url ${options.baseUrl}/bitcoin/subscriptions/${deviceToken}', () => {
-      const expectedUrl = `f9802e62-e551-463b-9e9c-c2b304383ab7/bitcoin/subscriptions/${fakeDeviceToken}`;
+    it('is made to the url ${options.baseUrl}/v1/bitcoin/subscriptions/${deviceToken}', () => {
+      const expectedUrl = `f9802e62-e551-463b-9e9c-c2b304383ab7/v1/bitcoin/subscriptions/${fakeDeviceToken}`;
       expect(fetch).toHaveBeenCalledWith(expectedUrl, expect.anything());
     });
 
