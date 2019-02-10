@@ -23,8 +23,7 @@ const styles = StyleSheet.create({
     width: 9,
     height: 9,
     borderRadius: 5,
-    marginRight: 12,
-    marginLeft: -21 // To make the status text be in the center.
+    marginRight: 12
   },
   label: {
     fontSize: 15,

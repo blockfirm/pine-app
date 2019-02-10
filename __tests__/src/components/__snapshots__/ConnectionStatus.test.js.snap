@@ -17,7 +17,6 @@ exports[`ConnectionStatus renders Connected correctly 1`] = `
         Object {
           "borderRadius": 5,
           "height": 9,
-          "marginLeft": -21,
           "marginRight": 12,
           "width": 9,
         },
@@ -64,7 +63,6 @@ exports[`ConnectionStatus renders Inconsistent Networks correctly 1`] = `
         Object {
           "borderRadius": 5,
           "height": 9,
-          "marginLeft": -21,
           "marginRight": 12,
           "width": 9,
         },
@@ -111,7 +109,6 @@ exports[`ConnectionStatus renders Not Connected correctly 1`] = `
         Object {
           "borderRadius": 5,
           "height": 9,
-          "marginLeft": -21,
           "marginRight": 12,
           "width": 9,
         },
@@ -158,7 +155,6 @@ exports[`ConnectionStatus renders Server Not Connected to Node correctly 1`] = `
         Object {
           "borderRadius": 5,
           "height": 9,
-          "marginLeft": -21,
           "marginRight": 12,
           "width": 9,
         },
