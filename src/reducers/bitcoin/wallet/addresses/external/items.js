@@ -19,7 +19,10 @@ const itemsReducer = (state = {}, action) => {
     case addressActions.BITCOIN_WALLET_ADDRESSES_FLAG_AS_USED:
       action.addresses.forEach((address) => {
         if (address in state) {
-          state[address].used = true;
+          state[address] = {
+            ...state[address],
+            used: true
+          };
         }
       });
 
