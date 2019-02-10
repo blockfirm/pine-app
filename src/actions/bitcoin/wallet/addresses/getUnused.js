@@ -56,7 +56,7 @@ const getCurrentAddressIndex = (state, internal) => {
   }
 
   const length = Object.keys(allAddresses).length;
-  const currentIndex = length > 0 ? length - 1 : 0;
+  const currentIndex = length - 1;
 
   return currentIndex;
 };
