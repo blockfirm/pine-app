@@ -1,4 +1,3 @@
-import deepmerge from 'deepmerge';
 import * as transactionActions from '../../../../actions/bitcoin/wallet/transactions';
 
 const createTxidMap = (transactions) => {
@@ -69,19 +68,27 @@ const updateTransactions = (oldTransactions, transactions) => {
 };
 
 const itemsReducer = (state = [], action) => {
+  let newState;
+
   switch (action.type) {
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_LOAD_SUCCESS:
       return action.transactions;
 
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_ADD_SUCCESS:
-      getUniqueTransactions(state, action.transactions).forEach((transaction) => {
-        state.push(transaction);
+      if (!action.transactions.length) {
+        return state;
+      }
+
+      newState = [...state];
+
+      getUniqueTransactions(newState, action.transactions).forEach((transaction) => {
+        newState.push(transaction);
       });
 
       // Sort ascending on time.
-      state.sort((a, b) => a.time - b.time);
+      newState.sort((a, b) => a.time - b.time);
 
-      return state;
+      return newState;
 
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS:
       return updateTransactions(state, action.transactions);
