@@ -47,7 +47,9 @@ const flagAddressesAsUsed = (dispatch, addressTransactions) => {
   const addresses = Object.keys(addressTransactions);
   const usedAddresses = addresses.filter((address) => addressTransactions[address].length > 0);
 
-  dispatch(flagAsUsed(usedAddresses));
+  if (usedAddresses.length > 0) {
+    dispatch(flagAsUsed(usedAddresses));
+  }
 };
 
 const concatTransactions = (addressTransactions) => {
@@ -83,7 +85,9 @@ const getNewTransactionsForBatch = (dispatch, addresses, oldTransactions) => {
     })
     .then((transactions) => {
       // Save transactions.
-      return dispatch(addTransactions(transactions));
+      if (transactions.length > 0) {
+        return dispatch(addTransactions(transactions)).then(() => transactions);
+      }
     });
 };
 
@@ -122,7 +126,9 @@ const getAllNewTransactions = (dispatch, state) => {
     getNewTransactions(dispatch, internalAddresses, transactions)
   ];
 
-  return Promise.all(promises);
+  return Promise.all(promises).then((results) => {
+    return results.flat(2).filter((result) => result);
+  });
 };
 
 /**
@@ -142,18 +148,26 @@ export const sync = () => {
     // First update pending transactions.
     return dispatch(updatePendingTransactions())
       .then(() => {
-        // Then get new transactions.
+        // Get new transactions.
         return getAllNewTransactions(dispatch, state);
       })
-      .then(() => {
-        return waitForInteractions();
-      })
-      .then(() => {
-        // Save addresses that has been flagged as used.
-        return Promise.all([
-          dispatch(saveExternalAddresses()),
-          dispatch(saveInternalAddresses())
-        ]);
+      .then((transactions) => {
+        if (transactions.length === 0) {
+          return;
+        }
+
+        return waitForInteractions()
+          .then(() => {
+            // Save addresses that has been flagged as used.
+            return Promise.all([
+              dispatch(saveExternalAddresses()),
+              dispatch(saveInternalAddresses())
+            ]);
+          })
+          .then(() => {
+            // Update the utxo set.
+            return dispatch(updateUtxos());
+          });
       })
       .then(() => {
         // Load an unused address into state.
@@ -161,10 +175,6 @@ export const sync = () => {
           dispatch(getUnusedAddress()), // External address.
           dispatch(getUnusedAddress(true)) // Internal address.
         ]);
-      })
-      .then(() => {
-        // And last, update the utxo set.
-        return dispatch(updateUtxos());
       })
       .then(() => {
         // Subscribe to push notifications.

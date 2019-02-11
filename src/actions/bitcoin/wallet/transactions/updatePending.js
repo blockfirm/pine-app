@@ -47,7 +47,12 @@ export const updatePending = () => {
     return Promise.all(promises)
       .then((newTransactions) => {
         dispatch(updatePendingSuccess(newTransactions));
-        return dispatch(save()).then(() => newTransactions);
+
+        if (newTransactions.length > 0) {
+          return dispatch(save()).then(() => newTransactions);
+        }
+
+        return newTransactions;
       })
       .catch((error) => {
         dispatch(updatePendingFailure(error));

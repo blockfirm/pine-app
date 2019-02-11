@@ -91,6 +91,10 @@ const itemsReducer = (state = [], action) => {
       return newState;
 
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS:
+      if (!action.transactions.length) {
+        return state;
+      }
+
       return updateTransactions(state, action.transactions);
 
     case transactionActions.BITCOIN_WALLET_TRANSACTIONS_REMOVE_ALL_SUCCESS:

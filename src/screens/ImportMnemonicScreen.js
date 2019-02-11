@@ -12,7 +12,6 @@ import { handle as handleError } from '../actions/error/handle';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import * as bitcoinWalletActions from '../actions/bitcoin/wallet';
-import { getUnused as getUnusedAddress } from '../actions/bitcoin/wallet/addresses';
 import { getById as getUserById } from '../PinePaymentProtocol/user';
 import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../PinePaymentProtocol/crypto';
 import Paragraph from '../components/Paragraph';
