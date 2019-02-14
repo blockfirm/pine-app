@@ -3,6 +3,7 @@ import { onRegister } from '../actions/notifications/onRegister';
 import { onRegisterError } from '../actions/notifications/onRegisterError';
 import { setPermissions } from '../actions/notifications/setPermissions';
 import { sync as syncWallet } from '../actions/bitcoin/wallet';
+import { add as addDeviceTokenToPine } from '../actions/pine/deviceToken/add';
 
 export default class NotificationService {
   constructor(store) {
@@ -42,9 +43,32 @@ export default class NotificationService {
     });
   }
 
+  _addDeviceTokenToPine() {
+    const { store } = this;
+    const state = store.getState();
+
+    // Wait until the state has loaded.
+    if (state.settings.initialized === undefined) {
+      return setTimeout(() => {
+        this._addDeviceTokenToPine();
+      }, 1000);
+    }
+
+    // Abort if wallet is not initialized or user has not accepted terms.
+    if (!state.settings.initialized || !state.settings.user.hasAcceptedTerms) {
+      return;
+    }
+
+    store.dispatch(addDeviceTokenToPine()).catch(() => {
+      // Suppress errors.
+    });
+  }
+
   _onRegister(deviceToken) {
     const { store } = this;
+
     store.dispatch(onRegister(deviceToken));
+    this._addDeviceTokenToPine();
   }
 
   _onRegisterError(error) {

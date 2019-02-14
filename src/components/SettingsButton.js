@@ -45,7 +45,8 @@ export default class SettingsButton extends Component {
 
     const containerStyles = [
       settingsStyles.item,
-      isLastItem ? { borderBottomWidth: 0 } : undefined
+      isLastItem ? { borderBottomWidth: 0 } : undefined,
+      this.props.containerStyle
     ];
 
     const labelStyles = [
@@ -60,7 +61,7 @@ export default class SettingsButton extends Component {
       <TouchableHighlight onPress={this._onPress.bind(this)} underlayColor={underlayColor}>
         <View style={containerStyles}>
           <StyledText style={labelStyles}>{title}</StyledText>
-          { loading ? <ActivityIndicator animating={true} color='#8A8A8F' style={styles.loader} size='small' /> : null }
+          { loading ? <ActivityIndicator animating={true} color='#8A8A8F' style={[styles.loader, this.props.loaderStyle]} size='small' /> : null }
           { showCheckmark ? <Icon name='check' style={styles.checkmark} /> : null }
         </View>
       </TouchableHighlight>
@@ -70,6 +71,8 @@ export default class SettingsButton extends Component {
 
 SettingsButton.propTypes = {
   style: PropTypes.any,
+  containerStyle: PropTypes.any,
+  loaderStyle: PropTypes.any,
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
   type: PropTypes.string,

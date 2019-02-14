@@ -25,6 +25,7 @@ exports[`SettingsButton renders correctly 1`] = `
           "paddingRight": 30,
         },
         undefined,
+        undefined,
       ]
     }
   >
@@ -85,6 +86,7 @@ exports[`SettingsButton renders correctly as the last item 1`] = `
         Object {
           "borderBottomWidth": 0,
         },
+        undefined,
       ]
     }
   >
@@ -143,6 +145,7 @@ exports[`SettingsButton renders correctly while loading 1`] = `
           "paddingRight": 30,
         },
         undefined,
+        undefined,
       ]
     }
   >
@@ -180,12 +183,15 @@ exports[`SettingsButton renders correctly while loading 1`] = `
       hidesWhenStopped={true}
       size="small"
       style={
-        Object {
-          "height": 42,
-          "position": "absolute",
-          "right": 15,
-          "top": 1,
-        }
+        Array [
+          Object {
+            "height": 42,
+            "position": "absolute",
+            "right": 15,
+            "top": 1,
+          },
+          undefined,
+        ]
       }
     />
   </View>

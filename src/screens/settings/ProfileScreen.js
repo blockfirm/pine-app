@@ -36,7 +36,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#8A8A8F'
   },
+  signOutButtonContainer: {
+    paddingRight: 0,
+    marginLeft: 0
+  },
   signOutButton: {
+    alignSelf: 'center'
+  },
+  signOutButtonLoader: {
+    right: null,
     alignSelf: 'center'
   }
 });
@@ -54,6 +62,10 @@ export default class ProfileScreen extends Component {
     headerTitleStyle: headerStyles.title,
     headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />)
   });
+
+  state = {
+    signingOut: false
+  };
 
   _flagAsUninitialized() {
     const dispatch = this.props.dispatch;
@@ -107,14 +119,21 @@ export default class ProfileScreen extends Component {
   _removeWallet(keepSettings) {
     const dispatch = this.props.dispatch;
 
-    return dispatch(resetApp(keepSettings)).then(() => {
-      if (keepSettings) {
-        this._flagAsUninitialized();
-      }
+    this.setState({ signingOut: true });
 
-      this.props.screenProps.dismiss();
-      dispatch(navigateWithReset('Welcome'));
-    });
+    return dispatch(resetApp(keepSettings))
+      .then(() => {
+        if (keepSettings) {
+          this._flagAsUninitialized();
+        }
+
+        this.props.screenProps.dismiss();
+        dispatch(navigateWithReset('Welcome'));
+      })
+      .catch((error) => {
+        dispatch(handleError(error));
+        this.setState({ signingOut: false });
+      });
   }
 
   _showResetAppConfirmation() {
@@ -207,7 +226,10 @@ export default class ProfileScreen extends Component {
             title='Sign Out'
             type='destructive'
             onPress={this._showResetAppConfirmation.bind(this)}
+            loading={this.state.signingOut}
             style={styles.signOutButton}
+            containerStyle={styles.signOutButtonContainer}
+            loaderStyle={styles.signOutButtonLoader}
             isLastItem={true}
           />
         </SettingsGroup>

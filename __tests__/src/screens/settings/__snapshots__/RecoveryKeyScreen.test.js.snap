@@ -171,6 +171,7 @@ exports[`RecoveryKeyScreen renders correctly 1`] = `
                   Object {
                     "borderBottomWidth": 0,
                   },
+                  undefined,
                 ]
               }
             >

@@ -458,6 +458,7 @@ exports[`AboutScreen renders correctly 1`] = `
                     "paddingRight": 30,
                   },
                   undefined,
+                  undefined,
                 ]
               }
             >
@@ -512,6 +513,7 @@ exports[`AboutScreen renders correctly 1`] = `
                     "marginLeft": 15,
                     "paddingRight": 30,
                   },
+                  undefined,
                   undefined,
                 ]
               }
@@ -570,6 +572,7 @@ exports[`AboutScreen renders correctly 1`] = `
                   Object {
                     "borderBottomWidth": 0,
                   },
+                  undefined,
                 ]
               }
             >
