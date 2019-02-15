@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Dimensions, StatusBar, InteractionManager } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
@@ -101,11 +101,9 @@ export default class DisclaimerScreen extends Component {
   _onUnderstand() {
     this._flagAsAccepted();
 
-    InteractionManager.runAfterInteractions(() => {
-      this._registerForNotifications();
+    return this._registerForNotifications().then(() => {
+      return this._showHomeScreen();
     });
-
-    return this._showHomeScreen();
   }
 
   _getAccessToFundsText() {
@@ -161,7 +159,7 @@ export default class DisclaimerScreen extends Component {
             <Text style={styles.finePrint}>.</Text>
           </Paragraph>
 
-          <Button label='I understand' onPress={this._onUnderstand.bind(this)} />
+          <Button label='I understand' onPress={this._onUnderstand.bind(this)} showLoader={true} />
         </Footer>
       </BaseScreen>
     );
