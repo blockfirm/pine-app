@@ -5,13 +5,15 @@ import TermsAndConditionsNavigator from './TermsAndConditionsNavigator';
 import SettingsNavigator from './SettingsNavigator';
 import BackUpMnemonicNavigator from './BackUpMnemonicNavigator';
 import SendNavigator from './SendNavigator';
+import AddContactNavigator from './AddContactNavigator';
 
 const AppNavigator = createStackNavigator({
   Main: { screen: MainNavigator },
   TermsAndConditions: { screen: TermsAndConditionsNavigator },
   Settings: { screen: SettingsNavigator },
   BackUpMnemonic: { screen: BackUpMnemonicNavigator },
-  Send: { screen: SendNavigator }
+  Send: { screen: SendNavigator },
+  AddContact: { screen: AddContactNavigator }
 }, {
   mode: 'modal',
   headerMode: 'none',

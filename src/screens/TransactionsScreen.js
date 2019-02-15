@@ -32,6 +32,14 @@ export default class TransactionsScreen extends Component {
     header: null
   }
 
+  _addContact() {
+    const dispatch = this.props.dispatch;
+
+    dispatch(
+      NavigationActions.navigate({ routeName: 'AddContact' })
+    );
+  }
+
   _showSettings() {
     const dispatch = this.props.dispatch;
 
@@ -49,7 +57,11 @@ export default class TransactionsScreen extends Component {
   render() {
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
-        <TransactionsScreenHeader onSettingsPress={this._showSettings.bind(this)} />
+        <TransactionsScreenHeader
+          onAddContactPress={this._addContact.bind(this)}
+          onSettingsPress={this._showSettings.bind(this)}
+        />
+
         <OfflineNoticeContainer />
         <TransactionListContainer ref={ref => { this._transactionList = ref && ref.getWrappedInstance(); }} />
 

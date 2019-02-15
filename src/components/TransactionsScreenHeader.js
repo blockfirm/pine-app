@@ -3,6 +3,7 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import headerStyles from '../styles/headerStyles';
+import AddContactIcon from '../components/icons/AddContactIcon';
 import SettingsIcon from '../components/icons/SettingsIcon';
 import BalanceLabelContainer from '../containers/BalanceLabelContainer';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
@@ -15,6 +16,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'transparent',
     height: getNavBarHeight()
+  },
+  addContact: {
+    position: 'absolute',
+    top: 0,
+    left: 7.5,
+    padding: 9 // The padding makes it easier to press.
   },
   settings: {
     position: 'absolute',
@@ -42,6 +49,10 @@ export default class TransactionsScreenHeader extends Component {
   render() {
     return (
       <View style={styles.header}>
+        <TouchableOpacity onPress={this.props.onAddContactPress} style={styles.addContact}>
+          <AddContactIcon />
+        </TouchableOpacity>
+
         <View style={styles.titleWrapper}>
           <BalanceLabelContainer currencyType='primary' style={[headerStyles.title, styles.title]} />
           <BalanceLabelContainer currencyType='secondary' style={[headerStyles.title, styles.subTitle]} />
@@ -56,5 +67,6 @@ export default class TransactionsScreenHeader extends Component {
 }
 
 TransactionsScreenHeader.propTypes = {
+  onAddContactPress: PropTypes.func,
   onSettingsPress: PropTypes.func
 };
