@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
+import { send as sendContactRequest } from '../actions/pine/contactRequests/send';
 import { parse as parseAddress } from '../PinePaymentProtocol/address';
-import getMnemonicByKey from '../crypto/getMnemonicByKey';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';
@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
-  keys: state.keys.items,
   defaultPineAddressHostname: state.settings.defaultPineAddressHostname
 }))
 export default class AddContactScreen extends Component {
@@ -45,7 +44,7 @@ export default class AddContactScreen extends Component {
     const nextIsDisabled = !navigation.getParam('canSubmit');
     const submit = navigation.getParam('submit');
     const headerLeft = <CancelButton onPress={screenProps.dismiss} />;
-    const headerRight = <HeaderButton label='Next' onPress={submit} disabled={nextIsDisabled} />;
+    const headerRight = <HeaderButton label='Done' onPress={submit} disabled={nextIsDisabled} />;
 
     return {
       title: 'Add Contact',
@@ -87,9 +86,9 @@ export default class AddContactScreen extends Component {
 
     this.props.navigation.setParams({ canSubmit: false });
 
-    return this._getMnemonic()
-      .then((mnemonic) => {
-
+    return dispatch(sendContactRequest(fullAddress))
+      .then(() => {
+        this.props.screenProps.dismiss();
       })
       .catch((error) => {
         this.setState({ error: error.message });
@@ -97,13 +96,6 @@ export default class AddContactScreen extends Component {
       .then(() => {
         this.props.navigation.setParams({ canSubmit: true });
       });
-  }
-
-  _getMnemonic() {
-    const keys = Object.values(this.props.keys);
-    const defaultKey = keys[0];
-
-    return getMnemonicByKey(defaultKey.id);
   }
 
   _validateAddress(address) {
@@ -158,6 +150,6 @@ export default class AddContactScreen extends Component {
 AddContactScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
-  keys: PropTypes.object,
+  screenProps: PropTypes.object,
   defaultPineAddressHostname: PropTypes.string
 };
