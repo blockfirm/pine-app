@@ -1,6 +1,7 @@
 import { load as loadBitcoinWallet } from './bitcoin/wallet';
 import { load as loadKeys } from './keys';
 import { load as loadSettings } from './settings';
+import { load as loadContacts } from './contacts';
 
 export const LOAD_REQUEST = 'LOAD_REQUEST';
 export const LOAD_SUCCESS = 'LOAD_SUCCESS';
@@ -35,6 +36,7 @@ export const load = () => {
     const promises = [
       dispatch(loadSettings()),
       dispatch(loadKeys()),
+      dispatch(loadContacts()),
       dispatch(loadBitcoinWallet())
     ];
 

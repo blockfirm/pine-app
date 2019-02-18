@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { send as sendContactRequest } from '../actions/pine/contactRequests/send';
+import { add as addContact } from '../actions/contacts/add';
 import { parse as parseAddress } from '../PinePaymentProtocol/address';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
@@ -87,6 +88,9 @@ export default class AddContactScreen extends Component {
     this.props.navigation.setParams({ canSubmit: false });
 
     return dispatch(sendContactRequest(fullAddress))
+      .then((contact) => {
+        return dispatch(addContact(contact));
+      })
       .then(() => {
         this.props.screenProps.dismiss();
       })

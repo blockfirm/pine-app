@@ -10,8 +10,12 @@ const getAuthorizationHeader = (from, keyPair) => {
 };
 
 const create = (to, from, mnemonic) => {
+  let user;
+
   return getUser(to)
-    .then((user) => {
+    .then((_user) => {
+      user = _user;
+
       const { hostname } = parseAddress(to);
       const keyPair = getKeyPairFromMnemonic(mnemonic);
       const baseUrl = resolveBaseUrl(hostname);
@@ -40,7 +44,14 @@ const create = (to, from, mnemonic) => {
         throw new Error('Unknown error when creating contact request');
       }
 
-      return response.id;
+      user.contactRequest = {
+        id: response.id
+      };
+
+      user.userId = user.id;
+      delete user.id;
+
+      return user;
     });
 };
 

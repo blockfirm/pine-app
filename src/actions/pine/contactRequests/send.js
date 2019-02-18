@@ -11,10 +11,10 @@ const sendRequest = () => {
   };
 };
 
-const sendSuccess = (contactRequestId) => {
+const sendSuccess = (contact) => {
   return {
     type: PINE_CONTACT_REQUESTS_SEND_SUCCESS,
-    contactRequestId
+    contact
   };
 };
 
@@ -49,9 +49,9 @@ export const send = (to) => {
       .then((mnemonic) => {
         return contactRequests.create(to, pineAddress, mnemonic);
       })
-      .then((contactRequestId) => {
-        dispatch(sendSuccess(contactRequestId));
-        return contactRequestId;
+      .then((contact) => {
+        dispatch(sendSuccess(contact));
+        return contact;
       })
       .catch((error) => {
         dispatch(sendFailure(error));
