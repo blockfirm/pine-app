@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
+  userProfile: state.settings.user.profile,
   defaultPineAddressHostname: state.settings.defaultPineAddressHostname
 }))
 export default class AddContactScreen extends Component {
@@ -82,10 +83,14 @@ export default class AddContactScreen extends Component {
   }
 
   _onSubmit() {
-    const { dispatch } = this.props;
+    const { dispatch, userProfile } = this.props;
     const fullAddress = this._getFullAddress(this.state.address);
 
     this.props.navigation.setParams({ canSubmit: false });
+
+    if (fullAddress === userProfile.pineAddress) {
+      return this.setState({ error: '👆 That\'s you' });
+    }
 
     return dispatch(sendContactRequest(fullAddress))
       .then((contact) => {
@@ -155,5 +160,6 @@ AddContactScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   screenProps: PropTypes.object,
+  userProfile: PropTypes.object,
   defaultPineAddressHostname: PropTypes.string
 };
