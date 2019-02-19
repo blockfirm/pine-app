@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+import { add as addContactToPine } from '../pine/contacts/add';
 import { save } from './save';
 
 export const CONTACTS_ADD_REQUEST = 'CONTACTS_ADD_REQUEST';
@@ -29,11 +29,12 @@ export const add = (contact) => {
   return (dispatch) => {
     dispatch(addRequest());
 
-    contact.id = uuidv4();
-
-    dispatch(addSuccess(contact));
-
-    return dispatch(save())
+    return dispatch(addContactToPine(contact.pineAddress))
+      .then((contactId) => {
+        contact.id = contactId;
+        dispatch(addSuccess(contact));
+        return dispatch(save());
+      })
       .then(() => contact)
       .catch((error) => {
         dispatch(addFailure(error));

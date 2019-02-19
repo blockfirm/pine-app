@@ -94,6 +94,7 @@ export default class AddContactScreen extends Component {
 
     return dispatch(sendContactRequest(fullAddress))
       .then((contact) => {
+        contact.pineAddress = fullAddress;
         return dispatch(addContact(contact));
       })
       .then(() => {
