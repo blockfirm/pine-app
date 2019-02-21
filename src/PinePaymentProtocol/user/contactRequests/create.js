@@ -45,7 +45,9 @@ const create = (to, from, mnemonic) => {
       }
 
       user.contactRequest = {
-        id: response.id
+        id: response.id,
+        from: response.from,
+        createdAt: response.createdAt
       };
 
       user.userId = user.id;

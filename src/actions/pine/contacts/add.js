@@ -11,10 +11,10 @@ const addRequest = () => {
   };
 };
 
-const addSuccess = (contactId) => {
+const addSuccess = (contact) => {
   return {
     type: PINE_CONTACTS_ADD_SUCCESS,
-    contactId
+    contact
   };
 };
 
@@ -49,9 +49,9 @@ export const add = (address) => {
       .then((mnemonic) => {
         return addContact(pineAddress, address, mnemonic);
       })
-      .then((contactId) => {
-        dispatch(addSuccess(contactId));
-        return contactId;
+      .then((contact) => {
+        dispatch(addSuccess(contact));
+        return contact;
       })
       .catch((error) => {
         dispatch(addFailure(error));

@@ -7,7 +7,7 @@ import TransactionList from '../components/TransactionList';
 
 const mapStateToProps = (state) => {
   return {
-    transactions: state.bitcoin.wallet.transactions.items || []
+    contacts: state.contacts.items || {}
   };
 };
 

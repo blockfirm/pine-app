@@ -6,9 +6,7 @@ import TransactionListItem from '../components/TransactionListItem';
 
 const mapStateToProps = (state) => {
   return {
-    bitcoinNetwork: state.settings.bitcoin.network,
-    externalAddresses: state.bitcoin.wallet.addresses.external.items,
-    internalAddresses: state.bitcoin.wallet.addresses.internal.items
+    userProfile: state.settings.user.profile
   };
 };
 
@@ -16,8 +14,8 @@ class TransactionListItemContainer extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     navigation: PropTypes.any,
-    transaction: PropTypes.object.isRequired,
-    bitcoinNetwork: PropTypes.string
+    contact: PropTypes.object.isRequired,
+    userProfile: PropTypes.object.isRequired
   };
 
   constructor() {
@@ -26,8 +24,7 @@ class TransactionListItemContainer extends Component {
   }
 
   _onPress() {
-    const { navigation, transaction, bitcoinNetwork } = this.props;
-    navigation.navigate('TransactionDetails', { transaction, bitcoinNetwork });
+
   }
 
   render() {

@@ -11,7 +11,7 @@ import StyledText from './StyledText';
 
 const SECTION_HEADER_HEIGHT = 26;
 const SECTION_HEADER_MARGIN_TOP = 30;
-const SECTION_HEADER_MARGIN_BOTTOM = 20;
+const SECTION_HEADER_MARGIN_BOTTOM = 12;
 const ITEM_HEIGHT = 68;
 
 const styles = StyleSheet.create({
@@ -78,12 +78,8 @@ export default class TransactionList extends Component {
   }
 
   // eslint-disable-next-line max-statements
-  _getSectionTitle(transaction) {
-    if (!transaction.time) {
-      return 'Pending';
-    }
-
-    const date = moment(new Date(transaction.time * 1000));
+  _getSectionTitle(contact) {
+    const date = moment(new Date(contact.createdAt * 1000));
     const now = moment();
     const yesterday = moment().subtract(1, 'days');
     const lastWeek = moment().subtract(1, 'weeks');
@@ -111,17 +107,17 @@ export default class TransactionList extends Component {
     return date.format('MMMM, YYYY');
   }
 
-  _getSections(transactions) {
+  _getSections(contacts) {
     const sections = {};
 
-    transactions.forEach((transaction) => {
-      const title = this._getSectionTitle(transaction);
+    contacts.forEach((contact) => {
+      const title = this._getSectionTitle(contact);
 
       if (!sections[title]) {
         sections[title] = [];
       }
 
-      sections[title].push(transaction);
+      sections[title].push(contact);
     });
 
     return Object.keys(sections).map((title) => ({
@@ -146,12 +142,17 @@ export default class TransactionList extends Component {
   }
 
   render() {
-    const transactions = [...this.props.transactions].reverse();
-    const sections = this._getSections(transactions);
+    const contacts = Object.values(this.props.contacts);
 
-    if (!transactions.length) {
+    if (!contacts.length) {
       return this._renderEmptyList();
     }
+
+    contacts.sort((a, b) => {
+      return b.createdAt - a.createdAt;
+    });
+
+    const sections = this._getSections(contacts);
 
     return (
       <SectionList
@@ -160,9 +161,9 @@ export default class TransactionList extends Component {
         contentInset={{ bottom: ifIphoneX(124, 90) }}
         sections={sections}
         renderItem={({ item }) => (
-          <TransactionListItemContainer transaction={item} />
+          <TransactionListItemContainer contact={item} />
         )}
-        keyExtractor={(item) => item.txid}
+        keyExtractor={(item) => item.id}
         getItemLayout={this._getItemLayout}
         renderSectionHeader={({ section: { title } }) => (
           <View style={styles.sectionHeader}>
@@ -181,6 +182,6 @@ export default class TransactionList extends Component {
 }
 
 TransactionList.propTypes = {
-  transactions: PropTypes.array.isRequired,
+  contacts: PropTypes.object.isRequired,
   onRefresh: PropTypes.func.isRequired
 };

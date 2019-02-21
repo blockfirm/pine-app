@@ -30,9 +30,12 @@ export const add = (contact) => {
     dispatch(addRequest());
 
     return dispatch(addContactToPine(contact.pineAddress))
-      .then((contactId) => {
-        contact.id = contactId;
+      .then(({ id, createdAt }) => {
+        contact.id = id;
+        contact.createdAt = createdAt;
+
         dispatch(addSuccess(contact));
+
         return dispatch(save());
       })
       .then(() => contact)

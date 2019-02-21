@@ -47,7 +47,7 @@ const add = (pineAddress, contactAddress, mnemonic) => {
         throw new Error('Unknown error when adding contact');
       }
 
-      return response.id;
+      return response;
     });
 };
 
