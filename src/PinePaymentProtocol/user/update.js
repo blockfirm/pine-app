@@ -1,12 +1,6 @@
-import { getKeyPairFromMnemonic, getUserIdFromPublicKey, sign } from '../crypto';
+import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../address';
-
-const getAuthorizationHeader = (userId, rawBody, keyPair) => {
-  const signature = sign(rawBody, keyPair);
-  const credentials = Buffer.from(`${userId}:${signature}`).toString('base64');
-
-  return `Basic ${credentials}`;
-};
+import { getAuthorizationHeader } from '../authentication';
 
 const update = (pineAddress, user, mnemonic) => {
   const { hostname } = parseAddress(pineAddress);
@@ -15,7 +9,8 @@ const update = (pineAddress, user, mnemonic) => {
   const userId = getUserIdFromPublicKey(publicKey);
 
   const baseUrl = resolveBaseUrl(hostname);
-  const url = `${baseUrl}/v1/users/${userId}`;
+  const path = `/v1/users/${userId}`;
+  const url = `${baseUrl}${path}`;
 
   const body = {
     displayName: user.displayName
@@ -27,7 +22,7 @@ const update = (pineAddress, user, mnemonic) => {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': getAuthorizationHeader(userId, rawBody, keyPair)
+      'Authorization': getAuthorizationHeader(userId, path, rawBody, keyPair)
     },
     body: rawBody
   };

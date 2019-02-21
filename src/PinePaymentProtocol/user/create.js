@@ -1,13 +1,7 @@
 import bs58check from 'bs58check';
-import { getKeyPairFromMnemonic, getUserIdFromPublicKey, sign } from '../crypto';
+import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../address';
-
-const getAuthorizationHeader = (userId, rawBody, keyPair) => {
-  const signature = sign(rawBody, keyPair);
-  const credentials = Buffer.from(`${userId}:${signature}`).toString('base64');
-
-  return `Basic ${credentials}`;
-};
+import { getAuthorizationHeader } from '../authentication';
 
 const create = (pineAddress, mnemonic) => {
   const { username, hostname } = parseAddress(pineAddress);
@@ -16,7 +10,8 @@ const create = (pineAddress, mnemonic) => {
   const userId = getUserIdFromPublicKey(publicKey);
 
   const baseUrl = resolveBaseUrl(hostname);
-  const url = `${baseUrl}/v1/users`;
+  const path = '/v1/users';
+  const url = `${baseUrl}${path}`;
 
   const body = {
     publicKey: bs58check.encode(publicKey),
@@ -29,7 +24,7 @@ const create = (pineAddress, mnemonic) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': getAuthorizationHeader(userId, rawBody, keyPair)
+      'Authorization': getAuthorizationHeader(userId, path, rawBody, keyPair)
     },
     body: rawBody
   };

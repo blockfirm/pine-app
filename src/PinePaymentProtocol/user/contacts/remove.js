@@ -1,12 +1,6 @@
-import { getKeyPairFromMnemonic, getUserIdFromPublicKey, sign } from '../../crypto';
+import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
-
-const getAuthorizationHeader = (userId, keyPair) => {
-  const signature = sign(userId, keyPair);
-  const credentials = Buffer.from(`${userId}:${signature}`).toString('base64');
-
-  return `Basic ${credentials}`;
-};
+import { getAuthorizationHeader } from '../../authentication';
 
 const remove = (pineAddress, contactId, mnemonic) => {
   const { hostname } = parseAddress(pineAddress);
@@ -14,12 +8,13 @@ const remove = (pineAddress, contactId, mnemonic) => {
   const publicKey = keyPair.publicKey;
   const userId = getUserIdFromPublicKey(publicKey);
   const baseUrl = resolveBaseUrl(hostname);
-  const url = `${baseUrl}/v1/users/${userId}/contacts/${contactId}`;
+  const path = `/v1/users/${userId}/contacts/${contactId}`;
+  const url = `${baseUrl}${path}`;
 
   const fetchOptions = {
     method: 'DELETE',
     headers: {
-      Authorization: getAuthorizationHeader(userId, keyPair)
+      Authorization: getAuthorizationHeader(userId, path, '', keyPair)
     }
   };
 

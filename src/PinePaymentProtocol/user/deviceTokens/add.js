@@ -1,12 +1,6 @@
-import { getKeyPairFromMnemonic, getUserIdFromPublicKey, sign } from '../../crypto';
+import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
-
-const getAuthorizationHeader = (userId, rawBody, keyPair) => {
-  const signature = sign(rawBody, keyPair);
-  const credentials = Buffer.from(`${userId}:${signature}`).toString('base64');
-
-  return `Basic ${credentials}`;
-};
+import { getAuthorizationHeader } from '../../authentication';
 
 const add = (pineAddress, deviceToken, mnemonic) => {
   const { hostname } = parseAddress(pineAddress);
@@ -15,7 +9,8 @@ const add = (pineAddress, deviceToken, mnemonic) => {
   const userId = getUserIdFromPublicKey(publicKey);
 
   const baseUrl = resolveBaseUrl(hostname);
-  const url = `${baseUrl}/v1/users/${userId}/device-tokens`;
+  const path = `/v1/users/${userId}/device-tokens`;
+  const url = `${baseUrl}${path}`;
 
   const body = deviceToken;
   const rawBody = JSON.stringify(body);
@@ -24,7 +19,7 @@ const add = (pineAddress, deviceToken, mnemonic) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': getAuthorizationHeader(userId, rawBody, keyPair)
+      'Authorization': getAuthorizationHeader(userId, path, rawBody, keyPair)
     },
     body: rawBody
   };

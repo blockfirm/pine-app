@@ -57,7 +57,7 @@ describe('remove', () => {
 
         it('has header "Authorization" set to a signature of the request', () => {
           expect(options.headers).toBeTruthy();
-          expect(options.headers['Authorization']).toBe('Basic QUNqcFJIRnY3TDhpTjRxblZlUjRVN3B5aHpHeFNyNFoyOklNMkRHR3dBSmMvRW9LOWQ1OE1mVUwvL2hCTTU2Y3AvTy9ydlk0MmpHYVBhVnFqbUFIWlJvK2RuQXFnMSthOEI4OW00UXlxZ0QxbForcDZ1Nk50bDkxQT0=');
+          expect(options.headers['Authorization']).toBe('Basic QUNqcFJIRnY3TDhpTjRxblZlUjRVN3B5aHpHeFNyNFoyOkh4KzM1dVNldVk1ZjRIR3U2SWlkMG1wOHRPQWppdUt1ZnUwa3hYOU5taWVqZGMwc3ZudHdBR2NZdXZ1TGY3WDN5VWpWd3h5WUZEdm14U2phN3VBVW1TUT0=');
         });
       });
     });

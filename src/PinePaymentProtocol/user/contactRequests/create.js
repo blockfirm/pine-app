@@ -1,13 +1,7 @@
-import { getKeyPairFromMnemonic, sign } from '../../crypto';
+import { getKeyPairFromMnemonic } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
+import { getAuthorizationHeader } from '../../authentication';
 import getUser from '../get';
-
-const getAuthorizationHeader = (from, keyPair) => {
-  const signature = sign(from, keyPair);
-  const credentials = Buffer.from(`${from}:${signature}`).toString('base64');
-
-  return `Basic ${credentials}`;
-};
 
 const create = (to, from, mnemonic) => {
   let user;
@@ -19,12 +13,13 @@ const create = (to, from, mnemonic) => {
       const { hostname } = parseAddress(to);
       const keyPair = getKeyPairFromMnemonic(mnemonic);
       const baseUrl = resolveBaseUrl(hostname);
-      const url = `${baseUrl}/v1/users/${user.id}/contact-requests`;
+      const path = `/v1/users/${user.id}/contact-requests`;
+      const url = `${baseUrl}${path}`;
 
       const fetchOptions = {
         method: 'POST',
         headers: {
-          Authorization: getAuthorizationHeader(from, keyPair)
+          Authorization: getAuthorizationHeader(from, path, '', keyPair)
         }
       };
 

@@ -62,7 +62,7 @@ describe('set', () => {
 
         it('has header "Authorization" set to a signature of the request', () => {
           expect(options.headers).toBeTruthy();
-          expect(options.headers['Authorization']).toBe('Basic QUNqcFJIRnY3TDhpTjRxblZlUjRVN3B5aHpHeFNyNFoyOkh5UXNUbmdhWmNwajFHRzlOWU52MW1JZnR1MW53SjVEaHM3clVJODNSZnRBZUUyenJTd2pYMlgraDF0Rk5MdG8xcU56VXdOMFp4NE90elZpWFc5bysyTT0=');
+          expect(options.headers['Authorization']).toBe('Basic QUNqcFJIRnY3TDhpTjRxblZlUjRVN3B5aHpHeFNyNFoyOkgzNG40dEFnZFRBTHVQWW5QVkVPengrZGtGdU1UQTkwb0pNRUI0NmszMnFjVUlhd1BQbkJUbkpZcThjaDlwVU9URllxOHFSa21YRUgzUGZnTExMQlExRT0=');
         });
 
         describe('the body', () => {
