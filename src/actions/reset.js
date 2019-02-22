@@ -46,6 +46,10 @@ const getDefaultMnemonicFromKeys = (keys) => {
 };
 
 const removeDeviceTokenFromPineServer = (deviceToken, pineAddress, keys) => {
+  if (!deviceToken) {
+    return Promise.resolve();
+  }
+
   return getDefaultMnemonicFromKeys(keys).then((mnemonic) => {
     // Add it first to get the ID of this device token.
     return deviceTokens.add(pineAddress, { ios: deviceToken }, mnemonic).then((deviceTokenId) => {
