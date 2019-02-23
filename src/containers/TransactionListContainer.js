@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { sync as syncWallet } from '../actions/bitcoin/wallet';
+import { sync as syncApp } from '../actions/sync';
 import TransactionList from '../components/TransactionList';
 
 const mapStateToProps = (state) => {
@@ -18,7 +18,7 @@ class TransactionListContainer extends Component {
 
   _onRefresh() {
     const dispatch = this.props.dispatch;
-    return dispatch(syncWallet());
+    return dispatch(syncApp());
   }
 
   scrollToTop() {

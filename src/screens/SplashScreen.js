@@ -3,7 +3,7 @@ import { StyleSheet, Image, ActivityIndicator, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { navigateWithReset, load as loadState } from '../actions';
+import { navigateWithReset, load as loadState, sync as syncApp } from '../actions';
 import * as walletActions from '../actions/bitcoin/wallet';
 import { get as getFiatRates } from '../actions/bitcoin/fiatRates';
 import * as keyActions from '../actions/keys';
@@ -70,8 +70,9 @@ export default class SplashScreen extends Component {
           return this._showDisclaimerScreen();
         }
 
-        // Sync wallet in background and show Home screen.
-        dispatch(walletActions.sync());
+        // Sync app in background and show Home screen.
+        dispatch(syncApp());
+
         this._showHomeScreen();
       })
       .then(() => {

@@ -2,7 +2,7 @@ import { PushNotificationIOS, AppState } from 'react-native';
 import { onRegister } from '../actions/notifications/onRegister';
 import { onRegisterError } from '../actions/notifications/onRegisterError';
 import { setPermissions } from '../actions/notifications/setPermissions';
-import { sync as syncWallet } from '../actions/bitcoin/wallet';
+import { sync as syncApp } from '../actions/sync';
 import { add as addDeviceTokenToPine } from '../actions/pine/deviceToken/add';
 
 export default class NotificationService {
@@ -82,7 +82,7 @@ export default class NotificationService {
     const { initialized } = state.settings;
 
     if (initialized) {
-      store.dispatch(syncWallet());
+      store.dispatch(syncApp());
     }
   }
 

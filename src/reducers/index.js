@@ -8,6 +8,7 @@ import networkReducer from './network';
 import homeScreenReducer from './homeScreen';
 import notificationsReducer from './notifications';
 import contactsReducer from './contacts';
+import syncingReducer from './syncing';
 
 const getRootReducer = (navReducer) => {
   const rootReducer = combineReducers({
@@ -20,7 +21,8 @@ const getRootReducer = (navReducer) => {
     network: networkReducer,
     homeScreen: homeScreenReducer,
     notifications: notificationsReducer,
-    contacts: contactsReducer
+    contacts: contactsReducer,
+    syncing: syncingReducer
   });
 
   return rootReducer;

@@ -24,6 +24,9 @@ const items = (state = {}, action) => {
     case contactsActions.CONTACTS_REMOVE_ALL_SUCCESS:
       return {};
 
+    case contactsActions.CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS:
+      return action.contacts;
+
     default:
       return state;
   }

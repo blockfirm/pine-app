@@ -1,5 +1,5 @@
 import { AppState, NetInfo } from 'react-native';
-import { sync as syncWallet } from '../actions/bitcoin/wallet';
+import { sync as syncApp } from '../actions/sync';
 import * as internetActions from '../actions/network/internet';
 
 export default class ConnectionStatusService {
@@ -48,7 +48,7 @@ export default class ConnectionStatusService {
       store.dispatch(internetActions.connected());
 
       if (this._isConnectedToInternet !== null) {
-        this._syncWallet();
+        this._syncApp();
       }
     } else {
       store.dispatch(internetActions.disconnected());
@@ -57,12 +57,12 @@ export default class ConnectionStatusService {
     this._isConnectedToInternet = isConnected;
   }
 
-  _syncWallet() {
+  _syncApp() {
     const { store } = this;
     const state = store.getState();
 
-    if (state.settings.initialized) {
-      store.dispatch(syncWallet());
+    if (state.settings.initialized && state.settings.user.hasAcceptedTerms) {
+      store.dispatch(syncApp());
     }
   }
 }
