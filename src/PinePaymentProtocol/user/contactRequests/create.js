@@ -3,6 +3,15 @@ import { parse as parseAddress, resolveBaseUrl } from '../../address';
 import { getAuthorizationHeader } from '../../authentication';
 import getUser from '../get';
 
+/**
+ * Sends a contact request to a Pine user.
+ *
+ * @param {string} to - Pine address to send the request to.
+ * @param {string} from - Pine address to send the request from.
+ * @param {string} mnemonic - Mnemonic to sign the request with.
+ *
+ * @returns {Promise} A promise that resolves to a user/contact.
+ */
 const create = (to, from, mnemonic) => {
   let user;
 
