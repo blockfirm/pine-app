@@ -23,8 +23,7 @@ const remove = (pineAddress, deviceTokenId, mnemonic) => {
   const fetchOptions = {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': getAuthorizationHeader(userId, path, '', keyPair)
+      Authorization: getAuthorizationHeader(userId, path, '', keyPair)
     }
   };
 
