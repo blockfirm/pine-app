@@ -2,6 +2,16 @@ import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
 import { getAuthorizationHeader } from '../../authentication';
 
+/**
+ * Adds a device token to a user's Pine server.
+ *
+ * @param {string} pineAddress - Pine address to add the device token to.
+ * @param {object} deviceToken - Object with device token to add.
+ * @param {string} deviceToken.ios - iOS device token to add.
+ * @param {string} mnemonic - Mnemonic to sign the request with.
+ *
+ * @returns {Promise} A promise that resolves to the device token's id.
+ */
 const add = (pineAddress, deviceToken, mnemonic) => {
   const { hostname } = parseAddress(pineAddress);
   const keyPair = getKeyPairFromMnemonic(mnemonic);
