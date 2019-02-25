@@ -9,7 +9,7 @@ import {
 
 const dispatchMock = jest.fn();
 
-const addStateMock = jest.fn(() => ({
+const getStateMock = jest.fn(() => ({
   settings: {
     user: {
       profile: {
@@ -79,7 +79,7 @@ describe('add', () => {
     });
 
     it('dispatches an action of type PINE_CONTACTS_ADD_REQUEST', () => {
-      returnedFunction(dispatchMock, addStateMock);
+      returnedFunction(dispatchMock, getStateMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
         type: PINE_CONTACTS_ADD_REQUEST
@@ -89,7 +89,7 @@ describe('add', () => {
     it('adds contact to user using its address and mnemonic', () => {
       expect.hasAssertions();
 
-      return returnedFunction(dispatchMock, addStateMock).then(() => {
+      return returnedFunction(dispatchMock, getStateMock).then(() => {
         const expectedPineAddress = 'bb589666-7b43-4e44-be13-9fd76ec3f512';
         const expectedContactAddress = 'cfc05050-3371-4e12-be2d-10b54a4ad841';
         const expectedMnemonic = 'c6f19f52-924d-498f-9549-1c65c5bfaa7b';
@@ -100,7 +100,7 @@ describe('add', () => {
     });
 
     it('returns a Promise', () => {
-      const returnValue = returnedFunction(dispatchMock, addStateMock);
+      const returnValue = returnedFunction(dispatchMock, getStateMock);
       expect(returnValue).toBeInstanceOf(Promise);
     });
 
@@ -108,7 +108,7 @@ describe('add', () => {
       let promise;
 
       beforeEach(() => {
-        promise = returnedFunction(dispatchMock, addStateMock);
+        promise = returnedFunction(dispatchMock, getStateMock);
       });
 
       it('dispatches an action of type PINE_CONTACTS_ADD_SUCCESS with the contact', () => {
@@ -144,7 +144,7 @@ describe('add', () => {
           new Error('99da140c-3e65-4e4e-9358-7230b898988b')
         ));
 
-        promise = addContactAction(address)(dispatchMock, addStateMock);
+        promise = addContactAction(address)(dispatchMock, getStateMock);
       });
 
       it('dispatches an action of type PINE_CONTACTS_ADD_FAILURE with the error', () => {
