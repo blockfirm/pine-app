@@ -31,7 +31,7 @@ const getDefaultMnemonicFromKeys = (keys) => {
 };
 
 /**
- * Action to get all contact requests.
+ * Action to get all contact requests from user's Pine server.
  */
 export const get = () => {
   return (dispatch, getState) => {
