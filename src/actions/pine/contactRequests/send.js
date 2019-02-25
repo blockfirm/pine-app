@@ -31,17 +31,15 @@ const getDefaultMnemonicFromKeys = (keys) => {
 };
 
 /**
- * Action to send a contact request.
+ * Action to send a contact request to another Pine user.
+ *
+ * @param {string} to - Pine address to send the request to.
  */
 export const send = (to) => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
     const { pineAddress } = state.settings.user.profile;
-
-    if (!pineAddress) {
-      return Promise.resolve();
-    }
 
     dispatch(sendRequest());
 
