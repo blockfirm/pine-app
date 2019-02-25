@@ -6,7 +6,7 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import { navigateWithReset } from '../actions';
 import * as settingsActions from '../actions/settings';
-import { add as addDeviceTokenToPine } from '../actions/pine/deviceToken/add';
+import { add as addDeviceTokenToPine } from '../actions/pine/deviceTokens/add';
 import Title from '../components/Title';
 import Paragraph from '../components/Paragraph';
 import CopyText from '../components/CopyText';

@@ -3,7 +3,7 @@ import { onRegister } from '../actions/notifications/onRegister';
 import { onRegisterError } from '../actions/notifications/onRegisterError';
 import { setPermissions } from '../actions/notifications/setPermissions';
 import { sync as syncApp } from '../actions/sync';
-import { add as addDeviceTokenToPine } from '../actions/pine/deviceToken/add';
+import { add as addDeviceTokenToPine } from '../actions/pine/deviceTokens/add';
 
 export default class NotificationService {
   constructor(store) {
