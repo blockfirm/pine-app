@@ -31,17 +31,15 @@ const getDefaultMnemonicFromKeys = (keys) => {
 };
 
 /**
- * Action to add a contact.
+ * Action to add a contact to the user's Pine server.
+ *
+ * @param {string} address - Pine address of the contact to add.
  */
 export const add = (address) => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
     const { pineAddress } = state.settings.user.profile;
-
-    if (!pineAddress) {
-      return Promise.resolve();
-    }
 
     dispatch(addRequest());
 
