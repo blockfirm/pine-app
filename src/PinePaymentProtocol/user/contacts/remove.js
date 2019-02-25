@@ -2,6 +2,15 @@ import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
 import { getAuthorizationHeader } from '../../authentication';
 
+/**
+ * Removes a contact from a user's Pine server.
+ *
+ * @param {string} pineAddress - Pine address to remove the contact from.
+ * @param {string} contactId - ID of the contact to remove.
+ * @param {string} mnemonic - Mnemonic to authenticate and sign the request with.
+ *
+ * @returns {Promise} A promise that resolves if the device token was removed.
+ */
 const remove = (pineAddress, contactId, mnemonic) => {
   const { hostname } = parseAddress(pineAddress);
   const keyPair = getKeyPairFromMnemonic(mnemonic);

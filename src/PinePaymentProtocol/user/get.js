@@ -1,5 +1,12 @@
 import { parse as parseAddress, resolveBaseUrl } from '../address';
 
+/**
+ * Gets a user by its Pine address.
+ *
+ * @param {string} pineAddress - Pine address of the user to get.
+ *
+ * @returns {Promise} A promise that resolves to the user.
+ */
 const get = (pineAddress) => {
   const { username, hostname } = parseAddress(pineAddress);
   const usernameParam = encodeURIComponent(username);

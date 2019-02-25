@@ -4,7 +4,7 @@ import validateHostname from './validateHostname';
 /**
  * Parses a Pine Payment Address.
  *
- * @param {string} pineAddress - Pine Address to parse.
+ * @param {string} pineAddress - Pine address to parse, e.g. test@example.org.
  *
  * @returns {Object} An object containing `username` and `hostname` from the parsed address.
  */

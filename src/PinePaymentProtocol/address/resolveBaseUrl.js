@@ -14,7 +14,7 @@ const isDomainName = (hostname) => {
 /**
  * Resolves a base URL from a hostname.
  *
- * @param {string} hostname - A hostname from a Pine Address.
+ * @param {string} hostname - A hostname from a Pine address.
  *
  * @returns {string} A base URL that can be used to make API calls to a Pine Payment Server.
  */

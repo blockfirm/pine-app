@@ -2,6 +2,16 @@ import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../address';
 import { getAuthorizationHeader } from '../authentication';
 
+/**
+ * Updates a user profile.
+ *
+ * @param {string} pineAddress - Pine address of the user to update.
+ * @param {object} user - User profile to save.
+ * @param {string} user.displayName - Display name of the user.
+ * @param {string} mnemonic - Mnemonic to authenticate and sign the request with.
+ *
+ * @returns {Promise} A promise that resolves to the updated user.
+ */
 const update = (pineAddress, user, mnemonic) => {
   const { hostname } = parseAddress(pineAddress);
   const keyPair = getKeyPairFromMnemonic(mnemonic);

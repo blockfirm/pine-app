@@ -3,6 +3,14 @@ import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../address';
 import { getAuthorizationHeader } from '../authentication';
 
+/**
+ * Tries to register a Pine address.
+ *
+ * @param {string} pineAddress - Pine address to register.
+ * @param {string} mnemonic - Mnemonic to use to authenticate the new address.
+ *
+ * @returns {Promise} A promise that resolves to the created user.
+ */
 const create = (pineAddress, mnemonic) => {
   const { username, hostname } = parseAddress(pineAddress);
   const keyPair = getKeyPairFromMnemonic(mnemonic);

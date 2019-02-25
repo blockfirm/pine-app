@@ -6,7 +6,7 @@ export class UsernameTooLongError extends Error {}
 export class UsernameContainsInvalidCharsError extends Error {}
 
 /**
- * Validates a username of a Pine Address.
+ * Validates a username of a Pine address.
  *
  * A valid username is:
  *

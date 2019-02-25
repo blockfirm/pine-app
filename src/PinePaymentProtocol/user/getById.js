@@ -1,5 +1,13 @@
 import { resolveBaseUrl } from '../address';
 
+/**
+ * Gets a user by its user ID.
+ *
+ * @param {string} id - User ID of the user to get.
+ * @param {string} hostname - Hostname of the user's Pine server.
+ *
+ * @returns {Promise} A promise that resolves to the user.
+ */
 const getById = (id, hostname) => {
   const baseUrl = resolveBaseUrl(hostname);
   const url = `${baseUrl}/v1/users/${id}`;

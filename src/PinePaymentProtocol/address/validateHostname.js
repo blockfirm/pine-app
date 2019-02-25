@@ -6,7 +6,7 @@ export class HostnameTooLongError extends Error {}
 export class HostnameContainsInvalidCharsError extends Error {}
 
 /**
- * Validates a hostname of a Pine Address.
+ * Validates a hostname of a Pine address.
  *
  * A valid hostname is:
  *

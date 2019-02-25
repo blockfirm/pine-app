@@ -2,6 +2,15 @@ import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
 import { getAuthorizationHeader } from '../../authentication';
 
+/**
+ * Sets a new profile picture for a Pine user.
+ *
+ * @param {string} pineAddress - Pine address to set a new profile picture for.
+ * @param {string} image - Base64-encoded image to use as profile picture.
+ * @param {string} mnemonic - Mnemonic to authenticate and sign the request with.
+ *
+ * @returns {Promise} A promise that resolves to an object with a checksum of the avatar.
+ */
 const set = (pineAddress, image, mnemonic) => {
   const { hostname } = parseAddress(pineAddress);
   const keyPair = getKeyPairFromMnemonic(mnemonic);
