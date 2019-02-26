@@ -25,6 +25,9 @@ const saveFailure = (error) => {
   };
 };
 
+/**
+ * Action to save all contacts from state to persistent storage.
+ */
 export const save = () => {
   return (dispatch, getState) => {
     dispatch(saveRequest());
