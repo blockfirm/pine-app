@@ -25,6 +25,24 @@ const addFailure = (error) => {
   };
 };
 
+/**
+ * Action to add a contact.
+ *
+ * @param {object} contact - Contact to add.
+ * @param {string} contact.pineAddress - The contact's Pine address.
+ * @param {string} contact.userId - The contact's user ID.
+ * @param {string} contact.publicKey - The contact's public key encoded as base58check.
+ * @param {string} contact.username - The contact's username.
+ * @param {string} contact.displayName - The contact's display name.
+ * @param {object} contact.avatar - Metadata about the contact's avatar (optional).
+ * @param {string} contact.avatar.checksum - A checksum of the avatar image.
+ * @param {object} contact.contactRequest - A contact request to or from the user (optional).
+ * @param {string} contact.contactRequest.id - ID of the contact request.
+ * @param {string} contact.contactRequest.from - Pine address of the sender of the request.
+ * @param {number} contact.contactRequest.createdAt - Unix timestamp of when the request was created.
+ *
+ * @returns {Promise} A promise that resolves to the added contact.
+ */
 export const add = (contact) => {
   return (dispatch) => {
     dispatch(addRequest());
