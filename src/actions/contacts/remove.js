@@ -24,6 +24,14 @@ const removeFailure = (error) => {
   };
 };
 
+/**
+ * Action to remove a contact.
+ *
+ * @param {object} contact - Contact to remove.
+ * @param {string} contact.id - The contact's ID (not user ID).
+ *
+ * @returns {Promise} A promise that resolves to the removed contact.
+ */
 export const remove = (contact) => {
   return (dispatch) => {
     dispatch(removeRequest());
