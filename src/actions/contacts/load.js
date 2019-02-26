@@ -26,6 +26,11 @@ const loadFailure = (error) => {
   };
 };
 
+/**
+ * Action to load all contacts from persistent storage into state.
+ *
+ * @returns {Promise} A promise that resolves to the loaded contacts.
+ */
 export const load = () => {
   return (dispatch) => {
     dispatch(loadRequest());
