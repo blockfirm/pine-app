@@ -43,18 +43,19 @@ export default class OfflineNotice extends Component {
     label: LABEL_DISCONNECTED_FROM_INTERNET
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     let isVisible = false;
     let { backgroundColor, label } = this.state;
 
-    if (nextProps.isDisconnectedFromInternet || nextProps.isDisconnectedFromServer) {
+    if (nextProps.isDisconnectedFromInternet || nextProps.isDisconnectedFromServer || nextProps.isDisconnectedFromPineServer) {
       isVisible = true;
     }
 
     if (nextProps.isDisconnectedFromInternet) {
       backgroundColor = COLOR_ERROR;
       label = LABEL_DISCONNECTED_FROM_INTERNET;
-    } else if (nextProps.isDisconnectedFromServer) {
+    } else if (nextProps.isDisconnectedFromServer || nextProps.isDisconnectedFromPineServer) {
       backgroundColor = COLOR_WARNING;
       label = LABEL_DISCONNECTED_FROM_SERVER;
     }
@@ -102,5 +103,6 @@ export default class OfflineNotice extends Component {
 
 OfflineNotice.propTypes = {
   isDisconnectedFromInternet: PropTypes.bool,
-  isDisconnectedFromServer: PropTypes.bool
+  isDisconnectedFromServer: PropTypes.bool,
+  isDisconnectedFromPineServer: PropTypes.bool
 };

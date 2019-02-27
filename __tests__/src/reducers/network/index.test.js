@@ -8,6 +8,10 @@ jest.mock('../../../../src/reducers/network/server', () => {
   return jest.fn(() => 'fc10a56a-f305-49ca-b176-f39bbafce46c');
 });
 
+jest.mock('../../../../src/reducers/network/pine', () => {
+  return jest.fn(() => '5b4b6a3a-2c7f-464e-bc46-ceb803e9c1f1');
+});
+
 describe('networkReducer', () => {
   let newState;
 
@@ -36,5 +40,10 @@ describe('networkReducer', () => {
   it('sets .server to the return value from server()', () => {
     // This value is mocked at the top.
     expect(newState.server).toBe('fc10a56a-f305-49ca-b176-f39bbafce46c');
+  });
+
+  it('sets .pine to the return value from pine()', () => {
+    // This value is mocked at the top.
+    expect(newState.pine).toBe('5b4b6a3a-2c7f-464e-bc46-ceb803e9c1f1');
   });
 });

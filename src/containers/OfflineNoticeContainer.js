@@ -4,7 +4,8 @@ import OfflineNotice from '../components/OfflineNotice';
 const mapStateToProps = (state) => {
   return {
     isDisconnectedFromInternet: state.network.internet.disconnected,
-    isDisconnectedFromServer: state.network.server.disconnected
+    isDisconnectedFromServer: state.network.server.disconnected,
+    isDisconnectedFromPineServer: state.network.pine.disconnected
   };
 };
 
