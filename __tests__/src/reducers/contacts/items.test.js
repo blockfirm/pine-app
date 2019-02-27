@@ -87,7 +87,7 @@ describe('contactsItemsReducer', () => {
       const action = { type: 'UNKNOWN' };
       const newState = contactsItemsReducer(undefined, action);
 
-      expect(newState).toMatchObject({});
+      expect(newState).toEqual({});
     });
   });
 });
