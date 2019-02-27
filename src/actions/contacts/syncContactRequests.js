@@ -95,6 +95,15 @@ const addNew = (contacts, contactRequests) => {
   return Promise.all(promises).then(() => added);
 };
 
+/**
+ * Action to sync incoming contact requests with server.
+ *
+ * - Old contact requests are removed
+ * - Pending contact requests are updated if changed
+ * - New contact requests are added as contacts
+ *
+ * @returns {Promise} A promise that resolves to the updated contacts.
+ */
 export const syncContactRequests = () => {
   return (dispatch, getState) => {
     const state = getState();
@@ -119,6 +128,7 @@ export const syncContactRequests = () => {
           return dispatch(save());
         }
       })
+      .then(() => contacts)
       .catch((error) => {
         dispatch(syncContactRequestsFailure(error));
         throw error;
