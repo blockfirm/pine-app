@@ -6,6 +6,7 @@ const items = (state = {}, action) => {
 
   switch (action.type) {
     case contactsActions.CONTACTS_LOAD_SUCCESS:
+    case contactsActions.CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS:
       return action.contacts;
 
     case contactsActions.CONTACTS_ADD_SUCCESS:
@@ -23,9 +24,6 @@ const items = (state = {}, action) => {
 
     case contactsActions.CONTACTS_REMOVE_ALL_SUCCESS:
       return {};
-
-    case contactsActions.CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS:
-      return action.contacts;
 
     default:
       return state;
