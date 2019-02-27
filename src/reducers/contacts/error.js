@@ -6,11 +6,13 @@ const error = (state = null, action) => {
     case contactsActions.CONTACTS_LOAD_REQUEST:
     case contactsActions.CONTACTS_REMOVE_REQUEST:
     case contactsActions.CONTACTS_SAVE_REQUEST:
+    case contactsActions.CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST:
       return null;
 
     case contactsActions.CONTACTS_LOAD_FAILURE:
     case contactsActions.CONTACTS_REMOVE_FAILURE:
     case contactsActions.CONTACTS_SAVE_FAILURE:
+    case contactsActions.CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE:
       return action.error;
 
     default:
