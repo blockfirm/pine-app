@@ -9,6 +9,7 @@ import CreatePineAddressScreen from '../screens/CreatePineAddressScreen';
 import DisclaimerScreen from '../screens/DisclaimerScreen';
 import HomeScreen from '../screens/HomeScreen';
 import TransactionDetailsScreen from '../screens/TransactionDetailsScreen';
+import ConversationScreen from '../screens/ConversationScreen';
 
 const MainNavigator = createStackNavigator({
   Splash: { screen: SplashScreen },
@@ -19,7 +20,8 @@ const MainNavigator = createStackNavigator({
   CreatePineAddress: { screen: CreatePineAddressScreen },
   Disclaimer: { screen: DisclaimerScreen },
   Home: { screen: HomeScreen },
-  TransactionDetails: { screen: TransactionDetailsScreen }
+  TransactionDetails: { screen: TransactionDetailsScreen },
+  Conversation: { screen: ConversationScreen }
 }, {
   headerMode: 'screen',
   initialRouteName: 'Splash'

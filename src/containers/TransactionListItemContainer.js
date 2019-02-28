@@ -24,7 +24,8 @@ class TransactionListItemContainer extends Component {
   }
 
   _onPress() {
-
+    const { navigation, contact } = this.props;
+    navigation.navigate('Conversation', { contact });
   }
 
   render() {
