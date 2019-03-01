@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import headerStyles from '../styles/headerStyles';
+import ContentView from '../components/ContentView';
 import ConversationHeaderTitle from '../components/ConversationHeaderTitle';
 import BackButton from '../components/BackButton';
 import Avatar from '../components/Avatar';
+import ContactRequestContainer from '../containers/ContactRequestContainer';
 import BaseScreen from './BaseScreen';
 
 const styles = StyleSheet.create({
@@ -20,6 +22,14 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     justifyContent: 'flex-start',
     alignItems: 'flex-start'
+  },
+  scrollView: {
+    alignSelf: 'stretch'
+  },
+  scrollViewContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   headerAvatar: {
     position: 'absolute',
@@ -35,30 +45,42 @@ export default class ConversationScreen extends Component {
     const { contact } = navigation.state.params;
     const avatarChecksum = contact.avatar ? contact.avatar.checksum : null;
 
+    const headerRight = (
+      <TouchableOpacity onPress={() => {}} style={styles.headerAvatar}>
+        <Avatar
+          pineAddress={contact.pineAddress}
+          checksum={avatarChecksum}
+          size={36}
+        />
+      </TouchableOpacity>
+    );
+
     return {
       headerTitle: <ConversationHeaderTitle contact={contact} />,
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
       headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />,
-      headerRight: (
-        <TouchableOpacity onPress={() => {}} style={styles.headerAvatar}>
-          <Avatar
-            pineAddress={contact.pineAddress}
-            checksum={avatarChecksum}
-            size={36}
-          />
-        </TouchableOpacity>
-      )
+      headerRight: contact.contactRequest ? null : headerRight
     };
   };
 
+  _renderContactRequest(contact) {
+    return (
+      <ContactRequestContainer contact={contact} />
+    );
+  }
+
   render() {
-    const { params } = this.props.navigation.state;
+    const { contact } = this.props.navigation.state.params;
 
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
-
+        <ContentView style={styles.content}>
+          <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContent}>
+            { contact.contactRequest ? this._renderContactRequest(contact) : null }
+          </ScrollView>
+        </ContentView>
       </BaseScreen>
     );
   }
