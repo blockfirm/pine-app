@@ -383,7 +383,6 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
                 "fontFamily": "System",
                 "fontSize": 16,
                 "fontWeight": "600",
-                "letterSpacing": -0.41,
               },
               undefined,
               Object {
@@ -783,7 +782,6 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
                 "fontFamily": "System",
                 "fontSize": 16,
                 "fontWeight": "600",
-                "letterSpacing": -0.41,
               },
               undefined,
               Object {

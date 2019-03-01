@@ -1500,7 +1500,6 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                   "fontFamily": "System",
                   "fontSize": 16,
                   "fontWeight": "600",
-                  "letterSpacing": -0.41,
                 },
                 undefined,
                 Object {

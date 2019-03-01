@@ -29,8 +29,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'System',
     fontWeight: '600',
-    fontSize: 16,
-    letterSpacing: -0.41
+    fontSize: 16
   },
   disabled: {
     backgroundColor: '#B1AFB7',

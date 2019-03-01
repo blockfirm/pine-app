@@ -13,8 +13,7 @@ const styles = StyleSheet.create({
     color: '#007AFF',
     fontFamily: 'System',
     fontWeight: '600',
-    fontSize: 16,
-    letterSpacing: -0.41
+    fontSize: 16
   }
 });
 

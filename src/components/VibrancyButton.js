@@ -28,8 +28,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontFamily: 'System',
     fontWeight: '600',
-    fontSize: 16,
-    letterSpacing: -0.41
+    fontSize: 16
   }
 });
 
