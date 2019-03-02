@@ -55,10 +55,14 @@ describe('PINE_CONTACTS_ADD_FAILURE', () => {
 });
 
 describe('add', () => {
-  let address;
+  let contact;
 
   beforeEach(() => {
-    address = 'cfc05050-3371-4e12-be2d-10b54a4ad841';
+    contact = {
+      pineAddress: 'cfc05050-3371-4e12-be2d-10b54a4ad841',
+      waitingForContactRequest: true
+    };
+
     addContact.mockClear();
   });
 
@@ -67,7 +71,7 @@ describe('add', () => {
   });
 
   it('returns a function', () => {
-    const returnValue = addContactAction(address);
+    const returnValue = addContactAction(contact);
     expect(typeof returnValue).toBe('function');
   });
 
@@ -75,7 +79,7 @@ describe('add', () => {
     let returnedFunction;
 
     beforeEach(() => {
-      returnedFunction = addContactAction(address);
+      returnedFunction = addContactAction(contact);
     });
 
     it('dispatches an action of type PINE_CONTACTS_ADD_REQUEST', () => {
@@ -86,16 +90,15 @@ describe('add', () => {
       });
     });
 
-    it('adds contact to user using its address and mnemonic', () => {
+    it('adds contact to user using the passed contact and user\'s address and mnemonic', () => {
       expect.hasAssertions();
 
       return returnedFunction(dispatchMock, getStateMock).then(() => {
         const expectedPineAddress = 'bb589666-7b43-4e44-be13-9fd76ec3f512';
-        const expectedContactAddress = 'cfc05050-3371-4e12-be2d-10b54a4ad841';
         const expectedMnemonic = 'c6f19f52-924d-498f-9549-1c65c5bfaa7b';
 
         expect(addContact).toHaveBeenCalled();
-        expect(addContact).toHaveBeenCalledWith(expectedPineAddress, expectedContactAddress, expectedMnemonic);
+        expect(addContact).toHaveBeenCalledWith(expectedPineAddress, contact, expectedMnemonic);
       });
     });
 
@@ -127,8 +130,8 @@ describe('add', () => {
       it('resolves to the added contact', () => {
         expect.hasAssertions();
 
-        return promise.then((contact) => {
-          expect(contact).toEqual(expect.objectContaining({
+        return promise.then((addedContact) => {
+          expect(addedContact).toEqual(expect.objectContaining({
             id: '85fd51d7-f18d-4bd7-ad36-d8359d7aafd8'
           }));
         });
@@ -144,7 +147,7 @@ describe('add', () => {
           new Error('99da140c-3e65-4e4e-9358-7230b898988b')
         ));
 
-        promise = addContactAction(address)(dispatchMock, getStateMock);
+        promise = addContactAction(contact)(dispatchMock, getStateMock);
       });
 
       it('dispatches an action of type PINE_CONTACTS_ADD_FAILURE with the error', () => {

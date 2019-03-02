@@ -34,6 +34,7 @@ const addFailure = (error) => {
  * @param {string} contact.publicKey - The contact's public key encoded as base58check.
  * @param {string} contact.username - The contact's username.
  * @param {string} contact.displayName - The contact's display name.
+ * @param {boolean} contact.waitingForContactRequest - Whether or not the user is waiting for the contact to accept a contact request.
  * @param {object} contact.avatar - Metadata about the contact's avatar (optional).
  * @param {string} contact.avatar.checksum - A checksum of the avatar image.
  * @param {object} contact.contactRequest - A contact request to or from the user (optional).
@@ -47,7 +48,7 @@ export const add = (contact) => {
   return (dispatch) => {
     dispatch(addRequest());
 
-    return dispatch(addContactToPine(contact.pineAddress))
+    return dispatch(addContactToPine(contact))
       .then(({ id, createdAt }) => {
         contact.id = id;
         contact.createdAt = createdAt;

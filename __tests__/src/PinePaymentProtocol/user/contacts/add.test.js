@@ -26,8 +26,12 @@ describe('add', () => {
     let mnemonic;
 
     beforeEach(() => {
+      contact = {
+        pineAddress: 'jack@pine.pm',
+        waitingForContactRequest: true
+      };
+
       address = 'timothy@pine.cash';
-      contact = 'jack@pine.pm';
       mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant';
 
       addContact(address, contact, mnemonic);
@@ -62,7 +66,7 @@ describe('add', () => {
 
         it('has header "Authorization" set to a signature of the request', () => {
           expect(options.headers).toBeTruthy();
-          expect(options.headers['Authorization']).toBe('Basic QUNqcFJIRnY3TDhpTjRxblZlUjRVN3B5aHpHeFNyNFoyOklNa0lUWHY3WFpzQWdEekhDdnVpWHFsTjFUM1gxUHN2RForRktQa1d4YThuZUpJWC9ldGRvaHRhb25KSmIrYTkzQ3dQSk83VVFxRmhqQ0kxZk1jVFRIZz0=');
+          expect(options.headers['Authorization']).toBe('Basic QUNqcFJIRnY3TDhpTjRxblZlUjRVN3B5aHpHeFNyNFoyOkgxSm1peVFxRVF1RFl2QVRrUS9GOHRtNnNPVG50SUVvbFV3VjU5a090RnJMUHZOOWpIM1k1R2Z1cFlCV2QvKzEvK1U2TkF3OFp4blhFZXlEUEplSW5EMD0=');
         });
 
         describe('the body', () => {
@@ -74,6 +78,11 @@ describe('add', () => {
           it('has address set to the passed contact address', () => {
             const body = JSON.parse(options.body);
             expect(body.address).toBe('jack@pine.pm');
+          });
+
+          it('has waitingForContactRequest set to the same as the passed contact', () => {
+            const body = JSON.parse(options.body);
+            expect(body.waitingForContactRequest).toBe(true);
           });
         });
       });

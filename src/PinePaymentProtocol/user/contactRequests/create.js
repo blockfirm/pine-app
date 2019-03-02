@@ -48,6 +48,8 @@ const create = (to, from, mnemonic) => {
         throw new Error('Unknown error when creating contact request');
       }
 
+      user.waitingForContactRequest = true;
+
       user.contactRequest = {
         id: response.id,
         from: response.from,

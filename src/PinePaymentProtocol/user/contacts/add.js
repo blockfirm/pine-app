@@ -6,12 +6,14 @@ import { getAuthorizationHeader } from '../../authentication';
  * Adds a contact to a user's Pine server.
  *
  * @param {string} pineAddress - Pine address to add the contact to.
- * @param {string} contactAddress - Pine address of the contact to add.
+ * @param {object} contact - Contact to add.
+ * @param {string} contact.pineAddress - The contact's Pine address.
+ * @param {boolean} contact.waitingForContactRequest - Whether or not the user is waiting for the contact to accept a contact request.
  * @param {string} mnemonic - Mnemonic to authenticate and sign the request with.
  *
  * @returns {Promise} A promise that resolves to the added contact.
  */
-const add = (pineAddress, contactAddress, mnemonic) => {
+const add = (pineAddress, contact, mnemonic) => {
   const { hostname } = parseAddress(pineAddress);
   const keyPair = getKeyPairFromMnemonic(mnemonic);
   const publicKey = keyPair.publicKey;
@@ -22,7 +24,8 @@ const add = (pineAddress, contactAddress, mnemonic) => {
   const url = `${baseUrl}${path}`;
 
   const body = {
-    address: contactAddress
+    address: contact.pineAddress,
+    waitingForContactRequest: contact.waitingForContactRequest
   };
 
   const rawBody = JSON.stringify(body);
