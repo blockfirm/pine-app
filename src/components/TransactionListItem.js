@@ -66,13 +66,13 @@ export default class TransactionListItem extends Component {
 
     if (contact.contactRequest) {
       if (contact.contactRequest.from === userProfile.pineAddress) {
-        return 'You sent a contact request.';
+        return 'You sent a contact request';
       }
 
-      return 'You received a contact request.';
+      return 'Wants to add you as a contact';
     }
 
-    return 'Was added as a new contact.';
+    return 'Was added as a new contact';
   }
 
   _getDate() {
