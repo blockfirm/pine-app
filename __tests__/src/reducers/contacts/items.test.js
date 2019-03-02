@@ -72,6 +72,43 @@ describe('contactsItemsReducer', () => {
     });
   });
 
+  describe('when action is CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS', () => {
+    it('returns the contacts with accepted contact replaced with new contact', () => {
+      const oldState = {
+        '38821740-1053-4f0a-8c32-b5f607443fea': {
+          id: '38821740-1053-4f0a-8c32-b5f607443fea',
+          pineAddress: 'accept@localhost'
+        },
+        'f1ff0c82-f297-49cd-96fb-591123785d6c': {
+          id: 'f1ff0c82-f297-49cd-96fb-591123785d6c',
+          pineAddress: 'random@localhost'
+        }
+      };
+
+      const actionContact = {
+        id: '318f1806-9f1a-40c2-b35a-c89af69e6db4',
+        pineAddress: 'accept@localhost'
+      };
+
+      const action = { type: contactsActions.CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS, contact: actionContact };
+      const newState = contactsItemsReducer(oldState, action);
+
+      const expectedState = {
+        '318f1806-9f1a-40c2-b35a-c89af69e6db4': {
+          id: '318f1806-9f1a-40c2-b35a-c89af69e6db4',
+          pineAddress: 'accept@localhost'
+        },
+        'f1ff0c82-f297-49cd-96fb-591123785d6c': {
+          id: 'f1ff0c82-f297-49cd-96fb-591123785d6c',
+          pineAddress: 'random@localhost'
+        }
+      };
+
+      expect(newState).toEqual(expect.objectContaining(expectedState));
+      expect(newState['38821740-1053-4f0a-8c32-b5f607443fea']).toBeUndefined();
+    });
+  });
+
   describe('when action is of an unknown type', () => {
     it('returns the old state', () => {
       const oldState = { contacts: '1346201e-b5b5-4fa5-acb2-6cc202ccfc6b' };

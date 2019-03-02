@@ -58,7 +58,7 @@ export default class ContactRequest extends Component {
           {contact.pineAddress} wants to add you as a contact.
         </Paragraph>
 
-        <SmallButton label='Accept' onPress={this.props.onAccept} />
+        <SmallButton label='Accept' onPress={this.props.onAccept} showLoader={true} />
 
         <Link onPress={this.props.onIgnore} style={styles.ignore}>
           Ignore

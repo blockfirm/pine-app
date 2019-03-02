@@ -25,6 +25,20 @@ const items = (state = {}, action) => {
     case contactsActions.CONTACTS_REMOVE_ALL_SUCCESS:
       return {};
 
+    case contactsActions.CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS:
+      contact = { ...action.contact };
+      newState = { ...state };
+
+      Object.values(newState).forEach((oldContact) => {
+        if (oldContact.pineAddress === contact.pineAddress) {
+          delete newState[oldContact.id];
+        }
+      });
+
+      newState[contact.id] = contact;
+
+      return newState;
+
     default:
       return state;
   }

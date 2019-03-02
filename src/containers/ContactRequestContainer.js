@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import { acceptContactRequest } from '../actions/contacts';
 import ContactRequest from '../components/ContactRequest';
 
 const mapStateToProps = (state) => {
@@ -11,7 +13,9 @@ const mapStateToProps = (state) => {
 
 class ContactRequestContainer extends Component {
   static propTypes = {
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    contact: PropTypes.object,
+    onAccept: PropTypes.func
   };
 
   constructor() {
@@ -23,7 +27,8 @@ class ContactRequestContainer extends Component {
   }
 
   _onAccept() {
-
+    const { dispatch, contact, onAccept } = this.props;
+    return dispatch(acceptContactRequest(contact)).then(onAccept);
   }
 
   _onIgnore() {

@@ -65,9 +65,18 @@ export default class ConversationScreen extends Component {
     };
   };
 
+  constructor() {
+    super(...arguments);
+    this._onContactRequestAccept = this._onContactRequestAccept.bind(this);
+  }
+
+  _onContactRequestAccept(contact) {
+    this.props.navigation.setParams({ contact });
+  }
+
   _renderContactRequest(contact) {
     return (
-      <ContactRequestContainer contact={contact} />
+      <ContactRequestContainer contact={contact} onAccept={this._onContactRequestAccept} />
     );
   }
 
