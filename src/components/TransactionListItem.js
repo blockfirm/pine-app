@@ -72,7 +72,7 @@ export default class TransactionListItem extends Component {
       return 'You received a contact request.';
     }
 
-    return '';
+    return 'Was added as a new contact.';
   }
 
   _getDate() {
