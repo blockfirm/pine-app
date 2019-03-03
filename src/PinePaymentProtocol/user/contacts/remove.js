@@ -9,7 +9,7 @@ import { getAuthorizationHeader } from '../../authentication';
  * @param {string} contactId - ID of the contact to remove.
  * @param {string} mnemonic - Mnemonic to authenticate and sign the request with.
  *
- * @returns {Promise} A promise that resolves if the device token was removed.
+ * @returns {Promise} A promise that resolves if the contact was removed.
  */
 const remove = (pineAddress, contactId, mnemonic) => {
   const { hostname } = parseAddress(pineAddress);
