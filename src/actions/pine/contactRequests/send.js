@@ -47,7 +47,7 @@ export const send = (to) => {
       .then((mnemonic) => {
         return contactRequests.create(to, pineAddress, mnemonic);
       })
-      .then((contact) => {
+      .then(({ contact }) => {
         dispatch(sendSuccess(contact));
         return contact;
       })

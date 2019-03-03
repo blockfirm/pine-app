@@ -10,7 +10,7 @@ import getUser from '../get';
  * @param {string} from - Pine address to send the request from.
  * @param {string} mnemonic - Mnemonic to sign the request with.
  *
- * @returns {Promise} A promise that resolves to a user/contact.
+ * @returns {Promise} A promise that resolves to an object ({ contact, accepted }).
  */
 const create = (to, from, mnemonic) => {
   let user;
@@ -35,31 +35,39 @@ const create = (to, from, mnemonic) => {
       return fetch(url, fetchOptions);
     })
     .then((response) => {
+      const accepted = response.status === 202;
+
+      if (accepted) {
+        return Promise.resolve({ accepted });
+      }
+
       if (response.ok) {
-        return response.json();
+        return response.json().then((contactRequest) => ({ contactRequest }));
       }
 
       return response.json().then((error) => {
         throw new Error(error.message);
       });
     })
-    .then((response) => {
-      if (!response.id) {
+    .then(({ contactRequest, accepted }) => {
+      if (contactRequest && !contactRequest.id) {
         throw new Error('Unknown error when creating contact request');
       }
 
-      user.waitingForContactRequest = true;
+      if (contactRequest) {
+        user.waitingForContactRequest = true;
 
-      user.contactRequest = {
-        id: response.id,
-        from: response.from,
-        createdAt: response.createdAt
-      };
+        user.contactRequest = {
+          id: contactRequest.id,
+          from: contactRequest.from,
+          createdAt: contactRequest.createdAt
+        };
+      }
 
       user.userId = user.id;
       delete user.id;
 
-      return user;
+      return { contact: user, accepted };
     });
 };
 

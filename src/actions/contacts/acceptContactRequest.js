@@ -1,4 +1,5 @@
 import { add as addContactToPine } from '../pine/contacts/add';
+import { send as sendContactRequest } from '../pine/contactRequests/send';
 import { save } from './save';
 
 export const CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST = 'CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST';
@@ -39,7 +40,12 @@ export const acceptContactRequest = (contact) => {
   return (dispatch) => {
     dispatch(acceptContactRequestRequest());
 
-    return dispatch(addContactToPine({ pineAddress: contact.contactRequest.from }))
+    return dispatch(sendContactRequest(contact.contactRequest.from))
+      .then(() => {
+        return dispatch(addContactToPine({
+          pineAddress: contact.contactRequest.from
+        }));
+      })
       .then(({ id, createdAt }) => {
         const updatedContact = {
           ...contact,

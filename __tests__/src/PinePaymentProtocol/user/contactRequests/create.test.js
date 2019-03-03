@@ -9,6 +9,7 @@ jest.mock('../../../../../src/PinePaymentProtocol/user/get', () => {
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,
+  status: 201,
   json: () => Promise.resolve({
     id: '654e16a2-f08c-42ec-ae36-5b4905916e44',
     from: '6e20b6f0-afae-4775-8d16-16a9da7b3d6a',
@@ -33,15 +34,17 @@ describe('create', () => {
     let to;
     let from;
     let mnemonic;
-    let resolvedUser;
+    let resolvedContact;
+    let resolvedAccepted;
 
     beforeEach(() => {
       to = 'timmy@pine.cash';
       from = 'jack@pine.pm';
       mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant';
 
-      return createContactRequest(to, from, mnemonic).then((user) => {
-        resolvedUser = user;
+      return createContactRequest(to, from, mnemonic).then(({ contact, accepted }) => {
+        resolvedContact = contact;
+        resolvedAccepted = accepted;
       });
     });
 
@@ -78,19 +81,41 @@ describe('create', () => {
       });
     });
 
-    describe('the resolved user', () => {
+    describe('the resolved contact', () => {
       it('resolves to the user with id renamed to userId', () => {
-        expect(resolvedUser).toBeTruthy();
-        expect(resolvedUser.id).toBeUndefined();
-        expect(resolvedUser.userId).toBe('2890fe6b-2a1f-45e5-b902-17edc3d1be18'); // Mocked at the top.
+        expect(resolvedContact).toBeTruthy();
+        expect(resolvedContact.id).toBeUndefined();
+        expect(resolvedContact.userId).toBe('2890fe6b-2a1f-45e5-b902-17edc3d1be18'); // Mocked at the top.
       });
 
-      it('attaches the contact request to the resolved user', () => {
+      it('attaches the contact request to the resolved contact', () => {
         // These values are mocked at the top.
-        expect(resolvedUser.contactRequest).toBeTruthy();
-        expect(resolvedUser.contactRequest.id).toBe('654e16a2-f08c-42ec-ae36-5b4905916e44');
-        expect(resolvedUser.contactRequest.from).toBe('6e20b6f0-afae-4775-8d16-16a9da7b3d6a');
-        expect(resolvedUser.contactRequest.createdAt).toBe('a5d3b90e-43aa-4b2f-9cb3-6de3bef2ea13');
+        expect(resolvedContact.contactRequest).toBeTruthy();
+        expect(resolvedContact.contactRequest.id).toBe('654e16a2-f08c-42ec-ae36-5b4905916e44');
+        expect(resolvedContact.contactRequest.from).toBe('6e20b6f0-afae-4775-8d16-16a9da7b3d6a');
+        expect(resolvedContact.contactRequest.createdAt).toBe('a5d3b90e-43aa-4b2f-9cb3-6de3bef2ea13');
+      });
+    });
+
+    describe('the resolved "accepted" value', () => {
+      it('is falsy if the contact request was created', () => {
+        expect(resolvedAccepted).toBeFalsy();
+      });
+    });
+
+    describe('when the contact request was accepted immediately', () => {
+      it('resolves "accepted" to true', () => {
+        global.fetch.mockImplementationOnce(() => Promise.resolve({
+          ok: true,
+          status: 202,
+          json: () => Promise.resolve()
+        }));
+
+        expect.hasAssertions();
+
+        return createContactRequest(to, from, mnemonic).then(({ accepted }) => {
+          expect(accepted).toBe(true);
+        });
       });
     });
 

@@ -1,4 +1,5 @@
 import { save as saveContacts } from '../../../../src/actions/contacts/save';
+import { send as sendContactRequest } from '../../../../src/actions/pine/contactRequests/send';
 import { add as addContactToPine } from '../../../../src/actions/pine/contacts/add';
 
 import {
@@ -15,6 +16,10 @@ const dispatchMock = jest.fn((action) => {
 
   return action;
 });
+
+jest.mock('../../../../src/actions/pine/contactRequests/send', () => ({
+  send: jest.fn(() => Promise.resolve({}))
+}));
 
 jest.mock('../../../../src/actions/pine/contacts/add', () => ({
   add: jest.fn(() => Promise.resolve({
@@ -98,6 +103,14 @@ describe('acceptContactRequest', () => {
 
       beforeEach(() => {
         promise = returnedFunction(dispatchMock);
+      });
+
+      it('sends a contact request back to the sender to flag that is was accepted', () => {
+        expect.hasAssertions();
+
+        return promise.then(() => {
+          expect(sendContactRequest).toHaveBeenCalledWith(contact.contactRequest.from);
+        });
       });
 
       it('adds contact to Pine server', () => {

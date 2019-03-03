@@ -28,7 +28,10 @@ const getStateMock = jest.fn(() => ({
 
 jest.mock('../../../../../src/PinePaymentProtocol/user/contactRequests/create', () => {
   return jest.fn(() => Promise.resolve({
-    id: '5d0db54e-bfc9-4f67-a9e7-35b65406c5a0'
+    accepted: false,
+    contact: {
+      id: '5d0db54e-bfc9-4f67-a9e7-35b65406c5a0'
+    }
   }));
 });
 
