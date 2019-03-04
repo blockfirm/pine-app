@@ -7,12 +7,8 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     borderRadius: 25,
-    paddingHorizontal: 20,
-    paddingVertical: 7
-  },
-  label: {
-    fontSize: 15,
-    letterSpacing: null
+    paddingHorizontal: 40,
+    paddingVertical: 14
   }
 });
 
@@ -21,8 +17,7 @@ export default class SmallButton extends Component {
     return (
       <Button
         {...this.props}
-        style={[this.props.style, styles.button]}
-        labelStyle={[this.props.style, styles.button]}
+        style={[styles.button, this.props.style]}
       />
     );
   }
