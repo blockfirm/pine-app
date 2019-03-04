@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ActionSheetIOS } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Avatar from './Avatar';
@@ -28,12 +28,36 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     marginTop: 20
   },
-  deleteLabel: {
+  destructiveLabel: {
     color: '#FF3B30'
   }
 });
 
 export default class ContactRequest extends Component {
+  constructor() {
+    super(...arguments);
+    this._confirmIgnore = this._confirmIgnore.bind(this);
+  }
+
+  _confirmIgnore() {
+    const { contact } = this.props;
+
+    return new Promise((resolve) => {
+      ActionSheetIOS.showActionSheetWithOptions({
+        title: `Ignore contact request from ${contact.contactRequest.from}?`,
+        options: ['Cancel', 'Ignore'],
+        destructiveButtonIndex: 1,
+        cancelButtonIndex: 0
+      }, (buttonIndex) => {
+        if (buttonIndex === 0) {
+          return resolve(); // Cancel
+        }
+
+        this.props.onIgnore().finally(resolve);
+      });
+    });
+  }
+
   _renderAvatar() {
     const { contact } = this.props;
     const avatarChecksum = contact.avatar ? contact.avatar.checksum : null;
@@ -60,7 +84,13 @@ export default class ContactRequest extends Component {
 
         <SmallButton label='Accept' onPress={this.props.onAccept} showLoader={true} />
 
-        <Link onPress={this.props.onIgnore} style={styles.ignore}>
+        <Link
+          onPress={this._confirmIgnore}
+          style={styles.ignore}
+          labelStyle={styles.destructiveLabel}
+          showLoader={true}
+          loaderHidingDelay={0}
+        >
           Ignore
         </Link>
       </View>
@@ -79,7 +109,7 @@ export default class ContactRequest extends Component {
           your contact request.
         </Paragraph>
 
-        <Link onPress={this.props.onDelete} style={{ paddingTop: 0 }} labelStyle={styles.deleteLabel}>
+        <Link onPress={this.props.onDelete} style={{ paddingTop: 0 }} labelStyle={styles.destructiveLabel}>
           Delete
         </Link>
       </View>

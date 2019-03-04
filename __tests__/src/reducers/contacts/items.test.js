@@ -64,6 +64,25 @@ describe('contactsItemsReducer', () => {
     });
   });
 
+  describe('when action is CONTACTS_CONTACT_REQUESTS_IGNORE_SUCCESS', () => {
+    it('returns the contacts with the contact removed', () => {
+      const oldState = {
+        'faff5ef5-351b-48d4-b5b8-07a7013e41f8': {},
+        'a71c9ec6-c294-4b23-bdbf-047c7d4804d7': {}
+      };
+
+      const actionContact = { id: 'faff5ef5-351b-48d4-b5b8-07a7013e41f8' };
+      const action = { type: contactRequestsActions.CONTACTS_CONTACT_REQUESTS_IGNORE_SUCCESS, contact: actionContact };
+      const newState = contactsItemsReducer(oldState, action);
+
+      const expectedState = {
+        'a71c9ec6-c294-4b23-bdbf-047c7d4804d7': {}
+      };
+
+      expect(newState).toMatchObject(expectedState);
+    });
+  });
+
   describe('when action is CONTACTS_REMOVE_ALL_SUCCESS', () => {
     it('returns an empty object', () => {
       const action = { type: contactsActions.CONTACTS_REMOVE_ALL_SUCCESS };

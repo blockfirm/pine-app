@@ -112,6 +112,8 @@ export default class Button extends Component {
    * once it has been resolved.
    */
   _onPressFinished() {
+    const loaderHidingDelay = this.props.loaderHidingDelay !== undefined ? this.props.loaderHidingDelay : 500;
+
     if (this.props.showLoader && this._isMounted) {
       // Delay hiding the loading indicator to prevent flickering.
       setTimeout(() => {
@@ -121,7 +123,7 @@ export default class Button extends Component {
             loading: false
           });
         }
-      }, 500);
+      }, loaderHidingDelay);
     }
   }
 
@@ -206,6 +208,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   showLoader: PropTypes.bool,
   loaderColor: PropTypes.string,
+  loaderHidingDelay: PropTypes.number,
   disableThrottling: PropTypes.bool,
   hapticFeedback: PropTypes.bool,
   runAfterInteractions: PropTypes.bool

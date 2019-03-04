@@ -67,16 +67,26 @@ export default class ConversationScreen extends Component {
 
   constructor() {
     super(...arguments);
+
     this._onContactRequestAccept = this._onContactRequestAccept.bind(this);
+    this._onContactRequestIgnore = this._onContactRequestIgnore.bind(this);
   }
 
   _onContactRequestAccept(contact) {
     this.props.navigation.setParams({ contact });
   }
 
+  _onContactRequestIgnore() {
+    this.props.navigation.goBack();
+  }
+
   _renderContactRequest(contact) {
     return (
-      <ContactRequestContainer contact={contact} onAccept={this._onContactRequestAccept} />
+      <ContactRequestContainer
+        contact={contact}
+        onAccept={this._onContactRequestAccept}
+        onIgnore={this._onContactRequestIgnore}
+      />
     );
   }
 
