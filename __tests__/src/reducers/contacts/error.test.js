@@ -1,4 +1,5 @@
 import * as contactsActions from '../../../../src/actions/contacts';
+import * as contactRequestsActions from '../../../../src/actions/contacts/contactRequests';
 import contactsErrorReducer from '../../../../src/reducers/contacts/error';
 
 const testRequestAction = (actionType) => {
@@ -43,8 +44,8 @@ describe('contactsErrorReducer', () => {
     testRequestAction(contactsActions.CONTACTS_SAVE_REQUEST);
   });
 
-  describe('when action is CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST', () => {
-    testRequestAction(contactsActions.CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST);
+  describe('when action is CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST', () => {
+    testRequestAction(contactRequestsActions.CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST);
   });
 
   describe('when action is CONTACTS_LOAD_FAILURE', () => {
@@ -59,8 +60,8 @@ describe('contactsErrorReducer', () => {
     testFailureAction(contactsActions.CONTACTS_SAVE_FAILURE);
   });
 
-  describe('when action is CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE', () => {
-    testFailureAction(contactsActions.CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE);
+  describe('when action is CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE', () => {
+    testFailureAction(contactRequestsActions.CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE);
   });
 
   describe('when action is an unknown type', () => {

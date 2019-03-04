@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { acceptContactRequest } from '../actions/contacts';
+import { accept as acceptContactRequest } from '../actions/contacts/contactRequests';
 import ContactRequest from '../components/ContactRequest';
 
 const mapStateToProps = (state) => {

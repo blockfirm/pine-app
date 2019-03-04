@@ -1,4 +1,5 @@
 import * as contactsActions from '../../../../src/actions/contacts';
+import * as contactRequestsActions from '../../../../src/actions/contacts/contactRequests';
 import contactsItemsReducer from '../../../../src/reducers/contacts/items';
 
 describe('contactsItemsReducer', () => {
@@ -17,11 +18,11 @@ describe('contactsItemsReducer', () => {
     });
   });
 
-  describe('when action is CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS', () => {
+  describe('when action is CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS', () => {
     it('returns the contacts from the action', () => {
       const oldState = { '9f4aeb36-063a-49cc-b926-51d106673f7b': {} };
       const actionContacts = { 'e42eb09e-f393-48dd-a26c-be1779347514': {} };
-      const action = { type: contactsActions.CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS, contacts: actionContacts };
+      const action = { type: contactRequestsActions.CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS, contacts: actionContacts };
       const newState = contactsItemsReducer(oldState, action);
 
       expect(newState).toBe(actionContacts);
@@ -72,7 +73,7 @@ describe('contactsItemsReducer', () => {
     });
   });
 
-  describe('when action is CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS', () => {
+  describe('when action is CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS', () => {
     it('returns the contacts with accepted contact replaced with new contact', () => {
       const oldState = {
         '38821740-1053-4f0a-8c32-b5f607443fea': {
@@ -90,7 +91,7 @@ describe('contactsItemsReducer', () => {
         pineAddress: 'accept@localhost'
       };
 
-      const action = { type: contactsActions.CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS, contact: actionContact };
+      const action = { type: contactRequestsActions.CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS, contact: actionContact };
       const newState = contactsItemsReducer(oldState, action);
 
       const expectedState = {

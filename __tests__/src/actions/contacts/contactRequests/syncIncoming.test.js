@@ -1,12 +1,12 @@
-import { save as saveContacts } from '../../../../src/actions/contacts/save';
-import { get as getContactRequests } from '../../../../src/actions/pine/contactRequests/get';
+import { save as saveContacts } from '../../../../../src/actions/contacts/save';
+import { get as getContactRequests } from '../../../../../src/actions/pine/contactRequests/get';
 
 import {
-  syncContactRequests,
-  CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST,
-  CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS,
-  CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE
-} from '../../../../src/actions/contacts/syncContactRequests';
+  syncIncoming as syncIncomingContactRequests,
+  CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST,
+  CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS,
+  CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE
+} from '../../../../../src/actions/contacts/contactRequests/syncIncoming';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -57,7 +57,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../src/actions/pine/contactRequests/get', () => ({
+jest.mock('../../../../../src/actions/pine/contactRequests/get', () => ({
   get: jest.fn(() => Promise.resolve([
     {
       id: '7954d4d4-6674-4e56-af4c-f507e12fcdd3',
@@ -72,11 +72,11 @@ jest.mock('../../../../src/actions/pine/contactRequests/get', () => ({
   ]))
 }));
 
-jest.mock('../../../../src/actions/contacts/save', () => ({
+jest.mock('../../../../../src/actions/contacts/save', () => ({
   save: jest.fn(() => Promise.resolve())
 }));
 
-jest.mock('../../../../src/PinePaymentProtocol/user/get', () => {
+jest.mock('../../../../../src/PinePaymentProtocol/user/get', () => {
   return jest.fn(() => Promise.resolve({
     id: '85b022a6-09b6-4b9d-adb2-faf237f167d6'
   }));
@@ -86,40 +86,40 @@ jest.mock('uuid/v4', () => {
   return jest.fn(() => '4ef212b3-cc8f-4f13-a479-7c2fb324c3d0');
 });
 
-describe('CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST', () => {
-  it('equals "CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST"', () => {
-    expect(CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST).toBe('CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST');
+describe('CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST', () => {
+  it('equals "CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST"', () => {
+    expect(CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST).toBe('CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST');
   });
 });
 
-describe('CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS', () => {
-  it('equals "CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS"', () => {
-    expect(CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS).toBe('CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS');
+describe('CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS', () => {
+  it('equals "CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS"', () => {
+    expect(CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS).toBe('CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS');
   });
 });
 
-describe('CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE', () => {
-  it('equals "CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE"', () => {
-    expect(CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE).toBe('CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE');
+describe('CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE', () => {
+  it('equals "CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE"', () => {
+    expect(CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE).toBe('CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE');
   });
 });
 
-describe('syncContactRequests', () => {
+describe('syncIncoming', () => {
   beforeEach(() => {
     dispatchMock.mockClear();
     getStateMock.mockClear();
   });
 
   it('is a function', () => {
-    expect(typeof syncContactRequests).toBe('function');
+    expect(typeof syncIncomingContactRequests).toBe('function');
   });
 
   it('accepts no arguments', () => {
-    expect(syncContactRequests.length).toBe(0);
+    expect(syncIncomingContactRequests.length).toBe(0);
   });
 
   it('returns a function', () => {
-    const returnValue = syncContactRequests();
+    const returnValue = syncIncomingContactRequests();
     expect(typeof returnValue).toBe('function');
   });
 
@@ -127,14 +127,14 @@ describe('syncContactRequests', () => {
     let returnedFunction;
 
     beforeEach(() => {
-      returnedFunction = syncContactRequests();
+      returnedFunction = syncIncomingContactRequests();
     });
 
-    it('dispatches an action of type CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST', () => {
+    it('dispatches an action of type CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST', () => {
       returnedFunction(dispatchMock, getStateMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST
+        type: CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST
       });
     });
 
@@ -223,12 +223,12 @@ describe('syncContactRequests', () => {
         });
       });
 
-      it('dispatches an action of type CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS with the synced contacts', () => {
+      it('dispatches an action of type CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS with the synced contacts', () => {
         expect.hasAssertions();
 
         return promise.then((contacts) => {
           expect(dispatchMock).toHaveBeenCalledWith({
-            type: CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS,
+            type: CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS,
             contacts
           });
         });
@@ -252,7 +252,7 @@ describe('syncContactRequests', () => {
           new Error('65b549cf-bd06-438f-99a6-45dd20be8ca9')
         ));
 
-        promise = syncContactRequests()(dispatchMock, getStateMock);
+        promise = syncIncomingContactRequests()(dispatchMock, getStateMock);
       });
 
       it('rejects the returned promise', () => {
@@ -264,14 +264,14 @@ describe('syncContactRequests', () => {
         });
       });
 
-      it('dispatches an action of type CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE with the error', () => {
+      it('dispatches an action of type CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE with the error', () => {
         expect.hasAssertions();
 
         return promise.catch((error) => {
           expect(error).toBeTruthy();
 
           expect(dispatchMock).toHaveBeenCalledWith({
-            type: CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE,
+            type: CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE,
             error
           });
         });

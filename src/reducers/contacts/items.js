@@ -1,4 +1,5 @@
 import * as contactsActions from '../../actions/contacts';
+import * as contactRequestsActions from '../../actions/contacts/contactRequests';
 
 const items = (state = {}, action) => {
   let newState;
@@ -6,7 +7,7 @@ const items = (state = {}, action) => {
 
   switch (action.type) {
     case contactsActions.CONTACTS_LOAD_SUCCESS:
-    case contactsActions.CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS:
+    case contactRequestsActions.CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS:
       return action.contacts;
 
     case contactsActions.CONTACTS_ADD_SUCCESS:
@@ -25,7 +26,7 @@ const items = (state = {}, action) => {
     case contactsActions.CONTACTS_REMOVE_ALL_SUCCESS:
       return {};
 
-    case contactsActions.CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS:
+    case contactRequestsActions.CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS:
       contact = { ...action.contact };
       newState = { ...state };
 

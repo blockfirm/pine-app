@@ -1,27 +1,27 @@
-import { add as addContactToPine } from '../pine/contacts/add';
-import { send as sendContactRequest } from '../pine/contactRequests/send';
-import { save } from './save';
+import { add as addContactToPine } from '../../pine/contacts/add';
+import { send as sendContactRequest } from '../../pine/contactRequests/send';
+import { save } from '../save';
 
-export const CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST = 'CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST';
-export const CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS = 'CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS';
-export const CONTACTS_ACCEPT_CONTACT_REQUEST_FAILURE = 'CONTACTS_ACCEPT_CONTACT_REQUEST_FAILURE';
+export const CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST = 'CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST';
+export const CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS = 'CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS';
+export const CONTACTS_CONTACT_REQUESTS_ACCEPT_FAILURE = 'CONTACTS_CONTACT_REQUESTS_ACCEPT_FAILURE';
 
-const acceptContactRequestRequest = () => {
+const acceptRequest = () => {
   return {
-    type: CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST
+    type: CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST
   };
 };
 
-const acceptContactRequestSuccess = (contact) => {
+const acceptSuccess = (contact) => {
   return {
-    type: CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS,
+    type: CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS,
     contact
   };
 };
 
-const acceptContactRequestFailure = (error) => {
+const acceptFailure = (error) => {
   return {
-    type: CONTACTS_ACCEPT_CONTACT_REQUEST_FAILURE,
+    type: CONTACTS_CONTACT_REQUESTS_ACCEPT_FAILURE,
     error
   };
 };
@@ -36,9 +36,9 @@ const acceptContactRequestFailure = (error) => {
  *
  * @returns {Promise} A promise that resolves to the contact of the accepted contact request.
  */
-export const acceptContactRequest = (contact) => {
+export const accept = (contact) => {
   return (dispatch) => {
-    dispatch(acceptContactRequestRequest());
+    dispatch(acceptRequest());
 
     return dispatch(sendContactRequest(contact.contactRequest.from))
       .then(() => {
@@ -55,12 +55,12 @@ export const acceptContactRequest = (contact) => {
 
         delete updatedContact.contactRequest;
 
-        dispatch(acceptContactRequestSuccess(updatedContact));
+        dispatch(acceptSuccess(updatedContact));
 
         return dispatch(save()).then(() => updatedContact);
       })
       .catch((error) => {
-        dispatch(acceptContactRequestFailure(error));
+        dispatch(acceptFailure(error));
         throw error;
       });
   };

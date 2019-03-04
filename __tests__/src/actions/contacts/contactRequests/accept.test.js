@@ -1,13 +1,13 @@
-import { save as saveContacts } from '../../../../src/actions/contacts/save';
-import { send as sendContactRequest } from '../../../../src/actions/pine/contactRequests/send';
-import { add as addContactToPine } from '../../../../src/actions/pine/contacts/add';
+import { save as saveContacts } from '../../../../../src/actions/contacts/save';
+import { send as sendContactRequest } from '../../../../../src/actions/pine/contactRequests/send';
+import { add as addContactToPine } from '../../../../../src/actions/pine/contacts/add';
 
 import {
-  acceptContactRequest,
-  CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST,
-  CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS,
-  CONTACTS_ACCEPT_CONTACT_REQUEST_FAILURE
-} from '../../../../src/actions/contacts/acceptContactRequest';
+  accept as acceptContactRequest,
+  CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST,
+  CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS,
+  CONTACTS_CONTACT_REQUESTS_ACCEPT_FAILURE
+} from '../../../../../src/actions/contacts/contactRequests/accept';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -17,40 +17,40 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
-jest.mock('../../../../src/actions/pine/contactRequests/send', () => ({
+jest.mock('../../../../../src/actions/pine/contactRequests/send', () => ({
   send: jest.fn(() => Promise.resolve({}))
 }));
 
-jest.mock('../../../../src/actions/pine/contacts/add', () => ({
+jest.mock('../../../../../src/actions/pine/contacts/add', () => ({
   add: jest.fn(() => Promise.resolve({
     id: '63b6d3cf-4810-4237-a08a-fc06a2e043b3',
     createdAt: 12345
   }))
 }));
 
-jest.mock('../../../../src/actions/contacts/save', () => ({
+jest.mock('../../../../../src/actions/contacts/save', () => ({
   save: jest.fn(() => Promise.resolve())
 }));
 
-describe('CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST', () => {
-  it('equals "CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST"', () => {
-    expect(CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST).toBe('CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST');
+describe('CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST', () => {
+  it('equals "CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST"', () => {
+    expect(CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST).toBe('CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST');
   });
 });
 
-describe('CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS', () => {
-  it('equals "CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS"', () => {
-    expect(CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS).toBe('CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS');
+describe('CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS', () => {
+  it('equals "CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS"', () => {
+    expect(CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS).toBe('CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS');
   });
 });
 
-describe('CONTACTS_ACCEPT_CONTACT_REQUEST_FAILURE', () => {
-  it('equals "CONTACTS_ACCEPT_CONTACT_REQUEST_FAILURE"', () => {
-    expect(CONTACTS_ACCEPT_CONTACT_REQUEST_FAILURE).toBe('CONTACTS_ACCEPT_CONTACT_REQUEST_FAILURE');
+describe('CONTACTS_CONTACT_REQUESTS_ACCEPT_FAILURE', () => {
+  it('equals "CONTACTS_CONTACT_REQUESTS_ACCEPT_FAILURE"', () => {
+    expect(CONTACTS_CONTACT_REQUESTS_ACCEPT_FAILURE).toBe('CONTACTS_CONTACT_REQUESTS_ACCEPT_FAILURE');
   });
 });
 
-describe('acceptContactRequest', () => {
+describe('accept', () => {
   let contact;
 
   beforeEach(() => {
@@ -85,11 +85,11 @@ describe('acceptContactRequest', () => {
       returnedFunction = acceptContactRequest(contact);
     });
 
-    it('dispatches an action of type CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST', () => {
+    it('dispatches an action of type CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST', () => {
       returnedFunction(dispatchMock);
 
       expect(dispatchMock).toHaveBeenCalledWith({
-        type: CONTACTS_ACCEPT_CONTACT_REQUEST_REQUEST
+        type: CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST
       });
     });
 
@@ -137,12 +137,12 @@ describe('acceptContactRequest', () => {
         });
       });
 
-      it('dispatches an action of type CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS with the updated contact', () => {
+      it('dispatches an action of type CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS with the updated contact', () => {
         expect.hasAssertions();
 
         return promise.then((updatedContact) => {
           expect(dispatchMock).toHaveBeenCalledWith({
-            type: CONTACTS_ACCEPT_CONTACT_REQUEST_SUCCESS,
+            type: CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS,
             contact: updatedContact
           });
         });
@@ -178,14 +178,14 @@ describe('acceptContactRequest', () => {
         });
       });
 
-      it('dispatches an action of type CONTACTS_ACCEPT_CONTACT_REQUEST_FAILURE with the error', () => {
+      it('dispatches an action of type CONTACTS_CONTACT_REQUESTS_ACCEPT_FAILURE with the error', () => {
         expect.hasAssertions();
 
         return promise.catch((error) => {
           expect(error).toBeTruthy();
 
           expect(dispatchMock).toHaveBeenCalledWith({
-            type: CONTACTS_ACCEPT_CONTACT_REQUEST_FAILURE,
+            type: CONTACTS_CONTACT_REQUESTS_ACCEPT_FAILURE,
             error
           });
         });

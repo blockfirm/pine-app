@@ -1,5 +1,5 @@
 import { sync as syncBitcoinWallet } from './bitcoin/wallet';
-import { syncContactRequests } from './contacts';
+import { syncIncoming as syncIncomingContactRequests } from './contacts/contactRequests';
 
 export const SYNC_REQUEST = 'SYNC_REQUEST';
 export const SYNC_SUCCESS = 'SYNC_SUCCESS';
@@ -38,7 +38,7 @@ export const sync = () => {
     dispatch(syncRequest());
 
     const promises = [
-      dispatch(syncContactRequests()),
+      dispatch(syncIncomingContactRequests()),
       dispatch(syncBitcoinWallet())
     ];
 

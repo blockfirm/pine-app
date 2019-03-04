@@ -1,30 +1,30 @@
 import uuidv4 from 'uuid/v4';
 import { InteractionManager } from 'react-native';
 
-import getUser from '../../PinePaymentProtocol/user/get';
-import { get as getContactRequests } from '../pine/contactRequests/get';
-import { save } from './save';
+import getUser from '../../../PinePaymentProtocol/user/get';
+import { get as getContactRequests } from '../../pine/contactRequests/get';
+import { save } from '../save';
 
-export const CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST = 'CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST';
-export const CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS = 'CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS';
-export const CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE = 'CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE';
+export const CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST = 'CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST';
+export const CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS = 'CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS';
+export const CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE = 'CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE';
 
-const syncContactRequestsRequest = () => {
+const syncIncomingRequest = () => {
   return {
-    type: CONTACTS_SYNC_CONTACT_REQUESTS_REQUEST
+    type: CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST
   };
 };
 
-const syncContactRequestsSuccess = (contacts) => {
+const syncIncomingSuccess = (contacts) => {
   return {
-    type: CONTACTS_SYNC_CONTACT_REQUESTS_SUCCESS,
+    type: CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS,
     contacts
   };
 };
 
-const syncContactRequestsFailure = (error) => {
+const syncIncomingFailure = (error) => {
   return {
-    type: CONTACTS_SYNC_CONTACT_REQUESTS_FAILURE,
+    type: CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE,
     error
   };
 };
@@ -104,14 +104,14 @@ const addNew = (contacts, contactRequests) => {
  *
  * @returns {Promise} A promise that resolves to the updated contacts.
  */
-export const syncContactRequests = () => {
+export const syncIncoming = () => {
   return (dispatch, getState) => {
     const state = getState();
     const userProfile = state.settings.user.profile;
     const contacts = { ...state.contacts.items };
     let synced = false;
 
-    dispatch(syncContactRequestsRequest());
+    dispatch(syncIncomingRequest());
 
     return waitForInteractions()
       .then(() => {
@@ -122,7 +122,7 @@ export const syncContactRequests = () => {
         return addNew(contacts, contactRequests);
       })
       .then((added) => {
-        dispatch(syncContactRequestsSuccess(contacts));
+        dispatch(syncIncomingSuccess(contacts));
 
         if (synced || added) {
           return dispatch(save());
@@ -130,7 +130,7 @@ export const syncContactRequests = () => {
       })
       .then(() => contacts)
       .catch((error) => {
-        dispatch(syncContactRequestsFailure(error));
+        dispatch(syncIncomingFailure(error));
         throw error;
       });
   };
