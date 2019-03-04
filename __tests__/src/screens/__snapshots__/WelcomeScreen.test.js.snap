@@ -144,21 +144,57 @@ exports[`WelcomeScreen renders correctly 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "marginBottom": 10,
-          "marginTop": 30,
           "opacity": 1,
-          "padding": 15,
         }
       }
     >
-      <Text>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#FFD23F",
+              "borderRadius": 25,
+              "height": 50,
+              "justifyContent": "center",
+              "width": 670,
+            },
+            Array [
+              Object {
+                "backgroundColor": null,
+                "borderRadius": 0,
+                "height": null,
+                "padding": 15,
+                "width": null,
+              },
+              Object {
+                "marginBottom": 10,
+                "marginTop": 30,
+              },
+            ],
+          ]
+        }
+      >
+        <ActivityIndicator
+          animating={false}
+          color="gray"
+          hidesWhenStopped={true}
+          size="small"
+          style={
+            Object {
+              "height": 12,
+              "position": "absolute",
+            }
+          }
+        />
         <Text
           style={
             Array [
               Object {
-                "color": "#000000",
+                "color": "white",
                 "fontFamily": "System",
-                "fontWeight": "400",
+                "fontSize": 16,
+                "fontWeight": "600",
               },
               Array [
                 Object {
@@ -171,12 +207,15 @@ exports[`WelcomeScreen renders correctly 1`] = `
                   "color": "white",
                 },
               ],
+              Object {
+                "opacity": 1,
+              },
             ]
           }
         >
           Recover existing account
         </Text>
-      </Text>
+      </View>
     </View>
   </View>
 </View>

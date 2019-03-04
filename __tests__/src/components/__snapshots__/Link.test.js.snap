@@ -13,18 +13,53 @@ exports[`Link renders correctly 1`] = `
   style={
     Object {
       "opacity": 1,
-      "padding": 15,
     }
   }
 >
-  <Text>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#FFD23F",
+          "borderRadius": 25,
+          "height": 50,
+          "justifyContent": "center",
+          "width": 670,
+        },
+        Array [
+          Object {
+            "backgroundColor": null,
+            "borderRadius": 0,
+            "height": null,
+            "padding": 15,
+            "width": null,
+          },
+          undefined,
+        ],
+      ]
+    }
+  >
+    <ActivityIndicator
+      animating={false}
+      color="gray"
+      hidesWhenStopped={true}
+      size="small"
+      style={
+        Object {
+          "height": 12,
+          "position": "absolute",
+        }
+      }
+    />
     <Text
       style={
         Array [
           Object {
-            "color": "#000000",
+            "color": "white",
             "fontFamily": "System",
-            "fontWeight": "400",
+            "fontSize": 16,
+            "fontWeight": "600",
           },
           Array [
             Object {
@@ -35,6 +70,9 @@ exports[`Link renders correctly 1`] = `
             },
             undefined,
           ],
+          Object {
+            "opacity": 1,
+          },
         ]
       }
     >
@@ -42,6 +80,6 @@ exports[`Link renders correctly 1`] = `
         e80d5b55-cad9-4df9-9272-c0398592411b
       </Text>
     </Text>
-  </Text>
+  </View>
 </View>
 `;

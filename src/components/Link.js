@@ -1,57 +1,37 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import PropTypes from 'prop-types';
-import StyledText from './StyledText';
-
-const PRESS_FREEZE_MS = 1000; // Don't allow another press until 1s after the previous press.
+import { StyleSheet } from 'react-native';
+import Button from './Button';
 
 const styles = StyleSheet.create({
-  link: {
-    padding: 15
+  wrapper: {
+    width: null,
+    height: null,
+    padding: 15,
+    borderRadius: 0,
+    backgroundColor: null
   },
   label: {
     color: '#007AFF',
     fontFamily: 'System',
     fontWeight: '600',
     fontSize: 16
+  },
+  disabledStyle: {
+    backgroundColor: null
   }
 });
 
 export default class Link extends Component {
-  _shouldAllowPress() {
-    const lastPressTimestamp = this._lastPressTimestamp || 0;
-    const now = new Date().getTime();
-
-    // Don't allow too frequent presses.
-    return now - lastPressTimestamp > PRESS_FREEZE_MS;
-  }
-
-  _onPress() {
-    if (!this._shouldAllowPress()) {
-      return;
-    }
-
-    this._lastPressTimestamp = new Date().getTime();
-
-    this.props.onPress();
-  }
-
   render() {
     return (
-      <TouchableOpacity activeOpacity={0.7} onPress={this._onPress.bind(this)} style={[styles.link, this.props.style]}>
-        <Text>
-          <StyledText style={[styles.label, this.props.labelStyle]}>
-            {this.props.children}
-          </StyledText>
-        </Text>
-      </TouchableOpacity>
+      <Button
+        {...this.props}
+        label={this.props.children}
+        style={[styles.wrapper, this.props.style]}
+        labelStyle={[styles.label, this.props.labelStyle]}
+        disabledStyle={[styles.disabledStyle, this.props.disabledStyle]}
+        loaderColor={this.props.loaderColor || 'gray'}
+      />
     );
   }
 }
-
-Link.propTypes = {
-  onPress: PropTypes.func.isRequired,
-  style: PropTypes.any,
-  labelStyle: PropTypes.any,
-  children: PropTypes.node
-};
