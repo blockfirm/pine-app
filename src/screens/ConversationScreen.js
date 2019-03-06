@@ -70,6 +70,7 @@ export default class ConversationScreen extends Component {
 
     this._onContactRequestAccept = this._onContactRequestAccept.bind(this);
     this._onContactRequestIgnore = this._onContactRequestIgnore.bind(this);
+    this._onContactRequestDelete = this._onContactRequestDelete.bind(this);
   }
 
   _onContactRequestAccept(contact) {
@@ -80,12 +81,17 @@ export default class ConversationScreen extends Component {
     this.props.navigation.goBack();
   }
 
+  _onContactRequestDelete() {
+    this.props.navigation.goBack();
+  }
+
   _renderContactRequest(contact) {
     return (
       <ContactRequestContainer
         contact={contact}
         onAccept={this._onContactRequestAccept}
         onIgnore={this._onContactRequestIgnore}
+        onDelete={this._onContactRequestDelete}
       />
     );
   }

@@ -28,6 +28,9 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     marginTop: 20
   },
+  delete: {
+    paddingTop: 0
+  },
   destructiveLabel: {
     color: '#FF3B30'
   }
@@ -36,7 +39,9 @@ const styles = StyleSheet.create({
 export default class ContactRequest extends Component {
   constructor() {
     super(...arguments);
+
     this._confirmIgnore = this._confirmIgnore.bind(this);
+    this._confirmDelete = this._confirmDelete.bind(this);
   }
 
   _confirmIgnore() {
@@ -54,6 +59,25 @@ export default class ContactRequest extends Component {
         }
 
         this.props.onIgnore().finally(resolve);
+      });
+    });
+  }
+
+  _confirmDelete() {
+    const { contact } = this.props;
+
+    return new Promise((resolve) => {
+      ActionSheetIOS.showActionSheetWithOptions({
+        title: `Delete contact request to ${contact.pineAddress}?`,
+        options: ['Cancel', 'Delete'],
+        destructiveButtonIndex: 1,
+        cancelButtonIndex: 0
+      }, (buttonIndex) => {
+        if (buttonIndex === 0) {
+          return resolve(); // Cancel
+        }
+
+        this.props.onDelete().finally(resolve);
       });
     });
   }
@@ -109,7 +133,13 @@ export default class ContactRequest extends Component {
           your contact request.
         </Paragraph>
 
-        <Link onPress={this.props.onDelete} style={{ paddingTop: 0 }} labelStyle={styles.destructiveLabel}>
+        <Link
+          onPress={this._confirmDelete}
+          style={styles.delete}
+          labelStyle={styles.destructiveLabel}
+          showLoader={true}
+          loaderHidingDelay={0}
+        >
           Delete
         </Link>
       </View>

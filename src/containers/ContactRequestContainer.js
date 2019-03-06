@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 import {
   accept as acceptContactRequest,
-  ignore as ignoreContactRequest
+  ignore as ignoreContactRequest,
+  remove as removeContactRequest
 } from '../actions/contacts/contactRequests';
 
 import ContactRequest from '../components/ContactRequest';
@@ -20,7 +21,8 @@ class ContactRequestContainer extends Component {
     dispatch: PropTypes.func,
     contact: PropTypes.object,
     onAccept: PropTypes.func,
-    onIgnore: PropTypes.func
+    onIgnore: PropTypes.func,
+    onDelete: PropTypes.func
   };
 
   constructor() {
@@ -42,7 +44,8 @@ class ContactRequestContainer extends Component {
   }
 
   _onDelete() {
-
+    const { dispatch, contact, onDelete } = this.props;
+    return dispatch(removeContactRequest(contact)).then(onDelete);
   }
 
   render() {

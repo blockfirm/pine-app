@@ -20,6 +20,7 @@ const items = (state = {}, action) => {
 
     case contactsActions.CONTACTS_REMOVE_SUCCESS:
     case contactRequestsActions.CONTACTS_CONTACT_REQUESTS_IGNORE_SUCCESS:
+    case contactRequestsActions.CONTACTS_CONTACT_REQUESTS_REMOVE_SUCCESS:
       newState = { ...state };
       delete newState[action.contact.id];
       return newState;
