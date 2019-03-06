@@ -1,3 +1,4 @@
+import { remove as removeContactFromServer } from '../pine/contacts/remove';
 import { save } from './save';
 
 export const CONTACTS_REMOVE_REQUEST = 'CONTACTS_REMOVE_REQUEST';
@@ -36,20 +37,19 @@ export const remove = (contact) => {
   return (dispatch) => {
     dispatch(removeRequest());
 
-    return Promise.resolve().then(() => {
-      if (!contact || !contact.id) {
-        const error = new Error('Unknown contact.');
+    return dispatch(removeContactFromServer(contact))
+      .then(() => {
+        /**
+         * The actual contact is removed by the reducer so this
+         * action must be dispatched before saving the state.
+         */
+        dispatch(removeSuccess(contact));
+
+        return dispatch(save()).then(() => contact);
+      })
+      .catch((error) => {
         dispatch(removeFailure(error));
         throw error;
-      }
-
-      /**
-       * The actual contact is removed by the reducer so this
-       * action must be dispatched before saving the state.
-       */
-      dispatch(removeSuccess(contact));
-
-      return dispatch(save()).then(() => contact);
-    });
+      });
   };
 };

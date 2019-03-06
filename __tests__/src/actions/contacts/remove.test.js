@@ -1,3 +1,6 @@
+import { remove as removeContactFromServer } from '../../../../src/actions/pine/contacts/remove';
+import { save as saveContacts } from '../../../../src/actions/contacts/save';
+
 import {
   remove as removeContact,
   CONTACTS_REMOVE_REQUEST,
@@ -12,6 +15,10 @@ const dispatchMock = jest.fn((action) => {
 
   return action;
 });
+
+jest.mock('../../../../src/actions/pine/contacts/remove', () => ({
+  remove: jest.fn(() => Promise.resolve())
+}));
 
 jest.mock('../../../../src/actions/contacts/save', () => ({
   save: jest.fn(() => Promise.resolve())
@@ -42,6 +49,10 @@ describe('remove', () => {
     fakeContact = {
       id: '34a943ea-ca42-415c-9177-acf8023005b4'
     };
+
+    dispatchMock.mockClear();
+    removeContactFromServer.mockClear();
+    saveContacts.mockClear();
   });
 
   it('is a function', () => {
@@ -69,6 +80,14 @@ describe('remove', () => {
 
       expect(dispatchMock).toHaveBeenCalledWith({
         type: CONTACTS_REMOVE_REQUEST
+      });
+    });
+
+    it('removes the contact from the server', () => {
+      expect.hasAssertions();
+
+      return returnedFunction(dispatchMock).then(() => {
+        expect(removeContactFromServer).toHaveBeenCalledWith(fakeContact);
       });
     });
 
@@ -102,66 +121,47 @@ describe('remove', () => {
           expect(contact).toEqual(expect.objectContaining(fakeContact));
         });
       });
-    });
-  });
 
-  describe('when contact.id is undefined', () => {
-    let promise;
+      it('saves the contacts', () => {
+        expect.hasAssertions();
 
-    beforeEach(() => {
-      fakeContact.id = undefined;
-      promise = removeContact(fakeContact)(dispatchMock);
-    });
-
-    it('rejects the returned promise', () => {
-      expect.hasAssertions();
-
-      return promise.catch((error) => {
-        expect(error).toBeTruthy();
-        expect(error.message).toBe('Unknown contact.');
-      });
-    });
-
-    it('dispatches an action of type CONTACTS_REMOVE_FAILURE with the error', () => {
-      expect.hasAssertions();
-
-      return promise.catch((error) => {
-        expect(error).toBeTruthy();
-
-        expect(dispatchMock).toHaveBeenCalledWith({
-          type: CONTACTS_REMOVE_FAILURE,
-          error
+        return promise.then(() => {
+          expect(saveContacts).toHaveBeenCalled();
         });
       });
     });
-  });
 
-  describe('when contact is undefined', () => {
-    let promise;
+    describe('when the function fails', () => {
+      let promise;
 
-    beforeEach(() => {
-      fakeContact = undefined;
-      promise = removeContact(fakeContact)(dispatchMock);
-    });
+      beforeEach(() => {
+        // Make the function fail by returning a rejected promise from removeContactFromServer().
+        removeContactFromServer.mockImplementationOnce(() => Promise.reject(
+          new Error('280873d7-dc26-4330-8221-79e92dcab807')
+        ));
 
-    it('rejects the returned promise', () => {
-      expect.hasAssertions();
-
-      return promise.catch((error) => {
-        expect(error).toBeTruthy();
-        expect(error.message).toBe('Unknown contact.');
+        promise = removeContact(fakeContact)(dispatchMock);
       });
-    });
 
-    it('dispatches an action of type CONTACTS_REMOVE_FAILURE with the error', () => {
-      expect.hasAssertions();
+      it('rejects the returned promise', () => {
+        expect.hasAssertions();
 
-      return promise.catch((error) => {
-        expect(error).toBeTruthy();
+        return promise.catch((error) => {
+          expect(error).toBeTruthy();
+          expect(error.message).toBe('280873d7-dc26-4330-8221-79e92dcab807');
+        });
+      });
 
-        expect(dispatchMock).toHaveBeenCalledWith({
-          type: CONTACTS_REMOVE_FAILURE,
-          error
+      it('dispatches an action of type CONTACTS_ADD_FAILURE with the error', () => {
+        expect.hasAssertions();
+
+        return promise.catch((error) => {
+          expect(error).toBeTruthy();
+
+          expect(dispatchMock).toHaveBeenCalledWith({
+            type: CONTACTS_REMOVE_FAILURE,
+            error
+          });
         });
       });
     });
