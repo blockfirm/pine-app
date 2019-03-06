@@ -1,4 +1,4 @@
-import { add as addContactToPine } from '../pine/contacts/add';
+import { add as addContactToServer } from '../pine/contacts/add';
 import { save } from './save';
 
 export const CONTACTS_ADD_REQUEST = 'CONTACTS_ADD_REQUEST';
@@ -48,7 +48,7 @@ export const add = (contact) => {
   return (dispatch) => {
     dispatch(addRequest());
 
-    return dispatch(addContactToPine(contact))
+    return dispatch(addContactToServer(contact))
       .then(({ id, createdAt }) => {
         contact.id = id;
         contact.createdAt = createdAt;

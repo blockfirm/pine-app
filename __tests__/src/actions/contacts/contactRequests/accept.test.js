@@ -1,6 +1,6 @@
 import { save as saveContacts } from '../../../../../src/actions/contacts/save';
 import { send as sendContactRequest } from '../../../../../src/actions/pine/contactRequests/send';
-import { add as addContactToPine } from '../../../../../src/actions/pine/contacts/add';
+import { add as addContactToServer } from '../../../../../src/actions/pine/contacts/add';
 
 import {
   accept as acceptContactRequest,
@@ -62,7 +62,7 @@ describe('accept', () => {
     };
 
     dispatchMock.mockClear();
-    addContactToPine.mockClear();
+    addContactToServer.mockClear();
   });
 
   it('is a function', () => {
@@ -117,7 +117,7 @@ describe('accept', () => {
         expect.hasAssertions();
 
         return promise.then(() => {
-          expect(addContactToPine).toHaveBeenCalledWith({
+          expect(addContactToServer).toHaveBeenCalledWith({
             pineAddress: contact.contactRequest.from
           });
         });
@@ -161,8 +161,8 @@ describe('accept', () => {
       let promise;
 
       beforeEach(() => {
-        // Make the function fail by returning a rejected promise from addContactToPine().
-        addContactToPine.mockImplementationOnce(() => Promise.reject(
+        // Make the function fail by returning a rejected promise from addContactToServer().
+        addContactToServer.mockImplementationOnce(() => Promise.reject(
           new Error('74f1195a-f883-4ca0-8607-a31dd3a3195f')
         ));
 

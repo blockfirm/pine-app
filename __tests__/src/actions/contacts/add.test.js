@@ -1,4 +1,4 @@
-import { add as addContactToPine } from '../../../../src/actions/pine/contacts/add';
+import { add as addContactToServer } from '../../../../src/actions/pine/contacts/add';
 import { save as saveContacts } from '../../../../src/actions/contacts/save';
 
 import {
@@ -57,7 +57,7 @@ describe('add', () => {
       displayName: 'Test'
     };
 
-    addContactToPine.mockClear();
+    addContactToServer.mockClear();
     saveContacts.mockClear();
   });
 
@@ -109,7 +109,7 @@ describe('add', () => {
         });
       });
 
-      it('sets contact.id to the id from addContactToPine()', () => {
+      it('sets contact.id to the id from addContactToServer()', () => {
         expect.hasAssertions();
 
         return returnedFunction(dispatchMock).then((contact) => {
@@ -118,7 +118,7 @@ describe('add', () => {
         });
       });
 
-      it('sets contact.createdAt to the createdAt from addContactToPine()', () => {
+      it('sets contact.createdAt to the createdAt from addContactToServer()', () => {
         expect.hasAssertions();
 
         return returnedFunction(dispatchMock).then((contact) => {
@@ -151,8 +151,8 @@ describe('add', () => {
       let promise;
 
       beforeEach(() => {
-        // Make the function fail by returning a rejected promise from addContactToPine().
-        addContactToPine.mockImplementationOnce(() => Promise.reject(
+        // Make the function fail by returning a rejected promise from addContactToServer().
+        addContactToServer.mockImplementationOnce(() => Promise.reject(
           new Error('57e6d883-3be7-41c0-955f-99cdfd929b74')
         ));
 
