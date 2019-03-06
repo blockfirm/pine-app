@@ -8,6 +8,7 @@ import {
   remove as removeContactRequest
 } from '../actions/contacts/contactRequests';
 
+import { handle as handleError } from '../actions/error/handle';
 import ContactRequest from '../components/ContactRequest';
 
 const mapStateToProps = (state) => {
@@ -35,17 +36,32 @@ class ContactRequestContainer extends Component {
 
   _onAccept() {
     const { dispatch, contact, onAccept } = this.props;
-    return dispatch(acceptContactRequest(contact)).then(onAccept);
+
+    return dispatch(acceptContactRequest(contact))
+      .then(onAccept)
+      .catch((error) => {
+        dispatch(handleError(error));
+      });
   }
 
   _onIgnore() {
     const { dispatch, contact, onIgnore } = this.props;
-    return dispatch(ignoreContactRequest(contact)).then(onIgnore);
+
+    return dispatch(ignoreContactRequest(contact))
+      .then(onIgnore)
+      .catch((error) => {
+        dispatch(handleError(error));
+      });
   }
 
   _onDelete() {
     const { dispatch, contact, onDelete } = this.props;
-    return dispatch(removeContactRequest(contact)).then(onDelete);
+
+    return dispatch(removeContactRequest(contact))
+      .then(onDelete)
+      .catch((error) => {
+        dispatch(handleError(error));
+      });
   }
 
   render() {
