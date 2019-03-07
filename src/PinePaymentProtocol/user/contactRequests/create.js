@@ -35,7 +35,11 @@ const create = (to, from, mnemonic) => {
       return fetch(url, fetchOptions);
     })
     .then((response) => {
-      const accepted = response.status === 202;
+      /**
+       * 202 means that the contact request was immediately accepted.
+       * 409 means that the other user already has this user as a contact.
+       */
+      const accepted = [202, 409].includes(response.status);
 
       if (accepted) {
         return Promise.resolve({ accepted });

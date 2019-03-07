@@ -119,6 +119,22 @@ describe('create', () => {
       });
     });
 
+    describe('when the other user already has this user as a contact', () => {
+      it('resolves "accepted" to true', () => {
+        global.fetch.mockImplementationOnce(() => Promise.resolve({
+          ok: false,
+          status: 409,
+          json: () => Promise.resolve()
+        }));
+
+        expect.hasAssertions();
+
+        return createContactRequest(to, from, mnemonic).then(({ accepted }) => {
+          expect(accepted).toBe(true);
+        });
+      });
+    });
+
     describe('when the response is missing an id', () => {
       it('rejects the returned promise with an error', () => {
         global.fetch.mockImplementationOnce(() => Promise.resolve({
