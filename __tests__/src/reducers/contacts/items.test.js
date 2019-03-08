@@ -18,6 +18,17 @@ describe('contactsItemsReducer', () => {
     });
   });
 
+  describe('when action is CONTACTS_SYNC_SUCCESS', () => {
+    it('returns the contacts from the action', () => {
+      const oldState = { '5fe05cca9-bd9b-493e-9779-be613ffe73a7': {} };
+      const actionContacts = { '63d57c35-e6cd-45d3-94ba-c61897dd5623': {} };
+      const action = { type: contactsActions.CONTACTS_SYNC_SUCCESS, contacts: actionContacts };
+      const newState = contactsItemsReducer(oldState, action);
+
+      expect(newState).toBe(actionContacts);
+    });
+  });
+
   describe('when action is CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS', () => {
     it('returns the contacts from the action', () => {
       const oldState = { '9f4aeb36-063a-49cc-b926-51d106673f7b': {} };

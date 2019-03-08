@@ -1,4 +1,5 @@
 import { sync as syncBitcoinWallet } from './bitcoin/wallet';
+import { sync as syncContacts } from './contacts';
 import { syncIncoming as syncIncomingContactRequests } from './contacts/contactRequests';
 
 export const SYNC_REQUEST = 'SYNC_REQUEST';
@@ -25,7 +26,7 @@ const syncFailure = (error) => {
 };
 
 /**
- * Action to sync contact requests and bitcoin wallet.
+ * Action to sync contacts, contact requests and bitcoin wallet.
  */
 export const sync = () => {
   return (dispatch, getState) => {
@@ -37,12 +38,13 @@ export const sync = () => {
 
     dispatch(syncRequest());
 
-    const promises = [
-      dispatch(syncIncomingContactRequests()),
-      dispatch(syncBitcoinWallet())
-    ];
-
-    return Promise.all(promises)
+    return dispatch(syncContacts())
+      .then(() => {
+        return dispatch(syncIncomingContactRequests());
+      })
+      .then(() => {
+        return dispatch(syncBitcoinWallet());
+      })
       .then(() => {
         dispatch(syncSuccess());
       })

@@ -7,6 +7,7 @@ const items = (state = {}, action) => {
 
   switch (action.type) {
     case contactsActions.CONTACTS_LOAD_SUCCESS:
+    case contactsActions.CONTACTS_SYNC_SUCCESS:
     case contactRequestsActions.CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_SUCCESS:
       return action.contacts;
 
