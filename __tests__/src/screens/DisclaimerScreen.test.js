@@ -20,7 +20,7 @@ describe('DisclaimerScreen', () => {
           user: {
             hasCreatedBackup: false,
             profile: {
-              pineAddress: 'timothy@pine.cash'
+              address: 'timothy@pine.cash'
             }
           }
         }
@@ -43,7 +43,7 @@ describe('DisclaimerScreen', () => {
           user: {
             hasCreatedBackup: true,
             profile: {
-              pineAddress: 'timothy@pine.cash'
+              address: 'timothy@pine.cash'
             }
           }
         }

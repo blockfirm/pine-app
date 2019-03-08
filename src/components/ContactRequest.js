@@ -68,7 +68,7 @@ export default class ContactRequest extends Component {
 
     return new Promise((resolve) => {
       ActionSheetIOS.showActionSheetWithOptions({
-        title: `Delete contact request to ${contact.pineAddress}?`,
+        title: `Delete contact request to ${contact.address}?`,
         options: ['Cancel', 'Delete'],
         destructiveButtonIndex: 1,
         cancelButtonIndex: 0
@@ -88,7 +88,7 @@ export default class ContactRequest extends Component {
 
     return (
       <Avatar
-        pineAddress={contact.pineAddress}
+        pineAddress={contact.address}
         checksum={avatarChecksum}
         size={60}
       />
@@ -103,7 +103,7 @@ export default class ContactRequest extends Component {
         {this._renderAvatar()}
 
         <Paragraph style={styles.paragraph}>
-          {contact.pineAddress} wants to add you as a contact.
+          {contact.address} wants to add you as a contact.
         </Paragraph>
 
         <SmallButton label='Accept' onPress={this.props.onAccept} showLoader={true} />
@@ -129,7 +129,7 @@ export default class ContactRequest extends Component {
         {this._renderAvatar()}
 
         <Paragraph style={styles.paragraph}>
-          Waiting for {contact.pineAddress} to respond to
+          Waiting for {contact.address} to respond to
           your contact request.
         </Paragraph>
 
@@ -153,7 +153,7 @@ export default class ContactRequest extends Component {
       return null;
     }
 
-    if (contact.contactRequest.from === userProfile.pineAddress) {
+    if (contact.contactRequest.from === userProfile.address) {
       return this._renderOutgoing();
     }
 

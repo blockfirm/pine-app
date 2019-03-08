@@ -20,7 +20,7 @@ const getStateMock = jest.fn(() => ({
   settings: {
     user: {
       profile: {
-        pineAddress: 'me@localhost'
+        address: 'me@localhost'
       }
     }
   },
@@ -28,12 +28,12 @@ const getStateMock = jest.fn(() => ({
     items: {
       '3631c8a1-d2f9-430f-bd2e-44a889a31836': {
         id: '3631c8a1-d2f9-430f-bd2e-44a889a31836',
-        pineAddress: 'one@example.org',
+        address: 'one@example.org',
         waitingForContactRequest: false
       },
       '326e0bcd-66db-45d9-b67c-c55d268362a6': {
         id: '326e0bcd-66db-45d9-b67c-c55d268362a6',
-        pineAddress: 'two@example.org',
+        address: 'two@example.org',
         waitingForContactRequest: true,
         contactRequest: {
           id: 'e6925cc1-cb5b-4de7-b0a9-eb92a46dd76b',
@@ -43,7 +43,7 @@ const getStateMock = jest.fn(() => ({
       },
       '9dc70a72-dce0-4a06-a14f-22761fe403ab': {
         id: '9dc70a72-dce0-4a06-a14f-22761fe403ab',
-        pineAddress: 'you@localhost',
+        address: 'you@localhost',
         waitingForContactRequest: false,
         contactRequest: {
           id: '5f3e83a6-2ca4-4dd9-b3a4-3dc3b3018d0f',
@@ -161,7 +161,7 @@ describe('sync', () => {
           expect(contacts).toEqual(expect.objectContaining({
             '326e0bcd-66db-45d9-b67c-c55d268362a6': {
               id: '326e0bcd-66db-45d9-b67c-c55d268362a6',
-              pineAddress: 'two@example.org',
+              address: 'two@example.org',
               waitingForContactRequest: false
             }
           }));

@@ -29,7 +29,7 @@ const addFailure = (error) => {
  * Action to add a contact.
  *
  * @param {object} contact - Contact to add.
- * @param {string} contact.pineAddress - The contact's Pine address.
+ * @param {string} contact.address - The contact's Pine address.
  * @param {string} contact.userId - The contact's user ID.
  * @param {string} contact.publicKey - The contact's public key encoded as base58check.
  * @param {string} contact.username - The contact's username.

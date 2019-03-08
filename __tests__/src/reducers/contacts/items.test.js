@@ -127,17 +127,17 @@ describe('contactsItemsReducer', () => {
       const oldState = {
         '38821740-1053-4f0a-8c32-b5f607443fea': {
           id: '38821740-1053-4f0a-8c32-b5f607443fea',
-          pineAddress: 'accept@localhost'
+          address: 'accept@localhost'
         },
         'f1ff0c82-f297-49cd-96fb-591123785d6c': {
           id: 'f1ff0c82-f297-49cd-96fb-591123785d6c',
-          pineAddress: 'random@localhost'
+          address: 'random@localhost'
         }
       };
 
       const actionContact = {
         id: '318f1806-9f1a-40c2-b35a-c89af69e6db4',
-        pineAddress: 'accept@localhost'
+        address: 'accept@localhost'
       };
 
       const action = { type: contactRequestsActions.CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS, contact: actionContact };
@@ -146,11 +146,11 @@ describe('contactsItemsReducer', () => {
       const expectedState = {
         '318f1806-9f1a-40c2-b35a-c89af69e6db4': {
           id: '318f1806-9f1a-40c2-b35a-c89af69e6db4',
-          pineAddress: 'accept@localhost'
+          address: 'accept@localhost'
         },
         'f1ff0c82-f297-49cd-96fb-591123785d6c': {
           id: 'f1ff0c82-f297-49cd-96fb-591123785d6c',
-          pineAddress: 'random@localhost'
+          address: 'random@localhost'
         }
       };
 

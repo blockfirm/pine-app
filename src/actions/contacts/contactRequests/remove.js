@@ -31,7 +31,7 @@ const removeFailure = (error) => {
  *
  * @param {object} contact - Contact with the contact request to remove.
  * @param {object} contact.id - Contact's ID.
- * @param {object} contact.pineAddress - Contact's Pine address.
+ * @param {object} contact.address - Contact's Pine address.
  * @param {object} contact.userId - Contact's user ID.
  * @param {object} contact.contactRequest - Contact request to remove.
  * @param {string} contact.contactRequest.id - ID of the contact request.
@@ -44,7 +44,7 @@ export const remove = (contact) => {
 
     const contactRequest = {
       id: contact.contactRequest.id,
-      to: contact.pineAddress,
+      to: contact.address,
       toUserId: contact.userId
     };
 

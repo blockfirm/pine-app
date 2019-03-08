@@ -178,14 +178,14 @@ export default class ProfileScreen extends Component {
 
   _onSelectAvatar(image, error) {
     const { dispatch } = this.props;
-    const { pineAddress } = this.props.userProfile;
+    const { address } = this.props.userProfile;
 
     if (error) {
       return dispatch(handleError(error));
     }
 
     return this._getMnemonic().then((mnemonic) => {
-      return avatar.set(pineAddress, image.data, mnemonic)
+      return avatar.set(address, image.data, mnemonic)
         .then((avatar) => {
           this._saveAvatarChecksum(avatar.checksum);
         })
@@ -197,7 +197,7 @@ export default class ProfileScreen extends Component {
 
   render() {
     const { userProfile } = this.props;
-    const { pineAddress, displayName, avatar } = userProfile;
+    const { address, displayName, avatar } = userProfile;
     const avatarChecksum = avatar ? avatar.checksum : null;
 
     return (
@@ -205,13 +205,13 @@ export default class ProfileScreen extends Component {
         <View style={styles.profile}>
           <EditAvatar
             onSelect={this._onSelectAvatar.bind(this)}
-            pineAddress={pineAddress}
+            pineAddress={address}
             checksum={avatarChecksum}
           />
           <View>
             <StyledText style={styles.displayName} numberOfLines={1}>{displayName}</StyledText>
-            <CopyText copyText={pineAddress} underlayColor='#EFEFF3' tooltipArrowDirection='up'>
-              <StyledText style={styles.address} numberOfLines={1}>{pineAddress}</StyledText>
+            <CopyText copyText={address} underlayColor='#EFEFF3' tooltipArrowDirection='up'>
+              <StyledText style={styles.address} numberOfLines={1}>{address}</StyledText>
             </CopyText>
           </View>
         </View>

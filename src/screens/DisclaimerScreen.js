@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 
 @connect((state) => ({
   hasCreatedBackup: state.settings.user.hasCreatedBackup,
-  pineAddress: state.settings.user.profile.pineAddress
+  pineAddress: state.settings.user.profile.address
 }))
 export default class DisclaimerScreen extends Component {
   static navigationOptions = {

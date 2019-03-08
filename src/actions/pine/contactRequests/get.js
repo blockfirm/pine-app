@@ -37,9 +37,9 @@ export const get = () => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
-    const { pineAddress } = state.settings.user.profile;
+    const { address } = state.settings.user.profile;
 
-    if (!pineAddress) {
+    if (!address) {
       return Promise.resolve();
     }
 
@@ -47,7 +47,7 @@ export const get = () => {
 
     return getDefaultMnemonicFromKeys(keys)
       .then((mnemonic) => {
-        return getContactRequests(pineAddress, mnemonic);
+        return getContactRequests(address, mnemonic);
       })
       .then((contactRequests) => {
         dispatch(getSuccess(contactRequests));

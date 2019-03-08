@@ -36,7 +36,7 @@ export default class DisplayNameScreen extends Component {
   constructor(props) {
     super(...arguments);
 
-    const { username } = parseAddress(props.userProfile.pineAddress);
+    const { username } = parseAddress(props.userProfile.address);
 
     this.state = {
       displayName: props.userProfile.displayName,
@@ -76,14 +76,14 @@ export default class DisplayNameScreen extends Component {
 
   _onSubmit() {
     const { dispatch } = this.props;
-    const { pineAddress } = this.props.userProfile;
+    const { address } = this.props.userProfile;
     const displayName = this.state.displayName.trim() || this.state.username;
 
     this.props.navigation.setParams({ canSubmit: false });
 
     return this._getMnemonic()
       .then((mnemonic) => {
-        return updateUser(pineAddress, { displayName }, mnemonic);
+        return updateUser(address, { displayName }, mnemonic);
       })
       .then((user) => {
         this._saveUserProfile(user);

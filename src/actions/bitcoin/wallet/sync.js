@@ -113,6 +113,7 @@ const getNewTransactions = (dispatch, addresses, oldTransactions) => {
     return getNewTransactionsForBatch(dispatch, chunk, oldTransactions);
   });
 
+  // TODO: Get in serial instead.
   return Promise.all(promises);
 };
 

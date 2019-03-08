@@ -7,7 +7,7 @@ import { getAuthorizationHeader } from '../../authentication';
  *
  * @param {string} pineAddress - Pine address to add the contact to.
  * @param {object} contact - Contact to add.
- * @param {string} contact.pineAddress - The contact's Pine address.
+ * @param {string} contact.address - The contact's Pine address.
  * @param {boolean} contact.waitingForContactRequest - Whether or not the user is waiting for the contact to accept a contact request.
  * @param {string} mnemonic - Mnemonic to authenticate and sign the request with.
  *
@@ -24,7 +24,7 @@ const add = (pineAddress, contact, mnemonic) => {
   const url = `${baseUrl}${path}`;
 
   const body = {
-    address: contact.pineAddress,
+    address: contact.address,
     waitingForContactRequest: contact.waitingForContactRequest
   };
 

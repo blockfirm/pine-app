@@ -20,7 +20,7 @@ const getStateMock = jest.fn(() => ({
   settings: {
     user: {
       profile: {
-        pineAddress: 'me@localhost'
+        address: 'me@localhost'
       }
     }
   },
@@ -212,7 +212,7 @@ describe('syncIncoming', () => {
             '4ef212b3-cc8f-4f13-a479-7c2fb324c3d0': expect.objectContaining({
               id: '4ef212b3-cc8f-4f13-a479-7c2fb324c3d0',
               userId: '85b022a6-09b6-4b9d-adb2-faf237f167d6',
-              pineAddress: 'new@localhost',
+              address: 'new@localhost',
               contactRequest: {
                 id: 'fe9d4c6b-f13d-402a-80f2-b462ab76ac23',
                 from: 'new@localhost',

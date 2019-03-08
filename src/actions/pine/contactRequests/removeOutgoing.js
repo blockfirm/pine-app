@@ -41,7 +41,7 @@ export const removeOutgoing = (contactRequest) => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
-    const { pineAddress } = state.settings.user.profile;
+    const { address } = state.settings.user.profile;
 
     dispatch(removeOutgoingRequest());
 
@@ -49,7 +49,7 @@ export const removeOutgoing = (contactRequest) => {
       .then((mnemonic) => {
         return contactRequests.removeOutgoing({
           ...contactRequest,
-          from: pineAddress
+          from: address
         }, mnemonic);
       })
       .then(() => {

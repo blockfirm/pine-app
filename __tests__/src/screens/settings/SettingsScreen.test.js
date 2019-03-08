@@ -10,7 +10,7 @@ const storeMock = {
     settings: {
       user: {
         profile: {
-          pineAddress: 'timothy@pine.cash'
+          address: 'timothy@pine.cash'
         }
       },
       api: {

@@ -39,13 +39,13 @@ export const send = (to) => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
-    const { pineAddress } = state.settings.user.profile;
+    const from = state.settings.user.profile.address;
 
     dispatch(sendRequest());
 
     return getDefaultMnemonicFromKeys(keys)
       .then((mnemonic) => {
-        return contactRequests.create(to, pineAddress, mnemonic);
+        return contactRequests.create(to, from, mnemonic);
       })
       .then(({ contact }) => {
         dispatch(sendSuccess(contact));

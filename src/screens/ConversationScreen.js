@@ -60,7 +60,7 @@ export default class ConversationScreen extends Component {
       headerRight = (
         <TouchableOpacity onPress={showUserMenu} style={styles.headerAvatar} disable={loading}>
           <Avatar
-            pineAddress={contact.pineAddress}
+            pineAddress={contact.address}
             checksum={avatarChecksum}
             size={36}
           />
@@ -95,7 +95,7 @@ export default class ConversationScreen extends Component {
     const { contact } = navigation.state.params;
 
     ActionSheetIOS.showActionSheetWithOptions({
-      title: contact.pineAddress,
+      title: contact.address,
       options: ['Cancel', 'Delete'],
       destructiveButtonIndex: 1,
       cancelButtonIndex: 0

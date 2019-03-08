@@ -20,7 +20,7 @@ export default {
 
     profile: {
       // Pine address that the user is signed in with.
-      pineAddress: ''
+      address: ''
     }
   },
   api: {

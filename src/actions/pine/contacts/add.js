@@ -34,20 +34,20 @@ const getDefaultMnemonicFromKeys = (keys) => {
  * Action to add a contact to the user's Pine server.
  *
  * @param {object} contact - Contact to add.
- * @param {string} contact.pineAddress - The contact's Pine address.
+ * @param {string} contact.address - The contact's Pine address.
  * @param {boolean} contact.waitingForContactRequest - Whether or not the user is waiting for the contact to accept a contact request.
  */
 export const add = (contact) => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
-    const { pineAddress } = state.settings.user.profile;
+    const userAddress = state.settings.user.profile.address;
 
     dispatch(addRequest());
 
     return getDefaultMnemonicFromKeys(keys)
       .then((mnemonic) => {
-        return addContact(pineAddress, contact, mnemonic);
+        return addContact(userAddress, contact, mnemonic);
       })
       .then((addedContact) => {
         dispatch(addSuccess(addedContact));

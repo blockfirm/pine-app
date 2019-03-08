@@ -34,7 +34,7 @@ const items = (state = {}, action) => {
       newState = { ...state };
 
       Object.values(newState).forEach((oldContact) => {
-        if (oldContact.pineAddress === contact.pineAddress) {
+        if (oldContact.address === contact.address) {
           delete newState[oldContact.id];
         }
       });

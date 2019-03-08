@@ -13,7 +13,7 @@ const getStateMock = jest.fn(() => ({
   settings: {
     user: {
       profile: {
-        pineAddress: 'bb589666-7b43-4e44-be13-9fd76ec3f512'
+        address: 'bb589666-7b43-4e44-be13-9fd76ec3f512'
       }
     }
   },
@@ -59,7 +59,7 @@ describe('add', () => {
 
   beforeEach(() => {
     contact = {
-      pineAddress: 'cfc05050-3371-4e12-be2d-10b54a4ad841',
+      address: 'cfc05050-3371-4e12-be2d-10b54a4ad841',
       waitingForContactRequest: true
     };
 

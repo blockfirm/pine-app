@@ -38,13 +38,13 @@ export const removeIncoming = (contactRequestId) => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
-    const { pineAddress } = state.settings.user.profile;
+    const { address } = state.settings.user.profile;
 
     dispatch(removeIncomingRequest());
 
     return getDefaultMnemonicFromKeys(keys)
       .then((mnemonic) => {
-        return contactRequests.removeIncoming(pineAddress, contactRequestId, mnemonic);
+        return contactRequests.removeIncoming(address, contactRequestId, mnemonic);
       })
       .then(() => {
         dispatch(removeIncomingSuccess());

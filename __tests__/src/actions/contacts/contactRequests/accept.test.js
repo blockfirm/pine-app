@@ -118,7 +118,7 @@ describe('accept', () => {
 
         return promise.then(() => {
           expect(addContactToServer).toHaveBeenCalledWith({
-            pineAddress: contact.contactRequest.from
+            address: contact.contactRequest.from
           });
         });
       });

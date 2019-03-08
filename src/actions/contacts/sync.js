@@ -43,11 +43,11 @@ const syncExisting = (contacts, serverContacts) => {
   }, {});
 
   Object.values(contacts).forEach((contact) => {
-    if (!(contact.pineAddress in serverContactMap)) {
+    if (!(contact.address in serverContactMap)) {
       return;
     }
 
-    const serverContact = serverContactMap[contact.pineAddress];
+    const serverContact = serverContactMap[contact.address];
     const updatedContact = { ...contact };
 
     updatedContact.waitingForContactRequest = serverContact.waitingForContactRequest;
@@ -67,7 +67,7 @@ const addNew = (contacts, serverContacts, pineAddress) => {
   let added = false;
 
   const contactMap = Object.values(contacts).reduce((map, contact) => {
-    map[contact.pineAddress] = contact;
+    map[contact.address] = contact;
     return map;
   }, {});
 
@@ -81,7 +81,7 @@ const addNew = (contacts, serverContacts, pineAddress) => {
         ...user,
         ...newContact,
         userId: user.id,
-        pineAddress: newContact.address
+        address: newContact.address
       };
 
       if (contact.waitingForContactRequest) {
@@ -122,7 +122,7 @@ export const sync = () => {
       })
       .then((serverContacts) => {
         synced = syncExisting(contacts, serverContacts);
-        return addNew(contacts, serverContacts, userProfile.pineAddress);
+        return addNew(contacts, serverContacts, userProfile.address);
       })
       .then((added) => {
         dispatch(syncSuccess(contacts));

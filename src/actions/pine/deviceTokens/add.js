@@ -38,9 +38,9 @@ export const add = () => {
     const state = getState();
     const keys = state.keys.items;
     const { deviceToken } = state.notifications;
-    const { pineAddress } = state.settings.user.profile;
+    const { address } = state.settings.user.profile;
 
-    if (!deviceToken || !pineAddress) {
+    if (!deviceToken || !address) {
       return Promise.resolve();
     }
 
@@ -48,7 +48,7 @@ export const add = () => {
 
     return getDefaultMnemonicFromKeys(keys)
       .then((mnemonic) => {
-        return deviceTokens.add(pineAddress, { ios: deviceToken }, mnemonic);
+        return deviceTokens.add(address, { ios: deviceToken }, mnemonic);
       })
       .then((deviceTokenId) => {
         dispatch(addSuccess(deviceTokenId));

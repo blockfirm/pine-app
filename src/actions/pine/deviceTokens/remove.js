@@ -38,9 +38,9 @@ export const remove = () => {
     const state = getState();
     const keys = state.keys.items;
     const { deviceToken } = state.notifications;
-    const { pineAddress } = state.settings.user.profile;
+    const { address } = state.settings.user.profile;
 
-    if (!deviceToken || !pineAddress) {
+    if (!deviceToken || !address) {
       return Promise.resolve();
     }
 
@@ -50,7 +50,7 @@ export const remove = () => {
       .then((mnemonic) => {
         // Add it first to get the ID of this device token.
         return dispatch(addDeviceToken()).then((deviceTokenId) => {
-          return deviceTokens.remove(pineAddress, deviceTokenId, mnemonic);
+          return deviceTokens.remove(address, deviceTokenId, mnemonic);
         });
       })
       .then(() => {

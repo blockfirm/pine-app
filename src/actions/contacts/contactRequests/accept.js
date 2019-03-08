@@ -43,7 +43,7 @@ export const accept = (contact) => {
     return dispatch(sendContactRequest(contact.contactRequest.from))
       .then(() => {
         return dispatch(addContactToServer({
-          pineAddress: contact.contactRequest.from
+          address: contact.contactRequest.from
         }));
       })
       .then(({ id, createdAt }) => {

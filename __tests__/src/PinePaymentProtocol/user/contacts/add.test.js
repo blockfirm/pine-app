@@ -27,7 +27,7 @@ describe('add', () => {
 
     beforeEach(() => {
       contact = {
-        pineAddress: 'jack@pine.pm',
+        address: 'jack@pine.pm',
         waitingForContactRequest: true
       };
 

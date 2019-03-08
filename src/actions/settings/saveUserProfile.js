@@ -23,7 +23,7 @@ const saveUserProfileFailure = (error) => {
   };
 };
 
-export const saveUserProfile = (pineAddress, user) => {
+export const saveUserProfile = (address, user) => {
   return (dispatch) => {
     dispatch(saveUserProfileRequest());
 
@@ -34,7 +34,7 @@ export const saveUserProfile = (pineAddress, user) => {
           publicKey: user.publicKey,
           displayName: user.displayName || user.username,
           avatar: user.avatar,
-          pineAddress
+          address
         }
       }
     };

@@ -37,18 +37,18 @@ const styles = StyleSheet.create({
 
 export default class SettingsUserLink extends Component {
   render() {
-    const { pineAddress, displayName, avatar } = this.props.user;
+    const { address, displayName, avatar } = this.props.user;
     const avatarChecksum = avatar ? avatar.checksum : null;
 
     return (
       <TouchableHighlight onPress={this.props.onPress} underlayColor={settingsStyles.underlayColor}>
         <View style={[settingsStyles.item, styles.wrapper]}>
           <View style={styles.avatarWrapper}>
-            <Avatar pineAddress={pineAddress} checksum={avatarChecksum} />
+            <Avatar pineAddress={address} checksum={avatarChecksum} />
           </View>
           <View>
             <StyledText style={styles.displayName} numberOfLines={1}>{displayName}</StyledText>
-            <StyledText style={styles.address} numberOfLines={1}>{pineAddress}</StyledText>
+            <StyledText style={styles.address} numberOfLines={1}>{address}</StyledText>
           </View>
           <Icon name='ios-arrow-forward' style={styles.chevron} />
         </View>

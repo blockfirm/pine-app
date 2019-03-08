@@ -53,7 +53,7 @@ describe('remove', () => {
   beforeEach(() => {
     contact = {
       userId: '2759c61c-3643-4238-ac34-a493eed14d78',
-      pineAddress: 'test@localhost',
+      address: 'test@localhost',
       contactRequest: {
         id: '9835b4b2-d828-4c2d-9b61-9214d88587cf'
       }
@@ -111,7 +111,7 @@ describe('remove', () => {
         return promise.then(() => {
           expect(removeOutgoingContactRequest).toHaveBeenCalledWith(expect.objectContaining({
             id: contact.contactRequest.id,
-            to: contact.pineAddress,
+            to: contact.address,
             toUserId: contact.userId
           }));
         });

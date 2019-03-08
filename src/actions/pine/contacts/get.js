@@ -37,13 +37,13 @@ export const get = () => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
-    const { pineAddress } = state.settings.user.profile;
+    const { address } = state.settings.user.profile;
 
     dispatch(getRequest());
 
     return getDefaultMnemonicFromKeys(keys)
       .then((mnemonic) => {
-        return getContacts(pineAddress, mnemonic);
+        return getContacts(address, mnemonic);
       })
       .then((contacts) => {
         dispatch(getSuccess(contacts));

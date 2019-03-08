@@ -65,7 +65,7 @@ export default class TransactionListItem extends Component {
     const { contact, userProfile } = this.props;
 
     if (contact.contactRequest) {
-      if (contact.contactRequest.from === userProfile.pineAddress) {
+      if (contact.contactRequest.from === userProfile.address) {
         return 'You sent a contact request';
       }
 
@@ -94,7 +94,7 @@ export default class TransactionListItem extends Component {
       <TouchableOpacity onPress={this.props.onPress} style={styles.item}>
         <View style={styles.avatarWrapper}>
           <Avatar
-            pineAddress={contact.pineAddress}
+            pineAddress={contact.address}
             checksum={avatarChecksum}
             size={60}
           />

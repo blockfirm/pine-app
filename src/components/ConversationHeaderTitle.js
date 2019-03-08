@@ -28,7 +28,7 @@ export default class ConversationHeaderTitle extends Component {
           {displayName}
         </StyledText>
         <StyledText style={[headerStyles.title, styles.subtitle]}>
-          {contact.pineAddress}
+          {contact.address}
         </StyledText>
       </View>
     );

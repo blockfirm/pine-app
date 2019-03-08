@@ -50,7 +50,7 @@ describe('add', () => {
 
   beforeEach(() => {
     fakeContact = {
-      pineAddress: 'test@localhost',
+      address: 'test@localhost',
       userId: 'b287f220-c3cb-4fa6-ade5-cd5ba7d9b298',
       publicKey: '',
       username: 'test',

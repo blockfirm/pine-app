@@ -78,7 +78,7 @@ const addNew = (contacts, contactRequests) => {
     return getUser(newContactRequest.from).then((user) => {
       user.userId = user.id;
       user.id = uuidv4();
-      user.pineAddress = newContactRequest.from;
+      user.address = newContactRequest.from;
       user.createdAt = newContactRequest.createdAt;
 
       user.contactRequest = {
@@ -118,7 +118,7 @@ export const syncIncoming = () => {
         return dispatch(getContactRequests());
       })
       .then((contactRequests) => {
-        synced = syncExisting(contacts, contactRequests, userProfile.pineAddress);
+        synced = syncExisting(contacts, contactRequests, userProfile.address);
         return addNew(contacts, contactRequests);
       })
       .then((added) => {

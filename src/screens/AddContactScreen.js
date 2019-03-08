@@ -89,12 +89,12 @@ export default class AddContactScreen extends Component {
 
     this.props.navigation.setParams({ canSubmit: false });
 
-    if (fullAddress === userProfile.pineAddress) {
+    if (fullAddress === userProfile.address) {
       return this.setState({ error: '👆 That\'s you' });
     }
 
     const existing = Object.values(contacts).find((contact) => {
-      return contact.pineAddress === fullAddress;
+      return contact.address === fullAddress;
     });
 
     if (existing) {
@@ -103,7 +103,7 @@ export default class AddContactScreen extends Component {
 
     return dispatch(sendContactRequest(fullAddress))
       .then((contact) => {
-        contact.pineAddress = fullAddress;
+        contact.address = fullAddress;
         return dispatch(addContact(contact));
       })
       .then(() => {
