@@ -16,14 +16,13 @@ describe('add', () => {
     expect(typeof addContact).toBe('function');
   });
 
-  it('accepts three arguments', () => {
-    expect(addContact.length).toBe(3);
+  it('accepts two arguments', () => {
+    expect(addContact.length).toBe(2);
   });
 
   describe('when adding a contact', () => {
-    let address;
     let contact;
-    let mnemonic;
+    let credentials;
 
     beforeEach(() => {
       contact = {
@@ -31,10 +30,12 @@ describe('add', () => {
         waitingForContactRequest: true
       };
 
-      address = 'timothy@pine.cash';
-      mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant';
+      credentials = {
+        address: 'timothy@pine.cash',
+        mnemonic: 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant'
+      };
 
-      addContact(address, contact, mnemonic);
+      addContact(contact, credentials);
     });
 
     describe('the HTTP request', () => {
@@ -97,7 +98,7 @@ describe('add', () => {
 
         expect.hasAssertions();
 
-        return addContact(address, contact, mnemonic).catch((error) => {
+        return addContact(contact, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toContain('Unknown error');
         });
@@ -115,7 +116,7 @@ describe('add', () => {
 
         expect.hasAssertions();
 
-        return addContact(address, contact, mnemonic).catch((error) => {
+        return addContact(contact, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toBe('fc6e8538-bef7-4e96-91ba-e3b0d2df8294');
         });

@@ -44,7 +44,7 @@ export const removeIncoming = (contactRequestId) => {
 
     return getDefaultMnemonicFromKeys(keys)
       .then((mnemonic) => {
-        return contactRequests.removeIncoming(address, contactRequestId, mnemonic);
+        return contactRequests.removeIncoming(contactRequestId, { address, mnemonic });
       })
       .then(() => {
         dispatch(removeIncomingSuccess());

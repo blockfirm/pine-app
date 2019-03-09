@@ -7,12 +7,15 @@ import getUser from '../get';
  * Sends a contact request to a Pine user.
  *
  * @param {string} to - Pine address to send the request to.
- * @param {string} from - Pine address to send the request from.
- * @param {string} mnemonic - Mnemonic to sign the request with.
+ * @param {object} credentials - User credentials for authentication.
+ * @param {string} credentials.address - Pine address of the user to authenticate.
+ * @param {string} credentials.mnemonic - Mnemonic to authenticate and sign the request with.
+ * @param {object} credentials.keyPair - Optional bitcoinjs key pair instead of a mnemonic.
+ * @param {string} credentials.userId - Optional user ID instead of deriving it from the mnemonic.
  *
  * @returns {Promise} A promise that resolves to an object ({ contact, accepted }).
  */
-const create = (to, from, mnemonic) => {
+const create = (to, credentials) => {
   let user;
 
   return getUser(to)
@@ -20,7 +23,7 @@ const create = (to, from, mnemonic) => {
       user = _user;
 
       const { hostname } = parseAddress(to);
-      const keyPair = getKeyPairFromMnemonic(mnemonic);
+      const keyPair = credentials.keyPair || getKeyPairFromMnemonic(credentials.mnemonic);
       const baseUrl = resolveBaseUrl(hostname);
       const path = `/v1/users/${user.id}/contact-requests`;
       const url = `${baseUrl}${path}`;
@@ -28,7 +31,7 @@ const create = (to, from, mnemonic) => {
       const fetchOptions = {
         method: 'POST',
         headers: {
-          Authorization: getAuthorizationHeader(from, path, '', keyPair)
+          Authorization: getAuthorizationHeader(credentials.address, path, '', keyPair)
         }
       };
 

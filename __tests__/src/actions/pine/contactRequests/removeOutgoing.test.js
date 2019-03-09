@@ -93,16 +93,17 @@ describe('removeOutgoing', () => {
       expect.hasAssertions();
 
       return returnedFunction(dispatchMock, getStateMock).then(() => {
+        const expectedPineAddress = '9c53db00-6f03-4fb7-8c58-3a9cd25f380b';
         const expectedMnemonic = 'f16d3a71-4f19-4717-ad6e-2436e92be5f2';
 
         expect(removeOutgoingContactRequest).toHaveBeenCalled();
 
         expect(removeOutgoingContactRequest).toHaveBeenCalledWith(
-          expect.objectContaining({
-            ...contactRequest,
-            from: '9c53db00-6f03-4fb7-8c58-3a9cd25f380b'
-          }),
-          expectedMnemonic
+          contactRequest,
+          {
+            address: expectedPineAddress,
+            mnemonic: expectedMnemonic
+          }
         );
       });
     });

@@ -47,10 +47,7 @@ export const removeOutgoing = (contactRequest) => {
 
     return getDefaultMnemonicFromKeys(keys)
       .then((mnemonic) => {
-        return contactRequests.removeOutgoing({
-          ...contactRequest,
-          from: address
-        }, mnemonic);
+        return contactRequests.removeOutgoing(contactRequest, { address, mnemonic });
       })
       .then(() => {
         dispatch(removeOutgoingSuccess());

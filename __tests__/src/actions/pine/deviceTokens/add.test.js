@@ -93,7 +93,11 @@ describe('add', () => {
         const expectedMnemonic = '9d3c0fda-9103-4450-b203-b618cbb13458';
 
         expect(addDeviceToken).toHaveBeenCalled();
-        expect(addDeviceToken).toHaveBeenCalledWith(expectedPineAddress, expectedDeviceToken, expectedMnemonic);
+
+        expect(addDeviceToken).toHaveBeenCalledWith(expectedDeviceToken, {
+          address: expectedPineAddress,
+          mnemonic: expectedMnemonic
+        });
       });
     });
 

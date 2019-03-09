@@ -18,19 +18,20 @@ describe('get', () => {
     expect(typeof getContacts).toBe('function');
   });
 
-  it('accepts two arguments', () => {
-    expect(getContacts.length).toBe(2);
+  it('accepts one argument', () => {
+    expect(getContacts.length).toBe(1);
   });
 
   describe('when getting contacts', () => {
-    let address;
-    let mnemonic;
+    let credentials;
 
     beforeEach(() => {
-      address = 'timothy@pine.cash';
-      mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant';
+      credentials = {
+        address: 'timothy@pine.cash',
+        mnemonic: 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant'
+      };
 
-      getContacts(address, mnemonic);
+      getContacts(credentials);
     });
 
     describe('the HTTP request', () => {
@@ -69,7 +70,7 @@ describe('get', () => {
 
         expect.hasAssertions();
 
-        return getContacts(address, mnemonic).catch((error) => {
+        return getContacts(credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toBe('a8b0b9aa-3e97-487d-ae47-cfea94be94f4');
         });

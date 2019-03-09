@@ -48,7 +48,7 @@ export const add = () => {
 
     return getDefaultMnemonicFromKeys(keys)
       .then((mnemonic) => {
-        return deviceTokens.add(address, { ios: deviceToken }, mnemonic);
+        return deviceTokens.add({ ios: deviceToken }, { address, mnemonic });
       })
       .then((deviceTokenId) => {
         dispatch(addSuccess(deviceTokenId));

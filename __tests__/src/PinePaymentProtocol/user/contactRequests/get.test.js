@@ -18,20 +18,21 @@ describe('get', () => {
     expect(typeof getContactRequests).toBe('function');
   });
 
-  it('accepts two arguments', () => {
-    expect(getContactRequests.length).toBe(2);
+  it('accepts one argument', () => {
+    expect(getContactRequests.length).toBe(1);
   });
 
   describe('when getting contact requests', () => {
-    let pineAddress;
-    let mnemonic;
+    let credentials
     let resolvedValue;
 
     beforeEach(() => {
-      pineAddress = 'test@pine.cash';
-      mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant';
+      credentials = {
+        address: 'test@pine.cash',
+        mnemonic: 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant'
+      };
 
-      return getContactRequests(pineAddress, mnemonic).then((value) => {
+      return getContactRequests(credentials).then((value) => {
         resolvedValue = value;
       });
     });
@@ -80,7 +81,7 @@ describe('get', () => {
 
         expect.hasAssertions();
 
-        return getContactRequests(pineAddress, mnemonic).catch((error) => {
+        return getContactRequests(credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toContain('Unknown error');
         });
@@ -98,7 +99,7 @@ describe('get', () => {
 
         expect.hasAssertions();
 
-        return getContactRequests(pineAddress, mnemonic).catch((error) => {
+        return getContactRequests(credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toBe('eeaf4fc7-b505-4460-9cb5-363ecb4a716c');
         });

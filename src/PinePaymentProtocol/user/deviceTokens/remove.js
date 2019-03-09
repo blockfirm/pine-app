@@ -5,17 +5,20 @@ import { getAuthorizationHeader } from '../../authentication';
 /**
  * Removes a device token from a user's Pine server.
  *
- * @param {string} pineAddress - Pine address to remove the device token from.
  * @param {string} deviceTokenId - ID of the device token to remove.
- * @param {string} mnemonic - Mnemonic to sign the request with.
+ * @param {object} credentials - User credentials for authentication.
+ * @param {string} credentials.address - Pine address of the user to authenticate.
+ * @param {string} credentials.mnemonic - Mnemonic to authenticate and sign the request with.
+ * @param {object} credentials.keyPair - Optional bitcoinjs key pair instead of a mnemonic.
+ * @param {string} credentials.userId - Optional user ID instead of deriving it from the mnemonic.
  *
  * @returns {Promise} A promise that resolves if the device token was removed.
  */
-const remove = (pineAddress, deviceTokenId, mnemonic) => {
-  const { hostname } = parseAddress(pineAddress);
-  const keyPair = getKeyPairFromMnemonic(mnemonic);
-  const publicKey = keyPair.publicKey;
-  const userId = getUserIdFromPublicKey(publicKey);
+const remove = (deviceTokenId, credentials) => {
+  const { hostname } = parseAddress(credentials.address);
+  const keyPair = credentials.keyPair || getKeyPairFromMnemonic(credentials.mnemonic);
+  const userId = credentials.userId || getUserIdFromPublicKey(keyPair.publicKey);
+
   const baseUrl = resolveBaseUrl(hostname);
   const path = `/v1/users/${userId}/device-tokens/${deviceTokenId}`;
   const url = `${baseUrl}${path}`;

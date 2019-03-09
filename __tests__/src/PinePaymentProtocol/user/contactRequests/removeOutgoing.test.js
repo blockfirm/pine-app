@@ -20,19 +20,21 @@ describe('removeOutgoing', () => {
 
   describe('when removing a contact request', () => {
     let contactRequest;
-    let mnemonic;
+    let credentials;
 
     beforeEach(() => {
       contactRequest = {
         id: '91f016dc-fbc6-49fd-acd1-585b034a806a',
-        from: 'you@pine.cash',
         to: 'me@pine.cash',
         toUserId: 'dc6ebff8-e709-42d4-aaa2-7535e99154ac'
       };
 
-      mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant';
+      credentials = {
+        address: 'you@pine.cash',
+        mnemonic: 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant'
+      };
 
-      return removeOutgoingContactRequest(contactRequest, mnemonic);
+      return removeOutgoingContactRequest(contactRequest, credentials);
     });
 
     describe('the HTTP request', () => {
@@ -75,7 +77,7 @@ describe('removeOutgoing', () => {
 
         expect.hasAssertions();
 
-        return removeOutgoingContactRequest(contactRequest, mnemonic).catch((error) => {
+        return removeOutgoingContactRequest(contactRequest, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toBe('687f08f5-c6d9-4d4b-8c16-794819f45d33');
         });

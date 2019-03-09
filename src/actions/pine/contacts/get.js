@@ -43,7 +43,7 @@ export const get = () => {
 
     return getDefaultMnemonicFromKeys(keys)
       .then((mnemonic) => {
-        return getContacts(address, mnemonic);
+        return getContacts({ address, mnemonic });
       })
       .then((contacts) => {
         dispatch(getSuccess(contacts));

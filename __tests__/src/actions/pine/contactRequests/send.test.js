@@ -98,7 +98,11 @@ describe('send', () => {
         const expectedMnemonic = 'e04fe590-e615-4fa9-af22-bd8d14b2878c';
 
         expect(createContactRequest).toHaveBeenCalled();
-        expect(createContactRequest).toHaveBeenCalledWith(expectedToAddress, expectedFromAddress, expectedMnemonic);
+
+        expect(createContactRequest).toHaveBeenCalledWith(expectedToAddress, {
+          address: expectedFromAddress,
+          mnemonic: expectedMnemonic
+        });
       });
     });
 

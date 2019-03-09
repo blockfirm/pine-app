@@ -16,21 +16,23 @@ describe('set', () => {
     expect(typeof setAvatar).toBe('function');
   });
 
-  it('accepts three arguments', () => {
-    expect(setAvatar.length).toBe(3);
+  it('accepts two arguments', () => {
+    expect(setAvatar.length).toBe(2);
   });
 
   describe('when uploading an avatar for address "timothy@pine.cash"', () => {
-    let address;
     let image;
-    let mnemonic;
+    let credentials;
 
     beforeEach(() => {
-      address = 'timothy@pine.cash';
       image = '0bff3104-87af-4c2a-8864-bae2e384bc7a';
-      mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant';
 
-      setAvatar(address, image, mnemonic);
+      credentials = {
+        address: 'timothy@pine.cash',
+        mnemonic: 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant'
+      };
+
+      setAvatar(image, credentials);
     });
 
     describe('the HTTP request', () => {
@@ -90,7 +92,7 @@ describe('set', () => {
       it('rejects the returned promise with an error', () => {
         expect.hasAssertions();
 
-        return setAvatar(address, image, mnemonic).catch((error) => {
+        return setAvatar(image, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toContain('Unknown error');
         });
@@ -110,7 +112,7 @@ describe('set', () => {
       it('rejects the returned promise with the error message from the response', () => {
         expect.hasAssertions();
 
-        return setAvatar(address, image, mnemonic).catch((error) => {
+        return setAvatar(image, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toBe('c2c6032b-ac10-4105-b5ad-3fa44b4dc834');
         });

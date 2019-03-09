@@ -45,7 +45,7 @@ export const remove = (contact) => {
 
     return getDefaultMnemonicFromKeys(keys)
       .then((mnemonic) => {
-        return removeContact(address, contact.id, mnemonic);
+        return removeContact(contact.id, { address, mnemonic });
       })
       .then(() => {
         dispatch(removeSuccess());

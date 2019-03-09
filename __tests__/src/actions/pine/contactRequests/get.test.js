@@ -91,7 +91,11 @@ describe('get', () => {
         const expectedMnemonic = '06535332-01b0-43a0-bc11-6a2dbc88ff4b';
 
         expect(getContactRequests).toHaveBeenCalled();
-        expect(getContactRequests).toHaveBeenCalledWith(expectedPineAddress, expectedMnemonic);
+
+        expect(getContactRequests).toHaveBeenCalledWith({
+          address: expectedPineAddress,
+          mnemonic: expectedMnemonic
+        });
       });
     });
 

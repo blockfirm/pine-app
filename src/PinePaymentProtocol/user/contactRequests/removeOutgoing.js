@@ -7,16 +7,19 @@ import { getAuthorizationHeader } from '../../authentication';
  *
  * @param {string} contactRequest - Contact request to remove.
  * @param {string} contactRequest.id - ID of the contact request to remove.
- * @param {string} contactRequest.from - Pine address the contact request was sent from.
  * @param {string} contactRequest.to - Pine address the contact request was sent to.
  * @param {string} contactRequest.toUserId - ID of the user the contact request was sent to.
- * @param {string} mnemonic - Mnemonic to authenticate and sign the request with.
+ * @param {object} credentials - User credentials for authentication.
+ * @param {string} credentials.address - Pine address of the user to authenticate.
+ * @param {string} credentials.mnemonic - Mnemonic to authenticate and sign the request with.
+ * @param {object} credentials.keyPair - Optional bitcoinjs key pair instead of a mnemonic.
  *
  * @returns {Promise} A promise that resolves if the contact request was removed.
  */
-const removeOutgoing = (contactRequest, mnemonic) => {
+const removeOutgoing = (contactRequest, credentials) => {
   const { hostname } = parseAddress(contactRequest.to);
-  const keyPair = getKeyPairFromMnemonic(mnemonic);
+  const keyPair = credentials.keyPair || getKeyPairFromMnemonic(credentials.mnemonic);
+
   const baseUrl = resolveBaseUrl(hostname);
   const path = `/v1/users/${contactRequest.toUserId}/contact-requests/${contactRequest.id}`;
   const url = `${baseUrl}${path}`;
@@ -24,7 +27,7 @@ const removeOutgoing = (contactRequest, mnemonic) => {
   const fetchOptions = {
     method: 'DELETE',
     headers: {
-      Authorization: getAuthorizationHeader(contactRequest.from, path, '', keyPair)
+      Authorization: getAuthorizationHeader(credentials.address, path, '', keyPair)
     }
   };
 

@@ -26,23 +26,25 @@ describe('create', () => {
     expect(typeof createContactRequest).toBe('function');
   });
 
-  it('accepts three arguments', () => {
-    expect(createContactRequest.length).toBe(3);
+  it('accepts two arguments', () => {
+    expect(createContactRequest.length).toBe(2);
   });
 
   describe('when creating a contact request', () => {
     let to;
-    let from;
-    let mnemonic;
+    let credentials;
     let resolvedContact;
     let resolvedAccepted;
 
     beforeEach(() => {
       to = 'timmy@pine.cash';
-      from = 'jack@pine.pm';
-      mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant';
 
-      return createContactRequest(to, from, mnemonic).then(({ contact, accepted }) => {
+      credentials = {
+        address: 'jack@pine.pm',
+        mnemonic: 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant'
+      };
+
+      return createContactRequest(to, credentials).then(({ contact, accepted }) => {
         resolvedContact = contact;
         resolvedAccepted = accepted;
       });
@@ -113,7 +115,7 @@ describe('create', () => {
 
         expect.hasAssertions();
 
-        return createContactRequest(to, from, mnemonic).then(({ accepted }) => {
+        return createContactRequest(to, credentials).then(({ accepted }) => {
           expect(accepted).toBe(true);
         });
       });
@@ -129,7 +131,7 @@ describe('create', () => {
 
         expect.hasAssertions();
 
-        return createContactRequest(to, from, mnemonic).then(({ accepted }) => {
+        return createContactRequest(to, credentials).then(({ accepted }) => {
           expect(accepted).toBe(true);
         });
       });
@@ -144,7 +146,7 @@ describe('create', () => {
 
         expect.hasAssertions();
 
-        return createContactRequest(to, from, mnemonic).catch((error) => {
+        return createContactRequest(to, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toContain('Unknown error');
         });
@@ -162,7 +164,7 @@ describe('create', () => {
 
         expect.hasAssertions();
 
-        return createContactRequest(to, from, mnemonic).catch((error) => {
+        return createContactRequest(to, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toBe('1d529bf8-5a40-42f2-92ba-4316c3f2e7d0');
         });

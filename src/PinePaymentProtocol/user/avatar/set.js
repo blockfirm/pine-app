@@ -5,17 +5,19 @@ import { getAuthorizationHeader } from '../../authentication';
 /**
  * Sets a new profile picture for a Pine user.
  *
- * @param {string} pineAddress - Pine address to set a new profile picture for.
  * @param {string} image - Base64-encoded image to use as profile picture.
- * @param {string} mnemonic - Mnemonic to authenticate and sign the request with.
+ * @param {object} credentials - User credentials for authentication.
+ * @param {string} credentials.address - Pine address of the user to authenticate.
+ * @param {string} credentials.mnemonic - Mnemonic to authenticate and sign the request with.
+ * @param {object} credentials.keyPair - Optional bitcoinjs key pair instead of a mnemonic.
+ * @param {string} credentials.userId - Optional user ID instead of deriving it from the mnemonic.
  *
  * @returns {Promise} A promise that resolves to an object with a checksum of the avatar.
  */
-const set = (pineAddress, image, mnemonic) => {
-  const { hostname } = parseAddress(pineAddress);
-  const keyPair = getKeyPairFromMnemonic(mnemonic);
-  const publicKey = keyPair.publicKey;
-  const userId = getUserIdFromPublicKey(publicKey);
+const set = (image, credentials) => {
+  const { hostname } = parseAddress(credentials.address);
+  const keyPair = credentials.keyPair || getKeyPairFromMnemonic(credentials.mnemonic);
+  const userId = credentials.userId || getUserIdFromPublicKey(keyPair.publicKey);
 
   const baseUrl = resolveBaseUrl(hostname);
   const path = `/v1/users/${userId}/avatar`;

@@ -16,21 +16,23 @@ describe('update', () => {
     expect(typeof update).toBe('function');
   });
 
-  it('accepts three arguments', () => {
-    expect(update.length).toBe(3);
+  it('accepts two arguments', () => {
+    expect(update.length).toBe(2);
   });
 
   describe('when updating a user with address "timothy@pine.cash"', () => {
-    let address;
     let user;
-    let mnemonic;
+    let credentials;
 
     beforeEach(() => {
-      address = 'timothy@pine.cash';
       user = { displayName: 'e072c1d7-779d-4de5-b8ed-c1fa25ae3fc9' };
-      mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster guide vibrant';
 
-      update(address, user, mnemonic);
+      credentials = {
+        address: 'timothy@pine.cash',
+        mnemonic: 'test boss fly battle rubber wasp afraid party whale hamster guide vibrant'
+      };
+
+      update(user, credentials);
     });
 
     describe('the HTTP request', () => {
@@ -90,7 +92,7 @@ describe('update', () => {
       it('rejects the returned promise with an error', () => {
         expect.hasAssertions();
 
-        return update(address, user, mnemonic).catch((error) => {
+        return update(user, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toContain('Unknown error');
         });
@@ -110,7 +112,7 @@ describe('update', () => {
       it('rejects the returned promise with the error message from the response', () => {
         expect.hasAssertions();
 
-        return update(address, user, mnemonic).catch((error) => {
+        return update(user, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toBe('112c85a8-37f8-42cb-8474-4478a1e8c18e');
         });

@@ -16,21 +16,23 @@ describe('remove', () => {
     expect(typeof removeDeviceToken).toBe('function');
   });
 
-  it('accepts three arguments', () => {
-    expect(removeDeviceToken.length).toBe(3);
+  it('accepts two arguments', () => {
+    expect(removeDeviceToken.length).toBe(2);
   });
 
   describe('when removing a device token', () => {
-    let pineAddress;
     let deviceTokenId;
-    let mnemonic;
+    let credentials;
 
     beforeEach(() => {
-      pineAddress = 'timothy@pine.cash';
       deviceTokenId = '68f353de-1142-4e26-9c4e-2d97d632afb7';
-      mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant';
 
-      return removeDeviceToken(pineAddress, deviceTokenId, mnemonic);
+      credentials = {
+        address: 'timothy@pine.cash',
+        mnemonic: 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant'
+      };
+
+      return removeDeviceToken(deviceTokenId, credentials);
     });
 
     describe('the HTTP request', () => {
@@ -73,7 +75,7 @@ describe('remove', () => {
 
         expect.hasAssertions();
 
-        return removeDeviceToken(pineAddress, deviceTokenId, mnemonic).catch((error) => {
+        return removeDeviceToken(deviceTokenId, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toBe('fd268ab4-ca3c-4e29-b1fb-3637b86fee7f');
         });

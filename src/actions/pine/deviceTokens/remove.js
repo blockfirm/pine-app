@@ -50,7 +50,7 @@ export const remove = () => {
       .then((mnemonic) => {
         // Add it first to get the ID of this device token.
         return dispatch(addDeviceToken()).then((deviceTokenId) => {
-          return deviceTokens.remove(address, deviceTokenId, mnemonic);
+          return deviceTokens.remove(deviceTokenId, { address, mnemonic });
         });
       })
       .then(() => {

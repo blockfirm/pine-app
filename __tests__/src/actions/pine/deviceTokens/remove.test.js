@@ -114,7 +114,11 @@ describe('remove', () => {
         const expectedMnemonic = '9d3c0fda-9103-4450-b203-b618cbb13458';
 
         expect(removeDeviceToken).toHaveBeenCalled();
-        expect(removeDeviceToken).toHaveBeenCalledWith(expectedPineAddress, expectedDeviceTokenId, expectedMnemonic);
+
+        expect(removeDeviceToken).toHaveBeenCalledWith(expectedDeviceTokenId, {
+          address: expectedPineAddress,
+          mnemonic: expectedMnemonic
+        });
       });
     });
 

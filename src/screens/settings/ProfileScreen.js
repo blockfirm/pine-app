@@ -185,7 +185,7 @@ export default class ProfileScreen extends Component {
     }
 
     return this._getMnemonic().then((mnemonic) => {
-      return avatar.set(address, image.data, mnemonic)
+      return avatar.set(image.data, { address, mnemonic })
         .then((avatar) => {
           this._saveAvatarChecksum(avatar.checksum);
         })

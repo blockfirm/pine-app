@@ -5,18 +5,20 @@ import { getAuthorizationHeader } from '../authentication';
 /**
  * Updates a user profile.
  *
- * @param {string} pineAddress - Pine address of the user to update.
  * @param {object} user - User profile to save.
  * @param {string} user.displayName - Display name of the user.
- * @param {string} mnemonic - Mnemonic to authenticate and sign the request with.
+ * @param {object} credentials - User credentials for authentication.
+ * @param {string} credentials.address - Pine address of the user to authenticate.
+ * @param {string} credentials.mnemonic - Mnemonic to authenticate and sign the request with.
+ * @param {object} credentials.keyPair - Optional bitcoinjs key pair instead of a mnemonic.
+ * @param {string} credentials.userId - Optional user ID instead of deriving it from the mnemonic.
  *
  * @returns {Promise} A promise that resolves to the updated user.
  */
-const update = (pineAddress, user, mnemonic) => {
-  const { hostname } = parseAddress(pineAddress);
-  const keyPair = getKeyPairFromMnemonic(mnemonic);
-  const publicKey = keyPair.publicKey;
-  const userId = getUserIdFromPublicKey(publicKey);
+const update = (user, credentials) => {
+  const { hostname } = parseAddress(credentials.address);
+  const keyPair = credentials.keyPair || getKeyPairFromMnemonic(credentials.mnemonic);
+  const userId = credentials.userId || getUserIdFromPublicKey(keyPair.publicKey);
 
   const baseUrl = resolveBaseUrl(hostname);
   const path = `/v1/users/${userId}`;

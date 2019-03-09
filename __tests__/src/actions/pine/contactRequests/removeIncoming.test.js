@@ -92,7 +92,11 @@ describe('removeIncoming', () => {
         const expectedMnemonic = '0d6c23a1-b063-4798-8c51-0d8c0a79136f';
 
         expect(removeIncomingContactRequest).toHaveBeenCalled();
-        expect(removeIncomingContactRequest).toHaveBeenCalledWith(expectedPineAddress, contactRequestId, expectedMnemonic);
+
+        expect(removeIncomingContactRequest).toHaveBeenCalledWith(contactRequestId, {
+          address: expectedPineAddress,
+          mnemonic: expectedMnemonic
+        });
       });
     });
 

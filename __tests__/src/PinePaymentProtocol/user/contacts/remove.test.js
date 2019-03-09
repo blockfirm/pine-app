@@ -16,21 +16,23 @@ describe('remove', () => {
     expect(typeof removeContact).toBe('function');
   });
 
-  it('accepts three arguments', () => {
-    expect(removeContact.length).toBe(3);
+  it('accepts two arguments', () => {
+    expect(removeContact.length).toBe(2);
   });
 
   describe('when adding a contact', () => {
-    let address;
     let contactId;
-    let mnemonic;
+    let credentials;
 
     beforeEach(() => {
-      address = 'timothy@pine.cash';
       contactId = '23678d56-2fdf-46c6-8b3c-fb7d44801c4e';
-      mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant';
 
-      removeContact(address, contactId, mnemonic);
+      credentials = {
+        address: 'timothy@pine.cash',
+        mnemonic: 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant'
+      };
+
+      removeContact(contactId, credentials);
     });
 
     describe('the HTTP request', () => {
@@ -73,7 +75,7 @@ describe('remove', () => {
 
         expect.hasAssertions();
 
-        return removeContact(address, contactId, mnemonic).catch((error) => {
+        return removeContact(contactId, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toBe('caa0cd16-c543-43f3-ab6e-f9e238042440');
         });

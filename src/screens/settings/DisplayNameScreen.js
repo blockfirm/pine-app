@@ -83,7 +83,7 @@ export default class DisplayNameScreen extends Component {
 
     return this._getMnemonic()
       .then((mnemonic) => {
-        return updateUser(address, { displayName }, mnemonic);
+        return updateUser({ displayName }, { address, mnemonic });
       })
       .then((user) => {
         this._saveUserProfile(user);

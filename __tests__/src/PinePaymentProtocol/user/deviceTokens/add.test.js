@@ -16,21 +16,23 @@ describe('add', () => {
     expect(typeof addDeviceToken).toBe('function');
   });
 
-  it('accepts three arguments', () => {
-    expect(addDeviceToken.length).toBe(3);
+  it('accepts two arguments', () => {
+    expect(addDeviceToken.length).toBe(2);
   });
 
   describe('when adding a device token', () => {
-    let pineAddress;
     let deviceToken;
-    let mnemonic;
+    let credentials;
 
     beforeEach(() => {
-      pineAddress = 'timothy@pine.cash';
       deviceToken = { ios: 'fedce6e5-cff2-4c82-ba84-6d49834b6513' };
-      mnemonic = 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant';
 
-      return addDeviceToken(pineAddress, deviceToken, mnemonic);
+      credentials = {
+        address: 'timothy@pine.cash',
+        mnemonic: 'test boss fly battle rubber wasp afraid party whale hamster chicken vibrant'
+      };
+
+      return addDeviceToken(deviceToken, credentials);
     });
 
     describe('the HTTP request', () => {
@@ -83,7 +85,7 @@ describe('add', () => {
 
         expect.hasAssertions();
 
-        return addDeviceToken(pineAddress, deviceToken, mnemonic).catch((error) => {
+        return addDeviceToken(deviceToken, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toContain('Unknown error');
         });
@@ -101,7 +103,7 @@ describe('add', () => {
 
         expect.hasAssertions();
 
-        return addDeviceToken(pineAddress, deviceToken, mnemonic).catch((error) => {
+        return addDeviceToken(deviceToken, credentials).catch((error) => {
           expect(error).toBeTruthy();
           expect(error.message).toBe('4961f8d0-5309-4dd7-9115-8bf9c2dc67c7');
         });
