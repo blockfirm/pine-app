@@ -1,4 +1,4 @@
-import getContacts from '../../../PinePaymentProtocol/user/contacts/get';
+import getContacts from '../../../pineApi/user/contacts/get';
 import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
 
 export const PINE_CONTACTS_GET_REQUEST = 'PINE_CONTACTS_GET_REQUEST';

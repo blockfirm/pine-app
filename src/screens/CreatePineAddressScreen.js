@@ -8,13 +8,13 @@ import {
   validateUsername,
   UsernameTooLongError,
   UsernameContainsInvalidCharsError
-} from '../PinePaymentProtocol/address';
+} from '../pineApi/address';
 
 import { navigateWithReset } from '../actions';
 import * as settingsActions from '../actions/settings';
 import { handle as handleError } from '../actions/error/handle';
 import getMnemonicByKey from '../crypto/getMnemonicByKey';
-import { create as createUser, get as getUser } from '../PinePaymentProtocol/user';
+import { create as createUser, get as getUser } from '../pineApi/user';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';

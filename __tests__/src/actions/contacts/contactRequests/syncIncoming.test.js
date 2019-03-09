@@ -76,7 +76,7 @@ jest.mock('../../../../../src/actions/contacts/save', () => ({
   save: jest.fn(() => Promise.resolve())
 }));
 
-jest.mock('../../../../../src/PinePaymentProtocol/user/get', () => {
+jest.mock('../../../../../src/pineApi/user/get', () => {
   return jest.fn(() => Promise.resolve({
     id: '85b022a6-09b6-4b9d-adb2-faf237f167d6'
   }));

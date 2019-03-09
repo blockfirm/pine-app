@@ -1,7 +1,7 @@
 import uuidv4 from 'uuid/v4';
 import { InteractionManager } from 'react-native';
 
-import getUser from '../../../PinePaymentProtocol/user/get';
+import getUser from '../../../pineApi/user/get';
 import { get as getContactRequests } from '../../pine/contactRequests/get';
 import { save } from '../save';
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { CachedImage } from 'react-native-cached-image';
-import { parse as parseAddress, resolveBaseUrl } from '../PinePaymentProtocol/address';
+import { parse as parseAddress, resolveBaseUrl } from '../pineApi/address';
 
 const AVATAR_PLACEHOLDER = require('../images/AvatarPlaceholder.png');
 const DEFAULT_SIZE = 60;

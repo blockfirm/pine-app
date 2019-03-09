@@ -1,4 +1,4 @@
-import removeIncomingContactRequest from '../../../../../src/PinePaymentProtocol/user/contactRequests/removeIncoming';
+import removeIncomingContactRequest from '../../../../../src/pineApi/user/contactRequests/removeIncoming';
 
 import {
   removeIncoming as removeIncomingContactRequestAction,
@@ -26,7 +26,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../src/PinePaymentProtocol/user/contactRequests/removeIncoming', () => {
+jest.mock('../../../../../src/pineApi/user/contactRequests/removeIncoming', () => {
   return jest.fn(() => Promise.resolve());
 });
 

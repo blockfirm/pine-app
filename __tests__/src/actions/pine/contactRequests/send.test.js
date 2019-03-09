@@ -1,4 +1,4 @@
-import createContactRequest from '../../../../../src/PinePaymentProtocol/user/contactRequests/create';
+import createContactRequest from '../../../../../src/pineApi/user/contactRequests/create';
 
 import {
   send as sendContactRequestAction,
@@ -26,7 +26,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../src/PinePaymentProtocol/user/contactRequests/create', () => {
+jest.mock('../../../../../src/pineApi/user/contactRequests/create', () => {
   return jest.fn(() => Promise.resolve({
     accepted: false,
     contact: {

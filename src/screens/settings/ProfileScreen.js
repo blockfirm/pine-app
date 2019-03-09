@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { navigateWithReset, reset as resetApp } from '../../actions';
 import * as settingsActions from '../../actions/settings';
 import { handle as handleError } from '../../actions/error';
-import { avatar } from '../../PinePaymentProtocol/user';
+import { avatar } from '../../pineApi/user';
 import getMnemonicByKey from '../../crypto/getMnemonicByKey';
 import headerStyles from '../../styles/headerStyles';
 import BackButton from '../../components/BackButton';

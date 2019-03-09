@@ -1,4 +1,4 @@
-import removeContact from '../../../PinePaymentProtocol/user/contacts/remove';
+import removeContact from '../../../pineApi/user/contacts/remove';
 import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
 
 export const PINE_CONTACTS_REMOVE_REQUEST = 'PINE_CONTACTS_REMOVE_REQUEST';

@@ -6,7 +6,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { send as sendContactRequest } from '../actions/pine/contactRequests/send';
 import { add as addContact } from '../actions/contacts/add';
-import { parse as parseAddress } from '../PinePaymentProtocol/address';
+import { parse as parseAddress } from '../pineApi/address';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';

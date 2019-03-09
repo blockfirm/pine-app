@@ -1,4 +1,4 @@
-import addContact from '../../../../../src/PinePaymentProtocol/user/contacts/add';
+import addContact from '../../../../../src/pineApi/user/contacts/add';
 
 import {
   add as addContactAction,
@@ -26,7 +26,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../src/PinePaymentProtocol/user/contacts/add', () => {
+jest.mock('../../../../../src/pineApi/user/contacts/add', () => {
   return jest.fn(() => Promise.resolve({
     id: '85fd51d7-f18d-4bd7-ad36-d8359d7aafd8'
   }));

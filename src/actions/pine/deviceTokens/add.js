@@ -1,4 +1,4 @@
-import * as deviceTokens from '../../../PinePaymentProtocol/user/deviceTokens';
+import * as deviceTokens from '../../../pineApi/user/deviceTokens';
 import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
 
 export const PINE_DEVICE_TOKEN_ADD_REQUEST = 'PINE_DEVICE_TOKEN_ADD_REQUEST';

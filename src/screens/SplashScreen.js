@@ -9,8 +9,8 @@ import { get as getFiatRates } from '../actions/bitcoin/fiatRates';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import getMnemonicByKey from '../crypto/getMnemonicByKey';
-import { getById as getUserById } from '../PinePaymentProtocol/user';
-import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../PinePaymentProtocol/crypto';
+import { getById as getUserById } from '../pineApi/user';
+import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../pineApi/crypto';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 

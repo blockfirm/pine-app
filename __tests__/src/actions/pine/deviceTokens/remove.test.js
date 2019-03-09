@@ -1,4 +1,4 @@
-import removeDeviceToken from '../../../../../src/PinePaymentProtocol/user/deviceTokens/remove';
+import removeDeviceToken from '../../../../../src/pineApi/user/deviceTokens/remove';
 import { add as addDeviceTokenAction } from '../../../../../src/actions/pine/deviceTokens/add';
 
 import {
@@ -42,7 +42,7 @@ jest.mock('../../../../../src/actions/pine/deviceTokens/add', () => ({
   })
 }));
 
-jest.mock('../../../../../src/PinePaymentProtocol/user/deviceTokens/remove', () => {
+jest.mock('../../../../../src/pineApi/user/deviceTokens/remove', () => {
   return jest.fn(() => Promise.resolve('007a79bc-171a-45d4-adf1-a47c2a62aea2'));
 });
 
