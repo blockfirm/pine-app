@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { navigateWithReset, load as loadState, sync as syncApp } from '../actions';
+import { updateProfiles as updateContactProfiles } from '../actions/contacts';
 import * as walletActions from '../actions/bitcoin/wallet';
 import { get as getFiatRates } from '../actions/bitcoin/fiatRates';
 import * as keyActions from '../actions/keys';
@@ -71,7 +72,9 @@ export default class SplashScreen extends Component {
         }
 
         // Sync app in background and show Home screen.
-        dispatch(syncApp());
+        dispatch(syncApp()).then(() => {
+          dispatch(updateContactProfiles());
+        });
 
         this._showHomeScreen();
       })
