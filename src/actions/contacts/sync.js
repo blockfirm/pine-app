@@ -63,7 +63,25 @@ const syncExisting = (contacts, serverContacts) => {
   return synced;
 };
 
-const addNew = (contacts, serverContacts, pineAddress) => {
+const addUserAsContact = (user, serverContact, contacts, pineAddress) => {
+  const contact = {
+    ...user,
+    ...serverContact,
+    userId: user.id,
+    address: serverContact.address
+  };
+
+  if (contact.waitingForContactRequest) {
+    contact.contactRequest = {
+      from: pineAddress,
+      createdAt: contact.createdAt
+    };
+  }
+
+  contacts[contact.id] = contact;
+};
+
+const addNew = async (contacts, serverContacts, pineAddress) => {
   let added = false;
 
   const contactMap = Object.values(contacts).reduce((map, contact) => {
@@ -75,28 +93,17 @@ const addNew = (contacts, serverContacts, pineAddress) => {
     return !(serverContact.address in contactMap);
   });
 
-  const promises = newContacts.map((newContact) => {
-    return getUser(newContact.address).then((user) => {
-      const contact = {
-        ...user,
-        ...newContact,
-        userId: user.id,
-        address: newContact.address
-      };
-
-      if (contact.waitingForContactRequest) {
-        contact.contactRequest = {
-          from: pineAddress,
-          createdAt: contact.createdAt
-        };
-      }
-
-      contacts[contact.id] = contact;
+  for (const newContact of newContacts) {
+    try {
+      const user = await getUser(newContact.address);
+      addUserAsContact(user, newContact, contacts, pineAddress);
       added = true;
-    });
-  });
+    } catch (error) {
+      // Ignore errors.
+    }
+  }
 
-  return Promise.all(promises).then(() => added);
+  return added;
 };
 
 /**

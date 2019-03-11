@@ -67,32 +67,38 @@ const syncExisting = (contacts, contactRequests, pineAddress) => {
   return synced;
 };
 
-const addNew = (contacts, contactRequests) => {
+const addNew = async (contacts, contactRequests) => {
   let added = false;
 
   const newContactRequests = contactRequests.filter((contactRequest) => {
     return !contactRequest.updated;
   });
 
-  const promises = newContactRequests.map((newContactRequest) => {
-    return getUser(newContactRequest.from).then((user) => {
-      user.userId = user.id;
-      user.id = uuidv4();
-      user.address = newContactRequest.from;
-      user.createdAt = newContactRequest.createdAt;
+  for (const newContactRequest of newContactRequests) {
+    let user;
 
-      user.contactRequest = {
-        id: newContactRequest.id,
-        from: newContactRequest.from,
-        createdAt: newContactRequest.createdAt
-      };
+    try {
+      user = await getUser(newContactRequest.from);
+    } catch (error) {
+      continue;
+    }
 
-      contacts[user.id] = user;
-      added = true;
-    });
-  });
+    user.userId = user.id;
+    user.id = uuidv4();
+    user.address = newContactRequest.from;
+    user.createdAt = newContactRequest.createdAt;
 
-  return Promise.all(promises).then(() => added);
+    user.contactRequest = {
+      id: newContactRequest.id,
+      from: newContactRequest.from,
+      createdAt: newContactRequest.createdAt
+    };
+
+    contacts[user.id] = user;
+    added = true;
+  }
+
+  return added;
 };
 
 /**
