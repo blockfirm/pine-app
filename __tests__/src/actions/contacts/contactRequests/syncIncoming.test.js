@@ -114,8 +114,8 @@ describe('syncIncoming', () => {
     expect(typeof syncIncomingContactRequests).toBe('function');
   });
 
-  it('accepts no arguments', () => {
-    expect(syncIncomingContactRequests.length).toBe(0);
+  it('accepts one argument', () => {
+    expect(syncIncomingContactRequests.length).toBe(1);
   });
 
   it('returns a function', () => {

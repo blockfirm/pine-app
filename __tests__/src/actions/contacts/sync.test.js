@@ -118,8 +118,8 @@ describe('sync', () => {
     expect(typeof syncContacts).toBe('function');
   });
 
-  it('accepts no arguments', () => {
-    expect(syncContacts.length).toBe(0);
+  it('accepts one argument', () => {
+    expect(syncContacts.length).toBe(1);
   });
 
   it('returns a function', () => {

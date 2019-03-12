@@ -1,6 +1,4 @@
 import uuidv4 from 'uuid/v4';
-import { InteractionManager } from 'react-native';
-
 import getUser from '../../../pineApi/user/get';
 import { get as getContactRequests } from '../../pine/contactRequests/get';
 import { save } from '../save';
@@ -27,12 +25,6 @@ const syncIncomingFailure = (error) => {
     type: CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_FAILURE,
     error
   };
-};
-
-const waitForInteractions = () => {
-  return new Promise((resolve) => {
-    InteractionManager.runAfterInteractions(resolve);
-  });
 };
 
 const syncExisting = (contacts, contactRequests, pineAddress) => {
@@ -108,9 +100,15 @@ const addNew = async (contacts, contactRequests) => {
  * - Pending contact requests are updated if changed
  * - New contact requests are added as contacts
  *
+ * @param {object} credentials - Optional credentials to use for authentication.
+ * @param {string} credentials.address - Pine address of the user to authenticate.
+ * @param {string} credentials.mnemonic - Mnemonic to authenticate and sign the request with.
+ * @param {object} credentials.keyPair - Optional bitcoinjs key pair instead of a mnemonic.
+ * @param {string} credentials.userId - Optional user ID instead of deriving it from the mnemonic.
+ *
  * @returns {Promise} A promise that resolves to the updated contacts.
  */
-export const syncIncoming = () => {
+export const syncIncoming = (credentials) => {
   return (dispatch, getState) => {
     const state = getState();
     const userProfile = state.settings.user.profile;
@@ -119,10 +117,7 @@ export const syncIncoming = () => {
 
     dispatch(syncIncomingRequest());
 
-    return waitForInteractions()
-      .then(() => {
-        return dispatch(getContactRequests());
-      })
+    return dispatch(getContactRequests(credentials))
       .then((contactRequests) => {
         synced = syncExisting(contacts, contactRequests, userProfile.address);
         return addNew(contacts, contactRequests);
