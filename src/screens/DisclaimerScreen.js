@@ -7,6 +7,7 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { navigateWithReset } from '../actions';
 import * as settingsActions from '../actions/settings';
 import { add as addDeviceTokenToPine } from '../actions/pine/deviceTokens/add';
+import { load as loadPineCredentials } from '../actions/pine/credentials';
 import Title from '../components/Title';
 import Paragraph from '../components/Paragraph';
 import CopyText from '../components/CopyText';
@@ -88,7 +89,7 @@ export default class DisclaimerScreen extends Component {
    * this code at every place, it is just placed here for now.
    */
   _registerForNotifications() {
-    const dispatch = this.props.dispatch;
+    const { dispatch } = this.props;
 
     return dispatch(addDeviceTokenToPine()).catch(() => {
       /**
@@ -99,11 +100,17 @@ export default class DisclaimerScreen extends Component {
   }
 
   _onUnderstand() {
+    const { dispatch } = this.props;
+
     this._flagAsAccepted();
 
-    return this._registerForNotifications().then(() => {
-      return this._showHomeScreen();
-    });
+    return dispatch(loadPineCredentials())
+      .then(() => {
+        return this._registerForNotifications();
+      })
+      .then(() => {
+        return this._showHomeScreen();
+      });
   }
 
   _getAccessToFundsText() {

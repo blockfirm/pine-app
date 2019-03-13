@@ -2,6 +2,7 @@ import { load as loadBitcoinWallet } from './bitcoin/wallet';
 import { load as loadKeys } from './keys';
 import { load as loadSettings } from './settings';
 import { load as loadContacts } from './contacts';
+import { load as loadPineCredentials } from './pine/credentials';
 
 export const LOAD_REQUEST = 'LOAD_REQUEST';
 export const LOAD_SUCCESS = 'LOAD_SUCCESS';
@@ -41,6 +42,10 @@ export const load = () => {
     ];
 
     return Promise.all(promises)
+      .then(() => {
+        // Pine credentials can only be loaded once the keys has loaded.
+        return dispatch(loadPineCredentials());
+      })
       .then(() => {
         const state = getState();
         dispatch(loadSuccess());

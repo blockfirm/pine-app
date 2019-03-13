@@ -10,18 +10,9 @@ import {
 const dispatchMock = jest.fn();
 
 const getStateMock = jest.fn(() => ({
-  settings: {
-    user: {
-      profile: {
-        address: 'bb589666-7b43-4e44-be13-9fd76ec3f512'
-      }
-    }
-  },
-  keys: {
-    items: {
-      '1d12cf83-bf56-484c-9b57-425571013d27': {
-        id: '1d12cf83-bf56-484c-9b57-425571013d27'
-      }
+  pine: {
+    credentials: {
+      userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
     }
   }
 }));
@@ -30,10 +21,6 @@ jest.mock('../../../../../src/pineApi/user/contacts/add', () => {
   return jest.fn(() => Promise.resolve({
     id: '85fd51d7-f18d-4bd7-ad36-d8359d7aafd8'
   }));
-});
-
-jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
-  return jest.fn(() => Promise.resolve('c6f19f52-924d-498f-9549-1c65c5bfaa7b'));
 });
 
 describe('PINE_CONTACTS_ADD_REQUEST', () => {
@@ -90,18 +77,14 @@ describe('add', () => {
       });
     });
 
-    it('adds contact to user using the passed contact and user\'s address and mnemonic', () => {
+    it('adds contact to user using the passed contact and credentials from state', () => {
       expect.hasAssertions();
 
       return returnedFunction(dispatchMock, getStateMock).then(() => {
-        const expectedPineAddress = 'bb589666-7b43-4e44-be13-9fd76ec3f512';
-        const expectedMnemonic = 'c6f19f52-924d-498f-9549-1c65c5bfaa7b';
-
         expect(addContact).toHaveBeenCalled();
 
         expect(addContact).toHaveBeenCalledWith(contact, {
-          address: expectedPineAddress,
-          mnemonic: expectedMnemonic
+          userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
         });
       });
     });

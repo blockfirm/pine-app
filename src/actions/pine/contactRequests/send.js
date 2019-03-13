@@ -1,5 +1,4 @@
 import * as contactRequests from '../../../pineApi/user/contactRequests';
-import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
 
 export const PINE_CONTACT_REQUESTS_SEND_REQUEST = 'PINE_CONTACT_REQUESTS_SEND_REQUEST';
 export const PINE_CONTACT_REQUESTS_SEND_SUCCESS = 'PINE_CONTACT_REQUESTS_SEND_SUCCESS';
@@ -25,11 +24,6 @@ const sendFailure = (error) => {
   };
 };
 
-const getDefaultMnemonicFromKeys = (keys) => {
-  const defaultKey = Object.values(keys)[0];
-  return getMnemonicByKey(defaultKey.id);
-};
-
 /**
  * Action to send a contact request to another Pine user.
  *
@@ -38,15 +32,11 @@ const getDefaultMnemonicFromKeys = (keys) => {
 export const send = (to) => {
   return (dispatch, getState) => {
     const state = getState();
-    const keys = state.keys.items;
-    const { address } = state.settings.user.profile;
+    const { credentials } = state.pine;
 
     dispatch(sendRequest());
 
-    return getDefaultMnemonicFromKeys(keys)
-      .then((mnemonic) => {
-        return contactRequests.create(to, { address, mnemonic });
-      })
+    return contactRequests.create(to, credentials)
       .then(({ contact }) => {
         dispatch(sendSuccess(contact));
         return contact;

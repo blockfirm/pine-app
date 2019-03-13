@@ -10,18 +10,9 @@ import {
 const dispatchMock = jest.fn();
 
 const getStateMock = jest.fn(() => ({
-  settings: {
-    user: {
-      profile: {
-        address: '3baba460-2572-4596-945e-4c4c2a0ef3a4'
-      }
-    }
-  },
-  keys: {
-    items: {
-      'cd6b374c-0425-4dae-9e20-f8b1e9270e6a': {
-        id: 'cd6b374c-0425-4dae-9e20-f8b1e9270e6a'
-      }
+  pine: {
+    credentials: {
+      userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
     }
   },
   notifications: {
@@ -31,10 +22,6 @@ const getStateMock = jest.fn(() => ({
 
 jest.mock('../../../../../src/pineApi/user/deviceTokens/add', () => {
   return jest.fn(() => Promise.resolve('007a79bc-171a-45d4-adf1-a47c2a62aea2'));
-});
-
-jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
-  return jest.fn(() => Promise.resolve('9d3c0fda-9103-4450-b203-b618cbb13458'));
 });
 
 describe('PINE_DEVICE_TOKEN_ADD_REQUEST', () => {
@@ -84,34 +71,26 @@ describe('add', () => {
       });
     });
 
-    it('adds device token to user using its address and mnemonic', () => {
+    it('adds device token to user using its credentials from state', () => {
       expect.hasAssertions();
 
       return returnedFunction(dispatchMock, getStateMock).then(() => {
-        const expectedPineAddress = '3baba460-2572-4596-945e-4c4c2a0ef3a4';
         const expectedDeviceToken = { ios: '5bfed250-8c4c-4b26-bb88-daacdfe6221f' };
-        const expectedMnemonic = '9d3c0fda-9103-4450-b203-b618cbb13458';
 
         expect(addDeviceToken).toHaveBeenCalled();
 
         expect(addDeviceToken).toHaveBeenCalledWith(expectedDeviceToken, {
-          address: expectedPineAddress,
-          mnemonic: expectedMnemonic
+          userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
         });
       });
     });
 
-    it('does not add device token if user does not have a Pine address', () => {
+    it('does not add device token if user does not any credentials', () => {
       expect.hasAssertions();
 
       getStateMock.mockImplementationOnce(() => ({
-        settings: {
-          user: {
-            profile: {}
-          }
-        },
-        keys: {
-          items: {}
+        pine: {
+          credentials: null
         },
         notifications: {
           deviceToken: '197e6dd9-b885-419d-b036-d224dafbdcf9'
@@ -127,15 +106,10 @@ describe('add', () => {
       expect.hasAssertions();
 
       getStateMock.mockImplementationOnce(() => ({
-        settings: {
-          user: {
-            profile: {
-              address: '4e7e1ec1-cda6-4f17-801b-135c007633ad'
-            }
+        pine: {
+          credentials: {
+            userId: '0abbe90a-d67d-4e53-a34c-672c4de77bb7'
           }
-        },
-        keys: {
-          items: {}
         },
         notifications: {}
       }));

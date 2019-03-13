@@ -1,5 +1,4 @@
 import * as deviceTokens from '../../../pineApi/user/deviceTokens';
-import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
 
 export const PINE_DEVICE_TOKEN_ADD_REQUEST = 'PINE_DEVICE_TOKEN_ADD_REQUEST';
 export const PINE_DEVICE_TOKEN_ADD_SUCCESS = 'PINE_DEVICE_TOKEN_ADD_SUCCESS';
@@ -25,31 +24,22 @@ const addFailure = (error) => {
   };
 };
 
-const getDefaultMnemonicFromKeys = (keys) => {
-  const defaultKey = Object.values(keys)[0];
-  return getMnemonicByKey(defaultKey.id);
-};
-
 /**
  * Action to add the current device token to the user's Pine account.
  */
 export const add = () => {
   return (dispatch, getState) => {
     const state = getState();
-    const keys = state.keys.items;
     const { deviceToken } = state.notifications;
-    const { address } = state.settings.user.profile;
+    const { credentials } = state.pine;
 
-    if (!deviceToken || !address) {
+    if (!deviceToken || !credentials) {
       return Promise.resolve();
     }
 
     dispatch(addRequest());
 
-    return getDefaultMnemonicFromKeys(keys)
-      .then((mnemonic) => {
-        return deviceTokens.add({ ios: deviceToken }, { address, mnemonic });
-      })
+    return deviceTokens.add({ ios: deviceToken }, credentials)
       .then((deviceTokenId) => {
         dispatch(addSuccess(deviceTokenId));
         return deviceTokenId;

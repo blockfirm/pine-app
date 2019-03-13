@@ -1,5 +1,4 @@
 import * as contactRequests from '../../../pineApi/user/contactRequests';
-import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
 
 export const PINE_CONTACT_REQUESTS_REMOVE_OUTGOING_REQUEST = 'PINE_CONTACT_REQUESTS_REMOVE_OUTGOING_REQUEST';
 export const PINE_CONTACT_REQUESTS_REMOVE_OUTGOING_SUCCESS = 'PINE_CONTACT_REQUESTS_REMOVE_OUTGOING_SUCCESS';
@@ -24,11 +23,6 @@ const removeOutgoingFailure = (error) => {
   };
 };
 
-const getDefaultMnemonicFromKeys = (keys) => {
-  const defaultKey = Object.values(keys)[0];
-  return getMnemonicByKey(defaultKey.id);
-};
-
 /**
  * Action to remove an outgoing contact request from server.
  *
@@ -40,15 +34,11 @@ const getDefaultMnemonicFromKeys = (keys) => {
 export const removeOutgoing = (contactRequest) => {
   return (dispatch, getState) => {
     const state = getState();
-    const keys = state.keys.items;
-    const { address } = state.settings.user.profile;
+    const { credentials } = state.pine;
 
     dispatch(removeOutgoingRequest());
 
-    return getDefaultMnemonicFromKeys(keys)
-      .then((mnemonic) => {
-        return contactRequests.removeOutgoing(contactRequest, { address, mnemonic });
-      })
+    return contactRequests.removeOutgoing(contactRequest, credentials)
       .then(() => {
         dispatch(removeOutgoingSuccess());
       })

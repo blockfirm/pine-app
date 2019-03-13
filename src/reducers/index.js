@@ -9,6 +9,7 @@ import homeScreenReducer from './homeScreen';
 import notificationsReducer from './notifications';
 import contactsReducer from './contacts';
 import syncingReducer from './syncing';
+import pineReducer from './pine';
 
 const getRootReducer = (navReducer) => {
   const rootReducer = combineReducers({
@@ -22,7 +23,8 @@ const getRootReducer = (navReducer) => {
     homeScreen: homeScreenReducer,
     notifications: notificationsReducer,
     contacts: contactsReducer,
-    syncing: syncingReducer
+    syncing: syncingReducer,
+    pine: pineReducer
   });
 
   return rootReducer;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, ActivityIndicator, StatusBar } from 'react-native';
+import { StyleSheet, Image, ActivityIndicator, StatusBar, InteractionManager } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -40,10 +40,8 @@ export default class SplashScreen extends Component {
     header: null
   }
 
-  constructor(props) {
-    const dispatch = props.dispatch;
-
-    super(...arguments);
+  componentDidMount() {
+    const { dispatch } = this.props;
 
     // Load state, including settings, keys, and wallet data.
     dispatch(loadState())
@@ -71,10 +69,13 @@ export default class SplashScreen extends Component {
           return this._showDisclaimerScreen();
         }
 
-        // Sync app in background and show Home screen.
-        dispatch(syncApp()).then(() => {
-          dispatch(updateContactProfiles());
-        });
+        setTimeout(() => {
+          InteractionManager.runAfterInteractions(() => {
+            dispatch(syncApp()).then(() => {
+              dispatch(updateContactProfiles());
+            });
+          });
+        }, 250);
 
         this._showHomeScreen();
       })

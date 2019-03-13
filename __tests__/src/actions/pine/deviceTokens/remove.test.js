@@ -17,18 +17,9 @@ const dispatchMock = jest.fn((action) => {
 });
 
 const getStateMock = jest.fn(() => ({
-  settings: {
-    user: {
-      profile: {
-        address: '3baba460-2572-4596-945e-4c4c2a0ef3a4'
-      }
-    }
-  },
-  keys: {
-    items: {
-      'cd6b374c-0425-4dae-9e20-f8b1e9270e6a': {
-        id: 'cd6b374c-0425-4dae-9e20-f8b1e9270e6a'
-      }
+  pine: {
+    credentials: {
+      userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
     }
   },
   notifications: {
@@ -44,10 +35,6 @@ jest.mock('../../../../../src/actions/pine/deviceTokens/add', () => ({
 
 jest.mock('../../../../../src/pineApi/user/deviceTokens/remove', () => {
   return jest.fn(() => Promise.resolve('007a79bc-171a-45d4-adf1-a47c2a62aea2'));
-});
-
-jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
-  return jest.fn(() => Promise.resolve('9d3c0fda-9103-4450-b203-b618cbb13458'));
 });
 
 describe('PINE_DEVICE_TOKEN_REMOVE_REQUEST', () => {
@@ -105,34 +92,26 @@ describe('remove', () => {
       });
     });
 
-    it('removes device token from user using its address and mnemonic', () => {
+    it('removes device token from user using its credentials from state', () => {
       expect.hasAssertions();
 
       return returnedFunction(dispatchMock, getStateMock).then(() => {
-        const expectedPineAddress = '3baba460-2572-4596-945e-4c4c2a0ef3a4';
         const expectedDeviceTokenId = '30f9db6d-2113-433c-b3d5-4bbe642a727f';
-        const expectedMnemonic = '9d3c0fda-9103-4450-b203-b618cbb13458';
 
         expect(removeDeviceToken).toHaveBeenCalled();
 
         expect(removeDeviceToken).toHaveBeenCalledWith(expectedDeviceTokenId, {
-          address: expectedPineAddress,
-          mnemonic: expectedMnemonic
+          userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
         });
       });
     });
 
-    it('does not remove device token if user does not have a Pine address', () => {
+    it('does not remove device token if user does not have any credentials', () => {
       expect.hasAssertions();
 
       getStateMock.mockImplementationOnce(() => ({
-        settings: {
-          user: {
-            profile: {}
-          }
-        },
-        keys: {
-          items: {}
+        pine: {
+          credentials: null
         },
         notifications: {
           deviceToken: '197e6dd9-b885-419d-b036-d224dafbdcf9'
@@ -148,15 +127,10 @@ describe('remove', () => {
       expect.hasAssertions();
 
       getStateMock.mockImplementationOnce(() => ({
-        settings: {
-          user: {
-            profile: {
-              address: '4e7e1ec1-cda6-4f17-801b-135c007633ad'
-            }
+        pine: {
+          credentials: {
+            userId: '0abbe90a-d67d-4e53-a34c-672c4de77bb7'
           }
-        },
-        keys: {
-          items: {}
         },
         notifications: {}
       }));

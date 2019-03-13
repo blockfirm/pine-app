@@ -10,28 +10,15 @@ import {
 const dispatchMock = jest.fn();
 
 const getStateMock = jest.fn(() => ({
-  settings: {
-    user: {
-      profile: {
-        address: 'b7431570-b5f8-41c1-a079-26d9569f44ff'
-      }
-    }
-  },
-  keys: {
-    items: {
-      '56b1fb47-466f-4f45-a349-78ccd3c80f45': {
-        id: '56b1fb47-466f-4f45-a349-78ccd3c80f45'
-      }
+  pine: {
+    credentials: {
+      userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
     }
   }
 }));
 
 jest.mock('../../../../../src/pineApi/user/contacts/remove', () => {
   return jest.fn(() => Promise.resolve());
-});
-
-jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
-  return jest.fn(() => Promise.resolve('3f848306-c1cb-4ea8-85a9-8918683ac886'));
 });
 
 describe('PINE_CONTACTS_REMOVE_REQUEST', () => {
@@ -87,18 +74,14 @@ describe('remove', () => {
       });
     });
 
-    it('removes the contact from user using the passed contact ID and user\'s address and mnemonic', () => {
+    it('removes the contact from user using the passed contact ID and credentials from state', () => {
       expect.hasAssertions();
 
       return returnedFunction(dispatchMock, getStateMock).then(() => {
-        const expectedPineAddress = 'b7431570-b5f8-41c1-a079-26d9569f44ff';
-        const expectedMnemonic = '3f848306-c1cb-4ea8-85a9-8918683ac886';
-
         expect(removeContact).toHaveBeenCalled();
 
         expect(removeContact).toHaveBeenCalledWith(contact.id, {
-          address: expectedPineAddress,
-          mnemonic: expectedMnemonic
+          userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
         });
       });
     });

@@ -104,15 +104,9 @@ const addNew = async (contacts, serverContacts, pineAddress) => {
  * - New contacts are added
  * - Outgoing contact requests are updated if changed
  *
- * @param {object} credentials - Optional credentials to use for authentication.
- * @param {string} credentials.address - Pine address of the user to authenticate.
- * @param {string} credentials.mnemonic - Mnemonic to authenticate and sign the request with.
- * @param {object} credentials.keyPair - Optional bitcoinjs key pair instead of a mnemonic.
- * @param {string} credentials.userId - Optional user ID instead of deriving it from the mnemonic.
- *
  * @returns {Promise} A promise that resolves to the updated contacts.
  */
-export const sync = (credentials) => {
+export const sync = () => {
   return (dispatch, getState) => {
     const state = getState();
     const userProfile = state.settings.user.profile;
@@ -121,7 +115,7 @@ export const sync = (credentials) => {
 
     dispatch(syncRequest());
 
-    return dispatch(getContacts(credentials))
+    return dispatch(getContacts())
       .then((serverContacts) => {
         synced = syncExisting(contacts, serverContacts);
         return addNew(contacts, serverContacts, userProfile.address);

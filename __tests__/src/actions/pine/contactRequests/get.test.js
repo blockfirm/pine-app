@@ -10,18 +10,9 @@ import {
 const dispatchMock = jest.fn();
 
 const getStateMock = jest.fn(() => ({
-  settings: {
-    user: {
-      profile: {
-        address: '7384fd3f-8c1b-4c7c-a21d-5edf8456648a'
-      }
-    }
-  },
-  keys: {
-    items: {
-      '98041209-a681-42ae-8b96-162890d5b7b7': {
-        id: '98041209-a681-42ae-8b96-162890d5b7b7'
-      }
+  pine: {
+    credentials: {
+      userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
     }
   }
 }));
@@ -30,10 +21,6 @@ jest.mock('../../../../../src/pineApi/user/contactRequests/get', () => {
   return jest.fn(() => Promise.resolve([
     'f6e52d81-36b9-4ce5-9008-0b17a5efa43f'
   ]));
-});
-
-jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
-  return jest.fn(() => Promise.resolve('06535332-01b0-43a0-bc11-6a2dbc88ff4b'));
 });
 
 describe('PINE_CONTACT_REQUESTS_GET_REQUEST', () => {
@@ -83,33 +70,24 @@ describe('get', () => {
       });
     });
 
-    it('gets contact requests using the user\'s address and mnemonic', () => {
+    it('gets contact requests using the credentials from state', () => {
       expect.hasAssertions();
 
       return returnedFunction(dispatchMock, getStateMock).then(() => {
-        const expectedPineAddress = '7384fd3f-8c1b-4c7c-a21d-5edf8456648a';
-        const expectedMnemonic = '06535332-01b0-43a0-bc11-6a2dbc88ff4b';
-
         expect(getContactRequests).toHaveBeenCalled();
 
         expect(getContactRequests).toHaveBeenCalledWith({
-          address: expectedPineAddress,
-          mnemonic: expectedMnemonic
+          userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
         });
       });
     });
 
-    it('does not get contact requests if user does not have a Pine address', () => {
+    it('does not get contact requests if user does not have a Pine credentials', () => {
       expect.hasAssertions();
 
       getStateMock.mockImplementationOnce(() => ({
-        settings: {
-          user: {
-            profile: {}
-          }
-        },
-        keys: {
-          items: {}
+        pine: {
+          credentials: null
         }
       }));
 

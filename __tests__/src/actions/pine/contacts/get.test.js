@@ -10,18 +10,9 @@ import {
 const dispatchMock = jest.fn();
 
 const getStateMock = jest.fn(() => ({
-  settings: {
-    user: {
-      profile: {
-        address: 'c154c51d-b9c9-4ded-a68d-e88b0e724e33'
-      }
-    }
-  },
-  keys: {
-    items: {
-      'fe3ff1ba-1afd-401f-b489-941d24cd832d': {
-        id: 'fe3ff1ba-1afd-401f-b489-941d24cd832d'
-      }
+  pine: {
+    credentials: {
+      userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
     }
   }
 }));
@@ -35,10 +26,6 @@ jest.mock('../../../../../src/pineApi/user/contacts/get', () => {
       id: '4dfcdb0a-8f48-42b2-a26e-d9551109955c'
     }
   ]));
-});
-
-jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
-  return jest.fn(() => Promise.resolve('f5fbba8a-9f31-4641-bdc0-aba53ac2177b'));
 });
 
 describe('PINE_CONTACTS_GET_REQUEST', () => {
@@ -88,18 +75,14 @@ describe('get', () => {
       });
     });
 
-    it('gets contacts for user using user\'s address and mnemonic', () => {
+    it('gets contacts for user using the credentials from state', () => {
       expect.hasAssertions();
 
       return returnedFunction(dispatchMock, getStateMock).then(() => {
-        const expectedPineAddress = 'c154c51d-b9c9-4ded-a68d-e88b0e724e33';
-        const expectedMnemonic = 'f5fbba8a-9f31-4641-bdc0-aba53ac2177b';
-
         expect(getContacts).toHaveBeenCalled();
 
         expect(getContacts).toHaveBeenCalledWith({
-          address: expectedPineAddress,
-          mnemonic: expectedMnemonic
+          userId: 'ec003e26-8ef2-4344-9c1c-649751242b31'
         });
       });
     });

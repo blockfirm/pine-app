@@ -1,5 +1,4 @@
 import addContact from '../../../pineApi/user/contacts/add';
-import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
 
 export const PINE_CONTACTS_ADD_REQUEST = 'PINE_CONTACTS_ADD_REQUEST';
 export const PINE_CONTACTS_ADD_SUCCESS = 'PINE_CONTACTS_ADD_SUCCESS';
@@ -25,11 +24,6 @@ const addFailure = (error) => {
   };
 };
 
-const getDefaultMnemonicFromKeys = (keys) => {
-  const defaultKey = Object.values(keys)[0];
-  return getMnemonicByKey(defaultKey.id);
-};
-
 /**
  * Action to add a contact to the user's Pine server.
  *
@@ -40,15 +34,11 @@ const getDefaultMnemonicFromKeys = (keys) => {
 export const add = (contact) => {
   return (dispatch, getState) => {
     const state = getState();
-    const keys = state.keys.items;
-    const { address } = state.settings.user.profile;
+    const { credentials } = state.pine;
 
     dispatch(addRequest());
 
-    return getDefaultMnemonicFromKeys(keys)
-      .then((mnemonic) => {
-        return addContact(contact, { address, mnemonic });
-      })
+    return addContact(contact, credentials)
       .then((addedContact) => {
         dispatch(addSuccess(addedContact));
         return addedContact;

@@ -1,6 +1,3 @@
-import getMnemonicByKey from '../crypto/getMnemonicByKey';
-import getKeyPairFromMnemonic from '../pineApi/crypto/getKeyPairFromMnemonic';
-import getUserIdFromPublicKey from '../pineApi/crypto/getUserIdFromPublicKey';
 import { sync as syncBitcoinWallet } from './bitcoin/wallet';
 import { sync as syncContacts } from './contacts';
 import { syncIncoming as syncIncomingContactRequests } from './contacts/contactRequests';
@@ -28,19 +25,12 @@ const syncFailure = (error) => {
   };
 };
 
-const getDefaultMnemonicFromKeys = (keys) => {
-  const defaultKey = Object.values(keys)[0];
-  return getMnemonicByKey(defaultKey.id);
-};
-
 /**
  * Action to sync contacts, contact requests and bitcoin wallet.
  */
 export const sync = () => {
   return (dispatch, getState) => {
     const state = getState();
-    const { address } = state.settings.user.profile;
-    const credentials = { address };
 
     if (state.syncing) {
       return Promise.resolve();
@@ -48,16 +38,9 @@ export const sync = () => {
 
     dispatch(syncRequest());
 
-    return getDefaultMnemonicFromKeys(state.keys.items)
-      .then((mnemonic) => {
-        credentials.mnemonic = mnemonic;
-        credentials.keyPair = getKeyPairFromMnemonic(credentials.mnemonic);
-        credentials.userId = getUserIdFromPublicKey(credentials.keyPair.publicKey);
-
-        return dispatch(syncContacts(credentials));
-      })
+    return dispatch(syncContacts())
       .then(() => {
-        return dispatch(syncIncomingContactRequests(credentials));
+        return dispatch(syncIncomingContactRequests());
       })
       .then(() => {
         return dispatch(syncBitcoinWallet());
