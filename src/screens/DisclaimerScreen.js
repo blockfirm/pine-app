@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
-import { navigateWithReset } from '../actions';
+import { navigateWithReset, finalizeSetup } from '../actions';
 import * as settingsActions from '../actions/settings';
-import { add as addDeviceTokenToPine } from '../actions/pine/deviceTokens/add';
-import { load as loadPineCredentials } from '../actions/pine/credentials';
+import { handle as handleError } from '../actions/error';
 import Title from '../components/Title';
 import Paragraph from '../components/Paragraph';
 import CopyText from '../components/CopyText';
@@ -82,21 +81,15 @@ export default class DisclaimerScreen extends Component {
   }
 
   /**
-   * Adds the device token to user's Pine account to get notifications.
+   * Finalizes the app setup (e.g. subscribes to push notifications).
    *
    * NOTE: This might not be the most obvious place to put this code
    * but all the different paths end up here, so instead of having
    * this code at every place, it is just placed here for now.
    */
-  _registerForNotifications() {
+  _finalizeSetup() {
     const { dispatch } = this.props;
-
-    return dispatch(addDeviceTokenToPine()).catch(() => {
-      /**
-       * Suppress errors as the account has still been created and
-       * the device token will be added again every time at startup.
-       */
-    });
+    return dispatch(finalizeSetup());
   }
 
   _onUnderstand() {
@@ -104,12 +97,12 @@ export default class DisclaimerScreen extends Component {
 
     this._flagAsAccepted();
 
-    return dispatch(loadPineCredentials())
-      .then(() => {
-        return this._registerForNotifications();
-      })
+    return this._finalizeSetup()
       .then(() => {
         return this._showHomeScreen();
+      })
+      .catch((error) => {
+        dispatch(handleError(error));
       });
   }
 
