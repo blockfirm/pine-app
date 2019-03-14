@@ -46,6 +46,10 @@ const syncExisting = (contacts, serverContacts) => {
 
     if (!updatedContact.waitingForContactRequest) {
       delete updatedContact.contactRequest;
+
+      if (contact.waitingForContactRequest) {
+        updatedContact.unread = true;
+      }
     }
 
     contacts[updatedContact.id] = updatedContact;

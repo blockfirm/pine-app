@@ -130,7 +130,8 @@ describe('accept', () => {
           expect(updatedContact).toEqual(expect.objectContaining({
             ...updatedContact,
             id: '63b6d3cf-4810-4237-a08a-fc06a2e043b3',
-            createdAt: 12345
+            createdAt: 12345,
+            unread: false
           }));
 
           expect(updatedContact.contactRequest).toBeUndefined();

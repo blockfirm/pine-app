@@ -59,6 +59,30 @@ const syncExisting = (contacts, contactRequests, pineAddress) => {
   return synced;
 };
 
+const createContactFromContactRequest = async (contactRequest) => {
+  let contact;
+
+  try {
+    contact = await getUser(contactRequest.from);
+  } catch (error) {
+    return;
+  }
+
+  contact.userId = contact.id;
+  contact.id = uuidv4();
+  contact.address = contactRequest.from;
+  contact.createdAt = contactRequest.createdAt;
+  contact.unread = true;
+
+  contact.contactRequest = {
+    id: contactRequest.id,
+    from: contactRequest.from,
+    createdAt: contactRequest.createdAt
+  };
+
+  return contact;
+};
+
 const addNew = async (contacts, contactRequests) => {
   let added = false;
 
@@ -67,27 +91,12 @@ const addNew = async (contacts, contactRequests) => {
   });
 
   for (const newContactRequest of newContactRequests) {
-    let user;
+    const contact = await createContactFromContactRequest(newContactRequest);
 
-    try {
-      user = await getUser(newContactRequest.from);
-    } catch (error) {
-      continue;
+    if (contact) {
+      contacts[contact.id] = contact;
+      added = true;
     }
-
-    user.userId = user.id;
-    user.id = uuidv4();
-    user.address = newContactRequest.from;
-    user.createdAt = newContactRequest.createdAt;
-
-    user.contactRequest = {
-      id: newContactRequest.id,
-      from: newContactRequest.from,
-      createdAt: newContactRequest.createdAt
-    };
-
-    contacts[user.id] = user;
-    added = true;
   }
 
   return added;

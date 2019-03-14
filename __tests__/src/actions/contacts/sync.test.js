@@ -162,7 +162,8 @@ describe('sync', () => {
             '326e0bcd-66db-45d9-b67c-c55d268362a6': {
               id: '326e0bcd-66db-45d9-b67c-c55d268362a6',
               address: 'two@example.org',
-              waitingForContactRequest: false
+              waitingForContactRequest: false,
+              unread: true
             }
           }));
         });

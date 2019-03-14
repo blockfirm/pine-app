@@ -44,6 +44,17 @@ const items = (state = {}, action) => {
 
       return newState;
 
+    case contactsActions.CONTACTS_MARK_AS_READ:
+      contact = action.contact;
+
+      if (state[contact.id]) {
+        newState = { ...state };
+        newState[contact.id] = { ...newState[contact.id] };
+        newState[contact.id].unread = false;
+
+        return newState;
+      }
+
     default:
       return state;
   }

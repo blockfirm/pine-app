@@ -50,7 +50,8 @@ export const accept = (contact) => {
         const updatedContact = {
           ...contact,
           id,
-          createdAt
+          createdAt,
+          unread: false
         };
 
         delete updatedContact.contactRequest;

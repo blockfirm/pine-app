@@ -41,6 +41,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400'
   },
+  subtitleUnread: {
+    fontWeight: '600',
+    color: 'black'
+  },
   bullet: {
     marginHorizontal: 5,
     height: 2,
@@ -90,6 +94,11 @@ export default class TransactionListItem extends Component {
     const { contact } = this.props;
     const avatarChecksum = contact.avatar ? contact.avatar.checksum : null;
 
+    const subtitleStyle = [
+      styles.subtitle,
+      contact.unread ? styles.subtitleUnread : null
+    ];
+
     return (
       <TouchableOpacity onPress={this.props.onPress} style={styles.item}>
         <View style={styles.avatarWrapper}>
@@ -104,7 +113,7 @@ export default class TransactionListItem extends Component {
             {this._getTitle()}
           </StyledText>
           <View style={styles.subtitleWrapper}>
-            <StyledText style={styles.subtitle} numberOfLines={1}>
+            <StyledText style={subtitleStyle} numberOfLines={1}>
               {this._getSubtitle()}
             </StyledText>
             <Bullet style={styles.bullet} />

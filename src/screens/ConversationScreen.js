@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { handle as handleError } from '../actions/error/handle';
-import { remove as removeContact } from '../actions/contacts/remove';
+import { remove as removeContact, markAsRead } from '../actions/contacts';
 import headerStyles from '../styles/headerStyles';
 import ContentView from '../components/ContentView';
 import ConversationHeaderTitle from '../components/ConversationHeaderTitle';
@@ -87,7 +87,23 @@ export default class ConversationScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({ showUserMenu: this._showUserMenu.bind(this) });
+    const { navigation } = this.props;
+    const { contact } = navigation.state.params;
+
+    navigation.setParams({ showUserMenu: this._showUserMenu.bind(this) });
+
+    this._markConversationAsRead();
+  }
+
+  componentWillUnmount() {
+    this._markConversationAsRead();
+  }
+
+  _markConversationAsRead() {
+    const { dispatch, navigation } = this.props;
+    const { contact } = navigation.state.params;
+
+    dispatch(markAsRead(contact));
   }
 
   _showUserMenu() {
