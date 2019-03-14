@@ -10,8 +10,8 @@ moment.defineLocale('en-short', {
   relativeTime: {
     future: 'in %s',
     past: '%s ago',
-    s: 'Now',
-    ss: 'Now',
+    s: 'now',
+    ss: 'now',
     m: '1m',
     mm: '%dm',
     h: '1h',
@@ -58,7 +58,7 @@ export default class RelativeDateLabelShort extends Component {
     const withoutSuffix = true;
     const relativeDate = moment(date).locale('en-short').fromNow(withoutSuffix);
 
-    if (relativeDate === 'Now') {
+    if (relativeDate === 'now') {
       return relativeDate;
     }
 
