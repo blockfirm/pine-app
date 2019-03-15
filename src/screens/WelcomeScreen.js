@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import iCloudAccountStatus from 'react-native-icloud-account-status';
 
-import { navigateWithReset } from '../actions';
+import { reset as navigateWithReset } from '../actions/navigate';
 import { handle as handleError } from '../actions/error';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';

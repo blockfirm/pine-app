@@ -7,7 +7,7 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 import KeepAwake from 'react-native-keep-awake';
 import bip39 from 'bip39';
 
-import { navigateWithReset } from '../actions';
+import { reset as navigateWithReset } from '../actions/navigate';
 import { handle as handleError } from '../actions/error/handle';
 import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';

@@ -1,6 +1,6 @@
 import { StackActions, NavigationActions } from 'react-navigation';
 
-export const navigateWithReset = (routeName, params) => {
+export const reset = (routeName, params) => {
   const action = StackActions.reset({
     index: 0,
     actions: [

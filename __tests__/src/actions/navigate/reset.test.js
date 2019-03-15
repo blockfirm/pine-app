@@ -1,6 +1,6 @@
-import { navigateWithReset } from '../../../src/actions/navigateWithReset';
+import { reset as navigateWithReset } from '../../../../src/actions/navigate/reset';
 
-describe('navigateWithReset', () => {
+describe('reset', () => {
   let fakeRouteName;
   let fakeParams;
 

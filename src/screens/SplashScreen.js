@@ -3,7 +3,8 @@ import { StyleSheet, Image, ActivityIndicator, StatusBar, InteractionManager } f
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { navigateWithReset, load as loadState, sync as syncApp } from '../actions';
+import { load as loadState, sync as syncApp } from '../actions';
+import { reset as navigateWithReset } from '../actions/navigate';
 import { updateProfiles as updateContactProfiles } from '../actions/contacts';
 import * as walletActions from '../actions/bitcoin/wallet';
 import { get as getFiatRates } from '../actions/bitcoin/fiatRates';

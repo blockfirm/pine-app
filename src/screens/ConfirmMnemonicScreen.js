@@ -7,7 +7,7 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 import ReactNativeHaptic from 'react-native-haptic';
 
 import headerStyles from '../styles/headerStyles';
-import { navigateWithReset } from '../actions';
+import { reset as navigateWithReset } from '../actions/navigate';
 import * as settingsActions from '../actions/settings';
 import { sync as syncWallet } from '../actions/bitcoin/wallet/sync';
 import Paragraph from '../components/Paragraph';

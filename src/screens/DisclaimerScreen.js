@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
-import { navigateWithReset, finalizeSetup } from '../actions';
+import { finalizeSetup } from '../actions';
+import { reset as navigateWithReset } from '../actions/navigate';
 import * as settingsActions from '../actions/settings';
 import { handle as handleError } from '../actions/error';
 import Title from '../components/Title';

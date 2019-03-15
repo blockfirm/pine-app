@@ -10,7 +10,7 @@ import {
   UsernameContainsInvalidCharsError
 } from '../pineApi/address';
 
-import { navigateWithReset } from '../actions';
+import { reset as navigateWithReset } from '../actions/navigate';
 import * as settingsActions from '../actions/settings';
 import { handle as handleError } from '../actions/error/handle';
 import getMnemonicByKey from '../crypto/getMnemonicByKey';

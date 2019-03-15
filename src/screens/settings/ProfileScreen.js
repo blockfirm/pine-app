@@ -3,7 +3,8 @@ import { ActionSheetIOS, Alert, StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { navigateWithReset, reset as resetApp } from '../../actions';
+import { reset as resetApp } from '../../actions';
+import { reset as navigateWithReset } from '../../actions/navigate';
 import * as settingsActions from '../../actions/settings';
 import { handle as handleError } from '../../actions/error';
 import { avatar } from '../../pineApi/user';
