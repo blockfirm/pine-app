@@ -2,6 +2,7 @@ import { PushNotificationIOS, AppState } from 'react-native';
 import { onRegister } from '../actions/notifications/onRegister';
 import { onRegisterError } from '../actions/notifications/onRegisterError';
 import { setPermissions } from '../actions/notifications/setPermissions';
+import { openConversation } from '../actions/navigate';
 import { sync as syncApp } from '../actions/sync';
 import { add as addDeviceTokenToPine } from '../actions/pine/deviceTokens/add';
 
@@ -26,6 +27,7 @@ export default class NotificationService {
     AppState.addEventListener('change', this._onAppStateChange);
 
     this._register();
+    this._handleInitialNotification();
   }
 
   stop() {
@@ -36,11 +38,28 @@ export default class NotificationService {
   }
 
   _register() {
-    const { store } = this;
+    const { dispatch } = this.store;
 
     PushNotificationIOS.requestPermissions().then((permissions) => {
-      store.dispatch(setPermissions(permissions));
+      dispatch(setPermissions(permissions));
     });
+  }
+
+  _handleInitialNotification() {
+    PushNotificationIOS.getInitialNotification().then((notification) => {
+      if (notification) {
+        this._openConversation(notification);
+      }
+    });
+  }
+
+  _openConversation(notification) {
+    const { dispatch } = this.store;
+    const data = notification.getData();
+
+    if (data && data.address) {
+      dispatch(openConversation(data.address));
+    }
   }
 
   _addDeviceTokenToPine() {
@@ -65,24 +84,29 @@ export default class NotificationService {
   }
 
   _onRegister(deviceToken) {
-    const { store } = this;
+    const { dispatch } = this.store;
 
-    store.dispatch(onRegister(deviceToken));
+    dispatch(onRegister(deviceToken));
     this._addDeviceTokenToPine();
   }
 
   _onRegisterError(error) {
-    const { store } = this;
-    store.dispatch(onRegisterError(error));
+    const { dispatch } = this.store;
+    dispatch(onRegisterError(error));
   }
 
-  _onNotification() {
+  _onNotification(notification) {
     const { store } = this;
     const state = store.getState();
     const { initialized } = state.settings;
+    const isInBackground = this._appState.match(/inactive|background/);
 
     if (initialized) {
-      store.dispatch(syncApp());
+      store.dispatch(syncApp()).then(() => {
+        if (isInBackground) {
+          this._openConversation(notification);
+        }
+      });
     }
   }
 

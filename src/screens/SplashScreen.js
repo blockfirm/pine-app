@@ -3,7 +3,7 @@ import { StyleSheet, Image, ActivityIndicator, StatusBar, InteractionManager } f
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { load as loadState, sync as syncApp } from '../actions';
+import { load as loadState, sync as syncApp, ready as onReady } from '../actions';
 import { reset as navigateWithReset } from '../actions/navigate';
 import { updateProfiles as updateContactProfiles } from '../actions/contacts';
 import * as walletActions from '../actions/bitcoin/wallet';
@@ -74,6 +74,7 @@ export default class SplashScreen extends Component {
           InteractionManager.runAfterInteractions(() => {
             dispatch(syncApp()).then(() => {
               dispatch(updateContactProfiles());
+              dispatch(onReady());
             });
           });
         }, 250);

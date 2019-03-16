@@ -10,6 +10,8 @@ import notificationsReducer from './notifications';
 import contactsReducer from './contacts';
 import syncingReducer from './syncing';
 import pineReducer from './pine';
+import readyReducer from './ready';
+import navigateReducer from './navigate';
 
 const getRootReducer = (navReducer) => {
   const rootReducer = combineReducers({
@@ -24,7 +26,9 @@ const getRootReducer = (navReducer) => {
     notifications: notificationsReducer,
     contacts: contactsReducer,
     syncing: syncingReducer,
-    pine: pineReducer
+    pine: pineReducer,
+    ready: readyReducer,
+    navigate: navigateReducer
   });
 
   return rootReducer;
