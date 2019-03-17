@@ -3,6 +3,7 @@ import { StyleSheet, View, TouchableOpacity, ActivityIndicator } from 'react-nat
 import PropTypes from 'prop-types';
 import ImagePicker from 'react-native-image-picker';
 import ImageCropPicker from 'react-native-image-crop-picker';
+import LinearGradient from 'react-native-linear-gradient';
 
 import Avatar from './Avatar';
 import StyledText from './StyledText';
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   editWrapper: {
-    backgroundColor: 'black',
     width: AVATAR_SIZE,
     position: 'absolute',
     bottom: 0,
@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 9,
     textAlign: 'center',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    fontWeight: '600'
   },
   loaderOverlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -117,9 +118,12 @@ export default class EditAvatar extends Component {
     }
 
     return (
-      <View style={styles.editWrapper}>
+      <LinearGradient
+        colors={['rgba(0, 0, 0, 0.0)', 'rgba(0, 0, 0, 0.6)']}
+        style={styles.editWrapper}
+      >
         <StyledText style={styles.editText}>Edit</StyledText>
-      </View>
+      </LinearGradient>
     );
   }
 
