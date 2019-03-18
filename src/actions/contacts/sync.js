@@ -77,7 +77,7 @@ const addUserAsContact = (user, serverContact, contacts, pineAddress) => {
   contacts[contact.id] = contact;
 };
 
-const addNew = async (contacts, serverContacts, pineAddress) => {
+const addNew = (contacts, serverContacts, pineAddress) => {
   let added = false;
 
   const contactMap = Object.values(contacts).reduce((map, contact) => {
@@ -89,17 +89,18 @@ const addNew = async (contacts, serverContacts, pineAddress) => {
     return !(serverContact.address in contactMap);
   });
 
-  for (const newContact of newContacts) {
-    try {
-      const user = await getUser(newContact.address);
-      addUserAsContact(user, newContact, contacts, pineAddress);
-      added = true;
-    } catch (error) {
-      // Ignore errors.
-    }
-  }
+  const promises = newContacts.map((newContact) => {
+    return getUser(newContact.address)
+      .then((user) => {
+        addUserAsContact(user, newContact, contacts, pineAddress);
+        added = true;
+      })
+      .catch(() => {
+        // Ignore errors.
+      });
+  });
 
-  return added;
+  return Promise.all(promises).then(() => added);
 };
 
 /**

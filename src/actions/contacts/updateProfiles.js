@@ -43,22 +43,23 @@ const updateContact = async (contact) => {
   };
 };
 
-const updateContacts = async (contacts) => {
+const updateContacts = (contacts) => {
   let updated = false;
 
-  for (const contact of Object.values(contacts)) {
-    try {
-      if (shouldUpdate(contact)) {
-        const updatedContact = await updateContact(contact);
-        contacts[updatedContact.id] = updatedContact;
-        updated = true;
-      }
-    } catch (error) {
-      // Ignore errors.
+  const promises = Object.values(contacts).map((contact) => {
+    if (shouldUpdate(contact)) {
+      return updateContact(contact)
+        .then((updatedContact) => {
+          contacts[updatedContact.id] = updatedContact;
+          updated = true;
+        })
+        .catch(() => {
+          // Ignore errors.
+        });
     }
-  }
+  });
 
-  return updated;
+  return Promise.all(promises).then(() => updated);
 };
 
 /**
