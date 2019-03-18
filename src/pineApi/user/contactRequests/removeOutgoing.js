@@ -1,6 +1,9 @@
+import { fetchWithTimeout } from '../../network';
 import { getKeyPairFromMnemonic } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
 import { getAuthorizationHeader } from '../../authentication';
+
+const REQUEST_TIMEOUT = 5000; // 5 seconds.
 
 /**
  * Removes an outgoing contact request from the recepient's Pine server.
@@ -31,7 +34,7 @@ const removeOutgoing = (contactRequest, credentials) => {
     }
   };
 
-  return fetch(url, fetchOptions)
+  return fetchWithTimeout(url, fetchOptions, REQUEST_TIMEOUT)
     .then((response) => {
       if (response.ok) {
         return;

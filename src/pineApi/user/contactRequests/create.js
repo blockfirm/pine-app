@@ -1,7 +1,10 @@
+import { fetchWithTimeout } from '../../network';
 import { getKeyPairFromMnemonic } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
 import { getAuthorizationHeader } from '../../authentication';
 import getUser from '../get';
+
+const REQUEST_TIMEOUT = 5000; // 5 seconds.
 
 /**
  * Sends a contact request to a Pine user.
@@ -35,7 +38,7 @@ const create = (to, credentials) => {
         }
       };
 
-      return fetch(url, fetchOptions);
+      return fetchWithTimeout(url, fetchOptions, REQUEST_TIMEOUT);
     })
     .then((response) => {
       /**

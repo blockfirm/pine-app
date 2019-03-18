@@ -49,7 +49,7 @@ describe('get', () => {
     describe('the HTTP request', () => {
       it('is made to the url https://_pine.pine.cash/v1/users?username=timothy', () => {
         const expectedUrl = 'https://_pine.pine.cash/v1/users?username=timothy';
-        expect(fetch).toHaveBeenCalledWith(expectedUrl);
+        expect(fetch).toHaveBeenCalledWith(expectedUrl, undefined);
       });
     });
 

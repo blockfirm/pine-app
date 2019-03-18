@@ -1,4 +1,7 @@
+import { fetchWithTimeout } from '../network';
 import { parse as parseAddress, resolveBaseUrl } from '../address';
+
+const REQUEST_TIMEOUT = 5000; // 5 seconds.
 
 /**
  * Gets a user by its Pine address.
@@ -13,7 +16,7 @@ const get = (pineAddress) => {
   const baseUrl = resolveBaseUrl(hostname);
   const url = `${baseUrl}/v1/users?username=${usernameParam}`;
 
-  return fetch(url)
+  return fetchWithTimeout(url, undefined, REQUEST_TIMEOUT)
     .then((response) => {
       if (response.ok) {
         return response.json();
