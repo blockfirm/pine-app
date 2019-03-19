@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, Share, View } from 'react-native';
+import { StyleSheet, Image, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import headerStyles from '../styles/headerStyles';
@@ -7,7 +7,7 @@ import StyledText from './StyledText';
 import Paragraph from './Paragraph';
 import Link from './Link';
 
-const illustration = require('../images/illustrations/AskForBitcoin.png');
+const illustration = require('../images/illustrations/EmptyListAvatar.png');
 
 const styles = StyleSheet.create({
   view: {
@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
     paddingBottom: 50
   },
   illustration: {
-    width: 133,
-    height: 132,
-    marginBottom: 50
+    width: 108,
+    height: 108,
+    marginBottom: 40
   },
   title: {
     color: '#949494'
@@ -31,32 +31,24 @@ const styles = StyleSheet.create({
     paddingTop: 17,
     paddingLeft: 15,
     paddingRight: 15
-  },
-  link: {
-    fontWeight: '400'
   }
 });
 
 export default class TransactionListEmpty extends Component {
-  _shareAddress() {
-    const address = this.props.address;
-    Share.share({ message: address });
-  }
-
   render() {
     return (
       <View style={styles.view}>
         <Image source={illustration} style={styles.illustration} />
 
         <StyledText style={[headerStyles.title, styles.title]}>
-          Your Account Looks Empty
+          It&#39;s lonely here
         </StyledText>
         <Paragraph style={styles.paragraph}>
-          Have any friends who owe you money?
-          Ask them to pay you with bitcoin!
+          Add a contact to start sending and receiving bitcoin.
         </Paragraph>
-        <Link onPress={this._shareAddress.bind(this)} labelStyle={styles.link}>
-          Share Your Address
+
+        <Link onPress={this.props.onAddContactPress}>
+          Add Contact
         </Link>
       </View>
     );
@@ -64,5 +56,6 @@ export default class TransactionListEmpty extends Component {
 }
 
 TransactionListEmpty.propTypes = {
-  address: PropTypes.string
+  address: PropTypes.string,
+  onAddContactPress: PropTypes.func
 };
