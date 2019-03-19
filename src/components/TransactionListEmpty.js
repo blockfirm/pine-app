@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, Share } from 'react-native';
+import { StyleSheet, Image, Share, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import headerStyles from '../styles/headerStyles';
-import ContentView from './ContentView';
 import StyledText from './StyledText';
 import Paragraph from './Paragraph';
 import Link from './Link';
@@ -12,8 +11,11 @@ const illustration = require('../images/illustrations/AskForBitcoin.png');
 
 const styles = StyleSheet.create({
   view: {
-    marginTop: 0,
-    justifyContent: 'center'
+    marginTop: '50%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 40,
+    paddingBottom: 50
   },
   illustration: {
     width: 133,
@@ -43,7 +45,7 @@ export default class TransactionListEmpty extends Component {
 
   render() {
     return (
-      <ContentView style={styles.view} hasToolbar={true}>
+      <View style={styles.view}>
         <Image source={illustration} style={styles.illustration} />
 
         <StyledText style={[headerStyles.title, styles.title]}>
@@ -56,7 +58,7 @@ export default class TransactionListEmpty extends Component {
         <Link onPress={this._shareAddress.bind(this)} labelStyle={styles.link}>
           Share Your Address
         </Link>
-      </ContentView>
+      </View>
     );
   }
 }

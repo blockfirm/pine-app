@@ -126,12 +126,6 @@ export default class TransactionList extends Component {
     }));
   }
 
-  _renderEmptyList() {
-    return (
-      <TransactionListEmptyContainer />
-    );
-  }
-
   scrollToTop() {
     if (this._list) {
       this._list.scrollToLocation({
@@ -143,10 +137,6 @@ export default class TransactionList extends Component {
 
   render() {
     const contacts = Object.values(this.props.contacts);
-
-    if (!contacts.length) {
-      return this._renderEmptyList();
-    }
 
     contacts.sort((a, b) => {
       return b.createdAt - a.createdAt;
@@ -170,6 +160,7 @@ export default class TransactionList extends Component {
             <StyledText style={styles.sectionHeaderText}>{title}</StyledText>
           </View>
         )}
+        ListEmptyComponent={TransactionListEmptyContainer}
         refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
