@@ -1,4 +1,5 @@
 import { NAVIGATE_OPEN_CONVERSATION, READY } from '../../actions/navigate/openConversation';
+import { RESET_SUCCESS } from '../../actions';
 
 const openConversation = (state = null, action) => {
   switch (action.type) {
@@ -6,6 +7,7 @@ const openConversation = (state = null, action) => {
       return action.address;
 
     case READY:
+    case RESET_SUCCESS:
       return null;
 
     default:
