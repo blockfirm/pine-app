@@ -337,6 +337,109 @@ exports[`AboutScreen renders correctly 1`] = `
                     "paddingRight": 30,
                   },
                   undefined,
+                  undefined,
+                ]
+              }
+            >
+              <Text
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Object {
+                      "fontSize": 17,
+                      "fontWeight": "400",
+                      "lineHeight": 22,
+                    },
+                  ]
+                }
+              >
+                Terms and Conditions
+              </Text>
+              <Text
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "color": "#000000",
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "color": "#8F8E94",
+                        "fontSize": 17,
+                        "fontWeight": "400",
+                        "lineHeight": 22,
+                        "position": "absolute",
+                        "right": 15,
+                        "textAlign": "right",
+                        "width": "60%",
+                      },
+                      Object {
+                        "right": 35,
+                      },
+                    ],
+                  ]
+                }
+              />
+              <Text
+                allowFontScaling={false}
+                style={
+                  Array [
+                    Object {
+                      "color": undefined,
+                      "fontSize": 12,
+                    },
+                    Object {
+                      "color": "#C7C7CC",
+                      "fontSize": 20,
+                      "paddingTop": 2,
+                      "position": "absolute",
+                      "right": 15,
+                    },
+                    Object {
+                      "fontFamily": "Ionicons",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
+          </View>
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#C8C7CC",
+                    "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
+                    "marginLeft": 15,
+                    "paddingRight": 30,
+                  },
+                  undefined,
                   Object {
                     "borderBottomWidth": 0,
                   },
@@ -360,7 +463,7 @@ exports[`AboutScreen renders correctly 1`] = `
                   ]
                 }
               >
-                Terms and Conditions
+                Privacy Policy
               </Text>
               <Text
                 numberOfLines={1}

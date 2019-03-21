@@ -29,6 +29,11 @@ export default class AboutScreen extends Component {
     navigation.navigate('TermsAndConditions');
   }
 
+  _showPrivacyPolicy() {
+    const navigation = this.props.navigation;
+    navigation.navigate('PrivacyPolicy');
+  }
+
   _visitWebsite() {
     Linking.openURL(packageJson.website);
   }
@@ -55,7 +60,8 @@ export default class AboutScreen extends Component {
         </SettingsGroup>
 
         <SettingsGroup>
-          <SettingsLink name='Terms and Conditions' onPress={this._showTermsAndConditions.bind(this)} isLastItem={true} />
+          <SettingsLink name='Terms and Conditions' onPress={this._showTermsAndConditions.bind(this)} />
+          <SettingsLink name='Privacy Policy' onPress={this._showPrivacyPolicy.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
         <SettingsGroup>

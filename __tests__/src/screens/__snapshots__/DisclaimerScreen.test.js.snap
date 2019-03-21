@@ -302,7 +302,7 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
           }
         }
       >
-        By pressing "I understand", you have read and agree to the terms above as well as the 
+        By pressing "I understand", you agree to our 
       </Text>
       <Text
         onPress={[Function]}
@@ -330,7 +330,35 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
           }
         }
       >
-        .
+        , 
+      </Text>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "fontSize": 12,
+              "lineHeight": 16,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#007AFF",
+            },
+          ]
+        }
+      >
+        Privacy Policy
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 12,
+            "lineHeight": 16,
+            "textAlign": "center",
+          }
+        }
+      >
+         and this Disclaimer.
       </Text>
     </Text>
     <View
@@ -701,7 +729,7 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
           }
         }
       >
-        By pressing "I understand", you have read and agree to the terms above as well as the 
+        By pressing "I understand", you agree to our 
       </Text>
       <Text
         onPress={[Function]}
@@ -729,7 +757,35 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
           }
         }
       >
-        .
+        , 
+      </Text>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "fontSize": 12,
+              "lineHeight": 16,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#007AFF",
+            },
+          ]
+        }
+      >
+        Privacy Policy
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 12,
+            "lineHeight": 16,
+            "textAlign": "center",
+          }
+        }
+      >
+         and this Disclaimer.
       </Text>
     </Text>
     <View

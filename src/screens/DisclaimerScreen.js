@@ -69,6 +69,11 @@ export default class DisclaimerScreen extends Component {
     navigation.navigate('TermsAndConditions', { isModal: true });
   }
 
+  _showPrivacyPolicyModal() {
+    const navigation = this.props.navigation;
+    navigation.navigate('PrivacyPolicy', { isModal: true });
+  }
+
   _flagAsAccepted() {
     const dispatch = this.props.dispatch;
 
@@ -155,9 +160,11 @@ export default class DisclaimerScreen extends Component {
 
         <Footer>
           <Paragraph style={styles.finePrint}>
-            <Text style={styles.finePrint}>By pressing "I understand", you have read and agree to the terms above as well as the </Text>
+            <Text style={styles.finePrint}>By pressing "I understand", you agree to our </Text>
             <Text style={[styles.finePrint, styles.link]} onPress={this._showTermsAndConditionsModal.bind(this)}>Terms and Conditions</Text>
-            <Text style={styles.finePrint}>.</Text>
+            <Text style={styles.finePrint}>, </Text>
+            <Text style={[styles.finePrint, styles.link]} onPress={this._showPrivacyPolicyModal.bind(this)}>Privacy Policy</Text>
+            <Text style={styles.finePrint}> and this Disclaimer.</Text>
           </Paragraph>
 
           <Button label='I understand' onPress={this._onUnderstand.bind(this)} showLoader={true} />

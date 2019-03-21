@@ -6,6 +6,7 @@ import SecurityAndPrivacySettingsScreen from '../screens/settings/SecurityAndPri
 import BitcoinSettingsScreen from '../screens/settings/BitcoinSettingsScreen';
 import AboutScreen from '../screens/settings/AboutScreen';
 import TermsAndConditionsScreen from '../screens/settings/TermsAndConditionsScreen';
+import PrivacyPolicyScreen from '../screens/settings/PrivacyPolicyScreen';
 import BitcoinServiceScreen from '../screens/settings/BitcoinServiceScreen';
 import ServiceUrlScreen from '../screens/settings/ServiceUrlScreen';
 import BitcoinUnitScreen from '../screens/settings/BitcoinUnitScreen';
@@ -25,6 +26,7 @@ const SettingsNavigator = createDismissableStackNavigator({
   BitcoinSettings: { screen: BitcoinSettingsScreen },
   About: { screen: AboutScreen },
   TermsAndConditions: { screen: TermsAndConditionsScreen },
+  PrivacyPolicy: { screen: PrivacyPolicyScreen },
   BitcoinService: { screen: BitcoinServiceScreen },
   ServiceUrl: { screen: ServiceUrlScreen },
   BitcoinUnit: { screen: BitcoinUnitScreen },
