@@ -6,10 +6,10 @@ import {
   accept as acceptContactRequest,
   ignore as ignoreContactRequest,
   remove as removeContactRequest
-} from '../actions/contacts/contactRequests';
+} from '../../actions/contacts/contactRequests';
 
-import { handle as handleError } from '../actions/error/handle';
-import ContactRequest from '../components/ContactRequest';
+import { handle as handleError } from '../../actions/error/handle';
+import ContactRequest from '../../components/conversation/ContactRequest';
 
 const mapStateToProps = (state) => {
   return {

@@ -7,10 +7,10 @@ import { handle as handleError } from '../actions/error/handle';
 import { remove as removeContact, markAsRead } from '../actions/contacts';
 import headerStyles from '../styles/headerStyles';
 import ContentView from '../components/ContentView';
-import ConversationHeaderTitle from '../components/ConversationHeaderTitle';
+import ConversationHeaderTitle from '../components/conversation/ConversationHeaderTitle';
 import BackButton from '../components/BackButton';
 import Avatar from '../components/Avatar';
-import ContactRequestContainer from '../containers/ContactRequestContainer';
+import ContactRequestContainer from '../containers/conversation/ContactRequestContainer';
 import BaseScreen from './BaseScreen';
 
 const styles = StyleSheet.create({

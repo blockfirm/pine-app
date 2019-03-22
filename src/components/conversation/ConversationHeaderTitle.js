@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
-import headerStyles from '../styles/headerStyles';
-import StyledText from './StyledText';
+import headerStyles from '../../styles/headerStyles';
+import StyledText from '../StyledText';
 
 const styles = StyleSheet.create({
   title: {

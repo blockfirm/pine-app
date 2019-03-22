@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ActionSheetIOS } from 'react-native';
 import PropTypes from 'prop-types';
 
-import Avatar from './Avatar';
-import Paragraph from './Paragraph';
-import SmallButton from './buttons/SmallButton';
-import Link from './Link';
+import Avatar from '../Avatar';
+import Paragraph from '../Paragraph';
+import SmallButton from '../buttons/SmallButton';
+import Link from '../Link';
 
 const styles = StyleSheet.create({
   wrapper: {
