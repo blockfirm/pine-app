@@ -2,16 +2,25 @@ import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, View, ScrollView, ActionSheetIOS, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
+import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { handle as handleError } from '../actions/error/handle';
 import { remove as removeContact, markAsRead } from '../actions/contacts';
 import headerStyles from '../styles/headerStyles';
 import ContentView from '../components/ContentView';
-import ConversationHeaderTitle from '../components/conversation/ConversationHeaderTitle';
+import HeaderTitle from '../components/conversation/HeaderTitle';
+import InputBar from '../components/conversation/InputBar';
 import BackButton from '../components/BackButton';
 import Avatar from '../components/Avatar';
 import ContactRequestContainer from '../containers/conversation/ContactRequestContainer';
 import BaseScreen from './BaseScreen';
+
+const KEYBOARD_TOP_SPACING = ifIphoneX(
+  5 - StaticSafeAreaInsets.safeAreaInsetsBottom,
+  -5
+);
 
 const styles = StyleSheet.create({
   view: {
@@ -22,10 +31,12 @@ const styles = StyleSheet.create({
     paddingTop: 0,
     paddingLeft: 0,
     paddingRight: 0,
+    paddingBottom: ifIphoneX(0, 10),
     justifyContent: 'flex-start',
     alignItems: 'flex-start'
   },
   scrollView: {
+    flex: 1,
     alignSelf: 'stretch'
   },
   scrollViewContent: {
@@ -69,7 +80,7 @@ export default class ConversationScreen extends Component {
     }
 
     return {
-      headerTitle: <ConversationHeaderTitle contact={contact} />,
+      headerTitle: <HeaderTitle contact={contact} />,
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
@@ -164,9 +175,14 @@ export default class ConversationScreen extends Component {
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
         <ContentView style={styles.content}>
-          <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContent}>
+          <ScrollView
+            style={styles.scrollView}
+            contentContainerStyle={styles.scrollViewContent}
+          >
             { contact.contactRequest ? this._renderContactRequest(contact) : null }
           </ScrollView>
+          { contact.contactRequest ? null : <InputBar /> }
+          <KeyboardSpacer topSpacing={KEYBOARD_TOP_SPACING} />
         </ContentView>
       </BaseScreen>
     );
