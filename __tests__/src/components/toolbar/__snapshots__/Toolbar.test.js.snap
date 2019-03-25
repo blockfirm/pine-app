@@ -261,7 +261,7 @@ exports[`Toolbar renders correctly 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#B1AFB7",
+          "backgroundColor": "#BEBEBE",
           "borderRadius": 5,
           "bottom": 10,
           "height": 5,
