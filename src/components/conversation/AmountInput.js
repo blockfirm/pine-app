@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
+
+import { DECIMAL_SEPARATOR } from '../../localization';
+
+import {
+  UNIT_BTC,
+  UNIT_MBTC,
+  UNIT_SATOSHIS
+} from '../../crypto/bitcoin/convert';
+
+const CURRENCY_BTC = 'BTC';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,7 +27,7 @@ const styles = StyleSheet.create({
 
 export default class AmountInput extends Component {
   state = {
-    value: ''
+    amount: ''
   }
 
   constructor() {
@@ -24,8 +35,82 @@ export default class AmountInput extends Component {
     this._onChangeText = this._onChangeText.bind(this);
   }
 
-  _onChangeText(value) {
-    this.setState({ value });
+  _enforceInputLengths(amount, currency, unit) {
+    if (!amount) {
+      return amount;
+    }
+
+    const parts = amount.split(DECIMAL_SEPARATOR);
+    let integer = parts[0];
+    let fractional = parts[1];
+
+    if (currency === CURRENCY_BTC) {
+      switch (unit) {
+        case UNIT_BTC:
+          integer = integer.slice(0, 8);
+          fractional = fractional && fractional.slice(0, 8);
+          break;
+
+        case UNIT_MBTC:
+          integer = integer.slice(0, 11);
+          fractional = fractional && fractional.slice(0, 5);
+          break;
+
+        case UNIT_SATOSHIS:
+          integer = integer.slice(0, 16);
+          integer = integer === '0' ? '' : integer;
+          fractional = undefined;
+          break;
+      }
+    } else {
+      integer = integer.slice(0, 10);
+      fractional = fractional && fractional.slice(0, 2);
+    }
+
+    if (fractional === undefined) {
+      return integer;
+    }
+
+    return `${integer}${DECIMAL_SEPARATOR}${fractional}`;
+  }
+
+  _sanitizeAmount(amount) {
+    let sanitized = amount.replace('.', DECIMAL_SEPARATOR);
+
+    const { displayCurrency, displayUnit } = this.props;
+    const lastChar = sanitized.slice(-1);
+    const periods = sanitized.match(DECIMAL_SEPARATOR);
+    const periodCount = periods ? periods.length : 0;
+
+    // Only allow one decimal place.
+    if (lastChar === DECIMAL_SEPARATOR && periodCount > 1) {
+      sanitized = sanitized.slice(0, -1);
+    }
+
+    // Add 0 if amount starts with period.
+    if (sanitized === DECIMAL_SEPARATOR) {
+      sanitized = `0${DECIMAL_SEPARATOR}`;
+    }
+
+    // Remove multiple leading zeros.
+    sanitized = sanitized.replace(/^[00]+/, '0');
+
+    // Remove zero before an integer.
+    sanitized = sanitized.replace(/^[0]+([\d]+)/, '$1');
+
+    // Last, enforce the length of the input.
+    sanitized = this._enforceInputLengths(sanitized, displayCurrency, displayUnit);
+
+    return sanitized;
+  }
+
+  _setAmount(amount) {
+    this.setState({ amount });
+  }
+
+  _onChangeText(text) {
+    const sanitizedAmount = this._sanitizeAmount(text);
+    this._setAmount(sanitizedAmount);
   }
 
   render() {
@@ -36,10 +121,10 @@ export default class AmountInput extends Component {
           style={styles.input}
           keyboardType='decimal-pad'
           autoCorrect={false}
-          value={this.state.value}
+          value={this.state.amount}
           placeholder='Enter Amount'
           placeholderTextColor='#999999'
-          selectionColor='#FFD23F'
+          selectionColor='#FFC431'
           enablesReturnKeyAutomatically={true}
           onChangeText={this._onChangeText}
         />
@@ -47,3 +132,8 @@ export default class AmountInput extends Component {
     );
   }
 }
+
+AmountInput.propTypes = {
+  displayCurrency: PropTypes.string.isRequired,
+  displayUnit: PropTypes.string.isRequired
+};

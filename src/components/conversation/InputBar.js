@@ -21,7 +21,7 @@ export default class InputBar extends Component {
   render() {
     return (
       <View style={styles.toolbar}>
-        <AmountInput />
+        <AmountInput displayCurrency='BTC' displayUnit='BTC' />
         <SendButton disabled={true} style={styles.sendButton} />
       </View>
     );
