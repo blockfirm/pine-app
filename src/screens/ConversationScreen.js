@@ -11,10 +11,10 @@ import { remove as removeContact, markAsRead } from '../actions/contacts';
 import headerStyles from '../styles/headerStyles';
 import ContentView from '../components/ContentView';
 import HeaderTitle from '../components/conversation/HeaderTitle';
-import InputBar from '../components/conversation/InputBar';
 import BackButton from '../components/BackButton';
 import Avatar from '../components/Avatar';
 import ContactRequestContainer from '../containers/conversation/ContactRequestContainer';
+import InputBarContainer from '../containers/conversation/InputBarContainer';
 import BaseScreen from './BaseScreen';
 
 const KEYBOARD_TOP_SPACING = ifIphoneX(
@@ -181,7 +181,7 @@ export default class ConversationScreen extends Component {
           >
             { contact.contactRequest ? this._renderContactRequest(contact) : null }
           </ScrollView>
-          { contact.contactRequest ? null : <InputBar /> }
+          { contact.contactRequest ? null : <InputBarContainer /> }
           <KeyboardSpacer topSpacing={KEYBOARD_TOP_SPACING} />
         </ContentView>
       </BaseScreen>

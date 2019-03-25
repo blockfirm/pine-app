@@ -82,10 +82,22 @@ export default class AmountInput extends Component {
     this._onChangeText = this._onChangeText.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    const { amount } = this.state;
+    const prevCurrency = prevProps.currency;
+    const prevUnit = prevProps.unit;
+    const { currency, unit } = this.props;
+
+    if (unit !== prevUnit || currency !== prevCurrency) {
+      const sanitizedAmount = this._sanitizeAmount(amount);
+      this._setAmount(sanitizedAmount);
+    }
+  }
+
   _sanitizeAmount(amount) {
     let sanitized = amount.replace('.', DECIMAL_SEPARATOR);
 
-    const { displayCurrency, displayUnit } = this.props;
+    const { currency, unit } = this.props;
     const lastChar = sanitized.slice(-1);
     const periods = sanitized.match(DECIMAL_SEPARATOR);
     const periodCount = periods ? periods.length : 0;
@@ -107,7 +119,7 @@ export default class AmountInput extends Component {
     sanitized = sanitized.replace(/^[0]+([\d]+)/, '$1');
 
     // Last, enforce the length of the input.
-    sanitized = enforceInputLengths(sanitized, displayCurrency, displayUnit);
+    sanitized = enforceInputLengths(sanitized, currency, unit);
 
     return sanitized;
   }
@@ -143,7 +155,7 @@ export default class AmountInput extends Component {
 }
 
 AmountInput.propTypes = {
-  displayCurrency: PropTypes.string.isRequired,
-  displayUnit: PropTypes.string.isRequired,
-  onChangeAmount: PropTypes.func.isRequired
+  onChangeAmount: PropTypes.func.isRequired,
+  currency: PropTypes.string.isRequired,
+  unit: PropTypes.string
 };
