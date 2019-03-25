@@ -5,9 +5,9 @@ import SendButtonIcon from '../icons/SendButtonIcon';
 
 const styles = StyleSheet.create({
   button: {
-    width: 27,
-    height: 27,
-    borderRadius: 13,
+    width: 29,
+    height: 29,
+    borderRadius: 15,
     backgroundColor: '#FFD23F',
     justifyContent: 'center',
     alignItems: 'center'
