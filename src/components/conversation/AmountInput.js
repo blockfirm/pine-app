@@ -33,6 +33,45 @@ const getAmountAsNumber = (amount) => {
   return parseFloat(amount.replace(DECIMAL_SEPARATOR, '.'));
 };
 
+const enforceInputLengths = (amount, currency, unit) => {
+  if (!amount) {
+    return amount;
+  }
+
+  const parts = amount.split(DECIMAL_SEPARATOR);
+  let integer = parts[0];
+  let fractional = parts[1];
+
+  if (currency === CURRENCY_BTC) {
+    switch (unit) {
+      case UNIT_BTC:
+        integer = integer.slice(0, 8);
+        fractional = fractional && fractional.slice(0, 8);
+        break;
+
+      case UNIT_MBTC:
+        integer = integer.slice(0, 11);
+        fractional = fractional && fractional.slice(0, 5);
+        break;
+
+      case UNIT_SATOSHIS:
+        integer = integer.slice(0, 16);
+        integer = integer === '0' ? '' : integer;
+        fractional = undefined;
+        break;
+    }
+  } else {
+    integer = integer.slice(0, 10);
+    fractional = fractional && fractional.slice(0, 2);
+  }
+
+  if (fractional === undefined) {
+    return integer;
+  }
+
+  return `${integer}${DECIMAL_SEPARATOR}${fractional}`;
+};
+
 export default class AmountInput extends Component {
   state = {
     amount: ''
@@ -41,45 +80,6 @@ export default class AmountInput extends Component {
   constructor() {
     super(...arguments);
     this._onChangeText = this._onChangeText.bind(this);
-  }
-
-  _enforceInputLengths(amount, currency, unit) {
-    if (!amount) {
-      return amount;
-    }
-
-    const parts = amount.split(DECIMAL_SEPARATOR);
-    let integer = parts[0];
-    let fractional = parts[1];
-
-    if (currency === CURRENCY_BTC) {
-      switch (unit) {
-        case UNIT_BTC:
-          integer = integer.slice(0, 8);
-          fractional = fractional && fractional.slice(0, 8);
-          break;
-
-        case UNIT_MBTC:
-          integer = integer.slice(0, 11);
-          fractional = fractional && fractional.slice(0, 5);
-          break;
-
-        case UNIT_SATOSHIS:
-          integer = integer.slice(0, 16);
-          integer = integer === '0' ? '' : integer;
-          fractional = undefined;
-          break;
-      }
-    } else {
-      integer = integer.slice(0, 10);
-      fractional = fractional && fractional.slice(0, 2);
-    }
-
-    if (fractional === undefined) {
-      return integer;
-    }
-
-    return `${integer}${DECIMAL_SEPARATOR}${fractional}`;
   }
 
   _sanitizeAmount(amount) {
@@ -107,7 +107,7 @@ export default class AmountInput extends Component {
     sanitized = sanitized.replace(/^[0]+([\d]+)/, '$1');
 
     // Last, enforce the length of the input.
-    sanitized = this._enforceInputLengths(sanitized, displayCurrency, displayUnit);
+    sanitized = enforceInputLengths(sanitized, displayCurrency, displayUnit);
 
     return sanitized;
   }
