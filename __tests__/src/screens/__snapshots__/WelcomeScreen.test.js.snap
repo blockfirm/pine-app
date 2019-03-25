@@ -41,8 +41,9 @@ exports[`WelcomeScreen renders correctly 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#ffffff",
-          "bottom": 30,
+          "bottom": 0,
           "left": 40,
+          "paddingBottom": 30,
           "position": "absolute",
           "right": 40,
         },
@@ -168,7 +169,7 @@ exports[`WelcomeScreen renders correctly 1`] = `
                 "width": null,
               },
               Object {
-                "marginBottom": 10,
+                "marginBottom": 5,
                 "marginTop": 30,
               },
             ],

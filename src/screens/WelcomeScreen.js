@@ -3,6 +3,7 @@ import { StyleSheet, StatusBar, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import iCloudAccountStatus from 'react-native-icloud-account-status';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import { reset as navigateWithReset } from '../actions/navigate';
 import { handle as handleError } from '../actions/error';
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
   },
   link: {
     marginTop: 30,
-    marginBottom: 10
+    marginBottom: ifIphoneX(0, 5)
   },
   linkLabel: {
     color: 'white'

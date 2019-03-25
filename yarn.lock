@@ -5211,6 +5211,10 @@ react-native-section-list-get-item-layout@^2.2.3:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/react-native-section-list-get-item-layout/-/react-native-section-list-get-item-layout-2.2.3.tgz#152a8efdcb3847dbcbeb04cd2d0de4312d3d2fcb"
 
+react-native-static-safe-area-insets@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-static-safe-area-insets/-/react-native-static-safe-area-insets-1.2.0.tgz#52945869a7f8fdc96b140e9f9e34e416d1dfce1b"
+
 react-native-tab-view@^0.0.77:
   version "0.0.77"
   resolved "http://registry.npmjs.org/react-native-tab-view/-/react-native-tab-view-0.0.77.tgz#11ceb8e7c23100d07e628dc151b57797524d00d4"

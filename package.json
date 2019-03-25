@@ -52,6 +52,7 @@
     "react-native-randombytes": "^3.0.0",
     "react-native-search-bar": "^3.4.2",
     "react-native-section-list-get-item-layout": "^2.2.3",
+    "react-native-static-safe-area-insets": "^1.2.0",
     "react-native-text-gradient": "^0.0.16",
     "react-native-tooltip": "^5.2.0",
     "react-native-touch-id": "git+https://github.com/blockfirm/react-native-touch-id.git",

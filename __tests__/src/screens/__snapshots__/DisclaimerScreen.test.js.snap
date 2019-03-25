@@ -257,8 +257,9 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
         Object {
           "alignItems": "center",
           "backgroundColor": "#ffffff",
-          "bottom": 30,
+          "bottom": 0,
           "left": 40,
+          "paddingBottom": 30,
           "position": "absolute",
           "right": 40,
         },
@@ -684,8 +685,9 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
         Object {
           "alignItems": "center",
           "backgroundColor": "#ffffff",
-          "bottom": 30,
+          "bottom": 0,
           "left": 40,
+          "paddingBottom": 30,
           "position": "absolute",
           "right": 40,
         },

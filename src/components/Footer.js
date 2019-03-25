@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
+import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 const styles = StyleSheet.create({
@@ -8,9 +9,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#ffffff',
     position: 'absolute',
-    bottom: ifIphoneX(54, 30),
+    bottom: StaticSafeAreaInsets.safeAreaInsetsBottom,
     left: 40,
-    right: 40
+    right: 40,
+    paddingBottom: ifIphoneX(20, 30)
   },
   withToolbar: {
     marginBottom: 90
