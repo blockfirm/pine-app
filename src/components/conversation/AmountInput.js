@@ -25,6 +25,14 @@ const styles = StyleSheet.create({
   }
 });
 
+const getAmountAsNumber = (amount) => {
+  if (!amount) {
+    return 0;
+  }
+
+  return parseFloat(amount.replace(DECIMAL_SEPARATOR, '.'));
+};
+
 export default class AmountInput extends Component {
   state = {
     amount: ''
@@ -106,6 +114,7 @@ export default class AmountInput extends Component {
 
   _setAmount(amount) {
     this.setState({ amount });
+    this.props.onChangeAmount(getAmountAsNumber(amount));
   }
 
   _onChangeText(text) {
@@ -135,5 +144,6 @@ export default class AmountInput extends Component {
 
 AmountInput.propTypes = {
   displayCurrency: PropTypes.string.isRequired,
-  displayUnit: PropTypes.string.isRequired
+  displayUnit: PropTypes.string.isRequired,
+  onChangeAmount: PropTypes.func.isRequired
 };

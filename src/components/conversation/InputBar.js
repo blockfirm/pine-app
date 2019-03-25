@@ -18,11 +18,26 @@ const styles = StyleSheet.create({
 });
 
 export default class InputBar extends Component {
+  state = {
+    amount: 0
+  }
+
+  constructor() {
+    super(...arguments);
+    this._onChangeAmount = this._onChangeAmount.bind(this);
+  }
+
+  _onChangeAmount(amount) {
+    this.setState({ amount });
+  }
+
   render() {
+    const buttonDisabled = !this.state.amount;
+
     return (
       <View style={styles.toolbar}>
-        <AmountInput displayCurrency='BTC' displayUnit='BTC' />
-        <SendButton disabled={true} style={styles.sendButton} />
+        <AmountInput displayCurrency='BTC' displayUnit='BTC' onChangeAmount={this._onChangeAmount} />
+        <SendButton disabled={buttonDisabled} style={styles.sendButton} />
       </View>
     );
   }
