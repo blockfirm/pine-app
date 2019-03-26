@@ -6,6 +6,11 @@ import AmountInput from './AmountInput';
 import UnitPicker from './UnitPicker';
 import SendButton from './SendButton';
 
+import {
+  UNIT_BTC,
+  convert as convertBitcoin
+} from '../../crypto/bitcoin/convert';
+
 const CURRENCY_BTC = 'BTC';
 
 const styles = StyleSheet.create({
@@ -34,7 +39,8 @@ export default class InputBar extends Component {
     this.state = {
       amount: 0,
       currency: primaryCurrency,
-      unit: primaryCurrency === CURRENCY_BTC ? defaultBitcoinUnit : null
+      unit: primaryCurrency === CURRENCY_BTC ? defaultBitcoinUnit : null,
+      insufficientFunds: false
     };
 
     this._onChangeAmount = this._onChangeAmount.bind(this);
@@ -43,16 +49,39 @@ export default class InputBar extends Component {
 
   _onChangeAmount(amount) {
     this.setState({ amount });
+    this._checkBalance(amount);
   }
 
   _onChangeUnit({ currency, unit }) {
     this.setState({ currency, unit });
   }
 
+  _getBtcAmount(amount) {
+    const { currency, unit } = this.state;
+    let amountBtc = 0;
+
+    if (currency === CURRENCY_BTC) {
+      amountBtc = convertBitcoin(amount, unit, UNIT_BTC);
+    } else {
+      const fiatRate = this.props.fiatRates[currency];
+      amountBtc = fiatRate ? (amount / fiatRate) : 0;
+    }
+
+    return amountBtc;
+  }
+
+  _checkBalance(amount) {
+    const { spendableBalance } = this.props;
+    const amountBtc = this._getBtcAmount(amount);
+    const insufficientFunds = amountBtc > spendableBalance;
+
+    this.setState({ insufficientFunds });
+  }
+
   render() {
     const { primaryCurrency, secondaryCurrency } = this.props;
-    const { amount, currency, unit } = this.state;
-    const buttonDisabled = !amount;
+    const { amount, currency, unit, insufficientFunds } = this.state;
+    const buttonDisabled = !amount || insufficientFunds;
 
     return (
       <View style={styles.toolbar}>
@@ -60,6 +89,7 @@ export default class InputBar extends Component {
           currency={currency}
           unit={unit}
           onChangeAmount={this._onChangeAmount}
+          hasError={insufficientFunds}
         />
         <UnitPicker
           primaryCurrency={primaryCurrency}
@@ -78,5 +108,7 @@ export default class InputBar extends Component {
 InputBar.propTypes = {
   primaryCurrency: PropTypes.string.isRequired,
   secondaryCurrency: PropTypes.string.isRequired,
-  defaultBitcoinUnit: PropTypes.string.isRequired
+  defaultBitcoinUnit: PropTypes.string.isRequired,
+  spendableBalance: PropTypes.number.isRequired,
+  fiatRates: PropTypes.object.isRequired
 };

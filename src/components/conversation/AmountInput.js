@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 17,
     color: '#000000'
+  },
+  error: {
+    color: '#FF3B30'
   }
 });
 
@@ -135,11 +138,16 @@ export default class AmountInput extends Component {
   }
 
   render() {
+    const style = [
+      styles.input,
+      this.props.hasError ? styles.error : null
+    ];
+
     return (
       <View style={styles.container}>
         <TextInput
           {...this.props}
-          style={styles.input}
+          style={style}
           keyboardType='decimal-pad'
           autoCorrect={false}
           value={this.state.amount}
@@ -157,5 +165,6 @@ export default class AmountInput extends Component {
 AmountInput.propTypes = {
   onChangeAmount: PropTypes.func.isRequired,
   currency: PropTypes.string.isRequired,
-  unit: PropTypes.string
+  unit: PropTypes.string,
+  hasError: PropTypes.bool
 };
