@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: '#000000'
   },
+  disabled: {
+    color: '#999999'
+  },
   error: {
     color: '#FF3B30'
   }
@@ -137,16 +140,22 @@ export default class AmountInput extends Component {
     this._setAmount(sanitizedAmount);
   }
 
+  focus() {
+    this._input.focus();
+  }
+
   render() {
     const style = [
       styles.input,
-      this.props.hasError ? styles.error : null
+      this.props.hasError ? styles.error : null,
+      !this.props.editable ? styles.disabled : null
     ];
 
     return (
       <View style={styles.container}>
         <TextInput
           {...this.props}
+          ref={(ref) => { this._input = ref; }}
           style={style}
           keyboardType='decimal-pad'
           autoCorrect={false}

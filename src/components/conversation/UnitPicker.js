@@ -74,11 +74,11 @@ export default class UnitPicker extends Component {
   }
 
   render() {
-    const { currency, unit } = this.props;
+    const { currency, unit, disabled } = this.props;
     const title = currency === CURRENCY_BTC ? unit : currency;
 
     return (
-      <TouchableOpacity onPress={this._showOptions.bind(this)} style={this.props.style}>
+      <TouchableOpacity onPress={this._showOptions.bind(this)} disabled={disabled} style={this.props.style}>
         <View style={styles.wrapper}>
           <StyledText style={styles.title}>{title}</StyledText>
           <Icon name='ios-arrow-down' style={styles.arrow} />
@@ -94,5 +94,6 @@ UnitPicker.propTypes = {
   secondaryCurrency: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   unit: PropTypes.string,
-  style: PropTypes.any
+  style: PropTypes.any,
+  disabled: PropTypes.bool
 };

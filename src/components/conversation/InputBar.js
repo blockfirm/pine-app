@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import AmountInput from './AmountInput';
 import UnitPicker from './UnitPicker';
 import SendButton from './SendButton';
+import CancelButton from './CancelButton';
 
 import {
   UNIT_BTC,
@@ -27,6 +28,10 @@ const styles = StyleSheet.create({
   sendButton: {
     position: 'absolute',
     right: 22
+  },
+  cancelButton: {
+    position: 'absolute',
+    right: 22
   }
 });
 
@@ -40,11 +45,14 @@ export default class InputBar extends Component {
       amount: 0,
       currency: primaryCurrency,
       unit: primaryCurrency === CURRENCY_BTC ? defaultBitcoinUnit : null,
-      insufficientFunds: false
+      insufficientFunds: false,
+      confirmTransaction: false
     };
 
     this._onChangeAmount = this._onChangeAmount.bind(this);
     this._onChangeUnit = this._onChangeUnit.bind(this);
+    this._onSendPress = this._onSendPress.bind(this);
+    this._onCancelPress = this._onCancelPress.bind(this);
   }
 
   _onChangeAmount(amount) {
@@ -78,18 +86,53 @@ export default class InputBar extends Component {
     this.setState({ insufficientFunds });
   }
 
+  _onSendPress() {
+    this.setState({ confirmTransaction: true });
+    this.props.onSendPress();
+  }
+
+  _onCancelPress() {
+    this.setState({ confirmTransaction: false }, () => {
+      this.props.onCancelPress();
+      this._amountInput.focus();
+    });
+  }
+
+  _renderButton() {
+    const { amount, insufficientFunds, confirmTransaction } = this.state;
+    const sendDisabled = !amount || insufficientFunds;
+
+    if (confirmTransaction) {
+      return (
+        <CancelButton
+          style={styles.cancelButton}
+          onPress={this._onCancelPress}
+        />
+      );
+    }
+
+    return (
+      <SendButton
+        disabled={sendDisabled}
+        style={styles.sendButton}
+        onPress={this._onSendPress}
+      />
+    );
+  }
+
   render() {
     const { primaryCurrency, secondaryCurrency } = this.props;
-    const { amount, currency, unit, insufficientFunds } = this.state;
-    const buttonDisabled = !amount || insufficientFunds;
+    const { currency, unit, insufficientFunds, confirmTransaction } = this.state;
 
     return (
       <View style={styles.toolbar}>
         <AmountInput
+          ref={(ref) => { this._amountInput = ref; }}
           currency={currency}
           unit={unit}
           onChangeAmount={this._onChangeAmount}
           hasError={insufficientFunds}
+          editable={!confirmTransaction}
         />
         <UnitPicker
           primaryCurrency={primaryCurrency}
@@ -98,8 +141,9 @@ export default class InputBar extends Component {
           unit={unit}
           onChangeUnit={this._onChangeUnit}
           style={styles.unitPicker}
+          disabled={confirmTransaction}
         />
-        <SendButton disabled={buttonDisabled} style={styles.sendButton} />
+        { this._renderButton() }
       </View>
     );
   }
@@ -110,5 +154,7 @@ InputBar.propTypes = {
   secondaryCurrency: PropTypes.string.isRequired,
   defaultBitcoinUnit: PropTypes.string.isRequired,
   spendableBalance: PropTypes.number.isRequired,
-  fiatRates: PropTypes.object.isRequired
+  fiatRates: PropTypes.object.isRequired,
+  onSendPress: PropTypes.func.isRequired,
+  onCancelPress: PropTypes.func.isRequired
 };
