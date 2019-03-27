@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
     right: 0,
     fontSize: 15,
     paddingTop: 9.5
+  },
+  disabled: {
+    opacity: 0.75
   }
 });
 
@@ -77,8 +80,13 @@ export default class UnitPicker extends Component {
     const { currency, unit, disabled } = this.props;
     const title = currency === CURRENCY_BTC ? unit : currency;
 
+    const style = [
+      this.props.style,
+      disabled && styles.disabled
+    ];
+
     return (
-      <TouchableOpacity onPress={this._showOptions.bind(this)} disabled={disabled} style={this.props.style}>
+      <TouchableOpacity onPress={this._showOptions.bind(this)} disabled={disabled} style={style}>
         <View style={styles.wrapper}>
           <StyledText style={styles.title}>{title}</StyledText>
           <Icon name='ios-arrow-down' style={styles.arrow} />
