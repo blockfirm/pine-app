@@ -134,6 +134,8 @@ export default class ConfirmTransaction extends Component {
   }
 
   render() {
+    const { fee } = this.props;
+
     return (
       <View style={[styles.view, this.props.style]}>
         <View style={styles.details}>
@@ -156,6 +158,7 @@ export default class ConfirmTransaction extends Component {
             onPress={() => {}}
             showLoader={true}
             hapticFeedback={true}
+            disabled={fee === null}
           />
         </Footer>
       </View>
