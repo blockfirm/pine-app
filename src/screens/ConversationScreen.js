@@ -24,7 +24,7 @@ import ContentView from '../components/ContentView';
 import HeaderTitle from '../components/conversation/HeaderTitle';
 import BackButton from '../components/BackButton';
 import Avatar from '../components/Avatar';
-import ConfirmTransaction from '../components/conversation/ConfirmTransaction';
+import ConfirmTransactionContainer from '../containers/conversation/ConfirmTransactionContainer';
 import ContactRequestContainer from '../containers/conversation/ContactRequestContainer';
 import InputBarContainer from '../containers/conversation/InputBarContainer';
 import BaseScreen from './BaseScreen';
@@ -105,6 +105,8 @@ export default class ConversationScreen extends Component {
 
   state = {
     confirmTransaction: false,
+    amountBtc: 0,
+    displayUnit: 'BTC',
     keyboardHeight: 0,
     keyboardAnimationDuration: 300,
     keyboardAnimationEasing: null,
@@ -145,7 +147,14 @@ export default class ConversationScreen extends Component {
 
   componentWillUnmount() {
     this._markConversationAsRead();
-    this._listeners.forEach((listener) => listener.remove());
+
+    this._listeners.forEach((listener) => {
+      try {
+        listener.remove();
+      } catch(error) {
+        // Ignore errors.
+      }
+    });
   }
 
   _onKeyboardDidShow(event) {
@@ -209,8 +218,12 @@ export default class ConversationScreen extends Component {
     this.props.navigation.goBack();
   }
 
-  _onSendPress() {
-    this.setState({ confirmTransaction: true });
+  _onSendPress({ amountBtc, displayUnit }) {
+    this.setState({
+      confirmTransaction: true,
+      amountBtc,
+      displayUnit
+    });
 
     if (this.state.keyboardIsVisible) {
       return Keyboard.dismiss();
@@ -255,7 +268,13 @@ export default class ConversationScreen extends Component {
   }
 
   _renderConfirmTransactionView() {
-    const { keyboardHeight, confirmTransaction, keyboardIsVisible } = this.state;
+    const {
+      keyboardHeight,
+      confirmTransaction,
+      keyboardIsVisible,
+      amountBtc,
+      displayUnit
+    } = this.state;
 
     if (!keyboardHeight) {
       return;
@@ -268,8 +287,16 @@ export default class ConversationScreen extends Component {
       minHeight: keyboardHeight
     };
 
+    // TODO: Get a new address from the contact's pine server.
+    const dummyAddress = '2NAugvQayt9ep51HVNUfhTNoBNh2pwPTkda';
+
     return (
-      <ConfirmTransaction style={style} />
+      <ConfirmTransactionContainer
+        style={style}
+        amountBtc={amountBtc}
+        displayUnit={displayUnit}
+        address={dummyAddress}
+      />
     );
   }
 

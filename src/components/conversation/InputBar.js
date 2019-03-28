@@ -87,8 +87,11 @@ export default class InputBar extends Component {
   }
 
   _onSendPress() {
+    const amountBtc = this._getBtcAmount(this.state.amount);
+    const displayUnit = this.state.unit || this.props.defaultBitcoinUnit;
+
     this.setState({ confirmTransaction: true });
-    this.props.onSendPress();
+    this.props.onSendPress({ amountBtc, displayUnit });
   }
 
   _onCancelPress() {
