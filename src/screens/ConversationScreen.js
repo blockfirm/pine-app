@@ -150,10 +150,9 @@ export default class ConversationScreen extends Component {
     this._markConversationAsRead();
 
     this._listeners.forEach((listener) => {
-      try {
+      if (!listener.removed) {
         listener.remove();
-      } catch(error) {
-        // Ignore errors.
+        listener.removed = true;
       }
     });
   }
@@ -242,7 +241,11 @@ export default class ConversationScreen extends Component {
   _onCancelPress() {
     const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
       this.setState({ confirmTransaction: false });
-      keyboardDidShowListener.remove();
+
+      if (!keyboardDidShowListener.removed) {
+        keyboardDidShowListener.remove();
+        keyboardDidShowListener.removed = true;
+      }
     });
 
     this._listeners.push(keyboardDidShowListener);
