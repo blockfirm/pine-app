@@ -11,4 +11,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(InputBar);
+export default connect(
+  mapStateToProps,
+  null,
+  null,
+  { withRef: true }
+)(InputBar);

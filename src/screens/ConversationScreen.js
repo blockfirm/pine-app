@@ -124,6 +124,7 @@ export default class ConversationScreen extends Component {
 
     this._onSendPress = this._onSendPress.bind(this);
     this._onCancelPress = this._onCancelPress.bind(this);
+    this._onTransactionSent = this._onTransactionSent.bind(this);
 
     this._onKeyboardDidShow = this._onKeyboardDidShow.bind(this);
     this._onKeyboardDidHide = this._onKeyboardDidHide.bind(this);
@@ -247,6 +248,19 @@ export default class ConversationScreen extends Component {
     this._listeners.push(keyboardDidShowListener);
   }
 
+  _onTransactionSent() {
+    const animation = LayoutAnimation.create(
+      this.state.keyboardAnimationDuration,
+      LayoutAnimation.Types[this.state.keyboardAnimationEasing],
+      LayoutAnimation.Properties.opacity,
+    );
+
+    LayoutAnimation.configureNext(animation);
+
+    this.setState({ confirmTransaction: false });
+    this._inputBar.reset();
+  }
+
   _renderContactRequest(contact) {
     return (
       <ContactRequestContainer
@@ -261,6 +275,7 @@ export default class ConversationScreen extends Component {
   _renderInputBar() {
     return (
       <InputBarContainer
+        ref={(ref) => { this._inputBar = ref && ref.getWrappedInstance(); }}
         onSendPress={this._onSendPress}
         onCancelPress={this._onCancelPress}
       />
@@ -296,6 +311,7 @@ export default class ConversationScreen extends Component {
         amountBtc={amountBtc}
         displayUnit={displayUnit}
         address={dummyAddress}
+        onTransactionSent={this._onTransactionSent}
       />
     );
   }

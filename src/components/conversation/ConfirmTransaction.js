@@ -155,7 +155,7 @@ export default class ConfirmTransaction extends Component {
         <Footer style={styles.footer}>
           <Button
             label={this._getButtonLabel()}
-            onPress={() => {}}
+            onPress={this.props.onPayPress}
             showLoader={true}
             hapticFeedback={true}
             disabled={fee === null}
@@ -175,5 +175,6 @@ ConfirmTransaction.propTypes = {
   inputs: PropTypes.array,
   fee: PropTypes.number,
   cannotAffordFee: PropTypes.bool,
+  onPayPress: PropTypes.func,
   style: PropTypes.any
 };

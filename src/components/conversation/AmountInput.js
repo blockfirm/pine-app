@@ -144,6 +144,10 @@ export default class AmountInput extends Component {
     this._input.focus();
   }
 
+  reset() {
+    this.setState({ amount: '' });
+  }
+
   render() {
     const style = [
       styles.input,

@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ReactNativeHaptic from 'react-native-haptic';
 
-import { create as createTransaction } from '../../actions/bitcoin/wallet/transactions/create';
+import {
+  create as createTransaction,
+  sign as signTransaction
+} from '../../actions/bitcoin/wallet/transactions';
+
 import { handle as handleError } from '../../actions/error/handle';
+import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
 
 const mapStateToProps = (state) => {
@@ -16,7 +22,8 @@ class ConfirmTransactionContainer extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     address: PropTypes.string,
-    amountBtc: PropTypes.number
+    amountBtc: PropTypes.number,
+    onTransactionSent: PropTypes.func
   };
 
   state = {
@@ -24,6 +31,11 @@ class ConfirmTransactionContainer extends Component {
     inputs: null,
     fee: null,
     cannotAffordFee: false
+  }
+
+  constructor() {
+    super(...arguments);
+    this._onPayPress = this._onPayPress.bind(this);
   }
 
   componentDidMount() {
@@ -46,6 +58,31 @@ class ConfirmTransactionContainer extends Component {
       });
   }
 
+  _signAndPay() {
+    const { dispatch } = this.props;
+    const { transaction, inputs } = this.state;
+
+    return dispatch(signTransaction(transaction, inputs))
+      .then(() => {
+        return transaction.build().toHex();
+      })
+      .then(() => {
+        ReactNativeHaptic.generate('notificationSuccess');
+        this.props.onTransactionSent();
+      })
+      .catch((error) => {
+        dispatch(handleError(error));
+      });
+  }
+
+  _onPayPress() {
+    return authentication.authenticate().then((authenticated) => {
+      if (authenticated) {
+        return this._signAndPay();
+      }
+    });
+  }
+
   render() {
     const { transaction, inputs, fee, cannotAffordFee } = this.state;
 
@@ -56,6 +93,7 @@ class ConfirmTransactionContainer extends Component {
         inputs={inputs}
         fee={fee}
         cannotAffordFee={cannotAffordFee}
+        onPayPress={this._onPayPress}
       />
     );
   }
