@@ -1,20 +1,25 @@
 import bs58check from 'bs58check';
+import getAccountPublicKeyFromMnemonic from '../../crypto/getAccountPublicKeyFromMnemonic';
 import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../address';
 import { getAuthorizationHeader } from '../authentication';
+
+const BIP49_ACCOUNT_INDEX = 0;
 
 /**
  * Tries to register a Pine address.
  *
  * @param {string} pineAddress - Pine address to register.
  * @param {string} mnemonic - Mnemonic to use to authenticate the new address.
+ * @param {string} bitcoinNetwork - 'mainnet' or 'testnet' – needed for the extended public key.
  *
  * @returns {Promise} A promise that resolves to the created user.
  */
-const create = (pineAddress, mnemonic) => {
+const create = (pineAddress, mnemonic, bitcoinNetwork) => {
   const { username, hostname } = parseAddress(pineAddress);
   const keyPair = getKeyPairFromMnemonic(mnemonic);
   const publicKey = keyPair.publicKey;
+  const extendedPublicKey = getAccountPublicKeyFromMnemonic(mnemonic, bitcoinNetwork, BIP49_ACCOUNT_INDEX);
   const userId = getUserIdFromPublicKey(publicKey);
 
   const baseUrl = resolveBaseUrl(hostname);
@@ -23,6 +28,7 @@ const create = (pineAddress, mnemonic) => {
 
   const body = {
     publicKey: bs58check.encode(publicKey),
+    extendedPublicKey,
     username
   };
 

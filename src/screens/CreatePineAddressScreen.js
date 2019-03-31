@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
 
 @connect((state) => ({
   keys: state.keys.items,
-  defaultPineAddressHostname: state.settings.defaultPineAddressHostname
+  defaultPineAddressHostname: state.settings.defaultPineAddressHostname,
+  bitcoinNetwork: state.settings.bitcoin.network
 }))
 export default class CreatePineAddressScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -97,7 +98,7 @@ export default class CreatePineAddressScreen extends Component {
   }
 
   _onSubmit() {
-    const { dispatch } = this.props;
+    const { dispatch, bitcoinNetwork } = this.props;
     const { username, domain } = this.state;
     const pineAddress = `${username}@${domain}`;
 
@@ -105,7 +106,7 @@ export default class CreatePineAddressScreen extends Component {
 
     return this._getMnemonic()
       .then((mnemonic) => {
-        return createUser(pineAddress, mnemonic);
+        return createUser(pineAddress, mnemonic, bitcoinNetwork);
       })
       .then((user) => {
         dispatch(settingsActions.saveUserProfile(pineAddress, user));
@@ -197,5 +198,6 @@ CreatePineAddressScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   keys: PropTypes.object,
-  defaultPineAddressHostname: PropTypes.string
+  defaultPineAddressHostname: PropTypes.string,
+  bitcoinNetwork: PropTypes.string
 };

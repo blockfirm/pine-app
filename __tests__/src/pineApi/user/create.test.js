@@ -16,19 +16,21 @@ describe('create', () => {
     expect(typeof create).toBe('function');
   });
 
-  it('accepts two arguments', () => {
-    expect(create.length).toBe(2);
+  it('accepts three arguments', () => {
+    expect(create.length).toBe(3);
   });
 
   describe('when creating a new user with address "timothy@pine.cash"', () => {
     let address;
     let mnemonic;
+    let bitcoinNetwork;
 
     beforeEach(() => {
       address = 'timothy@pine.cash';
       mnemonic = 'test boss fly battle rubber wasp afraid whale hamster guide vibrant tattoo';
+      bitcoinNetwork = 'testnet';
 
-      create(address, mnemonic);
+      create(address, mnemonic, bitcoinNetwork);
     });
 
     describe('the HTTP request', () => {
@@ -60,7 +62,7 @@ describe('create', () => {
 
         it('has header "Authorization" set to a signature of the request', () => {
           expect(options.headers).toBeTruthy();
-          expect(options.headers['Authorization']).toBe('Basic QXVDOHp3aHJoV01jdkM4Rm9XQXhKQTdIbk11Qno1VzVuOkg2bG91SExzSHBLQW02ME5NMnpsakFmbDQyTnBTbjNlYWtEOEpUTEtzOEE1UENWTm5UKzZpTHVIZWlOazRiYlBFZmYzcXd0QmttOVlZTFRyZW0rYWg5ND0=');
+          expect(options.headers['Authorization']).toBe('Basic QXVDOHp3aHJoV01jdkM4Rm9XQXhKQTdIbk11Qno1VzVuOkgrcEh1aUhxMkVHSkErbFB2eVhFQ01sMVN6YVVyREF0MXEwRU5Wd3Rra0tvZE5naHpQakFBbnozc1VIbzdmWXRoK0djSXFKSWUxdjBVMEN0YW9WSXRwST0=');
         });
 
         describe('the body', () => {
@@ -72,6 +74,11 @@ describe('create', () => {
           it('has publicKey set to "6wwD1rXXJWq47AgwntDgbqqmby6NqUqbNmjU2V4wVo4qS2zWyF"', () => {
             const body = JSON.parse(options.body);
             expect(body.publicKey).toBe('6wwD1rXXJWq47AgwntDgbqqmby6NqUqbNmjU2V4wVo4qS2zWyF');
+          });
+
+          it('has extendedPublicKey set to the extended public key for BIP49 account 0 for the mnemonic', () => {
+            const body = JSON.parse(options.body);
+            expect(body.extendedPublicKey).toBe('tpubDCRsxDU6ZjHA1jpa7ceek6ixhDS6qY3oqqcmUG6ycGcSW4qcTgzJURiw8Kph6c7NgKjzJt8vq6d2UwocjHAvpGi7cQNEwuZzShnu5yNnHPt');
           });
 
           it('has username set to "timothy"', () => {
