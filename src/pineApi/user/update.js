@@ -7,6 +7,7 @@ import { getAuthorizationHeader } from '../authentication';
  *
  * @param {object} user - User profile to save.
  * @param {string} user.displayName - Display name of the user.
+ * @param {number} user.addressIndex - The index of the next unused BIP49 address.
  * @param {object} credentials - User credentials for authentication.
  * @param {string} credentials.address - Pine address of the user to authenticate.
  * @param {string} credentials.mnemonic - Mnemonic to authenticate and sign the request with.
@@ -25,7 +26,8 @@ const update = (user, credentials) => {
   const url = `${baseUrl}${path}`;
 
   const body = {
-    displayName: user.displayName
+    displayName: user.displayName,
+    addressIndex: user.addressIndex
   };
 
   const rawBody = JSON.stringify(body);
