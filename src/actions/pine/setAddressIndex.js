@@ -28,6 +28,8 @@ const getUnusedAddressIndex = (addresses) => {
     if (address.used) {
       return Math.max(max, address.index);
     }
+
+    return max;
   }, -1);
 
   return lastUsedAddressIndex + 1;
