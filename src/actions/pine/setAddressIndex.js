@@ -23,6 +23,16 @@ const setAddressIndexFailure = (error) => {
   };
 };
 
+const getUnusedAddressIndex = (addresses) => {
+  const lastUsedAddressIndex = addresses.reduce((max, address) => {
+    if (address.used) {
+      return Math.max(max, address.index);
+    }
+  }, -1);
+
+  return lastUsedAddressIndex + 1;
+};
+
 /**
  * Action to save the index of the next unused address
  * to the user's Pine account. This is used by the server
@@ -32,8 +42,8 @@ export const setAddressIndex = () => {
   return (dispatch, getState) => {
     const state = getState();
     const { credentials } = state.pine;
-    const addresses = Object.keys(state.bitcoin.wallet.addresses.external.items);
-    const addressIndex = addresses.length > 0 ? (addresses.length - 1) : 0;
+    const addresses = Object.values(state.bitcoin.wallet.addresses.external.items);
+    const addressIndex = getUnusedAddressIndex(addresses);
 
     if (!addressIndex || !credentials) {
       return Promise.resolve();

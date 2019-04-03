@@ -55,8 +55,9 @@ const getCurrentAddressIndex = (state, internal) => {
     allAddresses = state.bitcoin.wallet.addresses.external.items;
   }
 
-  const length = Object.keys(allAddresses).length;
-  const currentIndex = length - 1;
+  const currentIndex = Object.values(allAddresses).reduce((max, address) => {
+    return Math.max(max, address.index);
+  }, 0);
 
   return currentIndex;
 };

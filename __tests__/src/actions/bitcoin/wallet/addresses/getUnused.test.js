@@ -34,14 +34,14 @@ const getStateMock = jest.fn(() => ({
       addresses: {
         external: {
           items: {
-            'mjcyVnV7QobWh2HY7zsQrmizoyp5g2XsJb': { used: true },
-            'mxp61ayhfiEaCmLYiaaaKn5pZwFNPBMRbt': { used: true }
+            'mjcyVnV7QobWh2HY7zsQrmizoyp5g2XsJb': { index: 0, used: true },
+            'mxp61ayhfiEaCmLYiaaaKn5pZwFNPBMRbt': { index: 1, used: true }
           }
         },
         internal: {
           items: {
-            'munqYEEL88K3bGw7K5fn4rAGqHqqGM1ZXr': { used: true },
-            'muVNCbM3yqWnU4CxeBzqQyNXFAh1FHAxDU': { used: false }
+            'munqYEEL88K3bGw7K5fn4rAGqHqqGM1ZXr': { index: 0, used: true },
+            'muVNCbM3yqWnU4CxeBzqQyNXFAh1FHAxDU': { index: 1, used: false }
           }
         }
       }
