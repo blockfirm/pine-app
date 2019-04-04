@@ -168,7 +168,6 @@ export default class ConfirmTransaction extends Component {
 
 ConfirmTransaction.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  address: PropTypes.string.isRequired,
   amountBtc: PropTypes.number.isRequired,
   displayUnit: PropTypes.string.isRequired,
   transaction: PropTypes.object,

@@ -8,6 +8,9 @@ import {
   sign as signTransaction
 } from '../../actions/bitcoin/wallet/transactions';
 
+import { sync as syncWallet } from '../../actions/bitcoin/wallet';
+import { post as postTransaction } from '../../actions/bitcoin/blockchain/transactions';
+import { getAddress } from '../../actions/pine/contacts/getAddress';
 import { handle as handleError } from '../../actions/error/handle';
 import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
@@ -21,12 +24,13 @@ const mapStateToProps = (state) => {
 class ConfirmTransactionContainer extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
-    address: PropTypes.string,
+    contact: PropTypes.object,
     amountBtc: PropTypes.number,
     onTransactionSent: PropTypes.func
   };
 
   state = {
+    address: null,
     transaction: null,
     inputs: null,
     fee: null,
@@ -42,10 +46,41 @@ class ConfirmTransactionContainer extends Component {
     this._createTransaction();
   }
 
-  _createTransaction() {
-    const { dispatch, address, amountBtc } = this.props;
+  componentDidUpdate(prevProps) {
+    if (this.props.amountBtc !== prevProps.amountBtc) {
+      this._createTransaction();
+    }
 
-    dispatch(createTransaction(amountBtc, address))
+    if (this.props.contact !== prevProps.contact) {
+      this.setState({ address: null });
+    }
+  }
+
+  _getAddress() {
+    const { dispatch, contact } = this.props;
+
+    if (this.state.address) {
+      return Promise.resolve(this.state.address);
+    }
+
+    return dispatch(getAddress(contact));
+  }
+
+  _createTransaction() {
+    const { dispatch, amountBtc } = this.props;
+
+    this.setState({
+      transaction: null,
+      inputs: null,
+      fee: null,
+      cannotAffordFee: false
+    });
+
+    return this._getAddress()
+      .then((address) => {
+        this.setState({ address });
+        return dispatch(createTransaction(amountBtc, address));
+      })
       .then(({ transaction, inputs, fee }) => {
         if (fee === undefined) {
           return this.setState({ cannotAffordFee: true });
@@ -65,6 +100,18 @@ class ConfirmTransactionContainer extends Component {
     return dispatch(signTransaction(transaction, inputs))
       .then(() => {
         return transaction.build().toHex();
+      })
+      .then((rawTransaction) => {
+        /**
+         * TODO: Instead of broadcasting the transaction here,
+         * wrap it in an encrypted Pine message and send it to
+         * the recipient for validation and submission.
+         */
+        return dispatch(postTransaction(rawTransaction));
+      })
+      .then(() => {
+        // Sync wallet before finishing.
+        return dispatch(syncWallet());
       })
       .then(() => {
         ReactNativeHaptic.generate('notificationSuccess');

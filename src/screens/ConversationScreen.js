@@ -286,6 +286,8 @@ export default class ConversationScreen extends Component {
   }
 
   _renderConfirmTransactionView() {
+    const { contact } = this.props.navigation.state.params;
+
     const {
       keyboardHeight,
       confirmTransaction,
@@ -305,15 +307,12 @@ export default class ConversationScreen extends Component {
       minHeight: keyboardHeight
     };
 
-    // TODO: Get a new address from the contact's pine server.
-    const dummyAddress = '2NAugvQayt9ep51HVNUfhTNoBNh2pwPTkda';
-
     return (
       <ConfirmTransactionContainer
         style={style}
         amountBtc={amountBtc}
         displayUnit={displayUnit}
-        address={dummyAddress}
+        contact={contact}
         onTransactionSent={this._onTransactionSent}
       />
     );
