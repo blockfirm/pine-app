@@ -46,7 +46,7 @@ const addAddress = (dispatch, address, index, internal) => {
   return dispatch(addExternalAddress(addressMap));
 };
 
-const getCurrentAddressIndex = (state, internal) => {
+const getNewAddressIndex = (state, internal) => {
   let allAddresses;
 
   if (internal) {
@@ -55,11 +55,15 @@ const getCurrentAddressIndex = (state, internal) => {
     allAddresses = state.bitcoin.wallet.addresses.external.items;
   }
 
-  const currentIndex = Object.values(allAddresses).reduce((max, address) => {
-    return Math.max(max, address.index);
-  }, 0);
+  const lastUsedAddressIndex = Object.values(allAddresses).reduce((max, address) => {
+    if (address.used) {
+      return Math.max(max, address.index);
+    }
 
-  return currentIndex;
+    return max;
+  }, -1);
+
+  return lastUsedAddressIndex + 1;
 };
 
 const getExistingUnused = (state, internal) => {
@@ -83,8 +87,7 @@ const getNewUnused = (state, internal) => {
   const keys = state.keys.items;
   const keyId = Object.keys(keys)[0];
   const key = keys[keyId];
-  const currentIndex = getCurrentAddressIndex(state, internal);
-  const nextIndex = currentIndex + 1;
+  const nextIndex = getNewAddressIndex(state, internal);
   const newAddress = generateAddress(key.accountPublicKey, network, internal, nextIndex);
 
   return {
