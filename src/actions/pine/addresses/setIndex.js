@@ -1,24 +1,24 @@
-import updateUser from '../../pineApi/user/update';
+import updateUser from '../../../pineApi/user/update';
 
-export const PINE_SET_ADDRESS_INDEX_REQUEST = 'PINE_SET_ADDRESS_INDEX_REQUEST';
-export const PINE_SET_ADDRESS_INDEX_SUCCESS = 'PINE_SET_ADDRESS_INDEX_SUCCESS';
-export const PINE_SET_ADDRESS_INDEX_FAILURE = 'PINE_SET_ADDRESS_INDEX_FAILURE';
+export const PINE_ADDRESSES_SET_INDEX_REQUEST = 'PINE_ADDRESSES_SET_INDEX_REQUEST';
+export const PINE_ADDRESSES_SET_INDEX_SUCCESS = 'PINE_ADDRESSES_SET_INDEX_SUCCESS';
+export const PINE_ADDRESSES_SET_INDEX_FAILURE = 'PINE_ADDRESSES_SET_INDEX_FAILURE';
 
-const setAddressIndexRequest = () => {
+const setIndexRequest = () => {
   return {
-    type: PINE_SET_ADDRESS_INDEX_REQUEST
+    type: PINE_ADDRESSES_SET_INDEX_REQUEST
   };
 };
 
-const setAddressIndexSuccess = () => {
+const setIndexSuccess = () => {
   return {
-    type: PINE_SET_ADDRESS_INDEX_SUCCESS
+    type: PINE_ADDRESSES_SET_INDEX_SUCCESS
   };
 };
 
-const setAddressIndexFailure = (error) => {
+const setIndexFailure = (error) => {
   return {
-    type: PINE_SET_ADDRESS_INDEX_FAILURE,
+    type: PINE_ADDRESSES_SET_INDEX_FAILURE,
     error
   };
 };
@@ -40,7 +40,7 @@ const getUnusedAddressIndex = (addresses) => {
  * to the user's Pine account. This is used by the server
  * to generate new unused addresses.
  */
-export const setAddressIndex = () => {
+export const setIndex = () => {
   return (dispatch, getState) => {
     const state = getState();
     const { credentials } = state.pine;
@@ -51,14 +51,14 @@ export const setAddressIndex = () => {
       return Promise.resolve();
     }
 
-    dispatch(setAddressIndexRequest());
+    dispatch(setIndexRequest());
 
     return updateUser({ addressIndex }, credentials)
       .then(() => {
-        dispatch(setAddressIndexSuccess());
+        dispatch(setIndexSuccess());
       })
       .catch((error) => {
-        dispatch(setAddressIndexFailure(error));
+        dispatch(setIndexFailure(error));
         throw error;
       });
   };

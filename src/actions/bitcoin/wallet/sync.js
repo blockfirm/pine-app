@@ -1,4 +1,5 @@
 import { InteractionManager } from 'react-native';
+import { sync as syncAddressesWithPineAccount } from '../../pine/addresses';
 import { getNewByAddress as getNewTransactionsByAddress } from '../blockchain/transactions/getNewByAddress';
 import { sync as syncSubscriptions } from '../subscriptions/sync';
 import { update as updateUtxos } from './utxos';
@@ -139,6 +140,7 @@ const getAllNewTransactions = (dispatch, state) => {
 export const sync = () => {
   return (dispatch, getState) => {
     const state = getState();
+    let newTransactions = [];
 
     if (state.bitcoin.wallet.syncing) {
       return Promise.resolve();
@@ -156,6 +158,8 @@ export const sync = () => {
         if (transactions.length === 0) {
           return;
         }
+
+        newTransactions = transactions;
 
         return waitForInteractions()
           .then(() => {
@@ -176,6 +180,9 @@ export const sync = () => {
           dispatch(getUnusedAddress()), // External address.
           dispatch(getUnusedAddress(true)) // Internal address.
         ]);
+      })
+      .then(() => {
+        return dispatch(syncAddressesWithPineAccount(newTransactions));
       })
       .then(() => {
         // Subscribe to push notifications.

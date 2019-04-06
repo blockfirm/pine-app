@@ -260,7 +260,11 @@ export default class ConversationScreen extends Component {
 
     LayoutAnimation.configureNext(animation);
 
-    this.setState({ confirmTransaction: false });
+    this.setState({
+      confirmTransaction: false,
+      amountBtc: 0
+    });
+
     this._inputBar.reset();
   }
 

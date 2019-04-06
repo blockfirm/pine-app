@@ -1,7 +1,6 @@
 import { sync as syncBitcoinWallet } from './bitcoin/wallet';
 import { sync as syncContacts } from './contacts';
 import { syncIncoming as syncIncomingContactRequests } from './contacts/contactRequests';
-import { setAddressIndex as saveAddressIndexToPineAccount } from './pine/setAddressIndex';
 
 export const SYNC_REQUEST = 'SYNC_REQUEST';
 export const SYNC_SUCCESS = 'SYNC_SUCCESS';
@@ -45,13 +44,6 @@ export const sync = () => {
       })
       .then(() => {
         return dispatch(syncBitcoinWallet());
-      })
-      .then(() => {
-        /**
-         * Send the current unused address index to the Pine server
-         * so it knows from where to generate new addresses.
-         */
-        return dispatch(saveAddressIndexToPineAccount());
       })
       .then(() => {
         dispatch(syncSuccess());

@@ -114,6 +114,14 @@ class ConfirmTransactionContainer extends Component {
         return dispatch(syncWallet());
       })
       .then(() => {
+        this.setState({
+          address: null,
+          transaction: null,
+          inputs: null,
+          fee: null,
+          cannotAffordFee: false
+        });
+
         ReactNativeHaptic.generate('notificationSuccess');
         this.props.onTransactionSent();
       })

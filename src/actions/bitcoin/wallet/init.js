@@ -1,3 +1,4 @@
+import { setIndex as setAddressIndexOnPineServer } from '../../pine/addresses';
 import { findAll as findAllAddresses } from '../blockchain/addresses/findAll';
 import { sync as syncSubscriptions } from '../subscriptions/sync';
 import { add as addExternalAddresses } from './addresses/external';
@@ -101,6 +102,9 @@ export const init = () => {
       .then(() => {
         // Generate a utxo set.
         return dispatch(updateUtxos());
+      })
+      .then(() => {
+        return dispatch(setAddressIndexOnPineServer());
       })
       .then(() => {
         // Subscribe to push notifications.

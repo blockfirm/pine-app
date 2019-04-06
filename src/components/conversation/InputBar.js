@@ -124,12 +124,8 @@ export default class InputBar extends Component {
   }
 
   reset() {
-    const { primaryCurrency, defaultBitcoinUnit } = this.props;
-
     this.setState({
       amount: 0,
-      currency: primaryCurrency,
-      unit: primaryCurrency === CURRENCY_BTC ? defaultBitcoinUnit : null,
       insufficientFunds: false,
       confirmTransaction: false
     });
