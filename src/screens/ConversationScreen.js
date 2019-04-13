@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
-  View,
   ScrollView,
   ActionSheetIOS,
   ActivityIndicator,
@@ -22,6 +21,7 @@ import { remove as removeContact, markAsRead } from '../actions/contacts';
 import headerStyles from '../styles/headerStyles';
 import ContentView from '../components/ContentView';
 import HeaderTitle from '../components/conversation/HeaderTitle';
+import EmptyConversation from '../components/conversation/EmptyConversation';
 import BackButton from '../components/BackButton';
 import Avatar from '../components/Avatar';
 import ConfirmTransactionContainer from '../containers/conversation/ConfirmTransactionContainer';
@@ -279,6 +279,12 @@ export default class ConversationScreen extends Component {
     );
   }
 
+  _renderEmptyConversation(contact) {
+    return (
+      <EmptyConversation contact={contact} />
+    );
+  }
+
   _renderInputBar() {
     return (
       <InputBarContainer
@@ -295,7 +301,6 @@ export default class ConversationScreen extends Component {
     const {
       keyboardHeight,
       confirmTransaction,
-      keyboardIsVisible,
       amountBtc,
       displayUnit
     } = this.state;
@@ -341,6 +346,7 @@ export default class ConversationScreen extends Component {
             contentContainerStyle={styles.scrollViewContent}
           >
             { contact.contactRequest && this._renderContactRequest(contact) }
+            { !contact.contactRequest && this._renderEmptyConversation(contact) }
           </ScrollView>
           { !contact.contactRequest && this._renderInputBar() }
           { this._renderConfirmTransactionView() }
