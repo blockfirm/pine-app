@@ -5,17 +5,17 @@ import PropTypes from 'prop-types';
 import headerStyles from '../styles/headerStyles';
 import StyledText from './StyledText';
 import Paragraph from './Paragraph';
-import Link from './Link';
+import SmallButton from './buttons/SmallButton';
 
 const illustration = require('../images/illustrations/EmptyListAvatar.png');
 
 const styles = StyleSheet.create({
   view: {
-    marginTop: '50%',
+    top: '50%',
+    marginTop: -30,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 40,
-    paddingBottom: 50
+    paddingHorizontal: 40
   },
   illustration: {
     width: 108,
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 22,
     paddingTop: 17,
+    marginBottom: 40,
     paddingLeft: 15,
     paddingRight: 15
   }
@@ -47,9 +48,7 @@ export default class TransactionListEmpty extends Component {
           Add a contact to start sending and receiving bitcoin.
         </Paragraph>
 
-        <Link onPress={this.props.onAddContactPress}>
-          Add Contact
-        </Link>
+        <SmallButton label='Add Contact' onPress={this.props.onAddContactPress} />
       </View>
     );
   }

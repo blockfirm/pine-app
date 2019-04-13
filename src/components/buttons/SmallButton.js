@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     borderRadius: 25,
-    paddingHorizontal: 40,
-    paddingVertical: 14
+    paddingHorizontal: 30,
+    paddingVertical: 12
   }
 });
 
