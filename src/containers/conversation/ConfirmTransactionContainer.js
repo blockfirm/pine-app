@@ -9,8 +9,8 @@ import {
 } from '../../actions/bitcoin/wallet/transactions';
 
 import { sync as syncWallet } from '../../actions/bitcoin/wallet';
-import { post as postTransaction } from '../../actions/bitcoin/blockchain/transactions';
 import { getAddress } from '../../actions/pine/contacts/getAddress';
+import { sendPayment } from '../../actions/pine/messages/sendPayment';
 import { handle as handleError } from '../../actions/error/handle';
 import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
@@ -94,7 +94,7 @@ class ConfirmTransactionContainer extends Component {
   }
 
   _signAndPay() {
-    const { dispatch } = this.props;
+    const { dispatch, contact } = this.props;
     const { transaction, inputs } = this.state;
 
     return dispatch(signTransaction(transaction, inputs))
@@ -102,16 +102,7 @@ class ConfirmTransactionContainer extends Component {
         return transaction.build().toHex();
       })
       .then((rawTransaction) => {
-        /**
-         * TODO: Instead of broadcasting the transaction here,
-         * wrap it in an encrypted Pine message and send it to
-         * the recipient for validation and submission.
-         */
-        return dispatch(postTransaction(rawTransaction));
-      })
-      .then(() => {
-        // Sync wallet before finishing.
-        return dispatch(syncWallet());
+        return dispatch(sendPayment(rawTransaction, contact));
       })
       .then(() => {
         this.setState({
