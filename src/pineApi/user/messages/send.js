@@ -7,7 +7,7 @@ import { getAuthorizationHeader } from '../../authentication';
 const REQUEST_TIMEOUT = 5000; // 5 seconds.
 
 /**
- * Sends a message (payment) to a Pine user.
+ * Sends an end-to-end encrypted message to another Pine user.
  *
  * @param {Object} message - Message payload to send.
  * @param {number} message.version - Always 1.
