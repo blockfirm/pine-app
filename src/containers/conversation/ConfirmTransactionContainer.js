@@ -8,7 +8,7 @@ import {
   sign as signTransaction
 } from '../../actions/bitcoin/wallet/transactions';
 
-import { sync as syncWallet } from '../../actions/bitcoin/wallet';
+import { reserve as reserveUtxos } from '../../actions/bitcoin/wallet/utxos';
 import { getAddress } from '../../actions/pine/contacts/getAddress';
 import { sendPayment } from '../../actions/pine/messages/sendPayment';
 import { handle as handleError } from '../../actions/error/handle';
@@ -103,6 +103,14 @@ class ConfirmTransactionContainer extends Component {
       })
       .then((rawTransaction) => {
         return dispatch(sendPayment(rawTransaction, contact));
+      })
+      .then(() => {
+        const utxosToReserve = inputs.map((input) => ({
+          txid: input.txid,
+          index: input.vout
+        }));
+
+        return dispatch(reserveUtxos(utxosToReserve));
       })
       .then(() => {
         this.setState({

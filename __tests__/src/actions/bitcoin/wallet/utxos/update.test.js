@@ -5,6 +5,8 @@ import {
 
 import { save as saveUtxos } from '../../../../../../src/actions/bitcoin/wallet/utxos/save';
 
+const originalDateNow = Date.now;
+
 const expectedUtxos = require('../__fixtures__/utxos');
 
 const dispatchMock = jest.fn((action) => {
@@ -26,6 +28,9 @@ const getStateMock = jest.fn(() => ({
           items: require('../__fixtures__/internalAddresses')
         }
       },
+      utxos: {
+        items: require('../__fixtures__/oldUtxos')
+      },
       transactions: {
         items: require('../__fixtures__/transactions')
       }
@@ -44,9 +49,17 @@ describe('BITCOIN_WALLET_UTXOS_UPDATE_SUCCESS', () => {
 });
 
 describe('update', () => {
+  beforeAll(() => {
+    Date.now = jest.fn(() => 150 * 1000);
+  });
+
   beforeEach(() => {
     dispatchMock.mockClear();
     getStateMock.mockClear();
+  });
+
+  afterAll(() => {
+    Date.now = originalDateNow;
   });
 
   it('is a function', () => {

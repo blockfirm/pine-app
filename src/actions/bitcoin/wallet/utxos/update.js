@@ -20,7 +20,9 @@ const getVouts = (transactions) => {
       return {
         ...vout,
         txid: transaction.txid,
-        confirmed: transaction.confirmations > 0
+        confirmed: transaction.confirmations > 0,
+        reserved: false,
+        reservationExpiresAt: null
       };
     });
 
@@ -87,6 +89,41 @@ const flagInternalUtxos = (utxos, internalAddresses) => {
 };
 
 /**
+ * Flags UTXOs as reserved if the same UTXO was flagged as reserved
+ * in the old UTXO set.
+ *
+ * @param {array} utxos - The updated list of UTXOs.
+ * @param {array} oldUtxos - The old list of UTXOs.
+ */
+const preserveReservedUtxos = (utxos, oldUtxos) => {
+  if (!oldUtxos || oldUtxos.length === 0) {
+    return;
+  }
+
+  const reservedUtxos = {};
+
+  // Create a map of all reserved UTXOs from the old UTXO set.
+  oldUtxos.forEach((utxo) => {
+    // Don't include expired reservations.
+    if (utxo.reserved && utxo.reservationExpiresAt > Date.now() / 1000) {
+      reservedUtxos[utxo.txid] = reservedUtxos[utxo.txid] || {};
+      reservedUtxos[utxo.txid][utxo.n] = utxo.reservationExpiresAt;
+    }
+  });
+
+  /**
+   * Flag UTXOs as reserved if the same UTXO was reserved in the old UTXO set
+   * and the reservation hasn't expired.
+   */
+  utxos.forEach((utxo) => {
+    if (reservedUtxos[utxo.txid] && reservedUtxos[utxo.txid][utxo.n]) {
+      utxo.reserved = true;
+      utxo.reservationExpiresAt = reservedUtxos[utxo.txid][utxo.n];
+    }
+  });
+};
+
+/**
  * Action to do a scan of all transactions to find and save
  * all unspent transaction outputs (utxos).
  *
@@ -117,6 +154,9 @@ export const update = () => {
 
     // Flag internal UTXOs (change).
     flagInternalUtxos(utxos, internalAddresses);
+
+    // Preserve reserved UTXOs.
+    preserveReservedUtxos(utxos, wallet.utxos.items);
 
     dispatch(updateSuccess(utxos));
 

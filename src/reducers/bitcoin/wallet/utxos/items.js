@@ -9,6 +9,19 @@ const itemsReducer = (state = [], action) => {
     case utxoActions.BITCOIN_WALLET_UTXOS_REMOVE_ALL_SUCCESS:
       return [];
 
+    case utxoActions.BITCOIN_WALLET_UTXOS_RESERVE:
+      return state.map((utxo) => {
+        if (utxo.txid === action.txid && utxo.n === action.index) {
+          return {
+            ...utxo,
+            reserved: true,
+            reservationExpiresAt: action.expireAt
+          };
+        }
+
+        return utxo;
+      });
+
     default:
       return state;
   }

@@ -41,10 +41,13 @@ const getBitcoinNetwork = (network) => {
 
 const getSpendableUtxos = (utxos) => {
   /**
-   * Spendable UTXOs includes all confirmed UTXOs
-   * and all unconfirmed internal (change) UTXOs.
+   * Spendable UTXOs include all confirmed UTXOs
+   * and all unconfirmed internal (change) UTXOs
+   * that has not been reserved.
    */
-  return utxos.filter((utxo) => utxo.confirmed || utxo.internal);
+  return utxos.filter((utxo) => {
+    return (utxo.confirmed || utxo.internal) && !utxo.reserved;
+  });
 };
 
 /**
