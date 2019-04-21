@@ -8,6 +8,7 @@ import networkReducer from './network';
 import homeScreenReducer from './homeScreen';
 import notificationsReducer from './notifications';
 import contactsReducer from './contacts';
+import messagesReducer from './messages';
 import syncingReducer from './syncing';
 import pineReducer from './pine';
 import readyReducer from './ready';
@@ -25,6 +26,7 @@ const getRootReducer = (navReducer) => {
     homeScreen: homeScreenReducer,
     notifications: notificationsReducer,
     contacts: contactsReducer,
+    messages: messagesReducer,
     syncing: syncingReducer,
     pine: pineReducer,
     ready: readyReducer,
