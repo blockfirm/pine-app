@@ -9,37 +9,25 @@ describe('decrypt', () => {
     expect(decrypt.length).toBe(2);
   });
 
-  it('decrypts an ECIES object with the correct private key', () => {
+  it('decrypts an encrypted message with the correct private key', () => {
     const expectedMessage = '973d172e-50a0-44f7-9c53-6a48fe2e0041';
     const privateKey = Buffer.from([27, 128, 202, 12, 137, 6, 174, 97, 122, 161, 74, 126, 80, 47, 255, 62, 241, 65, 171, 157, 59, 77, 173, 81, 223, 195, 253, 62, 248, 92, 221, 182]);
-
-    const ecies = {
-      iv: Buffer.from([1, 35, 69, 103, 137, 171, 205, 239, 1, 35, 69, 103, 137, 171, 205, 239]),
-      ephemPublicKey: Buffer.from([4, 70, 70, 174, 80, 71, 49, 107, 66, 48, 208, 8, 108, 138, 206, 198, 135, 240, 11, 28, 217, 209, 220, 99, 79, 108, 179, 88, 172, 10, 154, 143, 255, 254, 119, 180, 221, 10, 75, 251, 149, 133, 31, 59, 115, 85, 199, 129, 221, 96, 248, 65, 143, 200, 166, 93, 20, 144, 122, 255, 71, 201, 3, 165, 89]),
-      ciphertext: Buffer.from([159, 139, 183, 54, 175, 63, 177, 47, 198, 207, 97, 15, 206, 121, 21, 97, 233, 16, 76, 212, 143, 116, 163, 139, 60, 116, 190, 194, 54, 216, 29, 110, 166, 46, 90, 67, 161, 66, 208, 56, 204, 207, 239, 92, 184, 49, 83, 187]),
-      mac: Buffer.from([45, 33, 90, 143, 163, 222, 62, 0, 161, 199, 63, 228, 254, 168, 86, 137, 226, 161, 211, 239, 51, 211, 199, 135, 206, 4, 63, 121, 90, 65, 232, 191])
-    };
+    const encryptedMessage = 'eyJpdiI6IjAxMjM0NTY3ODlhYmNkZWYwMTIzNDU2Nzg5YWJjZGVmIiwiZXBoZW1QdWJsaWNLZXkiOiIwNDQ2NDZhZTUwNDczMTZiNDIzMGQwMDg2YzhhY2VjNjg3ZjAwYjFjZDlkMWRjNjM0ZjZjYjM1OGFjMGE5YThmZmZmZTc3YjRkZDBhNGJmYjk1ODUxZjNiNzM1NWM3ODFkZDYwZjg0MThmYzhhNjVkMTQ5MDdhZmY0N2M5MDNhNTU5IiwiY2lwaGVydGV4dCI6IjlmOGJiNzM2YWYzZmIxMmZjNmNmNjEwZmNlNzkxNTYxZTkxMDRjZDQ4Zjc0YTM4YjNjNzRiZWMyMzZkODFkNmVhNjJlNWE0M2ExNDJkMDM4Y2NjZmVmNWNiODMxNTNiYiIsIm1hYyI6IjJkMjE1YThmYTNkZTNlMDBhMWM3M2ZlNGZlYTg1Njg5ZTJhMWQzZWYzM2QzYzc4N2NlMDQzZjc5NWE0MWU4YmYifQ==';
 
     expect.hasAssertions();
 
-    return decrypt(ecies, privateKey).then((message) => {
+    return decrypt(encryptedMessage, privateKey).then((message) => {
       expect(message).toBe(expectedMessage);
     });
   });
 
   it('cannot decrypt with an incorrect private key', () => {
     const privateKey = Buffer.from([27, 128, 202, 12, 130, 6, 174, 97, 122, 161, 74, 126, 80, 47, 255, 62, 241, 65, 171, 157, 59, 77, 173, 81, 223, 195, 253, 62, 248, 92, 221, 182]);
-
-    const ecies = {
-      iv: Buffer.from([1, 35, 69, 103, 137, 171, 205, 239, 1, 35, 69, 103, 137, 171, 205, 239]),
-      ephemPublicKey: Buffer.from([4, 70, 70, 174, 80, 71, 49, 107, 66, 48, 208, 8, 108, 138, 206, 198, 135, 240, 11, 28, 217, 209, 220, 99, 79, 108, 179, 88, 172, 10, 154, 143, 255, 254, 119, 180, 221, 10, 75, 251, 149, 133, 31, 59, 115, 85, 199, 129, 221, 96, 248, 65, 143, 200, 166, 93, 20, 144, 122, 255, 71, 201, 3, 165, 89]),
-      ciphertext: Buffer.from([159, 139, 183, 54, 175, 63, 177, 47, 198, 207, 97, 15, 206, 121, 21, 97, 233, 16, 76, 212, 143, 116, 163, 139, 60, 116, 190, 194, 54, 216, 29, 110, 166, 46, 90, 67, 161, 66, 208, 56, 204, 207, 239, 92, 184, 49, 83, 187]),
-      mac: Buffer.from([45, 33, 90, 143, 163, 222, 62, 0, 161, 199, 63, 228, 254, 168, 86, 137, 226, 161, 211, 239, 51, 211, 199, 135, 206, 4, 63, 121, 90, 65, 232, 191])
-    };
+    const encryptedMessage = 'eyJpdiI6IjAxMjM0NTY3ODlhYmNkZWYwMTIzNDU2Nzg5YWJjZGVmIiwiZXBoZW1QdWJsaWNLZXkiOiIwNDQ2NDZhZTUwNDczMTZiNDIzMGQwMDg2YzhhY2VjNjg3ZjAwYjFjZDlkMWRjNjM0ZjZjYjM1OGFjMGE5YThmZmZmZTc3YjRkZDBhNGJmYjk1ODUxZjNiNzM1NWM3ODFkZDYwZjg0MThmYzhhNjVkMTQ5MDdhZmY0N2M5MDNhNTU5IiwiY2lwaGVydGV4dCI6IjlmOGJiNzM2YWYzZmIxMmZjNmNmNjEwZmNlNzkxNTYxZTkxMDRjZDQ4Zjc0YTM4YjNjNzRiZWMyMzZkODFkNmVhNjJlNWE0M2ExNDJkMDM4Y2NjZmVmNWNiODMxNTNiYiIsIm1hYyI6IjJkMjE1YThmYTNkZTNlMDBhMWM3M2ZlNGZlYTg1Njg5ZTJhMWQzZWYzM2QzYzc4N2NlMDQzZjc5NWE0MWU4YmYifQ==';
 
     expect.hasAssertions();
 
-    return decrypt(ecies, privateKey).catch((error) => {
+    return decrypt(encryptedMessage, privateKey).catch((error) => {
       expect(error).toBeTruthy();
     });
   });

@@ -33,8 +33,7 @@ const send = async (message, contact, credentials) => {
   const url = `${baseUrl}${path}`;
 
   const publicKey = bs58check.decode(contact.publicKey);
-  const ecies = await encrypt(JSON.stringify(message), publicKey);
-  const encryptedMessage = Buffer.from(JSON.stringify(ecies)).toString('base64');
+  const encryptedMessage = await encrypt(JSON.stringify(message), publicKey);
   const signature = sign(encryptedMessage, keyPair);
 
   const body = {

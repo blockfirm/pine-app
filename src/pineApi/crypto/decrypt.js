@@ -1,19 +1,29 @@
-import eccrypto from 'eccrypto';
+import * as ECIES from './ecies';
+
+const deserializeEcies = (encryptedMessage) => {
+  const json = Buffer.from(encryptedMessage, 'base64').toString();
+  const ecies = JSON.parse(json);
+
+  return {
+    iv: Buffer.from(ecies.iv, 'hex'),
+    ephemPublicKey: Buffer.from(ecies.ephemPublicKey, 'hex'),
+    ciphertext: Buffer.from(ecies.ciphertext, 'hex'),
+    mac: Buffer.from(ecies.mac, 'hex')
+  };
+};
 
 /**
  * Decrypt a message using a private key.
  *
- * @param {Object} ecies – ECIES structure of the message to decrypt.
- * @param {Buffer} ecies.iv - Initialization vector (16 bytes).
- * @param {Buffer} ecies.ephemPublicKey - Ephemeral public key (65 bytes).
- * @param {Buffer} ecies.ciphertext - Encrypted data (variable size).
- * @param {Buffer} ecies.mac - Message authentication code (32 bytes).
+ * @param {string} encryptedMessage – Encrypted message to decrypt.
  * @param {Buffer} privateKey - Private key (secp256k1) to use for decrypting the message (32 bytes).
  *
- * @returns {Promise.<string>} A promise that resolves to the decrypted message (string).
+ * @returns {Promise.<string>} A promise that resolves to the decrypted message.
  */
-const decrypt = async (ecies, privateKey) => {
-  const plaintext = await eccrypto.decrypt(privateKey, ecies);
+const decrypt = async (encryptedMessage, privateKey) => {
+  const ecies = deserializeEcies(encryptedMessage);
+  const plaintext = ECIES.decrypt(ecies, privateKey);
+
   return plaintext.toString();
 };
 

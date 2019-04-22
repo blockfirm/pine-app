@@ -75,7 +75,7 @@ describe('send', () => {
 
         it('has header "Authorization" set to a signature of the request', () => {
           expect(options.headers).toBeTruthy();
-          expect(options.headers['Authorization']).toBe('Basic ZnJvbUBwaW5lLnBtOkgraVNlS2pzaWlQUHhFN2k5bGlkVzJjRUJqT2QyTGF1MFpBMytlcy9nMzUwYjhzUElwK05hckw5aklsdGhPMjVxbS90MVBodUF2SnJjRjl3Z0srMWIxcz0=');
+          expect(options.headers['Authorization']).toBe('Basic ZnJvbUBwaW5lLnBtOklPRUFPK3RRSW9FOXRHRlZlMUdyOTVWZzYwKzNkWEhtQ1drVEd5cnBBUVh4UzE4Q0QyNzFOaXFaRjF0dGJzK2VKNkUwak1DZzhZV2xxYXA3VTBMY2tSWT0=');
         });
 
         describe('the body', () => {
@@ -86,12 +86,12 @@ describe('send', () => {
 
           it('has encryptedMessage set to the encrypted message', () => {
             const body = JSON.parse(options.body);
-            expect(body.encryptedMessage).toBe('eyJpdiI6eyJ0eXBlIjoiQnVmZmVyIiwiZGF0YSI6WzEsMzUsNjksMTAzLDEzNywxNzEsMjA1LDIzOSwxLDM1LDY5LDEwMywxMzcsMTcxLDIwNSwyMzldfSwiZXBoZW1QdWJsaWNLZXkiOnsidHlwZSI6IkJ1ZmZlciIsImRhdGEiOls0LDcwLDcwLDE3NCw4MCw3MSw0OSwxMDcsNjYsNDgsMjA4LDgsMTA4LDEzOCwyMDYsMTk4LDEzNSwyNDAsMTEsMjgsMjE3LDIwOSwyMjAsOTksNzksMTA4LDE3OSw4OCwxNzIsMTAsMTU0LDE0MywyNTUsMjU0LDExOSwxODAsMjIxLDEwLDc1LDI1MSwxNDksMTMzLDMxLDU5LDExNSw4NSwxOTksMTI5LDIyMSw5NiwyNDgsNjUsMTQzLDIwMCwxNjYsOTMsMjAsMTQ0LDEyMiwyNTUsNzEsMjAxLDMsMTY1LDg5XX0sImNpcGhlcnRleHQiOnsidHlwZSI6IkJ1ZmZlciIsImRhdGEiOlsyNTAsMTgsMTg4LDIyNSwxNjgsMTcwLDE4OCwyNiwxODgsMTMwLDcyLDgwLDQ1LDI0OSwyNDksMTY3LDE4Myw2NCwxMzYsMTI0LDE5NCwxMDksMjM2LDIzOCwzLDcsMTIwLDM1LDI0NywyMzcsOTgsMTQ1LDE0OCwxNDYsMTk0LDIwNiwxMTYsMjE5LDE2MCwxMTgsMjcsMjE5LDg5LDY0LDM4LDI1MiwxOTksMTRdfSwibWFjIjp7InR5cGUiOiJCdWZmZXIiLCJkYXRhIjpbMTAxLDE2LDIyMSwyMzMsMTE3LDE5OCwxNjIsMTAyLDU2LDg4LDYxLDgyLDE4MywxNSwxMTYsOTIsMTkzLDIyNyw3NCwyNTIsMzEsMTQ3LDgsMjQwLDg0LDIyMSwxMzcsMzMsMTE4LDk2LDg0LDExNF19fQ==');
+            expect(body.encryptedMessage).toBe('eyJpdiI6IjAxMjM0NTY3ODlhYmNkZWYwMTIzNDU2Nzg5YWJjZGVmIiwiZXBoZW1QdWJsaWNLZXkiOiIwNDQ2NDZhZTUwNDczMTZiNDIzMGQwMDg2YzhhY2VjNjg3ZjAwYjFjZDlkMWRjNjM0ZjZjYjM1OGFjMGE5YThmZmZmZTc3YjRkZDBhNGJmYjk1ODUxZjNiNzM1NWM3ODFkZDYwZjg0MThmYzhhNjVkMTQ5MDdhZmY0N2M5MDNhNTU5IiwiY2lwaGVydGV4dCI6ImZhMTJiY2UxYThhYWJjMWFiYzgyNDg1MDJkZjlmOWE3Yjc0MDg4N2NjMjZkZWNlZTAzMDc3ODIzZjdlZDYyOTE5NDkyYzJjZTc0ZGJhMDc2MWJkYjU5NDAyNmZjYzcwZSIsIm1hYyI6IjY1MTBkZGU5NzVjNmEyNjYzODU4M2Q1MmI3MGY3NDVjYzFlMzRhZmMxZjkzMDhmMDU0ZGQ4OTIxNzY2MDU0NzIifQ==');
           });
 
           it('has signature set to a signature of the encrypted message', () => {
             const body = JSON.parse(options.body);
-            expect(body.signature).toBe('INCD2EybEALPlwPwcaSfanGrnZGAyC9pj1LCrD0kqSuqFIcrKYwz98/dAbIjnvsCdvWzFOUw1W9tsC/Ew16EqhA=');
+            expect(body.signature).toBe('IGt0XDrvPbmsMaZ8Gf/3Xw+dNkINms5eA7bV9UhyC4evPkj2P26158W7Pkilu106hQ7ii81ozby0ShpqgvqgKis=');
           });
         });
       });

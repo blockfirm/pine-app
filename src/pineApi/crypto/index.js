@@ -1,4 +1,5 @@
 export { default as decrypt } from './decrypt';
+export { default as ecies } from './ecies';
 export { default as encrypt } from './encrypt';
 export { default as getKeyPairFromMnemonic } from './getKeyPairFromMnemonic';
 export { default as getUserIdFromPublicKey } from './getUserIdFromPublicKey';
