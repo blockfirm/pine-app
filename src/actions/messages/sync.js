@@ -180,7 +180,7 @@ const broadcastTransactions = (processedMessages, dispatch) => {
 
 const getContactByAddress = (address, contacts) => {
   return Object.values(contacts).find((contact) => {
-    return contact.addrress === address;
+    return contact.address === address;
   });
 };
 
