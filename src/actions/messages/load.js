@@ -46,7 +46,7 @@ export const load = (contactId) => {
     return AsyncStorage.getItem(getStorageKey(contactId))
       .then((result) => {
         const messages = JSON.parse(result) || [];
-        dispatch(loadSuccess(messages));
+        dispatch(loadSuccess(contactId, messages));
         return messages;
       })
       .catch((error) => {
