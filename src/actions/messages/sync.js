@@ -128,6 +128,7 @@ const processMessage = (message, network, externalAddresses, accountPublicKey) =
   return {
     ...message,
     address: walletAddress,
+    txid: transaction.getId(),
     amountBtc: convertAmount(amount, UNIT_SATOSHIS, UNIT_BTC)
   };
 };
