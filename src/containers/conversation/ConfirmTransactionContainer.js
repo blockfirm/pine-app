@@ -11,6 +11,7 @@ import {
 import { reserve as reserveUtxos } from '../../actions/bitcoin/wallet/utxos';
 import { getAddress } from '../../actions/pine/contacts/getAddress';
 import { sendPayment } from '../../actions/pine/messages/sendPayment';
+import { add as addMessage } from '../../actions/messages/add';
 import { handle as handleError } from '../../actions/error/handle';
 import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
@@ -94,8 +95,8 @@ class ConfirmTransactionContainer extends Component {
   }
 
   _signAndPay() {
-    const { dispatch, contact } = this.props;
-    const { transaction, inputs } = this.state;
+    const { dispatch, contact, amountBtc } = this.props;
+    const { transaction, inputs, address } = this.state;
 
     return dispatch(signTransaction(transaction, inputs))
       .then(() => {
@@ -104,7 +105,18 @@ class ConfirmTransactionContainer extends Component {
       .then((rawTransaction) => {
         return dispatch(sendPayment(rawTransaction, contact));
       })
+      .then((message) => {
+        // Save message to conversation.
+        return dispatch(addMessage(contact.id, {
+          id: message.id,
+          from: null,
+          amount: amountBtc * 100000000,
+          txid: transaction.build().getId(),
+          createdAt: message.createdAt
+        }));
+      })
       .then(() => {
+        // Reserve UTXOs.
         const utxosToReserve = inputs.map((input) => ({
           txid: input.txid,
           index: input.vout
