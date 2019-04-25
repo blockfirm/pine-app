@@ -18,10 +18,12 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { handle as handleError } from '../actions/error/handle';
 import { remove as removeContact, markAsRead } from '../actions/contacts';
+import { load as loadMessages } from '../actions/messages';
 import headerStyles from '../styles/headerStyles';
 import ContentView from '../components/ContentView';
 import HeaderTitle from '../components/conversation/HeaderTitle';
 import EmptyConversation from '../components/conversation/EmptyConversation';
+import Messages from '../components/conversation/Messages';
 import BackButton from '../components/BackButton';
 import Avatar from '../components/Avatar';
 import ConfirmTransactionContainer from '../containers/conversation/ConfirmTransactionContainer';
@@ -70,7 +72,9 @@ const styles = StyleSheet.create({
   }
 });
 
-@connect()
+@connect((state) => ({
+  messages: state.messages.itemsByContact
+}))
 export default class ConversationScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { contact, showUserMenu, loading } = navigation.state.params;
@@ -110,7 +114,8 @@ export default class ConversationScreen extends Component {
     keyboardHeight: 0,
     keyboardAnimationDuration: 300,
     keyboardAnimationEasing: null,
-    keyboardIsVisible: false
+    keyboardIsVisible: false,
+    messagesLoaded: false
   }
 
   constructor() {
@@ -131,7 +136,8 @@ export default class ConversationScreen extends Component {
   }
 
   componentDidMount() {
-    const { navigation } = this.props;
+    const { dispatch, navigation, messages } = this.props;
+    const { contact } = navigation.state.params;
 
     navigation.setParams({ showUserMenu: this._showUserMenu.bind(this) });
 
@@ -144,6 +150,12 @@ export default class ConversationScreen extends Component {
     this._listeners.push(
       Keyboard.addListener('keyboardDidHide', this._onKeyboardDidHide)
     );
+
+    if (!messages[contact.id]) {
+      dispatch(loadMessages(contact.id)).then(() => {
+        this.setState({ messagesLoaded: true });
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -327,8 +339,29 @@ export default class ConversationScreen extends Component {
     );
   }
 
+  renderContent() {
+    const { messages, navigation } = this.props;
+    const { contact } = navigation.state.params;
+    const contactMessages = messages[contact.id] || [];
+
+    if (!contact.contactRequest && contactMessages.length > 0) {
+      return <Messages messages={contactMessages} />;
+    }
+
+    return (
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollViewContent}
+      >
+        { contact.contactRequest && this._renderContactRequest(contact) }
+        { !contact.contactRequest && !contactMessages.length && this._renderEmptyConversation(contact) }
+      </ScrollView>
+    );
+  }
+
   render() {
-    const { contact } = this.props.navigation.state.params;
+    const { navigation } = this.props;
+    const { contact } = navigation.state.params;
     const { confirmTransaction } = this.state;
 
     const contentStyle = [
@@ -341,13 +374,7 @@ export default class ConversationScreen extends Component {
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
         <ContentView style={contentStyle}>
-          <ScrollView
-            style={styles.scrollView}
-            contentContainerStyle={styles.scrollViewContent}
-          >
-            { contact.contactRequest && this._renderContactRequest(contact) }
-            { !contact.contactRequest && this._renderEmptyConversation(contact) }
-          </ScrollView>
+          { this.renderContent() }
           { !contact.contactRequest && this._renderInputBar() }
           { this._renderConfirmTransactionView() }
           <KeyboardSpacer style={keyboardSpacerStyle} topSpacing={KEYBOARD_TOP_SPACING} />
@@ -359,5 +386,6 @@ export default class ConversationScreen extends Component {
 
 ConversationScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  messages: PropTypes.object
 };
