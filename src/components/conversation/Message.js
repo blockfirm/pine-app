@@ -40,7 +40,7 @@ export default class Message extends Component {
     return (
       <View style={bubbleStyle}>
         <CurrencyLabelContainer
-          amountBtc={message.amount / 100000000}
+          amountBtc={message.amountBtc}
           currencyType='primary'
           style={textStyle}
         />
