@@ -195,7 +195,7 @@ export default class ConversationScreen extends Component {
 
     ActionSheetIOS.showActionSheetWithOptions({
       title: contact.address,
-      options: ['Cancel', 'Delete'],
+      options: ['Cancel', 'Delete Contact'],
       destructiveButtonIndex: 1,
       cancelButtonIndex: 0
     }, (buttonIndex) => {
