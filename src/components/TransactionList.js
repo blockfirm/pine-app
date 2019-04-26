@@ -8,9 +8,12 @@ import TransactionListItemContainer from '../containers/TransactionListItemConta
 import TransactionListEmptyContainer from '../containers/TransactionListEmptyContainer';
 import DateSectionList from './DateSectionList';
 
-const SECTION_HEADER_HEIGHT = 26;
-const SECTION_HEADER_MARGIN_TOP = 30;
-const SECTION_HEADER_MARGIN_BOTTOM = 12;
+import {
+  SECTION_HEADER_HEIGHT,
+  SECTION_HEADER_MARGIN_TOP,
+  SECTION_HEADER_MARGIN_BOTTOM
+} from './DateSectionHeader';
+
 const ITEM_HEIGHT = 68;
 
 const styles = StyleSheet.create({

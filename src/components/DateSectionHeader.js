@@ -3,9 +3,9 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import StyledText from './StyledText';
 
-const SECTION_HEADER_HEIGHT = 26;
-const SECTION_HEADER_MARGIN_TOP = 30;
-const SECTION_HEADER_MARGIN_BOTTOM = 12;
+export const SECTION_HEADER_HEIGHT = 26;
+export const SECTION_HEADER_MARGIN_TOP = 30;
+export const SECTION_HEADER_MARGIN_BOTTOM = 20;
 
 const styles = StyleSheet.create({
   sectionHeader: {
