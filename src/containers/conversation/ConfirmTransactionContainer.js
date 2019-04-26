@@ -96,7 +96,7 @@ class ConfirmTransactionContainer extends Component {
 
   _signAndPay() {
     const { dispatch, contact, amountBtc } = this.props;
-    const { transaction, inputs, address } = this.state;
+    const { transaction, inputs } = this.state;
 
     return dispatch(signTransaction(transaction, inputs))
       .then(() => {
@@ -110,9 +110,9 @@ class ConfirmTransactionContainer extends Component {
         return dispatch(addMessage(contact.id, {
           id: message.id,
           from: null,
-          amount: amountBtc * 100000000,
           txid: transaction.build().getId(),
-          createdAt: message.createdAt
+          createdAt: message.createdAt,
+          amountBtc
         }));
       })
       .then(() => {
