@@ -1,89 +1,207 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
+import Avatar from '../Avatar';
 import StyledText from '../StyledText';
 
+const bubbleEndLeft = require('../../images/message/BubbleEndLeft.png');
+const bubbleEndRight = require('../../images/message/BubbleEndRight.png');
+const bubbleEndLeftError = require('../../images/message/BubbleEndLeftError.png');
+const bubbleEndRightError = require('../../images/message/BubbleEndRightError.png');
+
 const styles = StyleSheet.create({
-  bubble: {
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 30,
-    marginBottom: 10
+  wrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5
   },
-  received: {
-    alignSelf: 'flex-start',
+  wrapperReceived: {
+    justifyContent: 'flex-start',
+    paddingLeft: 30
+  },
+  wrapperSent: {
+    justifyContent: 'flex-end'
+  },
+  bubble: {
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+    borderRadius: 18
+  },
+  bubbleReceived: {
     backgroundColor: '#F0F0F0'
   },
-  receivedText: {
-    color: 'black'
+  bubbleSent: {
+    backgroundColor: '#FEC300'
   },
-  sent: {
-    alignSelf: 'flex-end',
-    backgroundColor: '#FFD23F'
-  },
-  sentText: {
-    color: 'white'
-  },
-  error: {
+  bubbleError: {
     backgroundColor: '#FF3B30'
   },
-  errorText: {
+  bubbleFirst: {
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5
+  },
+  bubbleLast: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5
+  },
+  textReceived: {
+    fontSize: 17,
+    color: 'black'
+  },
+  textSent: {
+    fontSize: 17,
     color: 'white'
+  },
+  textError: {
+    fontSize: 14,
+    color: 'white'
+  },
+  smallText: {
+    fontSize: 12
+  },
+  smallTextReceived: {
+    opacity: 0.75
+  },
+  smallTextSent: {
+    fontSize: 12,
+    opacity: 0.9
+  },
+  avatar: {
+    position: 'absolute',
+    bottom: 0
+  },
+  bubbleEnd: {
+    width: 23,
+    height: 25,
+    position: 'absolute',
+    bottom: 0
+  },
+  bubbleEndLeft: {
+    left: -5
+  },
+  bubbleEndRight: {
+    right: -5
   }
 });
 
 export default class Message extends Component {
-  _getBubbleStyle() {
-    const { message } = this.props;
-
-    return [
-      styles.bubble,
-      message.from ? styles.received : styles.sent
-    ];
-  }
-
-  _getTextStyle() {
-    const { message } = this.props;
-    return message.from ? styles.receivedText : styles.sentText;
-  }
-
-  _renderError() {
-    const { error } = this.props.message;
-    const bubbleStyle = this._getBubbleStyle();
-
-    return (
-      <View style={[bubbleStyle, styles.error]}>
-        <StyledText style={styles.errorText}>
-          {error}
-        </StyledText>
-      </View>
-    );
-  }
-
-  render() {
+  _renderContent(textStyle, smallTextStyle) {
     const { message } = this.props;
 
     if (message.error) {
-      return this._renderError(message.error);
+      return (
+        <StyledText style={textStyle}>
+          {message.error}
+        </StyledText>
+      );
     }
 
-    const bubbleStyle = this._getBubbleStyle();
-    const textStyle = this._getTextStyle();
-
     return (
-      <View style={bubbleStyle}>
+      <View>
         <CurrencyLabelContainer
           amountBtc={message.amountBtc}
           currencyType='primary'
           style={textStyle}
         />
+        <CurrencyLabelContainer
+          amountBtc={message.amountBtc}
+          currencyType='secondary'
+          style={[textStyle, smallTextStyle]}
+        />
+      </View>
+    );
+  }
+
+  _renderAvatar() {
+    const { message, contact, isLast } = this.props;
+    const avatarChecksum = contact.avatar && contact.avatar.checksum;
+
+    if (!message.from || !isLast) {
+      return null;
+    }
+
+    return (
+      <View style={styles.avatar}>
+        <Avatar
+          size={24}
+          pineAddress={contact.address}
+          checksum={avatarChecksum}
+        />
+      </View>
+    );
+  }
+
+  _renderBubbleEnd() {
+    const { message, isLast } = this.props;
+    const style = message.from ? styles.bubbleEndLeft : styles.bubbleEndRight;
+    let image = message.from ? bubbleEndLeft : bubbleEndRight;
+
+    if (!isLast) {
+      return null;
+    }
+
+    if (message.error) {
+      image = message.from ? bubbleEndLeftError : bubbleEndRightError;
+    }
+
+    return (
+      <Image source={image} style={[styles.bubbleEnd, style]} />
+    );
+  }
+
+  // eslint-disable-next-line max-statements
+  render() {
+    const { message, isFirst, isLast } = this.props;
+    const wrapperStyle = [styles.wrapper];
+    const bubbleStyle = [styles.bubble];
+    const textStyle = [];
+    const smallTextStyle = [styles.smallText];
+
+    if (message.from) {
+      wrapperStyle.push(styles.wrapperReceived);
+      bubbleStyle.push(styles.bubbleReceived);
+      textStyle.push(styles.textReceived);
+      smallTextStyle.push(styles.smallTextReceived);
+    } else {
+      wrapperStyle.push(styles.wrapperSent);
+      bubbleStyle.push(styles.bubbleSent);
+      textStyle.push(styles.textSent);
+      smallTextStyle.push(styles.smallTextSent);
+    }
+
+    if (message.error) {
+      bubbleStyle.push(styles.bubbleError);
+      textStyle.push(styles.textError);
+    }
+
+    if (isFirst && !isLast) {
+      bubbleStyle.push(styles.bubbleFirst);
+    } else if (isLast && !isFirst) {
+      bubbleStyle.push(styles.bubbleLast);
+    } else if (!isFirst && !isLast) {
+      bubbleStyle.push(styles.bubbleFirst);
+      bubbleStyle.push(styles.bubbleLast);
+    }
+
+    return (
+      <View style={wrapperStyle}>
+        { this._renderAvatar() }
+        <View style={bubbleStyle}>
+          { this._renderContent(textStyle, smallTextStyle) }
+          { this._renderBubbleEnd() }
+        </View>
       </View>
     );
   }
 }
 
 Message.propTypes = {
-  message: PropTypes.object
+  message: PropTypes.object,
+  contact: PropTypes.object,
+  isFirst: PropTypes.bool,
+  isLast: PropTypes.bool
 };

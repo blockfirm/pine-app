@@ -345,7 +345,7 @@ export default class ConversationScreen extends Component {
     const contactMessages = messages[contact.id] || [];
 
     if (!contact.contactRequest && contactMessages.length > 0) {
-      return <Messages messages={contactMessages} />;
+      return <Messages messages={contactMessages} contact={contact} />;
     }
 
     return (
