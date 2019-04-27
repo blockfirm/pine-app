@@ -229,7 +229,16 @@ export default class ConversationScreen extends Component {
         return; // Cancel
       }
 
-      this._removeContactAndConversation();
+      ActionSheetIOS.showActionSheetWithOptions({
+        title: 'Deleting this contact will also delete its payment history and will prevent this contact from sending you any more bitcoin.',
+        options: ['Cancel', 'Delete'],
+        destructiveButtonIndex: 1,
+        cancelButtonIndex: 0
+      }, (buttonIndex) => {
+        if (buttonIndex === 1) {
+          this._removeContactAndConversation();
+        }
+      });
     });
   }
 
