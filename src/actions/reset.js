@@ -2,6 +2,7 @@ import { remove as removeDeviceTokenFromServer } from './pine/deviceTokens';
 import removeMnemonicByKey from '../crypto/removeMnemonicByKey';
 import { reset as resetBitcoinWallet } from './bitcoin/wallet';
 import { remove as removeKey, removeBackup } from './keys';
+import { removeAll as removeAllMessages } from './messages';
 import { removeAll as removeAllContacts } from './contacts';
 import { reset as resetSettings } from './settings';
 
@@ -51,6 +52,10 @@ export const reset = (keepSettings) => {
     dispatch(resetRequest());
 
     return dispatch(removeDeviceTokenFromServer())
+      .then(() => {
+        // Remove messages before removing contacts.
+        return dispatch(removeAllMessages());
+      })
       .then(() => {
         const promises = [
           deleteKeys(dispatch, keys),

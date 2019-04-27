@@ -32,7 +32,7 @@ const removeAllFailure = (error) => {
 /**
  * Action to remove all messages from persistent storage and state.
  *
- * @returns {Promise} A promise that resolves when the messages has been removed.
+ * @returns {Promise} A promise that resolves when the messages have been removed.
  */
 export const removeAll = () => {
   return (dispatch, getState) => {
