@@ -52,8 +52,9 @@ export default class BitcoinServiceScreen extends Component {
 
         <SettingsDescription>
           The Service URL is used to communicate with an API to retrieve and submit information
-          to the bitcoin blockchain. By default this service is provided by Pine, but you can
-          host your own service and enter its URL here to gain extra privacy and control.
+          to the bitcoin network. By default this service is provided by Pine, but you can
+          host your own service and enter its URL here to gain extra privacy and control. This
+          server does not have any access to your bitcoins.
         </SettingsDescription>
 
         <SettingsGroup>
