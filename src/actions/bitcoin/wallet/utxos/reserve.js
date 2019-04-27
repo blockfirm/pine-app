@@ -2,7 +2,7 @@ import moment from 'moment-timezone';
 import { refresh as refreshBalance } from '../balance';
 import { save } from './save';
 
-const EXPIRE_DAYS = 90;
+const EXPIRE_DAYS = 14;
 
 export const BITCOIN_WALLET_UTXOS_RESERVE = 'BITCOIN_WALLET_UTXOS_RESERVE';
 
@@ -28,7 +28,7 @@ const reserveUtxo = (txid, index, expireAt, btcAmountToReserve) => {
  */
 export const reserve = (utxos, totalBtcAmountToReserve) => {
   return (dispatch) => {
-    // The reservation will expire in 90 days from now.
+    // The reservation will expire in 14 days from now.
     const expireAt = moment().add(EXPIRE_DAYS, 'days').unix();
 
     utxos.forEach((utxo, index) => {
