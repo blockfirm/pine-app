@@ -18,7 +18,12 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { handle as handleError } from '../actions/error/handle';
 import { remove as removeContact, markAsRead } from '../actions/contacts';
-import { load as loadMessages } from '../actions/messages';
+
+import {
+  load as loadMessages,
+  removeAllForContact as removeAllMessagesForContact
+} from '../actions/messages';
+
 import headerStyles from '../styles/headerStyles';
 import ContentView from '../components/ContentView';
 import HeaderTitle from '../components/conversation/HeaderTitle';
@@ -189,8 +194,29 @@ export default class ConversationScreen extends Component {
     dispatch(markAsRead(contact));
   }
 
-  _showUserMenu() {
+  _removeContactAndConversation() {
     const { dispatch, navigation } = this.props;
+    const { contact } = navigation.state.params;
+
+    navigation.setParams({ loading: true });
+
+    return dispatch(removeContact(contact))
+      .then(() => {
+        return dispatch(removeAllMessagesForContact(contact.id));
+      })
+      .then(() => {
+        navigation.goBack();
+      })
+      .catch((error) => {
+        dispatch(handleError(error));
+      })
+      .finally(() => {
+        navigation.setParams({ loading: false });
+      });
+  }
+
+  _showUserMenu() {
+    const { navigation } = this.props;
     const { contact } = navigation.state.params;
 
     ActionSheetIOS.showActionSheetWithOptions({
@@ -203,18 +229,7 @@ export default class ConversationScreen extends Component {
         return; // Cancel
       }
 
-      navigation.setParams({ loading: true });
-
-      dispatch(removeContact(contact))
-        .then(() => {
-          navigation.goBack();
-        })
-        .catch((error) => {
-          dispatch(handleError(error));
-        })
-        .finally(() => {
-          navigation.setParams({ loading: false });
-        });
+      this._removeContactAndConversation();
     });
   }
 
