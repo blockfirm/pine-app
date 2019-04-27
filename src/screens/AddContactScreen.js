@@ -156,6 +156,7 @@ export default class AddContactScreen extends Component {
             selectionColor='#FFC431'
             onChangeText={(text) => this._onChangeText(text)}
             placeholder='Enter Pine Address'
+            blurOnSubmit={false}
           />
           <StyledText style={styles.error}>
             {this.state.error}
