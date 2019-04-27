@@ -170,6 +170,7 @@ export default class AddContactScreen extends Component {
             autoFocus={true}
             autoCorrect={false}
             autoCapitalize='none'
+            keyboardType='email-address'
             maxLength={71}
             value={this.state.address}
             selectionColor='#FFC431'
