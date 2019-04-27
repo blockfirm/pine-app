@@ -134,7 +134,7 @@ export default class InputBar extends Component {
   }
 
   render() {
-    const { primaryCurrency, secondaryCurrency } = this.props;
+    const { primaryCurrency, secondaryCurrency, defaultBitcoinUnit } = this.props;
     const { currency, unit, insufficientFunds, confirmTransaction } = this.state;
 
     return (
@@ -150,6 +150,7 @@ export default class InputBar extends Component {
         <UnitPicker
           primaryCurrency={primaryCurrency}
           secondaryCurrency={secondaryCurrency}
+          defaultBitcoinUnit={defaultBitcoinUnit}
           currency={currency}
           unit={unit}
           onChangeUnit={this._onChangeUnit}

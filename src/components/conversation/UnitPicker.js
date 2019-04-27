@@ -11,8 +11,8 @@ import {
   UNIT_SATOSHIS
 } from '../../crypto/bitcoin/convert';
 
-const CURRENCY_BTC = 'BTC';
-const UNITS = [UNIT_BTC, UNIT_MBTC, UNIT_SATOSHIS];
+const CURRENCY_BTC = UNIT_BTC;
+const BTC_UNITS = [UNIT_BTC, UNIT_MBTC, UNIT_SATOSHIS];
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -38,13 +38,34 @@ const styles = StyleSheet.create({
   }
 });
 
+const getDenominationsForCurrency = (currency, defaultBitcoinUnit) => {
+  const denominations = [];
+
+  if (currency === CURRENCY_BTC) {
+    denominations.push(defaultBitcoinUnit);
+
+    if (defaultBitcoinUnit !== CURRENCY_BTC) {
+      denominations.push(CURRENCY_BTC);
+    }
+  } else {
+    denominations.push(currency);
+  }
+
+  return denominations;
+};
+
 export default class UnitPicker extends Component {
+  _getDenominations() {
+    const { primaryCurrency, secondaryCurrency, defaultBitcoinUnit } = this.props;
+
+    return [
+      ...getDenominationsForCurrency(primaryCurrency, defaultBitcoinUnit),
+      ...getDenominationsForCurrency(secondaryCurrency, defaultBitcoinUnit)
+    ];
+  }
+
   _showOptions() {
-    const denominations = new Set(UNITS);
-
-    denominations.add(this.props.primaryCurrency);
-    denominations.add(this.props.secondaryCurrency);
-
+    const denominations = this._getDenominations();
     const options = ['Cancel', ...denominations];
 
     ActionSheetIOS.showActionSheetWithOptions({
@@ -65,7 +86,7 @@ export default class UnitPicker extends Component {
     let currency;
     let unit;
 
-    if (UNITS.indexOf(denomination) > -1) {
+    if (BTC_UNITS.indexOf(denomination) > -1) {
       currency = CURRENCY_BTC;
       unit = denomination;
     } else {
@@ -100,6 +121,7 @@ UnitPicker.propTypes = {
   onChangeUnit: PropTypes.func.isRequired,
   primaryCurrency: PropTypes.string.isRequired,
   secondaryCurrency: PropTypes.string.isRequired,
+  defaultBitcoinUnit: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   unit: PropTypes.string,
   style: PropTypes.any,
