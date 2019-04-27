@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActionSheetIOS, Alert, StyleSheet, View } from 'react-native';
+import { ActionSheetIOS, Alert, StyleSheet, View, Linking } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -19,6 +19,8 @@ import StyledText from '../../components/StyledText';
 import EditAvatar from '../../components/EditAvatar';
 import CopyText from '../../components/CopyText';
 import BaseSettingsScreen from './BaseSettingsScreen';
+
+const PINE_PAYMENT_SERVER_REPO_URL = 'https://github.com/blockfirm/pine-payment-server';
 
 const styles = StyleSheet.create({
   profile: {
@@ -163,6 +165,10 @@ export default class ProfileScreen extends Component {
     navigation.navigate('DisplayName');
   }
 
+  _visitPinePaymentServerRepo() {
+    Linking.openURL(PINE_PAYMENT_SERVER_REPO_URL);
+  }
+
   _saveAvatarChecksum(checksum) {
     const { dispatch } = this.props;
 
@@ -220,6 +226,14 @@ export default class ProfileScreen extends Component {
         <SettingsTitle>Display Name</SettingsTitle>
         <SettingsGroup>
           <SettingsLink name={displayName} onPress={this._showDisplayNameScreen.bind(this)} isLastItem={true} />
+        </SettingsGroup>
+
+        <SettingsGroup>
+          <SettingsButton
+            title='Host Your Own Pine Server'
+            onPress={this._visitPinePaymentServerRepo.bind(this)}
+            isLastItem={true}
+          />
         </SettingsGroup>
 
         <SettingsGroup>
