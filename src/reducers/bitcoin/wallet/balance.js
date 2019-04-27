@@ -8,16 +8,9 @@ const balanceReducer = (state = 0, action) => {
     case balanceActions.BITCOIN_WALLET_BALANCE_REFRESH:
     case utxoActions.BITCOIN_WALLET_UTXOS_LOAD_SUCCESS:
     case utxoActions.BITCOIN_WALLET_UTXOS_UPDATE_SUCCESS:
-      /**
-       * Calculate the sum of all unspent transaction
-       * outputs that has not been reserved.
-       */
+      // Calculate the sum of all unspent transaction outputs.
       balance = action.utxos.reduce((sum, utxo) => {
-        if (!utxo.reserved) {
-          return sum + utxo.value;
-        }
-
-        return sum;
+        return sum + utxo.value;
       }, 0);
 
       return balance;
