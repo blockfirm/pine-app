@@ -29,6 +29,12 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 24
   },
+  inputTitle: {
+    position: 'absolute',
+    marginTop: -20,
+    fontSize: 14,
+    fontWeight: '500'
+  },
   error: {
     color: '#FF3B30',
     fontSize: 12,
@@ -142,10 +148,23 @@ export default class AddContactScreen extends Component {
     this._validateAddress(address);
   }
 
+  _renderInputTitle() {
+    if (!this.state.address) {
+      return null;
+    }
+
+    return (
+      <StyledText style={styles.inputTitle}>
+        Enter Pine Address
+      </StyledText>
+    );
+  }
+
   render() {
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
         <View style={styles.inputWrapper}>
+          { this._renderInputTitle() }
           <TextInput
             style={styles.input}
             autoFocus={true}
