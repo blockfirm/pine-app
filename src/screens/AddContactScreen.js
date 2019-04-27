@@ -153,6 +153,7 @@ export default class AddContactScreen extends Component {
             autoCapitalize='none'
             maxLength={71}
             value={this.state.address}
+            selectionColor='#FFC431'
             onChangeText={(text) => this._onChangeText(text)}
             placeholder='Enter Pine Address'
           />
