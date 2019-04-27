@@ -96,7 +96,7 @@ export default class AddContactScreen extends Component {
     this.props.navigation.setParams({ canSubmit: false });
 
     if (fullAddress === userProfile.address) {
-      return this.setState({ error: '👆 That\'s you' });
+      return this.setState({ error: '👆 Hey, that\'s you' });
     }
 
     const existing = Object.values(contacts).find((contact) => {
@@ -104,7 +104,7 @@ export default class AddContactScreen extends Component {
     });
 
     if (existing) {
-      return this.setState({ error: '👆 You have already added that contact' });
+      return this.setState({ error: 'You already have that contact' });
     }
 
     return dispatch(sendContactRequest(fullAddress))
