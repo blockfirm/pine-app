@@ -22,6 +22,7 @@ const getVouts = (transactions) => {
         txid: transaction.txid,
         confirmed: transaction.confirmations > 0,
         reserved: false,
+        reservedBtcAmount: 0,
         reservationExpiresAt: null
       };
     });
@@ -107,7 +108,7 @@ const preserveReservedUtxos = (utxos, oldUtxos) => {
     // Don't include expired reservations.
     if (utxo.reserved && utxo.reservationExpiresAt > Date.now() / 1000) {
       reservedUtxos[utxo.txid] = reservedUtxos[utxo.txid] || {};
-      reservedUtxos[utxo.txid][utxo.n] = utxo.reservationExpiresAt;
+      reservedUtxos[utxo.txid][utxo.n] = utxo;
     }
   });
 
@@ -117,8 +118,11 @@ const preserveReservedUtxos = (utxos, oldUtxos) => {
    */
   utxos.forEach((utxo) => {
     if (reservedUtxos[utxo.txid] && reservedUtxos[utxo.txid][utxo.n]) {
+      const { reservedBtcAmount, reservationExpiresAt } = reservedUtxos[utxo.txid][utxo.n];
+
       utxo.reserved = true;
-      utxo.reservationExpiresAt = reservedUtxos[utxo.txid][utxo.n];
+      utxo.reservedBtcAmount = reservedBtcAmount;
+      utxo.reservationExpiresAt = reservationExpiresAt;
     }
   });
 };

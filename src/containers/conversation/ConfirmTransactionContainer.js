@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 import ReactNativeHaptic from 'react-native-haptic';
 
 import {
+  UNIT_BTC,
+  UNIT_SATOSHIS,
+  convert as convertBitcoin
+} from '../../crypto/bitcoin/convert';
+
+import {
   create as createTransaction,
   sign as signTransaction
 } from '../../actions/bitcoin/wallet/transactions';
@@ -96,7 +102,7 @@ class ConfirmTransactionContainer extends Component {
 
   _signAndPay() {
     const { dispatch, contact, amountBtc } = this.props;
-    const { transaction, inputs } = this.state;
+    const { transaction, inputs, fee } = this.state;
 
     return dispatch(signTransaction(transaction, inputs))
       .then(() => {
@@ -117,12 +123,15 @@ class ConfirmTransactionContainer extends Component {
       })
       .then(() => {
         // Reserve UTXOs.
+        const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
+        const amountToReserve = amountBtc + feeBtc;
+
         const utxosToReserve = inputs.map((input) => ({
           txid: input.txid,
           index: input.vout
         }));
 
-        return dispatch(reserveUtxos(utxosToReserve));
+        return dispatch(reserveUtxos(utxosToReserve, amountToReserve));
       })
       .then(() => {
         this.setState({

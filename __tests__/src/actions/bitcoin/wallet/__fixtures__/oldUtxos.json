@@ -15,6 +15,7 @@
     "confirmed": true,
     "internal": true,
     "reserved": false,
+    "reservedBtcAmount": 0,
     "reservationExpiresAt": null
   },
   {
@@ -33,6 +34,7 @@
     "confirmed": true,
     "internal": true,
     "reserved": true,
+    "reservedBtcAmount": 0.1,
     "reservationExpiresAt": 100
   },
   {
@@ -51,6 +53,7 @@
     "confirmed": true,
     "internal": true,
     "reserved": true,
+    "reservedBtcAmount": 0.2,
     "reservationExpiresAt": 200
   }
 ]

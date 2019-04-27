@@ -15,6 +15,7 @@ const itemsReducer = (state = [], action) => {
           return {
             ...utxo,
             reserved: true,
+            reservedBtcAmount: action.btcAmountToReserve,
             reservationExpiresAt: action.expireAt
           };
         }

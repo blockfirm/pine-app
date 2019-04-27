@@ -10,6 +10,10 @@ const balanceReducer = (state = 0, action) => {
     case utxoActions.BITCOIN_WALLET_UTXOS_UPDATE_SUCCESS:
       // Calculate the sum of all unspent transaction outputs.
       balance = action.utxos.reduce((sum, utxo) => {
+        if (utxo.reserved && utxo.reservedBtcAmount) {
+          return sum + utxo.value - utxo.reservedBtcAmount;
+        }
+
         return sum + utxo.value;
       }, 0);
 
