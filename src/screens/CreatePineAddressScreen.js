@@ -3,23 +3,23 @@ import { StyleSheet, StatusBar, View, Text, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import Icon from 'react-native-vector-icons/Entypo';
 
 import {
   validateUsername,
-  UsernameTooLongError,
   UsernameContainsInvalidCharsError
 } from '../pineApi/address';
 
 import { reset as navigateWithReset } from '../actions/navigate';
 import * as settingsActions from '../actions/settings';
-import { handle as handleError } from '../actions/error/handle';
 import getMnemonicByKey from '../crypto/getMnemonicByKey';
-import { create as createUser, get as getUser } from '../pineApi/user';
+import { create as createUser } from '../pineApi/user';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';
 import HeaderButton from '../components/buttons/HeaderButton';
 import StyledText from '../components/StyledText';
+import Paragraph from '../components/Paragraph';
 import BaseScreen from './BaseScreen';
 
 const TOP_MARGIN = getStatusBarHeight() + getNavBarHeight();
@@ -29,6 +29,11 @@ const styles = StyleSheet.create({
     padding: 0,
     paddingHorizontal: 16,
     alignItems: 'flex-start'
+  },
+  content: {
+    flexGrow: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
   },
   inputWrapper: {
     width: '100%'
@@ -54,6 +59,21 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 35,
     position: 'absolute'
+  },
+  betaNoticeWrapper: {
+    position: 'absolute',
+    bottom: 0,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  betaNotice: {
+    fontSize: 12,
+    lineHeight: 15,
+    marginBottom: 0,
+    marginLeft: 10
+  },
+  infoIcon: {
+    color: '#B1AFB7'
   }
 });
 
@@ -63,7 +83,7 @@ const styles = StyleSheet.create({
   bitcoinNetwork: state.settings.bitcoin.network
 }))
 export default class CreatePineAddressScreen extends Component {
-  static navigationOptions = ({ navigation, screenProps }) => {
+  static navigationOptions = ({ navigation }) => {
     const nextIsDisabled = !navigation.getParam('canSubmit');
     const submit = navigation.getParam('submit');
     const headerRight = <HeaderButton label='Next' onPress={submit} disabled={nextIsDisabled} />;
@@ -170,24 +190,37 @@ export default class CreatePineAddressScreen extends Component {
       <BaseScreen hideHeader={true} style={styles.view}>
         <StatusBar barStyle='dark-content' />
 
-        <View style={styles.inputWrapper}>
-          <TextInput
-            style={styles.input}
-            autoFocus={true}
-            autoCorrect={false}
-            autoCapitalize='none'
-            maxLength={20}
-            value={this.state.username}
-            onChangeText={(text) => this._onChangeText(text)}
-          />
-          <View style={styles.suffixWrapper} pointerEvents='none'>
-            <Text style={styles.suffixPadding}>{this.state.username}</Text>
-            <Text style={styles.suffix}>@{this.state.domain}</Text>
+        <View style={styles.content}>
+          <View style={styles.inputWrapper}>
+            <TextInput
+              style={styles.input}
+              autoFocus={true}
+              autoCorrect={false}
+              autoCapitalize='none'
+              maxLength={20}
+              value={this.state.username}
+              selectionColor='#FFC431'
+              onChangeText={(text) => this._onChangeText(text)}
+              blurOnSubmit={false}
+            />
+            <View style={styles.suffixWrapper} pointerEvents='none'>
+              <Text style={styles.suffixPadding}>{this.state.username}</Text>
+              <Text style={styles.suffix}>@{this.state.domain}</Text>
+            </View>
+            <StyledText style={styles.error}>
+              {this.state.error}
+            </StyledText>
           </View>
-          <StyledText style={styles.error}>
-            {this.state.error}
-          </StyledText>
+
+          <View style={styles.betaNoticeWrapper}>
+            <Icon name='info-with-circle' style={styles.infoIcon} />
+            <Paragraph style={styles.betaNotice}>
+              During the beta it is not possible to use your own Pine server and domain name.
+            </Paragraph>
+            <KeyboardSpacer topSpacing={-TOP_MARGIN} />
+          </View>
         </View>
+
         <KeyboardSpacer topSpacing={-TOP_MARGIN} />
       </BaseScreen>
     );
