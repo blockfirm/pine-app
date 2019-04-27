@@ -47,7 +47,7 @@ export default class AddContactScreen extends Component {
     const nextIsDisabled = !navigation.getParam('canSubmit');
     const submit = navigation.getParam('submit');
     const headerLeft = <CancelButton onPress={screenProps.dismiss} />;
-    const headerRight = <HeaderButton label='Done' onPress={submit} disabled={nextIsDisabled} />;
+    const headerRight = <HeaderButton label='Add' onPress={submit} disabled={nextIsDisabled} />;
 
     return {
       title: 'Add Contact',
