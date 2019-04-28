@@ -187,13 +187,16 @@ const getContactByAddress = (address, contacts) => {
   });
 };
 
-const saveMessages = async (processedMessages, contacts, dispatch) => {
+const saveMessages = async (processedMessages, contacts, activeContact, dispatch) => {
   for (const message of processedMessages) {
     const contact = getContactByAddress(message.from, contacts);
 
     if (contact) {
       await dispatch(addMessage(contact.id, message));
-      await dispatch(markContactAsUnread(contact, false));
+
+      if (!activeContact || contact.id !== activeContact.id) {
+        await dispatch(markContactAsUnread(contact, false));
+      }
     }
   }
 
@@ -218,6 +221,8 @@ export const sync = () => {
     dispatch(syncRequest());
 
     const state = getState();
+    const { activeConversation } = state.navigate;
+    const activeContact = activeConversation && activeConversation.contact;
     const { network } = state.settings.bitcoin;
     const key = Object.values(state.keys.items)[0];
     const { accountPublicKey } = key;
@@ -240,7 +245,7 @@ export const sync = () => {
       })
       .then(() => {
         // Save messages.
-        return saveMessages(processedMessages, contacts, dispatch);
+        return saveMessages(processedMessages, contacts, activeContact, dispatch);
       })
       .then(() => {
         // Remove messages from server.

@@ -1,5 +1,6 @@
 import { InteractionManager } from 'react-native';
 import { StackActions } from 'react-navigation';
+import { deferOpenConversation } from './deferOpenConversation';
 
 export const NAVIGATE_OPEN_CONVERSATION = 'NAVIGATE_OPEN_CONVERSATION';
 
@@ -9,8 +10,20 @@ const findContactByAddress = (address, contacts) => {
   });
 };
 
+const navigateToConversation = (dispatch, contact) => {
+  const pushAction = StackActions.push({
+    routeName: 'Conversation',
+    params: { contact }
+  });
+
+  dispatch({ type: NAVIGATE_OPEN_CONVERSATION, contact });
+  dispatch(pushAction);
+};
+
 /**
- * Action to navigate to a conversation based on an address once the app is ready.
+ * Action to navigate to a conversation for a contact/address.
+ *
+ * @param {string} address - The contact's Pine address.
  */
 export const openConversation = (address) => {
   return (dispatch, getState) => {
@@ -26,10 +39,7 @@ export const openConversation = (address) => {
      * called again once the app is ready.
      */
     if (!state.ready) {
-      return dispatch({
-        type: NAVIGATE_OPEN_CONVERSATION,
-        address
-      });
+      return dispatch(deferOpenConversation(address));
     }
 
     const contact = findContactByAddress(address, state.contacts.items);
@@ -38,15 +48,15 @@ export const openConversation = (address) => {
       return;
     }
 
-    const pushAction = StackActions.push({
-      routeName: 'Conversation',
-      params: { contact }
-    });
+    // Navigate back to home first if a conversation already is open.
+    if (state.navigate.activeConversation) {
+      dispatch(StackActions.popToTop());
 
-    dispatch(StackActions.popToTop());
+      return InteractionManager.runAfterInteractions(() => {
+        navigateToConversation(dispatch, contact);
+      });
+    }
 
-    InteractionManager.runAfterInteractions(() => {
-      dispatch(pushAction);
-    });
+    return navigateToConversation(dispatch, contact);
   };
 };

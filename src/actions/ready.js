@@ -12,8 +12,9 @@ export const ready = () => {
 
     dispatch({ type: READY });
 
-    if (state.navigate.openConversation) {
-      dispatch(openConversation(state.navigate.openConversation));
+    if (state.navigate.deferredOpenConversation) {
+      const { address } = state.navigate.deferredOpenConversation;
+      dispatch(openConversation(address));
     }
   };
 };

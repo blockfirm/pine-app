@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withNavigation } from 'react-navigation';
+
+import { openConversation } from '../actions/navigate';
 import TransactionListItem from '../components/TransactionListItem';
 
 const mapStateToProps = (state) => {
@@ -24,8 +25,8 @@ class TransactionListItemContainer extends Component {
   }
 
   _onPress() {
-    const { navigation, contact } = this.props;
-    navigation.navigate('Conversation', { contact });
+    const { dispatch, contact } = this.props;
+    dispatch(openConversation(contact.address));
   }
 
   render() {
@@ -42,4 +43,4 @@ const TransactionListItemConnector = connect(
   mapStateToProps
 )(TransactionListItemContainer);
 
-export default withNavigation(TransactionListItemConnector);
+export default TransactionListItemConnector;

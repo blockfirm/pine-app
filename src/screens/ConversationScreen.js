@@ -16,6 +16,7 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
+import { closeConversation } from '../actions/navigate';
 import { handle as handleError } from '../actions/error/handle';
 import { remove as removeContact, markAsRead } from '../actions/contacts';
 
@@ -164,6 +165,8 @@ export default class ConversationScreen extends Component {
   }
 
   componentWillUnmount() {
+    const { dispatch } = this.props;
+
     this._markConversationAsRead();
 
     this._listeners.forEach((listener) => {
@@ -172,6 +175,8 @@ export default class ConversationScreen extends Component {
         listener.removed = true;
       }
     });
+
+    dispatch(closeConversation());
   }
 
   _onKeyboardDidShow(event) {
