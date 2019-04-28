@@ -208,6 +208,38 @@ describe('contactsItemsReducer', () => {
     });
   });
 
+  describe('when action is CONTACTS_MARK_AS_UNREAD', () => {
+    it('returns the contacts with the passed contact unread property set to true', () => {
+      const oldState = {
+        '3d35118c-0ffd-409d-ab6b-1e708f8b7bdd': {
+          id: '3d35118c-0ffd-409d-ab6b-1e708f8b7bdd',
+          unread: false
+        },
+        'c4a5e92c-0c5e-4c1a-ad85-e778e9087b7f': {
+          id: 'c4a5e92c-0c5e-4c1a-ad85-e778e9087b7f',
+          unread: false
+        }
+      };
+
+      const actionContact = { id: '3d35118c-0ffd-409d-ab6b-1e708f8b7bdd' };
+      const action = { type: contactsActions.CONTACTS_MARK_AS_UNREAD, contact: actionContact };
+      const newState = contactsItemsReducer(oldState, action);
+
+      const expectedState = {
+        '3d35118c-0ffd-409d-ab6b-1e708f8b7bdd': {
+          id: '3d35118c-0ffd-409d-ab6b-1e708f8b7bdd',
+          unread: true
+        },
+        'c4a5e92c-0c5e-4c1a-ad85-e778e9087b7f': {
+          id: 'c4a5e92c-0c5e-4c1a-ad85-e778e9087b7f',
+          unread: false
+        }
+      };
+
+      expect(newState).toMatchObject(expectedState);
+    });
+  });
+
   describe('when action is of an unknown type', () => {
     it('returns the old state', () => {
       const oldState = { contacts: '1346201e-b5b5-4fa5-acb2-6cc202ccfc6b' };

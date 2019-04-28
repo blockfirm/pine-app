@@ -6,6 +6,7 @@ import { add as addExternalAddress } from '../bitcoin/wallet/addresses/external'
 import { post as postTransaction } from '../bitcoin/blockchain/transactions';
 import { getIncoming as getIncomingMessages } from '../pine/messages/getIncoming';
 import { remove as removeMessageFromServer } from '../pine/messages/remove';
+import { markAsUnread as markContactAsUnread, save as saveContacts } from '../contacts';
 import { add as addMessage } from './add';
 
 export const MESSAGES_SYNC_REQUEST = 'MESSAGES_SYNC_REQUEST';
@@ -192,8 +193,11 @@ const saveMessages = async (processedMessages, contacts, dispatch) => {
 
     if (contact) {
       await dispatch(addMessage(contact.id, message));
+      await dispatch(markContactAsUnread(contact, false));
     }
   }
+
+  await dispatch(saveContacts());
 };
 
 const removeMessagesFromServer = (processedMessages, dispatch) => {

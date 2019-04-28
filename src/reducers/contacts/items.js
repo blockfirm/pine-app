@@ -45,12 +45,13 @@ const items = (state = {}, action) => {
       return newState;
 
     case contactsActions.CONTACTS_MARK_AS_READ:
+    case contactsActions.CONTACTS_MARK_AS_UNREAD:
       contact = action.contact;
 
       if (state[contact.id]) {
         newState = { ...state };
         newState[contact.id] = { ...newState[contact.id] };
-        newState[contact.id].unread = false;
+        newState[contact.id].unread = action.type === contactsActions.CONTACTS_MARK_AS_UNREAD;
 
         return newState;
       }
