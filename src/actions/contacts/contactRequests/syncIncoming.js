@@ -113,16 +113,19 @@ const addNew = async (contacts, contactRequests) => {
  */
 export const syncIncoming = () => {
   return (dispatch, getState) => {
-    const state = getState();
-    const userProfile = state.settings.user.profile;
-    const contacts = { ...state.contacts.items };
+    let contacts;
     let synced = false;
 
     dispatch(syncIncomingRequest());
 
     return dispatch(getContactRequests())
       .then((contactRequests) => {
+        const state = getState();
+        const userProfile = state.settings.user.profile;
+
+        contacts = { ...state.contacts.items };
         synced = syncExisting(contacts, contactRequests, userProfile.address);
+
         return addNew(contacts, contactRequests);
       })
       .then((added) => {

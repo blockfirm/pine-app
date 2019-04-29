@@ -113,16 +113,19 @@ const addNew = (contacts, serverContacts, pineAddress) => {
  */
 export const sync = () => {
   return (dispatch, getState) => {
-    const state = getState();
-    const userProfile = state.settings.user.profile;
-    const contacts = { ...state.contacts.items };
+    let contacts;
     let synced = false;
 
     dispatch(syncRequest());
 
     return dispatch(getContacts())
       .then((serverContacts) => {
+        const state = getState();
+        const userProfile = state.settings.user.profile;
+
+        contacts = { ...state.contacts.items };
         synced = syncExisting(contacts, serverContacts);
+
         return addNew(contacts, serverContacts, userProfile.address);
       })
       .then((added) => {
