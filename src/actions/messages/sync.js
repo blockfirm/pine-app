@@ -172,7 +172,7 @@ const saveAddresses = (processedMessages, dispatch) => {
 
 const broadcastTransactions = (processedMessages, dispatch) => {
   const promises = processedMessages.map((message) => {
-    if (message.amount > 0) {
+    if (message.amountBtc > 0) {
       return dispatch(postTransaction(message.data.transaction)).catch((error) => {
         message.error = error.message;
       });
