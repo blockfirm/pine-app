@@ -4,20 +4,12 @@ import { connect } from 'react-redux';
 import ReactNativeHaptic from 'react-native-haptic';
 
 import {
-  UNIT_BTC,
-  UNIT_SATOSHIS,
-  convert as convertBitcoin
-} from '../../crypto/bitcoin/convert';
-
-import {
   create as createTransaction,
   sign as signTransaction
 } from '../../actions/bitcoin/wallet/transactions';
 
-import { reserve as reserveUtxos } from '../../actions/bitcoin/wallet/utxos';
 import { getAddress } from '../../actions/pine/contacts/getAddress';
-import { sendPayment } from '../../actions/pine/messages/sendPayment';
-import { add as addMessage } from '../../actions/messages/add';
+import { sendPayment } from '../../actions/messages/sendPayment';
 import { handle as handleError } from '../../actions/error/handle';
 import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
@@ -106,34 +98,17 @@ class ConfirmTransactionContainer extends Component {
 
     return dispatch(signTransaction(transaction, inputs))
       .then(() => {
-        return transaction.build().toHex();
-      })
-      .then((rawTransaction) => {
-        return dispatch(sendPayment(rawTransaction, contact));
-      })
-      .then((sentMessage) => {
-        const message = {
-          id: sentMessage.id,
-          from: null,
-          txid: transaction.build().getId(),
-          createdAt: sentMessage.createdAt,
-          amountBtc
+        const builtTransaction = transaction.build();
+        const rawTransaction = builtTransaction.toHex();
+
+        const transactionMetadata = {
+          txid: builtTransaction.getId(),
+          amountBtc,
+          fee,
+          inputs
         };
 
-        // Save message to conversation.
-        return dispatch(addMessage(contact.id, message));
-      })
-      .then(() => {
-        // Reserve UTXOs.
-        const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
-        const amountToReserve = amountBtc + feeBtc;
-
-        const utxosToReserve = inputs.map((input) => ({
-          txid: input.txid,
-          index: input.vout
-        }));
-
-        return dispatch(reserveUtxos(utxosToReserve, amountToReserve));
+        return dispatch(sendPayment(rawTransaction, transactionMetadata, contact));
       })
       .then(() => {
         this.setState({
