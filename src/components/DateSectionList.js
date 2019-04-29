@@ -54,6 +54,15 @@ export default class DateSectionList extends Component {
     }));
   }
 
+  scrollToTop() {
+    if (this._list) {
+      this._list.scrollToLocation({
+        sectionIndex: 0,
+        itemIndex: -1
+      });
+    }
+  }
+
   render() {
     const { data, inverted } = this.props;
     const sections = this._getSections(data);
@@ -69,6 +78,7 @@ export default class DateSectionList extends Component {
       <SectionList
         {...this.props}
         {...renderSectionHeaderProps}
+        ref={(ref) => { this._list = ref; }}
         sections={sections}
       />
     );

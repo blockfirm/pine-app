@@ -63,10 +63,7 @@ export default class TransactionList extends PureComponent {
 
   scrollToTop() {
     if (this._list) {
-      this._list.scrollToLocation({
-        sectionIndex: 0,
-        itemIndex: -1
-      });
+      this._list.scrollToTop();
     }
   }
 
