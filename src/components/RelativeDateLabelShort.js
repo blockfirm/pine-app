@@ -59,7 +59,7 @@ export default class RelativeDateLabelShort extends Component {
     const relativeDate = moment(date).locale('en-short').fromNow(withoutSuffix);
 
     if (relativeDate === 'now') {
-      return relativeDate;
+      return 'Now';
     }
 
     return `${relativeDate} ago`;
