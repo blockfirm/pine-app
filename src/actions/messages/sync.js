@@ -6,7 +6,8 @@ import { add as addExternalAddress } from '../bitcoin/wallet/addresses/external'
 import { post as postTransaction } from '../bitcoin/blockchain/transactions';
 import { getIncoming as getIncomingMessages } from '../pine/messages/getIncoming';
 import { remove as removeMessageFromServer } from '../pine/messages/remove';
-import { markAsUnread as markContactAsUnread, save as saveContacts } from '../contacts';
+
+import { save as saveContacts } from '../contacts';
 import { add as addMessage } from './add';
 
 export const MESSAGES_SYNC_REQUEST = 'MESSAGES_SYNC_REQUEST';
@@ -187,16 +188,14 @@ const getContactByAddress = (address, contacts) => {
   });
 };
 
-const saveMessages = async (processedMessages, contacts, activeContact, dispatch) => {
+const saveMessages = async (processedMessages, contacts, dispatch) => {
+  const persistContact = false;
+
   for (const message of processedMessages) {
     const contact = getContactByAddress(message.from, contacts);
 
     if (contact) {
-      await dispatch(addMessage(contact.id, message));
-
-      if (!activeContact || contact.id !== activeContact.id) {
-        await dispatch(markContactAsUnread(contact, false));
-      }
+      await dispatch(addMessage(contact.id, message, persistContact));
     }
   }
 
@@ -221,8 +220,6 @@ export const sync = () => {
     dispatch(syncRequest());
 
     const state = getState();
-    const { activeConversation } = state.navigate;
-    const activeContact = activeConversation && activeConversation.contact;
     const { network } = state.settings.bitcoin;
     const key = Object.values(state.keys.items)[0];
     const { accountPublicKey } = key;
@@ -245,7 +242,7 @@ export const sync = () => {
       })
       .then(() => {
         // Save messages.
-        return saveMessages(processedMessages, contacts, activeContact, dispatch);
+        return saveMessages(processedMessages, contacts, dispatch);
       })
       .then(() => {
         // Remove messages from server.

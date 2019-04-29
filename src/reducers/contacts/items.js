@@ -56,6 +56,21 @@ const items = (state = {}, action) => {
         return newState;
       }
 
+      return state;
+
+    case contactsActions.CONTACTS_SET_LAST_MESSAGE:
+      contact = action.contact;
+
+      if (state[contact.id]) {
+        newState = { ...state };
+        newState[contact.id] = { ...newState[contact.id] };
+        newState[contact.id].lastMessage = action.message;
+
+        return newState;
+      }
+
+      return state;
+
     default:
       return state;
   }

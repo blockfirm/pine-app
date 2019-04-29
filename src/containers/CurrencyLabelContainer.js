@@ -7,6 +7,9 @@ import BtcLabelContainer from './BtcLabelContainer';
 
 const CURRENCY_BTC = 'BTC';
 
+export const CURRENCY_TYPE_PRIMARY = 'primary';
+export const CURRENCY_TYPE_SECONDARY = 'secondary';
+
 const mapStateToProps = (state) => {
   return {
     fiatRates: state.bitcoin.fiat.rates,
@@ -19,7 +22,10 @@ class CurrencyLabelContainer extends Component {
     amountBtc: PropTypes.number,
     fiatRates: PropTypes.object,
     settings: PropTypes.object,
-    currencyType: PropTypes.string
+    currencyType: PropTypes.oneOf([
+      CURRENCY_TYPE_PRIMARY,
+      CURRENCY_TYPE_SECONDARY
+    ])
   };
 
   _renderBtcLabel() {

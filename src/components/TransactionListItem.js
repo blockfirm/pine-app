@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
+
+import {
+  default as CurrencyLabelContainer,
+  CURRENCY_TYPE_PRIMARY
+} from '../containers/CurrencyLabelContainer';
 
 import Bullet from './typography/Bullet';
 import Avatar from './Avatar';
@@ -60,16 +65,69 @@ const styles = StyleSheet.create({
 });
 
 export default class TransactionListItem extends Component {
-  _getTitle() {
+  _getSubtitleStyle() {
+    const { contact } = this.props;
+
+    return [
+      styles.subtitle,
+      contact.unread ? styles.subtitleUnread : null
+    ];
+  }
+
+  _getDate() {
+    const { contact } = this.props;
+    let timestamp = contact.createdAt;
+
+    if (contact.lastMessage) {
+      timestamp = contact.lastMessage.createdAt;
+    }
+
+    if (contact.contactRequest) {
+      timestamp = contact.contactRequest.createdAt;
+    }
+
+    return new Date(timestamp * 1000);
+  }
+
+  _renderTitle() {
     const { contact } = this.props;
     return contact.displayName || contact.username || 'Unknown User';
   }
 
-  _getSubtitle() {
-    const { contact, userProfile } = this.props;
+  _renderBtcAmount(amountBtc) {
+    const subtitleStyle = this._getSubtitleStyle();
 
-    if (contact.contactRequest) {
-      if (contact.contactRequest.from === userProfile.address) {
+    return (
+      <CurrencyLabelContainer
+        amountBtc={amountBtc}
+        currencyType={CURRENCY_TYPE_PRIMARY}
+        style={subtitleStyle}
+      />
+    );
+  }
+
+  _renderSubtitle() {
+    const { contact, userProfile } = this.props;
+    const { lastMessage, contactRequest } = contact;
+
+    if (lastMessage) {
+      if (lastMessage.from) {
+        return (
+          <Text>
+            Sent you {this._renderBtcAmount(lastMessage.amountBtc)}
+          </Text>
+        );
+      }
+
+      return (
+        <Text>
+          You sent {this._renderBtcAmount(lastMessage.amountBtc)}
+        </Text>
+      );
+    }
+
+    if (contactRequest) {
+      if (contactRequest.from === userProfile.address) {
         return 'You sent a contact request';
       }
 
@@ -79,25 +137,10 @@ export default class TransactionListItem extends Component {
     return 'Was added as a new contact';
   }
 
-  _getDate() {
-    const { contact } = this.props;
-    let timestamp = contact.createdAt;
-
-    if (contact.contactRequest) {
-      timestamp = contact.contactRequest.createdAt;
-    }
-
-    return new Date(timestamp * 1000);
-  }
-
   render() {
     const { contact } = this.props;
     const avatarChecksum = contact.avatar ? contact.avatar.checksum : null;
-
-    const subtitleStyle = [
-      styles.subtitle,
-      contact.unread ? styles.subtitleUnread : null
-    ];
+    const subtitleStyle = this._getSubtitleStyle();
 
     return (
       <TouchableOpacity onPress={this.props.onPress} style={styles.item}>
@@ -110,11 +153,11 @@ export default class TransactionListItem extends Component {
         </View>
         <View style={styles.titleWrapper}>
           <StyledText style={styles.title} numberOfLines={1}>
-            {this._getTitle()}
+            {this._renderTitle()}
           </StyledText>
           <View style={styles.subtitleWrapper}>
             <StyledText style={subtitleStyle} numberOfLines={1}>
-              {this._getSubtitle()}
+              {this._renderSubtitle()}
             </StyledText>
             <Bullet style={styles.bullet} />
             <RelativeDateLabelShort date={this._getDate()} style={styles.relativeDate} />

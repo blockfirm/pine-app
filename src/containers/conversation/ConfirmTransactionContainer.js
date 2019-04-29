@@ -111,15 +111,17 @@ class ConfirmTransactionContainer extends Component {
       .then((rawTransaction) => {
         return dispatch(sendPayment(rawTransaction, contact));
       })
-      .then((message) => {
-        // Save message to conversation.
-        return dispatch(addMessage(contact.id, {
-          id: message.id,
+      .then((sentMessage) => {
+        const message = {
+          id: sentMessage.id,
           from: null,
           txid: transaction.build().getId(),
-          createdAt: message.createdAt,
+          createdAt: sentMessage.createdAt,
           amountBtc
-        }));
+        };
+
+        // Save message to conversation.
+        return dispatch(addMessage(contact.id, message));
       })
       .then(() => {
         // Reserve UTXOs.
