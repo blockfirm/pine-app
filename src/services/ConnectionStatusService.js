@@ -47,7 +47,7 @@ export default class ConnectionStatusService {
     if (isConnected) {
       store.dispatch(internetActions.connected());
 
-      if (this._isConnectedToInternet !== null) {
+      if (this._isConnectedToInternet === false) {
         this._syncApp();
       }
     } else {
