@@ -11,11 +11,12 @@ const illustration = require('../images/illustrations/EmptyListAvatar.png');
 
 const styles = StyleSheet.create({
   view: {
-    top: '50%',
-    marginTop: -30,
-    alignItems: 'center',
+    flexGrow: 1,
     justifyContent: 'center',
     paddingHorizontal: 40
+  },
+  wrapper: {
+    alignItems: 'center'
   },
   illustration: {
     width: 108,
@@ -39,16 +40,18 @@ export default class TransactionListEmpty extends Component {
   render() {
     return (
       <View style={styles.view}>
-        <Image source={illustration} style={styles.illustration} />
+        <View style={styles.wrapper}>
+          <Image source={illustration} style={styles.illustration} />
 
-        <StyledText style={[headerStyles.title, styles.title]}>
-          It&#39;s lonely here
-        </StyledText>
-        <Paragraph style={styles.paragraph}>
-          Add a contact to start sending and receiving bitcoin.
-        </Paragraph>
+          <StyledText style={[headerStyles.title, styles.title]}>
+            It&#39;s lonely here
+          </StyledText>
+          <Paragraph style={styles.paragraph}>
+            Add a contact to start sending and receiving bitcoin.
+          </Paragraph>
 
-        <SmallButton label='Add Contact' onPress={this.props.onAddContactPress} />
+          <SmallButton label='Add Contact' onPress={this.props.onAddContactPress} />
+        </View>
       </View>
     );
   }

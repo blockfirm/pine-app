@@ -15,10 +15,15 @@ import {
 } from './DateSectionHeader';
 
 const ITEM_HEIGHT = 68;
+const CONTENT_INSET_BOTTOM = ifIphoneX(124, 90);
 
 const styles = StyleSheet.create({
   list: {
     alignSelf: 'stretch'
+  },
+  emptyContentContainer: {
+    flexGrow: 1,
+    marginBottom: CONTENT_INSET_BOTTOM
   }
 });
 
@@ -69,6 +74,7 @@ export default class TransactionList extends PureComponent {
 
   render() {
     const contacts = Object.values(this.props.contacts);
+    const contentContainerStyle = !contacts.length ? styles.emptyContentContainer : null;
 
     contacts.sort((a, b) => {
       return b.createdAt - a.createdAt;
@@ -78,7 +84,8 @@ export default class TransactionList extends PureComponent {
       <DateSectionList
         ref={(ref) => { this._list = ref; }}
         style={styles.list}
-        contentInset={{ bottom: ifIphoneX(124, 90) }}
+        contentContainerStyle={contentContainerStyle}
+        contentInset={{ bottom: CONTENT_INSET_BOTTOM }}
         data={contacts}
         renderItem={({ item }) => (
           <TransactionListItemContainer contact={item} />
