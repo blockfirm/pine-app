@@ -27,6 +27,18 @@ const styles = StyleSheet.create({
   }
 });
 
+const getTimestampFromContact = (contact) => {
+  if (contact.lastMessage) {
+    return contact.lastMessage.createdAt;
+  }
+
+  if (contact.contactRequest) {
+    return contact.contactRequest.createdAt;
+  }
+
+  return contact.createdAt;
+};
+
 export default class TransactionList extends PureComponent {
   state = {
     refreshing: false
@@ -77,7 +89,7 @@ export default class TransactionList extends PureComponent {
     const contentContainerStyle = !contacts.length ? styles.emptyContentContainer : null;
 
     contacts.sort((a, b) => {
-      return b.createdAt - a.createdAt;
+      return getTimestampFromContact(b) - getTimestampFromContact(a);
     });
 
     return (
@@ -91,6 +103,7 @@ export default class TransactionList extends PureComponent {
           <TransactionListItemContainer contact={item} />
         )}
         keyExtractor={(item) => item.id}
+        timestampExtractor={getTimestampFromContact}
         getItemLayout={this._getItemLayout}
         ListEmptyComponent={TransactionListEmptyContainer}
         refreshControl={

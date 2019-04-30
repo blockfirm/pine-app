@@ -4,10 +4,16 @@ import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 import DateSectionHeader from './DateSectionHeader';
 
+const defaultTimestampExtractor = (item) => {
+  return item.createdAt;
+};
+
 export default class DateSectionList extends Component {
   // eslint-disable-next-line max-statements
   _getSectionTitle(item) {
-    const date = moment(new Date(item.createdAt * 1000));
+    const { timestampExtractor } = this.props;
+    const timestamp = timestampExtractor(item);
+    const date = moment(new Date(timestamp * 1000));
     const now = moment();
     const yesterday = moment().subtract(1, 'days');
     const lastWeek = moment().subtract(1, 'weeks');
@@ -87,5 +93,10 @@ export default class DateSectionList extends Component {
 
 DateSectionList.propTypes = {
   data: PropTypes.array.isRequired,
-  inverted: PropTypes.bool
+  inverted: PropTypes.bool,
+  timestampExtractor: PropTypes.func
+};
+
+DateSectionList.defaultProps = {
+  timestampExtractor: defaultTimestampExtractor
 };
