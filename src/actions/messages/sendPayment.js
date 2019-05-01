@@ -40,6 +40,7 @@ const sendPaymentFailure = (error) => {
  * @param {string} rawTransaction - Serialized and signed transaction in raw format.
  * @param {Object} metadata - Metadata about the transaction.
  * @param {string} metadata.txid - The transaction's ID (hash).
+ * @param {string} metadata.address - Bitcoin address the transaction is paying to.
  * @param {number} metadata.amountBtc - The amount in BTC of the transaction excluding fees.
  * @param {number} metadata.fee - The transaction fee in satoshis.
  * @param {Object[]} metadata.inputs - Inputs that was used to build the transaction (returned by the createTransaction action).
@@ -51,7 +52,8 @@ const sendPaymentFailure = (error) => {
  * @returns {Promise} A promise that resolves when the payment has been sent and saved.
  */
 export const sendPayment = (rawTransaction, metadata, contact) => {
-  const { txid, amountBtc, fee, inputs } = metadata;
+  const { txid, address, amountBtc, fee, inputs } = metadata;
+  const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
 
   return (dispatch) => {
     dispatch(sendPaymentRequest());
@@ -61,10 +63,14 @@ export const sendPayment = (rawTransaction, metadata, contact) => {
       .then((sentMessage) => {
         const message = {
           id: sentMessage.id,
+          type: 'payment',
           from: null,
+          address: { address },
           createdAt: sentMessage.createdAt,
+          data: { transaction: rawTransaction },
           txid,
-          amountBtc
+          amountBtc,
+          feeBtc
         };
 
         // Save message to conversation.
@@ -72,7 +78,6 @@ export const sendPayment = (rawTransaction, metadata, contact) => {
       })
       .then(() => {
         // Reserve UTXOs.
-        const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
         const amountToReserve = amountBtc + feeBtc;
 
         const utxosToReserve = inputs.map((input) => ({

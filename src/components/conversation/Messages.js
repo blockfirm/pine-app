@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
+import MessageContainer from '../../containers/conversation/MessageContainer';
 import DateSectionList from '../DateSectionList';
-import Message from './Message';
 
 const styles = StyleSheet.create({
   view: {
@@ -30,7 +30,7 @@ export default class Messages extends PureComponent {
     const isLast = Boolean(!nextItem || nextItem.from !== item.from);
 
     return (
-      <Message
+      <MessageContainer
         message={item}
         contact={this.props.contact}
         isFirst={isFirst}

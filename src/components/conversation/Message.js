@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
@@ -155,7 +155,7 @@ export default class Message extends Component {
 
   // eslint-disable-next-line max-statements
   render() {
-    const { message, isFirst, isLast } = this.props;
+    const { message, isFirst, isLast, onPress } = this.props;
     const wrapperStyle = [styles.wrapper];
     const bubbleStyle = [styles.bubble];
     const textStyle = [];
@@ -190,10 +190,10 @@ export default class Message extends Component {
     return (
       <View style={wrapperStyle}>
         { this._renderAvatar() }
-        <View style={bubbleStyle}>
+        <TouchableOpacity style={bubbleStyle} onPress={onPress}>
           { this._renderContent(textStyle, smallTextStyle) }
           { this._renderBubbleEnd() }
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -203,5 +203,6 @@ Message.propTypes = {
   message: PropTypes.object,
   contact: PropTypes.object,
   isFirst: PropTypes.bool,
-  isLast: PropTypes.bool
+  isLast: PropTypes.bool,
+  onPress: PropTypes.func
 };

@@ -94,7 +94,7 @@ class ConfirmTransactionContainer extends Component {
 
   _signAndPay() {
     const { dispatch, contact, amountBtc } = this.props;
-    const { transaction, inputs, fee } = this.state;
+    const { transaction, inputs, fee, address } = this.state;
 
     return dispatch(signTransaction(transaction, inputs))
       .then(() => {
@@ -103,6 +103,7 @@ class ConfirmTransactionContainer extends Component {
 
         const transactionMetadata = {
           txid: builtTransaction.getId(),
+          address,
           amountBtc,
           fee,
           inputs

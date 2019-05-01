@@ -229,8 +229,6 @@ export default class TransactionDetailsScreen extends Component {
 
   render() {
     const { defaultBitcoinUnit } = this.props;
-    const { params } = this.props.navigation.state;
-    const { transaction } = params;
     const { address, amount, fee, isOutgoing } = this.state;
 
     return (
