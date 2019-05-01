@@ -111,7 +111,7 @@ export default class PaymentDetailsScreen extends Component {
     const { transaction } = this.props.navigation.state.params;
 
     if (!transaction) {
-      return 'Not Broadcasted'
+      return 'Not Broadcasted';
     }
 
     if (!transaction.confirmations > 0) {
@@ -126,7 +126,7 @@ export default class PaymentDetailsScreen extends Component {
     const title = message.from ? 'Amount Received' : 'Amount Sent';
 
     return (
-      <View style={[styles.detail, styles.lastDetail]}>
+      <View style={styles.detail}>
         <StyledText style={styles.label}>
           {title}
         </StyledText>
