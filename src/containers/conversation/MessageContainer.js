@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-class MessageContainer extends Component {
+class MessageContainer extends PureComponent {
   static propTypes = {
     dispatch: PropTypes.func,
     navigation: PropTypes.any,
@@ -20,24 +20,39 @@ class MessageContainer extends Component {
     bitcoinNetwork: PropTypes.oneOf(['mainnet', 'testnet'])
   };
 
+  state = {
+    transaction: null
+  }
+
   constructor() {
     super(...arguments);
     this._onPress = this._onPress.bind(this);
   }
 
+  componentDidMount() {
+    const { message, transactions } = this.props;
+
+    if (!message.error) {
+      const messageTransaction = transactions.find((transaction) => {
+        return transaction.txid === message.txid;
+      });
+
+      this.setState({
+        transaction: messageTransaction
+      });
+    }
+  }
+
   _onPress() {
-    const { navigation, message, transactions, bitcoinNetwork } = this.props;
+    const { navigation, message, bitcoinNetwork } = this.props;
+    const { transaction } = this.state;
 
     if (message.error) {
       return;
     }
 
-    const messageTransaction = transactions.find((transaction) => {
-      return transaction.txid === message.txid;
-    });
-
     navigation.navigate('PaymentDetails', {
-      transaction: messageTransaction,
+      transaction,
       message,
       bitcoinNetwork
     });
@@ -47,6 +62,7 @@ class MessageContainer extends Component {
     return (
       <Message
         {...this.props}
+        transaction={this.state.transaction}
         onPress={this._onPress}
       />
     );

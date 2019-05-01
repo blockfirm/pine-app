@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import Avatar from '../Avatar';
 import StyledText from '../StyledText';
+import MessageStatus from './MessageStatus';
 
 const bubbleEndLeft = require('../../images/message/BubbleEndLeft.png');
 const bubbleEndRight = require('../../images/message/BubbleEndRight.png');
@@ -27,9 +28,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   bubble: {
-    paddingHorizontal: 18,
-    paddingVertical: 12,
-    borderRadius: 18
+    paddingHorizontal: 20,
+    paddingVertical: 18,
+    borderRadius: 15
   },
   bubbleReceived: {
     backgroundColor: '#F0F0F0'
@@ -61,13 +62,12 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   smallText: {
-    fontSize: 12
+    fontSize: 13
   },
   smallTextReceived: {
     opacity: 0.75
   },
   smallTextSent: {
-    fontSize: 12,
     opacity: 0.9
   },
   avatar: {
@@ -89,6 +89,20 @@ const styles = StyleSheet.create({
 });
 
 export default class Message extends Component {
+  _getStatus() {
+    const { transaction } = this.props;
+
+    if (!transaction) {
+      return 0; // Not Broadcasted
+    }
+
+    if (!transaction.confirmations > 0) {
+      return 1; // Pending Confirmation
+    }
+
+    return 2; // Confirmed
+  }
+
   _renderContent(textStyle, smallTextStyle) {
     const { message } = this.props;
 
@@ -153,6 +167,15 @@ export default class Message extends Component {
     );
   }
 
+  _renderStatus() {
+    const { message } = this.props;
+    const color = message.from ? 'gray' : 'white';
+
+    return (
+      <MessageStatus status={this._getStatus()} color={color} />
+    );
+  }
+
   // eslint-disable-next-line max-statements
   render() {
     const { message, isFirst, isLast, onPress } = this.props;
@@ -193,6 +216,7 @@ export default class Message extends Component {
         <TouchableOpacity style={bubbleStyle} onPress={onPress}>
           { this._renderContent(textStyle, smallTextStyle) }
           { this._renderBubbleEnd() }
+          { this._renderStatus() }
         </TouchableOpacity>
       </View>
     );
@@ -202,6 +226,7 @@ export default class Message extends Component {
 Message.propTypes = {
   message: PropTypes.object,
   contact: PropTypes.object,
+  transaction: PropTypes.object,
   isFirst: PropTypes.bool,
   isLast: PropTypes.bool,
   onPress: PropTypes.func
