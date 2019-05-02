@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 
 import AmountInput from './AmountInput';
 import UnitPicker from './UnitPicker';
-import SendButton from './SendButton';
-import CancelButton from './CancelButton';
+import InputBarButton from './InputBarButton';
+import SendButtonIcon from '../icons/SendButtonIcon';
+import CancelButtonIcon from '../icons/CancelButtonIcon';
 
 import {
   UNIT_BTC,
@@ -26,10 +27,12 @@ const styles = StyleSheet.create({
     right: 63
   },
   sendButton: {
+    backgroundColor: '#FFD23F',
     position: 'absolute',
     right: 22
   },
   cancelButton: {
+    backgroundColor: '#FF3B30',
     position: 'absolute',
     right: 22
   }
@@ -107,17 +110,19 @@ export default class InputBar extends Component {
 
     if (confirmTransaction) {
       return (
-        <CancelButton
+        <InputBarButton
           style={styles.cancelButton}
+          Icon={CancelButtonIcon}
           onPress={this._onCancelPress}
         />
       );
     }
 
     return (
-      <SendButton
+      <InputBarButton
         disabled={sendDisabled}
         style={styles.sendButton}
+        Icon={SendButtonIcon}
         onPress={this._onSendPress}
       />
     );
