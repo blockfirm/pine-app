@@ -21,8 +21,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 5,
-    height: HEIGHT
+    marginBottom: 10
+  },
+  wrapperConnected: {
+    marginBottom: 3
   },
   wrapperReceived: {
     justifyContent: 'flex-start',
@@ -265,10 +267,12 @@ export default class Message extends Component {
     }
 
     if (isFirst && !isLast) {
+      wrapperStyle.push(styles.wrapperConnected);
       bubbleStyle.push(styles.bubbleFirst);
     } else if (isLast && !isFirst) {
       bubbleStyle.push(styles.bubbleLast);
     } else if (!isFirst && !isLast) {
+      wrapperStyle.push(styles.wrapperConnected);
       bubbleStyle.push(styles.bubbleFirst);
       bubbleStyle.push(styles.bubbleLast);
     }
