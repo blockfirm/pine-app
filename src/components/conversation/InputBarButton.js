@@ -37,5 +37,5 @@ InputBarButton.propTypes = {
   onPress: PropTypes.func,
   disabled: PropTypes.bool,
   style: PropTypes.any,
-  Icon: PropTypes.instanceOf(Component)
+  Icon: PropTypes.func
 };
