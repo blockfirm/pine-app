@@ -20,32 +20,26 @@ class MessageContainer extends PureComponent {
     bitcoinNetwork: PropTypes.oneOf(['mainnet', 'testnet'])
   };
 
-  state = {
-    transaction: null
-  }
-
   constructor() {
     super(...arguments);
     this._onPress = this._onPress.bind(this);
   }
 
-  componentDidMount() {
+  _findTransaction() {
     const { message, transactions } = this.props;
 
-    if (!message.error) {
-      const messageTransaction = transactions.find((transaction) => {
-        return transaction.txid === message.txid;
-      });
-
-      this.setState({
-        transaction: messageTransaction
-      });
+    if (message.error) {
+      return;
     }
+
+    return transactions.find((transaction) => {
+      return transaction.txid === message.txid;
+    });
   }
 
   _onPress() {
     const { navigation, message, bitcoinNetwork } = this.props;
-    const { transaction } = this.state;
+    const transaction = this._findTransaction();
 
     navigation.navigate('PaymentDetails', {
       transaction,
@@ -55,10 +49,12 @@ class MessageContainer extends PureComponent {
   }
 
   render() {
+    const transaction = this._findTransaction();
+
     return (
       <Message
         {...this.props}
-        transaction={this.state.transaction}
+        transaction={transaction}
         onPress={this._onPress}
       />
     );
