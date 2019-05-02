@@ -54,11 +54,17 @@ export default class NotificationService {
   }
 
   _openConversation(notification) {
+    const state = this.store.getState();
     const { dispatch } = this.store;
     const data = notification.getData();
 
     if (data && data.address) {
-      dispatch(openConversation(data.address));
+      const { activeConversation } = state.navigate;
+      const activeContact = activeConversation && activeConversation.contact;
+
+      if (!activeContact || activeContact.address !== data.address) {
+        dispatch(openConversation(data.address));
+      }
     }
   }
 
@@ -101,13 +107,15 @@ export default class NotificationService {
     const { initialized } = state.settings;
     const isInBackground = this._appState.match(/inactive|background/);
 
-    if (initialized) {
-      store.dispatch(syncApp()).then(() => {
-        if (isInBackground) {
-          this._openConversation(notification);
-        }
-      });
+    if (!initialized) {
+      return;
     }
+
+    store.dispatch(syncApp()).then(() => {
+      if (isInBackground) {
+        this._openConversation(notification);
+      }
+    });
   }
 
   _onAppStateChange(nextAppState) {
