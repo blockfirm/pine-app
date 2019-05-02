@@ -6,7 +6,6 @@ import AppleEasing from 'react-apple-easing';
 
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import Avatar from '../Avatar';
-import StyledText from '../StyledText';
 import MessageStatus from './MessageStatus';
 
 const bubbleEndLeft = require('../../images/message/BubbleEndLeft.png');
@@ -64,7 +63,6 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   textError: {
-    fontSize: 14,
     color: 'white'
   },
   smallText: {
@@ -151,29 +149,25 @@ export default class Message extends Component {
   }
 
   _getStatus() {
-    const { transaction } = this.props;
+    const { message, transaction } = this.props;
+
+    if (message.error) {
+      return MessageStatus.STATUS_ERROR;
+    }
 
     if (!transaction) {
-      return 0; // Not Broadcasted
+      return MessageStatus.STATUS_NOT_BROADCASTED;
     }
 
     if (!transaction.confirmations > 0) {
-      return 1; // Pending Confirmation
+      return MessageStatus.STATUS_PENDING_CONFIRMATION;
     }
 
-    return 2; // Confirmed
+    return MessageStatus.STATUS_CONFIRMED;
   }
 
   _renderBubbleContent(textStyle, smallTextStyle) {
     const { message } = this.props;
-
-    if (message.error) {
-      return (
-        <StyledText style={textStyle}>
-          {message.error}
-        </StyledText>
-      );
-    }
 
     return (
       <View>
@@ -230,7 +224,7 @@ export default class Message extends Component {
 
   _renderStatus() {
     const { message } = this.props;
-    const color = message.from ? 'gray' : 'white';
+    const color = message.from ? MessageStatus.COLOR_GRAY : MessageStatus.COLOR_WHITE;
 
     return (
       <MessageStatus status={this._getStatus()} color={color} />

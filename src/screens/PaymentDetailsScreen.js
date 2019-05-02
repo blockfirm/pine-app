@@ -12,6 +12,7 @@ import AddressLabel from '../components/AddressLabel';
 import DateLabel from '../components/DateLabel';
 import FeeLabel from '../components/FeeLabel';
 import StyledText from '../components/StyledText';
+import ErrorMessage from '../components/ErrorMessage';
 import ShareIcon from '../components/icons/ShareIcon';
 import BaseScreen from './BaseScreen';
 
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
   },
   details: {
     alignSelf: 'stretch',
-    marginTop: 16,
+    paddingTop: 16,
     marginHorizontal: 16
   },
   detail: {
@@ -121,6 +122,21 @@ export default class PaymentDetailsScreen extends Component {
     return 'Confirmed';
   }
 
+  _renderError() {
+    const { message } = this.props.navigation.state.params;
+
+    if (!message.error) {
+      return;
+    }
+
+    return (
+      <ErrorMessage
+        title='Invalid Payment'
+        message={message.error}
+      />
+    );
+  }
+
   _renderAmount() {
     const { message } = this.props.navigation.state.params;
     const title = message.from ? 'Amount Received' : 'Amount Sent';
@@ -200,6 +216,7 @@ export default class PaymentDetailsScreen extends Component {
       <BaseScreen hideHeader={true} style={styles.view}>
         <ContentView style={styles.content}>
           <ScrollView style={styles.details}>
+            { this._renderError() }
             <View style={styles.detail}>
               <StyledText style={styles.label}>Payment Status</StyledText>
               <View style={styles.value}>

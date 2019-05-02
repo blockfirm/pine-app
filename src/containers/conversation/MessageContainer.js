@@ -47,10 +47,6 @@ class MessageContainer extends PureComponent {
     const { navigation, message, bitcoinNetwork } = this.props;
     const { transaction } = this.state;
 
-    if (message.error) {
-      return;
-    }
-
     navigation.navigate('PaymentDetails', {
       transaction,
       message,
