@@ -49,6 +49,7 @@ export default class InputBar extends Component {
       currency: primaryCurrency,
       unit: primaryCurrency === CURRENCY_BTC ? defaultBitcoinUnit : null,
       insufficientFunds: false,
+      insufficientFundsReason: null,
       confirmTransaction: false
     };
 
@@ -82,11 +83,18 @@ export default class InputBar extends Component {
   }
 
   _checkBalance(amount) {
-    const { spendableBalance } = this.props;
+    const { spendableBalance, balance } = this.props;
     const amountBtc = this._getBtcAmount(amount);
     const insufficientFunds = amountBtc > spendableBalance;
+    let insufficientFundsReason;
 
-    this.setState({ insufficientFunds });
+    if (amountBtc > balance) {
+      insufficientFundsReason = 'Insufficient funds';
+    } else if (amountBtc > spendableBalance) {
+      insufficientFundsReason = 'Insufficient confirmed funds';
+    }
+
+    this.setState({ insufficientFunds, insufficientFundsReason });
   }
 
   _onSendPress() {
@@ -140,7 +148,14 @@ export default class InputBar extends Component {
 
   render() {
     const { primaryCurrency, secondaryCurrency, defaultBitcoinUnit } = this.props;
-    const { currency, unit, insufficientFunds, confirmTransaction } = this.state;
+
+    const {
+      currency,
+      unit,
+      insufficientFunds,
+      insufficientFundsReason,
+      confirmTransaction
+    } = this.state;
 
     return (
       <View style={styles.toolbar}>
@@ -150,6 +165,7 @@ export default class InputBar extends Component {
           unit={unit}
           onChangeAmount={this._onChangeAmount}
           hasError={insufficientFunds}
+          errorText={insufficientFundsReason}
           editable={!confirmTransaction}
         />
         <UnitPicker
@@ -172,6 +188,7 @@ InputBar.propTypes = {
   primaryCurrency: PropTypes.string.isRequired,
   secondaryCurrency: PropTypes.string.isRequired,
   defaultBitcoinUnit: PropTypes.string.isRequired,
+  balance: PropTypes.number.isRequired,
   spendableBalance: PropTypes.number.isRequired,
   fiatRates: PropTypes.object.isRequired,
   onSendPress: PropTypes.func.isRequired,

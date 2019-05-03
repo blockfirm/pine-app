@@ -1,8 +1,10 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput, LayoutAnimation } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { DECIMAL_SEPARATOR } from '../../localization';
+import StyledText from '../StyledText';
 
 import {
   UNIT_BTC,
@@ -92,11 +94,21 @@ export default class AmountInput extends Component {
     const { amount } = this.state;
     const prevCurrency = prevProps.currency;
     const prevUnit = prevProps.unit;
-    const { currency, unit } = this.props;
+    const { currency, unit, hasError } = this.props;
 
     if (unit !== prevUnit || currency !== prevCurrency) {
       const sanitizedAmount = this._sanitizeAmount(amount);
       this._setAmount(sanitizedAmount);
+    }
+
+    if (hasError !== prevProps.hasError) {
+      const animation = LayoutAnimation.create(
+        200,
+        LayoutAnimation.Types['easeInEaseOut'],
+        LayoutAnimation.Properties.opacity
+      );
+
+      LayoutAnimation.configureNext(animation);
     }
   }
 
@@ -150,6 +162,20 @@ export default class AmountInput extends Component {
     this.setState({ amount: '' });
   }
 
+  _renderErrorText() {
+    const { hasError, errorText } = this.props;
+
+    if (!hasError) {
+      return null;
+    }
+
+    return (
+      <StyledText style={{ color: '#999999' }}>
+        {errorText}
+      </StyledText>
+    );
+  }
+
   render() {
     const style = [
       styles.input,
@@ -172,6 +198,7 @@ export default class AmountInput extends Component {
           enablesReturnKeyAutomatically={true}
           onChangeText={this._onChangeText}
         />
+        { this._renderErrorText() }
       </View>
     );
   }
@@ -181,5 +208,6 @@ AmountInput.propTypes = {
   onChangeAmount: PropTypes.func.isRequired,
   currency: PropTypes.string.isRequired,
   unit: PropTypes.string,
-  hasError: PropTypes.bool
+  hasError: PropTypes.bool,
+  errorText: PropTypes.string
 };

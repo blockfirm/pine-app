@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
     primaryCurrency: state.settings.currency.primary,
     secondaryCurrency: state.settings.currency.secondary,
     defaultBitcoinUnit: state.settings.bitcoin.unit,
+    balance: state.bitcoin.wallet.balance,
     spendableBalance: state.bitcoin.wallet.spendableBalance,
     fiatRates: state.bitcoin.fiat.rates
   };
