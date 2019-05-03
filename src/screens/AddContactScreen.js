@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import AppleEasing from 'react-apple-easing';
 
 import { send as sendContactRequest } from '../actions/pine/contactRequests/send';
 import { add as addContact } from '../actions/contacts/add';
@@ -29,9 +30,10 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 24
   },
+  inputTitleWrapper: {
+    position: 'absolute'
+  },
   inputTitle: {
-    position: 'absolute',
-    marginTop: -20,
     fontSize: 14,
     fontWeight: '500'
   },
@@ -70,7 +72,9 @@ export default class AddContactScreen extends Component {
 
     this.state = {
       address: '',
-      error: ''
+      error: '',
+      animatedTitleOpacity: new Animated.Value(0),
+      animatedTitleMargin: new Animated.Value(-20)
     };
   }
 
@@ -148,15 +152,58 @@ export default class AddContactScreen extends Component {
     this._validateAddress(address);
   }
 
+  _showInputTitle() {
+    const { animatedTitleOpacity, animatedTitleMargin } = this.state;
+
+    Animated.parallel([
+      Animated.timing(animatedTitleOpacity, {
+        toValue: 1,
+        duration: 200,
+        easing: AppleEasing.default
+      }),
+      Animated.timing(animatedTitleMargin, {
+        toValue: -20,
+        duration: 200,
+        easing: AppleEasing.default
+      })
+    ]).start();
+  }
+
+  _hideInputTitle() {
+    const { animatedTitleOpacity, animatedTitleMargin } = this.state;
+
+    Animated.timing(animatedTitleOpacity, {
+      toValue: 0,
+      duration: 100,
+      easing: AppleEasing.default
+    }).start(() => {
+      animatedTitleMargin.setValue(0);
+    });
+  }
+
   _renderInputTitle() {
-    if (!this.state.address) {
-      return null;
+    const { animatedTitleOpacity, animatedTitleMargin } = this.state;
+
+    const style = [
+      styles.inputTitleWrapper,
+      {
+        opacity: animatedTitleOpacity,
+        marginTop: animatedTitleMargin
+      }
+    ];
+
+    if (this.state.address) {
+      this._showInputTitle();
+    } else {
+      this._hideInputTitle();
     }
 
     return (
-      <StyledText style={styles.inputTitle}>
-        Enter Pine Address
-      </StyledText>
+      <Animated.View style={style}>
+        <StyledText style={styles.inputTitle}>
+          Enter Pine Address
+        </StyledText>
+      </Animated.View>
     );
   }
 
