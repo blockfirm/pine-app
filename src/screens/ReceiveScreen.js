@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
   },
   pineAddress: {
     textAlign: 'center',
-    color: '#AAAAAA',
-    marginBottom: 15
+    marginBottom: 15,
+    fontWeight: '600'
   },
   address: {
     textAlign: 'center',
