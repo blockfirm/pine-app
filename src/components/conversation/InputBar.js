@@ -42,10 +42,21 @@ export default class InputBar extends Component {
   constructor(props) {
     super(...arguments);
 
-    const { primaryCurrency, defaultBitcoinUnit } = props;
+    const { primaryCurrency, defaultBitcoinUnit, fiatRates, initialAmountBtc } = props;
+    let initialAmount = null;
+
+    if (initialAmountBtc) {
+      if (primaryCurrency === CURRENCY_BTC) {
+        initialAmount = convertBitcoin(initialAmountBtc, UNIT_BTC, defaultBitcoinUnit);
+      } else {
+        const fiatRate = fiatRates[primaryCurrency];
+        initialAmount = fiatRate ? (initialAmountBtc * fiatRate) : 0;
+      }
+    }
 
     this.state = {
       amount: 0,
+      initialAmount,
       currency: primaryCurrency,
       unit: primaryCurrency === CURRENCY_BTC ? defaultBitcoinUnit : null,
       insufficientFunds: false,
@@ -150,6 +161,7 @@ export default class InputBar extends Component {
     const { primaryCurrency, secondaryCurrency, defaultBitcoinUnit } = this.props;
 
     const {
+      initialAmount,
       currency,
       unit,
       insufficientFunds,
@@ -163,6 +175,7 @@ export default class InputBar extends Component {
           ref={(ref) => { this._amountInput = ref; }}
           currency={currency}
           unit={unit}
+          initialAmount={initialAmount}
           onChangeAmount={this._onChangeAmount}
           hasError={insufficientFunds}
           errorText={insufficientFundsReason}
@@ -192,5 +205,6 @@ InputBar.propTypes = {
   spendableBalance: PropTypes.number.isRequired,
   fiatRates: PropTypes.object.isRequired,
   onSendPress: PropTypes.func.isRequired,
-  onCancelPress: PropTypes.func.isRequired
+  onCancelPress: PropTypes.func.isRequired,
+  initialAmountBtc: PropTypes.number
 };

@@ -4,13 +4,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import { RNCamera } from 'react-native-camera';
 
+import getPaymentInfoFromString from '../crypto/bitcoin/getPaymentInfoFromString';
+import { parse as parseAddress, getAddressFromUri } from '../pineApi/address';
+import getStatusBarHeight from '../utils/getStatusBarHeight';
 import ContentView from '../components/ContentView';
 import Paragraph from '../components/Paragraph';
 import Button from '../components/Button';
 import VibrancyButton from '../components/VibrancyButton';
 import Link from '../components/Link';
-import getStatusBarHeight from '../utils/getStatusBarHeight';
-import getPaymentInfoFromString from '../crypto/bitcoin/getPaymentInfoFromString';
 
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 const WINDOW_WIDTH = Dimensions.get('window').width;
@@ -82,11 +83,21 @@ export default class QrCodeScanner extends Component {
   }
 
   _onReceiveData(data) {
-    const network = this.props.network;
+    const { network, onReceiveAddress } = this.props;
+    const pineAddress = getAddressFromUri(data);
     const paymentInfo = getPaymentInfoFromString(data, network);
 
+    // Try to evaluate data as a BIP21 URI.
     if (paymentInfo) {
-      this.props.onReceiveAddress(paymentInfo.address, paymentInfo.amount);
+      return onReceiveAddress(pineAddress || paymentInfo.address, paymentInfo.amount);
+    }
+
+    // Try to evaluate data as a Pine address.
+    try {
+      parseAddress(data);
+      return onReceiveAddress(data.trim());
+    } catch (error) {
+      // Suppress error.
     }
   }
 

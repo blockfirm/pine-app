@@ -7,7 +7,7 @@ import AppleEasing from 'react-apple-easing';
 
 import { send as sendContactRequest } from '../actions/pine/contactRequests/send';
 import { add as addContact } from '../actions/contacts/add';
-import { parse as parseAddress } from '../pineApi/address';
+import { parse as parseAddress, getAddressFromUri } from '../pineApi/address';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';
@@ -67,7 +67,7 @@ export default class AddContactScreen extends Component {
     };
   };
 
-  constructor(props) {
+  constructor() {
     super(...arguments);
 
     this.state = {
@@ -79,8 +79,15 @@ export default class AddContactScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({ canSubmit: false });
-    this.props.navigation.setParams({ submit: this._onSubmit.bind(this) });
+    const { navigation } = this.props;
+    const address = navigation.getParam('address') || '';
+
+    navigation.setParams({ canSubmit: false });
+    navigation.setParams({ submit: this._onSubmit.bind(this) });
+
+    if (address) {
+      this._onChangeText(address);
+    }
   }
 
   _getFullAddress(address) {
@@ -145,22 +152,13 @@ export default class AddContactScreen extends Component {
     }
   }
 
-  _extractPineAddressFromUri(uri) {
-    if (uri.search(/^bitcoin/i) !== 0) {
-      return uri;
-    }
-
-    const matches = uri.match(/pine=(.+@[^&]+)/i);
-
-    if (matches) {
-      return matches[1].trim();
-    }
-  }
-
   _onChangeText(text) {
     let address = text.toLowerCase().trim();
+    const addressFromUri = getAddressFromUri(address);
 
-    address = this._extractPineAddressFromUri(address);
+    if (addressFromUri) {
+      address = addressFromUri;
+    }
 
     this.setState({ address });
     this._validateAddress(address);

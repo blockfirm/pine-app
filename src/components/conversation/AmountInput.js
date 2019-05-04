@@ -95,6 +95,15 @@ export default class AmountInput extends Component {
     this.focus = this.focus.bind(this);
   }
 
+  componentDidMount() {
+    const { initialAmount } = this.props;
+
+    if (initialAmount) {
+      this._onChangeText(initialAmount.toString());
+      this.focus();
+    }
+  }
+
   componentDidUpdate(prevProps) {
     const { amount } = this.state;
     const prevCurrency = prevProps.currency;
@@ -215,6 +224,7 @@ AmountInput.propTypes = {
   onChangeAmount: PropTypes.func.isRequired,
   currency: PropTypes.string.isRequired,
   unit: PropTypes.string,
+  initialAmount: PropTypes.number,
   hasError: PropTypes.bool,
   errorText: PropTypes.string
 };

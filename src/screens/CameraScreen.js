@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactNativeHaptic from 'react-native-haptic';
@@ -7,8 +7,6 @@ import ReactNativeHaptic from 'react-native-haptic';
 import QrCodeScannerContainer from '../containers/QrCodeScannerContainer';
 import CameraScreenHeader from '../components/CameraScreenHeader';
 import BaseScreen from './BaseScreen';
-
-const CURRENCY_BTC = 'BTC';
 
 const styles = StyleSheet.create({
   view: {
@@ -18,7 +16,8 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
-  settings: state.settings
+  contacts: state.contacts.items,
+  homeScreenIndex: state.homeScreen.index
 }))
 export default class CameraScreen extends Component {
   static navigationOptions = {
@@ -43,33 +42,60 @@ export default class CameraScreen extends Component {
 
   componentWillFocus() {
     this.setState({ pauseCamera: false });
+
+    if (this.props.homeScreenIndex === 0) {
+      StatusBar.setBarStyle('light-content');
+    }
   }
 
   componentWillBlur() {
     this.setState({ pauseCamera: true });
+
+    if (this.props.homeScreenIndex === 0) {
+      StatusBar.setBarStyle('dark-content');
+    }
   }
 
-  _showEnterAmountScreen(address, amount) {
-    const navigation = this.props.navigation;
-    const primaryCurrency = this.props.settings.currency.primary;
-    const unit = this.props.settings.bitcoin.unit;
+  _showAddContactScreen(address) {
+    const { navigation } = this.props;
+    navigation.navigate('AddContact', { address });
+  }
 
-    navigation.navigate('Send', {
-      address,
-      amountBtc: amount,
-      displayCurrency: primaryCurrency,
-      displayUnit: primaryCurrency === CURRENCY_BTC ? unit : null
-    });
+  _showConversationScreen(contact, amount) {
+    const { navigation } = this.props;
+    navigation.navigate('Conversation', { contact, amount });
+  }
+
+  _showConversationScreenForAddress(address, amount) {
+    const { navigation } = this.props;
+    navigation.navigate('Conversation', { address, amount });
   }
 
   _onReceiveAddress(address, amount) {
+    const { contacts, navigation } = this.props;
     const showPreview = this.props.showPreview && !this.state.pauseCamera;
-    const isFocused = this.props.navigation.isFocused();
+    const isFocused = navigation.isFocused();
+    const isPineAddress = address.indexOf('@') > 0;
 
-    if (showPreview && isFocused) {
-      ReactNativeHaptic.generate('notificationSuccess');
-      this._showEnterAmountScreen(address, amount);
+    if (!showPreview || !isFocused) {
+      return;
     }
+
+    ReactNativeHaptic.generate('notificationSuccess');
+
+    const existingContact = Object.values(contacts).find((contact) => {
+      return contact.address === address;
+    })
+
+    if (existingContact) {
+      return this._showConversationScreen(existingContact, amount);
+    }
+
+    if (isPineAddress) {
+      return this._showAddContactScreen(address);
+    }
+
+    return this._showConversationScreenForAddress(address, amount);
   }
 
   render() {
@@ -86,7 +112,8 @@ export default class CameraScreen extends Component {
 
 CameraScreen.propTypes = {
   navigation: PropTypes.any,
-  settings: PropTypes.object,
+  contacts: PropTypes.object,
   showPreview: PropTypes.bool,
-  onBackPress: PropTypes.func
+  onBackPress: PropTypes.func,
+  homeScreenIndex: PropTypes.number
 };

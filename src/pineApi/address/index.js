@@ -1,3 +1,4 @@
+export { default as getAddressFromUri } from './getAddressFromUri';
 export { default as parse } from './parse';
 export { default as resolveBaseUrl } from './resolveBaseUrl';
 

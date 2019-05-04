@@ -327,11 +327,14 @@ export default class ConversationScreen extends Component {
   }
 
   _renderInputBar() {
+    const initialAmountBtc = this.props.navigation.getParam('amount');
+
     return (
       <InputBarContainer
         ref={(ref) => { this._inputBar = ref && ref.getWrappedInstance(); }}
         onSendPress={this._onSendPress}
         onCancelPress={this._onCancelPress}
+        initialAmountBtc={initialAmountBtc}
       />
     );
   }
