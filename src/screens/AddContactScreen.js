@@ -145,8 +145,22 @@ export default class AddContactScreen extends Component {
     }
   }
 
+  _extractPineAddressFromUri(uri) {
+    if (uri.search(/^bitcoin/i) !== 0) {
+      return uri;
+    }
+
+    const matches = uri.match(/pine=(.+@[^&]+)/i);
+
+    if (matches) {
+      return matches[1].trim();
+    }
+  }
+
   _onChangeText(text) {
-    const address = text.toLowerCase().trim();
+    let address = text.toLowerCase().trim();
+
+    address = this._extractPineAddressFromUri(address);
 
     this.setState({ address });
     this._validateAddress(address);
