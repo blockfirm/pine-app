@@ -20,8 +20,8 @@ export default class AddressLabel extends Component {
   }
 
   render() {
-    const { address } = this.props;
-    const shortenedAddress = this._getShortenedAddress();
+    const { address, shorten } = this.props;
+    const shortenedAddress = shorten ? this._getShortenedAddress() : address;
 
     return (
       <View style={this.props.style}>
@@ -39,5 +39,10 @@ AddressLabel.propTypes = {
   style: PropTypes.any,
   textStyle: PropTypes.any,
   tooltipArrowDirection: PropTypes.string,
-  address: PropTypes.string
+  address: PropTypes.string,
+  shorten: PropTypes.bool
+};
+
+AddressLabel.defaultProps = {
+  shorten: true
 };

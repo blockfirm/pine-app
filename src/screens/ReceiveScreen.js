@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, Clipboard, Share, View } from 'react-native';
+import { StyleSheet, Clipboard, Share, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import QRCode from 'react-qr-code';
-import ReactNativeHaptic from 'react-native-haptic';
 
 import BaseScreen from './BaseScreen';
 import ReceiveScreenHeader from '../components/ReceiveScreenHeader';
 import ContentView from '../components/ContentView';
 import Paragraph from '../components/Paragraph';
-import Button from '../components/Button';
 import AddressLabel from '../components/AddressLabel';
+
+const WINDOW_WIDTH = Dimensions.get('window').width;
+const QR_CODE_WIDTH = WINDOW_WIDTH - 80 - 32;
 
 const styles = StyleSheet.create({
   view: {
@@ -20,6 +21,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 0
   },
+  pineAddress: {
+    textAlign: 'center',
+    color: '#AAAAAA',
+    marginBottom: 15
+  },
   address: {
     textAlign: 'center',
     color: '#AAAAAA',
@@ -28,6 +34,7 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
+  pineAddress: state.settings.user.profile.address,
   address: state.bitcoin.wallet.addresses.external.unused
 }))
 export default class ReceiveScreen extends Component {
@@ -35,50 +42,35 @@ export default class ReceiveScreen extends Component {
     header: null
   }
 
-  state = {
-    copied: false
-  }
-
-  _copyAddress() {
-    const address = this.props.address;
-
-    Clipboard.setString(address);
-    ReactNativeHaptic.generate('notificationSuccess');
-    this.setState({ copied: true });
-
-    setTimeout(() => {
-      this.setState({ copied: false });
-    }, 1000);
+  _getBitcoinUri() {
+    const { pineAddress, address } = this.props;
+    return `bitcoin:${address}?pine=${pineAddress}`;
   }
 
   _shareAddress() {
-    const address = this.props.address;
-    Share.share({ message: address });
+    const bitcoinUri = this._getBitcoinUri();
+    Share.share({ message: bitcoinUri });
   }
 
   render() {
-    const address = this.props.address;
-    const qrData = `bitcoin:${address}`;
-    const label = this.state.copied ? 'Copied' : 'Copy Address';
+    const { pineAddress, address } = this.props;
+    const qrData = this._getBitcoinUri();
 
     return (
       <BaseScreen style={styles.view}>
         <ReceiveScreenHeader onSharePress={this._shareAddress.bind(this)} onBackPress={this.props.onBackPress} />
-
         <ContentView hasToolbar={true}>
           <Paragraph style={styles.text}>
             Show this QR code or share your address with someone who should send you bitcoin.
           </Paragraph>
 
           <View>
-            <QRCode value={qrData} size={200} />
+            <AddressLabel address={pineAddress} shorten={false} textStyle={styles.pineAddress} tooltipArrowDirection='down' />
+            <QRCode value={qrData} size={QR_CODE_WIDTH} />
             <AddressLabel address={address} textStyle={styles.address} tooltipArrowDirection='up' />
           </View>
 
-          <Button
-            label={label}
-            onPress={this._copyAddress.bind(this)}
-          />
+          <View>{/* Used as a placeholder so that the QR code view aligns in the center */ }</View>
         </ContentView>
       </BaseScreen>
     );
@@ -87,6 +79,7 @@ export default class ReceiveScreen extends Component {
 
 ReceiveScreen.propTypes = {
   dispatch: PropTypes.func,
+  pineAddress: PropTypes.string,
   address: PropTypes.string,
   onBackPress: PropTypes.func
 };
