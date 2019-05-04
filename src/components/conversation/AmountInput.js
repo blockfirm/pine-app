@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View, TextInput, LayoutAnimation } from 'react-native';
+import { StyleSheet, View, TextInput, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { DECIMAL_SEPARATOR } from '../../localization';
@@ -90,7 +90,9 @@ export default class AmountInput extends Component {
 
   constructor() {
     super(...arguments);
+
     this._onChangeText = this._onChangeText.bind(this);
+    this.focus = this.focus.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -187,22 +189,24 @@ export default class AmountInput extends Component {
     ];
 
     return (
-      <View style={styles.container}>
-        <TextInput
-          {...this.props}
-          ref={(ref) => { this._input = ref; }}
-          style={style}
-          keyboardType='decimal-pad'
-          autoCorrect={false}
-          value={this.state.amount}
-          placeholder='Enter Amount'
-          placeholderTextColor='#999999'
-          selectionColor='#FFC431'
-          enablesReturnKeyAutomatically={true}
-          onChangeText={this._onChangeText}
-        />
-        { this._renderErrorText() }
-      </View>
+      <TouchableWithoutFeedback onPress={this.focus}>
+        <View style={styles.container}>
+          <TextInput
+            {...this.props}
+            ref={(ref) => { this._input = ref; }}
+            style={style}
+            keyboardType='decimal-pad'
+            autoCorrect={false}
+            value={this.state.amount}
+            placeholder='Enter Amount'
+            placeholderTextColor='#999999'
+            selectionColor='#FFC431'
+            enablesReturnKeyAutomatically={true}
+            onChangeText={this._onChangeText}
+          />
+          { this._renderErrorText() }
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
