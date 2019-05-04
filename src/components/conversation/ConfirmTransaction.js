@@ -1,9 +1,11 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, TouchableOpacity, LayoutAnimation } from 'react-native';
 import PropTypes from 'prop-types';
 
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import authentication from '../../authentication';
+import HelpIcon from '../icons/HelpIcon';
 import Button from '../Button';
 import Footer from '../Footer';
 import StyledText from '../StyledText';
@@ -22,7 +24,6 @@ const BIOMETRY_TYPE_FACE_ID = 'FaceID';
 const styles = StyleSheet.create({
   view: {
     paddingHorizontal: 15,
-    paddingVertical: 5,
     alignSelf: 'stretch',
     backgroundColor: '#FAFAFA',
     borderTopColor: '#F0F1F4',
@@ -48,6 +49,10 @@ const styles = StyleSheet.create({
     color: '#8E8E93',
     fontSize: 15
   },
+  feeLabelWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
   valueWrapper: {
     flex: 1,
     flexDirection: 'row',
@@ -70,12 +75,27 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: '600',
     color: 'black'
+  },
+  helpIcon: {
+    paddingHorizontal: 5,
+    opacity: 0.75
+  },
+  helpText: {
+    color: '#8E8E93',
+    marginTop: 5,
+    fontSize: 13
   }
 });
 
 export default class ConfirmTransaction extends Component {
   state = {
-    biometryType: null
+    biometryType: null,
+    showFeeHelpText: false
+  }
+
+  constructor() {
+    super(...arguments);
+    this._toggleFeeHelpText = this._toggleFeeHelpText.bind(this);
   }
 
   componentDidMount() {
@@ -96,6 +116,33 @@ export default class ConfirmTransaction extends Component {
       default:
         return 'Pay';
     }
+  }
+
+  _toggleFeeHelpText() {
+    const animation = LayoutAnimation.create(
+      200,
+      LayoutAnimation.Types['easeOut'],
+      LayoutAnimation.Properties.opacity
+    );
+
+    LayoutAnimation.configureNext(animation);
+
+    this.setState({
+      showFeeHelpText: !this.state.showFeeHelpText
+    });
+  }
+
+  _renderFeeHelpText() {
+    if (!this.state.showFeeHelpText) {
+      return null;
+    }
+
+    return (
+      <StyledText style={styles.helpText}>
+        The fee goes to the miner who mines the block containing your transaction.
+        Pine or its developers does not charge any fees.
+      </StyledText>
+    );
   }
 
   _renderFee() {
@@ -134,16 +181,20 @@ export default class ConfirmTransaction extends Component {
   }
 
   render() {
-    const { fee } = this.props;
-
     return (
       <View style={[styles.view, this.props.style]}>
         <View style={styles.details}>
           <View style={styles.detail}>
-            <StyledText style={styles.label}>Fee</StyledText>
+            <View style={styles.feeLabelWrapper}>
+              <StyledText style={styles.label}>Fee</StyledText>
+              <TouchableOpacity onPress={this._toggleFeeHelpText}>
+                { this.state.showFeeHelpText ? null : <HelpIcon style={styles.helpIcon} /> }
+              </TouchableOpacity>
+            </View>
             <View style={styles.value}>
               {this._renderFee()}
             </View>
+            { this._renderFeeHelpText() }
           </View>
           <View style={[styles.detail, styles.lastDetail]}>
             <StyledText style={[styles.label, styles.bold]}>You Pay</StyledText>
@@ -158,7 +209,7 @@ export default class ConfirmTransaction extends Component {
             onPress={this.props.onPayPress}
             showLoader={true}
             hapticFeedback={true}
-            disabled={fee === null}
+            disabled={this.props.fee === null}
           />
         </Footer>
       </View>

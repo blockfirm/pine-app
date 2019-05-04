@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
   },
   error: {
     color: '#FF3B30'
+  },
+  errorText: {
+    color: '#999999'
   }
 });
 
@@ -170,7 +173,7 @@ export default class AmountInput extends Component {
     }
 
     return (
-      <StyledText style={{ color: '#999999' }}>
+      <StyledText style={styles.errorText}>
         {errorText}
       </StyledText>
     );
