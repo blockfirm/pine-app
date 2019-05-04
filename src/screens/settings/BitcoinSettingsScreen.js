@@ -26,11 +26,6 @@ export default class BitcoinSettingsScreen extends Component {
     navigation.navigate('BitcoinUnit');
   }
 
-  _showBitcoinFeeSettings() {
-    const navigation = this.props.navigation;
-    navigation.navigate('BitcoinFeeSettings');
-  }
-
   render() {
     const settings = this.props.settings;
 
@@ -38,8 +33,7 @@ export default class BitcoinSettingsScreen extends Component {
       <BaseSettingsScreen>
         <SettingsGroup>
           <SettingsAttribute name='Network' value={config.bitcoin.network} />
-          <SettingsLink name='Display Unit' value={settings.bitcoin.unit} onPress={this._showBitcoinUnit.bind(this)} />
-          <SettingsLink name='Transaction Fees' value={settings.bitcoin.fee.level} onPress={this._showBitcoinFeeSettings.bind(this)} isLastItem={true} />
+          <SettingsLink name='Display Unit' value={settings.bitcoin.unit} onPress={this._showBitcoinUnit.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );
