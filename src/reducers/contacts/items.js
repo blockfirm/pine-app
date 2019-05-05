@@ -13,6 +13,7 @@ const items = (state = {}, action) => {
       return action.contacts;
 
     case contactsActions.CONTACTS_ADD_SUCCESS:
+    case contactsActions.CONTACTS_ADD_LEGACY:
       contact = { ...action.contact };
 
       return {

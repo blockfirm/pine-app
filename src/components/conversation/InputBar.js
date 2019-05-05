@@ -157,6 +157,10 @@ export default class InputBar extends Component {
     this._amountInput.reset();
   }
 
+  focus() {
+    this._amountInput.focus();
+  }
+
   render() {
     const { primaryCurrency, secondaryCurrency, defaultBitcoinUnit } = this.props;
 

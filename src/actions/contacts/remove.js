@@ -30,6 +30,7 @@ const removeFailure = (error) => {
  *
  * @param {object} contact - Contact to remove.
  * @param {string} contact.id - The contact's ID (not user ID).
+ * @param {boolean} [contact.isBitcoinAddress] - Whether the contact is for a bitcoin address and not a Pine user.
  *
  * @returns {Promise} A promise that resolves to the removed contact.
  */
@@ -37,7 +38,12 @@ export const remove = (contact) => {
   return (dispatch) => {
     dispatch(removeRequest());
 
-    return dispatch(removeContactFromServer(contact))
+    return Promise.resolve()
+      .then(() => {
+        if (!contact.isBitcoinAddress) {
+          return dispatch(removeContactFromServer(contact));
+        }
+      })
       .then(() => {
         /**
          * The actual contact is removed by the reducer so this

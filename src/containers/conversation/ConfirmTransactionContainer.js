@@ -9,7 +9,7 @@ import {
 } from '../../actions/bitcoin/wallet/transactions';
 
 import { getAddress } from '../../actions/pine/contacts/getAddress';
-import { sendPayment } from '../../actions/messages/sendPayment';
+import { sendPayment, sendLegacyPayment } from '../../actions/messages';
 import { handle as handleError } from '../../actions/error/handle';
 import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
@@ -24,6 +24,7 @@ class ConfirmTransactionContainer extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     contact: PropTypes.object,
+    bitcoinAddress: PropTypes.string,
     amountBtc: PropTypes.number,
     onTransactionSent: PropTypes.func
   };
@@ -56,7 +57,15 @@ class ConfirmTransactionContainer extends Component {
   }
 
   _getAddress() {
-    const { dispatch, contact } = this.props;
+    const { dispatch, contact, bitcoinAddress } = this.props;
+
+    if (bitcoinAddress) {
+      return Promise.resolve(bitcoinAddress);
+    }
+
+    if (contact.isBitcoinAddress) {
+      return Promise.resolve(contact.address);
+    }
 
     if (this.state.address) {
       return Promise.resolve(this.state.address);
@@ -109,9 +118,13 @@ class ConfirmTransactionContainer extends Component {
           inputs
         };
 
+        if (!contact || contact.isBitcoinAddress) {
+          return dispatch(sendLegacyPayment(rawTransaction, transactionMetadata, contact));
+        }
+
         return dispatch(sendPayment(rawTransaction, transactionMetadata, contact));
       })
-      .then(() => {
+      .then((result) => {
         this.setState({
           address: null,
           transaction: null,
@@ -121,7 +134,7 @@ class ConfirmTransactionContainer extends Component {
         });
 
         ReactNativeHaptic.generate('notificationSuccess');
-        this.props.onTransactionSent();
+        this.props.onTransactionSent(result || {});
       })
       .catch((error) => {
         dispatch(handleError(error));

@@ -1,4 +1,5 @@
 export * from './add';
+export * from './addLegacy';
 export * from './load';
 export * from './markAsRead';
 export * from './markAsUnread';

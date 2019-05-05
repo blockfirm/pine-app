@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
-
-import Avatar from '../Avatar';
 import Paragraph from '../Paragraph';
 
 const illustration = require('../../images/illustrations/BitcoinWithWings.png');
@@ -25,22 +23,9 @@ const styles = StyleSheet.create({
 });
 
 export default class EmptyConversation extends Component {
-  _renderAvatar() {
-    const { contact } = this.props;
-    const avatarChecksum = contact.avatar ? contact.avatar.checksum : null;
-
-    return (
-      <Avatar
-        pineAddress={contact.address}
-        checksum={avatarChecksum}
-        size={60}
-      />
-    );
-  }
-
   render() {
     const { contact } = this.props;
-    const displayName = contact.displayName || contact.username;
+    const displayName = contact.displayName || contact.username || contact.address;
 
     return (
       <View style={styles.wrapper}>

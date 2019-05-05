@@ -83,9 +83,16 @@ const styles = StyleSheet.create({
 }))
 export default class ConversationScreen extends Component {
   static navigationOptions = ({ navigation }) => {
-    const { contact, showUserMenu, loading } = navigation.state.params;
-    const avatarChecksum = contact.avatar ? contact.avatar.checksum : null;
+    const { contact, bitcoinAddress, showUserMenu, loading } = navigation.state.params;
+    const avatarChecksum = contact && contact.avatar && contact.avatar.checksum;
+    let headerTitle;
     let headerRight;
+
+    if (contact) {
+      headerTitle = <HeaderTitle contact={contact} />;
+    } else {
+      headerTitle = <HeaderTitle contact={{ address: bitcoinAddress, isBitcoinAddress: true }} />;
+    }
 
     if (loading) {
       headerRight = (
@@ -95,7 +102,7 @@ export default class ConversationScreen extends Component {
       headerRight = (
         <TouchableOpacity onPress={showUserMenu} style={styles.headerAvatar} disable={loading}>
           <Avatar
-            pineAddress={contact.address}
+            pineAddress={contact && contact.address}
             checksum={avatarChecksum}
             size={36}
           />
@@ -104,12 +111,12 @@ export default class ConversationScreen extends Component {
     }
 
     return {
-      headerTitle: <HeaderTitle contact={contact} />,
+      headerTitle,
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
       headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />,
-      headerRight: contact.contactRequest ? null : headerRight
+      headerRight: (contact && contact.contactRequest) ? null : headerRight
     };
   };
 
@@ -143,7 +150,7 @@ export default class ConversationScreen extends Component {
 
   componentDidMount() {
     const { dispatch, navigation, messages } = this.props;
-    const { contact } = navigation.state.params;
+    const { contact, autoFocus } = navigation.state.params;
 
     navigation.setParams({ showUserMenu: this._showUserMenu.bind(this) });
 
@@ -157,10 +164,16 @@ export default class ConversationScreen extends Component {
       Keyboard.addListener('keyboardDidHide', this._onKeyboardDidHide)
     );
 
-    if (!messages[contact.id]) {
+    if (contact && !messages[contact.id]) {
       dispatch(loadMessages(contact.id)).then(() => {
         this.setState({ messagesLoaded: true });
       });
+    } else {
+      this.setState({ messagesLoaded: true });
+    }
+
+    if (autoFocus) {
+      this._inputBar.focus();
     }
   }
 
@@ -196,7 +209,9 @@ export default class ConversationScreen extends Component {
     const { dispatch, navigation } = this.props;
     const { contact } = navigation.state.params;
 
-    dispatch(markAsRead(contact));
+    if (contact) {
+      dispatch(markAsRead(contact));
+    }
   }
 
   _removeContactAndConversation() {
@@ -224,18 +239,30 @@ export default class ConversationScreen extends Component {
     const { navigation } = this.props;
     const { contact } = navigation.state.params;
 
+    if (!contact) {
+      return;
+    }
+
     ActionSheetIOS.showActionSheetWithOptions({
       title: contact.address,
       options: ['Cancel', 'Delete Contact'],
       destructiveButtonIndex: 1,
       cancelButtonIndex: 0
     }, (buttonIndex) => {
+      let title;
+
       if (buttonIndex === 0) {
         return; // Cancel
       }
 
+      if (contact.isBitcoinAddress) {
+        title = 'Deleting this contact will also delete its payment history.';
+      } else {
+        title = 'Deleting this contact will also delete its payment history and will prevent this contact from sending you any more bitcoin.';
+      }
+
       ActionSheetIOS.showActionSheetWithOptions({
-        title: 'Deleting this contact will also delete its payment history and will prevent this contact from sending you any more bitcoin.',
+        title,
         options: ['Cancel', 'Delete'],
         destructiveButtonIndex: 1,
         cancelButtonIndex: 0
@@ -292,7 +319,7 @@ export default class ConversationScreen extends Component {
     this._listeners.push(keyboardDidShowListener);
   }
 
-  _onTransactionSent() {
+  _onTransactionSent({ createdContact }) {
     const animation = LayoutAnimation.create(
       this.state.keyboardAnimationDuration,
       LayoutAnimation.Types[this.state.keyboardAnimationEasing],
@@ -307,6 +334,10 @@ export default class ConversationScreen extends Component {
     });
 
     this._inputBar.reset();
+
+    if (createdContact) {
+      this.props.navigation.setParams({ contact: createdContact });
+    }
   }
 
   _renderContactRequest(contact) {
@@ -340,7 +371,7 @@ export default class ConversationScreen extends Component {
   }
 
   _renderConfirmTransactionView() {
-    const { contact } = this.props.navigation.state.params;
+    const { contact, bitcoinAddress } = this.props.navigation.state.params;
 
     const {
       keyboardHeight,
@@ -366,6 +397,7 @@ export default class ConversationScreen extends Component {
         amountBtc={amountBtc}
         displayUnit={displayUnit}
         contact={contact}
+        bitcoinAddress={bitcoinAddress}
         onTransactionSent={this._onTransactionSent}
       />
     );
@@ -374,6 +406,16 @@ export default class ConversationScreen extends Component {
   renderContent() {
     const { messages, navigation } = this.props;
     const { contact } = navigation.state.params;
+
+    if (!contact) {
+      return (
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollViewContent}
+        />
+      );
+    }
+
     const contactMessages = messages[contact.id] || [];
 
     if (!contact.contactRequest && contactMessages.length > 0) {
@@ -395,6 +437,7 @@ export default class ConversationScreen extends Component {
     const { navigation } = this.props;
     const { contact } = navigation.state.params;
     const { confirmTransaction } = this.state;
+    const hasContactRequest = Boolean(contact && contact.contactRequest);
 
     const contentStyle = [
       styles.content,
@@ -407,7 +450,7 @@ export default class ConversationScreen extends Component {
       <BaseScreen hideHeader={true} style={styles.view}>
         <ContentView style={contentStyle}>
           { this.renderContent() }
-          { !contact.contactRequest && this._renderInputBar() }
+          { !hasContactRequest && this._renderInputBar() }
           { this._renderConfirmTransactionView() }
           <KeyboardSpacer style={keyboardSpacerStyle} topSpacing={KEYBOARD_TOP_SPACING} />
         </ContentView>

@@ -91,7 +91,7 @@ export default class TransactionListItem extends Component {
 
   _renderTitle() {
     const { contact } = this.props;
-    return contact.displayName || contact.username || 'Unknown User';
+    return contact.displayName || contact.username || 'Unknown';
   }
 
   _renderBtcAmount(amountBtc) {
