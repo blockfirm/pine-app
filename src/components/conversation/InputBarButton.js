@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 8
+  },
   button: {
     width: 29,
     height: 29,
@@ -17,17 +20,19 @@ const styles = StyleSheet.create({
 
 export default class InputBarButton extends Component {
   render() {
-    const { Icon, disabled } = this.props;
+    const { Icon, disabled, onPress, style, containerStyle } = this.props;
 
     const buttonStyles = [
       styles.button,
-      this.props.style,
+      style,
       disabled ? styles.disabled : undefined
     ];
 
     return (
-      <TouchableOpacity onPress={this.props.onPress} disabled={disabled} style={buttonStyles}>
-        <Icon />
+      <TouchableOpacity onPress={onPress} disabled={disabled} style={[styles.container, containerStyle]}>
+        <View style={buttonStyles}>
+          <Icon />
+        </View>
       </TouchableOpacity>
     );
   }
@@ -37,5 +42,6 @@ InputBarButton.propTypes = {
   onPress: PropTypes.func,
   disabled: PropTypes.bool,
   style: PropTypes.any,
+  containerStyle: PropTypes.any,
   Icon: PropTypes.func
 };

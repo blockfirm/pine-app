@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
@@ -24,17 +25,17 @@ const styles = StyleSheet.create({
   },
   unitPicker: {
     position: 'absolute',
-    right: 63
+    right: 53
+  },
+  buttonContainer: {
+    position: 'absolute',
+    right: 13
   },
   sendButton: {
-    backgroundColor: '#FFD23F',
-    position: 'absolute',
-    right: 22
+    backgroundColor: '#FFD23F'
   },
   cancelButton: {
-    backgroundColor: '#FF3B30',
-    position: 'absolute',
-    right: 22
+    backgroundColor: '#8A8A8F'
   }
 });
 
@@ -119,7 +120,7 @@ export default class InputBar extends Component {
   _onCancelPress() {
     this.setState({ confirmTransaction: false }, () => {
       this.props.onCancelPress();
-      this._amountInput.focus();
+      this.focus();
     });
   }
 
@@ -131,6 +132,7 @@ export default class InputBar extends Component {
       return (
         <InputBarButton
           style={styles.cancelButton}
+          containerStyle={styles.buttonContainer}
           Icon={CancelButtonIcon}
           onPress={this._onCancelPress}
         />
@@ -141,6 +143,7 @@ export default class InputBar extends Component {
       <InputBarButton
         disabled={sendDisabled}
         style={styles.sendButton}
+        containerStyle={styles.buttonContainer}
         Icon={SendButtonIcon}
         onPress={this._onSendPress}
       />

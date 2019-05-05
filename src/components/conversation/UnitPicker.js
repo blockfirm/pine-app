@@ -16,10 +16,10 @@ const BTC_UNITS = [UNIT_BTC, UNIT_MBTC, UNIT_SATOSHIS];
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingTop: 8,
-    paddingBottom: 8,
+    paddingTop: 11,
+    paddingBottom: 11,
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 25
   },
   title: {
     color: '#999999',
@@ -29,9 +29,9 @@ const styles = StyleSheet.create({
   arrow: {
     color: '#999999',
     position: 'absolute',
-    right: 0,
+    right: 10,
     fontSize: 15,
-    paddingTop: 9.5
+    paddingTop: 12.5
   },
   disabled: {
     opacity: 0.75
