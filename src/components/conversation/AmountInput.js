@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 25
   },
+  containerWithErrorText: {
+    borderRadius: 18
+  },
   input: {
     fontSize: 17,
     color: '#000000'
@@ -191,15 +194,22 @@ export default class AmountInput extends Component {
   }
 
   render() {
+    const { editable, hasError, errorText } = this.props;
+
+    const containerStyle = [
+      styles.container,
+      errorText ? styles.containerWithErrorText : null
+    ];
+
     const style = [
       styles.input,
-      this.props.hasError ? styles.error : null,
-      !this.props.editable ? styles.disabled : null
+      hasError ? styles.error : null,
+      !editable ? styles.disabled : null
     ];
 
     return (
       <TouchableWithoutFeedback onPress={this.focus}>
-        <View style={styles.container}>
+        <View style={containerStyle}>
           <TextInput
             {...this.props}
             ref={(ref) => { this._input = ref; }}
