@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ReactNativeHaptic from 'react-native-haptic';
 
 import {
   create as createTransaction,
@@ -133,7 +132,6 @@ class ConfirmTransactionContainer extends Component {
           cannotAffordFee: false
         });
 
-        ReactNativeHaptic.generate('notificationSuccess');
         this.props.onTransactionSent(result || {});
       })
       .catch((error) => {
