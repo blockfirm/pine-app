@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
+import ReactNativeHaptic from 'react-native-haptic';
 
 import AmountInput from './AmountInput';
 import UnitPicker from './UnitPicker';
@@ -113,11 +114,15 @@ export default class InputBar extends Component {
     const amountBtc = this._getBtcAmount(this.state.amount);
     const displayUnit = this.state.unit || this.props.defaultBitcoinUnit;
 
+    ReactNativeHaptic.generate('selection');
+
     this.setState({ confirmTransaction: true });
     this.props.onSendPress({ amountBtc, displayUnit });
   }
 
   _onCancelPress() {
+    ReactNativeHaptic.generate('selection');
+
     this.setState({ confirmTransaction: false }, () => {
       this.props.onCancelPress();
       this.focus();
