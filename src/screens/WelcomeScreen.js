@@ -145,7 +145,6 @@ export default class WelcomeScreen extends Component {
             style={styles.button}
             showLoader={true}
             runAfterInteractions={true}
-            hapticFeedback={true}
           />
 
           <Link

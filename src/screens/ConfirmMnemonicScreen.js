@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
-import ReactNativeHaptic from 'react-native-haptic';
 
 import headerStyles from '../styles/headerStyles';
 import { reset as navigateWithReset } from '../actions/navigate';
@@ -91,7 +90,6 @@ export default class ConfirmMnemonicScreen extends Component {
       });
     }
 
-    ReactNativeHaptic.generate('notificationSuccess');
     this.props.screenProps.dismiss();
   }
 
