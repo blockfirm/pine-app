@@ -75,7 +75,7 @@ export default class CameraScreen extends Component {
     navigation.navigate('Conversation', { bitcoinAddress, amount, autoFocus });
   }
 
-  _onReceiveAddress(address, amount) {
+  _onReceiveAddress(address, amount, fromCamera) {
     const { contacts, navigation } = this.props;
     const showPreview = this.props.showPreview && !this.state.pauseCamera;
     const isFocused = navigation.isFocused();
@@ -85,7 +85,9 @@ export default class CameraScreen extends Component {
       return;
     }
 
-    ReactNativeHaptic.generate('notificationSuccess');
+    if (fromCamera) {
+      ReactNativeHaptic.generate('notificationSuccess');
+    }
 
     const existingContact = Object.values(contacts).find((contact) => {
       return contact.address === address;

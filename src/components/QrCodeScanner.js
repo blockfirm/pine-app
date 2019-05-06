@@ -82,20 +82,20 @@ export default class QrCodeScanner extends Component {
     return false;
   }
 
-  _onReceiveData(data) {
+  _onReceiveData(data, fromCamera) {
     const { network, onReceiveAddress } = this.props;
     const pineAddress = getAddressFromUri(data);
     const paymentInfo = getPaymentInfoFromString(data, network);
 
     // Try to evaluate data as a BIP21 URI.
     if (paymentInfo) {
-      return onReceiveAddress(pineAddress || paymentInfo.address, paymentInfo.amount);
+      return onReceiveAddress(pineAddress || paymentInfo.address, paymentInfo.amount, fromCamera);
     }
 
     // Try to evaluate data as a Pine address.
     try {
       parseAddress(data);
-      return onReceiveAddress(data.trim());
+      return onReceiveAddress(data.trim(), fromCamera);
     } catch (error) {
       // Suppress error.
     }
@@ -106,7 +106,8 @@ export default class QrCodeScanner extends Component {
   }
 
   _onBarCodeRead({ data }) {
-    this._onReceiveData(data);
+    const fromCamera = true;
+    this._onReceiveData(data, fromCamera);
   }
 
   _goToAppSettings() {
