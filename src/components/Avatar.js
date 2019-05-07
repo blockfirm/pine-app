@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   wrapper: {
     borderRadius: 100,
     overflow: 'hidden',
-    backgroundColor: '#D2D5D9'
+    backgroundColor: '#F6F6F6'
   }
 });
 

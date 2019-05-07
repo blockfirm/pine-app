@@ -82,7 +82,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                   style={
                     Array [
                       Object {
-                        "backgroundColor": "#D2D5D9",
+                        "backgroundColor": "#F6F6F6",
                         "borderRadius": 100,
                         "overflow": "hidden",
                       },
