@@ -1,4 +1,10 @@
+/* eslint-disable max-lines */
+import uuidv4 from 'uuid/v4';
 import { InteractionManager } from 'react-native';
+import getTransactionAmount from '../../../crypto/bitcoin/getTransactionAmount';
+import getTransactionAddress from '../../../crypto/bitcoin/getTransactionAddress';
+import { addLegacy as addLegacyContact } from '../../contacts';
+import { add as addMessage } from '../../messages';
 import { sync as syncAddressesWithPineAccount } from '../../pine/addresses';
 import { getNewByAddress as getNewTransactionsByAddress } from '../blockchain/transactions/getNewByAddress';
 import { sync as syncSubscriptions } from '../subscriptions/sync';
@@ -114,8 +120,20 @@ const getNewTransactions = (dispatch, addresses, oldTransactions) => {
     return getNewTransactionsForBatch(dispatch, chunk, oldTransactions);
   });
 
-  // TODO: Get in serial instead.
   return Promise.all(promises);
+};
+
+const getUniqueTransactions = (transactions) => {
+  const txidMap = {};
+
+  return transactions.filter((transaction) => {
+    if (!transaction || txidMap[transaction.txid]) {
+      return false;
+    }
+
+    txidMap[transaction.txid] = true;
+    return true;
+  });
 };
 
 const getAllNewTransactions = (dispatch, state) => {
@@ -129,8 +147,49 @@ const getAllNewTransactions = (dispatch, state) => {
   ];
 
   return Promise.all(promises).then((results) => {
-    return results.flat(2).filter((result) => result);
+    return getUniqueTransactions(results.flat(2));
   });
+};
+
+/**
+ * Creates contacts and messages for transactions that wasn't sent using a Pine message.
+ */
+const createConversationsForTransactions = (transactions, dispatch, state) => {
+  const promises = transactions.map((transaction) => {
+    if (transaction.txid in state.messages.txids) {
+      // Don't create contacts/messages for transactions that already has a message.
+      return;
+    }
+
+    const amountBtc = getTransactionAmount(
+      transaction,
+      state.bitcoin.wallet.addresses.external.items,
+      state.bitcoin.wallet.addresses.internal.items
+    );
+
+    const address = getTransactionAddress(
+      transaction,
+      state.bitcoin.wallet.addresses.external.items,
+      state.bitcoin.wallet.addresses.internal.items
+    );
+
+    return dispatch(addLegacyContact({ address: null })).then((contact) => {
+      const message = {
+        id: uuidv4(),
+        type: 'payment',
+        from: amountBtc < 0 ? address : 'unknown',
+        address: { address },
+        createdAt: transaction.time,
+        txid: transaction.txid,
+        amountBtc: Math.abs(amountBtc)
+      };
+
+      // Add message to conversation.
+      return dispatch(addMessage(contact.id, message));
+    });
+  });
+
+  return Promise.all(promises);
 };
 
 /**
@@ -173,6 +232,10 @@ export const sync = () => {
             // Update the utxo set.
             return dispatch(updateUtxos());
           });
+      })
+      .then(() => {
+        // Creates contacts and messages for transactions.
+        return createConversationsForTransactions(newTransactions, dispatch, state);
       })
       .then(() => {
         // Load an unused address into state.

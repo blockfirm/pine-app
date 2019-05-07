@@ -3,11 +3,11 @@ export const NAVIGATE_DEFER_OPEN_CONVERSATION = 'NAVIGATE_DEFER_OPEN_CONVERSATIO
 /**
  * Action to navigate to a conversation for a contact/address once the app is ready.
  *
- * @param {string} address - The contact's Pine address.
+ * @param {Object|string} contact - Contact or address to navigate to.
  */
-export const deferOpenConversation = (address) => {
+export const deferOpenConversation = (contact) => {
   return {
     type: NAVIGATE_DEFER_OPEN_CONVERSATION,
-    address
+    contact
   };
 };

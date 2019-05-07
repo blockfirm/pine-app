@@ -6,9 +6,9 @@ import {
   convert as convertBitcoin
 } from '../../crypto/bitcoin/convert';
 
-import { post as postTransaction } from '../../actions/bitcoin/blockchain/transactions';
-import { addLegacy as addLegacyContact } from '../../actions/contacts';
-import { add as addMessage } from '../../actions/messages/add';
+import { post as postTransaction } from '../bitcoin/blockchain/transactions';
+import { addLegacy as addLegacyContact } from '../contacts';
+import { add as addMessage } from './add';
 
 export const MESSAGES_SEND_LEGACY_PAYMENT_REQUEST = 'MESSAGES_SEND_LEGACY_PAYMENT_REQUEST';
 export const MESSAGES_SEND_LEGACY_PAYMENT_SUCCESS = 'MESSAGES_SEND_LEGACY_PAYMENT_SUCCESS';

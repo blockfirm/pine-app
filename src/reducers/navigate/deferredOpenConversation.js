@@ -8,9 +8,7 @@ import {
 const deferredOpenConversation = (state = null, action) => {
   switch (action.type) {
     case NAVIGATE_DEFER_OPEN_CONVERSATION:
-      return {
-        address: action.address
-      };
+      return action.contact;
 
     case READY:
     case RESET_SUCCESS:

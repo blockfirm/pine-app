@@ -3,6 +3,7 @@ import removeMnemonicByKey from '../crypto/removeMnemonicByKey';
 import { reset as resetBitcoinWallet } from './bitcoin/wallet';
 import { remove as removeKey, removeBackup } from './keys';
 import { removeAll as removeAllMessages } from './messages';
+import { removeAll as removeAllMessageTxids } from './messages/txids';
 import { removeAll as removeAllContacts } from './contacts';
 import { reset as resetSettings } from './settings';
 
@@ -59,6 +60,7 @@ export const reset = (keepSettings) => {
       .then(() => {
         const promises = [
           deleteKeys(dispatch, keys),
+          dispatch(removeAllMessageTxids()),
           dispatch(removeAllContacts()),
           dispatch(removeBackup()),
           dispatch(resetBitcoinWallet()),

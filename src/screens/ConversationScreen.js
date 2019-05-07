@@ -244,7 +244,7 @@ export default class ConversationScreen extends Component {
     }
 
     ActionSheetIOS.showActionSheetWithOptions({
-      title: contact.address,
+      title: contact.address || undefined,
       options: ['Cancel', 'Delete Contact'],
       destructiveButtonIndex: 1,
       cancelButtonIndex: 0
@@ -358,14 +358,16 @@ export default class ConversationScreen extends Component {
   }
 
   _renderInputBar() {
-    const initialAmountBtc = this.props.navigation.getParam('amount');
+    const { contact, amount } = this.props.navigation.state.params;
+    const disabled = Boolean(contact && !contact.address);
 
     return (
       <InputBarContainer
         ref={(ref) => { this._inputBar = ref && ref.getWrappedInstance(); }}
         onSendPress={this._onSendPress}
         onCancelPress={this._onCancelPress}
-        initialAmountBtc={initialAmountBtc}
+        initialAmountBtc={amount}
+        disabled={disabled}
       />
     );
   }

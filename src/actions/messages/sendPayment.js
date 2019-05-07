@@ -4,9 +4,9 @@ import {
   convert as convertBitcoin
 } from '../../crypto/bitcoin/convert';
 
-import { reserve as reserveUtxos } from '../../actions/bitcoin/wallet/utxos';
-import { sendPayment as sendPaymentToServer } from '../../actions/pine/messages/sendPayment';
-import { add as addMessage } from '../../actions/messages/add';
+import { reserve as reserveUtxos } from '../bitcoin/wallet/utxos';
+import { sendPayment as sendPaymentToServer } from '../pine/messages/sendPayment';
+import { add as addMessage } from './add';
 
 export const MESSAGES_SEND_PAYMENT_REQUEST = 'MESSAGES_SEND_PAYMENT_REQUEST';
 export const MESSAGES_SEND_PAYMENT_SUCCESS = 'MESSAGES_SEND_PAYMENT_SUCCESS';
@@ -73,7 +73,7 @@ export const sendPayment = (rawTransaction, metadata, contact) => {
           feeBtc
         };
 
-        // Save message to conversation.
+        // Add message to conversation.
         return dispatch(addMessage(contact.id, message));
       })
       .then(() => {

@@ -23,13 +23,13 @@ const navigateToConversation = (dispatch, contact) => {
 /**
  * Action to navigate to a conversation for a contact/address.
  *
- * @param {string} address - The contact's Pine address.
+ * @param {Object|string} contact - Contact or address to navigate to.
  */
-export const openConversation = (address) => {
+export const openConversation = (contact) => {
   return (dispatch, getState) => {
     const state = getState();
 
-    if (!address) {
+    if (!contact) {
       return;
     }
 
@@ -39,10 +39,13 @@ export const openConversation = (address) => {
      * called again once the app is ready.
      */
     if (!state.ready) {
-      return dispatch(deferOpenConversation(address));
+      return dispatch(deferOpenConversation(contact));
     }
 
-    const contact = findContactByAddress(address, state.contacts.items);
+    if (typeof contact === 'string') {
+      // eslint-disable-next-line no-param-reassign
+      contact = findContactByAddress(contact, state.contacts.items);
+    }
 
     if (!contact) {
       return;

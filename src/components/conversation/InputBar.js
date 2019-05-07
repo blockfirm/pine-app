@@ -170,7 +170,13 @@ export default class InputBar extends Component {
   }
 
   render() {
-    const { primaryCurrency, secondaryCurrency, defaultBitcoinUnit } = this.props;
+    const { primaryCurrency, secondaryCurrency, defaultBitcoinUnit, disabled } = this.props;
+    const pointerEvents = disabled ? 'none' : null;
+
+    const style = [
+      styles.toolbar,
+      disabled && { opacity: 0.5 }
+    ];
 
     const {
       initialAmount,
@@ -182,7 +188,7 @@ export default class InputBar extends Component {
     } = this.state;
 
     return (
-      <View style={styles.toolbar}>
+      <View style={style} pointerEvents={pointerEvents}>
         <AmountInput
           ref={(ref) => { this._amountInput = ref; }}
           currency={currency}
@@ -218,5 +224,6 @@ InputBar.propTypes = {
   fiatRates: PropTypes.object.isRequired,
   onSendPress: PropTypes.func.isRequired,
   onCancelPress: PropTypes.func.isRequired,
-  initialAmountBtc: PropTypes.number
+  initialAmountBtc: PropTypes.number,
+  disabled: PropTypes.bool
 };

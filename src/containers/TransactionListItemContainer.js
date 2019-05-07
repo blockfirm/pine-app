@@ -26,7 +26,7 @@ class TransactionListItemContainer extends Component {
 
   _onPress() {
     const { dispatch, contact } = this.props;
-    dispatch(openConversation(contact.address));
+    dispatch(openConversation(contact));
   }
 
   render() {

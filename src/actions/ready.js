@@ -13,8 +13,8 @@ export const ready = () => {
     dispatch({ type: READY });
 
     if (state.navigate.deferredOpenConversation) {
-      const { address } = state.navigate.deferredOpenConversation;
-      dispatch(openConversation(address));
+      const contactOrAddress = state.navigate.deferredOpenConversation;
+      dispatch(openConversation(contactOrAddress));
     }
   };
 };

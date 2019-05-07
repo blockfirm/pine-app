@@ -3,6 +3,7 @@ import {
   setLastMessage as setLastMessageToContact
 } from '../contacts';
 
+import { add as addToMessageTxids } from './txids';
 import { save } from './save';
 import { load } from './load';
 
@@ -38,6 +39,9 @@ export const add = (contactId, message, persistContact = true) => {
      * before adding the new message.
      */
     await loadExistingMessages(contactId, dispatch, state);
+
+    // Add txid to list of message transactions.
+    await dispatch(addToMessageTxids(message.txid));
 
     /**
      * The message is added to the state by the reducer so this

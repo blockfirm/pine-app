@@ -64,6 +64,9 @@ const getStateMock = jest.fn(() => ({
         }
       }
     }
+  },
+  messages: {
+    txids: {}
   }
 }));
 
@@ -94,6 +97,30 @@ jest.mock('../../../../../src/actions/bitcoin/wallet/addresses/flagAsUsed', () =
 jest.mock('../../../../../src/actions/bitcoin/wallet/addresses/getUnused', () => ({
   getUnused: jest.fn(() => Promise.resolve())
 }));
+
+jest.mock('../../../../../src/actions/bitcoin/subscriptions/sync', () => ({
+  sync: jest.fn(() => Promise.resolve())
+}));
+
+jest.mock('../../../../../src/actions/pine/addresses/sync', () => ({
+  sync: jest.fn(() => Promise.resolve())
+}));
+
+jest.mock('../../../../../src/actions/contacts/addLegacy', () => ({
+  addLegacy: jest.fn(() => Promise.resolve({}))
+}));
+
+jest.mock('../../../../../src/actions/messages/add', () => ({
+  add: jest.fn(() => Promise.resolve())
+}));
+
+jest.mock('../../../../../src/crypto/bitcoin/getTransactionAmount', () => {
+  return () => 0.001;
+});
+
+jest.mock('../../../../../src/crypto/bitcoin/getTransactionAddress', () => {
+  return () => '05d6d9a1-039e-4e11-b494-ed43f54ca369';
+});
 
 jest.mock('../../../../../src/actions/bitcoin/blockchain/transactions/getNewByAddress', () => ({
   getNewByAddress: jest.fn((addresses) => {

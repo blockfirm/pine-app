@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 
 const getShortenedAddress = (address) => {
   if (!address) {
-    return '';
+    return 'Unknown Sender';
   }
 
   const start = address.slice(0, STUB_LENGTH);
