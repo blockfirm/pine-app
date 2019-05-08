@@ -14,7 +14,7 @@ import AddressLabel from '../components/AddressLabel';
 const AVATAR_PLACEHOLDER = require('../images/AvatarPlaceholder.png');
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
-const QR_CODE_WIDTH = WINDOW_WIDTH - 80 - 32;
+const QR_CODE_WIDTH = WINDOW_WIDTH - 150;
 
 const styles = StyleSheet.create({
   view: {
