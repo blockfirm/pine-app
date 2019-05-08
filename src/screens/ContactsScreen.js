@@ -8,7 +8,7 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import OfflineNoticeContainer from '../containers/OfflineNoticeContainer';
 import ContactListContainer from '../containers/ContactListContainer';
-import TransactionsScreenHeader from '../components/TransactionsScreenHeader';
+import ContactsScreenHeader from '../components/ContactsScreenHeader';
 import BaseScreen from './BaseScreen';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 });
 
 @connect(null, null, null, { withRef: true })
-export default class TransactionsScreen extends Component {
+export default class ContactsScreen extends Component {
   static navigationOptions = {
     header: null
   }
@@ -57,7 +57,7 @@ export default class TransactionsScreen extends Component {
   render() {
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
-        <TransactionsScreenHeader
+        <ContactsScreenHeader
           onAddContactPress={this._addContact.bind(this)}
           onSettingsPress={this._showSettings.bind(this)}
         />
@@ -77,6 +77,6 @@ export default class TransactionsScreen extends Component {
   }
 }
 
-TransactionsScreen.propTypes = {
+ContactsScreen.propTypes = {
   dispatch: PropTypes.func
 };

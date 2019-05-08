@@ -22,7 +22,7 @@ exports[`HomeScreen renders correctly 1`] = `
         },
         Object {
           "key": "home",
-          "screen": <TransactionsScreen />,
+          "screen": <ContactsScreen />,
         },
         Object {
           "key": "receive",
@@ -127,7 +127,7 @@ exports[`HomeScreen renders correctly 1`] = `
             }
           }
         >
-          <TransactionsScreen />
+          <ContactsScreen />
           <View
             pointerEvents="none"
             style={

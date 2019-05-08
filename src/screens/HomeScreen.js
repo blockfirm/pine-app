@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { setHomeScreenIndex } from '../actions/setHomeScreenIndex';
 import Toolbar from '../components/toolbar/Toolbar';
-import TransactionsScreen from './TransactionsScreen';
+import ContactsScreen from './ContactsScreen';
 import CameraScreen from './CameraScreen';
 import ReceiveScreen from './ReceiveScreen';
 
@@ -171,9 +171,9 @@ export default class HomeScreen extends Component {
       index
     });
 
-    // Scroll to top if the transactions button is pressed while already on this screen.
+    // Scroll to top if the "home" button is pressed while already on this screen.
     if (index === DEFAULT_SCREEN_INDEX && index === activeIndex) {
-      this._transactionsScreen.scrollToTop();
+      this._contactsScreen.scrollToTop();
     }
   }
 
@@ -213,7 +213,7 @@ export default class HomeScreen extends Component {
 
     const screens = [
       { key: 'camera', screen: <CameraScreen {...props} showPreview={showCameraPreview} onBackPress={this._scrollToHome.bind(this)} /> },
-      { key: 'home', screen: <TransactionsScreen {...props} ref={ref => { this._transactionsScreen = ref && ref.getWrappedInstance(); }} /> },
+      { key: 'home', screen: <ContactsScreen {...props} ref={ref => { this._contactsScreen = ref && ref.getWrappedInstance(); }} /> },
       { key: 'receive', screen: <ReceiveScreen {...props} onBackPress={this._scrollToHome.bind(this)} /> }
     ];
 

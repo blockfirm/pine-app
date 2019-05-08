@@ -6,7 +6,7 @@ import HomeScreen from '../../../src/screens/HomeScreen';
 jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
 jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContainer');
 jest.mock('../../../src/containers/ContactListContainer', () => 'ContactListContainer');
-jest.mock('../../../src/screens/TransactionsScreen', () => 'TransactionsScreen');
+jest.mock('../../../src/screens/ContactsScreen', () => 'ContactsScreen');
 jest.mock('../../../src/screens/ReceiveScreen', () => 'ReceiveScreen');
 jest.mock('../../../src/screens/CameraScreen', () => 'CameraScreen');
 

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class TransactionsScreenHeader extends Component {
+export default class ContactsScreenHeader extends Component {
   render() {
     return (
       <View style={styles.header}>
@@ -66,7 +66,7 @@ export default class TransactionsScreenHeader extends Component {
   }
 }
 
-TransactionsScreenHeader.propTypes = {
+ContactsScreenHeader.propTypes = {
   onAddContactPress: PropTypes.func,
   onSettingsPress: PropTypes.func
 };
