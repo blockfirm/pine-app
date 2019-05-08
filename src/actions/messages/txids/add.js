@@ -3,11 +3,11 @@ import { save } from './save';
 export const MESSAGES_TXIDS_ADD = 'MESSAGES_TXIDS_ADD';
 
 /**
- * Action to add a txid to the list of message transactions.
+ * Action to add a txid to the list of message transactions IDs.
  *
  * This is used as an index when syncing wallet to check
- * whether a transaction came from a Pine message, and if
- * it didn't, a new conversation will be created.
+ * whether a transaction came from a Pine message or not,
+ * and if it didn't, a new conversation will be created.
  *
  * @param {string} txid - Transaction ID (txid) to add.
  */

@@ -34,6 +34,34 @@ const sendLegacyPaymentFailure = (error) => {
 };
 
 /**
+ * Adds a sent message as received to the same conversation.
+ * This is used when the user sends a transaction to themselves.
+ *
+ * @param {function} dispatch - Redux dispatch function.
+ * @param {Object} contact - Contact to add the message to.
+ * @param {string} contact.id - The contact's ID.
+ * @param {Object} sentMessage - The message containing the transaction that was sent to oneself.
+ *
+ * @returns {Promise}
+ */
+const addAsReceivedMessage = (dispatch, contact, sentMessage) => {
+  const persistContact = true;
+  const markAsUnread = false;
+
+  const receivedMessage = {
+    ...sentMessage,
+    id: uuidv4(),
+    from: 'unknown',
+    feeBtc: null,
+    createdAt: sentMessage.createdAt + 0.5 // This forces the received message to show after the sent.
+  };
+
+  return dispatch(
+    addMessage(contact.id, receivedMessage, persistContact, markAsUnread)
+  );
+};
+
+/**
  * Action to send a bitcoin transaction to a bitcoin address.
  *
  * The transaction must be serialized in raw format:
@@ -56,7 +84,10 @@ export const sendLegacyPayment = (rawTransaction, metadata, contact = null) => {
   let createdContact;
   let createdMessage;
 
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const externalAddresses = state.bitcoin.wallet.addresses.external.items;
+
     dispatch(sendLegacyPaymentRequest());
 
     return Promise.resolve()
@@ -71,7 +102,7 @@ export const sendLegacyPayment = (rawTransaction, metadata, contact = null) => {
 
         return contact;
       })
-      .then((bitcoinContact) => {
+      .then(async (bitcoinContact) => {
         const message = {
           id: uuidv4(),
           type: 'payment',
@@ -84,10 +115,13 @@ export const sendLegacyPayment = (rawTransaction, metadata, contact = null) => {
           feeBtc
         };
 
-        // Save message to conversation.
-        return dispatch(addMessage(bitcoinContact.id, message)).then((addedMessage) => {
-          createdMessage = addedMessage;
-        });
+        // Add message to the created contact/conversation.
+        createdMessage = await dispatch(addMessage(bitcoinContact.id, message));
+
+        // Add as received as well if it was sent to oneself.
+        if (address in externalAddresses) {
+          await addAsReceivedMessage(dispatch, bitcoinContact, message);
+        }
       })
       .then(() => {
         // Broadcast transaction.

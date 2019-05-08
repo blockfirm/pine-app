@@ -3,7 +3,7 @@ import {
   setLastMessage as setLastMessageToContact
 } from '../contacts';
 
-import { add as addToMessageTxids } from './txids';
+import { add as addToMessageTxIds } from './txids';
 import { save } from './save';
 import { load } from './load';
 
@@ -24,11 +24,12 @@ const loadExistingMessages = (contactId, dispatch, state) => {
  *
  * @param {string} contactId - ID of the contact to add the message to.
  * @param {Object} message - Message to add.
- * @param {boolean} [persistContact] - Whether to persist the contact changes or not.
+ * @param {boolean} [persistContact=true] - Whether to persist the contact changes or not.
+ * @param {boolean} [markAsUnread=true] - Mark conversation as unread (only for received messages).
  *
  * @returns {Promise} A promise that resolves when the message has been added.
  */
-export const add = (contactId, message, persistContact = true) => {
+export const add = (contactId, message, persistContact = true, markAsUnread = true) => {
   return async (dispatch, getState) => {
     const state = getState();
     const { activeConversation } = state.navigate;
@@ -40,8 +41,8 @@ export const add = (contactId, message, persistContact = true) => {
      */
     await loadExistingMessages(contactId, dispatch, state);
 
-    // Add txid to list of message transactions.
-    await dispatch(addToMessageTxids(message.txid));
+    // Add txid to the list of message transaction IDs.
+    await dispatch(addToMessageTxIds(message.txid));
 
     /**
      * The message is added to the state by the reducer so this
@@ -57,7 +58,7 @@ export const add = (contactId, message, persistContact = true) => {
      * Mark contact as unread if message is received
      * and the contact chat is not active/open.
      */
-    if (message.from) {
+    if (markAsUnread && message.from) {
       if (!activeContact || activeContact.id !== contactId) {
         await dispatch(markContactAsUnread({ id: contactId }, false));
       }
