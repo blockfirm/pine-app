@@ -173,7 +173,9 @@ export default class ConversationScreen extends Component {
     }
 
     if (autoFocus) {
-      this._inputBar.focus();
+      setTimeout(() => {
+        this._inputBar.focus();
+      });
     }
   }
 
