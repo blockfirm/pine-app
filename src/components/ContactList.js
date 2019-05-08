@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 
-import TransactionListItemContainer from '../containers/TransactionListItemContainer';
-import TransactionListEmptyContainer from '../containers/TransactionListEmptyContainer';
+import ContactListItemContainer from '../containers/ContactListItemContainer';
+import ContactListEmptyContainer from '../containers/ContactListEmptyContainer';
 import DateSectionList from './DateSectionList';
 
 import {
@@ -39,7 +39,7 @@ const getTimestampFromContact = (contact) => {
   return contact.createdAt;
 };
 
-export default class TransactionList extends PureComponent {
+export default class ContactList extends PureComponent {
   state = {
     refreshing: false
   }
@@ -100,12 +100,12 @@ export default class TransactionList extends PureComponent {
         contentInset={{ bottom: CONTENT_INSET_BOTTOM }}
         data={contacts}
         renderItem={({ item }) => (
-          <TransactionListItemContainer contact={item} />
+          <ContactListItemContainer contact={item} />
         )}
         keyExtractor={(item) => item.id}
         timestampExtractor={getTimestampFromContact}
         getItemLayout={this._getItemLayout}
-        ListEmptyComponent={TransactionListEmptyContainer}
+        ListEmptyComponent={ContactListEmptyContainer}
         refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
@@ -117,7 +117,7 @@ export default class TransactionList extends PureComponent {
   }
 }
 
-TransactionList.propTypes = {
+ContactList.propTypes = {
   contacts: PropTypes.object.isRequired,
   onRefresh: PropTypes.func.isRequired
 };

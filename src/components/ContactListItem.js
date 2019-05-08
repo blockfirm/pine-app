@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class TransactionListItem extends Component {
+export default class ContactListItem extends Component {
   _getSubtitleStyle() {
     const { contact } = this.props;
 
@@ -168,7 +168,7 @@ export default class TransactionListItem extends Component {
   }
 }
 
-TransactionListItem.propTypes = {
+ContactListItem.propTypes = {
   contact: PropTypes.object.isRequired,
   userProfile: PropTypes.object.isRequired,
   onPress: PropTypes.func

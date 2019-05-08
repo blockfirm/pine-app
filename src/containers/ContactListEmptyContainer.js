@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
-import TransactionListEmpty from '../components/TransactionListEmpty';
+import ContactListEmpty from '../components/ContactListEmpty';
 
 const mapStateToProps = (state) => {
   return {
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-class TransactionListEmptyContainer extends Component {
+class ContactListEmptyContainer extends Component {
   static propTypes = {
     navigation: PropTypes.any
   };
@@ -27,7 +27,7 @@ class TransactionListEmptyContainer extends Component {
 
   render() {
     return (
-      <TransactionListEmpty
+      <ContactListEmpty
         {...this.props}
         onAddContactPress={this._onAddContactPress}
       />
@@ -35,8 +35,8 @@ class TransactionListEmptyContainer extends Component {
   }
 }
 
-const TransactionListEmptyConnector = connect(
+const ContactListEmptyConnector = connect(
   mapStateToProps
-)(TransactionListEmptyContainer);
+)(ContactListEmptyContainer);
 
-export default withNavigation(TransactionListEmptyConnector);
+export default withNavigation(ContactListEmptyConnector);

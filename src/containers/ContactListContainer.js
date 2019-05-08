@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { sync as syncApp } from '../actions/sync';
-import TransactionList from '../components/TransactionList';
+import ContactList from '../components/ContactList';
 
 const mapStateToProps = (state) => {
   return {
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-class TransactionListContainer extends Component {
+class ContactListContainer extends Component {
   static propTypes = {
     dispatch: PropTypes.func
   };
@@ -22,25 +22,25 @@ class TransactionListContainer extends Component {
   }
 
   scrollToTop() {
-    this._transactionList.scrollToTop();
+    this._contactList.scrollToTop();
   }
 
   render() {
     return (
-      <TransactionList
+      <ContactList
         {...this.props}
-        ref={ref => { this._transactionList = ref; }}
+        ref={ref => { this._contactList = ref; }}
         onRefresh={this._onRefresh.bind(this)}
       />
     );
   }
 }
 
-const TransactionListConnector = connect(
+const ContactListConnector = connect(
   mapStateToProps,
   null,
   null,
   { withRef: true }
-)(TransactionListContainer);
+)(ContactListContainer);
 
-export default TransactionListConnector;
+export default ContactListConnector;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { openConversation } from '../actions/navigate';
-import TransactionListItem from '../components/TransactionListItem';
+import ContactListItem from '../components/ContactListItem';
 
 const mapStateToProps = (state) => {
   return {
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-class TransactionListItemContainer extends Component {
+class ContactListItemContainer extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     navigation: PropTypes.any,
@@ -31,7 +31,7 @@ class TransactionListItemContainer extends Component {
 
   render() {
     return (
-      <TransactionListItem
+      <ContactListItem
         {...this.props}
         onPress={this._onPress}
       />
@@ -39,8 +39,8 @@ class TransactionListItemContainer extends Component {
   }
 }
 
-const TransactionListItemConnector = connect(
+const ContactListItemConnector = connect(
   mapStateToProps
-)(TransactionListItemContainer);
+)(ContactListItemContainer);
 
-export default TransactionListItemConnector;
+export default ContactListItemConnector;

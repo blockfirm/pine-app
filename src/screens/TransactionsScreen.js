@@ -7,7 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import OfflineNoticeContainer from '../containers/OfflineNoticeContainer';
-import TransactionListContainer from '../containers/TransactionListContainer';
+import ContactListContainer from '../containers/ContactListContainer';
 import TransactionsScreenHeader from '../components/TransactionsScreenHeader';
 import BaseScreen from './BaseScreen';
 
@@ -49,8 +49,8 @@ export default class TransactionsScreen extends Component {
   }
 
   scrollToTop() {
-    if (this._transactionList) {
-      this._transactionList.scrollToTop();
+    if (this._contactList) {
+      this._contactList.scrollToTop();
     }
   }
 
@@ -63,7 +63,7 @@ export default class TransactionsScreen extends Component {
         />
 
         <OfflineNoticeContainer />
-        <TransactionListContainer ref={ref => { this._transactionList = ref && ref.getWrappedInstance(); }} />
+        <ContactListContainer ref={ref => { this._contactList = ref && ref.getWrappedInstance(); }} />
 
         <View style={styles.bottomGradient} pointerEvents='none'>
           <LinearGradient

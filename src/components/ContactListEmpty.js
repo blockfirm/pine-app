@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class TransactionListEmpty extends Component {
+export default class ContactListEmpty extends Component {
   render() {
     return (
       <View style={styles.view}>
@@ -57,7 +57,7 @@ export default class TransactionListEmpty extends Component {
   }
 }
 
-TransactionListEmpty.propTypes = {
+ContactListEmpty.propTypes = {
   address: PropTypes.string,
   onAddContactPress: PropTypes.func
 };
