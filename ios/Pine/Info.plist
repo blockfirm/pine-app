@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.3.0</string>
+	<string>0.4.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -35,14 +35,14 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) needs access to your photo library to change your profile picture.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>For scanning QR codes.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>For signing transactions.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to your photo library to change your profile picture.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
