@@ -5,7 +5,6 @@ import settingsReducer from './settings';
 import keysReducer from './keys';
 import recoveryKeyReducer from './recoveryKey';
 import networkReducer from './network';
-import homeScreenReducer from './homeScreen';
 import notificationsReducer from './notifications';
 import contactsReducer from './contacts';
 import messagesReducer from './messages';
@@ -23,7 +22,6 @@ const getRootReducer = (navReducer) => {
     keys: keysReducer,
     recoveryKey: recoveryKeyReducer,
     network: networkReducer,
-    homeScreen: homeScreenReducer,
     notifications: notificationsReducer,
     contacts: contactsReducer,
     messages: messagesReducer,

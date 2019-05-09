@@ -1,4 +1,7 @@
-import { setHomeScreenIndex, SET_HOME_SCREEN_INDEX } from '../../../src/actions/setHomeScreenIndex';
+import {
+  setHomeScreenIndex,
+  NAVIGATE_SET_HOME_SCREEN_INDEX
+} from '../../../../src/actions/navigate/setHomeScreenIndex';
 
 describe('setHomeScreenIndex', () => {
   it('is a function', () => {
@@ -25,8 +28,8 @@ describe('setHomeScreenIndex', () => {
       returnValue = setHomeScreenIndex(index);
     });
 
-    it('has "type" set to SET_HOME_SCREEN_INDEX', () => {
-      expect(returnValue.type).toBe(SET_HOME_SCREEN_INDEX);
+    it('has "type" set to NAVIGATE_SET_HOME_SCREEN_INDEX', () => {
+      expect(returnValue.type).toBe(NAVIGATE_SET_HOME_SCREEN_INDEX);
     });
 
     it('has "index" set to the passed index', () => {

@@ -4,7 +4,7 @@ import { StatusBar, View, StyleSheet, FlatList, Dimensions } from 'react-native'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { setHomeScreenIndex } from '../actions/setHomeScreenIndex';
+import { setHomeScreenIndex } from '../actions/navigate/setHomeScreenIndex';
 import Toolbar from '../components/toolbar/Toolbar';
 import ContactsScreen from './ContactsScreen';
 import CameraScreen from './CameraScreen';
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
-  homeScreenIndex: state.homeScreen.index
+  homeScreenIndex: state.navigate.homeScreen.index
 }))
 export default class HomeScreen extends Component {
   static navigationOptions = {

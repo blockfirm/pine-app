@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
 @connect((state) => ({
   contacts: state.contacts.items,
-  homeScreenIndex: state.homeScreen.index
+  homeScreenIndex: state.navigate.homeScreen.index
 }))
 export default class CameraScreen extends Component {
   static navigationOptions = {

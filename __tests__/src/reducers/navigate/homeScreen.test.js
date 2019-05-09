@@ -1,17 +1,17 @@
-import { SET_HOME_SCREEN_INDEX } from '../../../src/actions/setHomeScreenIndex';
-import homeScreenReducer from '../../../src/reducers/homeScreen';
+import { NAVIGATE_SET_HOME_SCREEN_INDEX } from '../../../../src/actions/navigate/setHomeScreenIndex';
+import homeScreenReducer from '../../../../src/reducers/navigate/homeScreen';
 
 describe('homeScreenReducer', () => {
   it('is a function', () => {
     expect(typeof homeScreenReducer).toBe('function');
   });
 
-  describe('when action is SET_HOME_SCREEN_INDEX', () => {
+  describe('when action is NAVIGATE_SET_HOME_SCREEN_INDEX', () => {
     it('returns an object with "index" set to action.index', () => {
       const oldState = {};
 
       const action = {
-        type: SET_HOME_SCREEN_INDEX,
+        type: NAVIGATE_SET_HOME_SCREEN_INDEX,
         index: 2
       };
 

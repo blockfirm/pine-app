@@ -17,8 +17,10 @@ const storeMock = {
         disconnected: false
       }
     },
-    homeScreen: {
-      index: 1
+    navigate: {
+      homeScreen: {
+        index: 1
+      }
     }
   })),
   dispatch: jest.fn(() => Promise.resolve()),
