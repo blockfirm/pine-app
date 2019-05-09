@@ -8,6 +8,8 @@ import {
 } from '../containers/CurrencyLabelContainer';
 
 import Bullet from './typography/Bullet';
+import SentIndicator from './indicators/SentIndicator';
+import ReceivedIndicator from './indicators/ReceivedIndicator';
 import Avatar from './Avatar';
 import StyledText from './StyledText';
 import RelativeDateLabelShort from './RelativeDateLabelShort';
@@ -61,6 +63,9 @@ const styles = StyleSheet.create({
     color: '#B1AFB7',
     fontSize: 14,
     fontWeight: '400'
+  },
+  indicator: {
+    marginRight: 3
   }
 });
 
@@ -106,6 +111,20 @@ export default class ContactListItem extends Component {
     );
   }
 
+  _renderIndicator() {
+    const { lastMessage } = this.props.contact;
+
+    if (!lastMessage) {
+      return null;
+    }
+
+    if (lastMessage.from) {
+      return <ReceivedIndicator style={styles.indicator} />;
+    }
+
+    return <SentIndicator style={styles.indicator} />;
+  }
+
   _renderSubtitle() {
     const { contact, userProfile } = this.props;
     const { lastMessage, contactRequest } = contact;
@@ -114,7 +133,7 @@ export default class ContactListItem extends Component {
       if (lastMessage.from) {
         return (
           <Text>
-            Sent you {this._renderBtcAmount(lastMessage.amountBtc)}
+            You received {this._renderBtcAmount(lastMessage.amountBtc)}
           </Text>
         );
       }
@@ -156,8 +175,9 @@ export default class ContactListItem extends Component {
             {this._renderTitle()}
           </StyledText>
           <View style={styles.subtitleWrapper}>
+            { this._renderIndicator() }
             <StyledText style={subtitleStyle} numberOfLines={1}>
-              {this._renderSubtitle()}
+              { this._renderSubtitle() }
             </StyledText>
             <Bullet style={styles.bullet} />
             <RelativeDateLabelShort date={this._getDate()} style={styles.relativeDate} />
