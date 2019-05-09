@@ -141,8 +141,13 @@ export default class PaymentDetailsScreen extends Component {
     const { message } = this.props.navigation.state.params;
     const title = message.from ? 'Amount Received' : 'Amount Sent';
 
+    const style = [
+      styles.detail,
+      message.from && styles.lastDetail
+    ];
+
     return (
-      <View style={styles.detail}>
+      <View style={style}>
         <StyledText style={styles.label}>
           {title}
         </StyledText>
@@ -191,8 +196,13 @@ export default class PaymentDetailsScreen extends Component {
 
     const totalBtc = amountBtc + feeBtc;
 
+    const style = [
+      styles.detail,
+      !message.from && styles.lastDetail
+    ];
+
     return (
-      <View style={[styles.detail, styles.lastDetail]}>
+      <View style={style}>
         <StyledText style={styles.label}>
           Total Paid
         </StyledText>
