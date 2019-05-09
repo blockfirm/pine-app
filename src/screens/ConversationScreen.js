@@ -172,7 +172,7 @@ export default class ConversationScreen extends Component {
       this.setState({ messagesLoaded: true });
     }
 
-    if (autoFocus) {
+    if (autoFocus && this._inputBar) {
       setTimeout(() => {
         this._inputBar.focus();
       });
