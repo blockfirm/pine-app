@@ -8,9 +8,7 @@ import {
 } from '../containers/CurrencyLabelContainer';
 
 import Bullet from './typography/Bullet';
-import SentIndicator from './indicators/SentIndicator';
-import ReceivedIndicator from './indicators/ReceivedIndicator';
-import ErrorIndicator from './indicators/ErrorIndicator';
+import MessageIndicatorContainer from '../containers/indicators/MessageIndicatorContainer';
 import Avatar from './Avatar';
 import StyledText from './StyledText';
 import RelativeDateLabelShort from './RelativeDateLabelShort';
@@ -112,24 +110,6 @@ export default class ContactListItem extends Component {
     );
   }
 
-  _renderIndicator() {
-    const { lastMessage } = this.props.contact;
-
-    if (!lastMessage) {
-      return null;
-    }
-
-    if (lastMessage.error) {
-      return <ErrorIndicator style={styles.indicator} />;
-    }
-
-    if (lastMessage.from) {
-      return <ReceivedIndicator style={styles.indicator} />;
-    }
-
-    return <SentIndicator style={styles.indicator} />;
-  }
-
   _renderSubtitle() {
     const { contact, userProfile } = this.props;
     const { lastMessage, contactRequest } = contact;
@@ -180,7 +160,7 @@ export default class ContactListItem extends Component {
             {this._renderTitle()}
           </StyledText>
           <View style={styles.subtitleWrapper}>
-            { this._renderIndicator() }
+            <MessageIndicatorContainer message={contact.lastMessage} style={styles.indicator} />
             <StyledText style={subtitleStyle} numberOfLines={1}>
               { this._renderSubtitle() }
             </StyledText>
