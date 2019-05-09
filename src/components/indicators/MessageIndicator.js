@@ -5,6 +5,9 @@ import ErrorIndicator from './ErrorIndicator';
 import ReceivedIndicator from './ReceivedIndicator';
 import SentIndicator from './SentIndicator';
 
+const COLOR_STYLE_COLOR = 'color';
+const COLOR_STYLE_LIGHT = 'light';
+
 export default class MessageIndicator extends Component {
   _getTransactionStatus() {
     const { transaction } = this.props;
@@ -21,7 +24,7 @@ export default class MessageIndicator extends Component {
   }
 
   render() {
-    const { message, style } = this.props;
+    const { message, style, colorStyle } = this.props;
     const transactionStatus = this._getTransactionStatus();
 
     if (!message) {
@@ -29,19 +32,24 @@ export default class MessageIndicator extends Component {
     }
 
     if (message.error) {
-      return <ErrorIndicator style={style} />;
+      return <ErrorIndicator style={style} colorStyle={colorStyle} />;
     }
 
     if (message.from) {
-      return <ReceivedIndicator status={transactionStatus} style={style} />;
+      return <ReceivedIndicator status={transactionStatus} style={style} colorStyle={colorStyle} />;
     }
 
-    return <SentIndicator status={transactionStatus} style={style} />;
+    return <SentIndicator status={transactionStatus} style={style} colorStyle={colorStyle} />;
   }
 }
 
 MessageIndicator.propTypes = {
   style: PropTypes.any,
+  colorStyle: PropTypes.oneOf([COLOR_STYLE_COLOR, COLOR_STYLE_LIGHT]),
   message: PropTypes.object,
   transaction: PropTypes.object
+};
+
+MessageIndicator.defaultProps = {
+  colorStyle: COLOR_STYLE_COLOR
 };

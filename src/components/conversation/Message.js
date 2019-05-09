@@ -6,7 +6,7 @@ import AppleEasing from 'react-apple-easing';
 
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import Avatar from '../Avatar';
-import MessageStatus from './MessageStatus';
+import MessageIndicator from '../indicators/MessageIndicator';
 
 const bubbleEndLeft = require('../../images/message/BubbleEndLeft.png');
 const bubbleEndRight = require('../../images/message/BubbleEndRight.png');
@@ -46,13 +46,17 @@ const styles = StyleSheet.create({
   bubbleError: {
     backgroundColor: '#FF3B30'
   },
-  bubbleFirst: {
-    borderBottomLeftRadius: 5,
+  bubbleSentFirst: {
     borderBottomRightRadius: 5
   },
-  bubbleLast: {
-    borderTopLeftRadius: 5,
+  bubbleReceivedFirst: {
+    borderBottomLeftRadius: 5
+  },
+  bubbleSentLast: {
     borderTopRightRadius: 5
+  },
+  bubbleReceivedLast: {
+    borderTopLeftRadius: 5
   },
   textReceived: {
     fontSize: 17,
@@ -89,6 +93,11 @@ const styles = StyleSheet.create({
   },
   bubbleEndRight: {
     right: -5
+  },
+  indicator: {
+    position: 'absolute',
+    right: 10,
+    bottom: 10
   }
 });
 
@@ -148,22 +157,24 @@ export default class Message extends Component {
     });
   }
 
-  _getStatus() {
-    const { message, transaction } = this.props;
+  _getFirstBubbleStyle() {
+    const { message } = this.props;
 
-    if (message.error) {
-      return MessageStatus.STATUS_ERROR;
+    if (message.from) {
+      return styles.bubbleReceivedFirst;
     }
 
-    if (!transaction) {
-      return MessageStatus.STATUS_NOT_BROADCASTED;
+    return styles.bubbleSentFirst;
+  }
+
+  _getLastBubbleStyle() {
+    const { message } = this.props;
+
+    if (message.from) {
+      return styles.bubbleReceivedLast;
     }
 
-    if (!transaction.confirmations > 0) {
-      return MessageStatus.STATUS_PENDING_CONFIRMATION;
-    }
-
-    return MessageStatus.STATUS_CONFIRMED;
+    return styles.bubbleSentLast;
   }
 
   _renderBubbleContent(textStyle, smallTextStyle) {
@@ -223,11 +234,15 @@ export default class Message extends Component {
   }
 
   _renderStatus() {
-    const { message } = this.props;
-    const color = message.from ? MessageStatus.COLOR_GRAY : MessageStatus.COLOR_WHITE;
+    const { message, transaction } = this.props;
 
     return (
-      <MessageStatus status={this._getStatus()} color={color} />
+      <MessageIndicator
+        message={message}
+        transaction={transaction}
+        colorStyle='light'
+        style={styles.indicator}
+      />
     );
   }
 
@@ -262,13 +277,13 @@ export default class Message extends Component {
 
     if (isFirst && !isLast) {
       wrapperStyle.push(styles.wrapperConnected);
-      bubbleStyle.push(styles.bubbleFirst);
+      bubbleStyle.push(this._getFirstBubbleStyle());
     } else if (isLast && !isFirst) {
-      bubbleStyle.push(styles.bubbleLast);
+      bubbleStyle.push(this._getLastBubbleStyle());
     } else if (!isFirst && !isLast) {
       wrapperStyle.push(styles.wrapperConnected);
-      bubbleStyle.push(styles.bubbleFirst);
-      bubbleStyle.push(styles.bubbleLast);
+      bubbleStyle.push(this._getFirstBubbleStyle());
+      bubbleStyle.push(this._getLastBubbleStyle());
     }
 
     return (

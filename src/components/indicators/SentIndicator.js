@@ -2,11 +2,21 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
-const IMAGES = [
-  require('../../images/indicators/SentIndicator0.png'),
-  require('../../images/indicators/SentIndicator1.png'),
-  require('../../images/indicators/SentIndicator2.png')
-];
+const COLOR_STYLE_COLOR = 'color';
+const COLOR_STYLE_LIGHT = 'light';
+
+const IMAGES = {
+  [COLOR_STYLE_COLOR]: [
+    require('../../images/indicators/SentIndicator0.png'),
+    require('../../images/indicators/SentIndicator1.png'),
+    require('../../images/indicators/SentIndicator2.png')
+  ],
+  [COLOR_STYLE_LIGHT]: [
+    require('../../images/indicators/SentIndicatorLight0.png'),
+    require('../../images/indicators/SentIndicatorLight1.png'),
+    require('../../images/indicators/SentIndicatorLight2.png')
+  ]
+};
 
 const styles = StyleSheet.create({
   image: {
@@ -17,8 +27,8 @@ const styles = StyleSheet.create({
 
 export default class SentIndicator extends Component {
   render() {
-    const { status, style } = this.props;
-    const image = IMAGES[status];
+    const { status, style, colorStyle } = this.props;
+    const image = IMAGES[colorStyle][status];
 
     return (
       <View style={style}>
@@ -30,5 +40,10 @@ export default class SentIndicator extends Component {
 
 SentIndicator.propTypes = {
   style: PropTypes.any,
-  status: PropTypes.number
+  colorStyle: PropTypes.oneOf([COLOR_STYLE_COLOR, COLOR_STYLE_LIGHT]),
+  status: PropTypes.oneOf([0, 1, 2])
+};
+
+SentIndicator.defaultProps = {
+  colorStyle: COLOR_STYLE_COLOR
 };

@@ -2,11 +2,21 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
-const IMAGES = [
-  require('../../images/indicators/ReceivedIndicator0.png'),
-  require('../../images/indicators/ReceivedIndicator1.png'),
-  require('../../images/indicators/ReceivedIndicator2.png')
-];
+const COLOR_STYLE_COLOR = 'color';
+const COLOR_STYLE_LIGHT = 'light';
+
+const IMAGES = {
+  [COLOR_STYLE_COLOR]: [
+    require('../../images/indicators/ReceivedIndicator0.png'),
+    require('../../images/indicators/ReceivedIndicator1.png'),
+    require('../../images/indicators/ReceivedIndicator2.png')
+  ],
+  [COLOR_STYLE_LIGHT]: [
+    require('../../images/indicators/ReceivedIndicatorLight0.png'),
+    require('../../images/indicators/ReceivedIndicatorLight1.png'),
+    require('../../images/indicators/ReceivedIndicatorLight2.png')
+  ]
+};
 
 const styles = StyleSheet.create({
   image: {
@@ -17,8 +27,8 @@ const styles = StyleSheet.create({
 
 export default class ReceivedIndicator extends Component {
   render() {
-    const { status, style } = this.props;
-    const image = IMAGES[status];
+    const { status, style, colorStyle } = this.props;
+    const image = IMAGES[colorStyle][status];
 
     return (
       <View style={style}>
@@ -30,5 +40,10 @@ export default class ReceivedIndicator extends Component {
 
 ReceivedIndicator.propTypes = {
   style: PropTypes.any,
-  status: PropTypes.number
+  colorStyle: PropTypes.oneOf([COLOR_STYLE_COLOR, COLOR_STYLE_LIGHT]),
+  status: PropTypes.oneOf([0, 1, 2])
+};
+
+ReceivedIndicator.defaultProps = {
+  colorStyle: COLOR_STYLE_COLOR
 };
