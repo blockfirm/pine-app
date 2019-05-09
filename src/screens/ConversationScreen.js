@@ -16,7 +16,7 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
-import { closeConversation } from '../actions/navigate';
+import { closeConversation, setHomeScreenIndex } from '../actions/navigate';
 import { handle as handleError } from '../actions/error/handle';
 import { remove as removeContact, markAsRead } from '../actions/contacts';
 
@@ -322,6 +322,8 @@ export default class ConversationScreen extends Component {
   }
 
   _onTransactionSent({ createdContact }) {
+    const { dispatch, navigation } = this.props;
+
     const animation = LayoutAnimation.create(
       this.state.keyboardAnimationDuration,
       LayoutAnimation.Types[this.state.keyboardAnimationEasing],
@@ -338,8 +340,10 @@ export default class ConversationScreen extends Component {
     this._inputBar.reset();
 
     if (createdContact) {
-      this.props.navigation.setParams({ contact: createdContact });
+      navigation.setParams({ contact: createdContact });
     }
+
+    dispatch(setHomeScreenIndex(1));
   }
 
   _renderContactRequest(contact) {

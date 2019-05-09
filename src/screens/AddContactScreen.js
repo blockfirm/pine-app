@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import AppleEasing from 'react-apple-easing';
 
+import { setHomeScreenIndex } from '../actions/navigate';
 import { send as sendContactRequest } from '../actions/pine/contactRequests/send';
 import { add as addContact } from '../actions/contacts/add';
 import { parse as parseAddress, getAddressFromUri } from '../pineApi/address';
@@ -101,10 +102,10 @@ export default class AddContactScreen extends Component {
   }
 
   _onSubmit() {
-    const { dispatch, contacts, userProfile } = this.props;
+    const { dispatch, navigation, screenProps, contacts, userProfile } = this.props;
     const fullAddress = this._getFullAddress(this.state.address);
 
-    this.props.navigation.setParams({ canSubmit: false });
+    navigation.setParams({ canSubmit: false });
 
     if (fullAddress === userProfile.address) {
       return this.setState({ error: '👆 Hey, that\'s you' });
@@ -124,19 +125,22 @@ export default class AddContactScreen extends Component {
         return dispatch(addContact(contact));
       })
       .then(() => {
-        this.props.screenProps.dismiss();
+        dispatch(setHomeScreenIndex(1));
+        screenProps.dismiss();
       })
       .catch((error) => {
         this.setState({ error: error.message });
       })
       .then(() => {
-        this.props.navigation.setParams({ canSubmit: true });
+        navigation.setParams({ canSubmit: true });
       });
   }
 
   _validateAddress(address) {
+    const { navigation } = this.props;
+
     this.setState({ error: '' });
-    this.props.navigation.setParams({ canSubmit: false });
+    navigation.setParams({ canSubmit: false });
 
     if (!address) {
       return;
@@ -146,7 +150,7 @@ export default class AddContactScreen extends Component {
 
     try {
       parseAddress(fullAddress);
-      this.props.navigation.setParams({ canSubmit: true });
+      navigation.setParams({ canSubmit: true });
     } catch (error) {
       // Suppress error.
     }
