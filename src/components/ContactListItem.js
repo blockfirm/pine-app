@@ -10,6 +10,7 @@ import {
 import Bullet from './typography/Bullet';
 import SentIndicator from './indicators/SentIndicator';
 import ReceivedIndicator from './indicators/ReceivedIndicator';
+import ErrorIndicator from './indicators/ErrorIndicator';
 import Avatar from './Avatar';
 import StyledText from './StyledText';
 import RelativeDateLabelShort from './RelativeDateLabelShort';
@@ -116,6 +117,10 @@ export default class ContactListItem extends Component {
 
     if (!lastMessage) {
       return null;
+    }
+
+    if (lastMessage.error) {
+      return <ErrorIndicator style={styles.indicator} />;
     }
 
     if (lastMessage.from) {
