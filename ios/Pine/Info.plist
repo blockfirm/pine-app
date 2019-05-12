@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>For scanning QR codes.</string>
+	<string>$(PRODUCT_NAME) needs access to your camera to scan QR codes.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>For signing transactions.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
