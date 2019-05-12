@@ -38,8 +38,8 @@ describe('flagAsUsed', () => {
     });
 
     describe('the HTTP request', () => {
-      it('is made to the url https://_pine.pine.dev/v1/users/d62ba84b-5799-4214-a159-a063fd0652fa/address/used', () => {
-        const expectedUrl = 'https://_pine.pine.dev/v1/users/d62ba84b-5799-4214-a159-a063fd0652fa/address/used';
+      it('is made to the url https://pine-payment-server.pine.dev/v1/users/d62ba84b-5799-4214-a159-a063fd0652fa/address/used', () => {
+        const expectedUrl = 'https://pine-payment-server.pine.dev/v1/users/d62ba84b-5799-4214-a159-a063fd0652fa/address/used';
         expect(fetch).toHaveBeenCalledWith(expectedUrl, expect.anything());
       });
 

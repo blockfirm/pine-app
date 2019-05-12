@@ -36,8 +36,8 @@ describe('update', () => {
     });
 
     describe('the HTTP request', () => {
-      it('is made to the url https://_pine.pine.cash/v1/users/LJHcBGBHbXaTN7cZbX97EAFPrxcVc2f6f', () => {
-        const expectedUrl = 'https://_pine.pine.cash/v1/users/LJHcBGBHbXaTN7cZbX97EAFPrxcVc2f6f';
+      it('is made to the url https://pine-payment-server.pine.cash/v1/users/LJHcBGBHbXaTN7cZbX97EAFPrxcVc2f6f', () => {
+        const expectedUrl = 'https://pine-payment-server.pine.cash/v1/users/LJHcBGBHbXaTN7cZbX97EAFPrxcVc2f6f';
         expect(fetch).toHaveBeenCalledWith(expectedUrl, expect.anything());
       });
 

@@ -34,8 +34,8 @@ describe('create', () => {
     });
 
     describe('the HTTP request', () => {
-      it('is made to the url https://_pine.pine.cash/v1/users', () => {
-        const expectedUrl = 'https://_pine.pine.cash/v1/users';
+      it('is made to the url https://pine-payment-server.pine.cash/v1/users', () => {
+        const expectedUrl = 'https://pine-payment-server.pine.cash/v1/users';
         expect(fetch).toHaveBeenCalledWith(expectedUrl, expect.anything());
       });
 

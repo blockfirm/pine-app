@@ -44,8 +44,8 @@ describe('get', () => {
     });
 
     describe('the HTTP request', () => {
-      it('is made to the url https://_pine.pine.cash/v1/users/ACjpRHFv7L8iN4qnVeR4U7pyhzGxSr4Z2/contact-requests', () => {
-        const expectedUrl = 'https://_pine.pine.cash/v1/users/ACjpRHFv7L8iN4qnVeR4U7pyhzGxSr4Z2/contact-requests';
+      it('is made to the url https://pine-payment-server.pine.cash/v1/users/ACjpRHFv7L8iN4qnVeR4U7pyhzGxSr4Z2/contact-requests', () => {
+        const expectedUrl = 'https://pine-payment-server.pine.cash/v1/users/ACjpRHFv7L8iN4qnVeR4U7pyhzGxSr4Z2/contact-requests';
         expect(fetch).toHaveBeenCalledWith(expectedUrl, expect.anything());
       });
 

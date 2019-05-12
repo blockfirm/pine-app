@@ -36,8 +36,8 @@ describe('remove', () => {
     });
 
     describe('the HTTP request', () => {
-      it('is made to the url https://_pine.pine.cash/v1/users/ACjpRHFv7L8iN4qnVeR4U7pyhzGxSr4Z2/device-tokens/68f353de-1142-4e26-9c4e-2d97d632afb7', () => {
-        const expectedUrl = 'https://_pine.pine.cash/v1/users/ACjpRHFv7L8iN4qnVeR4U7pyhzGxSr4Z2/device-tokens/68f353de-1142-4e26-9c4e-2d97d632afb7';
+      it('is made to the url https://pine-payment-server.pine.cash/v1/users/ACjpRHFv7L8iN4qnVeR4U7pyhzGxSr4Z2/device-tokens/68f353de-1142-4e26-9c4e-2d97d632afb7', () => {
+        const expectedUrl = 'https://pine-payment-server.pine.cash/v1/users/ACjpRHFv7L8iN4qnVeR4U7pyhzGxSr4Z2/device-tokens/68f353de-1142-4e26-9c4e-2d97d632afb7';
         expect(fetch).toHaveBeenCalledWith(expectedUrl, expect.anything());
       });
 

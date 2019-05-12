@@ -1,4 +1,4 @@
-const SUBDOMAIN_KEY = '_pine';
+const SUBDOMAIN_KEY = 'pine-payment-server';
 const LOCAL_PORT = 50428;
 
 /**
@@ -26,7 +26,7 @@ const resolveBaseUrl = (hostname) => {
   if (isDomainName(hostname)) {
     /**
      * If the hostname is a domain name, use HTTPS and prepend a subdomain.
-     * E.g. example.com would resolve to https://_pine.example.com.
+     * E.g. example.com would resolve to https://pine-payment-server.example.com.
      */
     return `https://${SUBDOMAIN_KEY}.${hostname}`;
   }

@@ -49,8 +49,8 @@ describe('getById', () => {
     });
 
     describe('the HTTP request', () => {
-      it('is made to the url https://_pine.pine.cash/v1/users/AH3zqC5iaYyKdmPyZmwgjiHM1hwttxNGr', () => {
-        const expectedUrl = 'https://_pine.pine.cash/v1/users/AH3zqC5iaYyKdmPyZmwgjiHM1hwttxNGr';
+      it('is made to the url https://pine-payment-server.pine.cash/v1/users/AH3zqC5iaYyKdmPyZmwgjiHM1hwttxNGr', () => {
+        const expectedUrl = 'https://pine-payment-server.pine.cash/v1/users/AH3zqC5iaYyKdmPyZmwgjiHM1hwttxNGr';
         expect(fetch).toHaveBeenCalledWith(expectedUrl);
       });
     });

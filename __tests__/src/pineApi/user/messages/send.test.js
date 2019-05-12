@@ -47,8 +47,8 @@ describe('send', () => {
     });
 
     describe('the HTTP request', () => {
-      it('is made to the url https://_pine.pine.pm/v1/users/8YZpTYqxzY4XvNUBx1o4skSCz9rTJquyD/messages', () => {
-        const expectedUrl = 'https://_pine.pine.pm/v1/users/8YZpTYqxzY4XvNUBx1o4skSCz9rTJquyD/messages';
+      it('is made to the url https://pine-payment-server.pine.pm/v1/users/8YZpTYqxzY4XvNUBx1o4skSCz9rTJquyD/messages', () => {
+        const expectedUrl = 'https://pine-payment-server.pine.pm/v1/users/8YZpTYqxzY4XvNUBx1o4skSCz9rTJquyD/messages';
         expect(fetch).toHaveBeenCalledWith(expectedUrl, expect.anything());
       });
 

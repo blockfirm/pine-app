@@ -46,8 +46,8 @@ describe('get', () => {
     });
 
     describe('the HTTP request', () => {
-      it('is made to the url https://_pine.pine.dev/v1/users/6322ca5f-dea9-4543-932d-8ef9e8ec62a7/address', () => {
-        const expectedUrl = 'https://_pine.pine.dev/v1/users/6322ca5f-dea9-4543-932d-8ef9e8ec62a7/address';
+      it('is made to the url https://pine-payment-server.pine.dev/v1/users/6322ca5f-dea9-4543-932d-8ef9e8ec62a7/address', () => {
+        const expectedUrl = 'https://pine-payment-server.pine.dev/v1/users/6322ca5f-dea9-4543-932d-8ef9e8ec62a7/address';
         expect(fetch).toHaveBeenCalledWith(expectedUrl, expect.anything());
       });
 

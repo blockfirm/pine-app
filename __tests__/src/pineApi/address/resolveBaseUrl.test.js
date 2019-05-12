@@ -14,16 +14,16 @@ describe('resolveBaseUrl', () => {
   });
 
   describe('domain names', () => {
-    it('resolves example.com to https://_pine.example.com', () => {
+    it('resolves example.com to https://pine-payment-server.example.com', () => {
       const hostname = 'example.com';
-      const expectedUrl = 'https://_pine.example.com';
+      const expectedUrl = 'https://pine-payment-server.example.com';
 
       expect(resolveBaseUrl(hostname)).toBe(expectedUrl);
     });
 
-    it('resolves sub.test.org to https://_pine.sub.test.org', () => {
+    it('resolves sub.test.org to https://pine-payment-server.sub.test.org', () => {
       const hostname = 'sub.test.org';
-      const expectedUrl = 'https://_pine.sub.test.org';
+      const expectedUrl = 'https://pine-payment-server.sub.test.org';
 
       expect(resolveBaseUrl(hostname)).toBe(expectedUrl);
     });
