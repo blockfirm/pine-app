@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
   },
   betaNoticeWrapper: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 16,
+    marginRight: 16,
     flexDirection: 'row',
     alignItems: 'center'
   },
