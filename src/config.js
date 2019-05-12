@@ -3,7 +3,7 @@ import { REGION_CURRENCY } from './localization';
 
 export default {
   initialized: false, // If false, show welcome screen
-  defaultPineAddressHostname: '192.168.1.199',
+  defaultPineAddressHostname: 'pine.dev',
   user: {
     // The user must accept the Terms and Conditions before using the app.
     hasAcceptedTerms: false,
@@ -24,7 +24,7 @@ export default {
     }
   },
   api: {
-    baseUrl: 'http://localhost:8080'
+    baseUrl: 'https://api.pine.dev'
   },
   bitcoin: {
     network: 'testnet', // 'mainnet' or 'testnet'
