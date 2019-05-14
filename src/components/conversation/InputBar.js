@@ -70,6 +70,21 @@ export default class InputBar extends Component {
     this._onChangeUnit = this._onChangeUnit.bind(this);
     this._onSendPress = this._onSendPress.bind(this);
     this._onCancelPress = this._onCancelPress.bind(this);
+    this._onInputPress = this._onInputPress.bind(this);
+  }
+
+  reset() {
+    this.setState({
+      amount: 0,
+      insufficientFunds: false,
+      confirmTransaction: false
+    });
+
+    this._amountInput.reset();
+  }
+
+  focus() {
+    this._amountInput.focus();
   }
 
   _onChangeAmount(amount) {
@@ -129,6 +144,14 @@ export default class InputBar extends Component {
     });
   }
 
+  _onInputPress() {
+    if (this.state.confirmTransaction) {
+      return this._onCancelPress();
+    }
+
+    this.focus();
+  }
+
   _renderButton() {
     const { amount, insufficientFunds, confirmTransaction } = this.state;
     const sendDisabled = !amount || insufficientFunds;
@@ -153,20 +176,6 @@ export default class InputBar extends Component {
         onPress={this._onSendPress}
       />
     );
-  }
-
-  reset() {
-    this.setState({
-      amount: 0,
-      insufficientFunds: false,
-      confirmTransaction: false
-    });
-
-    this._amountInput.reset();
-  }
-
-  focus() {
-    this._amountInput.focus();
   }
 
   render() {
@@ -195,6 +204,7 @@ export default class InputBar extends Component {
           unit={unit}
           initialAmount={initialAmount}
           onChangeAmount={this._onChangeAmount}
+          onPress={this._onInputPress}
           hasError={insufficientFunds}
           errorText={insufficientFundsReason}
           editable={!confirmTransaction}

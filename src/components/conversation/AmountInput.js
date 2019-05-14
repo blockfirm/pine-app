@@ -129,6 +129,14 @@ export default class AmountInput extends Component {
     }
   }
 
+  focus() {
+    this._input.focus();
+  }
+
+  reset() {
+    this.setState({ amount: '' });
+  }
+
   _sanitizeAmount(amount) {
     let sanitized = amount.replace(/[^0-9,.]/g, '');
 
@@ -171,14 +179,6 @@ export default class AmountInput extends Component {
     this._setAmount(sanitizedAmount);
   }
 
-  focus() {
-    this._input.focus();
-  }
-
-  reset() {
-    this.setState({ amount: '' });
-  }
-
   _renderErrorText() {
     const { hasError, errorText } = this.props;
 
@@ -194,7 +194,7 @@ export default class AmountInput extends Component {
   }
 
   render() {
-    const { editable, hasError, errorText } = this.props;
+    const { editable, hasError, errorText, onPress } = this.props;
 
     const containerStyle = [
       styles.container,
@@ -208,7 +208,7 @@ export default class AmountInput extends Component {
     ];
 
     return (
-      <TouchableWithoutFeedback onPress={this.focus}>
+      <TouchableWithoutFeedback onPress={onPress}>
         <View style={containerStyle}>
           <TextInput
             {...this.props}
@@ -222,6 +222,7 @@ export default class AmountInput extends Component {
             selectionColor='#FFC431'
             enablesReturnKeyAutomatically={true}
             onChangeText={this._onChangeText}
+            pointerEvents={editable ? undefined : 'none'}
           />
           { this._renderErrorText() }
         </View>
@@ -232,6 +233,7 @@ export default class AmountInput extends Component {
 
 AmountInput.propTypes = {
   onChangeAmount: PropTypes.func.isRequired,
+  onPress: PropTypes.func.isRequired,
   currency: PropTypes.string.isRequired,
   unit: PropTypes.string,
   initialAmount: PropTypes.number,
