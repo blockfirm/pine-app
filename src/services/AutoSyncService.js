@@ -1,29 +1,51 @@
-import { sync as syncWallet } from '../actions/bitcoin/wallet';
+import { AppState } from 'react-native';
+import { sync as syncApp } from '../actions';
 
 const SYNC_INTERVAL = 30 * 1000; // 30 seconds.
 
 export default class AutoSyncService {
   constructor(store) {
     this.store = store;
+    this._onAppStateChange = this._onAppStateChange.bind(this);
   }
 
   start() {
-    const { store } = this;
+    // Get initial app state.
+    this._appState = AppState.currentState;
 
-    // Sync wallet with an interval.
+    // Listen for app state changes (e.g. when app becomes active).
+    AppState.addEventListener('change', this._onAppStateChange);
+
+    // Sync app with an interval.
     this._syncInterval = setInterval(() => {
-      const state = store.getState();
-      const { initialized } = state.settings;
-      const { disconnected } = state.network.internet;
-
-      // Only sync if connected to the internet and has a wallet.
-      if (!disconnected && initialized) {
-        store.dispatch(syncWallet());
-      }
+      this._syncApp();
     }, SYNC_INTERVAL);
   }
 
   stop() {
     clearInterval(this._syncInterval);
+    AppState.removeEventListener('change', this._onAppStateChange);
+  }
+
+  _onAppStateChange(nextAppState) {
+    if (this._appState === 'background' && nextAppState === 'active') {
+      // The app has come to the foreground.
+      this._syncApp();
+    }
+
+    this._appState = nextAppState;
+  }
+
+  _syncApp() {
+    const { store } = this;
+    const state = store.getState();
+    const { initialized } = state.settings;
+    const { hasAcceptedTerms } = state.settings.user;
+    const { disconnected } = state.network.internet;
+
+    // Only sync if connected to the internet and has a wallet.
+    if (!disconnected && initialized && hasAcceptedTerms) {
+      store.dispatch(syncApp());
+    }
   }
 }
