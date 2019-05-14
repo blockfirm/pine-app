@@ -39,8 +39,6 @@
 	<string>$(PRODUCT_NAME) needs access to your camera to scan QR codes.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>For signing transactions.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to your photo library to change your profile picture.</string>
 	<key>UIAppFonts</key>
