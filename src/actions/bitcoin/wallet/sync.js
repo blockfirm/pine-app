@@ -199,6 +199,7 @@ const createConversationsForTransactions = (transactions, dispatch, state) => {
 export const sync = () => {
   return (dispatch, getState) => {
     const state = getState();
+    let updatedTransactions = [];
     let newTransactions = [];
 
     if (state.bitcoin.wallet.syncing) {
@@ -209,16 +210,18 @@ export const sync = () => {
 
     // First update pending transactions.
     return dispatch(updatePendingTransactions())
-      .then(() => {
+      .then((transactions) => {
+        updatedTransactions = transactions;
+
         // Get new transactions.
         return getAllNewTransactions(dispatch, state);
       })
       .then((transactions) => {
-        if (transactions.length === 0) {
+        newTransactions = transactions;
+
+        if (newTransactions.length === 0 && updatedTransactions.length === 0) {
           return;
         }
-
-        newTransactions = transactions;
 
         return waitForInteractions()
           .then(() => {
