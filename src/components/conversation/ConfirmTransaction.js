@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
   errorText: {
-    color: '#FF3B30'
+    color: '#FF3B30',
+    marginTop: 1
   },
   bold: {
     fontWeight: '600',
@@ -152,7 +153,7 @@ export default class ConfirmTransaction extends Component {
     if (cannotAffordFee) {
       return (
         <StyledText style={styles.errorText}>
-          Not enough funds to pay for the transaction fee.
+          Not enough funds to pay for the fee
         </StyledText>
       );
     }
