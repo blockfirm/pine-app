@@ -53,10 +53,10 @@ export default class ContactsScreenHeader extends Component {
           <AddContactIcon />
         </TouchableOpacity>
 
-        <View style={styles.titleWrapper}>
+        <TouchableOpacity onPress={this.props.onBalancePress} style={styles.titleWrapper}>
           <BalanceLabelContainer currencyType='primary' style={[headerStyles.title, styles.title]} />
           <BalanceLabelContainer currencyType='secondary' style={[headerStyles.title, styles.subTitle]} />
-        </View>
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={this.props.onSettingsPress} style={styles.settings}>
           <SettingsIcon />
@@ -68,5 +68,6 @@ export default class ContactsScreenHeader extends Component {
 
 ContactsScreenHeader.propTypes = {
   onAddContactPress: PropTypes.func,
-  onSettingsPress: PropTypes.func
+  onSettingsPress: PropTypes.func,
+  onBalancePress: PropTypes.func
 };

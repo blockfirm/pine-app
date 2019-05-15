@@ -33,7 +33,7 @@ export default class ContactsScreen extends Component {
   }
 
   _addContact() {
-    const dispatch = this.props.dispatch;
+    const { dispatch } = this.props;
 
     dispatch(
       NavigationActions.navigate({ routeName: 'AddContact' })
@@ -41,10 +41,18 @@ export default class ContactsScreen extends Component {
   }
 
   _showSettings() {
-    const dispatch = this.props.dispatch;
+    const { dispatch } = this.props;
 
     dispatch(
       NavigationActions.navigate({ routeName: 'Settings' })
+    );
+  }
+
+  _showWalletBalance() {
+    const { dispatch } = this.props;
+
+    dispatch(
+      NavigationActions.navigate({ routeName: 'WalletBalance' })
     );
   }
 
@@ -60,6 +68,7 @@ export default class ContactsScreen extends Component {
         <ContactsScreenHeader
           onAddContactPress={this._addContact.bind(this)}
           onSettingsPress={this._showSettings.bind(this)}
+          onBalancePress={this._showWalletBalance.bind(this)}
         />
 
         <OfflineNoticeContainer />
