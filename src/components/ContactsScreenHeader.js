@@ -31,8 +31,11 @@ const styles = StyleSheet.create({
   },
   titleWrapper: {
     position: 'absolute',
-    left: 40,
-    right: 40
+    left: 60,
+    right: 60
+  },
+  titleTouchable: {
+    alignSelf: 'center'
   },
   title: {
     textAlign: 'center'
@@ -53,10 +56,12 @@ export default class ContactsScreenHeader extends Component {
           <AddContactIcon />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this.props.onBalancePress} style={styles.titleWrapper}>
-          <BalanceLabelContainer currencyType='primary' style={[headerStyles.title, styles.title]} />
-          <BalanceLabelContainer currencyType='secondary' style={[headerStyles.title, styles.subTitle]} />
-        </TouchableOpacity>
+        <View style={styles.titleWrapper}>
+          <TouchableOpacity onPress={this.props.onBalancePress} style={styles.titleTouchable}>
+            <BalanceLabelContainer currencyType='primary' style={[headerStyles.title, styles.title]} />
+            <BalanceLabelContainer currencyType='secondary' style={[headerStyles.title, styles.subTitle]} />
+          </TouchableOpacity>
+        </View>
 
         <TouchableOpacity onPress={this.props.onSettingsPress} style={styles.settings}>
           <SettingsIcon />
