@@ -83,7 +83,7 @@ export default class EditAvatar extends Component {
 
   _onSelectAvatar(response) {
     if (response.error) {
-      return this.props.onSelect(null, response.error);
+      return this.props.onSelect(null, new Error(response.error));
     }
 
     if (response.didCancel) {

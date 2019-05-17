@@ -183,12 +183,33 @@ export default class ProfileScreen extends Component {
     dispatch(settingsActions.save(newSettings));
   }
 
+  _goToAppSettings() {
+    Linking.openURL('app-settings:');
+  }
+
+  _handleOnSelectError(error) {
+    const { dispatch } = this.props;
+
+    if (error.message.indexOf('permission') === -1) {
+      return dispatch(handleError(error));
+    }
+
+    Alert.alert(
+      'Allow Access to Photos',
+      'Pine needs access to your photo library to set a new profile picture. Press Settings and then Photos and select Read and Write.',
+      [
+        { text: 'Not Now', style: 'cancel' },
+        { text: 'Settings', onPress: this._goToAppSettings }
+      ]
+    );
+  }
+
   _onSelectAvatar(image, error) {
     const { dispatch } = this.props;
     const { address } = this.props.userProfile;
 
     if (error) {
-      return dispatch(handleError(error));
+      return this._handleOnSelectError(error);
     }
 
     return this._getMnemonic().then((mnemonic) => {

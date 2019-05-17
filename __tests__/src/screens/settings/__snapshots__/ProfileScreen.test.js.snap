@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignSelf": "stretch",
+      "backgroundColor": "#EFEFF3",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          Array [
+            Object {
+              "paddingTop": 35,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "marginBottom": 35,
+              "paddingHorizontal": 15,
+            }
+          }
+        >
+          <EditAvatar
+            checksum="cb3e77ab-5cf3-4ff6-a599-e3eb45b2916d"
+            onSelect={[Function]}
+          />
+          <View>
+            <StyledText
+              numberOfLines={1}
+              style={
+                Object {
+                  "fontSize": 26,
+                  "marginBottom": 3,
+                  "marginTop": 10,
+                  "textAlign": "center",
+                }
+              }
+            />
+            <CopyText
+              tooltipArrowDirection="up"
+              underlayColor="#EFEFF3"
+            >
+              <StyledText
+                numberOfLines={1}
+                style={
+                  Object {
+                    "color": "#8A8A8F",
+                    "fontSize": 14,
+                    "textAlign": "center",
+                  }
+                }
+              />
+            </CopyText>
+          </View>
+        </View>
+        <SettingsTitle>
+          Display Name
+        </SettingsTitle>
+        <SettingsGroup>
+          <SettingsLink
+            isLastItem={true}
+            onPress={[Function]}
+          />
+        </SettingsGroup>
+        <SettingsGroup>
+          <SettingsButton
+            isLastItem={true}
+            onPress={[Function]}
+            title="Host Your Own Pine Server"
+          />
+        </SettingsGroup>
+        <SettingsGroup>
+          <SettingsButton
+            containerStyle={
+              Object {
+                "marginLeft": 0,
+                "paddingRight": 0,
+              }
+            }
+            isLastItem={true}
+            loaderStyle={
+              Object {
+                "alignSelf": "center",
+                "right": null,
+              }
+            }
+            loading={false}
+            onPress={[Function]}
+            style={
+              Object {
+                "alignSelf": "center",
+              }
+            }
+            title="Sign Out"
+            type="destructive"
+          />
+        </SettingsGroup>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
