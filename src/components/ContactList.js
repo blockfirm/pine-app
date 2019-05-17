@@ -79,7 +79,9 @@ export default class ContactList extends PureComponent {
   }
 
   scrollToTop() {
-    if (this._list) {
+    const listLength = Object.keys(this.props.contacts).length;
+
+    if (this._list && listLength > 0) {
       this._list.scrollToTop();
     }
   }
