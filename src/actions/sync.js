@@ -7,6 +7,8 @@ export const SYNC_REQUEST = 'SYNC_REQUEST';
 export const SYNC_SUCCESS = 'SYNC_SUCCESS';
 export const SYNC_FAILURE = 'SYNC_FAILURE';
 
+let syncPromise;
+
 const syncRequest = () => {
   return {
     type: SYNC_REQUEST
@@ -35,12 +37,12 @@ export const sync = () => {
     const state = getState();
 
     if (state.syncing) {
-      return Promise.resolve();
+      return syncPromise || Promise.resolve();
     }
 
     dispatch(syncRequest());
 
-    return dispatch(syncContacts())
+    syncPromise = dispatch(syncContacts())
       .then(() => {
         return dispatch(syncIncomingContactRequests());
       })
@@ -56,5 +58,7 @@ export const sync = () => {
       .catch((error) => {
         dispatch(syncFailure(error));
       });
+
+    return syncPromise;
   };
 };
