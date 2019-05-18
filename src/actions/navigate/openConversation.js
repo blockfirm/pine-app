@@ -13,7 +13,7 @@ const findContactByAddress = (address, contacts) => {
 const navigateToConversation = (dispatch, contact) => {
   const pushAction = StackActions.push({
     routeName: 'Conversation',
-    params: { contact }
+    params: { contactId: contact.id }
   });
 
   dispatch({ type: NAVIGATE_OPEN_CONVERSATION, contact });

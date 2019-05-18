@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
+  contacts: state.contacts.items,
   messages: state.messages.itemsByContact
 }))
 export default class ConversationScreen extends Component {
@@ -149,8 +150,14 @@ export default class ConversationScreen extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, navigation, messages } = this.props;
-    const { contact, autoFocus } = navigation.state.params;
+    const { dispatch, navigation, contacts, messages } = this.props;
+    const { contactId, autoFocus } = navigation.state.params;
+    let contact;
+
+    if (contactId) {
+      contact = contacts[contactId];
+      navigation.setParams({ contact });
+    }
 
     navigation.setParams({ showUserMenu: this._showUserMenu.bind(this) });
 
@@ -176,6 +183,28 @@ export default class ConversationScreen extends Component {
       setTimeout(() => {
         this._inputBar.focus();
       });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { navigation, contacts } = this.props;
+    const prevContact = prevProps.navigation.state.params.contact;
+
+    if (!prevContact || !prevContact.id) {
+      return;
+    }
+
+    const contact = contacts[prevContact.id];
+
+    if (!contact) {
+      return;
+    }
+
+    const prevAvatarChecksum = prevContact.avatar && prevContact.avatar.checksum;
+    const avatarChecksum = contact.avatar && contact.avatar.checksum;
+
+    if (contact.displayName !== prevContact.displayName || avatarChecksum !== prevAvatarChecksum) {
+      navigation.setParams({ contact });
     }
   }
 
@@ -470,5 +499,6 @@ export default class ConversationScreen extends Component {
 ConversationScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
+  contacts: PropTypes.object,
   messages: PropTypes.object
 };

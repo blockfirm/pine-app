@@ -63,9 +63,10 @@ export default class CameraScreen extends Component {
 
   _showConversationScreen(contact, amount) {
     const { navigation } = this.props;
+    const contactId = contact.id;
     const autoFocus = true;
 
-    navigation.navigate('Conversation', { contact, amount, autoFocus });
+    navigation.navigate('Conversation', { contactId, amount, autoFocus });
   }
 
   _showConversationScreenForAddress(bitcoinAddress, amount) {

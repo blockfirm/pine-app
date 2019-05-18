@@ -1,5 +1,6 @@
 import { AppState } from 'react-native';
 import { sync as syncApp } from '../actions';
+import { updateProfiles } from '../actions/contacts';
 
 const SYNC_INTERVAL = 30 * 1000; // 30 seconds.
 
@@ -31,12 +32,13 @@ export default class AutoSyncService {
     if (this._appState === 'background' && nextAppState === 'active') {
       // The app has come to the foreground.
       this._syncApp();
+      this._updateProfiles();
     }
 
     this._appState = nextAppState;
   }
 
-  _syncApp() {
+  _shouldSync() {
     const { store } = this;
     const state = store.getState();
     const { initialized } = state.settings;
@@ -44,8 +46,22 @@ export default class AutoSyncService {
     const { disconnected } = state.network.internet;
 
     // Only sync if connected to the internet and has a wallet.
-    if (!disconnected && initialized && hasAcceptedTerms) {
-      store.dispatch(syncApp());
+    return !disconnected && initialized && hasAcceptedTerms;
+  }
+
+  _syncApp() {
+    const { dispatch } = this.store;
+
+    if (this._shouldSync()) {
+      dispatch(syncApp());
+    }
+  }
+
+  _updateProfiles() {
+    const { dispatch } = this.store;
+
+    if (this._shouldSync()) {
+      dispatch(updateProfiles()).catch(() => { /* Suppress errors */ });
     }
   }
 }
