@@ -13,14 +13,6 @@ import {
   MESSAGES_SYNC_FAILURE
 } from '../../../../src/actions/messages/sync';
 
-const dispatchMock = jest.fn((action) => {
-  if (typeof action === 'function') {
-    return action(jest.fn(), () => ({}));
-  }
-
-  return action;
-});
-
 const getStateMock = jest.fn(() => ({
   settings: {
     user: {
@@ -70,6 +62,14 @@ const getStateMock = jest.fn(() => ({
     }
   }
 }));
+
+const dispatchMock = jest.fn((action) => {
+  if (typeof action === 'function') {
+    return action(jest.fn(), getStateMock);
+  }
+
+  return action;
+});
 
 jest.mock('../../../../src/crypto/bitcoin/generateAddress', () => {
   return jest.fn((accountPublicKey, network, isInternalAddress, index) => {
