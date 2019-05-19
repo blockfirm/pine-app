@@ -46,6 +46,14 @@ const styles = StyleSheet.create({
   }
 });
 
+const translateErrorMessage = (errorMessage) => {
+  if (errorMessage.indexOf('error when getting user') > -1) {
+    return 'User does not exist';
+  }
+
+  return errorMessage;
+};
+
 @connect((state) => ({
   contacts: state.contacts.items,
   userProfile: state.settings.user.profile,
@@ -129,7 +137,9 @@ export default class AddContactScreen extends Component {
         screenProps.dismiss();
       })
       .catch((error) => {
-        this.setState({ error: error.message });
+        this.setState({
+          error: translateErrorMessage(error.message)
+        });
       })
       .then(() => {
         navigation.setParams({ canSubmit: true });
