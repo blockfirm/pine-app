@@ -75,7 +75,7 @@ SettingsButton.propTypes = {
   loaderStyle: PropTypes.any,
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
-  type: PropTypes.string,
+  type: PropTypes.oneOf(['destructive']),
   isLastItem: PropTypes.bool,
   loading: PropTypes.bool,
   loadingTitle: PropTypes.string,
