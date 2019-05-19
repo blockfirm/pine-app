@@ -28,18 +28,24 @@ const syncFailure = (error) => {
   };
 };
 
-const processMessages = (messages, dispatch) => {
-  const promises = messages.map((message) => {
+const processMessages = async (messages, dispatch) => {
+  const processedMessages = [];
+
+  for (const message of messages) {
     if (message.error) {
-      return Promise.resolve(message);
+      processedMessages.push(message);
+      continue;
     }
 
-    return dispatch(processMessage(message)).catch((error) => {
-      return { ...message, error: error.message };
-    });
-  });
+    try {
+      const processedMessage = await dispatch(processMessage(message));
+      processedMessages.push(processedMessage);
+    } catch (error) {
+      processedMessages.push({ ...message, error: error.message });
+    }
+  }
 
-  return Promise.all(promises);
+  return processedMessages;
 };
 
 const broadcastTransactions = (processedMessages, dispatch) => {
