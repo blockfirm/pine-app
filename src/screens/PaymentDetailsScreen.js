@@ -133,6 +133,7 @@ export default class PaymentDetailsScreen extends Component {
       <ErrorMessage
         title='Invalid Payment'
         message={message.error}
+        details={JSON.stringify(message, null, 2)}
       />
     );
   }

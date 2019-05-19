@@ -23,10 +23,11 @@ const styles = StyleSheet.create({
 
 export default class ErrorMessage extends Component {
   render() {
-    const { title, message } = this.props;
+    const { title, message, details } = this.props;
+    const copyText = `${message}\n${details}`;
 
     return (
-      <CopyText tooltipArrowDirection='up' copyText={message}>
+      <CopyText tooltipArrowDirection='up' copyText={copyText}>
         <View style={styles.errorWrapper}>
           <StyledText style={styles.errorTitle}>
             {title}
@@ -42,5 +43,6 @@ export default class ErrorMessage extends Component {
 
 ErrorMessage.propTypes = {
   title: PropTypes.string,
-  message: PropTypes.string
+  message: PropTypes.string,
+  details: PropTypes.string
 };
