@@ -65,7 +65,7 @@ const getStateMock = jest.fn(() => ({
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
-    return action(jest.fn(), getStateMock);
+    return Promise.resolve(action(dispatchMock, getStateMock));
   }
 
   return action;
@@ -73,7 +73,7 @@ const dispatchMock = jest.fn((action) => {
 
 jest.mock('../../../../src/crypto/bitcoin/generateAddress', () => {
   return jest.fn((accountPublicKey, network, isInternalAddress, index) => {
-    if (index === 4) {
+    if (index === 3) {
       return '2N7X7BLsDX5CsN4Ds4QfLnnF5S3KriHdKtK';
     }
 
@@ -229,7 +229,7 @@ describe('sync', () => {
         });
       });
 
-      it('saves existing and new addresses as used', () => {
+      it('saves existing addresses as used', () => {
         expect.hasAssertions();
 
         return promise.then(() => {
@@ -237,9 +237,22 @@ describe('sync', () => {
             '2MtLDFUYDLgmnEBJ6B1dZVDKV4EwCnnqcmV': {
               index: 1,
               used: true
+            }
+          }));
+        });
+      });
+
+      it('saves new and intermediate addresses', () => {
+        expect.hasAssertions();
+
+        return promise.then(() => {
+          expect(addExternalAddress).toHaveBeenCalledWith(expect.objectContaining({
+            '83e15188-5f3a-4a83-b915-5eb2f3affa72': {
+              index: 2,
+              used: false // Intermediate addresses are flagged as unused.
             },
             '2N7X7BLsDX5CsN4Ds4QfLnnF5S3KriHdKtK': {
-              index: 4,
+              index: 3,
               used: true
             }
           }));

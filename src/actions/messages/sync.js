@@ -1,4 +1,3 @@
-import { add as addExternalAddress } from '../bitcoin/wallet/addresses/external';
 import { post as postTransaction } from '../bitcoin/blockchain/transactions';
 import { getIncoming as getIncomingMessages } from '../pine/messages/getIncoming';
 import { remove as removeMessageFromServer } from '../pine/messages/remove';
@@ -41,27 +40,6 @@ const processMessages = (messages, dispatch) => {
   });
 
   return Promise.all(promises);
-};
-
-const saveAddresses = (processedMessages, dispatch) => {
-  const addressMap = processedMessages.reduce((map, message) => {
-    const { address } = message;
-
-    if (address) {
-      map[address.address] = {
-        index: address.index,
-        used: true
-      };
-    }
-
-    return map;
-  }, {});
-
-  if (Object.keys(addressMap).length === 0) {
-    return Promise.resolve();
-  }
-
-  return dispatch(addExternalAddress(addressMap));
 };
 
 const broadcastTransactions = (processedMessages, dispatch) => {
@@ -122,12 +100,8 @@ export const sync = () => {
         return processMessages(messages, dispatch);
       })
       .then((messages) => {
-        // Save/update addresses used in transactions.
-        processedMessages = messages;
-        return saveAddresses(processedMessages, dispatch);
-      })
-      .then(() => {
         // Broadcast valid transactions.
+        processedMessages = messages;
         return broadcastTransactions(processedMessages, dispatch);
       })
       .then(() => {

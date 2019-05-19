@@ -1,12 +1,15 @@
+/* eslint-disable max-lines */
 import bitcoin from 'bitcoinjs-lib';
 import generateAddress from '../../crypto/bitcoin/generateAddress';
 import { convert as convertAmount, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
+import { add as addExternalAddress } from '../bitcoin/wallet/addresses/external';
 
 export const MESSAGES_PROCESS_REQUEST = 'MESSAGES_PROCESS_REQUEST';
 export const MESSAGES_PROCESS_SUCCESS = 'MESSAGES_PROCESS_SUCCESS';
 export const MESSAGES_PROCESS_FAILURE = 'MESSAGES_PROCESS_FAILURE';
 
 const MESSAGE_TYPE_PAYMENT = 'payment';
+const ADDRESS_LOOK_AHEAD = 50;
 
 const processRequest = () => {
   return {
@@ -56,34 +59,55 @@ const validateMessage = (message, network) => {
   return true;
 };
 
-const findWalletAddress = (address, network, externalAddresses, accountPublicKey) => {
-  const isInternalAddress = false;
-
-  // Look in already existing addresses.
-  if (Object.keys(externalAddresses).includes(address)) {
-    return {
-      ...externalAddresses[address],
-      address
-    };
-  }
-
+const getLastAddressIndex = (externalAddresses) => {
   const lastAddressIndex = Object.values(externalAddresses).reduce((max, externalAddress) => {
     return Math.max(max, externalAddress.index);
   }, -1);
 
-  // Look if address is in the next 50 addresses.
-  for (let i = 1; i <= 50; i++) {
+  return lastAddressIndex;
+};
+
+const findNewAddress = (addresses, network, externalAddresses, accountPublicKey) => {
+  const lastAddressIndex = getLastAddressIndex(externalAddresses);
+  const generatedAddresses = [];
+  const isInternalAddress = false;
+
+  for (let i = 1; i <= ADDRESS_LOOK_AHEAD; i++) {
     const newAddress = generateAddress(accountPublicKey, network, isInternalAddress, lastAddressIndex + i);
 
-    if (newAddress === address) {
+    generatedAddresses.push({
+      index: lastAddressIndex + i,
+      address: newAddress,
+      used: false
+    });
+
+    if (addresses.includes(newAddress)) {
       return {
-        index: lastAddressIndex + i,
-        address
+        walletAddress: { ...generatedAddresses.pop(), used: true },
+        generatedAddresses
       };
     }
   }
+};
 
-  return null;
+const findWalletAddress = (addresses, network, externalAddresses, accountPublicKey) => {
+  const existingAddress = addresses.find((address) => {
+    return address in externalAddresses;
+  });
+
+  if (!existingAddress) {
+    // Look if address is in the next 50 addresses.
+    return findNewAddress(addresses, network, externalAddresses, accountPublicKey);
+  }
+
+  return {
+    generatedAddresses: [],
+    walletAddress: {
+      ...externalAddresses[existingAddress],
+      address: existingAddress,
+      used: true
+    }
+  };
 };
 
 const getAddressesFromTransaction = (transaction, network) => {
@@ -103,6 +127,31 @@ const getAddressesFromTransaction = (transaction, network) => {
   return addresses;
 };
 
+const getAmountForAddress = (addresses, walletAddress) => {
+  for (const address of addresses) {
+    if (address.address === walletAddress.address) {
+      return address.out.value;
+    }
+  }
+};
+
+const saveAddresses = (addresses, dispatch) => {
+  const addressMap = addresses.reduce((map, address) => {
+    map[address.address] = {
+      index: address.index,
+      used: address.used
+    };
+
+    return map;
+  }, {});
+
+  if (Object.keys(addressMap).length === 0) {
+    return Promise.resolve();
+  }
+
+  return dispatch(addExternalAddress(addressMap));
+};
+
 /**
  * Action to process an incoming message.
  *
@@ -118,42 +167,45 @@ const getAddressesFromTransaction = (transaction, network) => {
  */
 export const process = (message) => {
   return (dispatch, getState) => {
+    const state = getState();
+    const { network } = state.settings.bitcoin;
+    const key = Object.values(state.keys.items)[0];
+    const { accountPublicKey } = key;
+    const externalAddresses = state.bitcoin.wallet.addresses.external.items;
+
     dispatch(processRequest());
 
     return Promise.resolve()
       .then(() => {
-        const state = getState();
-        const { network } = state.settings.bitcoin;
-        const key = Object.values(state.keys.items)[0];
-        const { accountPublicKey } = key;
-        const externalAddresses = state.bitcoin.wallet.addresses.external.items;
-
         validateMessage(message, network);
 
         const rawTransaction = message.data.transaction;
         const transaction = bitcoin.Transaction.fromHex(rawTransaction);
         const addresses = getAddressesFromTransaction(transaction, network);
-        let walletAddress;
-        let amount;
 
         // Check if one of the addresses belongs to the wallet.
-        addresses.some((address) => {
-          walletAddress = findWalletAddress(address.address, network, externalAddresses, accountPublicKey);
-          amount = address.out.value;
-
-          return walletAddress;
-        });
+        const { walletAddress, generatedAddresses } = findWalletAddress(
+          addresses.map((address) => address.address),
+          network,
+          externalAddresses,
+          accountPublicKey
+        );
 
         if (!walletAddress) {
-          throw new Error('Transaction is not redeemable');
+          throw new Error('Transaction is not redeemable. Receiving address does not belong to wallet.');
         }
 
-        return {
-          ...message,
-          address: walletAddress,
-          txid: transaction.getId(),
-          amountBtc: convertAmount(amount, UNIT_SATOSHIS, UNIT_BTC)
-        };
+        const amount = getAmountForAddress(addresses, walletAddress);
+        const amountBtc = convertAmount(amount, UNIT_SATOSHIS, UNIT_BTC);
+
+        return saveAddresses([...generatedAddresses, walletAddress], dispatch).then(() => {
+          return {
+            ...message,
+            address: walletAddress,
+            txid: transaction.getId(),
+            amountBtc
+          };
+        });
       })
       .then((processedMessage) => {
         dispatch(processSuccess(processedMessage));
