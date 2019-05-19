@@ -114,6 +114,18 @@ jest.mock('../../../../src/actions/pine/messages/getIncoming', () => ({
       },
       createdAt: 1558180471,
       from: 'one@example.org'
+    },
+    {
+      id: '8d5353e0-d8dc-4bd2-b6ae-ef572200152e',
+      version: 1,
+      type: 'payment',
+      error: null,
+      data: {
+        transaction: '02000000012f093898f4982de9db04703a661d9ca6046f1fcf745a8fc0541cdadc6e168b19010000006a473044022059a2f883ede9eba63c56c42b4e8f78ed9aead3b90e396dca0cc2a5c1987a406e02200b7643f8f55bdc744595c52a67fb5b55df01efbf1e38b6597b111d890d8a9737012102629a17311305cca7691ce59828cfcd6fb36e3b57e99667cae0990abcf8f38fd9feffffff0296f0e903000000001976a91458167d22418a4277ed3f14819c3cde3994a8373d88acf454765d030000001976a9146b1186f70dfc26dbc80282b2d356eedb4dbf65e588ac32331300',
+        network: 'bitcoin_testnet'
+      },
+      createdAt: 1558180477,
+      from: 'fraud@example.org'
     }
   ]))
 }));
@@ -215,6 +227,16 @@ describe('sync', () => {
         });
       });
 
+      it('does not broadcast invalid transactions', () => {
+        expect.hasAssertions();
+
+        return promise.then(() => {
+          expect(postTransaction).not.toHaveBeenCalledWith(
+            '02000000012f093898f4982de9db04703a661d9ca6046f1fcf745a8fc0541cdadc6e168b19010000006a473044022059a2f883ede9eba63c56c42b4e8f78ed9aead3b90e396dca0cc2a5c1987a406e02200b7643f8f55bdc744595c52a67fb5b55df01efbf1e38b6597b111d890d8a9737012102629a17311305cca7691ce59828cfcd6fb36e3b57e99667cae0990abcf8f38fd9feffffff0296f0e903000000001976a91458167d22418a4277ed3f14819c3cde3994a8373d88acf454765d030000001976a9146b1186f70dfc26dbc80282b2d356eedb4dbf65e588ac32331300'
+          );
+        });
+      });
+
       it('removes each message from server', () => {
         expect.hasAssertions();
 
@@ -225,6 +247,10 @@ describe('sync', () => {
 
           expect(removeMessageFromServer).toHaveBeenCalledWith(expect.objectContaining({
             id: '3631c8a1-d2f9-430f-bd2e-44a889a31836' // Mocked value.
+          }));
+
+          expect(removeMessageFromServer).toHaveBeenCalledWith(expect.objectContaining({
+            id: '8d5353e0-d8dc-4bd2-b6ae-ef572200152e' // Mocked value.
           }));
         });
       });

@@ -88,6 +88,8 @@ const findNewAddress = (addresses, network, externalAddresses, accountPublicKey)
       };
     }
   }
+
+  return {};
 };
 
 const findWalletAddress = (addresses, network, externalAddresses, accountPublicKey) => {
