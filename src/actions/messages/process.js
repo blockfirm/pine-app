@@ -9,7 +9,7 @@ export const MESSAGES_PROCESS_SUCCESS = 'MESSAGES_PROCESS_SUCCESS';
 export const MESSAGES_PROCESS_FAILURE = 'MESSAGES_PROCESS_FAILURE';
 
 const MESSAGE_TYPE_PAYMENT = 'payment';
-const ADDRESS_LOOK_AHEAD = 50;
+const ADDRESS_LOOK_AHEAD = 25;
 
 const processRequest = () => {
   return {
