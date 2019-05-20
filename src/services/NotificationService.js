@@ -108,14 +108,20 @@ export default class NotificationService {
     const isInBackground = this._appState.match(/inactive|background/);
 
     if (!initialized) {
-      return;
+      return notification.finish(PushNotificationIOS.FetchResult.ResultFailed);
     }
 
-    store.dispatch(syncApp()).then(() => {
-      if (isInBackground) {
-        this._openConversation(notification);
-      }
-    });
+    store.dispatch(syncApp())
+      .then(() => {
+        if (isInBackground) {
+          this._openConversation(notification);
+        }
+
+        notification.finish(PushNotificationIOS.FetchResult.NewData);
+      })
+      .catch(() => {
+        notification.finish(PushNotificationIOS.FetchResult.ResultFailed);
+      });
   }
 
   _onAppStateChange(nextAppState) {
