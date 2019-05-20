@@ -10,6 +10,9 @@ export default class NotificationService {
   constructor(store) {
     this.store = store;
 
+    this._lastBackgroundNotificationData = null;
+    this._lastBackgroundNotificationTime = null;
+
     this._onRegister = this._onRegister.bind(this);
     this._onRegisterError = this._onRegisterError.bind(this);
     this._onNotification = this._onNotification.bind(this);
@@ -48,29 +51,65 @@ export default class NotificationService {
   _handleInitialNotification() {
     PushNotificationIOS.getInitialNotification().then((notification) => {
       if (notification) {
-        this._openConversation(notification);
+        const data = notification.getData();
+        this._openConversation(data.address);
       }
     });
   }
 
-  _openConversation(notification) {
+  _shouldOpenConversation() {
+    const data = this._lastBackgroundNotificationData;
+
+    /**
+     * Only navigate if app was made active by a notification
+     * and it contained an address.
+     */
+    if (Date.now() - this._lastBackgroundNotificationTime > 1000) {
+      return false;
+    }
+
+    return Boolean(data && data.address);
+  }
+
+  _openConversation(address) {
     const state = this.store.getState();
     const { dispatch } = this.store;
-    const data = notification.getData();
 
-    if (data && data.address) {
-      const { activeConversation } = state.navigate;
-      const activeContact = activeConversation && activeConversation.contact;
+    if (!address) {
+      return;
+    }
 
-      if (!activeContact || activeContact.address !== data.address) {
-        dispatch(openConversation(data.address));
+    const { syncing, navigate } = state;
+    const { activeConversation } = navigate;
+    const activeContact = activeConversation && activeConversation.contact;
+
+    if (!activeContact || activeContact.address !== address) {
+      if (syncing) {
+        // If app is syncing, attach to the promise and open conversation when it's done.
+        dispatch(syncApp()).then(() => {
+          dispatch(openConversation(address));
+        });
+      } else {
+        // If app is not syncing, open conversation directly.
+        dispatch(openConversation(address));
       }
     }
   }
 
+  _tryOpenConversation() {
+    if (this._shouldOpenConversation()) {
+      const { address } = this._lastBackgroundNotificationData;
+
+      this._lastBackgroundNotificationData = null;
+      this._lastBackgroundNotificationTime = null;
+
+      this._openConversation(address);
+    }
+  }
+
   _addDeviceTokenToPine() {
-    const { store } = this;
-    const state = store.getState();
+    const state = this.store.getState();
+    const { dispatch } = this.store;
 
     // Wait until the state has loaded.
     if (state.settings.initialized === undefined) {
@@ -84,7 +123,7 @@ export default class NotificationService {
       return;
     }
 
-    store.dispatch(addDeviceTokenToPine()).catch(() => {
+    dispatch(addDeviceTokenToPine()).catch(() => {
       // Suppress errors.
     });
   }
@@ -102,21 +141,23 @@ export default class NotificationService {
   }
 
   _onNotification(notification) {
-    const { store } = this;
-    const state = store.getState();
+    const state = this.store.getState();
+    const { dispatch } = this.store;
     const { initialized } = state.settings;
-    const isInBackground = this._appState.match(/inactive|background/);
+    const isNotActive = this._appState.match(/inactive|background/);
+    const data = notification.getData();
 
-    if (!initialized) {
+    if (!initialized || !data) {
       return notification.finish(PushNotificationIOS.FetchResult.ResultFailed);
     }
 
-    store.dispatch(syncApp())
-      .then(() => {
-        if (isInBackground) {
-          this._openConversation(notification);
-        }
+    if (isNotActive) {
+      this._lastBackgroundNotificationData = data;
+      this._lastBackgroundNotificationTime = Date.now();
+    }
 
+    dispatch(syncApp())
+      .then(() => {
         notification.finish(PushNotificationIOS.FetchResult.NewData);
       })
       .catch(() => {
@@ -128,6 +169,7 @@ export default class NotificationService {
     if (this._appState.match(/inactive|background/) && nextAppState === 'active') {
       // The app has come to the foreground.
       PushNotificationIOS.setApplicationIconBadgeNumber(0);
+      this._tryOpenConversation();
     }
 
     this._appState = nextAppState;
