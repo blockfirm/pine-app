@@ -202,12 +202,12 @@ export default class ConfirmTransaction extends Component {
       <View style={[styles.view, this.props.style]}>
         <View style={styles.details}>
           <View style={styles.detail}>
-            <View style={styles.feeLabelWrapper}>
-              <StyledText style={styles.label}>Fee</StyledText>
-              <TouchableOpacity onPress={this._toggleFeeHelpText}>
+            <TouchableOpacity onPress={this._toggleFeeHelpText}>
+              <View style={styles.feeLabelWrapper}>
+                <StyledText style={styles.label}>Fee</StyledText>
                 <HelpIcon style={[styles.helpIcon, showFeeHelpText && styles.helpIconActive]} />
-              </TouchableOpacity>
-            </View>
+              </View>
+            </TouchableOpacity>
             <View style={styles.value}>
               {this._renderFee()}
             </View>
