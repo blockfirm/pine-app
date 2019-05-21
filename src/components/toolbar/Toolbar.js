@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     left: TOOLBAR_DEFAULT_PADDING,
     right: TOOLBAR_DEFAULT_PADDING,
     height: 90,
-    marginBottom: ifIphoneX(24, 0),
+    paddingBottom: ifIphoneX(24, 0),
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     width: 5,
     height: 5,
     position: 'absolute',
-    bottom: 10,
+    bottom: ifIphoneX(24, 15),
     backgroundColor: '#BEBEBE',
     borderRadius: 5
   },

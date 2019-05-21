@@ -208,7 +208,7 @@ exports[`HomeScreen renders correctly 1`] = `
           "height": 90,
           "justifyContent": "space-between",
           "left": 25,
-          "marginBottom": 0,
+          "paddingBottom": 0,
           "position": "absolute",
           "right": 25,
         },
@@ -459,7 +459,7 @@ exports[`HomeScreen renders correctly 1`] = `
           Object {
             "backgroundColor": "#BEBEBE",
             "borderRadius": 5,
-            "bottom": 10,
+            "bottom": 15,
             "height": 5,
             "position": "absolute",
             "width": 5,
