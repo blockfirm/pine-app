@@ -44,14 +44,14 @@ export default class InputBar extends Component {
   constructor(props) {
     super(...arguments);
 
-    const { primaryCurrency, defaultBitcoinUnit, fiatRates, initialAmountBtc } = props;
+    const { currency, unit, fiatRates, initialAmountBtc } = props;
     let initialAmount = null;
 
     if (initialAmountBtc) {
-      if (primaryCurrency === CURRENCY_BTC) {
-        initialAmount = convertBitcoin(initialAmountBtc, UNIT_BTC, defaultBitcoinUnit);
+      if (currency === CURRENCY_BTC) {
+        initialAmount = convertBitcoin(initialAmountBtc, UNIT_BTC, unit);
       } else {
-        const fiatRate = fiatRates[primaryCurrency];
+        const fiatRate = fiatRates[currency];
         initialAmount = fiatRate ? (initialAmountBtc * fiatRate) : 0;
       }
     }
@@ -59,8 +59,8 @@ export default class InputBar extends Component {
     this.state = {
       amount: 0,
       initialAmount,
-      currency: primaryCurrency,
-      unit: primaryCurrency === CURRENCY_BTC ? defaultBitcoinUnit : null,
+      currency,
+      unit: currency === CURRENCY_BTC ? unit : null,
       insufficientFunds: false,
       insufficientFundsReason: null,
       confirmTransaction: false
@@ -94,6 +94,7 @@ export default class InputBar extends Component {
 
   _onChangeUnit({ currency, unit }) {
     this.setState({ currency, unit });
+    this.props.onChangeUnit({ currency, unit });
   }
 
   _getBtcAmount(amount) {
@@ -229,11 +230,14 @@ InputBar.propTypes = {
   primaryCurrency: PropTypes.string.isRequired,
   secondaryCurrency: PropTypes.string.isRequired,
   defaultBitcoinUnit: PropTypes.string.isRequired,
+  currency: PropTypes.string.isRequired,
+  unit: PropTypes.string.isRequired,
   balance: PropTypes.number.isRequired,
   spendableBalance: PropTypes.number.isRequired,
   fiatRates: PropTypes.object.isRequired,
   onSendPress: PropTypes.func.isRequired,
   onCancelPress: PropTypes.func.isRequired,
+  onChangeUnit: PropTypes.func.isRequired,
   initialAmountBtc: PropTypes.number,
   disabled: PropTypes.bool
 };

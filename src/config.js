@@ -21,6 +21,11 @@ export default {
     profile: {
       // Pine address that the user is signed in with.
       address: ''
+    },
+
+    lastUsedDenomination: {
+      currency: null,
+      unit: null
     }
   },
   api: {
