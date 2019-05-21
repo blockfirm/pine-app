@@ -1,7 +1,15 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View, ActivityIndicator, TouchableOpacity, LayoutAnimation } from 'react-native';
 import PropTypes from 'prop-types';
+
+import {
+  StyleSheet,
+  View,
+  ActivityIndicator,
+  TouchableOpacity,
+  LayoutAnimation,
+  Dimensions
+} from 'react-native';
 
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import authentication from '../../authentication';
@@ -17,6 +25,8 @@ import {
   UNIT_SATOSHIS,
   convert as convertBitcoin
 } from '../../crypto/bitcoin/convert';
+
+const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 const BIOMETRY_TYPE_TOUCH_ID = 'TouchID';
 const BIOMETRY_TYPE_FACE_ID = 'FaceID';
@@ -80,6 +90,9 @@ const styles = StyleSheet.create({
   helpIcon: {
     paddingHorizontal: 5,
     opacity: 0.75
+  },
+  helpIconActive: {
+    opacity: 1
   },
   helpText: {
     color: '#8E8E93',
@@ -182,6 +195,9 @@ export default class ConfirmTransaction extends Component {
   }
 
   render() {
+    const { showFeeHelpText } = this.state;
+    const hideTotal = showFeeHelpText && WINDOW_HEIGHT < 700;
+
     return (
       <View style={[styles.view, this.props.style]}>
         <View style={styles.details}>
@@ -189,7 +205,7 @@ export default class ConfirmTransaction extends Component {
             <View style={styles.feeLabelWrapper}>
               <StyledText style={styles.label}>Fee</StyledText>
               <TouchableOpacity onPress={this._toggleFeeHelpText}>
-                { this.state.showFeeHelpText ? null : <HelpIcon style={styles.helpIcon} /> }
+                <HelpIcon style={[styles.helpIcon, showFeeHelpText && styles.helpIconActive]} />
               </TouchableOpacity>
             </View>
             <View style={styles.value}>
@@ -197,7 +213,7 @@ export default class ConfirmTransaction extends Component {
             </View>
             { this._renderFeeHelpText() }
           </View>
-          <View style={[styles.detail, styles.lastDetail]}>
+          <View style={[styles.detail, styles.lastDetail, hideTotal && { opacity: 0 }]}>
             <StyledText style={[styles.label, styles.bold]}>You Pay</StyledText>
             <View style={styles.value}>
               {this._renderTotal()}
