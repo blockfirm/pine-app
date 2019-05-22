@@ -7,7 +7,6 @@ import { addLegacy as addLegacyContact } from '../../contacts';
 import { add as addMessage } from '../../messages';
 import { sync as syncAddressesWithPineAccount } from '../../pine/addresses';
 import { getNewByAddress as getNewTransactionsByAddress } from '../blockchain/transactions/getNewByAddress';
-import { sync as syncSubscriptions } from '../subscriptions/sync';
 import { update as updateUtxos } from './utxos';
 import { save as saveExternalAddresses } from './addresses/external';
 import { save as saveInternalAddresses } from './addresses/internal';
@@ -249,10 +248,6 @@ export const sync = () => {
       })
       .then(() => {
         return dispatch(syncAddressesWithPineAccount(newTransactions));
-      })
-      .then(() => {
-        // Subscribe to push notifications.
-        return dispatch(syncSubscriptions());
       })
       .then(() => {
         dispatch(syncSuccess());

@@ -1,6 +1,5 @@
 import { setIndex as setAddressIndexOnPineServer } from '../../pine/addresses';
 import { findAll as findAllAddresses } from '../blockchain/addresses/findAll';
-import { sync as syncSubscriptions } from '../subscriptions/sync';
 import { add as addExternalAddresses } from './addresses/external';
 import { add as addInternalAddresses } from './addresses/internal';
 import { getUnused as getUnusedAddress } from './addresses';
@@ -105,10 +104,6 @@ export const init = () => {
       })
       .then(() => {
         return dispatch(setAddressIndexOnPineServer());
-      })
-      .then(() => {
-        // Subscribe to push notifications.
-        return dispatch(syncSubscriptions());
       })
       .then(() => {
         dispatch(initSuccess());
