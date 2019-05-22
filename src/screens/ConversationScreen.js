@@ -203,7 +203,11 @@ export default class ConversationScreen extends Component {
     const prevAvatarChecksum = prevContact.avatar && prevContact.avatar.checksum;
     const avatarChecksum = contact.avatar && contact.avatar.checksum;
 
-    if (contact.displayName !== prevContact.displayName || avatarChecksum !== prevAvatarChecksum) {
+    if (
+      contact.displayName !== prevContact.displayName ||
+      avatarChecksum !== prevAvatarChecksum ||
+      (prevContact.contactRequest && !contact.contactRequest)
+    ) {
       navigation.setParams({ contact });
     }
   }
