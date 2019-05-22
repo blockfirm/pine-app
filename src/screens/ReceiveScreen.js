@@ -15,6 +15,7 @@ const AVATAR_PLACEHOLDER = require('../images/AvatarPlaceholder.png');
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const QR_CODE_WIDTH = WINDOW_WIDTH - 150;
+const AVATAR_WIDTH = Math.floor(QR_CODE_WIDTH / 4);
 
 const styles = StyleSheet.create({
   view: {
@@ -88,8 +89,8 @@ export default class ReceiveScreen extends Component {
               value={qrData}
               size={QR_CODE_WIDTH}
               logo={this._getAvatarSource()}
-              logoSize={80}
-              logoBorderRadius={40}
+              logoSize={AVATAR_WIDTH}
+              logoBorderRadius={AVATAR_WIDTH / 2}
               color='#111111'
             />
             <AddressLabel address={address} textStyle={styles.address} tooltipArrowDirection='up' />
