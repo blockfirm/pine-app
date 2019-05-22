@@ -188,6 +188,7 @@ export default class QrCodeScanner extends Component {
           notAuthorizedView={this._renderCameraNotAuthorized()}
           pendingAuthorizationView={<View />}
           onBarCodeRead={this._onBarCodeRead.bind(this)}
+          captureAudio={false}
         />
         { this._renderCameraAuthorized() }
       </View>
