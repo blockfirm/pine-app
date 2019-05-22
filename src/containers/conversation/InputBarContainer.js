@@ -35,6 +35,14 @@ class InputBarContainer extends PureComponent {
     this._onChangeUnit = this._onChangeUnit.bind(this);
   }
 
+  reset() {
+    this._inputBar.reset();
+  }
+
+  focus() {
+    this._inputBar.focus();
+  }
+
   _onChangeUnit({ currency, unit }) {
     const { dispatch } = this.props;
 
@@ -79,6 +87,7 @@ class InputBarContainer extends PureComponent {
     return (
       <InputBar
         {...this.props}
+        ref={ref => { this._inputBar = ref; }}
         currency={currency}
         unit={unit}
         onChangeUnit={this._onChangeUnit}
