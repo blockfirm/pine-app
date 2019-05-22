@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, Dimensions, Linking, Clipboard } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -83,6 +84,10 @@ export default class QrCodeScanner extends Component {
   }
 
   _onReceiveData(data, fromCamera) {
+    if (!data || typeof data !== 'string') {
+      return;
+    }
+
     const { network, onReceiveAddress } = this.props;
     const pineAddress = getAddressFromUri(data);
     const paymentInfo = getPaymentInfoFromString(data, network);
