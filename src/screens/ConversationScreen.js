@@ -161,8 +161,6 @@ export default class ConversationScreen extends Component {
 
     navigation.setParams({ showUserMenu: this._showUserMenu.bind(this) });
 
-    this._markConversationAsRead();
-
     this._listeners.push(
       Keyboard.addListener('keyboardDidShow', this._onKeyboardDidShow)
     );
@@ -184,6 +182,15 @@ export default class ConversationScreen extends Component {
         this._inputBar.focus();
       });
     }
+
+    // Mark this conversation as read after 1s.
+    this._conversationReadTimer = setTimeout(() => {
+      this._markConversationAsRead();
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._conversationReadTimer);
   }
 
   componentDidUpdate(prevProps) {
