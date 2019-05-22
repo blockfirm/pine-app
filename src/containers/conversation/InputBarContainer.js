@@ -60,11 +60,16 @@ class InputBarContainer extends PureComponent {
       primaryCurrency,
       secondaryCurrency,
       defaultBitcoinUnit,
-      lastUsedDenomination
+      lastUsedDenomination,
+      initialAmountBtc
     } = this.props;
 
     let currency = primaryCurrency;
     let unit = defaultBitcoinUnit;
+
+    if (initialAmountBtc) {
+      return { currency: UNIT_BTC, unit };
+    }
 
     if (lastUsedDenomination.currency) {
       if ([primaryCurrency, secondaryCurrency].includes(lastUsedDenomination.currency)) {
