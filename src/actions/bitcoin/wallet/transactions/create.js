@@ -135,8 +135,15 @@ export const create = (amountBtc, toAddress) => {
     const changeAddress = state.bitcoin.wallet.addresses.internal.unused;
     const network = state.settings.bitcoin.network;
 
+    /**
+     * The user can no longer set their preferred fee level in settings.
+     * Set priority to 3 blocks to try to keep fees down.
+     */
+    const numberOfBlocks = 3;
+    const ignoreFeeLevel = true;
+
     // Get transaction fee estimate.
-    return dispatch(getFeeEstimate())
+    return dispatch(getFeeEstimate(numberOfBlocks, ignoreFeeLevel))
       .then((satoshisPerByte) => {
         // Create a transaction.
         const { transaction, inputs, fee } = createTransaction(
