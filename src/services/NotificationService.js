@@ -6,6 +6,12 @@ import { openConversation } from '../actions/navigate';
 import { sync as syncApp } from '../actions/sync';
 import { add as addDeviceTokenToPine } from '../actions/pine/deviceTokens/add';
 
+const findContactByAddress = (address, contacts) => {
+  return Object.values(contacts).find((contact) => {
+    return contact.address === address;
+  });
+};
+
 export default class NotificationService {
   constructor(store) {
     this.store = store;
@@ -79,21 +85,28 @@ export default class NotificationService {
       return;
     }
 
-    const { syncing, navigate } = state;
+    const { navigate, ready } = state;
     const { activeConversation } = navigate;
     const activeContact = activeConversation && activeConversation.contact;
 
-    if (!activeContact || activeContact.address !== address) {
-      if (syncing) {
-        // If app is syncing, attach to the promise and open conversation when it's done.
-        dispatch(syncApp()).then(() => {
-          dispatch(openConversation(address));
-        });
-      } else {
-        // If app is not syncing, open conversation directly.
-        dispatch(openConversation(address));
-      }
+    if (activeContact && activeContact.address === address) {
+      // Conversation is already open.
+      return;
     }
+
+    const contact = findContactByAddress(address, state.contacts.items);
+
+    if (contact) {
+      return dispatch(openConversation(contact));
+    }
+
+    if (!ready) {
+      return dispatch(openConversation(address));
+    }
+
+    dispatch(syncApp()).then(() => {
+      dispatch(openConversation(address));
+    });
   }
 
   _tryOpenConversation() {
