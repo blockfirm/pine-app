@@ -36,7 +36,10 @@ describe('KEYS_REMOVE_BACKUP_FAILURE', () => {
 });
 
 describe('removeBackup', () => {
+  let pineAddress;
+
   beforeEach(() => {
+    pineAddress = 'test@pine.dev';
     iCloudStorage.getItem.mockClear();
   });
 
@@ -44,17 +47,17 @@ describe('removeBackup', () => {
     expect(typeof removeBackup).toBe('function');
   });
 
-  it('accepts no arguments', () => {
-    expect(removeBackup.length).toBe(0);
+  it('accepts one argument', () => {
+    expect(removeBackup.length).toBe(1);
   });
 
   it('returns a function', () => {
-    const returnValue = removeBackup();
+    const returnValue = removeBackup(pineAddress);
     expect(typeof returnValue).toBe('function');
   });
 
   it('dispatches an action of type KEYS_REMOVE_BACKUP_REQUEST', () => {
-    removeBackup()(dispatchMock);
+    removeBackup(pineAddress)(dispatchMock);
 
     expect(dispatchMock).toHaveBeenCalledWith({
       type: KEYS_REMOVE_BACKUP_REQUEST
@@ -64,15 +67,51 @@ describe('removeBackup', () => {
   it('removes the mnemonic from iCloud', () => {
     expect.hasAssertions();
 
-    return removeBackup()(dispatchMock).then(() => {
-      expect(iCloudStorage.removeItem).toHaveBeenCalledWith(ICLOUD_STORAGE_KEY);
+    iCloudStorage.getItem.mockImplementationOnce(() => Promise.resolve(
+      JSON.stringify([
+        {
+          pineAddress,
+          mnemonic: 'test test test test test test test test test test test test'
+        }
+      ])
+    ));
+
+    return removeBackup(pineAddress)(dispatchMock).then(() => {
+      const args = iCloudStorage.setItem.mock.calls[0];
+
+      expect(args[0]).toBe(ICLOUD_STORAGE_KEY);
+      expect(args[1]).not.toContain('test test test');
+    });
+  });
+
+  it('keeps other backups', () => {
+    const otherMnemonic = 'during bulb nominee acquire paddle next course stable govern eagle title wing';
+
+    iCloudStorage.getItem.mockImplementationOnce(() => Promise.resolve(
+      JSON.stringify([
+        {
+          pineAddress: 'other@pine.dev',
+          mnemonic: otherMnemonic
+        },
+        {
+          pineAddress,
+          mnemonic: 'test test test test test test test test test test test test'
+        }
+      ])
+    ));
+
+    expect.hasAssertions();
+
+    return removeBackup(pineAddress)(dispatchMock).then(() => {
+      const args = iCloudStorage.setItem.mock.calls[0];
+      expect(args[1]).toContain(otherMnemonic);
     });
   });
 
   it('dispatches an action of type KEYS_REMOVE_BACKUP_SUCCESS', () => {
     expect.hasAssertions();
 
-    return removeBackup()(dispatchMock).then(() => {
+    return removeBackup(pineAddress)(dispatchMock).then(() => {
       expect(dispatchMock).toHaveBeenCalledWith({
         type: KEYS_REMOVE_BACKUP_SUCCESS
       });
@@ -83,12 +122,12 @@ describe('removeBackup', () => {
     let promise;
 
     beforeEach(() => {
-      // Make the function fail by returning a rejected promise from iCloudStorage.removeItem().
-      iCloudStorage.removeItem.mockImplementationOnce(() => Promise.reject(
+      // Make the function fail by returning a rejected promise from iCloudStorage.setItem().
+      iCloudStorage.setItem.mockImplementationOnce(() => Promise.reject(
         new Error('d89cdc75-00d6-473f-864a-639421be9a05')
       ));
 
-      promise = removeBackup()(dispatchMock);
+      promise = removeBackup(pineAddress)(dispatchMock);
     });
 
     it('rejects the returned promise', () => {

@@ -37,9 +37,11 @@ describe('KEYS_BACKUP_FAILURE', () => {
 
 describe('backup', () => {
   let mnemonic;
+  let pineAddress;
 
   beforeEach(() => {
     mnemonic = 'test test test test test test test test test test test test';
+    pineAddress = 'test@pine.dev';
     iCloudStorage.setItem.mockClear();
   });
 
@@ -47,35 +49,50 @@ describe('backup', () => {
     expect(typeof backupMnemonic).toBe('function');
   });
 
-  it('accepts one argument', () => {
-    expect(backupMnemonic.length).toBe(1);
+  it('accepts two arguments', () => {
+    expect(backupMnemonic.length).toBe(2);
   });
 
   it('returns a function', () => {
-    const returnValue = backupMnemonic(mnemonic);
+    const returnValue = backupMnemonic(mnemonic, pineAddress);
     expect(typeof returnValue).toBe('function');
   });
 
   it('dispatches an action of type KEYS_BACKUP_REQUEST', () => {
-    backupMnemonic(mnemonic)(dispatchMock);
+    backupMnemonic(mnemonic, pineAddress)(dispatchMock);
 
     expect(dispatchMock).toHaveBeenCalledWith({
       type: KEYS_BACKUP_REQUEST
     });
   });
 
-  it('stores the mnemonic in iCloud', () => {
+  it('adds the mnemonic to the iCloud backup', () => {
     expect.hasAssertions();
 
-    return backupMnemonic(mnemonic)(dispatchMock).then(() => {
-      expect(iCloudStorage.setItem).toHaveBeenCalledWith(ICLOUD_STORAGE_KEY, mnemonic);
+    return backupMnemonic(mnemonic, pineAddress)(dispatchMock).then(() => {
+      const args = iCloudStorage.setItem.mock.calls[0];
+
+      expect(args[0]).toBe(ICLOUD_STORAGE_KEY);
+      expect(args[1]).toContain(mnemonic);
+    });
+  });
+
+  it('keeps existing backups', () => {
+    // This is mocked in __mocks__/react-native-icloudstore.js.
+    const oldMnemonic = 'during bulb nominee acquire paddle next course stable govern eagle title wing';
+
+    expect.hasAssertions();
+
+    return backupMnemonic(mnemonic, pineAddress)(dispatchMock).then(() => {
+      const args = iCloudStorage.setItem.mock.calls[0];
+      expect(args[1]).toContain(oldMnemonic);
     });
   });
 
   it('dispatches an action of type KEYS_BACKUP_SUCCESS', () => {
     expect.hasAssertions();
 
-    return backupMnemonic(mnemonic)(dispatchMock).then(() => {
+    return backupMnemonic(mnemonic, pineAddress)(dispatchMock).then(() => {
       expect(dispatchMock).toHaveBeenCalledWith({
         type: KEYS_BACKUP_SUCCESS
       });
@@ -91,7 +108,7 @@ describe('backup', () => {
         new Error('fb3806a0-f762-4acb-b695-0e267539b702')
       ));
 
-      promise = backupMnemonic(mnemonic)(dispatchMock);
+      promise = backupMnemonic(mnemonic, pineAddress)(dispatchMock);
     });
 
     it('rejects the returned promise', () => {

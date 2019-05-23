@@ -49,6 +49,7 @@ export const reset = (keepSettings) => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
+    const pineAddress = state.settings.user.profile.address;
 
     dispatch(resetRequest());
 
@@ -62,7 +63,7 @@ export const reset = (keepSettings) => {
           deleteKeys(dispatch, keys),
           dispatch(removeAllMessageTxids()),
           dispatch(removeAllContacts()),
-          dispatch(removeBackup()),
+          dispatch(removeBackup(pineAddress)),
           dispatch(resetBitcoinWallet()),
           !keepSettings ? dispatch(resetSettings()) : null
         ];

@@ -25,7 +25,27 @@ const backupFailure = (error) => {
   };
 };
 
-export const backup = (mnemonic) => {
+const getExistingBackups = () => {
+  return iCloudStorage.getItem(ICLOUD_STORAGE_KEY)
+    .then((serializedBackups) => {
+      if (!serializedBackups) {
+        return [];
+      }
+
+      try {
+        return JSON.parse(serializedBackups);
+      } catch (error) {
+        return [
+          {
+            mnemonic: serializedBackups,
+            createdAt: Math.floor(Date.now() / 1000)
+          }
+        ];
+      }
+    });
+};
+
+export const backup = (mnemonic, pineAddress) => {
   return (dispatch) => {
     dispatch(backupRequest());
 
@@ -35,7 +55,16 @@ export const backup = (mnemonic) => {
       throw error;
     }
 
-    return iCloudStorage.setItem(ICLOUD_STORAGE_KEY, mnemonic)
+    return getExistingBackups()
+      .then((backups) => {
+        backups.push({
+          pineAddress,
+          mnemonic,
+          createdAt: Math.floor(Date.now() / 1000)
+        });
+
+        return iCloudStorage.setItem(ICLOUD_STORAGE_KEY, JSON.stringify(backups));
+      })
       .then(() => {
         dispatch(backupSuccess());
       })

@@ -10,7 +10,10 @@ const storeMock = {
   getState: jest.fn(() => ({
     settings: {
       user: {
-        hasCreatedBackup: false
+        hasCreatedBackup: false,
+        profile: {
+          address: 'test@pine.dev'
+        }
       }
     },
     keys: {

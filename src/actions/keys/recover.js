@@ -25,14 +25,34 @@ const recoverFailure = (error) => {
   };
 };
 
+const getExistingBackups = () => {
+  return iCloudStorage.getItem(ICLOUD_STORAGE_KEY)
+    .then((serializedBackups) => {
+      if (!serializedBackups) {
+        return [];
+      }
+
+      try {
+        return JSON.parse(serializedBackups);
+      } catch (error) {
+        return [
+          { mnemonic: serializedBackups }
+        ];
+      }
+    });
+};
+
 export const recover = () => {
   return (dispatch) => {
     dispatch(recoverRequest());
 
-    return iCloudStorage.getItem(ICLOUD_STORAGE_KEY)
-      .then((mnemonic) => {
+    return getExistingBackups()
+      .then((backups) => {
         dispatch(recoverSuccess());
-        return mnemonic;
+
+        if (backups.length > 0) {
+          return backups[0].mnemonic;
+        }
       })
       .catch((error) => {
         dispatch(recoverFailure(error));

@@ -12,6 +12,7 @@ import {
 
 import { reset as navigateWithReset } from '../actions/navigate';
 import * as settingsActions from '../actions/settings';
+import * as keyActions from '../actions/keys';
 import getMnemonicByKey from '../crypto/getMnemonicByKey';
 import { create as createUser } from '../pineApi/user';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
@@ -81,7 +82,8 @@ const styles = StyleSheet.create({
 @connect((state) => ({
   keys: state.keys.items,
   defaultPineAddressHostname: state.settings.defaultPineAddressHostname,
-  bitcoinNetwork: state.settings.bitcoin.network
+  bitcoinNetwork: state.settings.bitcoin.network,
+  hasCreatedBackup: state.settings.user.hasCreatedBackup
 }))
 export default class CreatePineAddressScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -119,17 +121,27 @@ export default class CreatePineAddressScreen extends Component {
   }
 
   _onSubmit() {
-    const { dispatch, bitcoinNetwork } = this.props;
+    const { dispatch, bitcoinNetwork, hasCreatedBackup } = this.props;
     const { username, domain } = this.state;
     const pineAddress = `${username}@${domain}`;
+    let mnemonic;
+    let user;
 
     this.props.navigation.setParams({ canSubmit: false });
 
     return this._getMnemonic()
-      .then((mnemonic) => {
+      .then((_mnemonic) => {
+        mnemonic = _mnemonic;
         return createUser(pineAddress, mnemonic, bitcoinNetwork);
       })
-      .then((user) => {
+      .then((_user) => {
+        user = _user;
+
+        if (!hasCreatedBackup) {
+          return dispatch(keyActions.backup(mnemonic, pineAddress));
+        }
+      })
+      .then(() => {
         dispatch(settingsActions.saveUserProfile(pineAddress, user));
         this._showDisclaimerScreen();
       })
@@ -233,5 +245,6 @@ CreatePineAddressScreen.propTypes = {
   navigation: PropTypes.any,
   keys: PropTypes.object,
   defaultPineAddressHostname: PropTypes.string,
-  bitcoinNetwork: PropTypes.string
+  bitcoinNetwork: PropTypes.string,
+  hasCreatedBackup: PropTypes.bool
 };

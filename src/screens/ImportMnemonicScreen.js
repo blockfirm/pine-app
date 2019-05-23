@@ -97,10 +97,6 @@ export default class ImportMnemonicScreen extends Component {
     // Wait 300ms for the keyboard to animate away.
     return new Promise(resolve => setTimeout(resolve, 300))
       .then(() => {
-        // Back up mnemonic in iCloud.
-        return dispatch(keyActions.backup(mnemonic));
-      })
-      .then(() => {
         // Save key.
         return dispatch(keyActions.add(mnemonic));
       })

@@ -25,11 +25,38 @@ const removeBackupFailure = (error) => {
   };
 };
 
-export const removeBackup = () => {
+const getExistingBackups = () => {
+  return iCloudStorage.getItem(ICLOUD_STORAGE_KEY)
+    .then((serializedBackups) => {
+      if (!serializedBackups) {
+        return [];
+      }
+
+      try {
+        return JSON.parse(serializedBackups);
+      } catch (error) {
+        return [
+          {
+            mnemonic: serializedBackups,
+            createdAt: Math.floor(Date.now() / 1000)
+          }
+        ];
+      }
+    });
+};
+
+export const removeBackup = (pineAddress) => {
   return (dispatch) => {
     dispatch(removeBackupRequest());
 
-    return iCloudStorage.removeItem(ICLOUD_STORAGE_KEY)
+    return getExistingBackups()
+      .then((backups) => {
+        const otherBackups = backups.filter((backup) => {
+          return backup.pineAddress !== pineAddress;
+        });
+
+        return iCloudStorage.setItem(ICLOUD_STORAGE_KEY, JSON.stringify(otherBackups));
+      })
       .then(() => {
         dispatch(removeBackupSuccess());
       })

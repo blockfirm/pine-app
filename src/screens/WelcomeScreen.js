@@ -87,24 +87,13 @@ export default class WelcomeScreen extends Component {
   }
 
   _createWallet() {
-    const dispatch = this.props.dispatch;
+    const { dispatch } = this.props;
     let mnemonic = null;
-    let isBackedUpInICloud = false;
 
     return generateMnemonic()
       .then((newMnemonic) => {
-        mnemonic = newMnemonic;
-
-        return iCloudAccountStatus.getStatus().then((accountStatus) => {
-          if (accountStatus === iCloudAccountStatus.STATUS_AVAILABLE) {
-            // Back up mnemonic in iCloud.
-            isBackedUpInICloud = true;
-            return dispatch(keyActions.backup(mnemonic));
-          }
-        });
-      })
-      .then(() => {
         // Save mnemonic.
+        mnemonic = newMnemonic;
         return dispatch(keyActions.add(mnemonic));
       })
       .then(() => {
@@ -112,8 +101,11 @@ export default class WelcomeScreen extends Component {
         return this._flagAsInitialized();
       })
       .then(() => {
-        if (!isBackedUpInICloud) {
-          // Force manual backup if iCloud is not available.
+        return iCloudAccountStatus.getStatus();
+      })
+      .then((iCloudStatus) => {
+        if (iCloudStatus !== iCloudAccountStatus.STATUS_AVAILABLE) {
+          // Force manual backup since iCloud is not available.
           return this._forceManualBackup(mnemonic);
         }
 

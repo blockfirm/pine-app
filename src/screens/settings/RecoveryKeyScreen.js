@@ -19,7 +19,8 @@ const OPEN_SETTINGS_URL_STRING = 'App-Prefs:';
 
 @connect((state) => ({
   keys: state.keys.items,
-  hasCreatedBackup: state.settings.user.hasCreatedBackup
+  hasCreatedBackup: state.settings.user.hasCreatedBackup,
+  pineAddress: state.settings.user.profile.address
 }))
 export default class RecoveryKeyScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -65,16 +66,16 @@ export default class RecoveryKeyScreen extends Component {
   }
 
   _updateICloudState(storeInICloud) {
-    const dispatch = this.props.dispatch;
+    const { dispatch, pineAddress } = this.props;
     const mnemonic = this.state.phrase;
 
     this.setState({ storeInICloud });
 
     if (storeInICloud) {
-      return dispatch(keyActions.backup(mnemonic));
+      return dispatch(keyActions.backup(mnemonic, pineAddress));
     }
 
-    return dispatch(keyActions.removeBackup());
+    return dispatch(keyActions.removeBackup(pineAddress));
   }
 
   _onStoreInICloudChange(storeInICloud) {
@@ -178,5 +179,6 @@ RecoveryKeyScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   keys: PropTypes.object,
-  hasCreatedBackup: PropTypes.bool
+  hasCreatedBackup: PropTypes.bool,
+  pineAddress: PropTypes.string
 };
