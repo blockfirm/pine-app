@@ -55,7 +55,7 @@ export default class ReceiveScreen extends Component {
   _getAvatarSource() {
     const { pineAddress, avatar } = this.props;
 
-    if (!avatar) {
+    if (!avatar || !avatar.checksum) {
       return AVATAR_PLACEHOLDER;
     }
 
