@@ -70,7 +70,8 @@ export const getEstimate = (numberOfBlocks = 1, ignoreFeeLevel) => {
   return (dispatch, getState) => {
     const settings = getState().settings;
     const feeSettings = settings.bitcoin.fee;
-    const options = { baseUrl: settings.api.baseUrl };
+    const { feeEstimationServiceBaseUrl } = settings.api;
+    const apiOptions = { baseUrl: feeEstimationServiceBaseUrl };
 
     dispatch(getEstimateRequest());
 
@@ -81,7 +82,7 @@ export const getEstimate = (numberOfBlocks = 1, ignoreFeeLevel) => {
       return Promise.resolve(satoshisPerByte);
     }
 
-    return api.bitcoin.fees.estimate.get(numberOfBlocks, options)
+    return api.bitcoin.fees.estimate.get(numberOfBlocks, apiOptions)
       .then((satoshisPerByte) => {
         let roundedFeeRate;
 

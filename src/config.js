@@ -29,7 +29,9 @@ export default {
     }
   },
   api: {
-    baseUrl: 'https://api.pine.dev'
+    baseUrl: 'https://api.pine.dev',
+    fiatRateServiceBaseUrl: 'https://api.pine.dev',
+    feeEstimationServiceBaseUrl: 'https://api.pine.dev'
   },
   bitcoin: {
     network: 'testnet', // 'mainnet' or 'testnet'

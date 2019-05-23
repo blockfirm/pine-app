@@ -30,7 +30,8 @@ const getFailure = (error) => {
 export const get = () => {
   return (dispatch, getState) => {
     const state = getState();
-    const apiOptions = { baseUrl: state.settings.api.baseUrl };
+    const { fiatRateServiceBaseUrl } = state.settings.api;
+    const apiOptions = { baseUrl: fiatRateServiceBaseUrl };
 
     let currencies = [
       state.settings.currency.primary,

@@ -12,7 +12,7 @@ const dispatchMock = jest.fn();
 const getStateMock = jest.fn(() => ({
   settings: {
     api: {
-      baseUrl: 'aa3e79cc-7467-4785-92f9-05c59ea3b7ea'
+      feeEstimationServiceBaseUrl: 'aa3e79cc-7467-4785-92f9-05c59ea3b7ea'
     },
     bitcoin: {
       fee: {
@@ -80,7 +80,7 @@ describe('getEstimate', () => {
       });
     });
 
-    it('gets the estimate with api.bitcoin.fees.estimate.get() together with baseUrl from settings', () => {
+    it('gets the estimate with api.bitcoin.fees.estimate.get() together with feeEstimationServiceBaseUrl from settings', () => {
       expect.hasAssertions();
 
       return returnedFunction(dispatchMock, getStateMock).then(() => {

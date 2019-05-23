@@ -12,7 +12,7 @@ const dispatchMock = jest.fn();
 const getStateMock = jest.fn(() => ({
   settings: {
     api: {
-      baseUrl: '503080a6-f4b9-48ae-99ae-b72807c83e68'
+      fiatRateServiceBaseUrl: '503080a6-f4b9-48ae-99ae-b72807c83e68'
     },
     currency: {
       primary: 'EUR',
