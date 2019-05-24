@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { ActionSheetIOS, Alert, StyleSheet, View, Linking } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import iCloudAccountStatus from 'react-native-icloud-account-status';
 
 import { reset as resetApp } from '../../actions';
 import { reset as navigateWithReset } from '../../actions/navigate';
+import * as keyActions from '../../actions/keys';
 import * as settingsActions from '../../actions/settings';
 import { handle as handleError } from '../../actions/error';
 import { avatar } from '../../pineApi/user';
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
   balance: state.bitcoin.wallet.balance
 }))
 export default class ProfileScreen extends Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
+  static navigationOptions = ({ navigation }) => ({
     title: 'Profile',
     headerStyle: headerStyles.header,
     headerTitleStyle: headerStyles.title,
@@ -69,19 +71,6 @@ export default class ProfileScreen extends Component {
   state = {
     signingOut: false
   };
-
-  _flagAsUninitialized() {
-    const dispatch = this.props.dispatch;
-
-    const newSettings = {
-      initialized: false,
-      user: {
-        hasCreatedBackup: false
-      }
-    };
-
-    return dispatch(settingsActions.save(newSettings));
-  }
 
   _getMnemonic() {
     const keys = Object.values(this.props.keys);
@@ -101,16 +90,10 @@ export default class ProfileScreen extends Component {
     });
   }
 
-  _canErase() {
-    // Cannot remove a wallet with funds in it that hasn't been backed up.
-    const { hasCreatedBackup, balance } = this.props;
-    return balance === 0 || hasCreatedBackup;
-  }
-
-  _showWalletNotEmptyAlert() {
+  _showNoBackupAlert() {
     Alert.alert(
-      'Account Not Empty',
-      'You cannot sign out from a non-empty account that has not been manually backed up. You would not have been able to sign back in again.',
+      'No Backups',
+      'You cannot sign out from an account that has not been backed up. You would not have been able to sign back in again.',
       [
         { text: 'Create Manual Backup', onPress: this._createManualBackup.bind(this) },
         { text: 'Cancel', style: 'cancel' }
@@ -119,17 +102,14 @@ export default class ProfileScreen extends Component {
     );
   }
 
-  _removeWallet(keepSettings) {
+  _removeWallet(keepBackup = true) {
     const dispatch = this.props.dispatch;
+    const keepSettings = false;
 
     this.setState({ signingOut: true });
 
-    return dispatch(resetApp(keepSettings))
+    return dispatch(resetApp(keepSettings, keepBackup))
       .then(() => {
-        if (keepSettings) {
-          this._flagAsUninitialized();
-        }
-
         this.props.screenProps.dismiss();
         dispatch(navigateWithReset('Welcome'));
       })
@@ -139,24 +119,79 @@ export default class ProfileScreen extends Component {
       });
   }
 
-  _showResetAppConfirmation() {
-    if (!this._canErase()) {
-      return this._showWalletNotEmptyAlert();
-    }
+  _getICloudBackupStatus() {
+    const { dispatch } = this.props;
+
+    return iCloudAccountStatus.getStatus().then((accountStatus) => {
+      if (accountStatus !== iCloudAccountStatus.STATUS_AVAILABLE) {
+        return false;
+      }
+
+      return dispatch(keyActions.recover()).then((recoveredMnemonic) => {
+        if (!recoveredMnemonic) {
+          return false;
+        }
+
+        return this._getMnemonic().then((mnemonic) => {
+          return recoveredMnemonic === mnemonic;
+        });
+      });
+    });
+  }
+
+  _showICloudOptions() {
+    const { hasCreatedBackup } = this.props;
 
     ActionSheetIOS.showActionSheetWithOptions({
-      title: 'This will sign out your account from this device and iCloud. You can only sign back in if you have a manual backup of the recovery key.',
-      options: ['Cancel', 'Sign Out', 'Create Manual Backup'],
+      title: 'Do you want to keep the iCloud backup?',
+      options: ['Cancel', 'Erase iCloud Backup', 'Keep iCloud Backup'],
       destructiveButtonIndex: 1,
       cancelButtonIndex: 0
     }, (buttonIndex) => {
-      switch (buttonIndex) {
-        case 1: // Erase Wallet and Settings.
-          return this._removeWallet(false);
+      let keepBackup;
 
-        case 2: // Create Manual Backup.
-          return this._createManualBackup();
+      switch (buttonIndex) {
+        case 1: // Sign out and erase iCloud backup.
+          if (!hasCreatedBackup) {
+            return this._showNoBackupAlert();
+          }
+
+          keepBackup = false;
+          return this._removeWallet(keepBackup);
+
+        case 2: // Sign out but keep iCloud backup.
+          keepBackup = true;
+          return this._removeWallet(keepBackup);
       }
+    });
+  }
+
+  _showResetAppConfirmation() {
+    const { hasCreatedBackup } = this.props;
+
+    return this._getICloudBackupStatus().then((hasICloudBackup) => {
+      if (!hasICloudBackup && !hasCreatedBackup) {
+        return this._showNoBackupAlert();
+      }
+
+      if (hasICloudBackup) {
+        return this._showICloudOptions();
+      }
+
+      ActionSheetIOS.showActionSheetWithOptions({
+        title: 'This will sign out your account from this device. You can only sign back in if you have a manual backup of your recovery key.',
+        options: ['Cancel', 'Sign Out', 'Create Manual Backup'],
+        destructiveButtonIndex: 1,
+        cancelButtonIndex: 0
+      }, (buttonIndex) => {
+        switch (buttonIndex) {
+          case 1: // Sign Out.
+            return this._removeWallet();
+
+          case 2: // Create Manual Backup.
+            return this._createManualBackup();
+        }
+      });
     });
   }
 
@@ -214,8 +249,8 @@ export default class ProfileScreen extends Component {
 
     return this._getMnemonic().then((mnemonic) => {
       return avatar.set(image.data, { address, mnemonic })
-        .then((avatar) => {
-          this._saveAvatarChecksum(avatar.checksum);
+        .then(({ checksum }) => {
+          this._saveAvatarChecksum(checksum);
         })
         .catch((setError) => {
           dispatch(handleError(setError));
@@ -225,8 +260,8 @@ export default class ProfileScreen extends Component {
 
   render() {
     const { userProfile } = this.props;
-    const { address, displayName, avatar } = userProfile;
-    const avatarChecksum = avatar ? avatar.checksum : null;
+    const { address, displayName } = userProfile;
+    const avatarChecksum = userProfile.avatar ? userProfile.avatar.checksum : null;
 
     return (
       <BaseSettingsScreen>

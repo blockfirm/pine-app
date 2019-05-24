@@ -45,7 +45,7 @@ const deleteKeys = (dispatch, keys) => {
  * Action to reset the app and remove all data from
  * persistent storage, iCloud, and state.
  */
-export const reset = (keepSettings) => {
+export const reset = (keepSettings, keepBackup = true) => {
   return (dispatch, getState) => {
     const state = getState();
     const keys = state.keys.items;
@@ -63,8 +63,8 @@ export const reset = (keepSettings) => {
           deleteKeys(dispatch, keys),
           dispatch(removeAllMessageTxids()),
           dispatch(removeAllContacts()),
-          dispatch(removeBackup(pineAddress)),
           dispatch(resetBitcoinWallet()),
+          !keepBackup ? dispatch(removeBackup(pineAddress)) : null,
           !keepSettings ? dispatch(resetSettings()) : null
         ];
 
