@@ -42,17 +42,29 @@ const getExistingBackups = () => {
     });
 };
 
-export const recover = () => {
+export const recover = (pineAddress) => {
   return (dispatch) => {
     dispatch(recoverRequest());
 
     return getExistingBackups()
       .then((backups) => {
-        dispatch(recoverSuccess());
-
-        if (backups.length > 0) {
-          return backups[0].mnemonic;
+        if (backups.length === 0) {
+          return;
         }
+
+        if (!pineAddress) {
+          return backups[0];
+        }
+
+        return backups.find((backup) => backup.pineAddress === pineAddress);
+      })
+      .then((backup) => {
+        if (backup) {
+          dispatch(recoverSuccess());
+          return backup.mnemonic;
+        }
+
+        dispatch(recoverFailure());
       })
       .catch((error) => {
         dispatch(recoverFailure(error));

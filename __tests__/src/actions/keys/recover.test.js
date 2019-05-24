@@ -17,6 +17,17 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
+iCloudStorage.getItem.mockImplementation(() => Promise.resolve(JSON.stringify([
+  {
+    pineAddress: 'test@pine.dev',
+    mnemonic: 'd7b79b88-bac2-489c-8c94-c8f473f707a9'
+  },
+  {
+    pineAddress: 'test2@pine.dev',
+    mnemonic: '7fdd80fe-3cf6-4365-bdbf-dd244d470bf8'
+  }
+])));
+
 describe('KEYS_RECOVER_REQUEST', () => {
   it('equals "KEYS_RECOVER_REQUEST"', () => {
     expect(KEYS_RECOVER_REQUEST).toBe('KEYS_RECOVER_REQUEST');
@@ -44,8 +55,8 @@ describe('recover', () => {
     expect(typeof recoverMnemonic).toBe('function');
   });
 
-  it('accepts no arguments', () => {
-    expect(recoverMnemonic.length).toBe(0);
+  it('accepts one argument', () => {
+    expect(recoverMnemonic.length).toBe(1);
   });
 
   it('returns a function', () => {
@@ -54,25 +65,68 @@ describe('recover', () => {
   });
 
   it('dispatches an action of type KEYS_RECOVER_REQUEST', () => {
-    recoverMnemonic()(dispatchMock);
+    expect.hasAssertions();
 
-    expect(dispatchMock).toHaveBeenCalledWith({
-      type: KEYS_RECOVER_REQUEST
+    return recoverMnemonic('test@pine.dev')(dispatchMock).then(() => {
+      expect(dispatchMock).toHaveBeenCalledWith({
+        type: KEYS_RECOVER_REQUEST
+      });
     });
   });
 
   it('retrieves the mnemonic from iCloud', () => {
     expect.hasAssertions();
 
-    return recoverMnemonic()(dispatchMock).then(() => {
+    return recoverMnemonic('test@pine.dev')(dispatchMock).then(() => {
       expect(iCloudStorage.getItem).toHaveBeenCalledWith(ICLOUD_STORAGE_KEY);
+    });
+  });
+
+  it('resolves to the mnemonic for the specified pine address', () => {
+    expect.hasAssertions();
+
+    return recoverMnemonic('test2@pine.dev')(dispatchMock).then((mnemonic) => {
+      expect(mnemonic).toBe('7fdd80fe-3cf6-4365-bdbf-dd244d470bf8');
+    });
+  });
+
+  it('resolves to the first mnemonic if no pine address is specified', () => {
+    expect.hasAssertions();
+
+    return recoverMnemonic()(dispatchMock).then((mnemonic) => {
+      expect(mnemonic).toBe('d7b79b88-bac2-489c-8c94-c8f473f707a9');
+    });
+  });
+
+  it('resolves to undefined if no mnemonics could be found', () => {
+    expect.hasAssertions();
+
+    iCloudStorage.getItem.mockImplementationOnce(() => Promise.resolve(JSON.stringify([
+      {
+        pineAddress: 'test3@pine.dev',
+        mnemonic: '2219c3c8-99aa-4208-931a-25723d5188bd'
+      }
+    ])));
+
+    return recoverMnemonic('test2@pine.dev')(dispatchMock).then((mnemonic) => {
+      expect(mnemonic).toBeUndefined();
+    });
+  });
+
+  it('resolves to undefined if there are no mnemonics', () => {
+    expect.hasAssertions();
+
+    iCloudStorage.getItem.mockImplementationOnce(() => Promise.resolve());
+
+    return recoverMnemonic('test2@pine.dev')(dispatchMock).then((mnemonic) => {
+      expect(mnemonic).toBeUndefined();
     });
   });
 
   it('dispatches an action of type KEYS_RECOVER_SUCCESS', () => {
     expect.hasAssertions();
 
-    return recoverMnemonic()(dispatchMock).then(() => {
+    return recoverMnemonic('test@pine.dev')(dispatchMock).then(() => {
       expect(dispatchMock).toHaveBeenCalledWith({
         type: KEYS_RECOVER_SUCCESS
       });

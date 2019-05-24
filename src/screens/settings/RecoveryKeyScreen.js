@@ -36,7 +36,6 @@ export default class RecoveryKeyScreen extends Component {
   }
 
   componentDidMount() {
-    const dispatch = this.props.dispatch;
     const keys = Object.values(this.props.keys);
     const defaultKey = keys[0];
 
@@ -47,7 +46,7 @@ export default class RecoveryKeyScreen extends Component {
   }
 
   _checkICloudBackupStatus() {
-    const dispatch = this.props.dispatch;
+    const { dispatch, pineAddress } = this.props;
     const mnemonic = this.state.phrase;
 
     return iCloudAccountStatus.getStatus().then((accountStatus) => {
@@ -55,7 +54,7 @@ export default class RecoveryKeyScreen extends Component {
         return;
       }
 
-      return dispatch(keyActions.recover()).then((recoveredMnemonic) => {
+      return dispatch(keyActions.recover(pineAddress)).then((recoveredMnemonic) => {
         if (recoveredMnemonic !== mnemonic) {
           return;
         }

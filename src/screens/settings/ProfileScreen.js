@@ -120,14 +120,15 @@ export default class ProfileScreen extends Component {
   }
 
   _getICloudBackupStatus() {
-    const { dispatch } = this.props;
+    const { dispatch, userProfile } = this.props;
+    const pineAddress = userProfile.address;
 
     return iCloudAccountStatus.getStatus().then((accountStatus) => {
       if (accountStatus !== iCloudAccountStatus.STATUS_AVAILABLE) {
         return false;
       }
 
-      return dispatch(keyActions.recover()).then((recoveredMnemonic) => {
+      return dispatch(keyActions.recover(pineAddress)).then((recoveredMnemonic) => {
         if (!recoveredMnemonic) {
           return false;
         }
