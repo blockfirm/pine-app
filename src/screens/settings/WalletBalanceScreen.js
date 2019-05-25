@@ -143,7 +143,8 @@ export default class WalletBalanceScreen extends Component {
         </SettingsDescription>
         <SettingsDescription>
           <StrongText>Reserved</StrongText> balance includes coins that have been reserved for outgoing payments
-          but have not yet been broadcasted by its recepients. This also includes change.
+          but have not yet been broadcasted by its recepients. It doesn't include the amount that was sent.
+          It will be available once the recipient has received the payment or when it expires after two days.
         </SettingsDescription>
 
         <SettingsTitle>Coins</SettingsTitle>
