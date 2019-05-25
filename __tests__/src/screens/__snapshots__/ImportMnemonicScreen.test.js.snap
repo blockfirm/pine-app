@@ -16,7 +16,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
   }
 >
   <View
-    headerTitle="Recover Account"
+    headerTitle="Enter Recovery Key"
     style={
       Array [
         Object {
@@ -31,7 +31,7 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
     }
   >
     <BackHeaderContainer
-      title="Recover Account"
+      title="Enter Recovery Key"
     />
     <View
       style={

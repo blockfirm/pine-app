@@ -1,4 +1,5 @@
 import iCloudStorage from 'react-native-icloudstore';
+import { getBackups } from './getBackups';
 
 export const KEYS_REMOVE_BACKUP_REQUEST = 'KEYS_REMOVE_BACKUP_REQUEST';
 export const KEYS_REMOVE_BACKUP_SUCCESS = 'KEYS_REMOVE_BACKUP_SUCCESS';
@@ -25,31 +26,11 @@ const removeBackupFailure = (error) => {
   };
 };
 
-const getExistingBackups = () => {
-  return iCloudStorage.getItem(ICLOUD_STORAGE_KEY)
-    .then((serializedBackups) => {
-      if (!serializedBackups) {
-        return [];
-      }
-
-      try {
-        return JSON.parse(serializedBackups);
-      } catch (error) {
-        return [
-          {
-            mnemonic: serializedBackups,
-            createdAt: Math.floor(Date.now() / 1000)
-          }
-        ];
-      }
-    });
-};
-
 export const removeBackup = (pineAddress) => {
   return (dispatch) => {
     dispatch(removeBackupRequest());
 
-    return getExistingBackups()
+    return dispatch(getBackups())
       .then((backups) => {
         const otherBackups = backups.filter((backup) => {
           return backup.pineAddress !== pineAddress;

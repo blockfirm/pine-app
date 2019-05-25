@@ -11,7 +11,7 @@ const ICLOUD_STORAGE_KEY = '@Mnemonic';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
-    return action(jest.fn(), () => ({}));
+    return action(dispatchMock);
   }
 
   return action;

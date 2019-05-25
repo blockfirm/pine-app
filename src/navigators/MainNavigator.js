@@ -5,6 +5,7 @@ import WelcomeScreen from '../screens/WelcomeScreen';
 import MnemonicScreen from '../screens/MnemonicScreen';
 import ConfirmMnemonicScreen from '../screens/ConfirmMnemonicScreen';
 import ImportMnemonicScreen from '../screens/ImportMnemonicScreen';
+import RecoverScreen from '../screens/RecoverScreen';
 import CreatePineAddressScreen from '../screens/CreatePineAddressScreen';
 import DisclaimerScreen from '../screens/DisclaimerScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -17,6 +18,7 @@ const MainNavigator = createStackNavigator({
   Mnemonic: { screen: MnemonicScreen },
   ConfirmMnemonic: { screen: ConfirmMnemonicScreen },
   ImportMnemonic: { screen: ImportMnemonicScreen },
+  Recover: { screen: RecoverScreen },
   CreatePineAddress: { screen: CreatePineAddressScreen },
   Disclaimer: { screen: DisclaimerScreen },
   Home: { screen: HomeScreen },

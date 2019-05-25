@@ -1,4 +1,5 @@
 import iCloudStorage from 'react-native-icloudstore';
+import { getBackups } from './getBackups';
 
 export const KEYS_BACKUP_REQUEST = 'KEYS_BACKUP_REQUEST';
 export const KEYS_BACKUP_SUCCESS = 'KEYS_BACKUP_SUCCESS';
@@ -25,26 +26,6 @@ const backupFailure = (error) => {
   };
 };
 
-const getExistingBackups = () => {
-  return iCloudStorage.getItem(ICLOUD_STORAGE_KEY)
-    .then((serializedBackups) => {
-      if (!serializedBackups) {
-        return [];
-      }
-
-      try {
-        return JSON.parse(serializedBackups);
-      } catch (error) {
-        return [
-          {
-            mnemonic: serializedBackups,
-            createdAt: Math.floor(Date.now() / 1000)
-          }
-        ];
-      }
-    });
-};
-
 export const backup = (mnemonic, pineAddress) => {
   return (dispatch) => {
     dispatch(backupRequest());
@@ -55,7 +36,7 @@ export const backup = (mnemonic, pineAddress) => {
       throw error;
     }
 
-    return getExistingBackups()
+    return dispatch(getBackups())
       .then((backups) => {
         backups.push({
           pineAddress,

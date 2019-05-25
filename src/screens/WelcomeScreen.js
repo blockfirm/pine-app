@@ -86,7 +86,7 @@ export default class WelcomeScreen extends Component {
     this._showBackUpMnemonicScreen(mnemonic);
   }
 
-  _createWallet() {
+  _createAccount() {
     const { dispatch } = this.props;
     let mnemonic = null;
 
@@ -118,9 +118,16 @@ export default class WelcomeScreen extends Component {
       });
   }
 
-  _importWallet() {
-    const navigation = this.props.navigation;
-    navigation.navigate('ImportMnemonic');
+  _recoverAccount() {
+    const { dispatch, navigation } = this.props;
+
+    return dispatch(keyActions.getBackups()).then((backups) => {
+      if (backups.length > 0) {
+        navigation.navigate('Recover');
+      } else {
+        navigation.navigate('ImportMnemonic');
+      }
+    });
   }
 
   render() {
@@ -133,14 +140,14 @@ export default class WelcomeScreen extends Component {
         <Footer style={styles.footer}>
           <WhiteButton
             label='Create a new account'
-            onPress={this._createWallet.bind(this)}
+            onPress={this._createAccount.bind(this)}
             style={styles.button}
             showLoader={true}
             runAfterInteractions={true}
           />
 
           <Link
-            onPress={this._importWallet.bind(this)}
+            onPress={this._recoverAccount.bind(this)}
             style={styles.link}
             labelStyle={styles.linkLabel}
           >
