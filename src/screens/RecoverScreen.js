@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { reset as resetApp } from '../actions';
 import { reset as navigateWithReset } from '../actions/navigate';
 import { handle as handleError } from '../actions/error';
 import * as walletActions from '../actions/bitcoin/wallet';
@@ -131,10 +132,13 @@ export default class RecoverScreen extends Component {
     this.setState({ recovering: backup });
 
     InteractionManager.runAfterInteractions(() => {
-      return dispatch(keyActions.add(backup.mnemonic))
+      const keepSettings = false;
+      const keepBackup = true;
+
+      // Reset the app in case the last recovery failed.
+      return dispatch(resetApp(keepSettings, keepBackup))
         .then(() => {
-          // Reset the wallet in case the last recovery failed.
-          return dispatch(walletActions.reset());
+          return dispatch(keyActions.add(backup.mnemonic));
         })
         .then(() => {
           return dispatch(walletActions.init());

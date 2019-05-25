@@ -7,6 +7,7 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 import KeepAwake from 'react-native-keep-awake';
 import bip39 from 'bip39';
 
+import { reset as resetApp } from '../actions';
 import { reset as navigateWithReset } from '../actions/navigate';
 import { handle as handleError } from '../actions/error/handle';
 import * as keyActions from '../actions/keys';
@@ -97,12 +98,15 @@ export default class ImportMnemonicScreen extends Component {
     // Wait 300ms for the keyboard to animate away.
     return new Promise(resolve => setTimeout(resolve, 300))
       .then(() => {
-        // Save key.
-        return dispatch(keyActions.add(mnemonic));
+        const keepSettings = false;
+        const keepBackup = true;
+
+        // Reset the app in case the last recovery failed.
+        return dispatch(resetApp(keepSettings, keepBackup));
       })
       .then(() => {
-        // Flag that the user has set up the app for the first time.
-        return this._flagAsInitialized();
+        // Save key.
+        return dispatch(keyActions.add(mnemonic));
       })
       .then(() => {
         // Sync wallet with the bitcoin blockchain for the first time.
@@ -112,17 +116,26 @@ export default class ImportMnemonicScreen extends Component {
         // Try to recover a Pine user for the mnemonic.
         const keyPair = getKeyPairFromMnemonic(mnemonic);
         const userId = getUserIdFromPublicKey(keyPair.publicKey);
-        return getUserById(userId, defaultPineAddressHostname).catch(() => {});
+
+        return getUserById(userId, defaultPineAddressHostname)
+          .catch(() => {})
+          .then((user) => {
+            if (user) {
+              // A Pine user was found for the mnemonic, save it to settings.
+              const pineAddress = `${user.username}@${defaultPineAddressHostname}`;
+              dispatch(settingsActions.saveUserProfile(pineAddress, user));
+            }
+
+            return user;
+          });
       })
       .then((user) => {
+        this._flagAsInitialized();
+
         if (!user) {
           // No Pine user was found for the mnemonic, ask user to create one.
           return this._showCreatePineAddressScreen();
         }
-
-        // A Pine user was found for the mnemonic, save it to settings.
-        const pineAddress = `${user.username}@${defaultPineAddressHostname}`;
-        dispatch(settingsActions.saveUserProfile(pineAddress, user));
 
         return this._showDisclaimerScreen();
       })
