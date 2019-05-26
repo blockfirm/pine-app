@@ -128,12 +128,13 @@ export default class InputBar extends Component {
 
   _onSendPress() {
     const amountBtc = this._getBtcAmount(this.state.amount);
-    const displayUnit = this.state.unit || this.props.defaultBitcoinUnit;
+    const displayCurrency = this.state.currency;
+    const displayUnit = this.state.unit;
 
     ReactNativeHaptic.generate('selection');
 
     this.setState({ confirmTransaction: true });
-    this.props.onSendPress({ amountBtc, displayUnit });
+    this.props.onSendPress({ amountBtc, displayCurrency, displayUnit });
   }
 
   _onCancelPress() {

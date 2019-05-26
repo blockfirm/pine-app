@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import FiatLabel from '../components/FiatLabel';
+import BtcLabel from '../components/BtcLabel';
 import BtcLabelContainer from './BtcLabelContainer';
 
 const CURRENCY_BTC = 'BTC';
@@ -22,6 +23,8 @@ class CurrencyLabelContainer extends Component {
     amountBtc: PropTypes.number,
     fiatRates: PropTypes.object,
     settings: PropTypes.object,
+    currency: PropTypes.string,
+    unit: PropTypes.string,
     currencyType: PropTypes.oneOf([
       CURRENCY_TYPE_PRIMARY,
       CURRENCY_TYPE_SECONDARY
@@ -29,17 +32,28 @@ class CurrencyLabelContainer extends Component {
   };
 
   _renderBtcLabel() {
+    const { amountBtc, unit } = this.props;
+
+    if (unit) {
+      return (
+        <BtcLabel
+          {...this.props}
+          amount={amountBtc}
+        />
+      );
+    }
+
     return (
       <BtcLabelContainer
         {...this.props}
-        amount={this.props.amountBtc}
+        amount={amountBtc}
       />
     );
   }
 
   _renderFiatLabel() {
     const { fiatRates, settings, currencyType } = this.props;
-    const currency = settings.currency[currencyType];
+    const currency = this.props.currency || settings.currency[currencyType];
     const fiatRate = fiatRates[currency];
     const amountBtc = this.props.amountBtc || 0;
     const amountFiat = fiatRate ? fiatRate * amountBtc : null;
@@ -55,7 +69,7 @@ class CurrencyLabelContainer extends Component {
 
   render() {
     const { settings, currencyType } = this.props;
-    const currency = settings.currency[currencyType];
+    const currency = this.props.currency || settings.currency[currencyType];
 
     if (currency === CURRENCY_BTC) {
       return this._renderBtcLabel();

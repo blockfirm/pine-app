@@ -3,9 +3,9 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { formatPercentage } from '../localization';
+import CurrencyLabelContainer from '../containers/CurrencyLabelContainer';
 import Bullet from './typography/Bullet';
 import StyledText from './StyledText';
-import BtcLabel from './BtcLabel';
 
 const FEE_HIGH_COLOR = '#FF3B30';
 const FEE_MEDIUM_COLOR = '#FF9500';
@@ -42,7 +42,7 @@ export default class FeeLabel extends Component {
   }
 
   render() {
-    const { fee, unit } = this.props;
+    const { fee, currency, unit, style } = this.props;
     const percentage = this._renderFeePercentage();
     const percentageColor = this._getPercentageColor();
 
@@ -53,7 +53,12 @@ export default class FeeLabel extends Component {
 
     return (
       <View style={[styles.wrapper, this.props.style]}>
-        <BtcLabel amount={fee} unit={unit} style={this.props.style} />
+        <CurrencyLabelContainer
+          amountBtc={fee}
+          currency={currency}
+          unit={unit}
+          style={style}
+        />
         <Bullet />
         <StyledText style={percentageStyles}>{percentage}</StyledText>
       </View>
@@ -65,5 +70,6 @@ FeeLabel.propTypes = {
   style: PropTypes.any,
   amount: PropTypes.number,
   fee: PropTypes.number,
+  currency: PropTypes.string,
   unit: PropTypes.string
 };

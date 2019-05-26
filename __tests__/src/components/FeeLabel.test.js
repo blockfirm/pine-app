@@ -2,6 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import FeeLabel from '../../../src/components/FeeLabel';
 
+jest.mock('../../../src/containers/CurrencyLabelContainer', () => 'CurrencyLabelContainer');
+
 describe('FeeLabel', () => {
   it('renders low fees correctly', () => {
     const tree = renderer.create(

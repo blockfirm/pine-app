@@ -160,7 +160,7 @@ export default class ConfirmTransaction extends Component {
   }
 
   _renderFee() {
-    const { amountBtc, displayUnit, fee, cannotAffordFee } = this.props;
+    const { amountBtc, displayCurrency, displayUnit, fee, cannotAffordFee } = this.props;
     const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
 
     if (cannotAffordFee) {
@@ -176,7 +176,13 @@ export default class ConfirmTransaction extends Component {
     }
 
     return (
-      <FeeLabel fee={feeBtc} amount={amountBtc} unit={displayUnit} style={styles.valueLabel} />
+      <FeeLabel
+        fee={feeBtc}
+        amount={amountBtc}
+        currency={displayCurrency}
+        unit={displayUnit}
+        style={styles.valueLabel}
+      />
     );
   }
 
@@ -189,7 +195,7 @@ export default class ConfirmTransaction extends Component {
       <View style={styles.valueWrapper}>
         <CurrencyLabelContainer amountBtc={totalAmount} currencyType='primary' style={[styles.valueLabel, styles.bold]} />
         <Bullet />
-        <CurrencyLabelContainer amountBtc={totalAmount} currencyType='secondary' style={styles.valueLabel} />
+        <CurrencyLabelContainer amountBtc={totalAmount} currencyType='secondary' style={[styles.valueLabel, styles.bold]} />
       </View>
     );
   }
@@ -237,7 +243,8 @@ export default class ConfirmTransaction extends Component {
 ConfirmTransaction.propTypes = {
   dispatch: PropTypes.func.isRequired,
   amountBtc: PropTypes.number.isRequired,
-  displayUnit: PropTypes.string.isRequired,
+  displayCurrency: PropTypes.string.isRequired,
+  displayUnit: PropTypes.string,
   transaction: PropTypes.object,
   inputs: PropTypes.array,
   fee: PropTypes.number,

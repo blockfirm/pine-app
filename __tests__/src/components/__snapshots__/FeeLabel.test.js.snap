@@ -13,20 +13,10 @@ exports[`FeeLabel renders high fees correctly 1`] = `
     ]
   }
 >
-  <Text
-    style={
-      Array [
-        Object {
-          "color": "#000000",
-          "fontFamily": "System",
-          "fontWeight": "400",
-        },
-        undefined,
-      ]
-    }
-  >
-    0.15 BTC
-  </Text>
+  <CurrencyLabelContainer
+    amountBtc={0.15}
+    unit="BTC"
+  />
   <View
     style={
       Array [
@@ -76,20 +66,10 @@ exports[`FeeLabel renders low fees correctly 1`] = `
     ]
   }
 >
-  <Text
-    style={
-      Array [
-        Object {
-          "color": "#000000",
-          "fontFamily": "System",
-          "fontWeight": "400",
-        },
-        undefined,
-      ]
-    }
-  >
-    0.001 BTC
-  </Text>
+  <CurrencyLabelContainer
+    amountBtc={0.001}
+    unit="BTC"
+  />
   <View
     style={
       Array [
@@ -137,20 +117,10 @@ exports[`FeeLabel renders medium fees correctly 1`] = `
     ]
   }
 >
-  <Text
-    style={
-      Array [
-        Object {
-          "color": "#000000",
-          "fontFamily": "System",
-          "fontWeight": "400",
-        },
-        undefined,
-      ]
-    }
-  >
-    0.12 BTC
-  </Text>
+  <CurrencyLabelContainer
+    amountBtc={0.12}
+    unit="BTC"
+  />
   <View
     style={
       Array [

@@ -124,6 +124,7 @@ export default class ConversationScreen extends Component {
   state = {
     confirmTransaction: false,
     amountBtc: 0,
+    displayCurrency: 'BTC',
     displayUnit: 'BTC',
     keyboardHeight: 0,
     keyboardAnimationDuration: 300,
@@ -328,10 +329,11 @@ export default class ConversationScreen extends Component {
     this.props.navigation.goBack();
   }
 
-  _onSendPress({ amountBtc, displayUnit }) {
+  _onSendPress({ amountBtc, displayCurrency, displayUnit }) {
     this.setState({
       confirmTransaction: true,
       amountBtc,
+      displayCurrency,
       displayUnit
     });
 
@@ -425,6 +427,7 @@ export default class ConversationScreen extends Component {
       keyboardHeight,
       confirmTransaction,
       amountBtc,
+      displayCurrency,
       displayUnit
     } = this.state;
 
@@ -443,6 +446,7 @@ export default class ConversationScreen extends Component {
       <ConfirmTransactionContainer
         style={style}
         amountBtc={amountBtc}
+        displayCurrency={displayCurrency}
         displayUnit={displayUnit}
         contact={contact}
         bitcoinAddress={bitcoinAddress}
