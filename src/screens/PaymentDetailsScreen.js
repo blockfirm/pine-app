@@ -1,7 +1,9 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, TouchableOpacity, Share } from 'react-native';
+import { StyleSheet, View, ScrollView, TouchableOpacity, Share, LayoutAnimation } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import headerStyles from '../styles/headerStyles';
 import CurrencyLabelContainer from '../containers/CurrencyLabelContainer';
@@ -33,10 +35,10 @@ const styles = StyleSheet.create({
   details: {
     alignSelf: 'stretch',
     paddingTop: 16,
-    marginHorizontal: 16
+    marginHorizontal: 20
   },
   detail: {
-    paddingVertical: 16,
+    paddingVertical: 15,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: '#ECECEC'
   },
@@ -68,6 +70,17 @@ const styles = StyleSheet.create({
     top: 0,
     right: 11.5,
     padding: 9 // The padding makes it easier to press.
+  },
+  arrow: {
+    color: '#9B9B9B',
+    fontSize: 19,
+    marginLeft: 7,
+    marginTop: 2
+  },
+  statusText: {
+    fontSize: 15,
+    color: 'black',
+    marginTop: 5
   }
 });
 
@@ -110,6 +123,29 @@ export default class PaymentDetailsScreen extends Component {
     };
   };
 
+  state = {
+    showStatusText: false
+  }
+
+  constructor() {
+    super(...arguments);
+    this._toggleStatusText = this._toggleStatusText.bind(this);
+  }
+
+  _toggleStatusText() {
+    const animation = LayoutAnimation.create(
+      200,
+      LayoutAnimation.Types['easeOut'],
+      LayoutAnimation.Properties.opacity
+    );
+
+    LayoutAnimation.configureNext(animation);
+
+    this.setState({
+      showStatusText: !this.state.showStatusText
+    });
+  }
+
   _getStatus() {
     const { transaction } = this.props.navigation.state.params;
 
@@ -122,6 +158,63 @@ export default class PaymentDetailsScreen extends Component {
     }
 
     return 'Confirmed';
+  }
+
+  _getStatusText() {
+    const { transaction, message } = this.props.navigation.state.params;
+
+    if (!transaction) {
+      if (message.from) {
+        if (message.error) {
+          return 'The transaction has not been broadcasted to the network due to an error. This is not a valid payment.';
+        } else {
+          return 'The transaction has not been broadcasted to the network yet but should be in a moment. This should not be seen as a valid payment until it has.';
+        }
+      } else {
+        return 'The transaction has not been broadcasted by its recipient yet. This could be due to their device being turned off or that they are no longer using the Pine app. Give it some time and if it has not been broadcasted within 2 days it will expire.';
+      }
+    }
+
+    if (!transaction.confirmations > 0) {
+      if (message.from) {
+        return 'The transaction has been broadcasted and is waiting to be confirmed. It should be spendable within 30 minutes.';
+      } else {
+        return 'The transaction has been broadcasted and any potential change has been unlocked for you to spend. The payment will be spendable by its recipient once the transaction has been confirmed, which should be within 30 minutes.';
+      }
+    }
+
+    if (message.from) {
+      return 'The transaction has been confirmed in a block and can now be spent.';
+    }
+
+    return 'The transaction has been confirmed in a block and can now be spent by its recipient.';
+  }
+
+  _renderStatus() {
+    const { showStatusText } = this.state;
+
+    return (
+      <View style={styles.detail}>
+        <StyledText style={styles.label}>Payment Status</StyledText>
+
+        { !showStatusText ? (
+          <View style={styles.value}>
+            <TouchableOpacity onPress={this._toggleStatusText} style={styles.valueWrapper}>
+              <StyledText style={styles.valueLabel}>
+                { this._getStatus() }
+              </StyledText>
+              <Icon name='ios-arrow-down' style={styles.arrow} />
+            </TouchableOpacity>
+          </View>
+        ) : null }
+
+        { showStatusText ? (
+          <StyledText style={styles.statusText}>
+            { this._getStatusText() }
+          </StyledText>
+        ) : null }
+      </View>
+    );
   }
 
   _renderError() {
@@ -231,14 +324,7 @@ export default class PaymentDetailsScreen extends Component {
         <ContentView style={styles.content}>
           <ScrollView style={styles.details}>
             { this._renderError() }
-            <View style={styles.detail}>
-              <StyledText style={styles.label}>Payment Status</StyledText>
-              <View style={styles.value}>
-                <StyledText style={styles.valueLabel}>
-                  { this._getStatus() }
-                </StyledText>
-              </View>
-            </View>
+            { this._renderStatus() }
             <View style={styles.detail}>
               <StyledText style={styles.label}>Transaction ID</StyledText>
               <AddressLabel address={message.txid} style={styles.value} textStyle={styles.valueLabel} />
