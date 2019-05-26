@@ -187,13 +187,33 @@ export default class ConfirmTransaction extends Component {
   }
 
   _renderTotal() {
-    const { amountBtc, fee } = this.props;
+    const { amountBtc, fee, displayCurrency, displayUnit } = this.props;
     const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
     const totalAmount = amountBtc + feeBtc;
+    let amountLabel = null;
+
+    if (displayCurrency === UNIT_BTC) {
+      amountLabel = (
+        <CurrencyLabelContainer
+          amountBtc={totalAmount}
+          currency={displayCurrency}
+          unit={displayUnit}
+          style={[styles.valueLabel, styles.bold]}
+        />
+      );
+    } else {
+      amountLabel = (
+        <CurrencyLabelContainer
+          amountBtc={totalAmount}
+          currencyType='primary'
+          style={[styles.valueLabel, styles.bold]}
+        />
+      );
+    }
 
     return (
       <View style={styles.valueWrapper}>
-        <CurrencyLabelContainer amountBtc={totalAmount} currencyType='primary' style={[styles.valueLabel, styles.bold]} />
+        {amountLabel}
         <Bullet />
         <CurrencyLabelContainer amountBtc={totalAmount} currencyType='secondary' style={[styles.valueLabel, styles.bold]} />
       </View>
