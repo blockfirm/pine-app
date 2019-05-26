@@ -16,6 +16,8 @@ import ErrorMessage from '../components/ErrorMessage';
 import ShareIcon from '../components/icons/ShareIcon';
 import BaseScreen from './BaseScreen';
 
+const CURRENCY_BTC = 'BTC';
+
 const styles = StyleSheet.create({
   view: {
     padding: 0
@@ -178,6 +180,7 @@ export default class PaymentDetailsScreen extends Component {
           <FeeLabel
             fee={message.feeBtc}
             amount={message.amountBtc}
+            currency={CURRENCY_BTC}
             unit={defaultBitcoinUnit}
             style={styles.valueLabel}
           />
