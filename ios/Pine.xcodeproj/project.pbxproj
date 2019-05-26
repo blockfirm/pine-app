@@ -1329,6 +1329,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -2237,6 +2238,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = se.blockfirm.Pine;
 				PRODUCT_NAME = Pine;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2279,6 +2281,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = se.blockfirm.Pine;
 				PRODUCT_NAME = Pine;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
