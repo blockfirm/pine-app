@@ -2238,7 +2238,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = se.blockfirm.Pine;
 				PRODUCT_NAME = Pine;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2281,7 +2281,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = se.blockfirm.Pine;
 				PRODUCT_NAME = Pine;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
