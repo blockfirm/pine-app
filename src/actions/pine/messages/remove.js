@@ -28,15 +28,18 @@ const removeFailure = (error) => {
  *
  * @param {Object} message - Message to remove.
  * @param {string} message.id - The ID of the message.
+ * @param {Object} [recipient] - Recipient of the message, if removing a sent message.
+ * @param {string} recipient.address - Recipient's Pine address.
+ * @param {string} recipient.userId - Recipient's user ID.
  */
-export const remove = (message) => {
+export const remove = (message, recipient) => {
   return (dispatch, getState) => {
     const state = getState();
     const { credentials } = state.pine;
 
     dispatch(removeRequest());
 
-    return removeMessage(message.id, credentials)
+    return removeMessage(message.id, recipient, credentials)
       .then(() => {
         dispatch(removeSuccess());
       })

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ErrorIndicator from './ErrorIndicator';
 import ReceivedIndicator from './ReceivedIndicator';
 import SentIndicator from './SentIndicator';
+import CanceledIndicator from './CanceledIndicator';
 
 const COLOR_STYLE_COLOR = 'color';
 const COLOR_STYLE_LIGHT = 'light';
@@ -24,7 +25,7 @@ export default class MessageIndicator extends Component {
   }
 
   render() {
-    const { message, style, colorStyle } = this.props;
+    const { message, transaction, style, colorStyle } = this.props;
     const transactionStatus = this._getTransactionStatus();
 
     if (!message) {
@@ -33,6 +34,10 @@ export default class MessageIndicator extends Component {
 
     if (message.error) {
       return <ErrorIndicator style={style} colorStyle={colorStyle} />;
+    }
+
+    if (message.canceled && !transaction) {
+      return <CanceledIndicator style={style} colorStyle={colorStyle} />;
     }
 
     if (message.from) {

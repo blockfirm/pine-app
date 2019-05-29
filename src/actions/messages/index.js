@@ -1,4 +1,5 @@
 export * from './add';
+export * from './cancelPayment';
 export * from './load';
 export * from './process';
 export * from './remove';

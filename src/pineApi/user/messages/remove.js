@@ -6,6 +6,9 @@ import { getAuthorizationHeader } from '../../authentication';
  * Removes a message from a user's Pine server.
  *
  * @param {string} messageId - ID of the message to remove.
+ * @param {Object} [recipient] - Recipient of the message, if removing a sent message.
+ * @param {string} recipient.address - Recipient's Pine address.
+ * @param {string} recipient.userId - Recipient's user ID.
  * @param {Object} credentials - User credentials for authentication.
  * @param {string} credentials.address - Pine address of the user to authenticate.
  * @param {string} credentials.mnemonic - Mnemonic to authenticate and sign the request with.
@@ -14,19 +17,29 @@ import { getAuthorizationHeader } from '../../authentication';
  *
  * @returns {Promise} A promise that resolves if the message was removed.
  */
-const remove = (messageId, credentials) => {
-  const { hostname } = parseAddress(credentials.address);
+const remove = (messageId, recipient = {}, credentials) => {
+  const { hostname } = parseAddress(recipient.address || credentials.address);
   const keyPair = credentials.keyPair || getKeyPairFromMnemonic(credentials.mnemonic);
   const userId = credentials.userId || getUserIdFromPublicKey(keyPair.publicKey);
 
   const baseUrl = resolveBaseUrl(hostname);
-  const path = `/v1/users/${userId}/messages/${messageId}`;
+  const path = `/v1/users/${recipient.userId || userId}/messages/${messageId}`;
   const url = `${baseUrl}${path}`;
+
+  let authorizationHeader;
+
+  if (recipient.address) {
+    // External authentication.
+    authorizationHeader = getAuthorizationHeader(credentials.address, path, '', keyPair);
+  } else {
+    // Internal authentication.
+    authorizationHeader = getAuthorizationHeader(userId, path, '', keyPair);
+  }
 
   const fetchOptions = {
     method: 'DELETE',
     headers: {
-      Authorization: getAuthorizationHeader(userId, path, '', keyPair)
+      Authorization: authorizationHeader
     }
   };
 

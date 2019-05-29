@@ -1,10 +1,24 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, TouchableOpacity, Share, LayoutAnimation } from 'react-native';
+
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Share,
+  LayoutAnimation,
+  ActionSheetIOS,
+  ActivityIndicator
+} from 'react-native';
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ReactNativeHaptic from 'react-native-haptic';
 
+import { cancelPayment } from '../actions/messages';
+import { handle as handleError } from '../actions/error';
 import headerStyles from '../styles/headerStyles';
 import CurrencyLabelContainer from '../containers/CurrencyLabelContainer';
 import Bullet from '../components/typography/Bullet';
@@ -15,6 +29,8 @@ import DateLabel from '../components/DateLabel';
 import FeeLabel from '../components/FeeLabel';
 import StyledText from '../components/StyledText';
 import ErrorMessage from '../components/ErrorMessage';
+import Link from '../components/Link';
+import Footer from '../components/Footer';
 import ShareIcon from '../components/icons/ShareIcon';
 import BaseScreen from './BaseScreen';
 
@@ -81,6 +97,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'black',
     marginTop: 5
+  },
+  cancel: {
+    color: '#FF3B30',
+    fontWeight: '400'
   }
 });
 
@@ -102,9 +122,15 @@ const shareTransaction = (txid, bitcoinNetwork) => {
   Share.share({ url });
 };
 
-@connect((state) => ({
-  defaultBitcoinUnit: state.settings.bitcoin.unit
-}))
+@connect((state) => {
+  const { activeConversation } = state.navigate;
+  const contact = activeConversation && activeConversation.contact;
+
+  return {
+    defaultBitcoinUnit: state.settings.bitcoin.unit,
+    contact
+  };
+})
 export default class PaymentDetailsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { message, bitcoinNetwork } = navigation.state.params;
@@ -124,12 +150,53 @@ export default class PaymentDetailsScreen extends Component {
   };
 
   state = {
-    showStatusText: false
+    showStatusText: false,
+    cancelling: false
   }
 
   constructor() {
     super(...arguments);
+
+    this._showCancelConfirmation = this._showCancelConfirmation.bind(this);
     this._toggleStatusText = this._toggleStatusText.bind(this);
+  }
+
+  _cancelPayment() {
+    const { dispatch, navigation, contact } = this.props;
+    const { message } = navigation.state.params;
+
+    this.setState({ cancelling: true });
+
+    return dispatch(cancelPayment(message, contact))
+      .then(() => {
+        // Just to update the UI.
+        navigation.setParams({
+          message: {
+            ...message,
+            canceled: true
+          }
+        });
+      })
+      .catch((error) => {
+        dispatch(handleError(error));
+      })
+      .then(() => {
+        ReactNativeHaptic.generate('notificationSuccess');
+        this.setState({ cancelling: false });
+      });
+  }
+
+  _showCancelConfirmation() {
+    ActionSheetIOS.showActionSheetWithOptions({
+      title: 'This does not invalidate the payment – it just removes the payment from the recipient\'s server and releases the reserved funds for you to spend again. To truly invalidate this payment you should send the same amount to yourself so you consume the same coins.',
+      options: ['Cancel', 'Cancel Payment'],
+      destructiveButtonIndex: 1,
+      cancelButtonIndex: 0
+    }, (buttonIndex) => {
+      if (buttonIndex === 1) {
+        this._cancelPayment();
+      }
+    });
   }
 
   _toggleStatusText() {
@@ -147,9 +214,13 @@ export default class PaymentDetailsScreen extends Component {
   }
 
   _getStatus() {
-    const { transaction } = this.props.navigation.state.params;
+    const { transaction, message } = this.props.navigation.state.params;
 
     if (!transaction) {
+      if (message.canceled) {
+        return 'Canceled';
+      }
+
       return 'Not Broadcasted';
     }
 
@@ -164,6 +235,10 @@ export default class PaymentDetailsScreen extends Component {
     const { transaction, message } = this.props.navigation.state.params;
 
     if (!transaction) {
+      if (message.canceled) {
+        return 'This payment was canceled by you before it was received by its recipient. Note that there is still a small chance that the transaction reached the recipient and could be broadcasted later. To truly invalidate this payment you should send the same amount to yourself so you consume the same coins.';
+      }
+
       if (message.from) {
         if (message.error) {
           return 'The transaction has not been broadcasted to the network due to an error. This is not a valid payment.';
@@ -171,7 +246,7 @@ export default class PaymentDetailsScreen extends Component {
           return 'The transaction has not been broadcasted to the network yet but should be in a moment. This should not be seen as a valid payment until it has.';
         }
       } else {
-        return 'The transaction has not been broadcasted by its recipient yet. This could be due to their device being turned off or that they are no longer using the Pine app. Give it some time and if it has not been broadcasted within 2 days it will expire.';
+        return 'The transaction has not been broadcasted by its recipient yet. Give it some time and cancel this payment if you need to use the funds it has reserved.';
       }
     }
 
@@ -314,6 +389,31 @@ export default class PaymentDetailsScreen extends Component {
     );
   }
 
+  _renderCancelButton() {
+    const { message, transaction } = this.props.navigation.state.params;
+    const { cancelling } = this.state;
+
+    if (transaction || message.from || message.canceled) {
+      return null;
+    }
+
+    if (cancelling) {
+      return (
+        <Footer>
+          <ActivityIndicator animating={true} size='small' />
+        </Footer>
+      );
+    }
+
+    return (
+      <Footer>
+        <Link onPress={this._showCancelConfirmation} labelStyle={styles.cancel}>
+          Cancel Payment
+        </Link>
+      </Footer>
+    );
+  }
+
   render() {
     const { message } = this.props.navigation.state.params;
     const address = message.address && message.address.address;
@@ -344,6 +444,8 @@ export default class PaymentDetailsScreen extends Component {
             { this._renderTotal() }
           </ScrollView>
         </ContentView>
+
+        { this._renderCancelButton() }
       </BaseScreen>
     );
   }
@@ -352,5 +454,6 @@ export default class PaymentDetailsScreen extends Component {
 PaymentDetailsScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
-  defaultBitcoinUnit: PropTypes.string
+  defaultBitcoinUnit: PropTypes.string,
+  contact: PropTypes.object
 };

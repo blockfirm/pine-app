@@ -31,6 +31,23 @@ const itemsByContact = (state = {}, action) => {
     case messagesActions.MESSAGES_REMOVE_ALL_SUCCESS:
       return {};
 
+    case messagesActions.MESSAGES_CANCEL_PAYMENT_SUCCESS:
+      messages = state[action.contactId];
+
+      return {
+        ...state,
+        [action.contactId]: messages.map((message) => {
+          if (message.id === action.messageId) {
+            return {
+              ...message,
+              canceled: true
+            };
+          }
+
+          return message;
+        })
+      };
+
     default:
       return state;
   }

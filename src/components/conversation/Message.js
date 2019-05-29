@@ -216,7 +216,7 @@ export default class Message extends Component {
   }
 
   _renderBubbleEnd() {
-    const { message, isLast } = this.props;
+    const { message, transaction, isLast } = this.props;
     const style = message.from ? styles.bubbleEndLeft : styles.bubbleEndRight;
     let image = message.from ? bubbleEndLeft : bubbleEndRight;
 
@@ -224,7 +224,7 @@ export default class Message extends Component {
       return null;
     }
 
-    if (message.error) {
+    if (message.error || (message.canceled && !transaction)) {
       image = message.from ? bubbleEndLeftError : bubbleEndRightError;
     }
 
@@ -248,7 +248,7 @@ export default class Message extends Component {
 
   // eslint-disable-next-line max-statements
   render() {
-    const { message, isFirst, isLast, onPress, animate } = this.props;
+    const { message, transaction, isFirst, isLast, onPress, animate } = this.props;
     const wrapperStyle = [styles.wrapper];
     const bubbleStyle = [styles.bubble];
     const textStyle = [];
@@ -270,7 +270,7 @@ export default class Message extends Component {
       smallTextStyle.push(styles.smallTextSent);
     }
 
-    if (message.error) {
+    if (message.error || (message.canceled && !transaction)) {
       bubbleStyle.push(styles.bubbleError);
       textStyle.push(styles.textError);
     }
