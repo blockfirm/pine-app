@@ -176,12 +176,13 @@ export default class PaymentDetailsScreen extends Component {
             canceled: true
           }
         });
+
+        ReactNativeHaptic.generate('notificationSuccess');
       })
       .catch((error) => {
         dispatch(handleError(error));
       })
       .then(() => {
-        ReactNativeHaptic.generate('notificationSuccess');
         this.setState({ cancelling: false });
       });
   }
