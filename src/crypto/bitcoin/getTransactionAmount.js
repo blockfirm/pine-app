@@ -1,3 +1,5 @@
+import normalizeBtcAmount from './normalizeBtcAmount';
+
 /**
  * Whether a vout pays to one of the specified wallet addresses.
  */
@@ -32,7 +34,7 @@ const getTransactionAmount = (transaction, externalAddresses, internalAddresses)
 
   if (externalVouts.length > 0) {
     return externalVouts.reduce((sum, vout) => {
-      return sum + vout.value;
+      return normalizeBtcAmount(sum + vout.value);
     }, 0);
   }
 
@@ -42,7 +44,7 @@ const getTransactionAmount = (transaction, externalAddresses, internalAddresses)
 
   // Sent amounts are returned as negative numbers.
   return recipientVouts.reduce((sum, vout) => {
-    return sum - vout.value;
+    return normalizeBtcAmount(sum - vout.value);
   }, 0);
 };
 

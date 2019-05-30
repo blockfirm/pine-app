@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import ReactNativeHaptic from 'react-native-haptic';
 
+import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
 import AmountInput from './AmountInput';
 import UnitPicker from './UnitPicker';
 import InputBarButton from './InputBarButton';
@@ -105,7 +106,7 @@ export default class InputBar extends Component {
       amountBtc = convertBitcoin(amount, unit, UNIT_BTC);
     } else {
       const fiatRate = this.props.fiatRates[currency];
-      amountBtc = fiatRate ? (amount / fiatRate) : 0;
+      amountBtc = fiatRate ? normalizeBtcAmount(amount / fiatRate) : 0;
     }
 
     return amountBtc;

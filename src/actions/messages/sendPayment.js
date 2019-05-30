@@ -4,6 +4,7 @@ import {
   convert as convertBitcoin
 } from '../../crypto/bitcoin/convert';
 
+import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
 import { reserve as reserveUtxos } from '../bitcoin/wallet/utxos';
 import { sendPayment as sendPaymentToServer } from '../pine/messages/sendPayment';
 import { add as addMessage } from './add';
@@ -78,7 +79,7 @@ export const sendPayment = (rawTransaction, metadata, contact) => {
       })
       .then(() => {
         // Reserve UTXOs.
-        const amountToReserve = amountBtc + feeBtc;
+        const amountToReserve = normalizeBtcAmount(amountBtc + feeBtc);
 
         const utxosToReserve = inputs.map((input) => ({
           txid: input.txid,

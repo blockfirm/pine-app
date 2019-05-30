@@ -1,3 +1,5 @@
+import normalizeBtcAmount from './normalizeBtcAmount';
+
 export const UNIT_BTC = 'BTC';
 export const UNIT_MBTC = 'mBTC';
 export const UNIT_SATOSHIS = 'Satoshis';
@@ -9,13 +11,13 @@ const convertToBtc = (amount, fromUnit) => {
 
   switch (fromUnit) {
     case UNIT_BTC:
-      return amount;
+      return normalizeBtcAmount(amount);
 
     case UNIT_MBTC:
-      return amount / 1000;
+      return normalizeBtcAmount(amount / 1000);
 
     case UNIT_SATOSHIS:
-      return amount / 100000000;
+      return normalizeBtcAmount(amount / 100000000);
   }
 };
 
@@ -40,7 +42,7 @@ export const convert = (amount, fromUnit, toUnit) => {
       return btc;
 
     case UNIT_MBTC:
-      return btc * 1000;
+      return Number((btc * 1000).toFixed(5));
 
     case UNIT_SATOSHIS:
       // Make sure satoshis is an integer.

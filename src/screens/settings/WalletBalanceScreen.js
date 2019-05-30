@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
 import headerStyles from '../../styles/headerStyles';
 import settingsStyles from '../../styles/settingsStyles';
 import DoneButton from '../../components/DoneButton';
@@ -32,17 +33,17 @@ const styles = StyleSheet.create({
 const getBalanceAggregates = (utxos) => {
   return utxos.reduce((sums, utxo) => {
     if (utxo.reserved) {
-      sums.reserved += utxo.value;
+      sums.reserved = normalizeBtcAmount(sums.reserved + utxo.value);
     } else if (utxo.confirmed || utxo.internal) {
-      sums.spendable += utxo.value;
+      sums.spendable = normalizeBtcAmount(sums.spendable + utxo.value);
     } else {
-      sums.pending += utxo.value;
+      sums.pending = normalizeBtcAmount(sums.pending + utxo.value);
     }
 
     if (utxo.reserved && utxo.reservedBtcAmount) {
-      sums.total += (utxo.value - utxo.reservedBtcAmount);
+      sums.total = normalizeBtcAmount(sums.total + utxo.value - utxo.reservedBtcAmount);
     } else {
-      sums.total += utxo.value;
+      sums.total = normalizeBtcAmount(sums.total + utxo.value);
     }
 
     return sums;

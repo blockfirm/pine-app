@@ -1,3 +1,4 @@
+import normalizeBtcAmount from '../../../crypto/bitcoin/normalizeBtcAmount';
 import * as balanceActions from '../../../actions/bitcoin/wallet/balance';
 import * as utxoActions from '../../../actions/bitcoin/wallet/utxos';
 
@@ -11,10 +12,10 @@ const balanceReducer = (state = 0, action) => {
       // Calculate the sum of all unspent transaction outputs.
       balance = action.utxos.reduce((sum, utxo) => {
         if (utxo.reserved && utxo.reservedBtcAmount) {
-          return sum + utxo.value - utxo.reservedBtcAmount;
+          return normalizeBtcAmount(sum + utxo.value - utxo.reservedBtcAmount);
         }
 
-        return sum + utxo.value;
+        return normalizeBtcAmount(sum + utxo.value);
       }, 0);
 
       return balance;
