@@ -98,6 +98,10 @@ const styles = StyleSheet.create({
     color: 'black',
     marginTop: 5
   },
+  footer: {
+    left: 0,
+    right: 0
+  },
   cancel: {
     color: '#FF3B30',
     fontWeight: '400'
@@ -400,14 +404,14 @@ export default class PaymentDetailsScreen extends Component {
 
     if (cancelling) {
       return (
-        <Footer>
+        <Footer style={styles.footer}>
           <ActivityIndicator animating={true} size='small' />
         </Footer>
       );
     }
 
     return (
-      <Footer>
+      <Footer style={styles.footer}>
         <Link onPress={this._showCancelConfirmation} labelStyle={styles.cancel}>
           Cancel Payment
         </Link>
