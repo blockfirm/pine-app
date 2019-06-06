@@ -77,7 +77,7 @@ export default class PrivacyPolicyScreen extends Component {
         <SettingsGroup style={styles.view}>
           <View style={styles.paragraphWrapper}>
             <Paragraph style={styles.paragraph}>
-              Effective date: March 21, 2019
+              Effective date: June 7, 2019
             </Paragraph>
             <Paragraph style={styles.paragraph}>
               Blockfirm AB ("us", "we", or "our") operates the Pine mobile application (hereinafter
@@ -152,27 +152,6 @@ export default class PrivacyPolicyScreen extends Component {
               </Title>
               <View style={styles.paragraphWrapper}>
                 <Title style={[styles.title, styles.title3]}>
-                  Personal Data
-                </Title>
-                <Paragraph style={styles.paragraph}>
-                  We do not intend to collect any personal information that can be used to identify
-                  you ("Personal Data") unless you voluntarily provide it to us. Examples when
-                  personally identifiable information may be voluntarily provided include, but is
-                  not limited to:
-                </Paragraph>
-                <Paragraph style={[styles.paragraph, styles.listItem]}>
-                  • Personal data, such as your email address, provided to us during a support case
-                </Paragraph>
-                <Paragraph style={[styles.paragraph, styles.listItem]}>
-                  • Your real name used as a Display Name in your public profile
-                </Paragraph>
-                <Paragraph style={[styles.paragraph, styles.listItem]}>
-                  • Other personally identifiable information in your public profile
-                </Paragraph>
-              </View>
-
-              <View style={styles.paragraphWrapper}>
-                <Title style={[styles.title, styles.title3]}>
                   Bitcoin Data
                 </Title>
                 <Paragraph style={styles.paragraph}>
@@ -180,12 +159,8 @@ export default class PrivacyPolicyScreen extends Component {
                   data:
                 </Paragraph>
                 <Paragraph style={[styles.paragraph, styles.listItem]}>
-                  • All your used bitcoin addresses – We use these to get your public transaction
-                  data from the bitcoin network
-                </Paragraph>
-                <Paragraph style={[styles.paragraph, styles.listItem]}>
-                  • Some unused bitcoin addresses – We use these to notify you about incoming
-                  transactions
+                  • Your bitcoin addresses – We use these in order to detect incoming transactions
+                  and to update transaction statuses
                 </Paragraph>
                 <View style={{ marginTop: 10 }}>
                   <Paragraph style={styles.paragraph}>
@@ -235,6 +210,28 @@ export default class PrivacyPolicyScreen extends Component {
               <Title style={[styles.title, styles.title2]}>
                 Types of Data Not Collected
               </Title>
+
+              <View style={styles.paragraphWrapper}>
+                <Title style={[styles.title, styles.title3]}>
+                  Personal Data
+                </Title>
+                <Paragraph style={styles.paragraph}>
+                  We <StrongText>do not</StrongText> intend to collect any personal information that can be used to identify
+                  you ("Personal Data") unless you voluntarily provide it to us. Examples when
+                  personally identifiable information may be voluntarily provided include, but is
+                  not limited to:
+                </Paragraph>
+                <Paragraph style={[styles.paragraph, styles.listItem]}>
+                  • Personal data, such as your email address, provided to us during a support case
+                </Paragraph>
+                <Paragraph style={[styles.paragraph, styles.listItem]}>
+                  • Your real name used as a Display Name in your public profile
+                </Paragraph>
+                <Paragraph style={[styles.paragraph, styles.listItem]}>
+                  • Other personally identifiable information in your public profile
+                </Paragraph>
+              </View>
+
               <View style={styles.paragraphWrapper}>
                 <Title style={[styles.title, styles.title3]}>
                   Private Keys
