@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, StatusBar, View, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
@@ -105,14 +105,6 @@ export default class ImportMnemonicScreen extends Component {
         return dispatch(resetApp(keepSettings, keepBackup));
       })
       .then(() => {
-        // Save key.
-        return dispatch(keyActions.add(mnemonic));
-      })
-      .then(() => {
-        // Sync wallet with the bitcoin blockchain for the first time.
-        return dispatch(bitcoinWalletActions.init());
-      })
-      .then(() => {
         // Try to recover a Pine user for the mnemonic.
         const keyPair = getKeyPairFromMnemonic(mnemonic);
         const userId = getUserIdFromPublicKey(keyPair.publicKey);
@@ -130,14 +122,25 @@ export default class ImportMnemonicScreen extends Component {
           });
       })
       .then((user) => {
-        this._flagAsInitialized();
-
         if (!user) {
-          // No Pine user was found for the mnemonic, ask user to create one.
-          return this._showCreatePineAddressScreen();
+          return Alert.alert(
+            'No Account Found',
+            'No Pine account was found for the entered recovery key. Please make sure that you entered it correctly.',
+            [{ text: 'OK' }],
+            { cancelable: false }
+          );
         }
 
-        return this._showDisclaimerScreen();
+        // Save key.
+        return dispatch(keyActions.add(mnemonic))
+          .then(() => {
+            // Sync wallet with the bitcoin blockchain for the first time.
+            return dispatch(bitcoinWalletActions.init());
+          })
+          .then(() => {
+            this._flagAsInitialized();
+            return this._showDisclaimerScreen();
+          });
       })
       .catch((error) => {
         dispatch(handleError(error));
