@@ -23,20 +23,6 @@ const itemsReducer = (state = [], action) => {
         return utxo;
       });
 
-    case utxoActions.BITCOIN_WALLET_UTXOS_CANCEL_RESERVATIONS:
-      return state.map((utxo) => {
-        if (utxo.txid === action.txid && utxo.n === action.index) {
-          return {
-            ...utxo,
-            reserved: false,
-            reservedBtcAmount: 0,
-            reservationExpiresAt: null
-          };
-        }
-
-        return utxo;
-      });
-
     default:
       return state;
   }

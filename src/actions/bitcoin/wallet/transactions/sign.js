@@ -104,8 +104,12 @@ const getMnemonic = (keys) => {
 /**
  * Action to sign a transaction.
  *
- * @param {object} transaction - bitcoinjs transaction to sign.
- * @param {array} inputs - bitcoinjs inputs of the transaction.
+ * @param {TransactionBuilder} transaction - bitcoinjs TransactionBuilder instance to sign.
+ * @param {Object[]} inputs - Inputs of the transaction.
+ * @param {string} inputs[].txid - ID of the transaction the input was created as an output.
+ * @param {number} inputs[].vout - The index of the output in the origin transaction.
+ * @param {number} inputs[].value - Value in satoshies.
+ * @param {string[]} inputs[].addresses - List of addresses for the input - used for finding the key.
  *
  * @returns Promise that resolves when the transaction has been signed.
  */

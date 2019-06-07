@@ -9,7 +9,8 @@ import {
   Share,
   LayoutAnimation,
   ActionSheetIOS,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert
 } from 'react-native';
 
 import PropTypes from 'prop-types';
@@ -184,6 +185,17 @@ export default class PaymentDetailsScreen extends Component {
         ReactNativeHaptic.generate('notificationSuccess');
       })
       .catch((error) => {
+        if (/(rejected)|UTXO/i.test(error.message)) {
+          ReactNativeHaptic.generate('notificationError');
+
+          return Alert.alert(
+            'Cancellation Failed',
+            'The payment could not be canceled because it has already been broadcasted by its recipient.',
+            [{ text: 'OK', style: 'cancel' }],
+            { cancelable: false }
+          );
+        }
+
         dispatch(handleError(error));
       })
       .then(() => {
@@ -193,8 +205,8 @@ export default class PaymentDetailsScreen extends Component {
 
   _showCancelConfirmation() {
     ActionSheetIOS.showActionSheetWithOptions({
-      title: 'This does not invalidate the payment – it just removes the payment from the recipient\'s server and releases the reserved funds for you to spend again. To truly invalidate this payment you should send the same amount to yourself so you consume the same coins.',
-      options: ['Cancel', 'Cancel Payment'],
+      title: 'This will cancel the payment. The transaction fee will not be refunded as it will be used to invalidate the transaction.',
+      options: ['Don\'t Cancel', 'Cancel Payment'],
       destructiveButtonIndex: 1,
       cancelButtonIndex: 0
     }, (buttonIndex) => {
@@ -241,7 +253,7 @@ export default class PaymentDetailsScreen extends Component {
 
     if (!transaction) {
       if (message.canceled) {
-        return 'This payment was canceled by you before it was received by its recipient. Note that there is still a small chance that the transaction reached the recipient and could be broadcasted later. To truly invalidate this payment you should send the same amount to yourself so you consume the same coins.';
+        return 'This payment was canceled by you before it was received by its recipient. The transaction fee was not refunded as it was used to invalidate the transaction.';
       }
 
       if (message.from) {
