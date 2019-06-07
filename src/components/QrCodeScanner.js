@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Dimensions, Linking, Clipboard } from 'react-native';
+import { StyleSheet, View, Image, Dimensions, Linking, Clipboard, Alert } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import { RNCamera } from 'react-native-camera';
@@ -85,6 +85,15 @@ export default class QrCodeScanner extends Component {
 
   _onReceiveData(data, fromCamera) {
     if (!data || typeof data !== 'string') {
+      if (!fromCamera) {
+        Alert.alert(
+          'No Address Copied',
+          'Make sure that you copied an address and try again.',
+          [{ text: 'OK', style: 'cancel' }],
+          { cancelable: false }
+        );
+      }
+
       return;
     }
 
@@ -102,7 +111,14 @@ export default class QrCodeScanner extends Component {
       parseAddress(data);
       return onReceiveAddress(data.trim(), fromCamera);
     } catch (error) {
-      // Suppress error.
+      if (!fromCamera) {
+        Alert.alert(
+          'Invalid Address',
+          'Make sure that you copied the correct address and try again.',
+          [{ text: 'OK', style: 'cancel' }],
+          { cancelable: false }
+        );
+      }
     }
   }
 
