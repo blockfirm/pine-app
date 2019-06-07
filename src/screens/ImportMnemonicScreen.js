@@ -126,7 +126,7 @@ export default class ImportMnemonicScreen extends Component {
           return Alert.alert(
             'No Account Found',
             'No Pine account was found for the entered recovery key. Please make sure that you entered it correctly.',
-            [{ text: 'OK' }],
+            [{ text: 'OK', style: 'cancel' }],
             { cancelable: false }
           );
         }
