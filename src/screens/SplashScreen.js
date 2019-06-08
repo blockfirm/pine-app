@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { load as loadState, sync as syncApp, ready as onReady } from '../actions';
+import { handle as handleError } from '../actions/error';
 import { reset as navigateWithReset } from '../actions/navigate';
 import { updateProfiles as updateContactProfiles } from '../actions/contacts';
 import { get as getFiatRates } from '../actions/bitcoin/fiatRates';
@@ -78,6 +79,9 @@ export default class SplashScreen extends Component {
       })
       .then(() => {
         this._showStatusBar();
+      })
+      .catch((error) => {
+        dispatch(handleError(error));
       });
   }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Provider } from 'react-redux';
 
+import { handle as handleError } from './actions/error';
 import AppNavigator from './navigators/AppNavigator';
 import ErrorModalContainer from './containers/ErrorModalContainer';
 import ServiceManager from './services/ServiceManager';
@@ -23,11 +24,19 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this._services.start();
+    try {
+      this._services.start();
+    } catch (error) {
+      store.dispatch(handleError(error));
+    }
   }
 
   componentWillUnmount() {
     this._services.stop();
+  }
+
+  componentDidCatch(error) {
+    store.dispatch(handleError(error));
   }
 
   render() {
