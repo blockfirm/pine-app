@@ -52,7 +52,11 @@ const broadcastTransactions = (processedMessages, dispatch) => {
   const promises = processedMessages.map((message) => {
     if (message.amountBtc > 0) {
       return dispatch(postTransaction(message.data.transaction)).catch((error) => {
-        message.error = error.message;
+        if (error.message.includes('rejected')) {
+          message.canceled = true;
+        } else {
+          message.error = error.message;
+        }
       });
     }
   });

@@ -252,17 +252,21 @@ export default class PaymentDetailsScreen extends Component {
     const { transaction, message } = this.props.navigation.state.params;
 
     if (!transaction) {
-      if (message.canceled) {
-        return 'This payment was canceled by you before it was received by its recipient. The transaction fee was not refunded as it was used to invalidate the transaction.';
-      }
-
       if (message.from) {
+        if (message.canceled) {
+          return 'The payment was canceled by the sender. This is not a valid payment.';
+        }
+
         if (message.error) {
           return 'The transaction has not been broadcasted to the network due to an error. This is not a valid payment.';
         } else {
           return 'The transaction has not been broadcasted to the network yet but should be in a moment. This should not be seen as a valid payment until it has.';
         }
       } else {
+        if (message.canceled) {
+          return 'The payment was canceled by you before it was received by its recipient. The transaction fee was not refunded as it was used to invalidate the transaction.';
+        }
+
         return 'The transaction has not been broadcasted by its recipient yet. Give it some time and cancel this payment if you need to use the funds it has reserved.';
       }
     }
@@ -326,13 +330,17 @@ export default class PaymentDetailsScreen extends Component {
   }
 
   _renderAmount() {
-    const { message } = this.props.navigation.state.params;
+    const { message, transaction } = this.props.navigation.state.params;
     const title = message.from ? 'Amount Received' : 'Amount Sent';
 
     const style = [
       styles.detail,
       message.from && styles.lastDetail
     ];
+
+    if (message.canceled && !transaction) {
+      return null;
+    }
 
     return (
       <View style={style}>
@@ -376,10 +384,14 @@ export default class PaymentDetailsScreen extends Component {
 
   _renderTotal() {
     const { navigation } = this.props;
-    const { message } = navigation.state.params;
+    const { message, transaction } = navigation.state.params;
     const { amountBtc, feeBtc } = message;
 
     if (typeof feeBtc !== 'number') {
+      return null;
+    }
+
+    if (message.canceled && !transaction) {
       return null;
     }
 
