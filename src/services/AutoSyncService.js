@@ -19,7 +19,9 @@ export default class AutoSyncService {
 
     // Sync app with an interval.
     this._syncInterval = setInterval(() => {
-      this._syncApp();
+      if (this._appState !== 'background') {
+        this._syncApp();
+      }
     }, SYNC_INTERVAL);
   }
 
@@ -31,8 +33,10 @@ export default class AutoSyncService {
   _onAppStateChange(nextAppState) {
     if (this._appState === 'background' && nextAppState === 'active') {
       // The app has come to the foreground.
-      this._syncApp();
-      this._updateProfiles();
+      setTimeout(() => {
+        this._syncApp();
+        this._updateProfiles();
+      }, 1000);
     }
 
     this._appState = nextAppState;

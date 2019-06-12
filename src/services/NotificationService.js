@@ -169,13 +169,15 @@ export default class NotificationService {
       this._lastBackgroundNotificationTime = Date.now();
     }
 
-    dispatch(syncApp())
-      .then(() => {
-        notification.finish(PushNotificationIOS.FetchResult.NewData);
-      })
-      .catch(() => {
-        notification.finish(PushNotificationIOS.FetchResult.ResultFailed);
-      });
+    setTimeout(() => {
+      dispatch(syncApp())
+        .then(() => {
+          notification.finish(PushNotificationIOS.FetchResult.NewData);
+        })
+        .catch(() => {
+          notification.finish(PushNotificationIOS.FetchResult.ResultFailed);
+        });
+    }, 1000);
   }
 
   _onAppStateChange(nextAppState) {

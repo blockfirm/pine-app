@@ -26,7 +26,11 @@ export default class BackgroundFetchService {
     };
 
     BackgroundFetch.configure(config, () => {
-      if (this._shouldSync()) {
+      if (!this._shouldSync()) {
+        return BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_FAILED);
+      }
+
+      setTimeout(() => {
         dispatch(syncApp())
           .then(() => {
             BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_NEW_DATA);
@@ -34,9 +38,7 @@ export default class BackgroundFetchService {
           .catch(() => {
             BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_FAILED);
           });
-      } else {
-        BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_FAILED);
-      }
+      }, 1000);
     }, () => {
       // BackgroundFetch failed to start.
     });

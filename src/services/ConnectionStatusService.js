@@ -31,6 +31,7 @@ export default class ConnectionStatusService {
   _onAppStateChange(nextAppState) {
     if (this._appState.match(/inactive|background/) && nextAppState === 'active') {
       // The app has come to the foreground.
+      this._appState = nextAppState;
       this._updateInternetConnectionStatus();
     }
 
@@ -47,7 +48,7 @@ export default class ConnectionStatusService {
     if (isConnected) {
       store.dispatch(internetActions.connected());
 
-      if (this._isConnectedToInternet === false) {
+      if (this._isConnectedToInternet === false && this._appState === 'active') {
         this._syncApp();
       }
     } else {
