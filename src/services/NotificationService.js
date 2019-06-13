@@ -169,6 +169,12 @@ export default class NotificationService {
       this._lastBackgroundNotificationTime = Date.now();
     }
 
+    /**
+     * WORKAROUND: Due to a bug in iOS, network requests might fail
+     * if the app is in the background or recently became active.
+     * The workaround seems to be to add a delay:
+     * <https://github.com/AFNetworking/AFNetworking/issues/4279>
+     */
     setTimeout(() => {
       dispatch(syncApp())
         .then(() => {

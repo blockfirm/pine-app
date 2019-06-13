@@ -32,7 +32,12 @@ export default class AutoSyncService {
 
   _onAppStateChange(nextAppState) {
     if (this._appState === 'background' && nextAppState === 'active') {
-      // The app has come to the foreground.
+      /**
+       * WORKAROUND: Due to a bug in iOS, network requests might fail
+       * if the app is in the background or recently became active.
+       * The workaround seems to be to add a delay:
+       * <https://github.com/AFNetworking/AFNetworking/issues/4279>
+       */
       setTimeout(() => {
         this._syncApp();
         this._updateProfiles();
