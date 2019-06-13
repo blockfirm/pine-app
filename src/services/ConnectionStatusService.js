@@ -61,8 +61,10 @@ export default class ConnectionStatusService {
   _syncApp() {
     const { store } = this;
     const state = store.getState();
+    const { initialized, user } = state.settings;
+    const hasAcceptedTerms = user && user.hasAcceptedTerms;
 
-    if (state.settings.initialized && state.settings.user.hasAcceptedTerms) {
+    if (initialized && hasAcceptedTerms) {
       store.dispatch(syncApp());
     }
   }

@@ -50,9 +50,9 @@ export default class AutoSyncService {
   _shouldSync() {
     const { store } = this;
     const state = store.getState();
-    const { initialized } = state.settings;
-    const { hasAcceptedTerms } = state.settings.user;
+    const { initialized, user } = state.settings;
     const { disconnected } = state.network.internet;
+    const hasAcceptedTerms = user && user.hasAcceptedTerms;
 
     // Only sync if connected to the internet and has a wallet.
     return !disconnected && initialized && hasAcceptedTerms;

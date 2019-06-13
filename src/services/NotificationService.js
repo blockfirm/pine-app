@@ -121,18 +121,20 @@ export default class NotificationService {
   }
 
   _addDeviceTokenToPine() {
-    const state = this.store.getState();
     const { dispatch } = this.store;
+    const state = this.store.getState();
+    const { initialized, user } = state.settings;
+    const hasAcceptedTerms = user && user.hasAcceptedTerms;
 
     // Wait until the state has loaded.
-    if (state.settings.initialized === undefined) {
+    if (initialized === undefined) {
       return setTimeout(() => {
         this._addDeviceTokenToPine();
       }, 1000);
     }
 
     // Abort if wallet is not initialized or user has not accepted terms.
-    if (!state.settings.initialized || !state.settings.user.hasAcceptedTerms) {
+    if (!initialized || !hasAcceptedTerms) {
       return;
     }
 
