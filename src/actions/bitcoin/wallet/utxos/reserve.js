@@ -1,8 +1,5 @@
-import moment from 'moment-timezone';
 import { refresh as refreshBalance } from '../balance';
 import { save } from './save';
-
-const EXPIRE_DAYS = 2;
 
 export const BITCOIN_WALLET_UTXOS_RESERVE = 'BITCOIN_WALLET_UTXOS_RESERVE';
 
@@ -28,8 +25,12 @@ const reserveUtxo = (txid, index, expireAt, btcAmountToReserve) => {
  */
 export const reserve = (utxos, totalBtcAmountToReserve) => {
   return (dispatch) => {
-    // The reservation will expire in 2 days from now.
-    const expireAt = moment().add(EXPIRE_DAYS, 'days').unix();
+    /**
+     * Never expire reserved UTXOs since it will have a non-deterministic behaviour.
+     * The user will instead have to manually cancel payments that is locking up too
+     * much funds (this should be done on "auto-pilot" later).
+     */
+    const expireAt = 0;
 
     utxos.forEach((utxo, index) => {
       /**

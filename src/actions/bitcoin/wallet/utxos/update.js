@@ -106,7 +106,7 @@ const preserveReservedUtxos = (utxos, oldUtxos) => {
   // Create a map of all reserved UTXOs from the old UTXO set.
   oldUtxos.forEach((utxo) => {
     // Don't include expired reservations.
-    if (utxo.reserved && utxo.reservationExpiresAt > Date.now() / 1000) {
+    if (utxo.reserved && (!utxo.reservationExpiresAt || utxo.reservationExpiresAt > Date.now() / 1000)) {
       reservedUtxos[utxo.txid] = reservedUtxos[utxo.txid] || {};
       reservedUtxos[utxo.txid][utxo.n] = utxo;
     }
