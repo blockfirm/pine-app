@@ -1,4 +1,5 @@
 import bitcoin from 'bitcoinjs-lib';
+import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
 import { post as postTransaction } from '../bitcoin/blockchain/transactions';
 import { sign as signTransaction } from '../bitcoin/wallet/transactions';
 import { sync as syncWallet } from '../bitcoin/wallet';
@@ -65,7 +66,7 @@ const createCancellationTransaction = (transaction, changeAddress, network, utxo
   const transactionBuilder = new bitcoin.TransactionBuilder(bitcoinNetwork);
 
   const outputValue = transaction.outs.reduce((sum, output) => {
-    return sum + output.value;
+    return normalizeBtcAmount(sum + output.value);
   }, 0);
 
   const inputs = transaction.ins.map((input) => {
