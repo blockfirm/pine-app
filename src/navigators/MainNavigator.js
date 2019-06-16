@@ -11,6 +11,7 @@ import DisclaimerScreen from '../screens/DisclaimerScreen';
 import HomeScreen from '../screens/HomeScreen';
 import PaymentDetailsScreen from '../screens/PaymentDetailsScreen';
 import ConversationScreen from '../screens/ConversationScreen';
+import ResetScreen from '../screens/ResetScreen';
 
 const MainNavigator = createStackNavigator({
   Splash: { screen: SplashScreen },
@@ -23,7 +24,8 @@ const MainNavigator = createStackNavigator({
   Disclaimer: { screen: DisclaimerScreen },
   Home: { screen: HomeScreen },
   PaymentDetails: { screen: PaymentDetailsScreen },
-  Conversation: { screen: ConversationScreen }
+  Conversation: { screen: ConversationScreen },
+  Reset: { screen: ResetScreen }
 }, {
   headerMode: 'screen',
   initialRouteName: 'Splash'

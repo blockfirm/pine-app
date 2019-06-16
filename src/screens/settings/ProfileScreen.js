@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { ActionSheetIOS, Alert, StyleSheet, View, Linking } from 'react-native';
+import { ActionSheetIOS, Alert, StyleSheet, View, Linking, InteractionManager } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import iCloudAccountStatus from 'react-native-icloud-account-status';
 
-import { reset as resetApp } from '../../actions';
 import { reset as navigateWithReset } from '../../actions/navigate';
 import * as keyActions from '../../actions/keys';
 import * as settingsActions from '../../actions/settings';
@@ -103,20 +102,13 @@ export default class ProfileScreen extends Component {
   }
 
   _removeWallet(keepBackup = true) {
-    const dispatch = this.props.dispatch;
+    const { dispatch, screenProps } = this.props;
     const keepSettings = false;
 
-    this.setState({ signingOut: true });
-
-    return dispatch(resetApp(keepSettings, keepBackup))
-      .then(() => {
-        this.props.screenProps.dismiss();
-        dispatch(navigateWithReset('Welcome'));
-      })
-      .catch((error) => {
-        dispatch(handleError(error));
-        this.setState({ signingOut: false });
-      });
+    InteractionManager.runAfterInteractions(() => {
+      screenProps.dismiss();
+      dispatch(navigateWithReset('Reset', { keepSettings, keepBackup }));
+    });
   }
 
   _getICloudBackupStatus() {
