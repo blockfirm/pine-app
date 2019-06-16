@@ -36,7 +36,16 @@ const getRootReducer = (navReducer) => {
     if (action.type === RESET_SUCCESS) {
       // Reset app but keep navigation and settings state.
       const { nav, settings } = state;
-      state = { nav, settings }; // eslint-disable-line no-param-reassign
+      const { rates } = state.bitcoin.fiat;
+
+      // eslint-disable-next-line no-param-reassign
+      state = {
+        nav,
+        settings,
+        bitcoin: {
+          fiat: { rates }
+        }
+      };
     }
 
     return rootReducer(state, action);
