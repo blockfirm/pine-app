@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import { CachedImage } from 'react-native-cached-image';
+import FastImage from 'react-native-fast-image';
 import { parse as parseAddress, resolveBaseUrl } from '../pineApi/address';
 
 const AVATAR_PLACEHOLDER = require('../images/AvatarPlaceholder.png');
@@ -83,12 +83,10 @@ export default class Avatar extends Component {
 
     return (
       <View style={[styles.wrapper, sizeStyle]}>
-        <CachedImage
+        <FastImage
           source={{ uri }}
-          loadingIndicator={View}
           style={sizeStyle}
           onError={this._onError}
-          useQueryParamsInCacheKey={true}
         />
       </View>
     );
