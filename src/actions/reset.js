@@ -28,6 +28,10 @@ const resetFailure = (error) => {
 };
 
 const deleteKeys = async (dispatch, keys) => {
+  if (!keys) {
+    return;
+  }
+
   // Delete each key and its mnemonic.
   for (const key of Object.values(keys)) {
     await removeMnemonicByKey(key.id);
