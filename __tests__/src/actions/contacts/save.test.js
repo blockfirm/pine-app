@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import {
   save as saveContacts,
@@ -24,10 +24,8 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('react-native', () => ({
-  AsyncStorage: {
-    setItem: jest.fn(() => Promise.resolve())
-  }
+jest.mock('@react-native-community/async-storage', () => ({
+  setItem: jest.fn(() => Promise.resolve())
 }));
 
 describe('CONTACTS_SAVE_REQUEST', () => {

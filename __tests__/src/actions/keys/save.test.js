@@ -1,4 +1,5 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {
   save as saveKeys,
   KEYS_SAVE_REQUEST,
@@ -23,10 +24,8 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('react-native', () => ({
-  AsyncStorage: {
-    setItem: jest.fn(() => Promise.resolve())
-  }
+jest.mock('@react-native-community/async-storage', () => ({
+  setItem: jest.fn(() => Promise.resolve())
 }));
 
 describe('KEYS_SAVE_REQUEST', () => {

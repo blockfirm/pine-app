@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const CONTACTS_LOAD_REQUEST = 'CONTACTS_LOAD_REQUEST';
 export const CONTACTS_LOAD_SUCCESS = 'CONTACTS_LOAD_SUCCESS';

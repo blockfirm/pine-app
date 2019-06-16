@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const MESSAGES_TXIDS_LOAD_REQUEST = 'MESSAGES_TXIDS_LOAD_REQUEST';
 export const MESSAGES_TXIDS_LOAD_SUCCESS = 'MESSAGES_TXIDS_LOAD_SUCCESS';

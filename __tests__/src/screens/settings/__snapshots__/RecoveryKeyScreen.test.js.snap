@@ -94,6 +94,7 @@ exports[`RecoveryKeyScreen renders correctly 1`] = `
               }
             >
               <RCTSwitch
+                accessibilityRole="button"
                 onChange={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}

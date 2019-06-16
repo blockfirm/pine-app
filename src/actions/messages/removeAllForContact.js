@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const MESSAGES_REMOVE_ALL_FOR_CONTACT_REQUEST = 'MESSAGES_REMOVE_ALL_FOR_CONTACT_REQUEST';
 export const MESSAGES_REMOVE_ALL_FOR_CONTACT_SUCCESS = 'MESSAGES_REMOVE_ALL_FOR_CONTACT_SUCCESS';

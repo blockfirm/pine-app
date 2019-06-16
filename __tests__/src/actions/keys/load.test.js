@@ -1,4 +1,5 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {
   load as loadKeys,
   KEYS_LOAD_REQUEST,
@@ -9,12 +10,10 @@ import {
 const KEYS_STORAGE_KEY = '@Keys';
 const dispatchMock = jest.fn();
 
-jest.mock('react-native', () => ({
-  AsyncStorage: {
-    getItem: jest.fn(() => Promise.resolve(
-      '{ "id": "204d5efa-8889-4206-aa22-2865d1b94d09" }'
-    ))
-  }
+jest.mock('@react-native-community/async-storage', () => ({
+  getItem: jest.fn(() => Promise.resolve(
+    '{ "id": "204d5efa-8889-4206-aa22-2865d1b94d09" }'
+  ))
 }));
 
 describe('KEYS_LOAD_REQUEST', () => {

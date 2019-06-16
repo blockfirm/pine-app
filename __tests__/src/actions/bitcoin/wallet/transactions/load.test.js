@@ -1,4 +1,5 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {
   load as loadTransactions,
   BITCOIN_WALLET_TRANSACTIONS_LOAD_REQUEST,
@@ -9,12 +10,10 @@ import {
 const BITCOIN_TRANSACTIONS_STORAGE_KEY = '@Bitcoin/Transactions';
 const dispatchMock = jest.fn();
 
-jest.mock('react-native', () => ({
-  AsyncStorage: {
-    getItem: jest.fn(() => Promise.resolve(
-      '[ { "txid": "507d3353-dae4-4107-982b-92f7202cdee8" } ]'
-    ))
-  }
+jest.mock('@react-native-community/async-storage', () => ({
+  getItem: jest.fn(() => Promise.resolve(
+    '[ { "txid": "507d3353-dae4-4107-982b-92f7202cdee8" } ]'
+  ))
 }));
 
 describe('BITCOIN_WALLET_TRANSACTIONS_LOAD_REQUEST', () => {

@@ -139,6 +139,10 @@ export default class Toolbar extends Component {
     const dotPosition = this._getDotPosition(positionStyle);
     const dotStyle = this._getDotStyle(positionStyle, dotPosition);
 
+    if (isNaN(dotPosition)) {
+      return null;
+    }
+
     return (
       <View style={[styles.dot, { left: dotPosition }, dotStyle]} />
     );

@@ -1,4 +1,5 @@
-import { AppState, NetInfo } from 'react-native';
+import { AppState } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 import { sync as syncApp } from '../actions/sync';
 import * as internetActions from '../actions/network/internet';
 
@@ -20,12 +21,12 @@ export default class ConnectionStatusService {
     AppState.addEventListener('change', this._onAppStateChange);
 
     // Listen for internet connection changes.
-    NetInfo.isConnected.addEventListener('connectionChange', this._onConnectionChange);
+    this._removeNetInfoListener = NetInfo.addEventListener(this._onConnectionChange);
   }
 
   stop() {
     AppState.removeEventListener('change', this._onAppStateChange);
-    NetInfo.isConnected.removeEventListener('connectionChange', this._onConnectionChange);
+    this._removeNetInfoListener();
   }
 
   _onAppStateChange(nextAppState) {
@@ -39,10 +40,10 @@ export default class ConnectionStatusService {
   }
 
   _updateInternetConnectionStatus() {
-    NetInfo.isConnected.fetch().then(this._onConnectionChange);
+    NetInfo.fetch().then(this._onConnectionChange);
   }
 
-  _onConnectionChange(isConnected) {
+  _onConnectionChange({ isConnected }) {
     const { store } = this;
 
     if (isConnected) {

@@ -1,4 +1,5 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {
   load as loadAddresses,
   BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_REQUEST,
@@ -9,12 +10,10 @@ import {
 const BITCOIN_ADDRESSES_EXTERNAL_STORAGE_KEY = '@Bitcoin/Addresses/External';
 const dispatchMock = jest.fn();
 
-jest.mock('react-native', () => ({
-  AsyncStorage: {
-    getItem: jest.fn(() => Promise.resolve(
-      '{ "8caaade9-5ab6-4442-9ed0-3a13424fc62e": {} }'
-    ))
-  }
+jest.mock('@react-native-community/async-storage', () => ({
+  getItem: jest.fn(() => Promise.resolve(
+    '{ "8caaade9-5ab6-4442-9ed0-3a13424fc62e": {} }'
+  ))
 }));
 
 describe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_REQUEST', () => {

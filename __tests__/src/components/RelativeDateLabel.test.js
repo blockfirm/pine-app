@@ -4,37 +4,26 @@ import renderer from 'react-test-renderer';
 import moment from 'moment-timezone';
 import RelativeDateLabel from '../../../src/components/RelativeDateLabel';
 
-const RealDate = Date;
 const realUtcOffset = moment().utcOffset();
 
-const mockDate = (fakeDate) => {
-  global.Date = class extends RealDate {
-    constructor(specifiedDate) {
-      super(...arguments);
-      return new RealDate(specifiedDate || fakeDate);
-    }
-  };
-
-  global.Date.now = jest.fn(() => new RealDate(fakeDate).getTime());
-};
-
-const unmockDate = () => {
-  global.Date = RealDate;
-};
-
 describe('RelativeDateLabel', () => {
+  let dateNowSpy;
+
   beforeAll(() => {
     moment().utcOffset(120);
-    mockDate('29 November, 2018, 21:59 GMT+02:00');
+
+    dateNowSpy = jest.spyOn(Date, 'now').mockImplementation(() => {
+      return new Date('29 November, 2018, 21:59 GMT+02:00').getTime();
+    });
   });
 
   afterAll(() => {
     moment().utcOffset(realUtcOffset);
-    unmockDate();
+    dateNowSpy.mockRestore();
   });
 
   it('renders correctly when date is now', () => {
-    const now = new Date();
+    const now = new Date(Date.now());
 
     const tree = renderer.create(
       <RelativeDateLabel date={now} />

@@ -1,4 +1,5 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {
   save as saveAddresses,
   BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_REQUEST,
@@ -25,10 +26,8 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('react-native', () => ({
-  AsyncStorage: {
-    setItem: jest.fn(() => Promise.resolve())
-  }
+jest.mock('@react-native-community/async-storage', () => ({
+  setItem: jest.fn(() => Promise.resolve())
 }));
 
 describe('BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_REQUEST', () => {

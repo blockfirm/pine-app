@@ -1,4 +1,5 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {
   load as loadContacts,
   CONTACTS_LOAD_REQUEST,
@@ -9,12 +10,10 @@ import {
 const CONTACTS_STORAGE_KEY = '@Contacts';
 const dispatchMock = jest.fn();
 
-jest.mock('react-native', () => ({
-  AsyncStorage: {
-    getItem: jest.fn(() => Promise.resolve(
-      '{ "id": "556152bc-9ae0-44c0-be59-4afca1c543c0" }'
-    ))
-  }
+jest.mock('@react-native-community/async-storage', () => ({
+  getItem: jest.fn(() => Promise.resolve(
+    '{ "id": "556152bc-9ae0-44c0-be59-4afca1c543c0" }'
+  ))
 }));
 
 describe('CONTACTS_LOAD_REQUEST', () => {

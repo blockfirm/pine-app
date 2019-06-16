@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST = 'BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST';
 export const BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_SUCCESS = 'BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_SUCCESS';

@@ -64,7 +64,7 @@ export default class DateSectionList extends Component {
     if (this._list) {
       this._list.scrollToLocation({
         sectionIndex: 0,
-        itemIndex: -1
+        itemIndex: 0
       });
     }
   }

@@ -50,6 +50,7 @@ exports[`HomeScreen renders correctly 1`] = `
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
     pagingEnabled={true}
+    removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={16}
     showsHorizontalScrollIndicator={false}
@@ -453,24 +454,6 @@ exports[`HomeScreen renders correctly 1`] = `
         </View>
       </View>
     </View>
-    <View
-      style={
-        Array [
-          Object {
-            "backgroundColor": "#BEBEBE",
-            "borderRadius": 5,
-            "bottom": 15,
-            "height": 5,
-            "position": "absolute",
-            "width": 5,
-          },
-          Object {
-            "left": NaN,
-          },
-          null,
-        ]
-      }
-    />
   </View>
 </View>
 `;

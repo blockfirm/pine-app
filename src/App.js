@@ -35,10 +35,6 @@ export default class App extends Component {
     this._services.stop();
   }
 
-  componentDidCatch(error) {
-    store.dispatch(handleError(error));
-  }
-
   render() {
     return (
       <Provider store={store}>

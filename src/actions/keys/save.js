@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const KEYS_SAVE_REQUEST = 'KEYS_SAVE_REQUEST';
 export const KEYS_SAVE_SUCCESS = 'KEYS_SAVE_SUCCESS';

@@ -1,4 +1,5 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import {
   load as loadUtxos,
   BITCOIN_WALLET_UTXOS_LOAD_REQUEST,
@@ -9,12 +10,10 @@ import {
 const BITCOIN_UTXOS_STORAGE_KEY = '@Bitcoin/Utxos';
 const dispatchMock = jest.fn();
 
-jest.mock('react-native', () => ({
-  AsyncStorage: {
-    getItem: jest.fn(() => Promise.resolve(
-      '[ { "txid": "e060a600-8747-4867-9e6e-601523660918" } ]'
-    ))
-  }
+jest.mock('@react-native-community/async-storage', () => ({
+  getItem: jest.fn(() => Promise.resolve(
+    '[ { "txid": "e060a600-8747-4867-9e6e-601523660918" } ]'
+  ))
 }));
 
 describe('BITCOIN_WALLET_UTXOS_LOAD_REQUEST', () => {
