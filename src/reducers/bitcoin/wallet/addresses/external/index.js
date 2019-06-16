@@ -12,8 +12,6 @@ const externalReducer = (state = {}, action) => {
     case externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_SUCCESS:
     case externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_FAILURE:
 
-    case externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS:
-
     case externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_REQUEST:
     case externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_SUCCESS:
     case externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_FAILURE:

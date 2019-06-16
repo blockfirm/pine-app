@@ -28,9 +28,6 @@ const itemsByContact = (state = {}, action) => {
       delete newState[action.contactId];
       return newState;
 
-    case messagesActions.MESSAGES_REMOVE_ALL_SUCCESS:
-      return {};
-
     case messagesActions.MESSAGES_CANCEL_PAYMENT_SUCCESS:
       messages = state[action.contactId];
 

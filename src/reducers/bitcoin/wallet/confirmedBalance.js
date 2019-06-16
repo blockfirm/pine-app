@@ -20,9 +20,6 @@ const confirmedBalanceReducer = (state = 0, action) => {
 
       return balance;
 
-    case utxoActions.BITCOIN_WALLET_UTXOS_REMOVE_ALL_SUCCESS:
-      return 0;
-
     default:
       return state;
   }

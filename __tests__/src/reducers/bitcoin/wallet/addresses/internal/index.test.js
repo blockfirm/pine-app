@@ -74,10 +74,6 @@ describe('internalReducer', () => {
     testAction(internalAddressActions.BITCOIN_WALLET_ADDRESSES_INTERNAL_LOAD_FAILURE);
   });
 
-  describe('when action is BITCOIN_WALLET_ADDRESSES_INTERNAL_REMOVE_ALL_SUCCESS', () => {
-    testAction(internalAddressActions.BITCOIN_WALLET_ADDRESSES_INTERNAL_REMOVE_ALL_SUCCESS);
-  });
-
   describe('when action is BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST', () => {
     testAction(internalAddressActions.BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST);
   });

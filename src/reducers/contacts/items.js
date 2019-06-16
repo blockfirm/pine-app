@@ -28,9 +28,6 @@ const items = (state = {}, action) => {
       delete newState[action.contact.id];
       return newState;
 
-    case contactsActions.CONTACTS_REMOVE_ALL_SUCCESS:
-      return {};
-
     case contactRequestsActions.CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS:
       contact = { ...action.contact };
       newState = { ...state };

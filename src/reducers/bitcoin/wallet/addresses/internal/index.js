@@ -12,8 +12,6 @@ const internalReducer = (state = {}, action) => {
     case internalAddressActions.BITCOIN_WALLET_ADDRESSES_INTERNAL_LOAD_SUCCESS:
     case internalAddressActions.BITCOIN_WALLET_ADDRESSES_INTERNAL_LOAD_FAILURE:
 
-    case internalAddressActions.BITCOIN_WALLET_ADDRESSES_INTERNAL_REMOVE_ALL_SUCCESS:
-
     case internalAddressActions.BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_REQUEST:
     case internalAddressActions.BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_SUCCESS:
     case internalAddressActions.BITCOIN_WALLET_ADDRESSES_INTERNAL_SAVE_FAILURE:

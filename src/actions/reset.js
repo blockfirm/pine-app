@@ -1,10 +1,7 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import { remove as removeDeviceTokenFromServer } from './pine/deviceTokens';
 import removeMnemonicByKey from '../crypto/removeMnemonicByKey';
-import { reset as resetBitcoinWallet } from './bitcoin/wallet';
 import { remove as removeKey, removeBackup } from './keys';
-import { removeAll as removeAllMessages } from './messages';
-import { removeAll as removeAllMessageTxids } from './messages/txids';
-import { removeAll as removeAllContacts } from './contacts';
 import { reset as resetSettings } from './settings';
 
 export const RESET_REQUEST = 'RESET_REQUEST';
@@ -30,15 +27,12 @@ const resetFailure = (error) => {
   };
 };
 
-const deleteKeys = (dispatch, keys) => {
+const deleteKeys = async (dispatch, keys) => {
   // Delete each key and its mnemonic.
-  const promises = Object.values(keys).map((key) => {
-    return removeMnemonicByKey(key.id).then(() => {
-      return dispatch(removeKey(key));
-    });
-  });
-
-  return Promise.all(promises);
+  for (const key of Object.values(keys)) {
+    await removeMnemonicByKey(key.id);
+    await dispatch(removeKey(key));
+  }
 };
 
 /**
@@ -55,20 +49,20 @@ export const reset = (keepSettings, keepBackup = true) => {
 
     return dispatch(removeDeviceTokenFromServer())
       .then(() => {
-        // Remove messages before removing contacts.
-        return dispatch(removeAllMessages());
+        return deleteKeys(dispatch, keys);
       })
       .then(() => {
-        const promises = [
-          deleteKeys(dispatch, keys),
-          dispatch(removeAllMessageTxids()),
-          dispatch(removeAllContacts()),
-          dispatch(resetBitcoinWallet()),
-          !keepBackup ? dispatch(removeBackup(pineAddress)) : null,
-          !keepSettings ? dispatch(resetSettings()) : null
-        ];
-
-        return Promise.all(promises);
+        if (!keepBackup) {
+          return dispatch(removeBackup(pineAddress));
+        }
+      })
+      .then(() => {
+        if (!keepSettings) {
+          return dispatch(resetSettings());
+        }
+      })
+      .then(() => {
+        return AsyncStorage.clear().catch(() => {});
       })
       .then(() => {
         dispatch(resetSuccess());

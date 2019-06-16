@@ -1,5 +1,4 @@
 import { PINE_CREDENTIALS_LOAD_SUCCESS } from '../../../../src/actions/pine/credentials';
-import { RESET_SUCCESS } from '../../../../src/actions';
 import credentialsReducer from '../../../../src/reducers/pine/credentials';
 
 describe('credentialsReducer', () => {
@@ -15,16 +14,6 @@ describe('credentialsReducer', () => {
       const credentialsState = credentialsReducer(oldState, action);
 
       expect(credentialsState).toBe(credentials);
-    });
-  });
-
-  describe('when action is RESET_SUCCESS', () => {
-    it('returns null', () => {
-      const oldState = { userId: '3738ff78-141b-45d9-b933-5fe5d3688743' };
-      const action = { type: RESET_SUCCESS };
-      const credentialsState = credentialsReducer(oldState, action);
-
-      expect(credentialsState).toBe(null);
     });
   });
 

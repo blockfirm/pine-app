@@ -49,18 +49,6 @@ describe('spendableBalanceReducer', () => {
     });
   });
 
-  describe('when action is BITCOIN_WALLET_UTXOS_REMOVE_ALL_SUCCESS', () => {
-    it('returns 0', () => {
-      const oldState = 0.24948;
-
-      const action = { type: utxoActions.BITCOIN_WALLET_UTXOS_REMOVE_ALL_SUCCESS };
-      const newState = spendableBalanceReducer(oldState, action);
-      const expectedState = 0;
-
-      expect(newState).toEqual(expectedState);
-    });
-  });
-
   describe('when action is an unknown type', () => {
     it('returns the old state', () => {
       const oldState = 0.3863846;

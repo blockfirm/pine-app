@@ -44,21 +44,6 @@ describe('externalItemsReducer', () => {
     });
   });
 
-  describe('when action is BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS', () => {
-    it('returns an empty object', () => {
-      const oldState = {
-        'cf8d2082-a44a-495e-86b8-670030eacbcc': {},
-        '1918bca9-8181-4a45-9641-3d412fb8767c': {}
-      };
-
-      const action = { type: externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS };
-      const newState = externalItemsReducer(oldState, action);
-      const expectedState = {};
-
-      expect(newState).toMatchObject(expectedState);
-    });
-  });
-
   describe('when action is BITCOIN_WALLET_ADDRESSES_FLAG_AS_USED', () => {
     it('flags the specified addresses as used', () => {
       const oldState = {

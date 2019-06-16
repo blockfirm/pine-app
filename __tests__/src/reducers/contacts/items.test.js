@@ -113,15 +113,6 @@ describe('contactsItemsReducer', () => {
     });
   });
 
-  describe('when action is CONTACTS_REMOVE_ALL_SUCCESS', () => {
-    it('returns an empty object', () => {
-      const action = { type: contactsActions.CONTACTS_REMOVE_ALL_SUCCESS };
-      const newState = contactsItemsReducer(undefined, action);
-
-      expect(newState).toEqual({});
-    });
-  });
-
   describe('when action is CONTACTS_CONTACT_REQUESTS_ACCEPT_SUCCESS', () => {
     it('returns the contacts with accepted contact replaced with new contact', () => {
       const oldState = {

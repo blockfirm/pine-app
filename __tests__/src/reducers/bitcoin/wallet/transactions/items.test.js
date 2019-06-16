@@ -105,21 +105,6 @@ describe('transactionsItemsReducer', () => {
     });
   });
 
-  describe('when action is BITCOIN_WALLET_TRANSACTIONS_REMOVE_ALL_SUCCESS', () => {
-    it('returns an empty array', () => {
-      const oldState = [
-        'cf8d2082-a44a-495e-86b8-670030eacbcc',
-        '1918bca9-8181-4a45-9641-3d412fb8767c'
-      ];
-
-      const action = { type: transactionsActions.BITCOIN_WALLET_TRANSACTIONS_REMOVE_ALL_SUCCESS };
-      const newState = transactionsItemsReducer(oldState, action);
-      const expectedState = [];
-
-      expect(newState).toEqual(expectedState);
-    });
-  });
-
   describe('when action is an unknown type', () => {
     it('returns the old state', () => {
       const oldState = ['403e7072-7587-482a-8fa4-70dd66eb8bad'];

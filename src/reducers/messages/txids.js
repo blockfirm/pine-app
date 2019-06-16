@@ -18,9 +18,6 @@ const txidsReducer = (state = {}, action) => {
       delete newState[action.txid];
       return newState;
 
-    case messageTxidsActions.MESSAGES_TXIDS_REMOVE_ALL:
-      return {};
-
     default:
       return state;
   }

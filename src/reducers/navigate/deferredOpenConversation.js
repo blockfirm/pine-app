@@ -1,4 +1,4 @@
-import { RESET_SUCCESS, READY } from '../../actions';
+import { READY } from '../../actions';
 
 import {
   NAVIGATE_DEFER_OPEN_CONVERSATION,
@@ -11,7 +11,6 @@ const deferredOpenConversation = (state = null, action) => {
       return action.contact;
 
     case READY:
-    case RESET_SUCCESS:
     case NAVIGATE_OPEN_CONVERSATION:
       return null;
 

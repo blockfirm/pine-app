@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { RESET_SUCCESS } from '../actions';
 import bitcoinReducer from './bitcoin';
 import errorReducer from './error';
 import settingsReducer from './settings';
@@ -31,7 +32,15 @@ const getRootReducer = (navReducer) => {
     navigate: navigateReducer
   });
 
-  return rootReducer;
+  return (state, action) => {
+    if (action.type === RESET_SUCCESS) {
+      // Reset app but keep navigation and settings state.
+      const { nav, settings } = state;
+      state = { nav, settings }; // eslint-disable-line no-param-reassign
+    }
+
+    return rootReducer(state, action);
+  };
 };
 
 export default getRootReducer;

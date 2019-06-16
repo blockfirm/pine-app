@@ -1,4 +1,3 @@
-import * as externalAddressActions from '../../../../../actions/bitcoin/wallet/addresses/external';
 import * as addressActions from '../../../../../actions/bitcoin/wallet/addresses';
 
 const unusedReducer = (state = null, action) => {
@@ -9,9 +8,6 @@ const unusedReducer = (state = null, action) => {
       }
 
       return action.address;
-
-    case externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS:
-      return null;
 
     default:
       return state;

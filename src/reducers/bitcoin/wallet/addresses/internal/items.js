@@ -13,9 +13,6 @@ const itemsReducer = (state = {}, action) => {
 
       return state;
 
-    case internalAddressActions.BITCOIN_WALLET_ADDRESSES_INTERNAL_REMOVE_ALL_SUCCESS:
-      return {};
-
     case addressActions.BITCOIN_WALLET_ADDRESSES_FLAG_AS_USED:
       action.addresses.forEach((address) => {
         if (address in state) {

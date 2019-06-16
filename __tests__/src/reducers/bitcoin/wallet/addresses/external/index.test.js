@@ -74,10 +74,6 @@ describe('externalReducer', () => {
     testAction(externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_LOAD_FAILURE);
   });
 
-  describe('when action is BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS', () => {
-    testAction(externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_REMOVE_ALL_SUCCESS);
-  });
-
   describe('when action is BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_REQUEST', () => {
     testAction(externalAddressActions.BITCOIN_WALLET_ADDRESSES_EXTERNAL_SAVE_REQUEST);
   });

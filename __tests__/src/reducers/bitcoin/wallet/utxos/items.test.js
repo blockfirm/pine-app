@@ -38,21 +38,6 @@ describe('utxosItemsReducer', () => {
     });
   });
 
-  describe('when action is BITCOIN_WALLET_UTXOS_REMOVE_ALL_SUCCESS', () => {
-    it('returns an empty array', () => {
-      const oldState = [
-        '465702fb-31e1-421c-a095-b64c072fb101',
-        'd907ab6b-c59d-4874-b892-13afbf28fd02'
-      ];
-
-      const action = { type: utxoActions.BITCOIN_WALLET_UTXOS_REMOVE_ALL_SUCCESS };
-      const newState = utxosItemsReducer(oldState, action);
-      const expectedState = [];
-
-      expect(newState).toEqual(expectedState);
-    });
-  });
-
   describe('when action is an unknown type', () => {
     it('returns the old state', () => {
       const oldState = ['f9080601-df71-409f-8fd1-08ce849a3560'];
