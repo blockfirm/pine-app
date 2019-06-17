@@ -11,6 +11,7 @@ import contactsReducer from './contacts';
 import messagesReducer from './messages';
 import syncingReducer from './syncing';
 import pineReducer from './pine';
+import loadedReducer from './loaded';
 import readyReducer from './ready';
 import navigateReducer from './navigate';
 
@@ -28,6 +29,7 @@ const getRootReducer = (navReducer) => {
     messages: messagesReducer,
     syncing: syncingReducer,
     pine: pineReducer,
+    loaded: loadedReducer,
     ready: readyReducer,
     navigate: navigateReducer
   });

@@ -127,7 +127,7 @@ export default class NotificationService {
     const hasAcceptedTerms = user && user.hasAcceptedTerms;
 
     // Wait until the state has loaded.
-    if (initialized === undefined) {
+    if (!state.loaded) {
       return setTimeout(() => {
         this._addDeviceTokenToPine();
       }, 1000);
