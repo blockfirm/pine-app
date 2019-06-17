@@ -39,7 +39,7 @@
     "react": "16.8.3",
     "react-apple-easing": "^0.0.2",
     "react-native": "0.59.9",
-    "react-native-background-fetch": "^2.5.6",
+    "react-native-background-fetch": "^2.6.0",
     "react-native-blur": "^3.2.2",
     "react-native-camera": "^1.13.1",
     "react-native-crypto": "^2.1.2",
