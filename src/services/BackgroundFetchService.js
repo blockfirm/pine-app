@@ -18,18 +18,10 @@ export default class BackgroundFetchService {
     return !disconnected && initialized && hasAcceptedTerms;
   }
 
-  start() {
+  _sync() {
     const { dispatch } = this.store;
 
-    const config = {
-      minimumFetchInterval: MINIMUM_FETCH_INTERVAL
-    };
-
-    BackgroundFetch.configure(config, () => {
-      if (!this._shouldSync()) {
-        return BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_FAILED);
-      }
-
+    return new Promise((resolve) => {
       /**
        * WORKAROUND: Due to a bug in iOS, network requests might fail
        * if the app is in the background or recently became active.
@@ -43,8 +35,25 @@ export default class BackgroundFetchService {
           })
           .catch(() => {
             BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_FAILED);
+          })
+          .then(() => {
+            resolve();
           });
       }, 1000);
+    });
+  }
+
+  start() {
+    const config = {
+      minimumFetchInterval: MINIMUM_FETCH_INTERVAL
+    };
+
+    BackgroundFetch.configure(config, () => {
+      if (this._shouldSync()) {
+        return this._sync();
+      }
+
+      return BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_FAILED);
     }, () => {
       // BackgroundFetch failed to start.
     });
