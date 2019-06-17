@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   StatusBar,
-  View,
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
@@ -28,6 +27,7 @@ import StyledText from '../components/StyledText';
 import Link from '../components/Link';
 import Avatar from '../components/Avatar';
 import ContentView from '../components/ContentView';
+import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
 const styles = StyleSheet.create({
@@ -46,9 +46,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     paddingTop: 16,
     marginHorizontal: 16
-  },
-  backups: {
-    marginVertical: 30
   },
   backup: {
     flexDirection: 'row',
@@ -72,6 +69,13 @@ const styles = StyleSheet.create({
     top: 1,
     right: 0,
     height: 42
+  },
+  footer: {
+    left: 0,
+    right: 0
+  },
+  enterKey: {
+    fontWeight: '400'
   }
 });
 
@@ -210,15 +214,15 @@ export default class RecoverScreen extends Component {
 
         <ContentView style={styles.content}>
           <ScrollView style={styles.scrollView}>
-            <View style={styles.backups}>
-              { this._renderBackups() }
-            </View>
-
-            <Link onPress={this._showImportMnemonicScreen.bind(this)} disabled={Boolean(recovering)}>
-              Enter Recovery Key
-            </Link>
+            { this._renderBackups() }
           </ScrollView>
         </ContentView>
+
+        <Footer style={styles.footer}>
+          <Link onPress={this._showImportMnemonicScreen.bind(this)} disabled={Boolean(recovering)} labelStyle={styles.enterKey}>
+            Enter Recovery Key
+          </Link>
+        </Footer>
       </BaseScreen>
     );
   }
