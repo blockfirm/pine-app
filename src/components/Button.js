@@ -31,6 +31,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 16
   },
+  subtitle: {
+    color: 'white',
+    fontFamily: 'System',
+    fontWeight: '400',
+    fontSize: 11,
+    paddingHorizontal: 30
+  },
   disabled: {
     backgroundColor: '#B1AFB7',
     opacity: 0.7
@@ -167,6 +174,20 @@ export default class Button extends Component {
     }
   }
 
+  _renderSubtitle() {
+    const { subtitle } = this.props;
+
+    if (!subtitle) {
+      return null;
+    }
+
+    return (
+      <Text style={styles.subtitle} numberOfLines={1}>
+        {subtitle}
+      </Text>
+    );
+  }
+
   render() {
     const { disabled, loading } = this.state;
     const loaderColor = this.props.loaderColor || '#FFFFFF';
@@ -192,6 +213,7 @@ export default class Button extends Component {
           <Text style={[styles.label, this.props.labelStyle, { opacity: loading ? 0 : 1 }]}>
             {this.props.label}
           </Text>
+          { this._renderSubtitle() }
         </View>
       </TouchableOpacity>
     );
@@ -201,6 +223,7 @@ export default class Button extends Component {
 Button.propTypes = {
   label: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
+  subtitle: PropTypes.string,
   style: PropTypes.any,
   labelStyle: PropTypes.any,
   disabledStyle: PropTypes.any,

@@ -62,7 +62,23 @@ const styles = StyleSheet.create({
 
 export default class QrCodeScanner extends Component {
   state = {
-    cameraReady: false
+    cameraReady: false,
+    copiedAddress: null
+  }
+
+  componentDidMount() {
+    this._clipboardInterval = setInterval(async () => {
+      try {
+        const copiedAddress = await this._getAddressFromClipboard();
+        this.setState({ copiedAddress });
+      } catch (error) {
+        this.setState({ copiedAddress: null });
+      }
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._clipboardInterval);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -83,6 +99,26 @@ export default class QrCodeScanner extends Component {
     return false;
   }
 
+  async _getAddressFromClipboard() {
+    const copiedString = await Clipboard.getString();
+    const { network } = this.props;
+    const pineAddress = getAddressFromUri(copiedString);
+    const paymentInfo = getPaymentInfoFromString(copiedString, network);
+
+    if (paymentInfo) {
+      // Copied string is a BIP21 URI or bitcoin address.
+      return pineAddress || paymentInfo.address;
+    }
+
+    // Try to evaluate copied string a Pine address.
+    try {
+      parseAddress(copiedString);
+      return copiedString.trim();
+    } catch (error) {
+      return null;
+    }
+  }
+
   _onReceiveData(data, fromCamera) {
     if (!data || typeof data !== 'string') {
       if (!fromCamera) {
@@ -101,8 +137,8 @@ export default class QrCodeScanner extends Component {
     const pineAddress = getAddressFromUri(data);
     const paymentInfo = getPaymentInfoFromString(data, network);
 
-    // Try to evaluate data as a BIP21 URI.
     if (paymentInfo) {
+      // Data is a BIP21 URI or bitcoin address.
       return onReceiveAddress(pineAddress || paymentInfo.address, paymentInfo.amount, fromCamera);
     }
 
@@ -161,11 +197,29 @@ export default class QrCodeScanner extends Component {
   }
 
   _renderButton(cameraAuthorized) {
+    const { copiedAddress } = this.state;
+    const subtitle = copiedAddress || 'No Address to Paste';
+    const disabled = !copiedAddress;
+
     if (cameraAuthorized) {
-      return <VibrancyButton label='Paste Address' onPress={this._onPaste.bind(this)} />;
+      return (
+        <VibrancyButton
+          label='Paste Address'
+          subtitle={subtitle}
+          disabled={disabled}
+          onPress={this._onPaste.bind(this)}
+        />
+      );
     }
 
-    return <Button label='Paste Address' onPress={this._onPaste.bind(this)} />;
+    return (
+      <Button
+        label='Paste Address'
+        subtitle={subtitle}
+        disabled={disabled}
+        onPress={this._onPaste.bind(this)}
+      />
+    );
   }
 
   _renderCameraContent(cameraAuthorized) {

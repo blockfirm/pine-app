@@ -29,6 +29,16 @@ const styles = StyleSheet.create({
     fontFamily: 'System',
     fontWeight: '600',
     fontSize: 16
+  },
+  subtitle: {
+    color: '#111',
+    fontFamily: 'System',
+    fontWeight: '400',
+    fontSize: 11,
+    paddingHorizontal: 30
+  },
+  labelDisabled: {
+    opacity: 0.5
   }
 });
 
@@ -55,20 +65,54 @@ export default class VibrancyButton extends Component {
     this.props.onPress();
   }
 
+  _renderSubtitle() {
+    const { subtitle, disabled } = this.props;
+
+    const subtitleStyles = [
+      styles.subtitle,
+      disabled && styles.labelDisabled
+    ];
+
+    if (!subtitle) {
+      return null;
+    }
+
+    return (
+      <Text style={subtitleStyles} numberOfLines={1}>
+        {subtitle}
+      </Text>
+    );
+  }
+
   render() {
+    const { disabled, style, labelStyle } = this.props;
+
     const buttonStyles = [
       styles.button,
-      this.props.style
+      style
+    ];
+
+    const labelStyles = [
+      styles.label,
+      labelStyle,
+      disabled && styles.labelDisabled
     ];
 
     return (
-      <TouchableHighlight onPress={this._onPress} underlayColor='rgba(0, 0, 0, 0.2)' activeOpacity={1} style={buttonStyles}>
+      <TouchableHighlight
+        onPress={this._onPress}
+        underlayColor='rgba(0, 0, 0, 0.2)'
+        activeOpacity={1}
+        style={buttonStyles}
+        disabled={disabled}
+      >
         <View>
           <VibrancyView blurType='light' blurAmount={100} style={buttonStyles} />
           <View style={styles.labelWrapper}>
-            <Text style={[styles.label, this.props.labelStyle]}>
+            <Text style={labelStyles}>
               {this.props.label}
             </Text>
+            { this._renderSubtitle() }
           </View>
         </View>
       </TouchableHighlight>
@@ -79,6 +123,8 @@ export default class VibrancyButton extends Component {
 VibrancyButton.propTypes = {
   label: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
+  subtitle: PropTypes.string,
+  disabled: PropTypes.bool,
   style: PropTypes.any,
   labelStyle: PropTypes.any
 };
