@@ -3,7 +3,7 @@ import { REGION_CURRENCY } from './localization';
 
 export default {
   initialized: false, // If false, show welcome screen
-  defaultPineAddressHostname: 'pine.dev',
+  defaultPineAddressHostname: 'pine.pm',
   user: {
     // The user must accept the Terms and Conditions before using the app.
     hasAcceptedTerms: false,
@@ -29,12 +29,12 @@ export default {
     }
   },
   api: {
-    baseUrl: 'https://api.pine.dev',
-    fiatRateServiceBaseUrl: 'https://api.pine.dev',
-    feeEstimationServiceBaseUrl: 'https://api.pine.dev'
+    baseUrl: 'https://api.pine.pm',
+    fiatRateServiceBaseUrl: 'https://api.pine.pm',
+    feeEstimationServiceBaseUrl: 'https://api.pine.pm'
   },
   bitcoin: {
-    network: 'testnet', // 'mainnet' or 'testnet'
+    network: 'mainnet', // 'mainnet' or 'testnet'
     unit: 'BTC', // 'BTC', 'mBTC', or 'Satoshis'
     fee: {
       level: 'Normal', // One of: 'High', 'Normal', 'Low', 'Very Low', 'Custom'

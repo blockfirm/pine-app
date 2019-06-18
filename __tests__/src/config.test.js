@@ -13,9 +13,9 @@ describe('config', () => {
     });
 
     describe('.network', () => {
-      it('equals "testnet"', () => {
+      it('equals "mainnet"', () => {
         expect(typeof config.bitcoin.network).toBe('string');
-        expect(config.bitcoin.network).toBe('testnet');
+        expect(config.bitcoin.network).toBe('mainnet');
       });
     });
   });
