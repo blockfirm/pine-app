@@ -36,7 +36,7 @@ const createFailure = (error) => {
 };
 
 const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.mainnet;
+  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
 };
 
 const getSpendableUtxos = (utxos) => {

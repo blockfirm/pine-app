@@ -1,7 +1,7 @@
 import bitcoin from 'bitcoinjs-lib';
 
 const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.mainnet;
+  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
 };
 
 /**

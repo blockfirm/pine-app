@@ -113,7 +113,7 @@ const findWalletAddress = (addresses, network, externalAddresses, accountPublicK
 };
 
 const getAddressesFromTransaction = (transaction, network) => {
-  const bitcoinNetwork = network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.mainnet;
+  const bitcoinNetwork = network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
 
   const addresses = transaction.outs
     .map((out) => {

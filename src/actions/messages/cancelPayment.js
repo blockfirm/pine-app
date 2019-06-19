@@ -47,7 +47,7 @@ const cancelPaymentFailure = (error) => {
  * @returns {Object} a bitcoinjs network object.
  */
 const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.mainnet;
+  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
 };
 
 /**

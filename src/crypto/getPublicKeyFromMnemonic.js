@@ -3,7 +3,7 @@ import bip32 from 'bip32';
 import bip39 from 'bip39';
 
 const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.mainnet;
+  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
 };
 
 const getPublicKeyFromMnemonic = (mnemonic, network) => {

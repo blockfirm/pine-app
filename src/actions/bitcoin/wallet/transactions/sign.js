@@ -27,7 +27,7 @@ const signFailure = (error) => {
 };
 
 const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.mainnet;
+  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
 };
 
 const getAddressIndex = (address, addresses) => {
