@@ -11,13 +11,19 @@ export default class AutoSyncService {
   }
 
   start() {
-    // Get initial app state.
     this._appState = AppState.currentState;
-
-    // Listen for app state changes (e.g. when app becomes active).
     AppState.addEventListener('change', this._onAppStateChange);
+    this._startInterval();
+  }
 
-    // Sync app with an interval.
+  stop() {
+    this._stopInterval();
+    AppState.removeEventListener('change', this._onAppStateChange);
+  }
+
+  _startInterval() {
+    this._stopInterval();
+
     this._syncInterval = setInterval(() => {
       if (this._appState !== 'background') {
         this._syncApp();
@@ -25,9 +31,8 @@ export default class AutoSyncService {
     }, SYNC_INTERVAL);
   }
 
-  stop() {
+  _stopInterval() {
     clearInterval(this._syncInterval);
-    AppState.removeEventListener('change', this._onAppStateChange);
   }
 
   _onAppStateChange(nextAppState) {
@@ -42,6 +47,14 @@ export default class AutoSyncService {
         this._syncApp();
         this._updateProfiles();
       }, 1000);
+    }
+
+    if (nextAppState === 'active') {
+      this._startInterval();
+    }
+
+    if (nextAppState === 'background') {
+      this._stopInterval();
     }
 
     this._appState = nextAppState;
