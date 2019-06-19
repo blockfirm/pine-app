@@ -12,6 +12,7 @@ import HomeScreen from '../screens/HomeScreen';
 import PaymentDetailsScreen from '../screens/PaymentDetailsScreen';
 import ConversationScreen from '../screens/ConversationScreen';
 import ResetScreen from '../screens/ResetScreen';
+import BetaScreen from '../screens/BetaScreen';
 
 const MainNavigator = createStackNavigator({
   Splash: { screen: SplashScreen },
@@ -25,7 +26,8 @@ const MainNavigator = createStackNavigator({
   Home: { screen: HomeScreen },
   PaymentDetails: { screen: PaymentDetailsScreen },
   Conversation: { screen: ConversationScreen },
-  Reset: { screen: ResetScreen }
+  Reset: { screen: ResetScreen },
+  Beta: { screen: BetaScreen }
 }, {
   headerMode: 'screen',
   initialRouteName: 'Splash'
