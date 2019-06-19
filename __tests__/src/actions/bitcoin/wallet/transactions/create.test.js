@@ -24,7 +24,10 @@ const dispatchMock = jest.fn((action) => {
 const getStateMock = jest.fn(() => ({
   settings: {
     bitcoin: {
-      network: 'mainnet'
+      network: 'mainnet',
+      fee: {
+        numberOfBlocks: 6
+      }
     }
   },
   bitcoin: {

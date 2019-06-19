@@ -134,12 +134,9 @@ export const create = (amountBtc, toAddress) => {
     const spendableUtxos = getSpendableUtxos(utxos);
     const changeAddress = state.bitcoin.wallet.addresses.internal.unused;
     const network = state.settings.bitcoin.network;
+    const { numberOfBlocks } = state.settings.bitcoin.fee;
 
-    /**
-     * The user can no longer set their preferred fee level in settings.
-     * Set priority to 3 blocks to try to keep fees down.
-     */
-    const numberOfBlocks = 3;
+    // The user can no longer set their preferred fee level.
     const ignoreFeeLevel = true;
 
     // Get transaction fee estimate.

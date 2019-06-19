@@ -273,9 +273,9 @@ export default class PaymentDetailsScreen extends Component {
 
     if (!transaction.confirmations > 0) {
       if (message.from) {
-        return 'The transaction has been broadcasted and is waiting to be confirmed. It should be spendable within 30 minutes.';
+        return 'The transaction has been broadcasted and is waiting to be confirmed. It should be spendable within 10-60 minutes after it was broadcasted.';
       } else {
-        return 'The transaction has been broadcasted and any potential change has been unlocked for you to spend. The payment will be spendable by its recipient once the transaction has been confirmed, which should be within 30 minutes.';
+        return 'The transaction has been broadcasted and any potential change has been unlocked for you to spend. The payment will be spendable by its recipient once the transaction has been confirmed, which should be within 10-60 minutes after it was broadcasted.';
       }
     }
 
