@@ -43,21 +43,11 @@ export const sync = () => {
     dispatch(syncRequest());
 
     syncPromise = dispatch(syncContacts())
-      .then(() => {
-        return dispatch(syncIncomingContactRequests());
-      })
-      .then(() => {
-        return dispatch(syncMessages());
-      })
-      .then(() => {
-        return dispatch(syncBitcoinWallet());
-      })
-      .then(() => {
-        dispatch(syncSuccess());
-      })
-      .catch((error) => {
-        dispatch(syncFailure(error));
-      });
+      .then(() => dispatch(syncIncomingContactRequests()))
+      .then(() => dispatch(syncMessages()))
+      .then(() => dispatch(syncBitcoinWallet()))
+      .then(() => dispatch(syncSuccess()))
+      .catch((error) => dispatch(syncFailure(error)));
 
     return syncPromise;
   };
