@@ -5,7 +5,7 @@ Pine Wallet
 [![Build Status](https://img.shields.io/travis/blockfirm/pine-app.svg?branch=master&style=flat-square)](https://travis-ci.org/blockfirm/pine-app)
 [![Coverage Status](https://img.shields.io/coveralls/blockfirm/pine-app.svg?style=flat-square)](https://coveralls.io/r/blockfirm/pine-app)
 
-[Pine](https://pinewallet.co) is an open-source bitcoin wallet for sending and receiving money among your friends.
+[Pine](https://pine.pm) is an open-source bitcoin wallet for sending and receiving money among your friends.
 
 ## Getting Started
 
