@@ -6,12 +6,14 @@ import Avatar from '../Avatar';
 import Paragraph from '../Paragraph';
 import SmallButton from '../buttons/SmallButton';
 import Link from '../Link';
+import Footer from '../Footer';
 
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: 50
   },
   title: {
     color: 'black',
@@ -32,7 +34,11 @@ const styles = StyleSheet.create({
     paddingTop: 0
   },
   destructiveLabel: {
-    color: '#FF3B30'
+    color: '#FF3B30',
+    fontWeight: '400'
+  },
+  footer: {
+    bottom: 0
   }
 });
 
@@ -108,15 +114,17 @@ export default class ContactRequest extends Component {
 
         <SmallButton label='Accept' onPress={this.props.onAccept} showLoader={true} />
 
-        <Link
-          onPress={this._confirmIgnore}
-          style={styles.ignore}
-          labelStyle={styles.destructiveLabel}
-          showLoader={true}
-          loaderHidingDelay={0}
-        >
-          Ignore
-        </Link>
+        <Footer style={styles.footer}>
+          <Link
+            onPress={this._confirmIgnore}
+            style={styles.ignore}
+            labelStyle={styles.destructiveLabel}
+            showLoader={true}
+            loaderHidingDelay={0}
+          >
+            Ignore
+          </Link>
+        </Footer>
       </View>
     );
   }
@@ -133,15 +141,17 @@ export default class ContactRequest extends Component {
           your contact request.
         </Paragraph>
 
-        <Link
-          onPress={this._confirmDelete}
-          style={styles.delete}
-          labelStyle={styles.destructiveLabel}
-          showLoader={true}
-          loaderHidingDelay={0}
-        >
-          Delete
-        </Link>
+        <Footer style={styles.footer}>
+          <Link
+            onPress={this._confirmDelete}
+            style={styles.delete}
+            labelStyle={styles.destructiveLabel}
+            showLoader={true}
+            loaderHidingDelay={0}
+          >
+            Delete
+          </Link>
+        </Footer>
       </View>
     );
   }
