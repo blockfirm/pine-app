@@ -44,7 +44,7 @@ export default class ResetScreen extends Component {
     return dispatch(resetApp(keepSettings, keepBackup))
       .then(() => {
         InteractionManager.runAfterInteractions(() => {
-          this._showWelcomeScreen();
+          this._showSplashScreen();
         });
       })
       .catch((error) => {
@@ -58,9 +58,9 @@ export default class ResetScreen extends Component {
     dispatch(navigateWithReset('Home'));
   }
 
-  _showWelcomeScreen() {
+  _showSplashScreen() {
     const { dispatch } = this.props;
-    dispatch(navigateWithReset('Welcome'));
+    dispatch(navigateWithReset('Splash'));
   }
 
   render() {
