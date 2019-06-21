@@ -13,6 +13,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
 import Icon from 'react-native-vector-icons/Ionicons';
+import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import { reset as resetApp } from '../actions';
 import { reset as navigateWithReset } from '../actions/navigate';
@@ -29,6 +31,8 @@ import Avatar from '../components/Avatar';
 import ContentView from '../components/ContentView';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
+
+const CONTENT_INSET_BOTTOM = StaticSafeAreaInsets.safeAreaInsetsBottom + ifIphoneX(50, 60);
 
 const styles = StyleSheet.create({
   view: {
@@ -213,7 +217,11 @@ export default class RecoverScreen extends Component {
         <StatusBar barStyle='dark-content' />
 
         <ContentView style={styles.content}>
-          <ScrollView style={styles.scrollView}>
+          <ScrollView
+            style={styles.scrollView}
+            contentInset={{ bottom: CONTENT_INSET_BOTTOM }}
+            showsVerticalScrollIndicator={false}
+          >
             { this._renderBackups() }
           </ScrollView>
         </ContentView>
