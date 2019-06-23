@@ -33,6 +33,10 @@ export default class DisplayNameScreen extends Component {
     };
   };
 
+  state = {
+    submitting: false
+  }
+
   constructor(props) {
     super(...arguments);
 
@@ -80,6 +84,7 @@ export default class DisplayNameScreen extends Component {
     const displayName = this.state.displayName.trim() || this.state.username;
 
     this.props.navigation.setParams({ canSubmit: false });
+    this.setState({ submitting: true });
 
     return this._getMnemonic()
       .then((mnemonic) => {
@@ -92,6 +97,7 @@ export default class DisplayNameScreen extends Component {
       .catch((error) => {
         dispatch(handleError(error));
         this.props.navigation.setParams({ canSubmit: true });
+        this.setState({ submitting: false });
       });
   }
 
@@ -114,6 +120,7 @@ export default class DisplayNameScreen extends Component {
             placeholder={this.state.username}
             onChangeText={this._onChangeText.bind(this)}
             onSubmitEditing={this._onSubmit.bind(this)}
+            disabled={this.state.submitting}
             maxLength={50}
           />
         </SettingsGroup>

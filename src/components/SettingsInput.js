@@ -34,6 +34,7 @@ export default class SettingsInput extends Component {
           onChangeText={this.props.onChangeText}
           onSubmitEditing={this.props.onSubmitEditing}
           maxLength={this.props.maxLength}
+          editable={!this.props.disabled}
         />
       </View>
     );
@@ -46,5 +47,6 @@ SettingsInput.propTypes = {
   keyboardType: PropTypes.string,
   onChangeText: PropTypes.func,
   onSubmitEditing: PropTypes.func,
-  maxLength: PropTypes.number
+  maxLength: PropTypes.number,
+  disabled: PropTypes.bool
 };
