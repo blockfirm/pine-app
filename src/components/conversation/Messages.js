@@ -9,7 +9,9 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     alignSelf: 'stretch',
-    padding: 16
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    marginBottom: -16
   }
 });
 
