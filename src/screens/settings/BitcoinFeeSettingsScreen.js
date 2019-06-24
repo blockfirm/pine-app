@@ -124,7 +124,7 @@ export default class BitcoinFeeSettingsScreen extends Component {
     }
 
     if (estimatedFeeRate === null) {
-      return <ActivityIndicator size='small' />;
+      return <ActivityIndicator color='gray' size='small' />;
     }
 
     const estimatedFee = this._getEstimatedFee();

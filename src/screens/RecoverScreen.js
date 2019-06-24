@@ -203,7 +203,7 @@ export default class RecoverScreen extends Component {
           </StyledText>
 
           { (recovering !== backup) ? <Icon name='ios-arrow-forward' style={styles.chevron} /> : null }
-          { (recovering === backup) ? <ActivityIndicator animating={true} color='#8A8A8F' style={styles.loader} size='small' /> : null }
+          { (recovering === backup) ? <ActivityIndicator color='gray' style={styles.loader} size='small' /> : null }
         </TouchableOpacity>
       );
     });

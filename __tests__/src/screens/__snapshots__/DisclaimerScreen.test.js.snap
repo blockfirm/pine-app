@@ -392,18 +392,6 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
           ]
         }
       >
-        <ActivityIndicator
-          animating={false}
-          color="#FFFFFF"
-          hidesWhenStopped={true}
-          size="small"
-          style={
-            Object {
-              "height": 12,
-              "position": "absolute",
-            }
-          }
-        />
         <Text
           style={
             Array [
@@ -820,18 +808,6 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
           ]
         }
       >
-        <ActivityIndicator
-          animating={false}
-          color="#FFFFFF"
-          hidesWhenStopped={true}
-          size="small"
-          style={
-            Object {
-              "height": 12,
-              "position": "absolute",
-            }
-          }
-        />
         <Text
           style={
             Array [

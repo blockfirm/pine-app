@@ -429,7 +429,7 @@ export default class PaymentDetailsScreen extends Component {
     if (cancelling) {
       return (
         <Footer style={styles.footer}>
-          <ActivityIndicator animating={true} size='small' />
+          <ActivityIndicator color='gray' size='small' />
         </Footer>
       );
     }

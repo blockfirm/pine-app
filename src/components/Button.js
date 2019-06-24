@@ -209,7 +209,7 @@ export default class Button extends Component {
     return (
       <TouchableOpacity disabled={disabled} activeOpacity={0.7} onPress={this._onPress.bind(this)}>
         <View style={buttonStyles}>
-          <ActivityIndicator animating={loading} color={loaderColor} style={styles.loader} size='small' />
+          { loading && <ActivityIndicator color={loaderColor} style={styles.loader} size='small' /> }
           <Text style={[styles.label, this.props.labelStyle, { opacity: loading ? 0 : 1 }]}>
             {this.props.label}
           </Text>

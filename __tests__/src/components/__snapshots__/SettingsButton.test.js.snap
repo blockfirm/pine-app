@@ -179,7 +179,7 @@ exports[`SettingsButton renders correctly while loading 1`] = `
     </Text>
     <ActivityIndicator
       animating={true}
-      color="#8A8A8F"
+      color="gray"
       hidesWhenStopped={true}
       size="small"
       style={

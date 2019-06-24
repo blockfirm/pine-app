@@ -31,18 +31,6 @@ exports[`Button renders correctly 1`] = `
       ]
     }
   >
-    <ActivityIndicator
-      animating={false}
-      color="#FFFFFF"
-      hidesWhenStopped={true}
-      size="small"
-      style={
-        Object {
-          "height": 12,
-          "position": "absolute",
-        }
-      }
-    />
     <Text
       style={
         Array [
@@ -101,18 +89,6 @@ exports[`Button renders correctly as disabled 1`] = `
       ]
     }
   >
-    <ActivityIndicator
-      animating={false}
-      color="#FFFFFF"
-      hidesWhenStopped={true}
-      size="small"
-      style={
-        Object {
-          "height": 12,
-          "position": "absolute",
-        }
-      }
-    />
     <Text
       style={
         Array [
@@ -166,18 +142,6 @@ exports[`Button renders correctly in full width 1`] = `
       ]
     }
   >
-    <ActivityIndicator
-      animating={false}
-      color="#FFFFFF"
-      hidesWhenStopped={true}
-      size="small"
-      style={
-        Object {
-          "height": 12,
-          "position": "absolute",
-        }
-      }
-    />
     <Text
       style={
         Array [

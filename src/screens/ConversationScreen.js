@@ -97,7 +97,7 @@ export default class ConversationScreen extends Component {
 
     if (loading) {
       headerRight = (
-        <ActivityIndicator animating={true} color='gray' size='small' style={styles.headerLoader} />
+        <ActivityIndicator color='gray' size='small' style={styles.headerLoader} />
       );
     } else {
       headerRight = (

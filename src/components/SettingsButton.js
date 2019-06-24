@@ -61,7 +61,7 @@ export default class SettingsButton extends Component {
       <TouchableHighlight onPress={this._onPress.bind(this)} underlayColor={underlayColor}>
         <View style={containerStyles}>
           <StyledText style={labelStyles}>{title}</StyledText>
-          { loading ? <ActivityIndicator animating={true} color='#8A8A8F' style={[styles.loader, this.props.loaderStyle]} size='small' /> : null }
+          { loading ? <ActivityIndicator color='gray' style={[styles.loader, this.props.loaderStyle]} size='small' /> : null }
           { showCheckmark ? <Icon name='check' style={styles.checkmark} /> : null }
         </View>
       </TouchableHighlight>

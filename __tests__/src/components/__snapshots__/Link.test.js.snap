@@ -40,18 +40,6 @@ exports[`Link renders correctly 1`] = `
       ]
     }
   >
-    <ActivityIndicator
-      animating={false}
-      color="gray"
-      hidesWhenStopped={true}
-      size="small"
-      style={
-        Object {
-          "height": 12,
-          "position": "absolute",
-        }
-      }
-    />
     <Text
       style={
         Array [

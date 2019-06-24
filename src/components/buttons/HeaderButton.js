@@ -76,7 +76,7 @@ export default class HeaderButton extends Component {
     return (
       <TouchableOpacity onPress={this._handleOnPress.bind(this)} disabled={disabled} style={styles.button}>
         <View>
-          <ActivityIndicator animating={loading} style={styles.loader} size='small' />
+          { loading && <ActivityIndicator color='gray' style={styles.loader} size='small' /> }
           <StyledText style={textStyles}>
             {this.props.label}
           </StyledText>

@@ -172,7 +172,7 @@ export default class ConfirmTransaction extends Component {
     }
 
     if (!feeBtc) {
-      return <ActivityIndicator size='small' />;
+      return <ActivityIndicator color='gray' size='small' />;
     }
 
     return (

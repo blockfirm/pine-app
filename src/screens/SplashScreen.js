@@ -136,7 +136,7 @@ export default class SplashScreen extends Component {
       <BaseScreen style={styles.view}>
         <Image source={{ uri: 'LaunchScreenLogo' }} style={styles.logo} />
         <Footer style={styles.footer}>
-          <ActivityIndicator animating={true} color='#FFFFFF' style={styles.loader} size='small' />
+          <ActivityIndicator color='#FFFFFF' style={styles.loader} size='small' />
         </Footer>
       </BaseScreen>
     );

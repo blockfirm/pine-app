@@ -66,7 +66,7 @@ export default class ResetScreen extends Component {
   render() {
     return (
       <BaseScreen style={styles.view}>
-        <ActivityIndicator animating={true} style={styles.loader} size='small' />
+        <ActivityIndicator color='gray' style={styles.loader} size='small' />
       </BaseScreen>
     );
   }

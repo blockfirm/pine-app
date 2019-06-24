@@ -134,7 +134,7 @@ export default class EditAvatar extends Component {
 
     return (
       <View style={styles.loaderOverlay}>
-        <ActivityIndicator animating={true} color='#FFFFFF' size='small' />
+        <ActivityIndicator color='#FFFFFF' size='small' />
       </View>
     );
   }
