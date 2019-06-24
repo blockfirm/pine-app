@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight, Dimensions, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import { VibrancyView } from 'react-native-blur';
+import { VibrancyView } from '@react-native-community/blur';
 
 const windowDimensions = Dimensions.get('window');
 const FULL_WIDTH = windowDimensions.width;

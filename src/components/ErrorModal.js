@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight, Text, LayoutAnimation, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
-import { VibrancyView } from 'react-native-blur';
+import { VibrancyView } from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ReactNativeHaptic from 'react-native-haptic';
 
