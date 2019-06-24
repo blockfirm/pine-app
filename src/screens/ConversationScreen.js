@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   headerLoader: {
     alignSelf: 'center',
-    right: 23
+    right: 16
   }
 });
 

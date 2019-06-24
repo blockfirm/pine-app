@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   loader: {
     position: 'absolute',
-    alignSelf: 'center',
+    alignSelf: 'flex-end',
     marginTop: 1
   }
 });
