@@ -238,5 +238,6 @@ AmountInput.propTypes = {
   unit: PropTypes.string,
   initialAmount: PropTypes.number,
   hasError: PropTypes.bool,
-  errorText: PropTypes.string
+  errorText: PropTypes.string,
+  editable: PropTypes.bool
 };
