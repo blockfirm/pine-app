@@ -12,10 +12,3 @@ NativeModules.SettingsManager = {
     AppleLocale: 'en_US'
   }
 };
-
-// Polyfill Array.prototype.flat() (deep).
-Array.prototype.flat = function flattenDeep() {
-  return this.reduce((flattened, item) => {
-    return Array.isArray(item) ? flattened.concat(item.flat()) : flattened.concat(item);
-  }, []);
-};

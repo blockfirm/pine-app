@@ -40,6 +40,12 @@ const syncFailure = (error) => {
   };
 };
 
+const flattenDeep = (array) => {
+  return array.reduce((flattened, item) => {
+    return Array.isArray(item) ? flattened.concat(flattenDeep(item)) : flattened.concat(item);
+  }, []);
+};
+
 const waitForInteractions = () => {
   return new Promise((resolve) => {
     InteractionManager.runAfterInteractions(resolve);
@@ -146,7 +152,7 @@ const getAllNewTransactions = (dispatch, state) => {
   ];
 
   return Promise.all(promises).then((results) => {
-    return getUniqueTransactions(results.flat(2));
+    return getUniqueTransactions(flattenDeep(results));
   });
 };
 
