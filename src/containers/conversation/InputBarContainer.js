@@ -27,7 +27,8 @@ class InputBarContainer extends PureComponent {
     lastUsedDenomination: PropTypes.shape({
       currency: PropTypes.string,
       unit: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    initialAmountBtc: PropTypes.number
   };
 
   constructor() {
