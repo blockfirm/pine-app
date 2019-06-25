@@ -379,7 +379,9 @@ export default class ConversationScreen extends Component {
       amountBtc: 0
     });
 
-    this._inputBar.reset();
+    if (this._inputBar) {
+      this._inputBar.reset();
+    }
 
     if (createdContact) {
       navigation.setParams({ contact: createdContact });

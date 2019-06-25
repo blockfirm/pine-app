@@ -36,11 +36,15 @@ class InputBarContainer extends PureComponent {
   }
 
   reset() {
-    this._inputBar.reset();
+    if (this._inputBar) {
+      this._inputBar.reset();
+    }
   }
 
   focus() {
-    this._inputBar.focus();
+    if (this._inputBar) {
+      this._inputBar.focus();
+    }
   }
 
   _onChangeUnit({ currency, unit }) {
