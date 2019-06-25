@@ -123,6 +123,9 @@ export default class ImportMnemonicScreen extends Component {
       })
       .then((user) => {
         if (!user) {
+          this.setState({ loading: false });
+          KeepAwake.deactivate();
+
           return Alert.alert(
             'No Account Found',
             'No Pine account was found for the entered recovery key. Please make sure that you entered it correctly.',
