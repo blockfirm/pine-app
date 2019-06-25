@@ -12,7 +12,9 @@ exports[`MnemonicScreen renders correctly 1`] = `
         "justifyContent": "center",
         "padding": 40,
       },
-      undefined,
+      Object {
+        "justifyContent": "space-between",
+      },
     ]
   }
 >
@@ -34,9 +36,8 @@ exports[`MnemonicScreen renders correctly 1`] = `
             "marginBottom": 20,
           },
           Object {
-            "position": "absolute",
+            "marginTop": 45,
             "textAlign": "center",
-            "top": 85,
           },
         ],
       ]
@@ -48,9 +49,10 @@ exports[`MnemonicScreen renders correctly 1`] = `
     phrase="during bulb nominee acquire paddle next course stable govern eagle title wing"
     style={
       Object {
-        "marginTop": 20,
+        "marginBottom": 20,
       }
     }
   />
+  <View />
 </View>
 `;

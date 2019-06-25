@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'left',
     alignSelf: 'flex-start',
-    fontSize: 50,
+    fontSize: windowDimensions.width < 375 ? 28 : 40,
     fontWeight: '800',
-    lineHeight: 44,
+    lineHeight: windowDimensions.width < 375 ? 32 : 44,
     marginBottom: ifIphoneX(40, TITLE_MARGIN_BOTTOM)
   },
   subtitle: {

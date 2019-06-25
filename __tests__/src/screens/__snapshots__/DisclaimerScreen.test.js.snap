@@ -35,7 +35,7 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
           },
           Object {
             "alignSelf": "flex-start",
-            "fontSize": 50,
+            "fontSize": 40,
             "fontWeight": "800",
             "lineHeight": 44,
             "marginBottom": 30,
@@ -451,7 +451,7 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
           },
           Object {
             "alignSelf": "flex-start",
-            "fontSize": 50,
+            "fontSize": 40,
             "fontWeight": "800",
             "lineHeight": 44,
             "marginBottom": 30,

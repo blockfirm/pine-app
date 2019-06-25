@@ -50,6 +50,8 @@ exports[`WelcomeScreen renders correctly 1`] = `
         null,
         Object {
           "backgroundColor": "transparent",
+          "left": 0,
+          "right": 0,
         },
       ]
     }

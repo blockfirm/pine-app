@@ -800,11 +800,11 @@ exports[`MnemonicWords renders correctly 1`] = `
     style={
       Array [
         Object {
-          "bottom": -50,
+          "bottom": -30,
           "left": -10,
           "position": "absolute",
           "right": -10,
-          "top": -50,
+          "top": -30,
         },
         undefined,
       ]

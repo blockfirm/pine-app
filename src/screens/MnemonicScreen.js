@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar, Text } from 'react-native';
+import { StyleSheet, StatusBar, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
@@ -7,21 +7,20 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 import headerStyles from '../styles/headerStyles';
 import MnemonicWordsContainer from '../containers/MnemonicWordsContainer';
 import Paragraph from '../components/Paragraph';
-import Button from '../components/Button';
-import BackButton from '../components/BackButton';
 import CancelButton from '../components/CancelButton';
 import HeaderButton from '../components/buttons/HeaderButton';
-import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
 const styles = StyleSheet.create({
+  view: {
+    justifyContent: 'space-between'
+  },
   mnemonic: {
-    marginTop: 20
+    marginBottom: ifIphoneX(100, 20)
   },
   paragraph: {
     textAlign: 'center',
-    position: 'absolute',
-    top: ifIphoneX(140, 85)
+    marginTop: ifIphoneX(100, 45)
   }
 });
 
@@ -72,7 +71,7 @@ export default class MnemonicScreen extends Component {
     const mnemonic = params.mnemonic;
 
     return (
-      <BaseScreen hideHeader={true}>
+      <BaseScreen hideHeader={true} style={styles.view}>
         <StatusBar barStyle='dark-content' />
 
         <Paragraph style={styles.paragraph}>
@@ -80,6 +79,8 @@ export default class MnemonicScreen extends Component {
         </Paragraph>
 
         <MnemonicWordsContainer phrase={mnemonic} style={styles.mnemonic} />
+
+        <View>{ /* This acts as a spacer to place the mnemonic in the center. */ }</View>
       </BaseScreen>
     );
   }

@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
     marginBottom: 150
   },
   footer: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    left: 0,
+    right: 0
   },
   button: {
     width: null,

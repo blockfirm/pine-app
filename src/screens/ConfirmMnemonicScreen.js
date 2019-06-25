@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     textAlign: 'center'
+  },
+  mnemonic: {
+    marginTop: 10
   }
 });
 
@@ -127,7 +130,7 @@ export default class ConfirmMnemonicScreen extends Component {
               </Paragraph>
             </View>
 
-            <View>
+            <View style={styles.mnemonic}>
               <MnemonicInput
                 correctPhrase={correctPhrase}
                 onChange={this._onChangePhrase.bind(this)}

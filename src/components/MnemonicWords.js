@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
   },
   blur: {
     position: 'absolute',
-    top: -50,
-    bottom: -50,
+    top: -30,
+    bottom: -30,
     left: -10,
     right: -10
   },

@@ -69,7 +69,13 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
         To verify that you saved the words correctly, please enter them below.
       </Text>
     </View>
-    <View>
+    <View
+      style={
+        Object {
+          "marginTop": 10,
+        }
+      }
+    >
       <View
         style={
           Array [
