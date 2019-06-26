@@ -71,17 +71,13 @@ const getContactByAddress = (address, contacts) => {
 };
 
 const saveMessages = async (processedMessages, contacts, dispatch) => {
-  const persistContact = false;
-
   for (const message of processedMessages) {
     const contact = getContactByAddress(message.from, contacts);
 
     if (contact) {
-      await dispatch(addMessage(contact.id, message, persistContact));
+      await dispatch(addMessage(contact.id, message));
     }
   }
-
-  await dispatch(saveContacts());
 };
 
 const removeMessagesFromServer = (processedMessages, dispatch) => {

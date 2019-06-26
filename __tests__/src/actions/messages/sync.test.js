@@ -294,14 +294,6 @@ describe('sync', () => {
           });
         });
       });
-
-      it('saves the state', () => {
-        expect.hasAssertions();
-
-        return promise.then(() => {
-          expect(saveContacts).toHaveBeenCalled();
-        });
-      });
     });
 
     describe('when the function fails', () => {
