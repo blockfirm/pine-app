@@ -59,9 +59,9 @@ export default class DisclaimerScreen extends Component {
     header: null
   }
 
-  _showHomeScreen() {
+  _showTurnOnNotificationsScreen() {
     const dispatch = this.props.dispatch;
-    return dispatch(navigateWithReset('Home'));
+    return dispatch(navigateWithReset('TurnOnNotifications'));
   }
 
   _showTermsAndConditionsModal() {
@@ -105,7 +105,7 @@ export default class DisclaimerScreen extends Component {
 
     return this._finalizeSetup()
       .then(() => {
-        return this._showHomeScreen();
+        return this._showTurnOnNotificationsScreen();
       })
       .catch((error) => {
         dispatch(handleError(error));

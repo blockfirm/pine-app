@@ -48,10 +48,25 @@ export default class NotificationService {
 
   _register() {
     const { dispatch } = this.store;
+    const state = this.store.getState();
+    const { initialized, user } = state.settings;
+    const hasAcceptedTerms = user && user.hasAcceptedTerms;
 
-    PushNotificationIOS.requestPermissions().then((permissions) => {
-      dispatch(setPermissions(permissions));
-    });
+    // Wait until the state has loaded.
+    if (!state.loaded) {
+      return setTimeout(() => {
+        this._register();
+      }, 1000);
+    }
+
+    // Abort if wallet is not initialized or user has not accepted terms.
+    if (!initialized || !hasAcceptedTerms) {
+      return;
+    }
+
+    PushNotificationIOS.requestPermissions()
+      .then((permissions) => dispatch(setPermissions(permissions)))
+      .catch(() => { /* Suppress errors. */ });
   }
 
   _handleInitialNotification() {
@@ -122,21 +137,6 @@ export default class NotificationService {
 
   _addDeviceTokenToPine() {
     const { dispatch } = this.store;
-    const state = this.store.getState();
-    const { initialized, user } = state.settings;
-    const hasAcceptedTerms = user && user.hasAcceptedTerms;
-
-    // Wait until the state has loaded.
-    if (!state.loaded) {
-      return setTimeout(() => {
-        this._addDeviceTokenToPine();
-      }, 1000);
-    }
-
-    // Abort if wallet is not initialized or user has not accepted terms.
-    if (!initialized || !hasAcceptedTerms) {
-      return;
-    }
 
     dispatch(addDeviceTokenToPine()).catch(() => {
       // Suppress errors.
