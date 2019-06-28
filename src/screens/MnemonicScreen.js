@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
+import { reset as navigateWithReset } from '../actions/navigate';
 import headerStyles from '../styles/headerStyles';
 import MnemonicWordsContainer from '../containers/MnemonicWordsContainer';
 import Paragraph from '../components/Paragraph';
@@ -32,7 +33,8 @@ export default class MnemonicScreen extends Component {
     const isModal = navigation.getParam('isModal') || false;
     const canSubmit = navigation.getParam('canSubmit');
     const submit = navigation.getParam('submit');
-    const headerLeft = isModal ? <CancelButton onPress={screenProps.dismiss} /> : undefined;
+    const cancel = navigation.getParam('cancel');
+    const headerLeft = <CancelButton onPress={isModal ? screenProps.dismiss : cancel} />;
     const headerRight = <HeaderButton label='Next' onPress={submit} disabled={!canSubmit} />;
 
     return {
@@ -48,6 +50,7 @@ export default class MnemonicScreen extends Component {
   componentDidMount() {
     this.props.navigation.setParams({ canSubmit: false });
     this.props.navigation.setParams({ submit: this._showConfirmMnemonicScreen.bind(this) });
+    this.props.navigation.setParams({ cancel: this._cancel.bind(this) });
   }
 
   componentDidUpdate(prevProps) {
@@ -64,6 +67,14 @@ export default class MnemonicScreen extends Component {
     const { mnemonic, isModal } = navigation.state.params;
 
     navigation.navigate('ConfirmMnemonic', { mnemonic, isModal });
+  }
+
+  _cancel() {
+    const { dispatch } = this.props;
+    const keepSettings = false;
+    const keepBackup = true;
+
+    dispatch(navigateWithReset('Reset', { keepSettings, keepBackup }));
   }
 
   render() {

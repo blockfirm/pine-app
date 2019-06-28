@@ -19,6 +19,7 @@ import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';
 import HeaderButton from '../components/buttons/HeaderButton';
+import CancelButton from '../components/CancelButton';
 import StyledText from '../components/StyledText';
 import Paragraph from '../components/Paragraph';
 import BaseScreen from './BaseScreen';
@@ -89,6 +90,8 @@ export default class CreatePineAddressScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const nextIsDisabled = !navigation.getParam('canSubmit');
     const submit = navigation.getParam('submit');
+    const cancel = navigation.getParam('cancel');
+    const headerLeft = <CancelButton onPress={cancel} />;
     const headerRight = <HeaderButton label='Next' onPress={submit} disabled={nextIsDisabled} />;
 
     return {
@@ -96,6 +99,7 @@ export default class CreatePineAddressScreen extends Component {
       headerTransparent: true,
       headerStyle: headerStyles.whiteHeader,
       headerTitleStyle: headerStyles.title,
+      headerLeft,
       headerRight
     };
   };
@@ -113,11 +117,20 @@ export default class CreatePineAddressScreen extends Component {
   componentDidMount() {
     this.props.navigation.setParams({ canSubmit: false });
     this.props.navigation.setParams({ submit: this._onSubmit.bind(this) });
+    this.props.navigation.setParams({ cancel: this._cancel.bind(this) });
   }
 
   _showDisclaimerScreen() {
     const { dispatch } = this.props;
     return dispatch(navigateWithReset('Disclaimer'));
+  }
+
+  _cancel() {
+    const { dispatch } = this.props;
+    const keepSettings = false;
+    const keepBackup = true;
+
+    dispatch(navigateWithReset('Reset', { keepSettings, keepBackup }));
   }
 
   _onSubmit() {
