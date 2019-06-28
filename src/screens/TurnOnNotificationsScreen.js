@@ -28,8 +28,9 @@ const styles = StyleSheet.create({
   footerParagraph: {
     textAlign: 'center',
     fontSize: 13,
-    fontWeight: '600',
-    maxWidth: undefined
+    fontWeight: '500',
+    lineHeight: 18,
+    letterSpacing: undefined
   },
   notificationImage: {
     width: 313,
