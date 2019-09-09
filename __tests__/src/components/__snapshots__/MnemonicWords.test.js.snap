@@ -795,8 +795,6 @@ exports[`MnemonicWords renders correctly 1`] = `
     </View>
   </View>
   <View
-    blurAmount={5}
-    blurType="light"
     style={
       Array [
         Object {
@@ -805,6 +803,9 @@ exports[`MnemonicWords renders correctly 1`] = `
           "position": "absolute",
           "right": -10,
           "top": -30,
+        },
+        Object {
+          "backgroundColor": "white",
         },
         undefined,
       ]

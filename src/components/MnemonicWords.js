@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, AccessibilityInfo } from 'react-native';
 import PropTypes from 'prop-types';
 import { BlurView } from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
     left: -10,
     right: -10
   },
+  whiteBackground: {
+    backgroundColor: 'white'
+  },
   revealWrapper: {
     position: 'absolute',
     alignItems: 'center'
@@ -38,6 +41,29 @@ const styles = StyleSheet.create({
 });
 
 export default class MnemonicWords extends Component {
+  state = {
+    reduceTransparencyEnabled: true
+  }
+
+  constructor() {
+    super(...arguments);
+
+    this._onReduceTransparencyChanged = this._onReduceTransparencyChanged.bind(this);
+    AccessibilityInfo.addEventListener('reduceTransparencyChanged', this._onReduceTransparencyChanged);
+
+    AccessibilityInfo.isReduceTransparencyEnabled().then((reduceTransparencyEnabled) => {
+      this.setState({ reduceTransparencyEnabled });
+    });
+  }
+
+  componentWillUnmount() {
+    AccessibilityInfo.removeEventListener('reduceTransparencyChanged', this._onReduceTransparencyChanged);
+  }
+
+  _onReduceTransparencyChanged(reduceTransparencyEnabled) {
+    this.setState({ reduceTransparencyEnabled });
+  }
+
   _renderWords(words) {
     return words.map((word, index) => {
       return (
@@ -47,6 +73,18 @@ export default class MnemonicWords extends Component {
   }
 
   _renderBlur() {
+    const { reduceTransparencyEnabled } = this.state;
+
+    if (reduceTransparencyEnabled) {
+      return (
+        <View style={[
+          styles.blur,
+          styles.whiteBackground,
+          this.props.blurStyle
+        ]} />
+      );
+    }
+
     return (
       <BlurView
         style={[styles.blur, this.props.blurStyle]}
