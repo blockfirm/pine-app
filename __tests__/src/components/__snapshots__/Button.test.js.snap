@@ -3,7 +3,9 @@
 exports[`Button renders correctly 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -56,7 +58,9 @@ exports[`Button renders correctly 1`] = `
 exports[`Button renders correctly as disabled 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -114,7 +118,9 @@ exports[`Button renders correctly as disabled 1`] = `
 exports[`Button renders correctly in full width 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}

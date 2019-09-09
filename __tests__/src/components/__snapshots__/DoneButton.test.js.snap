@@ -3,7 +3,9 @@
 exports[`DoneButton renders correctly 1`] = `
 <View
   accessible={true}
+  clickable={false}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}

@@ -3,7 +3,9 @@
 exports[`SettingsButton renders correctly 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -62,7 +64,9 @@ exports[`SettingsButton renders correctly 1`] = `
 exports[`SettingsButton renders correctly as the last item 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}
@@ -123,7 +127,9 @@ exports[`SettingsButton renders correctly as the last item 1`] = `
 exports[`SettingsButton renders correctly while loading 1`] = `
 <View
   accessible={true}
+  clickable={true}
   isTVSelectable={true}
+  onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
   onResponderRelease={[Function]}

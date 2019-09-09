@@ -4,6 +4,8 @@ exports[`ToolbarButton renders correctly 1`] = `
 <View>
   <View
     accessible={true}
+    clickable={false}
+    onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
     onResponderRelease={[Function]}

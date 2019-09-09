@@ -98,7 +98,9 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
     >
       <View
         accessible={true}
+        clickable={true}
         isTVSelectable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -364,7 +366,9 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
     </Text>
     <View
       accessible={true}
+      clickable={true}
       isTVSelectable={true}
+      onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -514,7 +518,9 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
     >
       <View
         accessible={true}
+        clickable={true}
         isTVSelectable={true}
+        onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -780,7 +786,9 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
     </Text>
     <View
       accessible={true}
+      clickable={true}
       isTVSelectable={true}
+      onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}

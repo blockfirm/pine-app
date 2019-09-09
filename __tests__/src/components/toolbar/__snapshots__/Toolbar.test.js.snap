@@ -26,6 +26,8 @@ exports[`Toolbar renders correctly 1`] = `
   <View>
     <View
       accessible={true}
+      clickable={true}
+      onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -104,6 +106,8 @@ exports[`Toolbar renders correctly 1`] = `
   <View>
     <View
       accessible={true}
+      clickable={true}
+      onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -182,6 +186,8 @@ exports[`Toolbar renders correctly 1`] = `
   <View>
     <View
       accessible={true}
+      clickable={true}
+      onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
