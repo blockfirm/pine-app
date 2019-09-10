@@ -13,6 +13,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1C16E91D23270E4400B1C22D /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C16E8D62326EAA500B1C22D /* libReact.a */; };
 		1C5D48E422B5BDBD005045F7 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C5D48A022B5BDBD005045F7 /* JavaScriptCore.framework */; };
 		1C5ED08D21A4E23400C90B08 /* libToolTipMenu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C5ED08A21A4E20500C90B08 /* libToolTipMenu.a */; };
 		1C8B8ACE21C1DE320095144C /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8B8AA421C1DDCD0095144C /* libRCTPushNotification.a */; };
@@ -296,6 +297,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C16E91D23270E4400B1C22D /* libReact.a in Frameworks */,
 				D1EF18BA564AA27E115CC8F0 /* libPods-PineTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
