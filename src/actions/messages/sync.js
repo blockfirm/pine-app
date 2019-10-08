@@ -1,7 +1,6 @@
 import { post as postTransaction } from '../bitcoin/blockchain/transactions';
 import { getIncoming as getIncomingMessages } from '../pine/messages/getIncoming';
 import { remove as removeMessageFromServer } from '../pine/messages/remove';
-import { save as saveContacts } from '../contacts';
 import { add as addMessage } from './add';
 import { process as processMessage } from './process';
 

@@ -1,5 +1,5 @@
 import { sync as syncBitcoinWallet } from './bitcoin/wallet';
-import { sync as syncContacts } from './contacts';
+import { sync as syncContacts, updateProfiles } from './contacts';
 import { sync as syncMessages } from './messages';
 import { syncIncoming as syncIncomingContactRequests } from './contacts/contactRequests';
 
@@ -29,12 +29,17 @@ const syncFailure = (error) => {
 };
 
 /**
- * Action to sync contacts, contact requests, messages
- * and bitcoin wallet.
+ * Action to sync contacts, contact requests, messages and bitcoin wallet.
+ *
+ * @param {Object} options - Sync options.
+ * @param {bool} options.syncProfiles - Whether or not to also sync contact profiles (avatar etc.).
+ *
+ * @returns {Promise} A promise that resolves when the sync is complete.
  */
-export const sync = () => {
+export const sync = (options) => {
   return (dispatch, getState) => {
     const state = getState();
+    const syncProfiles = options && options.syncProfiles;
 
     if (state.syncing) {
       return syncPromise || Promise.resolve();
@@ -46,6 +51,7 @@ export const sync = () => {
       .then(() => dispatch(syncIncomingContactRequests()))
       .then(() => dispatch(syncMessages()))
       .then(() => dispatch(syncBitcoinWallet()))
+      .then(() => syncProfiles && dispatch(updateProfiles()))
       .then(() => dispatch(syncSuccess()))
       .catch((error) => dispatch(syncFailure(error)));
 

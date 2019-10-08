@@ -1,6 +1,5 @@
 import { AppState } from 'react-native';
 import { sync as syncApp } from '../actions';
-import { updateProfiles } from '../actions/contacts';
 
 const SYNC_INTERVAL = 30 * 1000; // 30 seconds.
 
@@ -44,8 +43,8 @@ export default class AutoSyncService {
        * <https://github.com/AFNetworking/AFNetworking/issues/4279>
        */
       setTimeout(() => {
-        this._syncApp();
-        this._updateProfiles();
+        const syncProfiles = true;
+        this._syncApp(syncProfiles);
       }, 1000);
     }
 
@@ -71,19 +70,11 @@ export default class AutoSyncService {
     return !disconnected && initialized && hasAcceptedTerms;
   }
 
-  _syncApp() {
+  _syncApp(syncProfiles) {
     const { dispatch } = this.store;
 
     if (this._shouldSync()) {
-      dispatch(syncApp());
-    }
-  }
-
-  _updateProfiles() {
-    const { dispatch } = this.store;
-
-    if (this._shouldSync()) {
-      dispatch(updateProfiles()).catch(() => { /* Suppress errors */ });
+      dispatch(syncApp({ syncProfiles }));
     }
   }
 }

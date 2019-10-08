@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { load as loadState, sync as syncApp, ready as onReady } from '../actions';
 import { handle as handleError } from '../actions/error';
 import { reset as navigateWithReset } from '../actions/navigate';
-import { updateProfiles as updateContactProfiles } from '../actions/contacts';
 import { get as getFiatRates } from '../actions/bitcoin/fiatRates';
 import getMnemonicByKey from '../crypto/getMnemonicByKey';
 import Footer from '../components/Footer';
@@ -73,8 +72,9 @@ export default class SplashScreen extends Component {
 
         setTimeout(() => {
           InteractionManager.runAfterInteractions(() => {
-            dispatch(syncApp()).then(() => {
-              dispatch(updateContactProfiles());
+            const syncProfiles = true;
+
+            dispatch(syncApp({ syncProfiles })).then(() => {
               dispatch(onReady());
             });
           });
