@@ -86,8 +86,25 @@ export default class SplashScreen extends Component {
         this._showStatusBar();
       })
       .catch((error) => {
+        /**
+         * If the mnemonic couldn't be found, it probably means that the phone
+         * was reset from a backup containing all data except the keychain.
+         * Reset the app and let the user recover from manual or iCloud backup.
+         */
+        if (error.message.includes('mnemonic')) {
+          return this._reset();
+        }
+
         dispatch(handleError(error));
       });
+  }
+
+  _reset() {
+    const { dispatch } = this.props;
+    const keepSettings = false;
+    const keepBackup = true;
+
+    return dispatch(navigateWithReset('Reset', { keepSettings, keepBackup }));
   }
 
   _getMnemonicFromState(state) {
