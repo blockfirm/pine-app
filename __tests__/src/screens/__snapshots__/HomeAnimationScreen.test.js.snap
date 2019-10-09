@@ -1,0 +1,591 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeAnimationScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "alignSelf": "stretch",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#FFD200",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "LaunchScreenLogo",
+        }
+      }
+      style={
+        Object {
+          "height": 57,
+          "transform": Array [
+            Object {
+              "scale": 1,
+            },
+          ],
+          "width": 128,
+        }
+      }
+    />
+  </View>
+  <MaskedView
+    maskElement={
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <AnimatedComponent
+          style={
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "borderRadius": 5,
+                "height": 10,
+                "width": 10,
+              },
+              Object {
+                "opacity": 0,
+                "transform": Array [
+                  Object {
+                    "scale": 1,
+                  },
+                ],
+              },
+            ]
+          }
+        />
+      </View>
+    }
+    style={
+      Object {
+        "alignItems": "center",
+        "alignSelf": "stretch",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "backgroundColor": "white",
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "alignSelf": "stretch",
+          "flex": 1,
+          "justifyContent": "center",
+          "opacity": 0,
+          "transform": Array [
+            Object {
+              "scale": 1.04,
+            },
+          ],
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "flex": 1,
+          }
+        }
+      >
+        <RCTScrollView
+          bounces={false}
+          data={
+            Array [
+              Object {
+                "key": "camera",
+                "screen": <CameraScreen
+                  onBackPress={[Function]}
+                  showPreview={false}
+                />,
+              },
+              Object {
+                "key": "home",
+                "screen": <ContactsScreen />,
+              },
+              Object {
+                "key": "receive",
+                "screen": <ReceiveScreen
+                  onBackPress={[Function]}
+                />,
+              },
+            ]
+          }
+          disableVirtualization={false}
+          getItem={[Function]}
+          getItemCount={[Function]}
+          getItemLayout={[Function]}
+          horizontal={true}
+          initialNumToRender={10}
+          initialScrollIndex={1}
+          keyExtractor={[Function]}
+          maxToRenderPerBatch={10}
+          numColumns={1}
+          onContentSizeChange={[Function]}
+          onEndReachedThreshold={2}
+          onLayout={[Function]}
+          onMomentumScrollEnd={[Function]}
+          onScroll={[Function]}
+          onScrollBeginDrag={[Function]}
+          onScrollEndDrag={[Function]}
+          pagingEnabled={true}
+          removeClippedSubviews={false}
+          renderItem={[Function]}
+          scrollEventThrottle={16}
+          showsHorizontalScrollIndicator={false}
+          stickyHeaderIndices={Array []}
+          style={
+            Object {
+              "alignSelf": "stretch",
+              "flex": 1,
+            }
+          }
+          updateCellsBatchingPeriod={50}
+          viewabilityConfigCallbackPairs={Array []}
+          windowSize={21}
+        >
+          <View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexDirection": "row",
+                  },
+                  null,
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "height": 1334,
+                    "width": 750,
+                  }
+                }
+              >
+                <CameraScreen
+                  onBackPress={[Function]}
+                  showPreview={false}
+                />
+                <View
+                  pointerEvents="none"
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                      Object {
+                        "backgroundColor": "black",
+                      },
+                      Object {
+                        "opacity": 1,
+                      },
+                    ]
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexDirection": "row",
+                  },
+                  null,
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "height": 1334,
+                    "width": 750,
+                  }
+                }
+              >
+                <ContactsScreen />
+                <View
+                  pointerEvents="none"
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                      Object {
+                        "backgroundColor": "#FEFEFE",
+                      },
+                      Object {
+                        "opacity": 0,
+                      },
+                    ]
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexDirection": "row",
+                  },
+                  null,
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "height": 1334,
+                    "width": 750,
+                  }
+                }
+              >
+                <ReceiveScreen
+                  onBackPress={[Function]}
+                />
+                <View
+                  pointerEvents="none"
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                      Object {
+                        "backgroundColor": "#FEFEFE",
+                        "borderColor": "gray",
+                        "borderLeftWidth": 0.5,
+                      },
+                      Object {
+                        "opacity": 1,
+                      },
+                    ]
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "bottom": 0,
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 90,
+                "justifyContent": "space-between",
+                "left": 25,
+                "paddingBottom": 0,
+                "position": "absolute",
+                "right": 25,
+              },
+              Object {
+                "left": 25,
+                "right": 25,
+              },
+            ]
+          }
+        >
+          <View>
+            <View
+              accessible={true}
+              clickable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "height": 50,
+                  "justifyContent": "center",
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                  "width": 50,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "position": "absolute",
+                    },
+                    Object {
+                      "opacity": 1,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/icons/toolbar/Send.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 50,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "position": "absolute",
+                    },
+                    Object {
+                      "opacity": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/icons/toolbar/SendWhite.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 50,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+          <View>
+            <View
+              accessible={true}
+              clickable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "height": 50,
+                  "justifyContent": "center",
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                  "width": 50,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "position": "absolute",
+                    },
+                    Object {
+                      "opacity": 1,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/icons/toolbar/Messages.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 50,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "position": "absolute",
+                    },
+                    Object {
+                      "opacity": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/icons/toolbar/MessagesWhite.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 50,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+          <View>
+            <View
+              accessible={true}
+              clickable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "height": 50,
+                  "justifyContent": "center",
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                  "width": 50,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "position": "absolute",
+                    },
+                    Object {
+                      "opacity": 1,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/icons/toolbar/Receive.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 50,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "position": "absolute",
+                    },
+                    Object {
+                      "opacity": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/images/icons/toolbar/ReceiveWhite.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 50,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </MaskedView>
+</View>
+`;

@@ -113,6 +113,8 @@ PODS:
     - React
   - RNCAsyncStorage (1.6.1):
     - React
+  - RNCMaskedView (0.1.1):
+    - React
   - RNICloudStore (0.1.0):
     - React
   - RNImageCropPicker (0.25.0):
@@ -172,6 +174,7 @@ DEPENDENCIES:
   - "ReactNativeART (from `../node_modules/@react-native-community/art`)"
   - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNICloudStore (from `../node_modules/react-native-icloudstore`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
@@ -256,6 +259,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-background-fetch"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
+  RNCMaskedView:
+    :path: "../node_modules/@react-native-community/masked-view"
   RNICloudStore:
     :path: "../node_modules/react-native-icloudstore"
   RNImageCropPicker:
@@ -311,6 +316,7 @@ SPEC CHECKSUMS:
   ReactNativeART: d230fdaf9a6d15d5ec842355ada1edbe326c49d0
   RNBackgroundFetch: ca8f7de08300d9b9a68e045577d2b896aba3c323
   RNCAsyncStorage: 2e2e3feb9bdadc752a026703d8c4065ca912e75a
+  RNCMaskedView: b79e193409a90bf6b5170d421684f437ff4e2278
   RNICloudStore: bc6e225811637c09bd1eb055d6cd7448e61cd451
   RNImageCropPicker: 0a731d984e64ee4c28bddaa7ce52262e4b80979f
   RNKeychain: c658833a9cb2cbcba6423bdd6e16cce59e27da0e

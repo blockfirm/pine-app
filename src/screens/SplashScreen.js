@@ -125,7 +125,7 @@ export default class SplashScreen extends Component {
 
   _showHomeScreen() {
     const dispatch = this.props.dispatch;
-    dispatch(navigateWithReset('Home'));
+    dispatch(navigateWithReset('HomeAnimation'));
   }
 
   _showWelcomeScreen() {

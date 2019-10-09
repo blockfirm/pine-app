@@ -9,6 +9,7 @@ import RecoverScreen from '../screens/RecoverScreen';
 import CreatePineAddressScreen from '../screens/CreatePineAddressScreen';
 import DisclaimerScreen from '../screens/DisclaimerScreen';
 import HomeScreen from '../screens/HomeScreen';
+import HomeAnimationScreen from '../screens/HomeAnimationScreen';
 import PaymentDetailsScreen from '../screens/PaymentDetailsScreen';
 import ConversationScreen from '../screens/ConversationScreen';
 import ResetScreen from '../screens/ResetScreen';
@@ -25,6 +26,7 @@ const MainNavigator = createStackNavigator({
   CreatePineAddress: { screen: CreatePineAddressScreen },
   Disclaimer: { screen: DisclaimerScreen },
   Home: { screen: HomeScreen },
+  HomeAnimation: { screen: HomeAnimationScreen },
   PaymentDetails: { screen: PaymentDetailsScreen },
   Conversation: { screen: ConversationScreen },
   Reset: { screen: ResetScreen },
