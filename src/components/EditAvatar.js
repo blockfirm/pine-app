@@ -12,6 +12,8 @@ const AVATAR_SIZE = 80;
 const IMAGE_SIZE = 250;
 const IMAGE_QUALITY = 0.8;
 
+const ERROR_PICKER_CANCELLED = 'E_PICKER_CANCELLED';
+
 const styles = StyleSheet.create({
   wrapper: {
     width: AVATAR_SIZE,
@@ -72,7 +74,7 @@ export default class EditAvatar extends Component {
         }
       })
       .catch((error) => {
-        if (error.code === 'E_PICKER_CANCELLED') {
+        if (error.code === ERROR_PICKER_CANCELLED) {
           // User cancelled cropping, suppress error.
           return;
         }
