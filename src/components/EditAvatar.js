@@ -108,7 +108,8 @@ export default class EditAvatar extends Component {
       cameraType: 'front',
       allowsEditing: false,
       quality: IMAGE_QUALITY,
-      noData: true
+      noData: true,
+      tintColor: 'systemBlue'
     };
 
     ImagePicker.showImagePicker(options, this._onSelectAvatar.bind(this));
