@@ -5,6 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import { RNCamera } from 'react-native-camera';
 
+import * as azteco from '../vendors/azteco';
 import getPaymentInfoFromString from '../crypto/bitcoin/getPaymentInfoFromString';
 import { parse as parseAddress, getAddressFromUri } from '../pineApi/address';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
@@ -110,7 +111,7 @@ export default class QrCodeScanner extends Component {
       return pineAddress || paymentInfo.address;
     }
 
-    // Try to evaluate copied string a Pine address.
+    // Try to evaluate copied string as a Pine address.
     try {
       parseAddress(copiedString);
       return copiedString.trim();
@@ -120,6 +121,8 @@ export default class QrCodeScanner extends Component {
   }
 
   _onReceiveData(data, fromCamera) {
+    const { network, onReceiveAddress, onRedeemAzteco } = this.props;
+
     if (!data || typeof data !== 'string') {
       if (!fromCamera) {
         Alert.alert(
@@ -133,7 +136,11 @@ export default class QrCodeScanner extends Component {
       return;
     }
 
-    const { network, onReceiveAddress } = this.props;
+    if (azteco.isAztecoUrl(data)) {
+      const voucher = azteco.parseAztecoUrl(data);
+      return onRedeemAzteco(voucher);
+    }
+
     const pineAddress = getAddressFromUri(data);
     const paymentInfo = getPaymentInfoFromString(data, network);
 
@@ -273,6 +280,7 @@ export default class QrCodeScanner extends Component {
 
 QrCodeScanner.propTypes = {
   onReceiveAddress: PropTypes.func.isRequired,
+  onRedeemAzteco: PropTypes.func.isRequired,
   showPreview: PropTypes.bool,
   network: PropTypes.string
 };

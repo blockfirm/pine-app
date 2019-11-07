@@ -1,4 +1,4 @@
-import { fetchWithTimeout } from '../../network';
+import { fetchWithTimeout } from '../../../network';
 import { getKeyPairFromMnemonic } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
 import { getAuthorizationHeader } from '../../authentication';

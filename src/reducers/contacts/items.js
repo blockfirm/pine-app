@@ -1,6 +1,7 @@
 import * as contactsActions from '../../actions/contacts';
 import * as contactRequestsActions from '../../actions/contacts/contactRequests';
 
+// eslint-disable-next-line max-statements
 const items = (state = {}, action) => {
   let newState;
   let contact;
@@ -14,6 +15,7 @@ const items = (state = {}, action) => {
 
     case contactsActions.CONTACTS_ADD_SUCCESS:
     case contactsActions.CONTACTS_ADD_LEGACY:
+    case contactsActions.CONTACTS_ADD_VENDOR:
       contact = { ...action.contact };
 
       return {
@@ -63,6 +65,20 @@ const items = (state = {}, action) => {
         newState = { ...state };
         newState[contact.id] = { ...newState[contact.id] };
         newState[contact.id].lastMessage = action.message;
+
+        return newState;
+      }
+
+      return state;
+
+    case contactsActions.CONTACTS_ADD_VENDOR_ASSOCIATED_ADDRESS:
+      contact = Object.values(state).find(({ vendorId }) => vendorId === action.vendorId);
+
+      if (contact) {
+        newState = { ...state };
+        newState[contact.id] = { ...newState[contact.id] };
+        newState[contact.id].associatedAddresses = newState[contact.id].associatedAddresses || [];
+        newState[contact.id].associatedAddresses.push(action.address);
 
         return newState;
       }

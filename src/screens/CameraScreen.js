@@ -105,12 +105,29 @@ export default class CameraScreen extends Component {
     return this._showConversationScreenForAddress(address, amount);
   }
 
+  _onRedeemAzteco(voucher) {
+    const { navigation } = this.props;
+    const showPreview = this.props.showPreview && !this.state.pauseCamera;
+    const isFocused = navigation.isFocused();
+
+    if (!showPreview || !isFocused) {
+      return;
+    }
+
+    navigation.navigate('RedeemAzteco', { voucher });
+  }
+
   render() {
     const showPreview = this.props.showPreview && !this.state.pauseCamera;
 
     return (
       <BaseScreen style={styles.view}>
-        <QrCodeScannerContainer showPreview={showPreview} onReceiveAddress={this._onReceiveAddress.bind(this)} />
+        <QrCodeScannerContainer
+          showPreview={showPreview}
+          onReceiveAddress={this._onReceiveAddress.bind(this)}
+          onRedeemAzteco={this._onRedeemAzteco.bind(this)}
+        />
+
         <CameraScreenHeader onBackPress={this.props.onBackPress} />
       </BaseScreen>
     );

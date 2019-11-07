@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 import uuidv4 from 'uuid/v4';
 import { InteractionManager } from 'react-native';
+
 import getTransactionAmount from '../../../crypto/bitcoin/getTransactionAmount';
 import getTransactionAddress from '../../../crypto/bitcoin/getTransactionAddress';
 import { addLegacy as addLegacyContact } from '../../contacts';
@@ -156,21 +157,37 @@ const getAllNewTransactions = (dispatch, state) => {
   });
 };
 
+// eslint-disable-next-line max-params
+const addTransactionToContact = (transaction, contact, address, dispatch, state) => {
+  const amountBtc = getTransactionAmount(
+    transaction,
+    state.bitcoin.wallet.addresses.external.items,
+    state.bitcoin.wallet.addresses.internal.items
+  );
+
+  const message = {
+    id: uuidv4(),
+    type: 'payment',
+    from: amountBtc < 0 ? address : 'unknown',
+    address: { address },
+    createdAt: transaction.time,
+    txid: transaction.txid,
+    amountBtc: Math.abs(amountBtc)
+  };
+
+  // Add message to conversation.
+  return dispatch(addMessage(contact.id, message));
+};
+
 /**
  * Creates contacts and messages for transactions that wasn't sent using a Pine message.
  */
 const createConversationsForTransactions = (transactions, dispatch, state) => {
   const promises = transactions.map((transaction) => {
     if (transaction.txid in state.messages.txids) {
-      // Don't create contacts/messages for transactions that already has a message.
+      // Don't create contacts/messages for transactions that already have a message.
       return;
     }
-
-    const amountBtc = getTransactionAmount(
-      transaction,
-      state.bitcoin.wallet.addresses.external.items,
-      state.bitcoin.wallet.addresses.internal.items
-    );
 
     const address = getTransactionAddress(
       transaction,
@@ -178,19 +195,19 @@ const createConversationsForTransactions = (transactions, dispatch, state) => {
       state.bitcoin.wallet.addresses.internal.items
     );
 
-    return dispatch(addLegacyContact({ address: null })).then((contact) => {
-      const message = {
-        id: uuidv4(),
-        type: 'payment',
-        from: amountBtc < 0 ? address : 'unknown',
-        address: { address },
-        createdAt: transaction.time,
-        txid: transaction.txid,
-        amountBtc: Math.abs(amountBtc)
-      };
+    const contacts = Object.values(state.contacts.items);
 
-      // Add message to conversation.
-      return dispatch(addMessage(contact.id, message));
+    const vendor = contacts.find(contact => {
+      const { associatedAddresses } = contact;
+      return associatedAddresses && associatedAddresses.includes(address);
+    });
+
+    if (vendor) {
+      return addTransactionToContact(transaction, vendor, address, dispatch, state);
+    }
+
+    return dispatch(addLegacyContact({ address: null })).then((contact) => {
+      return addTransactionToContact(transaction, contact, address, dispatch, state);
     });
   });
 

@@ -65,6 +65,9 @@ const getStateMock = jest.fn(() => ({
       }
     }
   },
+  contacts: {
+    items: {}
+  },
   messages: {
     txids: {}
   }

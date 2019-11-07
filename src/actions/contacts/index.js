@@ -1,5 +1,7 @@
 export * from './add';
 export * from './addLegacy';
+export * from './addVendor';
+export * from './addVendorAssociatedAddress';
 export * from './load';
 export * from './markAsRead';
 export * from './markAsUnread';

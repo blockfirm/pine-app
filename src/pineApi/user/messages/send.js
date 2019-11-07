@@ -1,5 +1,5 @@
 import bs58check from 'bs58check';
-import { fetchWithTimeout } from '../../network';
+import { fetchWithTimeout } from '../../../network';
 import { getKeyPairFromMnemonic, encrypt, sign } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
 import { getAuthorizationHeader } from '../../authentication';

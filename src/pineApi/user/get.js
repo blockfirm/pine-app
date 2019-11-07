@@ -1,4 +1,4 @@
-import { fetchWithTimeout } from '../network';
+import { fetchWithTimeout } from '../../network';
 import { parse as parseAddress, resolveBaseUrl } from '../address';
 
 const REQUEST_TIMEOUT = 5000; // 5 seconds.

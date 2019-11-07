@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
+import vendors from '../../vendors';
 import headerStyles from '../../styles/headerStyles';
 import StyledText from '../StyledText';
 
@@ -30,12 +31,29 @@ const getShortenedAddress = (address) => {
   return `${start}...${end}`;
 };
 
+const formatVendorUrl = (url) => {
+  if (!url) {
+    return '';
+  }
+
+  return url.replace(/http(s?):\/\//i, '');
+};
+
 export default class HeaderTitle extends Component {
   render() {
     const { contact } = this.props;
-    const { address, isBitcoinAddress } = contact;
-    const displayName = contact.displayName || contact.username || 'Unknown';
-    const displayAddress = isBitcoinAddress ? getShortenedAddress(address) : address;
+    const { address, isBitcoinAddress, isVendor } = contact;
+    let displayName = contact.displayName || contact.username || 'Unknown';
+    let displayAddress = address;
+
+    if (isBitcoinAddress) {
+      displayAddress = getShortenedAddress(address);
+    } else if (isVendor) {
+      const vendor = vendors.get(contact.vendorId);
+
+      displayName = vendor.displayName;
+      displayAddress = formatVendorUrl(vendor.url);
+    }
 
     return (
       <View>
@@ -55,6 +73,8 @@ HeaderTitle.propTypes = {
     displayName: PropTypes.string,
     username: PropTypes.string,
     address: PropTypes.string,
-    isBitcoinAddress: PropTypes.bool
+    isBitcoinAddress: PropTypes.bool,
+    isVendor: PropTypes.bool,
+    vendorId: PropTypes.string
   })
 };

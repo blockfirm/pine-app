@@ -7,6 +7,7 @@ import SettingsNavigator from './SettingsNavigator';
 import BackUpMnemonicNavigator from './BackUpMnemonicNavigator';
 import AddContactNavigator from './AddContactNavigator';
 import WalletBalanceNavigator from './WalletBalanceNavigator';
+import AztecoNavigator from './AztecoNavigator';
 
 const AppNavigator = createStackNavigator({
   Main: { screen: MainNavigator },
@@ -15,7 +16,8 @@ const AppNavigator = createStackNavigator({
   Settings: { screen: SettingsNavigator },
   BackUpMnemonic: { screen: BackUpMnemonicNavigator },
   AddContact: { screen: AddContactNavigator },
-  WalletBalance: { screen: WalletBalanceNavigator }
+  WalletBalance: { screen: WalletBalanceNavigator },
+  Azteco: { screen: AztecoNavigator }
 }, {
   mode: 'modal',
   headerMode: 'none',

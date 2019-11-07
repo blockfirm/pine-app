@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
@@ -7,8 +8,9 @@ import {
   CURRENCY_TYPE_PRIMARY
 } from '../containers/CurrencyLabelContainer';
 
-import Bullet from './typography/Bullet';
+import vendors from '../vendors';
 import MessageIndicatorContainer from '../containers/indicators/MessageIndicatorContainer';
+import Bullet from './typography/Bullet';
 import Avatar from './Avatar';
 import StyledText from './StyledText';
 import RelativeDateLabelShort from './RelativeDateLabelShort';
@@ -93,8 +95,37 @@ export default class ContactListItem extends Component {
     return new Date(timestamp * 1000);
   }
 
+  _getReceivedText() {
+    const { contact } = this.props;
+    const defaultText = 'You received';
+
+    if (!contact.isVendor) {
+      return defaultText;
+    }
+
+    const vendor = vendors.get(contact.vendorId);
+    return vendor.receivedText || defaultText;
+  }
+
+  _getAddedText() {
+    const { contact } = this.props;
+    const defaultText = 'Was added as a new contact';
+
+    if (!contact.isVendor) {
+      return defaultText;
+    }
+
+    const vendor = vendors.get(contact.vendorId);
+    return vendor.addedText || defaultText;
+  }
+
   _renderTitle() {
     const { contact } = this.props;
+
+    if (contact.isVendor) {
+      return vendors.get(contact.vendorId).displayName;
+    }
+
     return contact.displayName || contact.username || 'Unknown';
   }
 
@@ -118,7 +149,7 @@ export default class ContactListItem extends Component {
       if (lastMessage.from) {
         return (
           <Text>
-            You received {this._renderBtcAmount(lastMessage.amountBtc)}
+            {this._getReceivedText()} {this._renderBtcAmount(lastMessage.amountBtc)}
           </Text>
         );
       }
@@ -138,7 +169,7 @@ export default class ContactListItem extends Component {
       return 'Wants to add you as a contact';
     }
 
-    return 'Was added as a new contact';
+    return this._getAddedText();
   }
 
   render() {
@@ -151,6 +182,7 @@ export default class ContactListItem extends Component {
         <View style={styles.avatarWrapper}>
           <Avatar
             pineAddress={contact.address}
+            vendorId={contact.vendorId}
             checksum={avatarChecksum}
             size={60}
           />

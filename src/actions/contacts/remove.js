@@ -31,6 +31,7 @@ const removeFailure = (error) => {
  * @param {object} contact - Contact to remove.
  * @param {string} contact.id - The contact's ID (not user ID).
  * @param {boolean} [contact.isBitcoinAddress] - Whether the contact is for a bitcoin address and not a Pine user.
+ * @param {boolean} [contact.isVendor] - Whether the contact is a vendor or not.
  *
  * @returns {Promise} A promise that resolves to the removed contact.
  */
@@ -40,7 +41,7 @@ export const remove = (contact) => {
 
     return Promise.resolve()
       .then(() => {
-        if (!contact.isBitcoinAddress) {
+        if (!contact.isBitcoinAddress && !contact.isVendor) {
           return dispatch(removeContactFromServer(contact));
         }
       })

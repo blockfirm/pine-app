@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import FastImage from 'react-native-fast-image';
+
+import vendors from '../vendors';
 import { parse as parseAddress, resolveBaseUrl } from '../pineApi/address';
 
 const AVATAR_PLACEHOLDER = require('../images/AvatarPlaceholder.png');
@@ -70,9 +72,29 @@ export default class Avatar extends Component {
     );
   }
 
+  _renderVendor() {
+    const { vendorId } = this.props;
+    const vendor = vendors.get(vendorId);
+    const sizeStyle = this._getSizeStyle();
+
+    if (!vendor.logo) {
+      return this._renderPlaceholder();
+    }
+
+    return (
+      <View style={[styles.wrapper, sizeStyle]}>
+        <Image source={vendor.logo} style={sizeStyle} />
+      </View>
+    );
+  }
+
   render() {
     const { error } = this.state;
-    const { pineAddress, checksum } = this.props;
+    const { pineAddress, checksum, vendorId } = this.props;
+
+    if (vendorId) {
+      return this._renderVendor();
+    }
 
     if (!pineAddress || !checksum || error) {
       return this._renderPlaceholder();
@@ -96,5 +118,6 @@ export default class Avatar extends Component {
 Avatar.propTypes = {
   size: PropTypes.number,
   pineAddress: PropTypes.string,
-  checksum: PropTypes.string
+  checksum: PropTypes.string,
+  vendorId: PropTypes.string
 };

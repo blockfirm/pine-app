@@ -27,6 +27,10 @@ export default class EmptyConversation extends Component {
     const { contact } = this.props;
     const displayName = contact.displayName || contact.username || contact.address;
 
+    if (contact.isVendor) {
+      return null;
+    }
+
     return (
       <View style={styles.wrapper}>
         <Image source={illustration} style={styles.illustration} />

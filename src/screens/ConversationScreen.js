@@ -7,7 +7,8 @@ import {
   ActionSheetIOS,
   ActivityIndicator,
   Keyboard,
-  LayoutAnimation
+  LayoutAnimation,
+  Linking
 } from 'react-native';
 
 import PropTypes from 'prop-types';
@@ -25,6 +26,7 @@ import {
   removeAllForContact as removeAllMessagesForContact
 } from '../actions/messages';
 
+import vendors from '../vendors';
 import headerStyles from '../styles/headerStyles';
 import ContentView from '../components/ContentView';
 import HeaderTitle from '../components/conversation/HeaderTitle';
@@ -104,6 +106,7 @@ export default class ConversationScreen extends Component {
         <TouchableOpacity onPress={showUserMenu} style={styles.headerAvatar} disable={loading}>
           <Avatar
             pineAddress={contact && contact.address}
+            vendorId={contact && contact.vendorId}
             checksum={avatarChecksum}
             size={36}
           />
@@ -281,14 +284,21 @@ export default class ConversationScreen extends Component {
   _showUserMenu() {
     const { navigation } = this.props;
     const { contact } = navigation.state.params;
+    const options = ['Cancel', 'Delete Contact'];
+    let title = contact.address || contact.displayName || undefined;
 
     if (!contact) {
       return;
     }
 
+    if (contact.isVendor) {
+      title = vendors.get(contact.vendorId).displayName;
+      options.push('Visit Website');
+    }
+
     ActionSheetIOS.showActionSheetWithOptions({
-      title: contact.address || undefined,
-      options: ['Cancel', 'Delete Contact'],
+      title,
+      options,
       destructiveButtonIndex: 1,
       cancelButtonIndex: 0
     }, (buttonIndex) => {
@@ -298,7 +308,12 @@ export default class ConversationScreen extends Component {
         return; // Cancel
       }
 
-      if (contact.isBitcoinAddress) {
+      if (contact.isVendor && buttonIndex === 2) {
+        const vendor = vendors.get(contact.vendorId);
+        return Linking.openURL(vendor.url);
+      }
+
+      if (contact.isBitcoinAddress || contact.isVendor) {
         title = 'Deleting this contact will also delete its payment history.';
       } else {
         title = 'Deleting this contact will also delete its payment history and will prevent this contact from sending you any more bitcoin.';
