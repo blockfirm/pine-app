@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   input: {
-    fontSize: 24
+    fontSize: 24,
+    color: '#000000'
   },
   suffixWrapper: {
     position: 'absolute',

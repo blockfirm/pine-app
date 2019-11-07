@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   input: {
-    fontSize: 24
+    fontSize: 24,
+    color: '#000000'
   },
   inputTitleWrapper: {
     position: 'absolute'
@@ -249,6 +250,7 @@ export default class AddContactScreen extends Component {
             selectionColor='#FFC431'
             onChangeText={(text) => this._onChangeText(text)}
             placeholder='Enter Pine Address'
+            placeholderTextColor='#C3C3C3'
             blurOnSubmit={false}
           />
           <StyledText style={styles.error}>
