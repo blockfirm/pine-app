@@ -223,7 +223,7 @@ exports[`HomeScreen renders correctly 1`] = `
     <View>
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -303,7 +303,7 @@ exports[`HomeScreen renders correctly 1`] = `
     <View>
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -383,7 +383,7 @@ exports[`HomeScreen renders correctly 1`] = `
     <View>
       <View
         accessible={true}
-        clickable={true}
+        focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}

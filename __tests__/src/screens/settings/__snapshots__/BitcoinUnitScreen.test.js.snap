@@ -159,7 +159,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
         >
           <View
             accessible={true}
-            clickable={true}
+            focusable={true}
             isTVSelectable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -204,37 +204,23 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
               >
                 BTC
               </Text>
-              <Text
-                allowFontScaling={false}
+              <OcticonIcon
+                name="check"
                 style={
-                  Array [
-                    Object {
-                      "color": undefined,
-                      "fontSize": 12,
-                    },
-                    Object {
-                      "color": "#007AFF",
-                      "fontSize": 16,
-                      "paddingTop": 2,
-                      "position": "absolute",
-                      "right": 15,
-                    },
-                    Object {
-                      "fontFamily": "Octicons",
-                      "fontStyle": "normal",
-                      "fontWeight": "normal",
-                    },
-                    Object {},
-                  ]
+                  Object {
+                    "color": "#007AFF",
+                    "fontSize": 16,
+                    "paddingTop": 2,
+                    "position": "absolute",
+                    "right": 15,
+                  }
                 }
-              >
-                
-              </Text>
+              />
             </View>
           </View>
           <View
             accessible={true}
-            clickable={true}
+            focusable={true}
             isTVSelectable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -283,7 +269,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
           </View>
           <View
             accessible={true}
-            clickable={true}
+            focusable={true}
             isTVSelectable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}

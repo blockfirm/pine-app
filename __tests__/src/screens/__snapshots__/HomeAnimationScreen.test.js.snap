@@ -346,7 +346,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
           <View>
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -426,7 +426,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
           <View>
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -506,7 +506,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
           <View>
             <View
               accessible={true}
-              clickable={true}
+              focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}

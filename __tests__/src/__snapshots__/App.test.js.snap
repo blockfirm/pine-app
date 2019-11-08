@@ -364,28 +364,14 @@ exports[`App renders correctly 1`] = `
             ]
           }
         >
-          <Text
-            allowFontScaling={false}
+          <IoniconIcon
+            name="ios-alert"
             style={
-              Array [
-                Object {
-                  "color": undefined,
-                  "fontSize": 12,
-                },
-                Object {
-                  "fontSize": 28,
-                },
-                Object {
-                  "fontFamily": "Ionicons",
-                  "fontStyle": "normal",
-                  "fontWeight": "normal",
-                },
-                Object {},
-              ]
+              Object {
+                "fontSize": 28,
+              }
             }
-          >
-            
-          </Text>
+          />
         </Text>
       </View>
       <View
@@ -427,7 +413,7 @@ exports[`App renders correctly 1`] = `
       <View>
         <View
           accessible={true}
-          clickable={true}
+          focusable={true}
           isTVSelectable={true}
           onClick={[Function]}
           onResponderGrant={[Function]}

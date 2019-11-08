@@ -3,7 +3,7 @@
 exports[`SettingsLink renders correctly 1`] = `
 <View
   accessible={true}
-  clickable={true}
+  focusable={true}
   isTVSelectable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -80,32 +80,18 @@ exports[`SettingsLink renders correctly 1`] = `
     >
       e87b6472-bbd7-4a6d-833a-0c5030189213
     </Text>
-    <Text
-      allowFontScaling={false}
+    <IoniconIcon
+      name="ios-arrow-forward"
       style={
-        Array [
-          Object {
-            "color": undefined,
-            "fontSize": 12,
-          },
-          Object {
-            "color": "#C7C7CC",
-            "fontSize": 20,
-            "paddingTop": 2,
-            "position": "absolute",
-            "right": 15,
-          },
-          Object {
-            "fontFamily": "Ionicons",
-            "fontStyle": "normal",
-            "fontWeight": "normal",
-          },
-          Object {},
-        ]
+        Object {
+          "color": "#C7C7CC",
+          "fontSize": 20,
+          "paddingTop": 2,
+          "position": "absolute",
+          "right": 15,
+        }
       }
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
@@ -113,7 +99,7 @@ exports[`SettingsLink renders correctly 1`] = `
 exports[`SettingsLink renders correctly as the last item 1`] = `
 <View
   accessible={true}
-  clickable={true}
+  focusable={true}
   isTVSelectable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -192,32 +178,18 @@ exports[`SettingsLink renders correctly as the last item 1`] = `
     >
       b40740ec-ccb1-41c6-8fa5-72147f467556
     </Text>
-    <Text
-      allowFontScaling={false}
+    <IoniconIcon
+      name="ios-arrow-forward"
       style={
-        Array [
-          Object {
-            "color": undefined,
-            "fontSize": 12,
-          },
-          Object {
-            "color": "#C7C7CC",
-            "fontSize": 20,
-            "paddingTop": 2,
-            "position": "absolute",
-            "right": 15,
-          },
-          Object {
-            "fontFamily": "Ionicons",
-            "fontStyle": "normal",
-            "fontWeight": "normal",
-          },
-          Object {},
-        ]
+        Object {
+          "color": "#C7C7CC",
+          "fontSize": 20,
+          "paddingTop": 2,
+          "position": "absolute",
+          "right": 15,
+        }
       }
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;

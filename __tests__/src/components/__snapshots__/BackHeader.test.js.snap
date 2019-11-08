@@ -55,7 +55,7 @@ exports[`BackHeader renders correctly with showBackButton set to true 1`] = `
 >
   <View
     accessible={true}
-    clickable={false}
+    focusable={false}
     isTVSelectable={true}
     onClick={[Function]}
     onResponderGrant={[Function]}

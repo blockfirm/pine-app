@@ -3,7 +3,7 @@
 exports[`SettingsOption renders correctly 1`] = `
 <View
   accessible={true}
-  clickable={true}
+  focusable={true}
   isTVSelectable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -55,7 +55,7 @@ exports[`SettingsOption renders correctly 1`] = `
 exports[`SettingsOption renders correctly as the last item 1`] = `
 <View
   accessible={true}
-  clickable={true}
+  focusable={true}
   isTVSelectable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}

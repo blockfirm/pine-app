@@ -813,7 +813,7 @@ exports[`MnemonicWords renders correctly 1`] = `
   />
   <View
     accessible={true}
-    clickable={false}
+    focusable={false}
     isTVSelectable={true}
     onClick={[Function]}
     onResponderGrant={[Function]}
@@ -837,29 +837,15 @@ exports[`MnemonicWords renders correctly 1`] = `
         }
       }
     >
-      <Text
-        allowFontScaling={false}
+      <IoniconIcon
+        name="ios-eye"
         style={
-          Array [
-            Object {
-              "color": undefined,
-              "fontSize": 12,
-            },
-            Object {
-              "color": "#007AFF",
-              "fontSize": 38,
-            },
-            Object {
-              "fontFamily": "Ionicons",
-              "fontStyle": "normal",
-              "fontWeight": "normal",
-            },
-            Object {},
-          ]
+          Object {
+            "color": "#007AFF",
+            "fontSize": 38,
+          }
         }
-      >
-        
-      </Text>
+      />
       <Text
         style={
           Array [

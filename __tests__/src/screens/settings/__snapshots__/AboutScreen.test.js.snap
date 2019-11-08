@@ -315,7 +315,7 @@ exports[`AboutScreen renders correctly 1`] = `
         >
           <View
             accessible={true}
-            clickable={true}
+            focusable={true}
             isTVSelectable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -390,37 +390,23 @@ exports[`AboutScreen renders correctly 1`] = `
                   ]
                 }
               />
-              <Text
-                allowFontScaling={false}
+              <IoniconIcon
+                name="ios-arrow-forward"
                 style={
-                  Array [
-                    Object {
-                      "color": undefined,
-                      "fontSize": 12,
-                    },
-                    Object {
-                      "color": "#C7C7CC",
-                      "fontSize": 20,
-                      "paddingTop": 2,
-                      "position": "absolute",
-                      "right": 15,
-                    },
-                    Object {
-                      "fontFamily": "Ionicons",
-                      "fontStyle": "normal",
-                      "fontWeight": "normal",
-                    },
-                    Object {},
-                  ]
+                  Object {
+                    "color": "#C7C7CC",
+                    "fontSize": 20,
+                    "paddingTop": 2,
+                    "position": "absolute",
+                    "right": 15,
+                  }
                 }
-              >
-                
-              </Text>
+              />
             </View>
           </View>
           <View
             accessible={true}
-            clickable={true}
+            focusable={true}
             isTVSelectable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -497,32 +483,18 @@ exports[`AboutScreen renders correctly 1`] = `
                   ]
                 }
               />
-              <Text
-                allowFontScaling={false}
+              <IoniconIcon
+                name="ios-arrow-forward"
                 style={
-                  Array [
-                    Object {
-                      "color": undefined,
-                      "fontSize": 12,
-                    },
-                    Object {
-                      "color": "#C7C7CC",
-                      "fontSize": 20,
-                      "paddingTop": 2,
-                      "position": "absolute",
-                      "right": 15,
-                    },
-                    Object {
-                      "fontFamily": "Ionicons",
-                      "fontStyle": "normal",
-                      "fontWeight": "normal",
-                    },
-                    Object {},
-                  ]
+                  Object {
+                    "color": "#C7C7CC",
+                    "fontSize": 20,
+                    "paddingTop": 2,
+                    "position": "absolute",
+                    "right": 15,
+                  }
                 }
-              >
-                
-              </Text>
+              />
             </View>
           </View>
         </View>
@@ -543,7 +515,7 @@ exports[`AboutScreen renders correctly 1`] = `
         >
           <View
             accessible={true}
-            clickable={true}
+            focusable={true}
             isTVSelectable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -601,7 +573,7 @@ exports[`AboutScreen renders correctly 1`] = `
           </View>
           <View
             accessible={true}
-            clickable={true}
+            focusable={true}
             isTVSelectable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -659,7 +631,7 @@ exports[`AboutScreen renders correctly 1`] = `
           </View>
           <View
             accessible={true}
-            clickable={true}
+            focusable={true}
             isTVSelectable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}

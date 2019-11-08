@@ -81,28 +81,14 @@ exports[`ErrorModal renders correctly with an error 1`] = `
           ]
         }
       >
-        <Text
-          allowFontScaling={false}
+        <IoniconIcon
+          name="ios-alert"
           style={
-            Array [
-              Object {
-                "color": undefined,
-                "fontSize": 12,
-              },
-              Object {
-                "fontSize": 28,
-              },
-              Object {
-                "fontFamily": "Ionicons",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {},
-            ]
+            Object {
+              "fontSize": 28,
+            }
           }
-        >
-          
-        </Text>
+        />
       </Text>
     </View>
     <View
@@ -144,7 +130,7 @@ exports[`ErrorModal renders correctly with an error 1`] = `
     <View>
       <View
         accessible={true}
-        clickable={false}
+        focusable={false}
         isTVSelectable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -280,28 +266,14 @@ exports[`ErrorModal renders correctly without an error 1`] = `
           ]
         }
       >
-        <Text
-          allowFontScaling={false}
+        <IoniconIcon
+          name="ios-alert"
           style={
-            Array [
-              Object {
-                "color": undefined,
-                "fontSize": 12,
-              },
-              Object {
-                "fontSize": 28,
-              },
-              Object {
-                "fontFamily": "Ionicons",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              Object {},
-            ]
+            Object {
+              "fontSize": 28,
+            }
           }
-        >
-          
-        </Text>
+        />
       </Text>
     </View>
     <View
@@ -343,7 +315,7 @@ exports[`ErrorModal renders correctly without an error 1`] = `
     <View>
       <View
         accessible={true}
-        clickable={false}
+        focusable={false}
         isTVSelectable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
