@@ -23,7 +23,7 @@ export default class ToolbarButton extends Component {
     this._onPressOut = this._onPressOut.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this._scale = new Animated.Value(1);
   }
 
