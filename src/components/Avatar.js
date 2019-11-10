@@ -63,17 +63,18 @@ export default class Avatar extends Component {
   }
 
   _renderPlaceholder() {
+    const { style } = this.props;
     const sizeStyle = this._getSizeStyle();
 
     return (
-      <View style={[styles.wrapper, sizeStyle]}>
+      <View style={[styles.wrapper, style, sizeStyle]}>
         <Image source={AVATAR_PLACEHOLDER} style={sizeStyle} />
       </View>
     );
   }
 
   _renderVendor() {
-    const { vendorId } = this.props;
+    const { vendorId, style } = this.props;
     const vendor = vendors.get(vendorId);
     const sizeStyle = this._getSizeStyle();
 
@@ -82,7 +83,7 @@ export default class Avatar extends Component {
     }
 
     return (
-      <View style={[styles.wrapper, sizeStyle]}>
+      <View style={[styles.wrapper, style, sizeStyle]}>
         <Image source={vendor.logo} style={sizeStyle} />
       </View>
     );
@@ -90,7 +91,7 @@ export default class Avatar extends Component {
 
   render() {
     const { error } = this.state;
-    const { pineAddress, checksum, vendorId } = this.props;
+    const { pineAddress, checksum, vendorId, style } = this.props;
 
     if (vendorId) {
       return this._renderVendor();
@@ -104,7 +105,7 @@ export default class Avatar extends Component {
     const uri = this._getUrl();
 
     return (
-      <View style={[styles.wrapper, sizeStyle]}>
+      <View style={[styles.wrapper, style, sizeStyle]}>
         <FastImage
           source={{ uri }}
           style={sizeStyle}
@@ -119,5 +120,6 @@ Avatar.propTypes = {
   size: PropTypes.number,
   pineAddress: PropTypes.string,
   checksum: PropTypes.string,
-  vendorId: PropTypes.string
+  vendorId: PropTypes.string,
+  style: PropTypes.any
 };

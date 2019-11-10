@@ -88,6 +88,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                         "borderRadius": 100,
                         "overflow": "hidden",
                       },
+                      undefined,
                       Object {
                         "height": 60,
                         "width": 60,

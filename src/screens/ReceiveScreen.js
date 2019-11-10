@@ -5,13 +5,11 @@ import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
 
 import BaseScreen from './BaseScreen';
-import { parse as parseAddress, resolveBaseUrl } from '../pineApi/address';
 import ReceiveScreenHeader from '../components/ReceiveScreenHeader';
 import ContentView from '../components/ContentView';
 import Paragraph from '../components/Paragraph';
 import AddressLabel from '../components/AddressLabel';
-
-const AVATAR_PLACEHOLDER = require('../images/AvatarPlaceholder.png');
+import Avatar from '../components/Avatar';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const QR_CODE_WIDTH = WINDOW_WIDTH - 150;
@@ -34,6 +32,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#AAAAAA',
     marginTop: 15
+  },
+  qrWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  qrAvatar: {
+    borderWidth: 2,
+    borderColor: '#ffffff',
+    position: 'absolute'
   }
 });
 
@@ -52,27 +59,13 @@ export default class ReceiveScreen extends Component {
     return `bitcoin:${address}?pine=${pineAddress}`;
   }
 
-  _getAvatarSource() {
-    const { pineAddress, avatar } = this.props;
-
-    if (!avatar || !avatar.checksum) {
-      return AVATAR_PLACEHOLDER;
-    }
-
-    const { username, hostname } = parseAddress(pineAddress);
-    const baseUrl = resolveBaseUrl(hostname);
-    const uri = `${baseUrl}/v1/users/${username}/avatar?byUsername=1&c=${avatar.checksum}`;
-
-    return { uri };
-  }
-
   _shareAddress() {
     const bitcoinUri = this._getBitcoinUri();
     Share.share({ message: bitcoinUri });
   }
 
   render() {
-    const { pineAddress, address } = this.props;
+    const { pineAddress, address, avatar } = this.props;
     const qrData = this._getBitcoinUri();
 
     return (
@@ -85,14 +78,19 @@ export default class ReceiveScreen extends Component {
 
           <View>
             <AddressLabel address={pineAddress} shorten={false} textStyle={styles.pineAddress} tooltipArrowDirection='down' />
-            <QRCode
-              value={qrData}
-              size={QR_CODE_WIDTH}
-              logo={this._getAvatarSource()}
-              logoSize={AVATAR_WIDTH}
-              logoBorderRadius={AVATAR_WIDTH / 2}
-              color='#111111'
-            />
+            <View style={styles.qrWrapper}>
+              <QRCode
+                value={qrData}
+                size={QR_CODE_WIDTH}
+                color='#111111'
+              />
+              <Avatar
+                size={AVATAR_WIDTH}
+                pineAddress={pineAddress}
+                checksum={avatar && avatar.checksum}
+                style={styles.qrAvatar}
+              />
+            </View>
             <AddressLabel address={address} textStyle={styles.address} tooltipArrowDirection='up' />
           </View>
 
