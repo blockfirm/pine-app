@@ -70,7 +70,7 @@ export default class Button extends Component {
     this._isMounted = true;
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.disabled !== nextProps.disabled) {
       this.setState({
         disabled: nextProps.disabled

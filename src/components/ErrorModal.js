@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 });
 
 export default class ErrorModal extends Component {
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.error !== nextProps.error) {
       LayoutAnimation.spring();
 

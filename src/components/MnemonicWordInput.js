@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 });
 
 export default class MnemonicWordInput extends Component {
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.isCorrect && !this.props.isCorrect) {
       ReactNativeHaptic.generate('selection');
 
