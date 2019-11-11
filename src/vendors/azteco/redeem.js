@@ -16,7 +16,7 @@ const redeem = (voucher, address) => {
 
   const options = {
     method: 'POST',
-    body: `url=&CODE_1=${voucher[0]}&CODE_2=${voucher[1]}&CODE_3=${voucher[2]}&CODE_4=${voucher[3]}&ADDRESS=${address}`
+    body: `CODE_1=${voucher[0]}&CODE_2=${voucher[1]}&CODE_3=${voucher[2]}&CODE_4=${voucher[3]}&ADDRESS=${address}`
   };
 
   return fetchWithTimeout(url, options, REQUEST_TIMEOUT).then((response) => {
