@@ -24,6 +24,7 @@
     "@react-native-community/blur": "^3.3.1",
     "@react-native-community/masked-view": "^0.1.1",
     "@react-native-community/netinfo": "^4.1.1",
+    "@react-native-community/push-notification-ios": "^1.0.2",
     "assert": "^1.4.1",
     "bip21": "^2.0.2",
     "bip32": "^1.0.2",

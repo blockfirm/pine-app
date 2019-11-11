@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, PushNotificationIOS, ActivityIndicator } from 'react-native';
+import { StyleSheet, Image, ActivityIndicator } from 'react-native';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 

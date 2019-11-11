@@ -122,14 +122,6 @@ PODS:
     - React-jsi (= 0.61.4)
     - React-jsiexecutor (= 0.61.4)
     - Yoga
-  - React-Core/RCTPushNotificationHeaders (0.61.4):
-    - Folly (= 2018.10.22.00)
-    - glog
-    - React-Core/Default
-    - React-cxxreact (= 0.61.4)
-    - React-jsi (= 0.61.4)
-    - React-jsiexecutor (= 0.61.4)
-    - Yoga
   - React-Core/RCTSettingsHeaders (0.61.4):
     - Folly (= 2018.10.22.00)
     - glog
@@ -236,8 +228,6 @@ PODS:
     - React-Core/RCTLinkingHeaders (= 0.61.4)
   - React-RCTNetwork (0.61.4):
     - React-Core/RCTNetworkHeaders (= 0.61.4)
-  - React-RCTPushNotification (0.61.4):
-    - React-Core/RCTPushNotificationHeaders (= 0.61.4)
   - React-RCTSettings (0.61.4):
     - React-Core/RCTSettingsHeaders (= 0.61.4)
   - React-RCTText (0.61.4):
@@ -264,6 +254,8 @@ PODS:
   - RNCAsyncStorage (1.6.2):
     - React
   - RNCMaskedView (0.1.5):
+    - React
+  - RNCPushNotificationIOS (1.0.2):
     - React
   - RNICloudStore (0.1.0):
     - React
@@ -324,7 +316,6 @@ DEPENDENCIES:
   - React-RCTImage (from `../node_modules/react-native/Libraries/Image`)
   - React-RCTLinking (from `../node_modules/react-native/Libraries/LinkingIOS`)
   - React-RCTNetwork (from `../node_modules/react-native/Libraries/Network`)
-  - React-RCTPushNotification (from `../node_modules/react-native/Libraries/PushNotificationIOS`)
   - React-RCTSettings (from `../node_modules/react-native/Libraries/Settings`)
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
@@ -334,6 +325,7 @@ DEPENDENCIES:
   - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - RNICloudStore (from `../node_modules/react-native-icloudstore`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
@@ -414,8 +406,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/LinkingIOS"
   React-RCTNetwork:
     :path: "../node_modules/react-native/Libraries/Network"
-  React-RCTPushNotification:
-    :path: "../node_modules/react-native/Libraries/PushNotificationIOS"
   React-RCTSettings:
     :path: "../node_modules/react-native/Libraries/Settings"
   React-RCTText:
@@ -432,6 +422,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
+  RNCPushNotificationIOS:
+    :path: "../node_modules/@react-native-community/push-notification-ios"
   RNICloudStore:
     :path: "../node_modules/react-native-icloudstore"
   RNImageCropPicker:
@@ -485,7 +477,6 @@ SPEC CHECKSUMS:
   React-RCTImage: 443050d14a66e8c2332e9c055f45689d23e15cc7
   React-RCTLinking: ce9a90ba155aec41be49e75ec721bbae2d48a47e
   React-RCTNetwork: 41fe54bacc67dd00e6e4c4d30dd98a13e4beabc8
-  React-RCTPushNotification: 0afa27aac03e29583adb39b3cf0905896f209567
   React-RCTSettings: 45e3e0a6470310b2dab2ccc6d1d73121ba3ea936
   React-RCTText: 21934e0a51d522abcd0a275407e80af45d6fd9ec
   React-RCTVibration: 0f76400ee3cec6edb9c125da49fed279340d145a
@@ -494,6 +485,7 @@ SPEC CHECKSUMS:
   RNBackgroundFetch: 8d8d66b47eafcb9e772b2eb95057939038b3ef95
   RNCAsyncStorage: 60a80e72d95bf02a01cace55d3697d9724f0d77f
   RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
+  RNCPushNotificationIOS: 0b8d06ff190d84627dd17501bfb96652375970e4
   RNICloudStore: bc6e225811637c09bd1eb055d6cd7448e61cd451
   RNImageCropPicker: bfb3ea9c8622f290532e2fe63f369e0d5a52f597
   RNKeychain: c658833a9cb2cbcba6423bdd6e16cce59e27da0e
@@ -506,6 +498,6 @@ SPEC CHECKSUMS:
   TouchID: b816a3db79ac3f9da547d0d0d4bd87ff6e338ca9
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: 5fc08a5a29f4b3a4efdf9875a7136262da04fb67
+PODFILE CHECKSUM: e16f33025be5e02441a7c32a0e289202f18d3816
 
 COCOAPODS: 1.7.2

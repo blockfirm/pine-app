@@ -1,4 +1,7 @@
-import { PushNotificationIOS, AppState } from 'react-native';
+/* eslint-disable max-lines */
+import { AppState } from 'react-native';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
+
 import { onRegister } from '../actions/notifications/onRegister';
 import { onRegisterError } from '../actions/notifications/onRegisterError';
 import { setPermissions } from '../actions/notifications/setPermissions';
