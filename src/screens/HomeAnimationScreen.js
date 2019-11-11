@@ -81,13 +81,13 @@ export default class HomeAnimationScreen extends PureComponent {
         }),,
         Animated.timing(overlayAnim, {
           toValue: 1000,
-          duration: 300,
+          duration: 275,
           easing: Easing.easeInCirc,
           useNativeDriver: true
         }),
         Animated.timing(appAnim, {
           toValue: 1000,
-          duration: 350,
+          duration: 300,
           easing: Easing.easeOutCirc,
           useNativeDriver: true
        })
