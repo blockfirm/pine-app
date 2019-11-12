@@ -1,7 +1,7 @@
 import { fetchWithTimeout } from '../../network';
 
 const AZTECO_PINE_ENDPOINT = 'https://azte.co/pine_despatch.php';
-const REQUEST_TIMEOUT = 30000; // 30 seconds.
+const REQUEST_TIMEOUT = 60 * 1000; // 60 seconds.
 
 /**
  * Redeems an Azteco bitcoin voucher.
@@ -12,14 +12,10 @@ const REQUEST_TIMEOUT = 30000; // 30 seconds.
  * @returns {Promise} A promise that resolves when the voucher has been redeemed.
  */
 const redeem = (voucher, address) => {
-  const url = AZTECO_PINE_ENDPOINT;
+  const queryString = `CODE_1=${voucher[0]}&CODE_2=${voucher[1]}&CODE_3=${voucher[2]}&CODE_4=${voucher[3]}&ADDRESS=${address}`;
+  const url = `${AZTECO_PINE_ENDPOINT}?${queryString}`;
 
-  const options = {
-    method: 'POST',
-    body: `CODE_1=${voucher[0]}&CODE_2=${voucher[1]}&CODE_3=${voucher[2]}&CODE_4=${voucher[3]}&ADDRESS=${address}`
-  };
-
-  return fetchWithTimeout(url, options, REQUEST_TIMEOUT).then((response) => {
+  return fetchWithTimeout(url, null, REQUEST_TIMEOUT).then((response) => {
     if (!response.ok) {
       throw new Error(response.body);
     }
