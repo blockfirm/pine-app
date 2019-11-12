@@ -209,6 +209,7 @@ export default class Message extends Component {
         <Avatar
           size={24}
           pineAddress={contact.address}
+          vendorId={contact.vendorId}
           checksum={avatarChecksum}
         />
       </View>
