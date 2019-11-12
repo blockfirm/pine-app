@@ -65,6 +65,13 @@ export default class RedeemAztecoScreen extends Component {
           associatedAddresses: [address]
         }));
       })
+      .then(() => {
+        /**
+         * Wait a little before syncing so that the redemption
+         * transaction has time to propagate the network.
+         */
+         return new Promise(resolve => setTimeout(resolve, 2000));
+      })
       .catch(() => {
         const error = new Error(
           'The voucher could not be redeemed. Please try again or contact Azteco at support@azte.co.'
