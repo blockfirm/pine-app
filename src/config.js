@@ -42,6 +42,9 @@ export default {
       numberOfBlocks: 6 // Set priority to 6 blocks to try to keep fees down.
     }
   },
+  lightning: {
+    serverPingInterval: 30 // Expect a ping from server every 30 seconds.
+  },
   currency: {
     primary: 'BTC',
     secondary: REGION_CURRENCY

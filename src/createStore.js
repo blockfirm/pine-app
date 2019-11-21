@@ -1,6 +1,8 @@
 import { createStore as createReduxStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
+
+import { lightningMiddleware } from './middlewares';
 import getRootReducer from './reducers';
 
 const reactNavigationReduxMiddleware = createReactNavigationReduxMiddleware(
@@ -13,7 +15,8 @@ const createStore = (navReducer) => {
     getRootReducer(navReducer),
     applyMiddleware(
       thunkMiddleware,
-      reactNavigationReduxMiddleware
+      reactNavigationReduxMiddleware,
+      lightningMiddleware
     )
   );
 
