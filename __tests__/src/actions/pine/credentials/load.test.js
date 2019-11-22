@@ -18,6 +18,9 @@ const getStateMock = jest.fn(() => ({
       profile: {
         address: 'f7c3a6b0-39a4-485d-97de-fb27fb88e801'
       }
+    },
+    bitcoin: {
+      network: 'testnet'
     }
   },
   pine: {
@@ -133,6 +136,9 @@ describe('load', () => {
               profile: {
                 address: 'f7c3a6b0-39a4-485d-97de-fb27fb88e801'
               }
+            },
+            bitcoin: {
+              network: 'testnet'
             }
           },
           pine: {
@@ -163,6 +169,9 @@ describe('load', () => {
               profile: {
                 address: 'f7c3a6b0-39a4-485d-97de-fb27fb88e801'
               }
+            },
+            bitcoin: {
+              network: 'testnet'
             }
           },
           pine: {
@@ -191,6 +200,9 @@ describe('load', () => {
               profile: {
                 address: ''
               }
+            },
+            bitcoin: {
+              network: 'testnet'
             }
           },
           pine: {

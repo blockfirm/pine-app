@@ -1,6 +1,10 @@
 import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
-import getAccountKeyPairFromMnemonic from '../../../pineApi/crypto/getAccountKeyPairFromMnemonic';
 import getUserIdFromPublicKey from '../../../pineApi/crypto/getUserIdFromPublicKey';
+
+import {
+  getAccountKeyPairFromMnemonic,
+  getLightningKeyPairFromMnemonic
+} from '../../../pineApi/crypto';
 
 export const PINE_CREDENTIALS_LOAD_REQUEST = 'PINE_CREDENTIALS_LOAD_REQUEST';
 export const PINE_CREDENTIALS_LOAD_SUCCESS = 'PINE_CREDENTIALS_LOAD_SUCCESS';
@@ -43,6 +47,7 @@ const getDefaultMnemonicFromKeys = (keys) => {
 export const load = () => {
   return (dispatch, getState) => {
     const state = getState();
+    const { network } = state.settings.bitcoin;
     const { address } = state.settings.user.profile;
     const credentials = { address };
 
@@ -66,6 +71,16 @@ export const load = () => {
          */
         credentials.keyPair = getAccountKeyPairFromMnemonic(mnemonic);
         credentials.userId = getUserIdFromPublicKey(credentials.keyPair.publicKey);
+
+        /**
+         * The lightning key pair is stored in memory because it is used
+         * more frequently when using lightning - not only when making
+         * transactions but also at start-up, etc. Although it can spend
+         * off-chain funds, it cannot spend on-chain funds.
+         */
+        credentials.lightning = {
+          keyPair: getLightningKeyPairFromMnemonic(mnemonic, network)
+        };
 
         dispatch(loadSuccess(credentials));
       })
