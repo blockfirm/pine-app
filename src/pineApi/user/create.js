@@ -1,6 +1,6 @@
 import bs58check from 'bs58check';
 import getAccountPublicKeyFromMnemonic from '../../crypto/getAccountPublicKeyFromMnemonic';
-import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../crypto';
+import { getAccountKeyPairFromMnemonic, getUserIdFromPublicKey } from '../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../address';
 import { getAuthorizationHeader } from '../authentication';
 
@@ -17,7 +17,7 @@ const BIP49_ACCOUNT_INDEX = 0;
  */
 const create = (pineAddress, mnemonic, bitcoinNetwork) => {
   const { username, hostname } = parseAddress(pineAddress);
-  const keyPair = getKeyPairFromMnemonic(mnemonic);
+  const keyPair = getAccountKeyPairFromMnemonic(mnemonic);
   const publicKey = keyPair.publicKey;
   const extendedPublicKey = getAccountPublicKeyFromMnemonic(mnemonic, bitcoinNetwork, BIP49_ACCOUNT_INDEX);
   const userId = getUserIdFromPublicKey(publicKey);

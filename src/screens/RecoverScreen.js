@@ -24,7 +24,7 @@ import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import { parse as parseAddress } from '../pineApi/address';
 import { getById as getUserById } from '../pineApi/user';
-import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../pineApi/crypto';
+import { getAccountKeyPairFromMnemonic, getUserIdFromPublicKey } from '../pineApi/crypto';
 import StyledText from '../components/StyledText';
 import Link from '../components/Link';
 import Avatar from '../components/Avatar';
@@ -175,7 +175,7 @@ export default class RecoverScreen extends Component {
   _tryRecoverUser({ pineAddress, mnemonic }) {
     const { dispatch, defaultPineAddressHostname } = this.props;
     const hostname = pineAddress ? parseAddress(pineAddress).hostname : defaultPineAddressHostname;
-    const keyPair = getKeyPairFromMnemonic(mnemonic);
+    const keyPair = getAccountKeyPairFromMnemonic(mnemonic);
     const userId = getUserIdFromPublicKey(keyPair.publicKey);
 
     return getUserById(userId, hostname)

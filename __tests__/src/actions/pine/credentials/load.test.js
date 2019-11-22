@@ -1,5 +1,5 @@
 import getMnemonicByKey from '../../../../../src/crypto/getMnemonicByKey';
-import getKeyPairFromMnemonic from '../../../../../src/pineApi/crypto/getKeyPairFromMnemonic';
+import getAccountKeyPairFromMnemonic from '../../../../../src/pineApi/crypto/getAccountKeyPairFromMnemonic';
 import getUserIdFromPublicKey from '../../../../../src/pineApi/crypto/getUserIdFromPublicKey';
 
 import {
@@ -36,7 +36,7 @@ jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
   return jest.fn(() => Promise.resolve('81325032-4f6b-46b0-9b0e-217bdb882c04'));
 });
 
-jest.mock('../../../../../src/pineApi/crypto/getKeyPairFromMnemonic', () => {
+jest.mock('../../../../../src/pineApi/crypto/getAccountKeyPairFromMnemonic', () => {
   return jest.fn(() => 'ac3d6c4c-e430-4852-812e-a11046f38a66');
 });
 
@@ -66,7 +66,7 @@ describe('load', () => {
   beforeEach(() => {
     dispatchMock.mockClear();
     getMnemonicByKey.mockClear();
-    getKeyPairFromMnemonic.mockClear();
+    getAccountKeyPairFromMnemonic.mockClear();
     getUserIdFromPublicKey.mockClear();
   });
 
@@ -114,7 +114,7 @@ describe('load', () => {
             type: PINE_CREDENTIALS_LOAD_SUCCESS,
             credentials: expect.objectContaining({
               address: 'f7c3a6b0-39a4-485d-97de-fb27fb88e801', // Mocked in the state.
-              keyPair: 'ac3d6c4c-e430-4852-812e-a11046f38a66', // Mocked with getKeyPairFromMnemonic().
+              keyPair: 'ac3d6c4c-e430-4852-812e-a11046f38a66', // Mocked with getAccountKeyPairFromMnemonic().
               userId: 'b372970c-91a6-45c3-9bb2-7aef0f312ded' // Mocked with getUserIdFromPublicKey().
             })
           });

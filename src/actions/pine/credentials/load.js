@@ -1,5 +1,5 @@
 import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
-import getKeyPairFromMnemonic from '../../../pineApi/crypto/getKeyPairFromMnemonic';
+import getAccountKeyPairFromMnemonic from '../../../pineApi/crypto/getAccountKeyPairFromMnemonic';
 import getUserIdFromPublicKey from '../../../pineApi/crypto/getUserIdFromPublicKey';
 
 export const PINE_CREDENTIALS_LOAD_REQUEST = 'PINE_CREDENTIALS_LOAD_REQUEST';
@@ -51,7 +51,7 @@ export const load = () => {
     }
 
     if (state.pine.credentials !== null) {
-      // The credentials has already been loaded into state.
+      // The credentials have already been loaded into state.
       return Promise.resolve();
     }
 
@@ -64,7 +64,7 @@ export const load = () => {
          * can't sign bitcoin transactions. The mnemonic should NOT be
          * stored in state or memory.
          */
-        credentials.keyPair = getKeyPairFromMnemonic(mnemonic);
+        credentials.keyPair = getAccountKeyPairFromMnemonic(mnemonic);
         credentials.userId = getUserIdFromPublicKey(credentials.keyPair.publicKey);
 
         dispatch(loadSuccess(credentials));

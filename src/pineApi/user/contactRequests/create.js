@@ -1,5 +1,5 @@
 import { fetchWithTimeout } from '../../../network';
-import { getKeyPairFromMnemonic } from '../../crypto';
+import { getAccountKeyPairFromMnemonic } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
 import { getAuthorizationHeader } from '../../authentication';
 import getUser from '../get';
@@ -26,7 +26,7 @@ const create = (to, credentials) => {
       user = _user;
 
       const { hostname } = parseAddress(to);
-      const keyPair = credentials.keyPair || getKeyPairFromMnemonic(credentials.mnemonic);
+      const keyPair = credentials.keyPair || getAccountKeyPairFromMnemonic(credentials.mnemonic);
       const baseUrl = resolveBaseUrl(hostname);
       const path = `/v1/users/${user.id}/contact-requests`;
       const url = `${baseUrl}${path}`;

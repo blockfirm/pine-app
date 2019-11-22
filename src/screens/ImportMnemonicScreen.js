@@ -14,7 +14,7 @@ import * as keyActions from '../actions/keys';
 import * as settingsActions from '../actions/settings';
 import * as bitcoinWalletActions from '../actions/bitcoin/wallet';
 import { getById as getUserById } from '../pineApi/user';
-import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../pineApi/crypto';
+import { getAccountKeyPairFromMnemonic, getUserIdFromPublicKey } from '../pineApi/crypto';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -106,7 +106,7 @@ export default class ImportMnemonicScreen extends Component {
       })
       .then(() => {
         // Try to recover a Pine user for the mnemonic.
-        const keyPair = getKeyPairFromMnemonic(mnemonic);
+        const keyPair = getAccountKeyPairFromMnemonic(mnemonic);
         const userId = getUserIdFromPublicKey(keyPair.publicKey);
 
         return getUserById(userId, defaultPineAddressHostname)

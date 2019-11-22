@@ -1,4 +1,4 @@
-import getKeyPairFromMnemonic from '../../../../src/pineApi/crypto/getKeyPairFromMnemonic';
+import getAccountKeyPairFromMnemonic from '../../../../src/pineApi/crypto/getAccountKeyPairFromMnemonic';
 import getUserIdFromPublicKey from '../../../../src/pineApi/crypto/getUserIdFromPublicKey';
 
 describe('getUserIdFromPublicKey', () => {
@@ -12,7 +12,7 @@ describe('getUserIdFromPublicKey', () => {
 
   it('returns a user id based on the passed public key', () => {
     const mnemonic = 'abuse boss fly battle rubber wasp afraid hamster guide essence vibrant tattoo';
-    const keyPair = getKeyPairFromMnemonic(mnemonic);
+    const keyPair = getAccountKeyPairFromMnemonic(mnemonic);
     const publicKey = keyPair.publicKey;
     const userId = getUserIdFromPublicKey(publicKey);
 

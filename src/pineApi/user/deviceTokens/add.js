@@ -1,4 +1,4 @@
-import { getKeyPairFromMnemonic, getUserIdFromPublicKey } from '../../crypto';
+import { getAccountKeyPairFromMnemonic, getUserIdFromPublicKey } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
 import { getAuthorizationHeader } from '../../authentication';
 
@@ -17,7 +17,7 @@ import { getAuthorizationHeader } from '../../authentication';
  */
 const add = (deviceToken, credentials) => {
   const { hostname } = parseAddress(credentials.address);
-  const keyPair = credentials.keyPair || getKeyPairFromMnemonic(credentials.mnemonic);
+  const keyPair = credentials.keyPair || getAccountKeyPairFromMnemonic(credentials.mnemonic);
   const userId = credentials.userId || getUserIdFromPublicKey(keyPair.publicKey);
 
   const baseUrl = resolveBaseUrl(hostname);

@@ -1,4 +1,4 @@
-import getKeyPairFromMnemonic from '../../../../src/pineApi/crypto/getKeyPairFromMnemonic';
+import getAccountKeyPairFromMnemonic from '../../../../src/pineApi/crypto/getAccountKeyPairFromMnemonic';
 import sign from '../../../../src/pineApi/crypto/sign';
 
 describe('sign', () => {
@@ -12,7 +12,7 @@ describe('sign', () => {
 
   it('returns a signature of the passed message', () => {
     const mnemonic = 'abuse boss fly battle rubber wasp afraid hamster guide essence vibrant tattoo';
-    const keyPair = getKeyPairFromMnemonic(mnemonic);
+    const keyPair = getAccountKeyPairFromMnemonic(mnemonic);
     const message = 'bec5dc66-ae17-46c5-9535-ac3505481073';
     const actualSignature = sign(message, keyPair);
     const expectedSignature = 'HxI7fqjULLf8wvMHMCiBR1E0BhX9Xsb/Uh/w3mFDz9pCZdN7Fv8zTjJbFepYVwpH1K3ttxc3ZoQKI5nIo3kNuSc=';

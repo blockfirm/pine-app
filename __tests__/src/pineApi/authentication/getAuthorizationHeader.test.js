@@ -1,4 +1,4 @@
-import getKeyPairFromMnemonic from '../../../../src/pineApi/crypto/getKeyPairFromMnemonic';
+import getAccountKeyPairFromMnemonic from '../../../../src/pineApi/crypto/getAccountKeyPairFromMnemonic';
 import getAuthorizationHeader from '../../../../src/pineApi/authentication/getAuthorizationHeader';
 
 describe('getAuthorizationHeader', () => {
@@ -15,7 +15,7 @@ describe('getAuthorizationHeader', () => {
     const path = '/v1/users';
     const rawBody = '{ "test": true }';
     const mnemonic = 'abuse boss fly battle rubber wasp afraid hamster guide essence vibrant tattoo';
-    const keyPair = getKeyPairFromMnemonic(mnemonic);
+    const keyPair = getAccountKeyPairFromMnemonic(mnemonic);
     const actualHeader = getAuthorizationHeader(user, path, rawBody, keyPair);
     const expectedHeader = 'Basic dXNlcjFAcGluZS5wbTpIemJSVmdSOTFRRjBScmV0c0xEQnIvL1UyU3lremJCdDR2R0R3ZktLN25ja0RoSG43c1plWlRFUFlrbk83SHBrWFdlOWc1ZkNScFlSYVR1dGxqVlRtVXc9';
 

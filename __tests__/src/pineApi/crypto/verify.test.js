@@ -1,4 +1,4 @@
-import getKeyPairFromMnemonic from '../../../../src/pineApi/crypto/getKeyPairFromMnemonic';
+import getAccountKeyPairFromMnemonic from '../../../../src/pineApi/crypto/getAccountKeyPairFromMnemonic';
 import getUserIdFromPublicKey from '../../../../src/pineApi/crypto/getUserIdFromPublicKey';
 import sign from '../../../../src/pineApi/crypto/sign';
 import verify from '../../../../src/pineApi/crypto/verify';
@@ -15,7 +15,7 @@ describe('verify', () => {
   describe('when the signature was made for the correct message by the correct user', () => {
     it('returns true', () => {
       const mnemonic = 'abuse boss fly battle rubber wasp afraid hamster guide essence vibrant tattoo';
-      const keyPair = getKeyPairFromMnemonic(mnemonic);
+      const keyPair = getAccountKeyPairFromMnemonic(mnemonic);
       const userId = getUserIdFromPublicKey(keyPair.publicKey);
       const message = 'ab81613f-68ee-428c-b667-fcdad51cd89f';
       const signature = sign(message, keyPair);
@@ -30,8 +30,8 @@ describe('verify', () => {
       const mnemonic1 = 'abuse boss fly battle rubber wasp afraid hamster guide essence vibrant tattoo';
       const mnemonic2 = 'test test fly battle rubber wasp afraid hamster guide essence test test';
 
-      const keyPair1 = getKeyPairFromMnemonic(mnemonic1);
-      const keyPair2 = getKeyPairFromMnemonic(mnemonic2);
+      const keyPair1 = getAccountKeyPairFromMnemonic(mnemonic1);
+      const keyPair2 = getAccountKeyPairFromMnemonic(mnemonic2);
 
       const userId2 = getUserIdFromPublicKey(keyPair2.publicKey);
 
@@ -49,8 +49,8 @@ describe('verify', () => {
       const mnemonic1 = 'abuse boss fly battle rubber wasp afraid hamster guide essence vibrant tattoo';
       const mnemonic2 = 'test test fly battle rubber wasp afraid hamster guide essence test test';
 
-      const keyPair1 = getKeyPairFromMnemonic(mnemonic1);
-      const keyPair2 = getKeyPairFromMnemonic(mnemonic2);
+      const keyPair1 = getAccountKeyPairFromMnemonic(mnemonic1);
+      const keyPair2 = getAccountKeyPairFromMnemonic(mnemonic2);
 
       const userId2 = getUserIdFromPublicKey(keyPair2.publicKey);
 
@@ -68,7 +68,7 @@ describe('verify', () => {
   describe('when the signature was made for the wrong message by the correct user', () => {
     it('returns false', () => {
       const mnemonic = 'abuse boss fly battle rubber wasp afraid hamster guide essence vibrant tattoo';
-      const keyPair = getKeyPairFromMnemonic(mnemonic);
+      const keyPair = getAccountKeyPairFromMnemonic(mnemonic);
       const userId = getUserIdFromPublicKey(keyPair.publicKey);
       const message1 = 'ab81613f-68ee-428c-b667-fcdad51cd89f';
       const message2 = '84bdd490-197f-42ae-b2ff-8a15e510b1ca';

@@ -1,6 +1,6 @@
 import bs58check from 'bs58check';
 import { fetchWithTimeout } from '../../../network';
-import { getKeyPairFromMnemonic, encrypt, sign } from '../../crypto';
+import { getAccountKeyPairFromMnemonic, encrypt, sign } from '../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../address';
 import { getAuthorizationHeader } from '../../authentication';
 
@@ -27,7 +27,7 @@ const REQUEST_TIMEOUT = 5000; // 5 seconds.
  */
 const send = async (message, contact, credentials) => {
   const { hostname } = parseAddress(contact.address);
-  const keyPair = credentials.keyPair || getKeyPairFromMnemonic(credentials.mnemonic);
+  const keyPair = credentials.keyPair || getAccountKeyPairFromMnemonic(credentials.mnemonic);
   const baseUrl = resolveBaseUrl(hostname);
   const path = `/v1/users/${contact.userId}/messages`;
   const url = `${baseUrl}${path}`;
