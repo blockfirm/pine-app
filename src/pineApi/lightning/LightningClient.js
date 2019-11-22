@@ -8,7 +8,6 @@ import {
 } from './serializers';
 
 import { parse as parseAddress, resolveBaseUrl } from '../address';
-import { getUserIdFromPublicKey, getAccountKeyPairFromMnemonic } from '../crypto';
 import { getAuthorizationHeader } from '../authentication';
 
 const PING_LATENCY = 2000; // 2 seconds
@@ -16,15 +15,15 @@ const RECONNECT_INTERVAL = 1000; // 1 second
 const ERROR_CODE_NORMAL_CLOSE = 1000;
 
 export default class LightningClient extends EventEmitter {
-  constructor(pineAddress, mnemonic, config) {
+  constructor(pineAddress, credentials, config) {
     const { hostname } = parseAddress(pineAddress);
 
     super();
 
     this.config = config;
     this.baseUrl = resolveBaseUrl(hostname);
-    this.keyPair = getAccountKeyPairFromMnemonic(mnemonic);
-    this.userId = getUserIdFromPublicKey(this.keyPair.publicKey);
+    this.keyPair = credentials.keyPair;
+    this.userId = credentials.userId;
 
     this.callCounter = 1;
     this.callbacks = {};
