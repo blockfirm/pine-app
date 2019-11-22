@@ -1,7 +1,12 @@
 import bip32 from 'bip32';
 import bip39 from 'bip39';
 
-const PURPOSE_CODE = 428;
+/**
+ * 428 is the BIP44 purpose code for the Pine Payment Protocol.
+ * It should only be used for deriving a key pair to be used
+ * together with the Pine Payment Protocol.
+ */
+const PURPOSE_CODE_428 = 428;
 
 /**
  * Gets a key pair from a mnemonic and account index to be used with
@@ -15,7 +20,7 @@ const PURPOSE_CODE = 428;
 const getAccountKeyPairFromMnemonic = (mnemonic, accountIndex = 0) => {
   const seed = bip39.mnemonicToSeed(mnemonic);
   const masterNode = bip32.fromSeed(seed);
-  const path = `m/${PURPOSE_CODE}'/${accountIndex}'`;
+  const path = `m/${PURPOSE_CODE_428}'/${accountIndex}'`;
   const keyPair = masterNode.derivePath(path);
 
   keyPair.compressed = true;
