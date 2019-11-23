@@ -1,6 +1,6 @@
 import bitcoin from 'bitcoinjs-lib';
 import * as bip32 from 'bip32';
-import bip39 from 'bip39';
+import * as bip39 from 'bip39';
 import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
 
 export const BITCOIN_WALLET_TRANSACTIONS_SIGN_REQUEST = 'BITCOIN_WALLET_TRANSACTIONS_SIGN_REQUEST';
@@ -58,7 +58,7 @@ const getKeyPairForAddress = (address, addresses, mnemonic, network) => {
     return;
   }
 
-  const seed = bip39.mnemonicToSeed(mnemonic);
+  const seed = bip39.mnemonicToSeedSync(mnemonic);
   const masterNode = bip32.fromSeed(seed, getBitcoinNetwork(network));
 
   const purpose = 49; // BIP49

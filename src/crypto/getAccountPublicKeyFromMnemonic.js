@@ -1,6 +1,6 @@
 import bitcoin from 'bitcoinjs-lib';
 import * as bip32 from 'bip32';
-import bip39 from 'bip39';
+import * as bip39 from 'bip39';
 
 const getBitcoinNetwork = (network) => {
   return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
@@ -16,7 +16,7 @@ const getBitcoinNetwork = (network) => {
  * @returns {string} An extended public key for the specified account.
  */
 const getAccountPublicKeyFromMnemonic = (mnemonic, network, accountIndex) => {
-  const seed = bip39.mnemonicToSeed(mnemonic);
+  const seed = bip39.mnemonicToSeedSync(mnemonic);
   const bitcoinNetwork = getBitcoinNetwork(network);
   const masterNode = bip32.fromSeed(seed, bitcoinNetwork);
   const purpose = 49; // BIP49

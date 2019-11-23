@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import KeepAwake from 'react-native-keep-awake';
-import bip39 from 'bip39';
+import * as bip39 from 'bip39';
 
 import { reset as resetApp } from '../actions';
 import { reset as navigateWithReset } from '../actions/navigate';

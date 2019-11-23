@@ -1,4 +1,4 @@
-import bip39 from 'bip39';
+import * as bip39 from 'bip39';
 import getRandomBytes from './getRandomBytes';
 
 const ENTROPY = 128; // 128-bit entropy equals 12 mnemonic words.
