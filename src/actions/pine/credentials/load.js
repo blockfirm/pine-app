@@ -73,14 +73,14 @@ export const load = () => {
         credentials.userId = getUserIdFromPublicKey(credentials.keyPair.publicKey);
 
         /**
-         * The lightning key pair is stored in memory because it is used
-         * more frequently when using lightning - not only when making
-         * transactions but also at start-up, etc. Although it can spend
-         * off-chain funds, it cannot spend on-chain funds.
+         * The lightning extended public key is stored in memory for
+         * performance reasons since it is used more frequently.
+         * Although it can spend off-chain funds, it cannot spend
+         * on-chain funds.
          */
-        credentials.lightning = {
-          keyPair: getLightningKeyPairFromMnemonic(mnemonic, network)
-        };
+        const lightningKeyPair = getLightningKeyPairFromMnemonic(mnemonic, network);
+        const extendedPublicKey = lightningKeyPair.neutered().toBase58();
+        credentials.lightning = { extendedPublicKey };
 
         dispatch(loadSuccess(credentials));
       })

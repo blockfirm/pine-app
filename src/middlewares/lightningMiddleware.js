@@ -1,8 +1,15 @@
 /* eslint-disable lines-around-comment */
 import * as actions from '../actions';
 import { handle as handleError } from '../actions/error';
+import * as lightningRpcActions from '../actions/pine/lightning/rpc';
 import { LightningClient } from '../pineApi/lightning';
 
+/**
+ * Returns a map of lightning RPC client methods to redux implementations.
+ */
+const getMethods = (dispatch) => ({
+  deriveKey: (request) => dispatch(lightningRpcActions.deriveKey(request))
+});
 
 /**
  * This is a redux middleware that manages the Pine Lightning
@@ -20,14 +27,14 @@ const lightningMiddleware = () => {
     }
 
     const pineAddress = settings.user.profile.address;
-    const { credentials } = settings.pine;
 
     switch (action.type) {
       // Connect when app is ready.
       case actions.READY:
         if (!client) {
-          client = new LightningClient(pineAddress, credentials, settings.lightning);
+          client = new LightningClient(pineAddress, state.pine.credentials, settings.lightning);
           client.on('error', (error) => store.dispatch(handleError(error)));
+          client.registerMethods(getMethods(store.dispatch));
           client.connect();
         }
 

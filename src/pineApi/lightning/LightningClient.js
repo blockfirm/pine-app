@@ -25,8 +25,13 @@ export default class LightningClient extends EventEmitter {
     this.keyPair = credentials.keyPair;
     this.userId = credentials.userId;
 
+    this.methods = {};
     this.callCounter = 1;
     this.callbacks = {};
+  }
+
+  registerMethods(methods) {
+    this.methods = methods;
   }
 
   async connect() {
@@ -211,15 +216,11 @@ export default class LightningClient extends EventEmitter {
   }
 
   _handleRequestMessage(requestMessage) {
+    const { methods } = this;
     const { id, method, request } = requestMessage;
 
-    // TODO: Implement client methods.
-    const error = new Error('Method not implemented');
-    this._onError(error);
-    return this.sendError(id, error);
-
-    /*if (!methods[method]) {
-      const error = new Error('Invalid method');
+    if (!methods[method]) {
+      const error = new Error(`Invalid method '${method}'`);
       this._onError(error);
       return this.sendError(id, error);
     }
@@ -227,12 +228,11 @@ export default class LightningClient extends EventEmitter {
     methods[method](request)
       .then(response => {
         this.sendResponse(id, response);
-        this.emit('response', response);
       })
       .catch(error => {
         this.sendError(id, error);
         this._onError(error);
-      });*/
+      });
   }
 
   _onMessage({ data }) {
