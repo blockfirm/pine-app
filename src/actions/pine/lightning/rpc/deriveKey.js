@@ -1,4 +1,4 @@
-import bip32 from 'bip32';
+import * as bip32 from 'bip32';
 
 export const PINE_LIGHTNING_RPC_DERIVE_KEY = 'PINE_LIGHTNING_RPC_DERIVE_KEY';
 

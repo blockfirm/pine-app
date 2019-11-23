@@ -1,5 +1,5 @@
 import bitcoin from 'bitcoinjs-lib';
-import bip32 from 'bip32';
+import * as bip32 from 'bip32';
 import bip39 from 'bip39';
 import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
 

@@ -1,5 +1,5 @@
 import bitcoin from 'bitcoinjs-lib';
-import bip32 from 'bip32';
+import * as bip32 from 'bip32';
 
 const getBitcoinNetwork = (network) => {
   return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;

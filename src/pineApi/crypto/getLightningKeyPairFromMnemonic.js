@@ -1,4 +1,4 @@
-import bip32 from 'bip32';
+import * as bip32 from 'bip32';
 import bip39 from 'bip39';
 
 /**
