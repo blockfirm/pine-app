@@ -30,8 +30,8 @@ class ConfirmTransactionContainer extends Component {
 
   state = {
     address: null,
-    transaction: null,
     inputs: null,
+    outputs: null,
     fee: null,
     cannotAffordFee: false
   }
@@ -77,8 +77,8 @@ class ConfirmTransactionContainer extends Component {
     const { dispatch, amountBtc } = this.props;
 
     this.setState({
-      transaction: null,
       inputs: null,
+      outputs: null,
       fee: null,
       cannotAffordFee: false
     });
@@ -88,12 +88,12 @@ class ConfirmTransactionContainer extends Component {
         this.setState({ address });
         return dispatch(createTransaction(amountBtc, address));
       })
-      .then(({ transaction, inputs, fee }) => {
+      .then(({ inputs, outputs, fee }) => {
         if (fee === undefined) {
           return this.setState({ cannotAffordFee: true });
         }
 
-        this.setState({ transaction, inputs, fee });
+        this.setState({ inputs, outputs, fee });
       })
       .catch((error) => {
         dispatch(handleError(error));
@@ -102,15 +102,15 @@ class ConfirmTransactionContainer extends Component {
 
   _signAndPay() {
     const { dispatch, contact, amountBtc } = this.props;
-    const { transaction, inputs, fee, address } = this.state;
+    const { inputs, outputs, fee, address } = this.state;
 
-    return dispatch(signTransaction(transaction, inputs))
-      .then(() => {
-        const builtTransaction = transaction.build();
-        const rawTransaction = builtTransaction.toHex();
+    return dispatch(signTransaction(inputs, outputs))
+      .then((psbt) => {
+        const transaction = psbt.extractTransaction();
+        const rawTransaction = transaction.toHex();
 
         const transactionMetadata = {
-          txid: builtTransaction.getId(),
+          txid: transaction.getId(),
           address,
           amountBtc,
           fee,
@@ -126,8 +126,8 @@ class ConfirmTransactionContainer extends Component {
       .then((result) => {
         this.setState({
           address: null,
-          transaction: null,
           inputs: null,
+          outputs: null,
           fee: null,
           cannotAffordFee: false
         });
@@ -148,13 +148,11 @@ class ConfirmTransactionContainer extends Component {
   }
 
   render() {
-    const { transaction, inputs, fee, cannotAffordFee } = this.state;
+    const { fee, cannotAffordFee } = this.state;
 
     return (
       <ConfirmTransaction
         {...this.props}
-        transaction={transaction}
-        inputs={inputs}
         fee={fee}
         cannotAffordFee={cannotAffordFee}
         onPayPress={this._onPayPress}

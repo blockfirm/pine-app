@@ -1,7 +1,13 @@
-import bitcoin from 'bitcoinjs-lib';
+import * as bitcoin from 'bitcoinjs-lib';
 import * as bip32 from 'bip32';
 import * as bip39 from 'bip39';
 import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
+
+import {
+  UNIT_BTC,
+  UNIT_SATOSHIS,
+  convert as convertBitcoin
+} from '../../../../crypto/bitcoin/convert';
 
 export const BITCOIN_WALLET_TRANSACTIONS_SIGN_REQUEST = 'BITCOIN_WALLET_TRANSACTIONS_SIGN_REQUEST';
 export const BITCOIN_WALLET_TRANSACTIONS_SIGN_SUCCESS = 'BITCOIN_WALLET_TRANSACTIONS_SIGN_SUCCESS';
@@ -13,9 +19,10 @@ const signRequest = () => {
   };
 };
 
-const signSuccess = () => {
+const signSuccess = (psbt) => {
   return {
-    type: BITCOIN_WALLET_TRANSACTIONS_SIGN_SUCCESS
+    type: BITCOIN_WALLET_TRANSACTIONS_SIGN_SUCCESS,
+    psbt
   };
 };
 
@@ -80,9 +87,40 @@ const getRedeemScript = (keyPair, network) => {
   return p2wpkh.output;
 };
 
+const getUtxo = (utxos, txid, index) => {
+  const output = utxos.find((utxo) => {
+    return utxo.txid === txid && utxo.n === index;
+  });
+
+  if (!output) {
+    return;
+  }
+
+  return {
+    script: Buffer.from(output.scriptPubKey.hex, 'hex'),
+    value: convertBitcoin(output.value, UNIT_BTC, UNIT_SATOSHIS)
+  };
+};
+
+const signInputs = (psbt, keyPairs) => {
+  keyPairs.forEach((keyPair, index) => {
+    psbt.signInput(index, keyPair);
+
+    if (!psbt.validateSignaturesOfInput(index)) {
+      throw new Error(`Signature for input #${index} is invalid`);
+    }
+  });
+
+  psbt.finalizeAllInputs();
+};
+
 // eslint-disable-next-line max-params
-const signInputs = (transaction, inputs, addresses, mnemonic, network) => {
-  inputs.forEach((input, index) => {
+const signTransaction = (inputs, outputs, addresses, utxos, mnemonic, network) => {
+  const bitcoinNetwork = getBitcoinNetwork(network);
+  const psbt = new bitcoin.Psbt({ network: bitcoinNetwork });
+  const keyPairs = [];
+
+  inputs.forEach((input) => {
     const addressKeys = input.addresses.map((address) => {
       return getKeyPairForAddress(address, addresses, mnemonic, network);
     });
@@ -90,10 +128,26 @@ const signInputs = (transaction, inputs, addresses, mnemonic, network) => {
     const keyPair = addressKeys.find(key => key);
     const redeemScript = getRedeemScript(keyPair, network);
 
-    transaction.sign(index, keyPair, redeemScript, null, input.value);
+    keyPairs.push(keyPair);
+
+    psbt.addInput({
+      hash: input.txid,
+      index: input.vout,
+      witnessUtxo: getUtxo(utxos, input.txid, input.vout),
+      redeemScript
+    });
   });
 
-  transaction.signed = true;
+  outputs.forEach((output) => {
+    psbt.addOutput({
+      address: output.address,
+      value: output.value
+    });
+  });
+
+  signInputs(psbt, keyPairs);
+
+  return psbt;
 };
 
 const getMnemonic = (keys) => {
@@ -104,32 +158,31 @@ const getMnemonic = (keys) => {
 /**
  * Action to sign a transaction.
  *
- * @param {TransactionBuilder} transaction - bitcoinjs TransactionBuilder instance to sign.
  * @param {Object[]} inputs - Inputs of the transaction.
  * @param {string} inputs[].txid - ID of the transaction the input was created as an output.
  * @param {number} inputs[].vout - The index of the output in the origin transaction.
- * @param {number} inputs[].value - Value in satoshies.
+ * @param {number} inputs[].value - Input value in satoshis.
  * @param {string[]} inputs[].addresses - List of addresses for the input - used for finding the key.
+ * @param {Object[]} outputs - Outputs of the transaction.
+ * @param {string} outputs[].address - Address the output should pay to.
+ * @param {number} outputs[].value - Output value in satoshis.
  *
- * @returns Promise that resolves when the transaction has been signed.
+ * @returns {Promise.Psbt} Promise that resolves to a bitcoinjs.Psbt instance.
  */
-export const sign = (transaction, inputs) => {
+export const sign = (inputs, outputs) => {
   return (dispatch, getState) => {
     const state = getState();
     const { network } = state.settings.bitcoin;
     const { addresses } = state.bitcoin.wallet;
+    const utxos = state.bitcoin.wallet.utxos.items;
 
     dispatch(signRequest());
 
-    if (transaction.signed) {
-      dispatch(signSuccess());
-      return Promise.resolve();
-    }
-
     return getMnemonic(state.keys.items)
       .then((mnemonic) => {
-        signInputs(transaction, inputs, addresses, mnemonic, network);
-        dispatch(signSuccess());
+        const psbt = signTransaction(inputs, outputs, addresses, utxos, mnemonic, network);
+        dispatch(signSuccess(psbt));
+        return psbt;
       })
       .catch((error) => {
         dispatch(signFailure(error));

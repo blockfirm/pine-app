@@ -117,67 +117,30 @@ describe('create', () => {
     getFeeEstimate.mockClear();
   });
 
-  it('creates a transaction', () => {
+  it('returns the outputs for the transaction', () => {
     const amountBtc = 1.15;
     const toAddress = '13zM94ayb5EU3raS3oiyMRoPtszMxj8zse';
 
     expect.hasAssertions();
 
     return createTransaction(amountBtc, toAddress)(dispatchMock, getStateMock)
-      .then(({ transaction }) => {
-        const expectedTransaction = {
-          __inputs: [{}, {}],
-          __prevTxSet: {
-            'babc84605999d7a90f821ef019400e1bcd071558d681cfaad8294f1c2f0e8b26:0': true,
-            'bc51dd895145c904c71ac757eaa730af22d6eb06f25b63a87866d06c1ab1620d:0': true
+      .then(({ outputs }) => {
+        const expectedOutputs = [
+          {
+            address: '13zM94ayb5EU3raS3oiyMRoPtszMxj8zse', // To address
+            value: 115000000
           },
-          __tx: {
-            ins: [
-              {
-                hash: new Buffer([188, 81, 221, 137, 81, 69, 201, 4, 199, 26, 199, 87, 234, 167, 48, 175, 34, 214, 235, 6, 242, 91, 99, 168, 120, 102, 208, 108, 26, 177, 98, 13]),
-                index: 0,
-                script: new Buffer([]),
-                sequence: 4294967295,
-                witness: []
-              },
-              {
-                hash: new Buffer([186, 188, 132, 96, 89, 153, 215, 169, 15, 130, 30, 240, 25, 64, 14, 27, 205, 7, 21, 88, 214, 129, 207, 170, 216, 41, 79, 28, 47, 14, 139, 38]),
-                index: 0,
-                script: new Buffer([]),
-                sequence: 4294967295,
-                witness: []
-              }
-            ],
-            locktime: 0,
-            outs: [
-              {
-                script: new Buffer([118, 169, 20, 32, 200, 197, 199, 165, 85, 97, 61, 148, 202, 130, 163, 205, 83, 196, 136, 58, 66, 115, 35, 136, 172]),
-                value: 115000000
-              },
-              {
-                script: new Buffer([118, 169, 20, 47, 82, 79, 166, 215, 8, 250, 11, 215, 180, 87, 78, 200, 15, 167, 10, 127, 159, 149, 30, 136, 172]),
-                value: 34118884
-              }
-            ],
-            version: 2
-          },
-          network: {
-            bech32: 'bc',
-            bip32: {
-              private: 76066276,
-              public: 76067358
-            },
-            pubKeyHash: 0,
-            scriptHash: 5,
-            wif: 128
+          {
+            address: '15KDN6U7TkGub1pYEMKewMgXGQzoQSdHyQ', // Change address
+            value: 34118884
           }
-        };
+        ];
 
-        expect(transaction).toMatchObject(expectedTransaction);
+        expect(outputs).toMatchObject(expectedOutputs);
       });
   });
 
-  it('returns the inputs used to construct the transaction (to facilitate signing)', () => {
+  it('returns the inputs for the transaction', () => {
     const amountBtc = 1.15;
     const toAddress = '13zM94ayb5EU3raS3oiyMRoPtszMxj8zse';
 
@@ -221,16 +184,16 @@ describe('create', () => {
   });
 
   describe('when there is not enough funds to pay the transaction fee', () => {
-    it('returns transaction, inputs, and fee as undefined', () => {
+    it('returns inputs, outputs, and fee as undefined', () => {
       const amountBtc = 1.5195;
       const toAddress = '13zM94ayb5EU3raS3oiyMRoPtszMxj8zse';
 
       expect.hasAssertions();
 
       return createTransaction(amountBtc, toAddress)(dispatchMock, getStateMock)
-        .then(({ transaction, inputs, fee }) => {
-          expect(transaction).toBeUndefined();
+        .then(({ inputs, outputs, fee }) => {
           expect(inputs).toBeUndefined();
+          expect(outputs).toBeUndefined();
           expect(fee).toBeUndefined();
         });
     });

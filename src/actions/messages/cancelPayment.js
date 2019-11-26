@@ -1,4 +1,4 @@
-import bitcoin from 'bitcoinjs-lib';
+import * as bitcoin from 'bitcoinjs-lib';
 import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
 import { post as postTransaction } from '../bitcoin/blockchain/transactions';
 import { sign as signTransaction } from '../bitcoin/wallet/transactions';
@@ -40,31 +40,16 @@ const cancelPaymentFailure = (error) => {
 };
 
 /**
- * Returns a bitcoinjs bitcoin network object.
- *
- * @param {string} network - 'mainnet' or 'testnet'.
- *
- * @returns {Object} a bitcoinjs network object.
- */
-const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
-};
-
-/**
  * Creates a new transaction that uses the same inputs but pays to oneself
  * in order to invalidate the specified transaction.
  *
- * @param {Object} transaction - A bitcoinjs transaction object to cancel.
+ * @param {Transaction} transaction - A bitcoinjs Transaction object to cancel.
  * @param {string} changeAddress - Internal address the new transaction should pay to.
- * @param {string} network - Bitcoin network, 'mainnet' or 'testnet'.
  * @param {Object[]} utxos - All UTXOs - for finding addresses for each input.
  *
- * @returns {Object} ({ transactionBuilder, inputs }) A bitcoinjs TransactionBuilder and its inputs.
+ * @returns {Object} ({ inputs, outputs }) Inputs and outputs of the cancel transaction.
  */
-const createCancellationTransaction = (transaction, changeAddress, network, utxos) => {
-  const bitcoinNetwork = getBitcoinNetwork(network);
-  const transactionBuilder = new bitcoin.TransactionBuilder(bitcoinNetwork);
-
+const createCancellationTransaction = (transaction, changeAddress, utxos) => {
   const outputValue = transaction.outs.reduce((sum, output) => {
     return normalizeBtcAmount(sum + output.value);
   }, 0);
@@ -79,8 +64,6 @@ const createCancellationTransaction = (transaction, changeAddress, network, utxo
 
     const satoshis = convertBitcoin(utxo.value, UNIT_BTC, UNIT_SATOSHIS);
 
-    transactionBuilder.addInput(txid, input.index);
-
     return {
       txid,
       vout: input.index,
@@ -89,9 +72,12 @@ const createCancellationTransaction = (transaction, changeAddress, network, utxo
     };
   });
 
-  transactionBuilder.addOutput(changeAddress, outputValue);
+  const outputs = [{
+    address: changeAddress,
+    value: outputValue
+  }];
 
-  return { transactionBuilder, inputs };
+  return { inputs, outputs };
 };
 
 /**
@@ -114,22 +100,20 @@ export const cancelPayment = (message, contact) => {
 
     return Promise.resolve().then(() => {
       const state = getState();
-      const network = state.settings.bitcoin.network;
       const changeAddress = state.bitcoin.wallet.addresses.internal.unused;
       const transaction = bitcoin.Transaction.fromHex(message.data.transaction);
 
-      const { transactionBuilder, inputs } = createCancellationTransaction(
+      const { inputs, outputs } = createCancellationTransaction(
         transaction,
         changeAddress,
-        network,
         state.bitcoin.wallet.utxos.items
       );
 
-      return dispatch(signTransaction(transactionBuilder, inputs))
-        .then(() => {
-          const builtTransaction = transactionBuilder.build();
-          const rawTransaction = builtTransaction.toHex();
-          const txid = builtTransaction.getId();
+      return dispatch(signTransaction(inputs, outputs))
+        .then((psbt) => {
+          const cancelTransaction = psbt.extractTransaction();
+          const rawTransaction = cancelTransaction.toHex();
+          const txid = cancelTransaction.getId();
 
           return dispatch(postTransaction(rawTransaction)).then(() => txid);
         })

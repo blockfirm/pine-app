@@ -265,8 +265,6 @@ ConfirmTransaction.propTypes = {
   amountBtc: PropTypes.number.isRequired,
   displayCurrency: PropTypes.string.isRequired,
   displayUnit: PropTypes.string,
-  transaction: PropTypes.object,
-  inputs: PropTypes.array,
   fee: PropTypes.number,
   cannotAffordFee: PropTypes.bool,
   onPayPress: PropTypes.func,

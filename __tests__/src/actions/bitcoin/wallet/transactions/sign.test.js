@@ -18,7 +18,7 @@ const dispatchMock = jest.fn((action) => {
 const getStateMock = jest.fn(() => require('./__fixtures__/state'));
 
 jest.mock('../../../../../../src/crypto/getMnemonicByKey', () => {
-  return jest.fn(() => Promise.resolve('chicken approve topic suit shiver party whale holiday pitch source naive'));
+  return jest.fn(() => Promise.resolve('chicken approve topic suit shiver party whale holiday pitch source angry naive'));
 });
 
 jest.mock('../../../../../../src/api', () => ({
@@ -62,15 +62,14 @@ describe('sign', () => {
     expect.hasAssertions();
 
     return createTransaction(amountBtc, toAddress)(dispatchMock, getStateMock)
-      .then(({ transaction, inputs }) => {
-        return signTransaction(transaction, inputs)(dispatchMock, getStateMock)
-          .then(() => {
-            expect(transaction.signed).toBe(true);
+      .then(({ inputs, outputs }) => {
+        return signTransaction(inputs, outputs)(dispatchMock, getStateMock)
+          .then((psbt) => {
+            const transaction = psbt.extractTransaction();
 
-            expect(() => {
-              // This will fail if the transaction isn't signed.
-              transaction.build().toHex();
-            }).not.toThrow();
+            expect(transaction.toHex()).toBe(
+              '02000000000102c07b385550902a79cf9cd134eef88c684b2d9a20e6dbfe9324113035035181260000000017160014bac5f056525e0936bc4f7fe8e6f39c16e5281ea6ffffffffd7a27f24ba7417cf69c6d33b7e622fa53f06366d724f08a903938d510cb48a170000000017160014c24b9b9b8ff0731cd9319fde80cbcae94d2acc8effffffff0120a107000000000017a914c1c06d739d229807df17d481fc9281428fabfca3870247304402200a1260d0fab26628b06b75a6cdabb92044ceb00a1dcb6a89918cdfa645c028770220713bbd87d27090009d1a40349af8fe931bb4bbee985f178edb2532397035a7fa012103d4de57529afadc2e60612775336119dfe498643c54a77c05d958bbe405c105c902483045022100a85754333ac601ab3f449279e46565d834e3325f3a7259b05466d3383786b7c302207b354a5b3fddb68b75714cc404602a11421abc459c1217f260ed6ff1e5bb5e03012102dc84e0bec4caeb22b3a808294f2edf4713b3129ebfe1b418ff4e469aeb0b752000000000'
+            );
           });
       });
   });

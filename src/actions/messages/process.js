@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import bitcoin from 'bitcoinjs-lib';
+import * as bitcoin from 'bitcoinjs-lib';
 import generateAddress from '../../crypto/bitcoin/generateAddress';
 import { convert as convertAmount, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
 import { add as addExternalAddress } from '../bitcoin/wallet/addresses/external';

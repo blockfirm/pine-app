@@ -1,4 +1,3 @@
-import bitcoin from 'bitcoinjs-lib';
 import coinSelect from 'coinselect';
 
 import {
@@ -19,11 +18,11 @@ const createRequest = () => {
   };
 };
 
-const createSuccess = (transaction, inputs, fee) => {
+const createSuccess = (inputs, outputs, fee) => {
   return {
     type: BITCOIN_WALLET_TRANSACTIONS_CREATE_SUCCESS,
-    transaction,
     inputs,
+    outputs,
     fee
   };
 };
@@ -33,10 +32,6 @@ const createFailure = (error) => {
     type: BITCOIN_WALLET_TRANSACTIONS_CREATE_FAILURE,
     error
   };
-};
-
-const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
 };
 
 const getSpendableUtxos = (utxos) => {
@@ -83,37 +78,29 @@ const selectUtxos = (utxos, amountBtc, toAddress, satoshisPerByte) => {
 };
 
 /**
- * Creates a new unsigned transaction using bitcoinjs TransactionBuilder.
+ * Creates a new unsigned transaction.
  *
  * @param {array} utxos - utxos to pick from when selecting inputs.
  * @param {number} amountBtc - Amount of the transaction in BTC.
  * @param {string} toAddress - Bitcoin address the transaction should be addressed to.
  * @param {string} changeAddress - Bitcoin address to use as change address if needed.
  * @param {number} satoshisPerByte - Satoshis to pay per byte in fees.
- * @param {string} network - 'mainnet' or 'testnet'.
  *
- * @returns { transaction, inputs, fee } where transaction is a bitcoinjs TransactionBuilder instance.
+ * @returns { inputs, outputs, fee }
  */
 /* eslint-disable-next-line max-params */
-const createTransaction = (utxos, amountBtc, toAddress, changeAddress, satoshisPerByte, network) => {
+const createTransaction = (utxos, amountBtc, toAddress, changeAddress, satoshisPerByte) => {
   const { inputs, outputs, fee } = selectUtxos(utxos, amountBtc, toAddress, satoshisPerByte);
-  const bitcoinNetwork = getBitcoinNetwork(network);
-  const transaction = new bitcoin.TransactionBuilder(bitcoinNetwork);
 
   if (!inputs || !outputs) {
     return {};
   }
 
-  inputs.forEach((input) => {
-    transaction.addInput(input.txid, input.vout);
-  });
-
   outputs.forEach((output) => {
     output.address = output.address || changeAddress;
-    transaction.addOutput(output.address, output.value);
   });
 
-  return { transaction, inputs, fee };
+  return { inputs, outputs, fee };
 };
 
 /**
@@ -123,7 +110,7 @@ const createTransaction = (utxos, amountBtc, toAddress, changeAddress, satoshisP
  * @param {number} amountBtc - Amount of the transaction in BTC.
  * @param {string} toAddress - Bitcoin address the transaction should be addressed to.
  *
- * @returns Promise ({ transaction, inputs, fee }) where transaction is a bitcoinjs TransactionBuilder instance.
+ * @returns {Promise.{ inputs, outputs, fee }}
  */
 export const create = (amountBtc, toAddress) => {
   return (dispatch, getState) => {
@@ -133,7 +120,6 @@ export const create = (amountBtc, toAddress) => {
     const utxos = state.bitcoin.wallet.utxos.items;
     const spendableUtxos = getSpendableUtxos(utxos);
     const changeAddress = state.bitcoin.wallet.addresses.internal.unused;
-    const network = state.settings.bitcoin.network;
     const { numberOfBlocks } = state.settings.bitcoin.fee;
 
     // The user can no longer set their preferred fee level.
@@ -142,23 +128,16 @@ export const create = (amountBtc, toAddress) => {
     // Get transaction fee estimate.
     return dispatch(getFeeEstimate(numberOfBlocks, ignoreFeeLevel))
       .then((satoshisPerByte) => {
-        // Create a transaction.
-        const { transaction, inputs, fee } = createTransaction(
+        const { inputs, outputs, fee } = createTransaction(
           spendableUtxos,
           amountBtc,
           toAddress,
           changeAddress,
-          satoshisPerByte,
-          network
+          satoshisPerByte
         );
 
-        /**
-         * The inputs used to construct the transaction are
-         * also returned to facilitate signing them later.
-         */
-        dispatch(createSuccess(transaction, inputs, fee));
-
-        return { transaction, inputs, fee };
+        dispatch(createSuccess(inputs, outputs, fee));
+        return { inputs, outputs, fee };
       })
       .catch((error) => {
         dispatch(createFailure(error));
