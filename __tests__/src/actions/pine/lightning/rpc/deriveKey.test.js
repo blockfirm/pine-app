@@ -19,9 +19,6 @@ const getStateMock = jest.fn(() => ({
         extendedPublicKey: 'xpub6B6yqFm5ZEWfwiyCsQEVZnV2g2zeLSHeZFKrNxchz9KLjXRSRugfM5C9QF4qnoT69u9Gewd7CNqDKY6FAkbLNu51CsDBsw1RbSfTj1T1KaR'
       }
     }
-  },
-  notifications: {
-    deviceToken: '5bfed250-8c4c-4b26-bb88-daacdfe6221f'
   }
 }));
 
