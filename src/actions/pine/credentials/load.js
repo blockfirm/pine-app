@@ -1,9 +1,9 @@
 import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
-import getUserIdFromPublicKey from '../../../pineApi/crypto/getUserIdFromPublicKey';
 
 import {
   getAccountKeyPairFromMnemonic,
-  getLightningKeyPairFromMnemonic
+  getLightningKeyPairFromMnemonic,
+  getUserIdFromPublicKey
 } from '../../../pineApi/crypto';
 
 export const PINE_CREDENTIALS_LOAD_REQUEST = 'PINE_CREDENTIALS_LOAD_REQUEST';
