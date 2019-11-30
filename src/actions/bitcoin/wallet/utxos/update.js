@@ -20,6 +20,7 @@ const getVouts = (transactions) => {
       return {
         ...vout,
         txid: transaction.txid,
+        confirmations: transaction.confirmations,
         confirmed: transaction.confirmations > 0,
         reserved: false,
         reservedBtcAmount: 0,
