@@ -5,3 +5,4 @@ export * from './fetchInputInfo';
 export * from './getRevocationRootKey';
 export * from './isOurAddress';
 export * from './listUnspentWitness';
+export * from './lockOutpoint';
