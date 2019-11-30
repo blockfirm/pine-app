@@ -25,16 +25,20 @@ const getStateMock = jest.fn(() => ({
           { txid: '7ca5331b-2faf-4673-8c7c-5e9b57d6dc71', confirmations: 2 },
           { txid: '96c3c063-46fe-4f30-b702-643b06d8e0ec', confirmations: 7 },
           { txid: 'b67768f4-ae20-4515-9fac-17aee6f5c360', confirmations: null },
-          { txid: '1220e957-3769-4cdb-b9d2-a810b2956040', confirmations: 1 }
+          { txid: '1220e957-3769-4cdb-b9d2-a810b2956040', confirmations: 1 },
+          { txid: 'aca467b9-d000-4ba6-aaa4-fd5a3ef564e2', confirmations: 6 }
         ]
       }
     }
   }
 }));
 
-const unconfirmedTransactions = [
+// Transactions with less than 6 confirmations.
+const transactionsToUpdate = [
   { txid: 'c00710fd-4705-4386-b838-d4c2f2786cf4', confirmations: 0 },
-  { txid: 'b67768f4-ae20-4515-9fac-17aee6f5c360', confirmations: null }
+  { txid: '7ca5331b-2faf-4673-8c7c-5e9b57d6dc71', confirmations: 2 },
+  { txid: 'b67768f4-ae20-4515-9fac-17aee6f5c360', confirmations: null },
+  { txid: '1220e957-3769-4cdb-b9d2-a810b2956040', confirmations: 1 }
 ];
 
 jest.mock('../../../../../../src/actions/bitcoin/blockchain/transactions/getByTxid', () => ({
@@ -89,13 +93,13 @@ describe('updatePending', () => {
     });
   });
 
-  it('calls getTransactionByTxid() for each unconfirmed transaction in state', () => {
+  it('calls getTransactionByTxid() for each transaction in state with less than 6 confirmations', () => {
     expect.hasAssertions();
 
     return updatePendingTransactions()(dispatchMock, getStateMock).then(() => {
-      expect(getTransactionByTxid).toHaveBeenCalledTimes(unconfirmedTransactions.length);
+      expect(getTransactionByTxid).toHaveBeenCalledTimes(transactionsToUpdate.length);
 
-      unconfirmedTransactions.forEach((unconfirmedTransaction) => {
+      transactionsToUpdate.forEach((unconfirmedTransaction) => {
         expect(getTransactionByTxid).toHaveBeenCalledWith(unconfirmedTransaction.txid);
       });
     });
@@ -108,7 +112,9 @@ describe('updatePending', () => {
       // The getTransactionByTxid() mock will return an object with the txid.
       expect(transactions).toEqual(expect.arrayContaining([
         { txid: 'c00710fd-4705-4386-b838-d4c2f2786cf4' },
-        { txid: 'b67768f4-ae20-4515-9fac-17aee6f5c360' }
+        { txid: '7ca5331b-2faf-4673-8c7c-5e9b57d6dc71' },
+        { txid: 'b67768f4-ae20-4515-9fac-17aee6f5c360' },
+        { txid: '1220e957-3769-4cdb-b9d2-a810b2956040' }
       ]));
     });
   });

@@ -5,6 +5,8 @@ export const BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_REQUEST = 'BITCOIN_WALLE
 export const BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS = 'BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_SUCCESS';
 export const BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_FAILURE = 'BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_FAILURE';
 
+const CONFIRMATIONS_THRESHOLD = 6;
+
 const updatePendingRequest = () => {
   return {
     type: BITCOIN_WALLET_TRANSACTIONS_UPDATE_PENDING_REQUEST
@@ -26,11 +28,18 @@ const updatePendingFailure = (error) => {
 };
 
 const getPendingTransactions = (transactions) => {
-  return transactions.filter((transaction) => !transaction.confirmations);
+  return transactions.filter((transaction) => (
+    transaction.confirmations < CONFIRMATIONS_THRESHOLD)
+  );
 };
 
 /**
  * Action to update pending transactions.
+ *
+ * A transaction is considered "pending" by this function if
+ * it has less than 6 confirmations. However, the UI should
+ * always display payments as confirmed when it has at least
+ * 1 confirmation.
  */
 export const updatePending = () => {
   return (dispatch, getState) => {
