@@ -9,3 +9,4 @@ export * from './lockOutpoint';
 export * from './newAddress';
 export * from './signMessage';
 export * from './signOutputRaw';
+export * from './unlockOutpoint';
