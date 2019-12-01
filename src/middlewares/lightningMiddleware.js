@@ -7,9 +7,15 @@ import { LightningClient } from '../pineApi/lightning';
 /**
  * Returns a map of lightning RPC client methods to redux implementations.
  */
-const getMethods = (dispatch) => ({
-  deriveKey: (request) => dispatch(lightningRpcActions.deriveKey(request))
-});
+const getMethods = (dispatch) => {
+  const methods = {};
+
+  Object.keys(lightningRpcActions).forEach(methodName => {
+    methods[methodName] = (request) => dispatch(lightningRpcActions[methodName](request));
+  });
+
+  return methods;
+};
 
 /**
  * This is a redux middleware that manages the Pine Lightning
