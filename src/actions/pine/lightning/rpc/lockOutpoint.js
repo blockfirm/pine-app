@@ -2,6 +2,8 @@ import { reserve as reserveUtxos } from '../../../bitcoin/wallet/utxos';
 
 export const PINE_LIGHTNING_RPC_LOCK_OUTPOINT = 'PINE_LIGHTNING_RPC_LOCK_OUTPOINT';
 
+const EXPIRATION_TIME = 10 * 60; // 10 minutes.
+
 const getTxIdFromHash = (hash) => {
   return hash.hexSlice().match(/../g).reverse().join('');
 };
@@ -18,10 +20,11 @@ const getTxIdFromHash = (hash) => {
  */
 export const lockOutpoint = ({ hash, index }) => {
   const txid = getTxIdFromHash(hash);
+  const expireAt = Date.now() / 1000 + EXPIRATION_TIME;
 
   return async (dispatch) => {
     dispatch({ type: PINE_LIGHTNING_RPC_LOCK_OUTPOINT });
-    await dispatch(reserveUtxos([{ txid, index }], 0));
+    await dispatch(reserveUtxos([{ txid, index }], 0, expireAt));
     return {};
   };
 };

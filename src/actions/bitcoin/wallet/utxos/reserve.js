@@ -22,16 +22,10 @@ const reserveUtxo = (txid, index, expireAt, btcAmountToReserve) => {
  * @param {string} utxos[].txid - Transaction ID that contains the unspent output.
  * @param {number} utxos[].index - The index of the unspent output in the transaction.
  * @param {number} totalBtcAmountToReserve - The total amount of BTC that was sent using the reserved UTXOs.
+ * @param {number} [expireAt] - Unix timestamp for when the reservation should expire.
  */
-export const reserve = (utxos, totalBtcAmountToReserve) => {
+export const reserve = (utxos, totalBtcAmountToReserve, expireAt = 0) => {
   return (dispatch) => {
-    /**
-     * Never expire reserved UTXOs since it will have a non-deterministic behaviour.
-     * The user will instead have to manually cancel payments that is locking up too
-     * much funds (this should be done on "auto-pilot" later).
-     */
-    const expireAt = 0;
-
     utxos.forEach((utxo, index) => {
       /**
        * Store the total amount that was used by the reservation on the first UTXO

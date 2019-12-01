@@ -42,7 +42,7 @@ describe('lockOutpoint', () => {
       expect(reserve).toHaveBeenCalledWith([{
         txid: 'c8f9161d0b72a715af37147388984042abee8d8b52fbccb59c77025198093f40',
         index: 1
-      }], 0);
+      }], 0, expect.anything());
     });
   });
 });
