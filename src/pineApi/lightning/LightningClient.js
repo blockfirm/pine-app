@@ -12,7 +12,9 @@ import { getAuthorizationHeader } from '../authentication';
 
 const PING_LATENCY = 2000; // 2 seconds
 const RECONNECT_INTERVAL = 1000; // 1 second
-const ERROR_CODE_NORMAL_CLOSE = 1000;
+
+const CLOSE_CODE_NORMAL_CLOSURE = 1000;
+const CLOSE_CODE_PROTOCOL_ERROR = 1002;
 
 export default class LightningClient extends EventEmitter {
   constructor(pineAddress, credentials, config) {
@@ -58,7 +60,7 @@ export default class LightningClient extends EventEmitter {
       return;
     }
 
-    websocket.close(ERROR_CODE_NORMAL_CLOSE);
+    websocket.close(CLOSE_CODE_NORMAL_CLOSURE);
     delete this.websocket;
   }
 
@@ -159,7 +161,7 @@ export default class LightningClient extends EventEmitter {
   _onClose({ code }) {
     clearTimeout(this._pingTimeout);
 
-    if (code === ERROR_CODE_NORMAL_CLOSE) {
+    if (code === CLOSE_CODE_NORMAL_CLOSURE) {
       return console.log('[LND] Disconnected');
     }
 
@@ -273,7 +275,7 @@ export default class LightningClient extends EventEmitter {
      * the ping interval + some assumption of latency.
      */
     this._pingTimeout = setTimeout(() => {
-      this.websocket.terminate();
+      this.websocket.close(CLOSE_CODE_PROTOCOL_ERROR);
     }, serverPingInterval * 1000 + PING_LATENCY);
   }
 }
