@@ -127,7 +127,7 @@ const getSignatureScript = (psbt, signDescriptor, tweakedKeyPair) => {
  *
  * @param {Object} request
  * @param {Transaction} request.transaction - Transaction containing input to compute script for.
- * @param {number} request.signDescriptor - Descriptor of key to sign with.
+ * @param {SignDescriptor} request.signDescriptor - Descriptor of key to sign with.
  *
  * @returns {Promise.Object} A promise resolving to an object with the input script.
  */
