@@ -8,3 +8,4 @@ export * from './listUnspentWitness';
 export * from './lockOutpoint';
 export * from './newAddress';
 export * from './signMessage';
+export * from './signOutputRaw';
