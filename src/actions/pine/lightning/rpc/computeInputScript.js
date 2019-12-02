@@ -2,13 +2,14 @@ import './typeDefs';
 import * as bitcoin from 'bitcoinjs-lib';
 import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
 import tweakKeyPair from '../../../../crypto/tweakKeyPair';
-import getKeyPairForAddress from '../../../../crypto/bitcoin/getKeyPairForAddress';
 
 import {
   UNIT_BTC,
   UNIT_SATOSHIS,
-  convert as convertBitcoin
-} from '../../../../crypto/bitcoin/convert';
+  convert as convertBitcoin,
+  getKeyPairForAddress,
+  getBitcoinNetwork
+} from '../../../../crypto/bitcoin';
 
 const HASH_TYPE_OLD = 0;
 const HASH_TYPE_ALL = 1;
@@ -25,10 +26,6 @@ const SIGHASH_MAP = {
 };
 
 export const PINE_LIGHTNING_RPC_COMPUTE_INPUT_SCRIPT = 'PINE_LIGHTNING_RPC_COMPUTE_INPUT_SCRIPT';
-
-const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
-};
 
 const getMnemonic = (keys) => {
   const defaultKey = Object.values(keys)[0];

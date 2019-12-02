@@ -1,8 +1,5 @@
 import * as bitcoin from 'bitcoinjs-lib';
-
-const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
-};
+import getBitcoinNetwork from './getBitcoinNetwork';
 
 /**
  * Validates a bitcoin address.

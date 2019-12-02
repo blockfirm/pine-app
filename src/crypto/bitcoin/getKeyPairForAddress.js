@@ -1,10 +1,6 @@
-import * as bitcoin from 'bitcoinjs-lib';
 import * as bip32 from 'bip32';
 import * as bip39 from 'bip39';
-
-const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
-};
+import getBitcoinNetwork from './getBitcoinNetwork';
 
 const getAddressIndex = (address, addresses) => {
   const externalAddresses = addresses.external.items;

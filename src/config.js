@@ -34,7 +34,7 @@ export default {
     feeEstimationServiceBaseUrl: 'https://api.pine.pm'
   },
   bitcoin: {
-    network: 'mainnet', // 'mainnet' or 'testnet'
+    network: 'mainnet', // 'mainnet', 'testnet', or 'regtest'
     unit: 'BTC', // 'BTC', 'mBTC', or 'Satoshis'
     fee: {
       level: 'Normal', // One of: 'High', 'Normal', 'Low', 'Very Low', 'Custom'

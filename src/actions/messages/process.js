@@ -1,8 +1,14 @@
 /* eslint-disable max-lines */
 import * as bitcoin from 'bitcoinjs-lib';
 import generateAddress from '../../crypto/bitcoin/generateAddress';
-import { convert as convertAmount, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
 import { add as addExternalAddress } from '../bitcoin/wallet/addresses/external';
+
+import {
+  UNIT_BTC,
+  UNIT_SATOSHIS,
+  convert as convertAmount,
+  getBitcoinNetwork
+} from '../../crypto/bitcoin';
 
 export const MESSAGES_PROCESS_REQUEST = 'MESSAGES_PROCESS_REQUEST';
 export const MESSAGES_PROCESS_SUCCESS = 'MESSAGES_PROCESS_SUCCESS';
@@ -113,7 +119,7 @@ const findWalletAddress = (addresses, network, externalAddresses, accountPublicK
 };
 
 const getAddressesFromTransaction = (transaction, network) => {
-  const bitcoinNetwork = network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
+  const bitcoinNetwork = getBitcoinNetwork(network);
 
   const addresses = transaction.outs
     .map((out) => {

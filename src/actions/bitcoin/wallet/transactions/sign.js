@@ -1,12 +1,13 @@
 import * as bitcoin from 'bitcoinjs-lib';
 import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
-import getKeyPairForAddress from '../../../../crypto/bitcoin/getKeyPairForAddress';
 
 import {
   UNIT_BTC,
   UNIT_SATOSHIS,
-  convert as convertBitcoin
-} from '../../../../crypto/bitcoin/convert';
+  convert as convertBitcoin,
+  getKeyPairForAddress,
+  getBitcoinNetwork
+} from '../../../../crypto/bitcoin';
 
 export const BITCOIN_WALLET_TRANSACTIONS_SIGN_REQUEST = 'BITCOIN_WALLET_TRANSACTIONS_SIGN_REQUEST';
 export const BITCOIN_WALLET_TRANSACTIONS_SIGN_SUCCESS = 'BITCOIN_WALLET_TRANSACTIONS_SIGN_SUCCESS';
@@ -30,10 +31,6 @@ const signFailure = (error) => {
     type: BITCOIN_WALLET_TRANSACTIONS_SIGN_FAILURE,
     error
   };
-};
-
-const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
 };
 
 const getRedeemScript = (keyPair, network) => {

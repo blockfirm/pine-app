@@ -1,9 +1,6 @@
 import * as bitcoin from 'bitcoinjs-lib';
 import * as bip32 from 'bip32';
-
-const getBitcoinNetwork = (network) => {
-  return network === 'testnet' ? bitcoin.networks.testnet : bitcoin.networks.bitcoin;
-};
+import getBitcoinNetwork from './getBitcoinNetwork';
 
 /**
  * Creates an address based on the bip49 standard.
