@@ -3,7 +3,7 @@ import { unreserve as unreserveUtxos } from '../../../bitcoin/wallet/utxos';
 export const PINE_LIGHTNING_RPC_UNLOCK_OUTPOINT = 'PINE_LIGHTNING_RPC_UNLOCK_OUTPOINT';
 
 const getTxIdFromHash = (hash) => {
-  return hash.hexSlice().match(/../g).reverse().join('');
+  return hash.toString('hex').match(/../g).reverse().join('');
 };
 
 /**

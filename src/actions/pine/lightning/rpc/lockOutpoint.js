@@ -5,7 +5,7 @@ export const PINE_LIGHTNING_RPC_LOCK_OUTPOINT = 'PINE_LIGHTNING_RPC_LOCK_OUTPOIN
 const EXPIRATION_TIME = 10 * 60; // 10 minutes.
 
 const getTxIdFromHash = (hash) => {
-  return hash.hexSlice().match(/../g).reverse().join('');
+  return hash.toString('hex').match(/../g).reverse().join('');
 };
 
 /**

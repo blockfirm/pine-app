@@ -9,12 +9,7 @@ export const PINE_LIGHTNING_RPC_LIST_UNSPENT_WITNESS = 'PINE_LIGHTNING_RPC_LIST_
 const ADDRESS_TYPE_NESTED_WITNESS_PUBKEY = 2; // BIP49 (p2sh-p2wpkh)
 
 const getHashFromTxId = (txid) => {
-  const hash = Buffer.from(txid, 'hex')
-    .hexSlice()
-    .match(/../g)
-    .reverse()
-    .join('');
-
+  const hash = txid.match(/../g).reverse().join('');
   return Buffer.from(hash, 'hex');
 };
 

@@ -33,7 +33,7 @@ const getMnemonic = (keys) => {
 };
 
 const getTxIdFromHash = (hash) => {
-  return hash.hexSlice().match(/../g).reverse().join('');
+  return hash.toString('hex').match(/../g).reverse().join('');
 };
 
 const findKeyByOutputScript = (outputScript, addresses, mnemonic, network) => {

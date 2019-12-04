@@ -9,7 +9,7 @@ export const PINE_LIGHTNING_RPC_FETCH_INPUT_INFO = 'PINE_LIGHTNING_RPC_FETCH_INP
 const ADDRESS_TYPE_NESTED_WITNESS_PUBKEY = 2; // BIP49 (p2sh-p2wpkh)
 
 const getTxIdFromHash = (hash) => {
-  return hash.hexSlice().match(/../g).reverse().join('');
+  return hash.toString('hex').match(/../g).reverse().join('');
 };
 
 /**
