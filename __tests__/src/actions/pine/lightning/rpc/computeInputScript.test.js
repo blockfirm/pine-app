@@ -76,7 +76,7 @@ describe('computeInputScript', () => {
     expect(typeof computeInputScript).toBe('function');
   });
 
-  it('returns an input script', () => {
+  it('returns a signature script', () => {
     const request = {
       transaction,
       signDescriptor
@@ -87,6 +87,28 @@ describe('computeInputScript', () => {
     return computeInputScript(request)(dispatchMock, getStateMock).then(response => {
       expect(response.signatureScript.toString('hex')).toBe(
         '160014bac5f056525e0936bc4f7fe8e6f39c16e5281ea6'
+      );
+    });
+  });
+
+  it('returns two witness scripts', () => {
+    const request = {
+      transaction,
+      signDescriptor
+    };
+
+    expect.hasAssertions();
+
+    return computeInputScript(request)(dispatchMock, getStateMock).then(response => {
+      expect(Array.isArray(response.witness)).toBe(true);
+      expect(response.witness.length).toBe(2);
+
+      expect(response.witness[0].toString('hex')).toBe(
+        '3045022100b3f16ebc0615126a6b7090307b1bf0dfca6a56210c5a283243862d212d149c9102200b8b05b551d3b43c65b1b0b17064e44fc4f07f84839ae4a50a82cc927044fea701'
+      );
+
+      expect(response.witness[1].toString('hex')).toBe(
+        '03d4de57529afadc2e60612775336119dfe498643c54a77c05d958bbe405c105c9'
       );
     });
   });

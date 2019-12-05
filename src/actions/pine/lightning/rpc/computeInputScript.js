@@ -104,7 +104,7 @@ const createTransactionBuilder = (transaction, addresses, utxos, mnemonic, netwo
   return psbt;
 };
 
-const getSignatureScript = (psbt, signDescriptor, tweakedKeyPair) => {
+const getInputScript = (psbt, signDescriptor, tweakedKeyPair) => {
   const { inputIndex, hashType } = signDescriptor;
 
   psbt.signInput(
@@ -114,9 +114,22 @@ const getSignatureScript = (psbt, signDescriptor, tweakedKeyPair) => {
   );
 
   psbt.validateSignaturesOfInput(inputIndex);
-  psbt.finalizeInput(inputIndex);
 
-  return psbt.data.inputs[inputIndex].finalScriptSig;
+  const input = psbt.data.inputs[inputIndex];
+  const partialSig = input.partialSig[0];
+
+  const payment = bitcoin.payments.p2wpkh({
+    output: input.redeemScript,
+    pubkey: partialSig.pubkey,
+    signature: partialSig.signature
+  });
+
+  const p2sh = bitcoin.payments.p2sh({ redeem: payment });
+
+  return {
+    signatureScript: p2sh.input,
+    witness: payment.witness
+  };
 };
 
 /**
@@ -146,8 +159,7 @@ export const computeInputScript = ({ transaction, signDescriptor }) => {
 
     const tweakedKeyPair = tweakKeyPair(keyPair, signDescriptor);
     const psbt = await createTransactionBuilder(transaction, addresses, utxos, mnemonic, network);
-    const signatureScript = getSignatureScript(psbt, signDescriptor, tweakedKeyPair);
 
-    return { signatureScript };
+    return getInputScript(psbt, signDescriptor, tweakedKeyPair);
   };
 };
