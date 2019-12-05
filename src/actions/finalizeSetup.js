@@ -1,6 +1,7 @@
 import { add as addDeviceTokenToPine } from './pine/deviceTokens/add';
 import { load as loadPineCredentials } from './pine/credentials';
 import { sync as syncApp } from './sync';
+import { ready as onReady } from './ready';
 
 export const FINALIZE_SETUP_REQUEST = 'FINALIZE_SETUP_REQUEST';
 export const FINALIZE_SETUP_SUCCESS = 'FINALIZE_SETUP_SUCCESS';
@@ -46,6 +47,7 @@ export const finalizeSetup = () => {
       })
       .then(() => {
         dispatch(finalizeSetupSuccess());
+        dispatch(onReady());
       })
       .catch((error) => {
         dispatch(finalizeSetupFailure(error));
