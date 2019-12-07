@@ -49,11 +49,6 @@ export default class SplashScreen extends Component {
           return this._showWelcomeScreen();
         }
 
-        // Let alpha testers know that the app is now in beta.
-        if (state.settings.user.profile.address.includes('@pine.dev')) {
-          return this._showBetaScreen();
-        }
-
         if (state.settings.user.forceManualBackup && !state.settings.user.hasCreatedBackup) {
           return this._getMnemonicFromState(state).then((mnemonic) => {
             return this._showBackUpMnemonicScreen(mnemonic);
@@ -116,11 +111,6 @@ export default class SplashScreen extends Component {
 
   _showStatusBar() {
     StatusBar.setHidden(false, 'fade');
-  }
-
-  _showBetaScreen() {
-    const dispatch = this.props.dispatch;
-    dispatch(navigateWithReset('Beta'));
   }
 
   _showHomeScreen() {
