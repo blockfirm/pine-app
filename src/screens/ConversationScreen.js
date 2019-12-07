@@ -285,11 +285,12 @@ export default class ConversationScreen extends Component {
     const { navigation } = this.props;
     const { contact } = navigation.state.params;
     const options = ['Cancel', 'Delete Contact'];
-    let title = contact.address || contact.displayName || undefined;
 
     if (!contact) {
       return;
     }
+
+    let title = contact.address || contact.displayName || undefined;
 
     if (contact.isVendor) {
       title = vendors.get(contact.vendorId).displayName;
