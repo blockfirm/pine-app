@@ -28,7 +28,7 @@ const lightningMiddleware = () => {
     const state = store.getState();
     const { settings } = state;
 
-    if (!settings || !settings.user) {
+    if (!settings || !settings.user || !settings.lightning.enabled) {
       return next(action);
     }
 

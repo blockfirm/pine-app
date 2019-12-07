@@ -43,6 +43,7 @@ export default {
     }
   },
   lightning: {
+    enabled: false,
     serverPingInterval: 30 // Expect a ping from server every 30 seconds.
   },
   currency: {
