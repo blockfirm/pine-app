@@ -38,6 +38,18 @@ const styles = StyleSheet.create({
   },
   cancelButton: {
     backgroundColor: '#8A8A8F'
+  },
+  disableOverlay: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'white',
+    opacity: 0.5,
+    marginHorizontal: 15,
+    marginVertical: 5,
+    borderRadius: 50
   }
 });
 
@@ -185,11 +197,6 @@ export default class InputBar extends Component {
     const { primaryCurrency, secondaryCurrency, defaultBitcoinUnit, disabled } = this.props;
     const pointerEvents = disabled ? 'none' : null;
 
-    const style = [
-      styles.toolbar,
-      disabled && { opacity: 0.5 }
-    ];
-
     const {
       initialAmount,
       currency,
@@ -200,7 +207,7 @@ export default class InputBar extends Component {
     } = this.state;
 
     return (
-      <View style={style} pointerEvents={pointerEvents}>
+      <View style={styles.toolbar} pointerEvents={pointerEvents}>
         <AmountInput
           ref={(ref) => { this._amountInput = ref; }}
           currency={currency}
@@ -223,6 +230,7 @@ export default class InputBar extends Component {
           disabled={confirmTransaction}
         />
         { this._renderButton() }
+        { disabled && <View style={styles.disableOverlay} /> }
       </View>
     );
   }
