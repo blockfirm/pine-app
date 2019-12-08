@@ -1,4 +1,4 @@
-import addDeviceToken from '../../../../../src/pineApi/user/deviceTokens/add';
+import addDeviceToken from '../../../../../src/clients/paymentServer/user/deviceTokens/add';
 
 import {
   add as addDeviceTokenAction,
@@ -20,7 +20,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../src/pineApi/user/deviceTokens/add', () => {
+jest.mock('../../../../../src/clients/paymentServer/user/deviceTokens/add', () => {
   return jest.fn(() => Promise.resolve('007a79bc-171a-45d4-adf1-a47c2a62aea2'));
 });
 

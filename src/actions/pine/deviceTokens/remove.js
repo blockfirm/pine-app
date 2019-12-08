@@ -1,4 +1,4 @@
-import * as deviceTokens from '../../../pineApi/user/deviceTokens';
+import * as deviceTokens from '../../../clients/paymentServer/user/deviceTokens';
 import { add as addDeviceToken } from './add';
 
 export const PINE_DEVICE_TOKEN_REMOVE_REQUEST = 'PINE_DEVICE_TOKEN_REMOVE_REQUEST';

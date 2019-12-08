@@ -1,4 +1,4 @@
-import getUser from '../../../../src/pineApi/user/get';
+import getUser from '../../../../src/clients/paymentServer/user/get';
 import { save as saveContacts } from '../../../../src/actions/contacts/save';
 
 import {
@@ -61,7 +61,7 @@ jest.mock('../../../../src/actions/contacts/save', () => ({
   save: jest.fn(() => Promise.resolve())
 }));
 
-jest.mock('../../../../src/pineApi/user/get', () => {
+jest.mock('../../../../src/clients/paymentServer/user/get', () => {
   return jest.fn(() => Promise.resolve({
     id: '85b022a6-09b6-4b9d-adb2-faf237f167d6',
     displayName: '1eccf216-e9b6-4cc8-acf4-e7941d4be6c4',

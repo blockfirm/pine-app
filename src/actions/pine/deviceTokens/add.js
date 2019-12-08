@@ -1,4 +1,4 @@
-import * as deviceTokens from '../../../pineApi/user/deviceTokens';
+import * as deviceTokens from '../../../clients/paymentServer/user/deviceTokens';
 
 export const PINE_DEVICE_TOKEN_ADD_REQUEST = 'PINE_DEVICE_TOKEN_ADD_REQUEST';
 export const PINE_DEVICE_TOKEN_ADD_SUCCESS = 'PINE_DEVICE_TOKEN_ADD_SUCCESS';

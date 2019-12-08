@@ -1,4 +1,4 @@
-import getUser from '../../pineApi/user/get';
+import getUser from '../../clients/paymentServer/user/get';
 import { get as getContacts } from '../pine/contacts/get';
 import { save } from './save';
 

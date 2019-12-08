@@ -1,4 +1,4 @@
-import removeContact from '../../../pineApi/user/contacts/remove';
+import removeContact from '../../../clients/paymentServer/user/contacts/remove';
 
 export const PINE_CONTACTS_REMOVE_REQUEST = 'PINE_CONTACTS_REMOVE_REQUEST';
 export const PINE_CONTACTS_REMOVE_SUCCESS = 'PINE_CONTACTS_REMOVE_SUCCESS';

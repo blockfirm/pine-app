@@ -1,4 +1,4 @@
-import removeMessage from '../../../pineApi/user/messages/remove';
+import removeMessage from '../../../clients/paymentServer/user/messages/remove';
 
 export const PINE_MESSAGES_REMOVE_REQUEST = 'PINE_MESSAGES_REMOVE_REQUEST';
 export const PINE_MESSAGES_REMOVE_SUCCESS = 'PINE_MESSAGES_REMOVE_SUCCESS';

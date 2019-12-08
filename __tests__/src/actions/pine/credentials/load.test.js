@@ -1,6 +1,6 @@
 import getMnemonicByKey from '../../../../../src/crypto/getMnemonicByKey';
-import getAccountKeyPairFromMnemonic from '../../../../../src/pineApi/crypto/getAccountKeyPairFromMnemonic';
-import getUserIdFromPublicKey from '../../../../../src/pineApi/crypto/getUserIdFromPublicKey';
+import getAccountKeyPairFromMnemonic from '../../../../../src/clients/paymentServer/crypto/getAccountKeyPairFromMnemonic';
+import getUserIdFromPublicKey from '../../../../../src/clients/paymentServer/crypto/getUserIdFromPublicKey';
 
 import {
   load as loadPineCredentials,
@@ -39,11 +39,11 @@ jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
   return jest.fn(() => Promise.resolve('81325032-4f6b-46b0-9b0e-217bdb882c04'));
 });
 
-jest.mock('../../../../../src/pineApi/crypto/getAccountKeyPairFromMnemonic', () => {
+jest.mock('../../../../../src/clients/paymentServer/crypto/getAccountKeyPairFromMnemonic', () => {
   return jest.fn(() => 'ac3d6c4c-e430-4852-812e-a11046f38a66');
 });
 
-jest.mock('../../../../../src/pineApi/crypto/getUserIdFromPublicKey', () => {
+jest.mock('../../../../../src/clients/paymentServer/crypto/getUserIdFromPublicKey', () => {
   return jest.fn(() => 'b372970c-91a6-45c3-9bb2-7aef0f312ded');
 });
 

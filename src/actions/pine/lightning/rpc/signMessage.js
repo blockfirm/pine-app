@@ -2,7 +2,7 @@ import * as bitcoin from 'bitcoinjs-lib';
 import secp256k1 from 'secp256k1';
 
 import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
-import { getLightningKeyPairFromMnemonic } from '../../../../pineApi/crypto';
+import { getLightningKeyPairFromMnemonic } from '../../../../clients/paymentServer/crypto';
 
 export const PINE_LIGHTNING_RPC_SIGN_MESSAGE = 'PINE_LIGHTNING_RPC_SIGN_MESSAGE';
 

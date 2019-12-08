@@ -1,5 +1,5 @@
 import uuidv4 from 'uuid/v4';
-import getUser from '../../../pineApi/user/get';
+import getUser from '../../../clients/paymentServer/user/get';
 import { get as getContactRequests } from '../../pine/contactRequests/get';
 import { save } from '../save';
 

@@ -1,4 +1,4 @@
-import * as contactRequests from '../../../pineApi/user/contactRequests';
+import * as contactRequests from '../../../clients/paymentServer/user/contactRequests';
 
 export const PINE_CONTACT_REQUESTS_SEND_REQUEST = 'PINE_CONTACT_REQUESTS_SEND_REQUEST';
 export const PINE_CONTACT_REQUESTS_SEND_SUCCESS = 'PINE_CONTACT_REQUESTS_SEND_SUCCESS';

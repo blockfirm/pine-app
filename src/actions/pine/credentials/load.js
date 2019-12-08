@@ -4,7 +4,7 @@ import {
   getAccountKeyPairFromMnemonic,
   getLightningKeyPairFromMnemonic,
   getUserIdFromPublicKey
-} from '../../../pineApi/crypto';
+} from '../../../clients/paymentServer/crypto';
 
 export const PINE_CREDENTIALS_LOAD_REQUEST = 'PINE_CREDENTIALS_LOAD_REQUEST';
 export const PINE_CREDENTIALS_LOAD_SUCCESS = 'PINE_CREDENTIALS_LOAD_SUCCESS';

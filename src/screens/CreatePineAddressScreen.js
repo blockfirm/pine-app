@@ -8,13 +8,13 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {
   validateUsername,
   UsernameContainsInvalidCharsError
-} from '../pineApi/address';
+} from '../clients/paymentServer/address';
 
 import { reset as navigateWithReset } from '../actions/navigate';
 import * as settingsActions from '../actions/settings';
 import * as keyActions from '../actions/keys';
 import getMnemonicByKey from '../crypto/getMnemonicByKey';
-import { create as createUser } from '../pineApi/user';
+import { create as createUser } from '../clients/paymentServer/user';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';

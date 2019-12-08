@@ -7,7 +7,7 @@ import { RNCamera } from 'react-native-camera';
 
 import * as azteco from '../vendors/azteco';
 import getPaymentInfoFromString from '../crypto/bitcoin/getPaymentInfoFromString';
-import { parse as parseAddress, getAddressFromUri } from '../pineApi/address';
+import { parse as parseAddress, getAddressFromUri } from '../clients/paymentServer/address';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import ContentView from '../components/ContentView';
 import Paragraph from '../components/Paragraph';

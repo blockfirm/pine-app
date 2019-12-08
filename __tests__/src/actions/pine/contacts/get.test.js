@@ -1,4 +1,4 @@
-import getContacts from '../../../../../src/pineApi/user/contacts/get';
+import getContacts from '../../../../../src/clients/paymentServer/user/contacts/get';
 
 import {
   get as getContactsAction,
@@ -17,7 +17,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../src/pineApi/user/contacts/get', () => {
+jest.mock('../../../../../src/clients/paymentServer/user/contacts/get', () => {
   return jest.fn(() => Promise.resolve([
     {
       id: '2cd2ced7-f7e0-447f-8f1b-5487d4ef5d2c'

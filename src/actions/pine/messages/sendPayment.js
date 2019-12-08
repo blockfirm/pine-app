@@ -1,4 +1,4 @@
-import sendMessage from '../../../pineApi/user/messages/send';
+import sendMessage from '../../../clients/paymentServer/user/messages/send';
 
 export const PINE_MESSAGES_SEND_PAYMENT_REQUEST = 'PINE_MESSAGES_SEND_PAYMENT_REQUEST';
 export const PINE_MESSAGES_SEND_PAYMENT_SUCCESS = 'PINE_MESSAGES_SEND_PAYMENT_SUCCESS';

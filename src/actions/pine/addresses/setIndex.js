@@ -1,4 +1,4 @@
-import updateUser from '../../../pineApi/user/update';
+import updateUser from '../../../clients/paymentServer/user/update';
 
 export const PINE_ADDRESSES_SET_INDEX_REQUEST = 'PINE_ADDRESSES_SET_INDEX_REQUEST';
 export const PINE_ADDRESSES_SET_INDEX_SUCCESS = 'PINE_ADDRESSES_SET_INDEX_SUCCESS';

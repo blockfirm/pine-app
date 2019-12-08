@@ -1,4 +1,4 @@
-import sendMessage from '../../../../../src/pineApi/user/messages/send';
+import sendMessage from '../../../../../src/clients/paymentServer/user/messages/send';
 
 import {
   sendPayment,
@@ -22,7 +22,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../src/pineApi/user/messages/send', () => {
+jest.mock('../../../../../src/clients/paymentServer/user/messages/send', () => {
   return jest.fn(() => Promise.resolve({
     id: '876ff441-4c78-4a8d-8fb9-ac1eaddb81a7'
   }));

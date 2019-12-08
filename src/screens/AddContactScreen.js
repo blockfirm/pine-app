@@ -8,7 +8,7 @@ import AppleEasing from 'react-apple-easing';
 import { setHomeScreenIndex } from '../actions/navigate';
 import { send as sendContactRequest } from '../actions/pine/contactRequests/send';
 import { add as addContact } from '../actions/contacts/add';
-import { parse as parseAddress, getAddressFromUri } from '../pineApi/address';
+import { parse as parseAddress, getAddressFromUri } from '../clients/paymentServer/address';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';

@@ -1,4 +1,4 @@
-import getAddressForUser from '../../../pineApi/user/address/get';
+import getAddressForUser from '../../../clients/paymentServer/user/address/get';
 
 export const PINE_CONTACTS_GET_ADDRESS_REQUEST = 'PINE_CONTACTS_GET_ADDRESS_REQUEST';
 export const PINE_CONTACTS_GET_ADDRESS_SUCCESS = 'PINE_CONTACTS_GET_ADDRESS_SUCCESS';

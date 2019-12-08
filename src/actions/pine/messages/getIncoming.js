@@ -1,5 +1,5 @@
-import { verify, decrypt } from '../../../pineApi/crypto';
-import getMessages from '../../../pineApi/user/messages/get';
+import { verify, decrypt } from '../../../clients/paymentServer/crypto';
+import getMessages from '../../../clients/paymentServer/user/messages/get';
 
 export const PINE_MESSAGES_GET_REQUEST = 'PINE_MESSAGES_GET_REQUEST';
 export const PINE_MESSAGES_GET_SUCCESS = 'PINE_MESSAGES_GET_SUCCESS';

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import FastImage from 'react-native-fast-image';
 
 import vendors from '../vendors';
-import { parse as parseAddress, resolveBaseUrl } from '../pineApi/address';
+import { parse as parseAddress, resolveBaseUrl } from '../clients/paymentServer/address';
 
 const AVATAR_PLACEHOLDER = require('../images/AvatarPlaceholder.png');
 const DEFAULT_SIZE = 60;

@@ -1,4 +1,4 @@
-import addContact from '../../../pineApi/user/contacts/add';
+import addContact from '../../../clients/paymentServer/user/contacts/add';
 
 export const PINE_CONTACTS_ADD_REQUEST = 'PINE_CONTACTS_ADD_REQUEST';
 export const PINE_CONTACTS_ADD_SUCCESS = 'PINE_CONTACTS_ADD_SUCCESS';

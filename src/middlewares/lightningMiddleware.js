@@ -2,7 +2,7 @@
 import * as actions from '../actions';
 import { handle as handleError } from '../actions/error';
 import * as lightningRpcActions from '../actions/pine/lightning/rpc';
-import { LightningClient } from '../pineApi/lightning';
+import { LightningClient } from '../clients/paymentServer/lightning';
 
 /**
  * Returns a map of lightning RPC client methods to redux implementations.

@@ -1,4 +1,4 @@
-import flagAsUsedOnPineServer from '../../../pineApi/user/address/flagAsUsed';
+import flagAsUsedOnPineServer from '../../../clients/paymentServer/user/address/flagAsUsed';
 
 export const PINE_ADDRESSES_FLAG_AS_USED_REQUEST = 'PINE_ADDRESSES_FLAG_AS_USED_REQUEST';
 export const PINE_ADDRESSES_FLAG_AS_USED_SUCCESS = 'PINE_ADDRESSES_FLAG_AS_USED_SUCCESS';

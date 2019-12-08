@@ -8,7 +8,7 @@ import { reset as navigateWithReset } from '../../actions/navigate';
 import * as keyActions from '../../actions/keys';
 import * as settingsActions from '../../actions/settings';
 import { handle as handleError } from '../../actions/error';
-import { avatar } from '../../pineApi/user';
+import { avatar } from '../../clients/paymentServer/user';
 import getMnemonicByKey from '../../crypto/getMnemonicByKey';
 import headerStyles from '../../styles/headerStyles';
 import BackButton from '../../components/BackButton';

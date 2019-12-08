@@ -1,4 +1,4 @@
-import getUser from '../../pineApi/user/get';
+import getUser from '../../clients/paymentServer/user/get';
 import { save } from './save';
 
 export const CONTACTS_UPDATE_PROFILES_REQUEST = 'CONTACTS_UPDATE_PROFILES_REQUEST';

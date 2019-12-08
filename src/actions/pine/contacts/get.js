@@ -1,4 +1,4 @@
-import getContacts from '../../../pineApi/user/contacts/get';
+import getContacts from '../../../clients/paymentServer/user/contacts/get';
 
 export const PINE_CONTACTS_GET_REQUEST = 'PINE_CONTACTS_GET_REQUEST';
 export const PINE_CONTACTS_GET_SUCCESS = 'PINE_CONTACTS_GET_SUCCESS';

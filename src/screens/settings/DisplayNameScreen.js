@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { parse as parseAddress } from '../../pineApi/address';
-import { update as updateUser } from '../../pineApi/user';
+import { parse as parseAddress } from '../../clients/paymentServer/address';
+import { update as updateUser } from '../../clients/paymentServer/user';
 import { save as saveSettings } from '../../actions/settings';
 import { handle as handleError } from '../../actions/error/handle';
 import getMnemonicByKey from '../../crypto/getMnemonicByKey';
