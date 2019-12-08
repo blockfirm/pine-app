@@ -1,5 +1,5 @@
 import querystring from 'querystring';
-import getTransactions from '../../../../../src/api/bitcoin/transactions/get';
+import getTransactions from '../../../../../../src/clients/api/bitcoin/transactions/get';
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,

@@ -1,4 +1,4 @@
-import * as api from '../../../../api';
+import * as api from '../../../../clients/api';
 
 export const BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_REQUEST = 'BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_REQUEST';
 export const BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_SUCCESS = 'BITCOIN_BLOCKCHAIN_TRANSACTIONS_GET_SUCCESS';

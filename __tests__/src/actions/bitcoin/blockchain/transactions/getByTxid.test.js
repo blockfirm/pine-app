@@ -1,4 +1,4 @@
-import * as api from '../../../../../../src/api';
+import * as api from '../../../../../../src/clients/api';
 
 import {
   getByTxid,
@@ -17,7 +17,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../../src/api', () => ({
+jest.mock('../../../../../../src/clients/api', () => ({
   bitcoin: {
     transactions: {
       getByTxid: jest.fn(() => Promise.resolve({

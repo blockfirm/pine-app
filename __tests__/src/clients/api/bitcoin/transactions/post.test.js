@@ -1,4 +1,4 @@
-import postTransaction from '../../../../../src/api/bitcoin/transactions/post';
+import postTransaction from '../../../../../../src/clients/api/bitcoin/transactions/post';
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,

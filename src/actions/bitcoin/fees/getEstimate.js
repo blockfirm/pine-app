@@ -1,4 +1,4 @@
-import * as api from '../../../api';
+import * as api from '../../../clients/api';
 
 export const BITCOIN_FEES_GET_ESTIMATE_REQUEST = 'BITCOIN_FEES_GET_ESTIMATE_REQUEST';
 export const BITCOIN_FEES_GET_ESTIMATE_SUCCESS = 'BITCOIN_FEES_GET_ESTIMATE_SUCCESS';

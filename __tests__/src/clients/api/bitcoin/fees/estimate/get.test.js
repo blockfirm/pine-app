@@ -1,4 +1,4 @@
-import getFeeEstimate from '../../../../../../src/api/bitcoin/fees/estimate/get';
+import getFeeEstimate from '../../../../../../../src/clients/api/bitcoin/fees/estimate/get';
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,

@@ -1,4 +1,4 @@
-import getTransactionByTxid from '../../../../../src/api/bitcoin/transactions/getByTxid';
+import getTransactionByTxid from '../../../../../../src/clients/api/bitcoin/transactions/getByTxid';
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,

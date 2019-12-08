@@ -1,4 +1,4 @@
-import getFiatRates from '../../../../../src/api/bitcoin/fiatRates/get';
+import getFiatRates from '../../../../../../src/clients/api/bitcoin/fiatRates/get';
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,

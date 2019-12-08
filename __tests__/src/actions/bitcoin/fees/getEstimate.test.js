@@ -1,4 +1,4 @@
-import * as api from '../../../../../src/api';
+import * as api from '../../../../../src/clients/api';
 
 import {
   getEstimate,
@@ -23,7 +23,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../src/api', () => ({
+jest.mock('../../../../../src/clients/api', () => ({
   bitcoin: {
     fees: {
       estimate: {

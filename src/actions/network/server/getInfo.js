@@ -1,4 +1,4 @@
-import * as api from '../../../api';
+import * as api from '../../../clients/api';
 
 export const NETWORK_SERVER_GET_INFO_REQUEST = 'NETWORK_SERVER_GET_INFO_REQUEST';
 export const NETWORK_SERVER_GET_INFO_SUCCESS = 'NETWORK_SERVER_GET_INFO_SUCCESS';

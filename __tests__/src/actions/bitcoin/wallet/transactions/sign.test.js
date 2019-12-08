@@ -21,7 +21,7 @@ jest.mock('../../../../../../src/crypto/getMnemonicByKey', () => {
   return jest.fn(() => Promise.resolve('chicken approve topic suit shiver party whale holiday pitch source angry naive'));
 });
 
-jest.mock('../../../../../../src/api', () => ({
+jest.mock('../../../../../../src/clients/api', () => ({
   bitcoin: {
     fees: {
       estimate: {

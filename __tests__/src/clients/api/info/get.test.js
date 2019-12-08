@@ -1,4 +1,4 @@
-import getInfo from '../../../../src/api/info/get';
+import getInfo from '../../../../../src/clients/api/info/get';
 
 global.fetch = jest.fn(() => Promise.resolve({
   ok: true,
