@@ -7,7 +7,7 @@ import {
   PINE_CREDENTIALS_LOAD_REQUEST,
   PINE_CREDENTIALS_LOAD_SUCCESS,
   PINE_CREDENTIALS_LOAD_FAILURE
-} from '../../../../../src/actions/pine/credentials/load';
+} from '../../../../../src/actions/paymentServer/credentials/load';
 
 const dispatchMock = jest.fn();
 

@@ -7,7 +7,7 @@ import { onRegisterError } from '../actions/notifications/onRegisterError';
 import { setPermissions } from '../actions/notifications/setPermissions';
 import { openConversation } from '../actions/navigate';
 import { sync as syncApp } from '../actions/sync';
-import { add as addDeviceTokenToPine } from '../actions/pine/deviceTokens/add';
+import { add as addDeviceTokenToPine } from '../actions/paymentServer/deviceTokens/add';
 
 const findContactByAddress = (address, contacts) => {
   return Object.values(contacts).find((contact) => {

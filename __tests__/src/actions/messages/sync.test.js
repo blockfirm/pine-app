@@ -1,8 +1,8 @@
 import generateAddress from '../../../../src/crypto/bitcoin/generateAddress';
 import { add as addExternalAddress } from '../../../../src/actions/bitcoin/wallet/addresses/external';
 import { post as postTransaction } from '../../../../src/actions/bitcoin/blockchain/transactions';
-import { getIncoming as getIncomingMessages } from '../../../../src/actions/pine/messages/getIncoming';
-import { remove as removeMessageFromServer } from '../../../../src/actions/pine/messages/remove';
+import { getIncoming as getIncomingMessages } from '../../../../src/actions/paymentServer/messages/getIncoming';
+import { remove as removeMessageFromServer } from '../../../../src/actions/paymentServer/messages/remove';
 import { save as saveContacts } from '../../../../src/actions/contacts/save';
 import { add as addMessage } from '../../../../src/actions/messages/add';
 
@@ -89,7 +89,7 @@ jest.mock('../../../../src/actions/bitcoin/blockchain/transactions', () => ({
   post: jest.fn(() => Promise.resolve())
 }));
 
-jest.mock('../../../../src/actions/pine/messages/getIncoming', () => ({
+jest.mock('../../../../src/actions/paymentServer/messages/getIncoming', () => ({
   getIncoming: jest.fn(() => Promise.resolve([
     {
       id: '808eb772-9e44-4f4a-b3e6-ea216b14b3f4',
@@ -130,7 +130,7 @@ jest.mock('../../../../src/actions/pine/messages/getIncoming', () => ({
   ]))
 }));
 
-jest.mock('../../../../src/actions/pine/messages/remove', () => ({
+jest.mock('../../../../src/actions/paymentServer/messages/remove', () => ({
   remove: jest.fn(() => Promise.resolve())
 }));
 

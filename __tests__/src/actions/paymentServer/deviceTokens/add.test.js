@@ -5,7 +5,7 @@ import {
   PINE_DEVICE_TOKEN_ADD_REQUEST,
   PINE_DEVICE_TOKEN_ADD_SUCCESS,
   PINE_DEVICE_TOKEN_ADD_FAILURE
-} from '../../../../../src/actions/pine/deviceTokens/add';
+} from '../../../../../src/actions/paymentServer/deviceTokens/add';
 
 const dispatchMock = jest.fn();
 

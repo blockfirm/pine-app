@@ -1,7 +1,7 @@
 import {
   computeInputScript,
   PINE_LIGHTNING_RPC_COMPUTE_INPUT_SCRIPT
-} from '../../../../../../src/actions/pine/lightning/rpc/computeInputScript';
+} from '../../../../../../src/actions/paymentServer/lightning/rpc/computeInputScript';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {

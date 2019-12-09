@@ -5,7 +5,7 @@ import {
   PINE_CONTACT_REQUESTS_SEND_REQUEST,
   PINE_CONTACT_REQUESTS_SEND_SUCCESS,
   PINE_CONTACT_REQUESTS_SEND_FAILURE
-} from '../../../../../src/actions/pine/contactRequests/send';
+} from '../../../../../src/actions/paymentServer/contactRequests/send';
 
 const dispatchMock = jest.fn();
 

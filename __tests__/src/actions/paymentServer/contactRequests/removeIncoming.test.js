@@ -5,7 +5,7 @@ import {
   PINE_CONTACT_REQUESTS_REMOVE_INCOMING_REQUEST,
   PINE_CONTACT_REQUESTS_REMOVE_INCOMING_SUCCESS,
   PINE_CONTACT_REQUESTS_REMOVE_INCOMING_FAILURE
-} from '../../../../../src/actions/pine/contactRequests/removeIncoming';
+} from '../../../../../src/actions/paymentServer/contactRequests/removeIncoming';
 
 const dispatchMock = jest.fn();
 

@@ -101,7 +101,7 @@ jest.mock('../../../../../src/actions/bitcoin/wallet/addresses/getUnused', () =>
   getUnused: jest.fn(() => Promise.resolve())
 }));
 
-jest.mock('../../../../../src/actions/pine/addresses/sync', () => ({
+jest.mock('../../../../../src/actions/paymentServer/addresses/sync', () => ({
   sync: jest.fn(() => Promise.resolve())
 }));
 

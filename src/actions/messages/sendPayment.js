@@ -6,7 +6,7 @@ import {
 
 import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
 import { reserve as reserveUtxos } from '../bitcoin/wallet/utxos';
-import { sendPayment as sendPaymentToServer } from '../pine/messages/sendPayment';
+import { sendPayment as sendPaymentToServer } from '../paymentServer/messages/sendPayment';
 import { add as addMessage } from './add';
 
 export const MESSAGES_SEND_PAYMENT_REQUEST = 'MESSAGES_SEND_PAYMENT_REQUEST';

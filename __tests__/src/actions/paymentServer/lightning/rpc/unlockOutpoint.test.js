@@ -3,7 +3,7 @@ import { unreserve } from '../../../../../../src/actions/bitcoin/wallet/utxos/un
 import {
   unlockOutpoint,
   PINE_LIGHTNING_RPC_UNLOCK_OUTPOINT
-} from '../../../../../../src/actions/pine/lightning/rpc/unlockOutpoint';
+} from '../../../../../../src/actions/paymentServer/lightning/rpc/unlockOutpoint';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {

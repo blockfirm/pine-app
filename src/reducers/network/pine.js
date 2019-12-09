@@ -1,7 +1,7 @@
 import {
   PINE_CONTACT_REQUESTS_GET_SUCCESS,
   PINE_CONTACT_REQUESTS_GET_FAILURE
-} from '../../actions/pine/contactRequests/get';
+} from '../../actions/paymentServer/contactRequests/get';
 
 const pine = (state = {}, action) => {
   switch (action.type) {

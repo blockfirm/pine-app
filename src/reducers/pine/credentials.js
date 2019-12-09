@@ -1,4 +1,4 @@
-import { PINE_CREDENTIALS_LOAD_SUCCESS } from '../../actions/pine/credentials';
+import { PINE_CREDENTIALS_LOAD_SUCCESS } from '../../actions/paymentServer/credentials';
 
 const credentials = (state = null, action) => {
   switch (action.type) {

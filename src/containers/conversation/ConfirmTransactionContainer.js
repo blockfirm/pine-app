@@ -7,7 +7,7 @@ import {
   sign as signTransaction
 } from '../../actions/bitcoin/wallet/transactions';
 
-import { getAddress } from '../../actions/pine/contacts/getAddress';
+import { getAddress } from '../../actions/paymentServer/contacts/getAddress';
 import { sendPayment, sendLegacyPayment } from '../../actions/messages';
 import { handle as handleError } from '../../actions/error/handle';
 import authentication from '../../authentication';

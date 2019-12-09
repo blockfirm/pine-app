@@ -1,5 +1,5 @@
-import { add as addContactToServer } from '../../pine/contacts/add';
-import { send as sendContactRequest } from '../../pine/contactRequests/send';
+import { add as addContactToServer } from '../../paymentServer/contacts/add';
+import { send as sendContactRequest } from '../../paymentServer/contactRequests/send';
 import { save } from '../save';
 
 export const CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST = 'CONTACTS_CONTACT_REQUESTS_ACCEPT_REQUEST';

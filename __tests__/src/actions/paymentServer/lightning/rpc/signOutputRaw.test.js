@@ -1,7 +1,7 @@
 import {
   signOutputRaw,
   PINE_LIGHTNING_RPC_SIGN_OUTPUT_RAW
-} from '../../../../../../src/actions/pine/lightning/rpc/signOutputRaw';
+} from '../../../../../../src/actions/paymentServer/lightning/rpc/signOutputRaw';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {

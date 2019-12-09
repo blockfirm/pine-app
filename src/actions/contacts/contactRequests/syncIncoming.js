@@ -1,6 +1,6 @@
 import uuidv4 from 'uuid/v4';
 import getUser from '../../../clients/paymentServer/user/get';
-import { get as getContactRequests } from '../../pine/contactRequests/get';
+import { get as getContactRequests } from '../../paymentServer/contactRequests/get';
 import { save } from '../save';
 
 export const CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST = 'CONTACTS_CONTACT_REQUESTS_SYNC_INCOMING_REQUEST';

@@ -1,7 +1,7 @@
 import {
   getRevocationRootKey,
   PINE_LIGHTNING_RPC_GET_REVOCATION_ROOT_KEY
-} from '../../../../../../src/actions/pine/lightning/rpc/getRevocationRootKey';
+} from '../../../../../../src/actions/paymentServer/lightning/rpc/getRevocationRootKey';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {

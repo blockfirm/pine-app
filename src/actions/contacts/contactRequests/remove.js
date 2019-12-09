@@ -1,5 +1,5 @@
-import { removeOutgoing as removeOutgoingContactRequest } from '../../pine/contactRequests/removeOutgoing';
-import { remove as removeContactFromServer } from '../../pine/contacts/remove';
+import { removeOutgoing as removeOutgoingContactRequest } from '../../paymentServer/contactRequests/removeOutgoing';
+import { remove as removeContactFromServer } from '../../paymentServer/contacts/remove';
 import { save } from '../save';
 
 export const CONTACTS_CONTACT_REQUESTS_REMOVE_REQUEST = 'CONTACTS_CONTACT_REQUESTS_REMOVE_REQUEST';

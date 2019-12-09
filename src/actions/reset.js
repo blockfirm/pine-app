@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { remove as removeDeviceTokenFromServer } from './pine/deviceTokens';
+import { remove as removeDeviceTokenFromServer } from './paymentServer/deviceTokens';
 import removeMnemonicByKey from '../crypto/removeMnemonicByKey';
 import { remove as removeKey, removeBackup } from './keys';
 import { reset as resetSettings } from './settings';

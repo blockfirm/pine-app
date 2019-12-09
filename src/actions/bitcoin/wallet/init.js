@@ -1,4 +1,4 @@
-import { setIndex as setAddressIndexOnPineServer } from '../../pine/addresses';
+import { setIndex as setAddressIndexOnPineServer } from '../../paymentServer/addresses';
 import { findAll as findAllAddresses } from '../blockchain/addresses/findAll';
 import { add as addExternalAddresses } from './addresses/external';
 import { add as addInternalAddresses } from './addresses/internal';

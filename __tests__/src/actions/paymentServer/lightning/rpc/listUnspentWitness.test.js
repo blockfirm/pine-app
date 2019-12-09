@@ -1,7 +1,7 @@
 import {
   listUnspentWitness,
   PINE_LIGHTNING_RPC_LIST_UNSPENT_WITNESS
-} from '../../../../../../src/actions/pine/lightning/rpc/listUnspentWitness';
+} from '../../../../../../src/actions/paymentServer/lightning/rpc/listUnspentWitness';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {

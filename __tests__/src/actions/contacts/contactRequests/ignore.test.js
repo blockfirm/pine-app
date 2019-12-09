@@ -1,5 +1,5 @@
 import { save as saveContacts } from '../../../../../src/actions/contacts/save';
-import { removeIncoming as removeIncomingContactRequest } from '../../../../../src/actions/pine/contactRequests/removeIncoming';
+import { removeIncoming as removeIncomingContactRequest } from '../../../../../src/actions/paymentServer/contactRequests/removeIncoming';
 
 import {
   ignore as ignoreContactRequest,
@@ -16,7 +16,7 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
-jest.mock('../../../../../src/actions/pine/contactRequests/removeIncoming', () => ({
+jest.mock('../../../../../src/actions/paymentServer/contactRequests/removeIncoming', () => ({
   removeIncoming: jest.fn(() => Promise.resolve())
 }));
 

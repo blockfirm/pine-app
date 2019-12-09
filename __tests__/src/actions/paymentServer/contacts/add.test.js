@@ -5,7 +5,7 @@ import {
   PINE_CONTACTS_ADD_REQUEST,
   PINE_CONTACTS_ADD_SUCCESS,
   PINE_CONTACTS_ADD_FAILURE
-} from '../../../../../src/actions/pine/contacts/add';
+} from '../../../../../src/actions/paymentServer/contacts/add';
 
 const dispatchMock = jest.fn();
 

@@ -1,5 +1,5 @@
 import { save as saveContacts } from '../../../../../src/actions/contacts/save';
-import { get as getContactRequests } from '../../../../../src/actions/pine/contactRequests/get';
+import { get as getContactRequests } from '../../../../../src/actions/paymentServer/contactRequests/get';
 
 import {
   syncIncoming as syncIncomingContactRequests,
@@ -57,7 +57,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../src/actions/pine/contactRequests/get', () => ({
+jest.mock('../../../../../src/actions/paymentServer/contactRequests/get', () => ({
   get: jest.fn(() => Promise.resolve([
     {
       id: '7954d4d4-6674-4e56-af4c-f507e12fcdd3',

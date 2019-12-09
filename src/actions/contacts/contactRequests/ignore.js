@@ -1,4 +1,4 @@
-import { removeIncoming as removeIncomingContactRequest } from '../../pine/contactRequests/removeIncoming';
+import { removeIncoming as removeIncomingContactRequest } from '../../paymentServer/contactRequests/removeIncoming';
 import { save } from '../save';
 
 export const CONTACTS_CONTACT_REQUESTS_IGNORE_REQUEST = 'CONTACTS_CONTACT_REQUESTS_IGNORE_REQUEST';

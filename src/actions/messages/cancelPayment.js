@@ -3,7 +3,7 @@ import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
 import { post as postTransaction } from '../bitcoin/blockchain/transactions';
 import { sign as signTransaction } from '../bitcoin/wallet/transactions';
 import { sync as syncWallet } from '../bitcoin/wallet';
-import { remove as removeMessageFromServer } from '../pine/messages/remove';
+import { remove as removeMessageFromServer } from '../paymentServer/messages/remove';
 import { setLastMessage } from '../contacts';
 import { add as addToMessageTxIds } from './txids';
 import { save } from './save';

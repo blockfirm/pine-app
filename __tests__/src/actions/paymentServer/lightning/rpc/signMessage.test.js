@@ -1,7 +1,7 @@
 import {
   signMessage,
   PINE_LIGHTNING_RPC_SIGN_MESSAGE
-} from '../../../../../../src/actions/pine/lightning/rpc/signMessage';
+} from '../../../../../../src/actions/paymentServer/lightning/rpc/signMessage';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {

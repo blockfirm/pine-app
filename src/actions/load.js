@@ -3,7 +3,7 @@ import { load as loadKeys } from './keys';
 import { load as loadSettings } from './settings';
 import { load as loadContacts } from './contacts';
 import { load as loadMessageTxids } from './messages/txids';
-import { load as loadPineCredentials } from './pine/credentials';
+import { load as loadPineCredentials } from './paymentServer/credentials';
 
 export const LOAD_REQUEST = 'LOAD_REQUEST';
 export const LOAD_SUCCESS = 'LOAD_SUCCESS';

@@ -1,4 +1,4 @@
-import { PINE_CREDENTIALS_LOAD_SUCCESS } from '../../../../src/actions/pine/credentials';
+import { PINE_CREDENTIALS_LOAD_SUCCESS } from '../../../../src/actions/paymentServer/credentials';
 import credentialsReducer from '../../../../src/reducers/pine/credentials';
 
 describe('credentialsReducer', () => {

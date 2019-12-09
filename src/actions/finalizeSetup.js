@@ -1,5 +1,5 @@
-import { add as addDeviceTokenToPine } from './pine/deviceTokens/add';
-import { load as loadPineCredentials } from './pine/credentials';
+import { add as addDeviceTokenToPine } from './paymentServer/deviceTokens/add';
+import { load as loadPineCredentials } from './paymentServer/credentials';
 import { sync as syncApp } from './sync';
 import { ready as onReady } from './ready';
 

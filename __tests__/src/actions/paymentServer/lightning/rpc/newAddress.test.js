@@ -1,7 +1,7 @@
 import {
   newAddress,
   PINE_LIGHTNING_RPC_NEW_ADDRESS
-} from '../../../../../../src/actions/pine/lightning/rpc/newAddress';
+} from '../../../../../../src/actions/paymentServer/lightning/rpc/newAddress';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {

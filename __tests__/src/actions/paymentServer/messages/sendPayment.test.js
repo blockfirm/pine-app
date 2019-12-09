@@ -5,7 +5,7 @@ import {
   PINE_MESSAGES_SEND_PAYMENT_REQUEST,
   PINE_MESSAGES_SEND_PAYMENT_SUCCESS,
   PINE_MESSAGES_SEND_PAYMENT_FAILURE
-} from '../../../../../src/actions/pine/messages/sendPayment';
+} from '../../../../../src/actions/paymentServer/messages/sendPayment';
 
 const dispatchMock = jest.fn();
 

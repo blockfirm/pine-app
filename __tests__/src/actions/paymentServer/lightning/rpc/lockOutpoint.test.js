@@ -3,7 +3,7 @@ import { reserve } from '../../../../../../src/actions/bitcoin/wallet/utxos/rese
 import {
   lockOutpoint,
   PINE_LIGHTNING_RPC_LOCK_OUTPOINT
-} from '../../../../../../src/actions/pine/lightning/rpc/lockOutpoint';
+} from '../../../../../../src/actions/paymentServer/lightning/rpc/lockOutpoint';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {

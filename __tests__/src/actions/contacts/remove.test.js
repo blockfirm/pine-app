@@ -1,4 +1,4 @@
-import { remove as removeContactFromServer } from '../../../../src/actions/pine/contacts/remove';
+import { remove as removeContactFromServer } from '../../../../src/actions/paymentServer/contacts/remove';
 import { save as saveContacts } from '../../../../src/actions/contacts/save';
 
 import {
@@ -16,7 +16,7 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
-jest.mock('../../../../src/actions/pine/contacts/remove', () => ({
+jest.mock('../../../../src/actions/paymentServer/contacts/remove', () => ({
   remove: jest.fn(() => Promise.resolve())
 }));
 

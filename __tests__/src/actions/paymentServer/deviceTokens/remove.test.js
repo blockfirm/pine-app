@@ -1,12 +1,12 @@
 import removeDeviceToken from '../../../../../src/clients/paymentServer/user/deviceTokens/remove';
-import { add as addDeviceTokenAction } from '../../../../../src/actions/pine/deviceTokens/add';
+import { add as addDeviceTokenAction } from '../../../../../src/actions/paymentServer/deviceTokens/add';
 
 import {
   remove as removeDeviceTokenAction,
   PINE_DEVICE_TOKEN_REMOVE_REQUEST,
   PINE_DEVICE_TOKEN_REMOVE_SUCCESS,
   PINE_DEVICE_TOKEN_REMOVE_FAILURE
-} from '../../../../../src/actions/pine/deviceTokens/remove';
+} from '../../../../../src/actions/paymentServer/deviceTokens/remove';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -27,7 +27,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../src/actions/pine/deviceTokens/add', () => ({
+jest.mock('../../../../../src/actions/paymentServer/deviceTokens/add', () => ({
   add: jest.fn(() => {
     return () => Promise.resolve('30f9db6d-2113-433c-b3d5-4bbe642a727f');
   })

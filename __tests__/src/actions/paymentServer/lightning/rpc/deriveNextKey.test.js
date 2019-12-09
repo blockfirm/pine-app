@@ -1,7 +1,7 @@
 import {
   deriveNextKey,
   PINE_LIGHTNING_RPC_DERIVE_NEXT_KEY
-} from '../../../../../../src/actions/pine/lightning/rpc/deriveNextKey';
+} from '../../../../../../src/actions/paymentServer/lightning/rpc/deriveNextKey';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {

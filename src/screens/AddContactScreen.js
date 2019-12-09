@@ -6,7 +6,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 import AppleEasing from 'react-apple-easing';
 
 import { setHomeScreenIndex } from '../actions/navigate';
-import { send as sendContactRequest } from '../actions/pine/contactRequests/send';
+import { send as sendContactRequest } from '../actions/paymentServer/contactRequests/send';
 import { add as addContact } from '../actions/contacts/add';
 import { parse as parseAddress, getAddressFromUri } from '../clients/paymentServer/address';
 import getStatusBarHeight from '../utils/getStatusBarHeight';

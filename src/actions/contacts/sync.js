@@ -1,5 +1,5 @@
 import getUser from '../../clients/paymentServer/user/get';
-import { get as getContacts } from '../pine/contacts/get';
+import { get as getContacts } from '../paymentServer/contacts/get';
 import { save } from './save';
 
 export const CONTACTS_SYNC_REQUEST = 'CONTACTS_SYNC_REQUEST';

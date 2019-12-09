@@ -1,4 +1,4 @@
-import { add as addContactToServer } from '../../../../src/actions/pine/contacts/add';
+import { add as addContactToServer } from '../../../../src/actions/paymentServer/contacts/add';
 import { save as saveContacts } from '../../../../src/actions/contacts/save';
 
 import {
@@ -16,7 +16,7 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
-jest.mock('../../../../src/actions/pine/contacts/add', () => ({
+jest.mock('../../../../src/actions/paymentServer/contacts/add', () => ({
   add: jest.fn(() => Promise.resolve({
     id: 'cc461b33-1fa6-4549-bc6e-387bf1106a75',
     createdAt: 121234

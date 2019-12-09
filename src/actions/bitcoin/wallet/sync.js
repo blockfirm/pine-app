@@ -6,7 +6,7 @@ import getTransactionAmount from '../../../crypto/bitcoin/getTransactionAmount';
 import getTransactionAddress from '../../../crypto/bitcoin/getTransactionAddress';
 import { addLegacy as addLegacyContact } from '../../contacts';
 import { add as addMessage } from '../../messages';
-import { sync as syncAddressesWithPineAccount } from '../../pine/addresses';
+import { sync as syncAddressesWithPineAccount } from '../../paymentServer/addresses';
 import { getNewByAddress as getNewTransactionsByAddress } from '../blockchain/transactions/getNewByAddress';
 import { update as updateUtxos } from './utxos';
 import { save as saveExternalAddresses } from './addresses/external';

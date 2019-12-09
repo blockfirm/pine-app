@@ -1,7 +1,7 @@
 import {
   PINE_CONTACT_REQUESTS_GET_SUCCESS,
   PINE_CONTACT_REQUESTS_GET_FAILURE
-} from '../../../../src/actions/pine/contactRequests/get';
+} from '../../../../src/actions/paymentServer/contactRequests/get';
 
 import pineReducer from '../../../../src/reducers/network/pine';
 

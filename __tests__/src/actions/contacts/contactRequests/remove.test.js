@@ -1,6 +1,6 @@
 import { save as saveContacts } from '../../../../../src/actions/contacts/save';
-import { removeOutgoing as removeOutgoingContactRequest } from '../../../../../src/actions/pine/contactRequests/removeOutgoing';
-import { remove as removeContactFromServer } from '../../../../../src/actions/pine/contacts/remove';
+import { removeOutgoing as removeOutgoingContactRequest } from '../../../../../src/actions/paymentServer/contactRequests/removeOutgoing';
+import { remove as removeContactFromServer } from '../../../../../src/actions/paymentServer/contacts/remove';
 
 import {
   remove as removeContactRequestAction,
@@ -17,11 +17,11 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
-jest.mock('../../../../../src/actions/pine/contactRequests/removeOutgoing', () => ({
+jest.mock('../../../../../src/actions/paymentServer/contactRequests/removeOutgoing', () => ({
   removeOutgoing: jest.fn(() => Promise.resolve())
 }));
 
-jest.mock('../../../../../src/actions/pine/contacts/remove', () => ({
+jest.mock('../../../../../src/actions/paymentServer/contacts/remove', () => ({
   remove: jest.fn(() => Promise.resolve())
 }));
 

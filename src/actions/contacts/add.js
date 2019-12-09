@@ -1,4 +1,4 @@
-import { add as addContactToServer } from '../pine/contacts/add';
+import { add as addContactToServer } from '../paymentServer/contacts/add';
 import { save } from './save';
 
 export const CONTACTS_ADD_REQUEST = 'CONTACTS_ADD_REQUEST';

@@ -1,6 +1,6 @@
 import { save as saveContacts } from '../../../../../src/actions/contacts/save';
-import { send as sendContactRequest } from '../../../../../src/actions/pine/contactRequests/send';
-import { add as addContactToServer } from '../../../../../src/actions/pine/contacts/add';
+import { send as sendContactRequest } from '../../../../../src/actions/paymentServer/contactRequests/send';
+import { add as addContactToServer } from '../../../../../src/actions/paymentServer/contacts/add';
 
 import {
   accept as acceptContactRequest,
@@ -17,11 +17,11 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
-jest.mock('../../../../../src/actions/pine/contactRequests/send', () => ({
+jest.mock('../../../../../src/actions/paymentServer/contactRequests/send', () => ({
   send: jest.fn(() => Promise.resolve({}))
 }));
 
-jest.mock('../../../../../src/actions/pine/contacts/add', () => ({
+jest.mock('../../../../../src/actions/paymentServer/contacts/add', () => ({
   add: jest.fn(() => Promise.resolve({
     id: '63b6d3cf-4810-4237-a08a-fc06a2e043b3',
     createdAt: 12345
