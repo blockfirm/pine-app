@@ -37,11 +37,17 @@ class MnemonicWordsContainer extends Component {
     });
   }
 
+  _onHide() {
+    const dispatch = this.props.dispatch;
+    dispatch(recoveryKeyActions.hide());
+  }
+
   render() {
     return (
       <MnemonicWords
         {...this.props}
         onReveal={this._onReveal.bind(this)}
+        onHide={this._onHide.bind(this)}
       />
     );
   }
