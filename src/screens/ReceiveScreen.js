@@ -13,7 +13,7 @@ import Avatar from '../components/Avatar';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const QR_CODE_WIDTH = WINDOW_WIDTH - 150;
-const AVATAR_WIDTH = Math.floor(QR_CODE_WIDTH / 4);
+const AVATAR_WIDTH = Math.floor(QR_CODE_WIDTH / 4) - 4; // -4 to compensate for the border.
 
 const styles = StyleSheet.create({
   view: {
@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   qrAvatar: {
+    width: AVATAR_WIDTH + 4,
+    height: AVATAR_WIDTH + 4,
     borderWidth: 2,
     borderColor: '#ffffff',
     position: 'absolute'

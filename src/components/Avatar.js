@@ -105,7 +105,7 @@ export default class Avatar extends Component {
     const uri = this._getUrl();
 
     return (
-      <View style={[styles.wrapper, style, sizeStyle]}>
+      <View style={[styles.wrapper, sizeStyle, style]}>
         <FastImage
           source={{ uri }}
           style={sizeStyle}
