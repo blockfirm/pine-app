@@ -29,8 +29,8 @@ const updatePendingFailure = (error) => {
 
 const getPendingTransactions = (transactions) => {
   return transactions.filter((transaction) => (
-    transaction.confirmations < CONFIRMATIONS_THRESHOLD)
-  );
+    !transaction.confirmations || transaction.confirmations < CONFIRMATIONS_THRESHOLD
+  ));
 };
 
 /**

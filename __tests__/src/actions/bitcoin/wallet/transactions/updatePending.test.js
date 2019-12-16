@@ -26,7 +26,8 @@ const getStateMock = jest.fn(() => ({
           { txid: '96c3c063-46fe-4f30-b702-643b06d8e0ec', confirmations: 7 },
           { txid: 'b67768f4-ae20-4515-9fac-17aee6f5c360', confirmations: null },
           { txid: '1220e957-3769-4cdb-b9d2-a810b2956040', confirmations: 1 },
-          { txid: 'aca467b9-d000-4ba6-aaa4-fd5a3ef564e2', confirmations: 6 }
+          { txid: 'aca467b9-d000-4ba6-aaa4-fd5a3ef564e2', confirmations: 6 },
+          { txid: '4012ed1d-bb50-4d8b-9cd1-807a2ba51a5a', confirmations: undefined }
         ]
       }
     }
@@ -38,7 +39,8 @@ const transactionsToUpdate = [
   { txid: 'c00710fd-4705-4386-b838-d4c2f2786cf4', confirmations: 0 },
   { txid: '7ca5331b-2faf-4673-8c7c-5e9b57d6dc71', confirmations: 2 },
   { txid: 'b67768f4-ae20-4515-9fac-17aee6f5c360', confirmations: null },
-  { txid: '1220e957-3769-4cdb-b9d2-a810b2956040', confirmations: 1 }
+  { txid: '1220e957-3769-4cdb-b9d2-a810b2956040', confirmations: 1 },
+  { txid: '4012ed1d-bb50-4d8b-9cd1-807a2ba51a5a', confirmations: undefined }
 ];
 
 jest.mock('../../../../../../src/actions/bitcoin/blockchain/transactions/getByTxid', () => ({
@@ -114,7 +116,8 @@ describe('updatePending', () => {
         { txid: 'c00710fd-4705-4386-b838-d4c2f2786cf4' },
         { txid: '7ca5331b-2faf-4673-8c7c-5e9b57d6dc71' },
         { txid: 'b67768f4-ae20-4515-9fac-17aee6f5c360' },
-        { txid: '1220e957-3769-4cdb-b9d2-a810b2956040' }
+        { txid: '1220e957-3769-4cdb-b9d2-a810b2956040' },
+        { txid: '4012ed1d-bb50-4d8b-9cd1-807a2ba51a5a' }
       ]));
     });
   });
