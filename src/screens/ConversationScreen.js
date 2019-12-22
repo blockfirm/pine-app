@@ -195,7 +195,19 @@ export default class ConversationScreen extends Component {
   }
 
   componentWillUnmount() {
+    const { dispatch } = this.props;
+
     clearTimeout(this._conversationReadTimer);
+    this._markConversationAsRead();
+
+    this._listeners.forEach((listener) => {
+      if (!listener.removed) {
+        listener.remove();
+        listener.removed = true;
+      }
+    });
+
+    dispatch(closeConversation());
   }
 
   componentDidUpdate(prevProps) {
@@ -222,21 +234,6 @@ export default class ConversationScreen extends Component {
     ) {
       navigation.setParams({ contact });
     }
-  }
-
-  componentWillUnmount() {
-    const { dispatch } = this.props;
-
-    this._markConversationAsRead();
-
-    this._listeners.forEach((listener) => {
-      if (!listener.removed) {
-        listener.remove();
-        listener.removed = true;
-      }
-    });
-
-    dispatch(closeConversation());
   }
 
   _onKeyboardDidShow(event) {
