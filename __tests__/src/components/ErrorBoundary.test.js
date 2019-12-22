@@ -5,9 +5,13 @@ import renderer from 'react-test-renderer';
 import { ERROR_HANDLE } from '../../../src/actions/error';
 import ErrorBoundary from '../../../src/components/ErrorBoundary';
 
-const dispatchMock = jest.fn();
+const dispatchMock = jest.fn((action) => {
+  if (typeof action === 'function') {
+    return action(dispatchMock);
+  }
 
-jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
+  return action;
+});
 
 describe('ErrorBoundary', () => {
   it('renders correctly', () => {

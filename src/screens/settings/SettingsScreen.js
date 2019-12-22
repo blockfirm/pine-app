@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import headerStyles from '../../styles/headerStyles';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
 import DoneButton from '../../components/DoneButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsLink from '../../components/SettingsLink';
@@ -14,11 +15,11 @@ import BaseSettingsScreen from './BaseSettingsScreen';
 }))
 export default class SettingsScreen extends Component {
   static navigationOptions = ({ screenProps }) => ({
-    title: 'Settings',
-    headerStyle: headerStyles.header,
-    headerTitleStyle: headerStyles.title,
+    headerTransparent: true,
+    headerBackground: <SettingsHeaderBackground />,
+    headerTitle: <HeaderTitle title='Settings' />,
     headerBackTitle: null,
-    headerRight: (<DoneButton onPress={screenProps.dismiss} />)
+    headerRight: <DoneButton onPress={screenProps.dismiss} />
   });
 
   _showProfile() {

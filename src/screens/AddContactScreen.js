@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Animated } from 'react-native';
 import PropTypes from 'prop-types';
@@ -5,6 +6,7 @@ import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import AppleEasing from 'react-apple-easing';
 
+import { withTheme } from '../contexts/theme';
 import { setHomeScreenIndex } from '../actions/navigate';
 import { send as sendContactRequest } from '../actions/paymentServer/contactRequests/send';
 import { add as addContact } from '../actions/contacts/add';
@@ -12,6 +14,8 @@ import { parse as parseAddress, getAddressFromUri } from '../clients/paymentServ
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';
+import HeaderTitle from '../components/HeaderTitle';
+import HeaderBackground from '../components/HeaderBackground';
 import HeaderButton from '../components/buttons/HeaderButton';
 import CancelButton from '../components/CancelButton';
 import StyledText from '../components/StyledText';
@@ -29,8 +33,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   input: {
-    fontSize: 24,
-    color: '#000000'
+    fontSize: 24
   },
   inputTitleWrapper: {
     position: 'absolute'
@@ -40,7 +43,6 @@ const styles = StyleSheet.create({
     fontWeight: '500'
   },
   error: {
-    color: '#FF3B30',
     fontSize: 12,
     marginTop: 35,
     position: 'absolute'
@@ -60,7 +62,7 @@ const translateErrorMessage = (errorMessage) => {
   userProfile: state.settings.user.profile,
   defaultPineAddressHostname: state.settings.defaultPineAddressHostname
 }))
-export default class AddContactScreen extends Component {
+class AddContactScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     const nextIsDisabled = !navigation.getParam('canSubmit');
     const submit = navigation.getParam('submit');
@@ -68,10 +70,10 @@ export default class AddContactScreen extends Component {
     const headerRight = <HeaderButton label='Add' onPress={submit} disabled={nextIsDisabled} />;
 
     return {
-      title: 'Add Contact',
       headerTransparent: true,
-      headerStyle: headerStyles.whiteHeader,
-      headerTitleStyle: headerStyles.title,
+      headerBackground: <HeaderBackground />,
+      headerTitle: <HeaderTitle title='Add Contact' />,
+      headerStyle: headerStyles.borderlessHeader,
       headerLeft,
       headerRight
     };
@@ -235,25 +237,27 @@ export default class AddContactScreen extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
         <View style={styles.inputWrapper}>
           { this._renderInputTitle() }
           <TextInput
-            style={styles.input}
+            style={[styles.input, theme.bigInput]}
             autoFocus={true}
             autoCorrect={false}
             autoCapitalize='none'
             keyboardType='email-address'
             maxLength={71}
             value={this.state.address}
-            selectionColor='#FFC431'
+            selectionColor={theme.bigInputSelectionColor}
             onChangeText={(text) => this._onChangeText(text)}
             placeholder='Enter Pine Address'
-            placeholderTextColor='#C3C3C3'
+            placeholderTextColor={theme.bigInputPlaceholderColor}
             blurOnSubmit={false}
           />
-          <StyledText style={styles.error}>
+          <StyledText style={[styles.error, theme.errorText]}>
             {this.state.error}
           </StyledText>
         </View>
@@ -269,5 +273,8 @@ AddContactScreen.propTypes = {
   contacts: PropTypes.object,
   screenProps: PropTypes.object,
   userProfile: PropTypes.object,
-  defaultPineAddressHostname: PropTypes.string
+  defaultPineAddressHostname: PropTypes.string,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(AddContactScreen);

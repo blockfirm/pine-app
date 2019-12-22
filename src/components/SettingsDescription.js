@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+
+import { withTheme } from '../contexts/theme';
 import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
   description: {
-    color: '#8A8A8F',
     fontSize: 13,
     lineHeight: 17,
     marginTop: -25,
@@ -15,10 +16,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class SettingsDescription extends Component {
+class SettingsDescription extends Component {
   render() {
+    const { theme } = this.props;
+
     return (
-      <StyledText style={styles.description}>
+      <StyledText style={[styles.description, theme.settingsDescription]}>
         {this.props.children}
       </StyledText>
     );
@@ -26,5 +29,8 @@ export default class SettingsDescription extends Component {
 }
 
 SettingsDescription.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(SettingsDescription);

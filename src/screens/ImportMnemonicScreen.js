@@ -172,7 +172,7 @@ export default class ImportMnemonicScreen extends Component {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss.bind(Keyboard)}>
         <View style={styles.view}>
           <BaseScreen headerTitle='Enter Recovery Key'>
-            <StatusBar barStyle='dark-content' />
+            <StatusBar barStyle='default' />
 
             <View style={contentStyles}>
               <Paragraph style={styles.paragraph}>

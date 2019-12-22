@@ -3,6 +3,7 @@ import { StyleSheet, View, TouchableHighlight, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { withTheme } from '../contexts/theme';
 import settingsStyles from '../styles/settingsStyles';
 import StyledText from './StyledText';
 
@@ -33,12 +34,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 15,
     fontSize: 20,
-    color: '#C7C7CC',
     paddingTop: 2
   }
 });
 
-export default class SettingsLink extends Component {
+class SettingsLink extends Component {
   static ICON_GEAR = ICON_GEAR;
   static ICON_LOCK = ICON_LOCK;
   static ICON_BITCOIN = ICON_BITCOIN;
@@ -57,22 +57,25 @@ export default class SettingsLink extends Component {
   }
 
   render() {
-    const isLastItem = this.props.isLastItem;
+    const { isLastItem, theme } = this.props;
     const icon = this._renderIcon();
 
     const containerStyles = [
       settingsStyles.item,
+      theme.settingsItem,
       icon ? styles.containerWithIcon : undefined,
       isLastItem ? { borderBottomWidth: 0 } : undefined
     ];
 
     return (
-      <TouchableHighlight onPress={this.props.onPress} underlayColor={settingsStyles.underlayColor}>
+      <TouchableHighlight onPress={this.props.onPress} underlayColor={theme.settingsUnderlayColor}>
         <View style={containerStyles}>
           { icon }
           <StyledText style={settingsStyles.label} numberOfLines={1}>{this.props.name}</StyledText>
-          <StyledText style={[settingsStyles.value, styles.value]} numberOfLines={1}>{this.props.value}</StyledText>
-          <Icon name='ios-arrow-forward' style={styles.chevron} />
+          <StyledText style={[settingsStyles.value, theme.settingsValue, styles.value]} numberOfLines={1}>
+            {this.props.value}
+          </StyledText>
+          <Icon name='ios-arrow-forward' style={[styles.chevron, theme.settingsArrow]} />
         </View>
       </TouchableHighlight>
     );
@@ -84,5 +87,8 @@ SettingsLink.propTypes = {
   icon: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
-  isLastItem: PropTypes.bool
+  isLastItem: PropTypes.bool,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(SettingsLink);

@@ -3,8 +3,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import TermsAndConditionsScreen from '../../../../src/screens/settings/TermsAndConditionsScreen';
 
-jest.mock('../../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
-
 const storeMock = {
   getState: jest.fn(() => ({})),
   dispatch: jest.fn(),

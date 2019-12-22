@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
+
+import { withTheme } from '../contexts/theme';
 import StyledText from './StyledText';
 
 const windowDimensions = Dimensions.get('window');
@@ -11,15 +13,16 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     letterSpacing: 0.36,
     marginBottom: windowDimensions.width < 330 ? 7 : 10,
-    textAlign: 'center',
-    color: '#26203D'
+    textAlign: 'center'
   }
 });
 
-export default class Title extends Component {
+class Title extends Component {
   render() {
+    const { theme } = this.props;
+
     return (
-      <StyledText style={[styles.title, this.props.style]}>
+      <StyledText style={[styles.title, theme.title, this.props.style]}>
         {this.props.children}
       </StyledText>
     );
@@ -28,5 +31,8 @@ export default class Title extends Component {
 
 Title.propTypes = {
   style: PropTypes.any,
-  children: PropTypes.node
+  children: PropTypes.node,
+  theme: PropTypes.object
 };
+
+export default withTheme(Title);

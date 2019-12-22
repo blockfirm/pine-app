@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { save as saveSettings } from '../../actions/settings';
-import headerStyles from '../../styles/headerStyles';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsInput from '../../components/SettingsInput';
@@ -16,9 +17,9 @@ import config from '../../config';
 }))
 export default class SatoshisPerByteScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Satoshis Per Byte',
-    headerStyle: headerStyles.header,
-    headerTitleStyle: headerStyles.title,
+    headerTransparent: true,
+    headerBackground: <SettingsHeaderBackground />,
+    headerTitle: <HeaderTitle title='Satoshis Per Byte' />,
     headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />)
   });
 

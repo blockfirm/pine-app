@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { BlurView } from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { withTheme } from '../contexts/theme';
 import MnemonicWord from './MnemonicWord';
 import StyledText from './StyledText';
 
@@ -21,9 +22,6 @@ const styles = StyleSheet.create({
     left: -10,
     right: -10
   },
-  whiteBackground: {
-    backgroundColor: 'white'
-  },
   revealWrapper: {
     position: 'absolute',
     alignItems: 'center'
@@ -32,15 +30,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   revealIcon: {
-    color: '#007AFF',
     fontSize: 38
-  },
-  revealText: {
-    color: '#007AFF'
   }
 });
 
-export default class MnemonicWords extends Component {
+class MnemonicWords extends Component {
   state = {
     reduceTransparencyEnabled: true
   }
@@ -83,21 +77,22 @@ export default class MnemonicWords extends Component {
   }
 
   _renderBlur() {
+    const { blurStyle, theme } = this.props;
     const { reduceTransparencyEnabled } = this.state;
 
-    if (reduceTransparencyEnabled) {
+    if (reduceTransparencyEnabled || theme.name === 'dark') {
       return (
         <View style={[
           styles.blur,
-          styles.whiteBackground,
-          this.props.blurStyle
+          theme.background,
+          blurStyle
         ]} />
       );
     }
 
     return (
       <BlurView
-        style={[styles.blur, this.props.blurStyle]}
+        style={[styles.blur, blurStyle]}
         blurType='light'
         blurAmount={5}
       />
@@ -105,11 +100,13 @@ export default class MnemonicWords extends Component {
   }
 
   _renderRevealButton() {
+    const { theme } = this.props;
+
     return (
       <TouchableOpacity activeOpacity={0.7} onPress={this.props.onReveal} style={styles.revealWrapper}>
         <View style={styles.revealView}>
-          <Icon name='ios-eye' style={styles.revealIcon} />
-          <StyledText style={styles.revealText}>
+          <Icon name='ios-eye' style={[styles.revealIcon, theme.revealMnemonic]} />
+          <StyledText style={theme.revealMnemonic}>
             Reveal Recovery Key
           </StyledText>
         </View>
@@ -138,5 +135,8 @@ MnemonicWords.propTypes = {
   blurStyle: PropTypes.any,
   onReveal: PropTypes.func,
   onHide: PropTypes.func,
-  revealed: PropTypes.bool
+  revealed: PropTypes.bool,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(MnemonicWords);

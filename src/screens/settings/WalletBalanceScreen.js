@@ -3,8 +3,10 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { withTheme } from '../../contexts/theme';
 import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
-import headerStyles from '../../styles/headerStyles';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
 import settingsStyles from '../../styles/settingsStyles';
 import DoneButton from '../../components/DoneButton';
 import SettingsTitle from '../../components/SettingsTitle';
@@ -79,11 +81,11 @@ const getCoinAggregates = (utxos) => {
 @connect((state) => ({
   utxos: state.bitcoin.wallet.utxos.items
 }))
-export default class WalletBalanceScreen extends Component {
+class WalletBalanceScreen extends Component {
   static navigationOptions = ({ screenProps }) => ({
-    title: 'Wallet Balance',
-    headerStyle: headerStyles.header,
-    headerTitleStyle: headerStyles.title,
+    headerTransparent: true,
+    headerBackground: <SettingsHeaderBackground />,
+    headerTitle: <HeaderTitle title='Wallet Balance' />,
     headerBackTitle: null,
     headerRight: <DoneButton onPress={screenProps.dismiss} />
   });
@@ -99,18 +101,19 @@ export default class WalletBalanceScreen extends Component {
   }
 
   render() {
+    const { theme } = this.props;
     const { balances, coins } = this.state;
 
     const balanceData = [
-      { label: 'Spendable', color: '#4ADA64', value: balances.spendable },
-      { label: 'Pending', color: '#FD9600', value: balances.pending },
-      { label: 'Reserved', color: '#C7C7CB', value: balances.reserved }
+      { label: 'Spendable', color: theme.walletBalanceSpendableColor, value: balances.spendable },
+      { label: 'Pending', color: theme.walletBalancePendingColor, value: balances.pending },
+      { label: 'Reserved', color: theme.walletBalanceReservedColor, value: balances.reserved }
     ];
 
     const coinData = [
-      { label: 'Spendable', color: '#4ADA64', value: coins.spendable },
-      { label: 'Pending', color: '#FD9600', value: coins.pending },
-      { label: 'Reserved', color: '#C7C7CB', value: coins.reserved }
+      { label: 'Spendable', color: theme.walletBalanceSpendableColor, value: coins.spendable },
+      { label: 'Pending', color: theme.walletBalancePendingColor, value: coins.pending },
+      { label: 'Reserved', color: theme.walletBalanceReservedColor, value: coins.reserved }
     ];
 
     return (
@@ -171,5 +174,8 @@ export default class WalletBalanceScreen extends Component {
 WalletBalanceScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
-  utxos: PropTypes.arrayOf(PropTypes.object)
+  utxos: PropTypes.arrayOf(PropTypes.object),
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(WalletBalanceScreen);

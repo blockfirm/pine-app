@@ -3,7 +3,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import DisclaimerScreen from '../../../src/screens/DisclaimerScreen';
 
-jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
 jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContainer');
 
 const navigationMock = {

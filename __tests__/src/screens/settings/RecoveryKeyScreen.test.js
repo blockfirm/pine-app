@@ -3,7 +3,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import RecoveryKeyScreen from '../../../../src/screens/settings/RecoveryKeyScreen';
 
-jest.mock('../../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
 jest.mock('../../../../src/containers/MnemonicWordsContainer', () => 'MnemonicWordsContainer');
 
 const storeMock = {

@@ -3,8 +3,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import BitcoinUnitScreen from '../../../../src/screens/settings/BitcoinUnitScreen';
 
-jest.mock('../../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
-
 const storeMock = {
   getState: jest.fn(() => ({
     settings: {

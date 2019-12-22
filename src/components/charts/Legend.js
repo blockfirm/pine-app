@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
+
+import { withTheme } from '../../contexts/theme';
 import StyledText from '../StyledText';
 
 const styles = StyleSheet.create({
@@ -15,21 +17,20 @@ const styles = StyleSheet.create({
   },
   label: {
     marginLeft: 6,
-    fontSize: 12,
-    color: 'black'
+    fontSize: 12
   }
 });
 
-export default class Legend extends Component {
+class Legend extends Component {
   render() {
-    const { color, label, style } = this.props;
+    const { color, label, style, theme } = this.props;
 
     return (
       <View style={[styles.container, style]}>
         <View
           style={[styles.color, { backgroundColor: color }]}
         />
-        <StyledText style={styles.label}>
+        <StyledText style={[styles.label, theme.text]}>
           {label}
         </StyledText>
       </View>
@@ -40,5 +41,8 @@ export default class Legend extends Component {
 Legend.propTypes = {
   color: PropTypes.string,
   label: PropTypes.string,
-  style: PropTypes.any
+  style: PropTypes.any,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(Legend);

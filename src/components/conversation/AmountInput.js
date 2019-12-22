@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { withTheme } from '../../contexts/theme';
 import { DECIMAL_SEPARATOR } from '../../localization';
 import StyledText from '../StyledText';
 
@@ -16,7 +17,6 @@ const CURRENCY_BTC = 'BTC';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F3F3F5',
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 25
@@ -25,17 +25,7 @@ const styles = StyleSheet.create({
     borderRadius: 18
   },
   input: {
-    fontSize: 17,
-    color: '#000000'
-  },
-  disabled: {
-    color: '#999999'
-  },
-  error: {
-    color: '#FF3B30'
-  },
-  errorText: {
-    color: '#999999'
+    fontSize: 17
   }
 });
 
@@ -86,7 +76,7 @@ const enforceInputLengths = (amount, currency, unit) => {
   return `${integer}${DECIMAL_SEPARATOR}${fractional}`;
 };
 
-export default class AmountInput extends Component {
+class AmountInput extends Component {
   state = {
     amount: ''
   }
@@ -180,31 +170,33 @@ export default class AmountInput extends Component {
   }
 
   _renderErrorText() {
-    const { hasError, errorText } = this.props;
+    const { hasError, errorText, theme } = this.props;
 
     if (!hasError) {
       return null;
     }
 
     return (
-      <StyledText style={styles.errorText}>
+      <StyledText style={theme.inputBarDisabledText}>
         {errorText}
       </StyledText>
     );
   }
 
   render() {
-    const { editable, hasError, errorText, onPress } = this.props;
+    const { editable, hasError, errorText, onPress, theme } = this.props;
 
     const containerStyle = [
       styles.container,
+      theme.inputBar,
       errorText ? styles.containerWithErrorText : null
     ];
 
     const style = [
       styles.input,
-      hasError ? styles.error : null,
-      !editable ? styles.disabled : null
+      theme.inputBarText,
+      hasError ? theme.inputBarErrorText : null,
+      !editable ? theme.inputBarDisabledText : null
     ];
 
     return (
@@ -218,8 +210,8 @@ export default class AmountInput extends Component {
             autoCorrect={false}
             value={this.state.amount}
             placeholder='Enter Amount'
-            placeholderTextColor='#999999'
-            selectionColor='#FFC431'
+            placeholderTextColor={theme.inputBarPlaceholderColor}
+            selectionColor={theme.inputBarSelectionColor}
             enablesReturnKeyAutomatically={true}
             onChangeText={this._onChangeText}
             pointerEvents={editable ? undefined : 'none'}
@@ -239,5 +231,8 @@ AmountInput.propTypes = {
   initialAmount: PropTypes.number,
   hasError: PropTypes.bool,
   errorText: PropTypes.string,
-  editable: PropTypes.bool
+  editable: PropTypes.bool,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(AmountInput);

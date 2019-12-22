@@ -11,34 +11,44 @@ exports[`MnemonicWord renders correctly 1`] = `
 >
   <View
     style={
-      Object {
-        "backgroundColor": "#F8F8F8",
-        "borderColor": "#DADADA",
-        "borderRadius": 30,
-        "borderWidth": 1,
-        "padding": 11,
-        "paddingLeft": 12,
-      }
+      Array [
+        Object {
+          "borderRadius": 30,
+          "borderWidth": 1,
+          "padding": 11,
+          "paddingLeft": 12,
+        },
+        Object {
+          "backgroundColor": "#F6F6F6",
+          "borderColor": "#D8D8DB",
+        },
+      ]
     }
   >
     <Text
       style={
         Array [
           Object {
-            "color": "#000000",
             "fontFamily": "System",
             "fontWeight": "400",
           },
           Object {
-            "color": "#999999",
-            "fontSize": 11,
-            "fontWeight": "bold",
-            "left": 5,
-            "position": "absolute",
-            "textAlign": "right",
-            "top": 11,
-            "width": 20,
+            "color": "#000000",
           },
+          Array [
+            Object {
+              "fontSize": 11,
+              "fontWeight": "bold",
+              "left": 5,
+              "position": "absolute",
+              "textAlign": "right",
+              "top": 11,
+              "width": 20,
+            },
+            Object {
+              "color": "#999999",
+            },
+          ],
         ]
       }
     >
@@ -49,16 +59,22 @@ exports[`MnemonicWord renders correctly 1`] = `
       style={
         Array [
           Object {
-            "color": "#000000",
             "fontFamily": "System",
             "fontWeight": "400",
           },
           Object {
-            "color": "#999999",
-            "fontFamily": "Menlo-Regular",
-            "fontSize": 11,
-            "paddingLeft": 17,
+            "color": "#000000",
           },
+          Array [
+            Object {
+              "fontFamily": "Menlo-Regular",
+              "fontSize": 11,
+              "paddingLeft": 17,
+            },
+            Object {
+              "color": "#999999",
+            },
+          ],
         ]
       }
     >

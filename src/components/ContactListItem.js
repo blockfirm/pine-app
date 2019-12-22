@@ -10,6 +10,7 @@ import {
 
 import vendors from '../vendors';
 import MessageIndicatorContainer from '../containers/indicators/MessageIndicatorContainer';
+import { withTheme } from '../contexts/theme';
 import Bullet from './typography/Bullet';
 import Avatar from './Avatar';
 import StyledText from './StyledText';
@@ -22,8 +23,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'flex-start',
     paddingHorizontal: 16,
-    paddingVertical: 8,
-    backgroundColor: 'white'
+    paddingVertical: 8
   },
   avatarWrapper: {
     marginRight: 13,
@@ -45,23 +45,19 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     flexShrink: 1,
-    color: '#B1AFB7',
     fontSize: 14,
     fontWeight: '400'
   },
   subtitleUnread: {
-    fontWeight: '600',
-    color: 'black'
+    fontWeight: '600'
   },
   bullet: {
     marginHorizontal: 5,
     height: 2,
     width: 2,
-    borderRadius: 1,
-    backgroundColor: '#B1AFB7'
+    borderRadius: 1
   },
   relativeDate: {
-    color: '#B1AFB7',
     fontSize: 14,
     fontWeight: '400'
   },
@@ -70,13 +66,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class ContactListItem extends Component {
+class ContactListItem extends Component {
   _getSubtitleStyle() {
-    const { contact } = this.props;
+    const { contact, theme } = this.props;
 
     return [
       styles.subtitle,
-      contact.unread ? styles.subtitleUnread : null
+      theme.subtitle,
+      contact.unread ? [styles.subtitleUnread, theme.subtitleUnread] : null
     ];
   }
 
@@ -173,12 +170,12 @@ export default class ContactListItem extends Component {
   }
 
   render() {
-    const { contact } = this.props;
+    const { contact, theme } = this.props;
     const avatarChecksum = contact.avatar ? contact.avatar.checksum : null;
     const subtitleStyle = this._getSubtitleStyle();
 
     return (
-      <TouchableOpacity onPress={this.props.onPress} style={styles.item}>
+      <TouchableOpacity onPress={this.props.onPress} style={[styles.item, theme.background]}>
         <View style={styles.avatarWrapper}>
           <Avatar
             pineAddress={contact.address}
@@ -197,7 +194,7 @@ export default class ContactListItem extends Component {
               { this._renderSubtitle() }
             </StyledText>
             <Bullet style={styles.bullet} />
-            <RelativeDateLabelShort date={this._getDate()} style={styles.relativeDate} />
+            <RelativeDateLabelShort date={this._getDate()} style={[styles.relativeDate, theme.subtitle]} />
           </View>
         </View>
       </TouchableOpacity>
@@ -208,5 +205,8 @@ export default class ContactListItem extends Component {
 ContactListItem.propTypes = {
   contact: PropTypes.object.isRequired,
   userProfile: PropTypes.object.isRequired,
-  onPress: PropTypes.func
+  onPress: PropTypes.func,
+  theme: PropTypes.object
 };
+
+export default withTheme(ContactListItem);

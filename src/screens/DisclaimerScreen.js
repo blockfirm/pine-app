@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
+import { withTheme } from '../contexts/theme';
 import { finalizeSetup } from '../actions';
 import { reset as navigateWithReset } from '../actions/navigate';
 import * as settingsActions from '../actions/settings';
@@ -44,9 +45,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
     lineHeight: 16
-  },
-  link: {
-    color: '#007AFF'
   }
 });
 
@@ -54,7 +52,7 @@ const styles = StyleSheet.create({
   hasCreatedBackup: state.settings.user.hasCreatedBackup,
   pineAddress: state.settings.user.profile.address
 }))
-export default class DisclaimerScreen extends Component {
+class DisclaimerScreen extends Component {
   static navigationOptions = {
     header: null
   }
@@ -129,11 +127,11 @@ export default class DisclaimerScreen extends Component {
   }
 
   render() {
-    const { pineAddress } = this.props;
+    const { pineAddress, theme } = this.props;
 
     return (
       <BaseScreen style={styles.view}>
-        <StatusBar barStyle='dark-content' />
+        <StatusBar barStyle='default' />
 
         <Title style={styles.title}>
           Welcome to <Text style={{ color: '#FFD200' }}>Pine</Text>
@@ -161,9 +159,9 @@ export default class DisclaimerScreen extends Component {
         <Footer>
           <Paragraph style={styles.finePrint}>
             <Text style={styles.finePrint}>By pressing "I understand", you agree to our </Text>
-            <Text style={[styles.finePrint, styles.link]} onPress={this._showTermsAndConditionsModal.bind(this)}>Terms and Conditions</Text>
+            <Text style={[styles.finePrint, theme.link]} onPress={this._showTermsAndConditionsModal.bind(this)}>Terms and Conditions</Text>
             <Text style={styles.finePrint}>, </Text>
-            <Text style={[styles.finePrint, styles.link]} onPress={this._showPrivacyPolicyModal.bind(this)}>Privacy Policy</Text>
+            <Text style={[styles.finePrint, theme.link]} onPress={this._showPrivacyPolicyModal.bind(this)}>Privacy Policy</Text>
             <Text style={styles.finePrint}> and this Disclaimer.</Text>
           </Paragraph>
 
@@ -178,5 +176,8 @@ DisclaimerScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   hasCreatedBackup: PropTypes.bool,
-  pineAddress: PropTypes.string
+  pineAddress: PropTypes.string,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(DisclaimerScreen);

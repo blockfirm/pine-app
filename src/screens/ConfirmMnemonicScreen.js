@@ -9,6 +9,8 @@ import headerStyles from '../styles/headerStyles';
 import { reset as navigateWithReset } from '../actions/navigate';
 import * as settingsActions from '../actions/settings';
 import { sync as syncWallet } from '../actions/bitcoin/wallet/sync';
+import HeaderBackground from '../components/HeaderBackground';
+import HeaderTitle from '../components/HeaderTitle';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -46,10 +48,10 @@ export default class ConfirmMnemonicScreen extends Component {
     const headerLeft = <BackButton onPress={() => { navigation.goBack(); }} />;
 
     return {
-      title: 'Confirm Recovery Key',
       headerTransparent: true,
-      headerStyle: headerStyles.whiteHeader,
-      headerTitleStyle: headerStyles.title,
+      headerBackground: <HeaderBackground />,
+      headerTitle: <HeaderTitle title='Confirm Recovery Key' />,
+      headerStyle: headerStyles.borderlessHeader,
       headerLeft
     };
   };

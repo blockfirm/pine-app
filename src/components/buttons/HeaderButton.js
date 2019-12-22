@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
+
+import { withTheme } from '../../contexts/theme';
 import StyledText from '../StyledText';
 
 const styles = StyleSheet.create({
@@ -11,11 +13,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 17,
     fontWeight: '600',
-    letterSpacing: 0.1,
-    color: '#007AFF'
-  },
-  disabled: {
-    color: '#E2E2E2'
+    letterSpacing: 0.1
   },
   loader: {
     position: 'absolute',
@@ -24,7 +22,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class HeaderButton extends Component {
+class HeaderButton extends Component {
   state = {
     loading: false
   }
@@ -64,17 +62,22 @@ export default class HeaderButton extends Component {
   }
 
   render() {
-    const { disabled } = this.props;
+    const { disabled, theme } = this.props;
     const { loading } = this.state;
 
     const textStyles = [
       styles.text,
-      disabled ? styles.disabled : undefined,
+      theme.headerButtonPrimary,
+      disabled ? theme.headerButtonDisabled : undefined,
       { opacity: loading ? 0 : 1 }
     ];
 
     return (
-      <TouchableOpacity onPress={this._handleOnPress.bind(this)} disabled={disabled} style={styles.button}>
+      <TouchableOpacity
+        onPress={this._handleOnPress.bind(this)}
+        disabled={disabled}
+        style={styles.button}
+      >
         <View>
           { loading && <ActivityIndicator color='gray' style={styles.loader} size='small' /> }
           <StyledText style={textStyles}>
@@ -89,5 +92,8 @@ export default class HeaderButton extends Component {
 HeaderButton.propTypes = {
   label: PropTypes.string.isRequired,
   onPress: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(HeaderButton);

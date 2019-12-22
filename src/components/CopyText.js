@@ -15,7 +15,7 @@ export default class CopyText extends Component {
   }
 
   render() {
-    const underlayColor = this.props.underlayColor || 'white';
+    const underlayColor = this.props.underlayColor || 'transparent';
 
     return (
       <ToolTip

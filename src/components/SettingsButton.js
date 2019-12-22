@@ -3,19 +3,11 @@ import { StyleSheet, View, TouchableHighlight, ActivityIndicator } from 'react-n
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Octicons';
 
+import { withTheme } from '../contexts/theme';
 import settingsStyles from '../styles/settingsStyles';
 import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
-  label: {
-    color: '#007AFF'
-  },
-  destructive: {
-    color: '#FF3B30'
-  },
-  disabled: {
-    color: '#8A8A8F'
-  },
   loader: {
     position: 'absolute',
     top: 1,
@@ -26,12 +18,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 15,
     fontSize: 16,
-    color: '#4CD964',
     paddingTop: 2
   }
 });
 
-export default class SettingsButton extends Component {
+class SettingsButton extends Component {
   _onPress() {
     if (!this.props.loading) {
       this.props.onPress();
@@ -39,30 +30,30 @@ export default class SettingsButton extends Component {
   }
 
   render() {
-    const { isLastItem, type, loading, showCheckmark } = this.props;
+    const { isLastItem, type, loading, showCheckmark, theme } = this.props;
     const title = loading ? this.props.loadingTitle : this.props.title;
-    const underlayColor = loading ? 'white' : settingsStyles.underlayColor;
 
     const containerStyles = [
       settingsStyles.item,
+      theme.settingsItem,
       isLastItem ? { borderBottomWidth: 0 } : undefined,
       this.props.containerStyle
     ];
 
     const labelStyles = [
       settingsStyles.label,
-      styles.label,
+      theme.settingsButtonPrimary,
       this.props.style,
-      type === 'destructive' ? styles.destructive : undefined,
-      loading ? styles.disabled : undefined
+      type === 'destructive' ? theme.destructiveLabel : undefined,
+      loading ? theme.settingsButtonDisabled : undefined
     ];
 
     return (
-      <TouchableHighlight onPress={this._onPress.bind(this)} underlayColor={underlayColor}>
+      <TouchableHighlight onPress={this._onPress.bind(this)} underlayColor={theme.settingsUnderlayColor}>
         <View style={containerStyles}>
           <StyledText style={labelStyles}>{title}</StyledText>
           { loading ? <ActivityIndicator color='gray' style={[styles.loader, this.props.loaderStyle]} size='small' /> : null }
-          { showCheckmark ? <Icon name='check' style={styles.checkmark} /> : null }
+          { showCheckmark ? <Icon name='check' style={[styles.checkmark, theme.settingsGreenCheckmark]} /> : null }
         </View>
       </TouchableHighlight>
     );
@@ -79,5 +70,8 @@ SettingsButton.propTypes = {
   isLastItem: PropTypes.bool,
   loading: PropTypes.bool,
   loadingTitle: PropTypes.string,
-  showCheckmark: PropTypes.bool
+  showCheckmark: PropTypes.bool,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(SettingsButton);

@@ -7,7 +7,8 @@ import iCloudAccountStatus from 'react-native-icloud-account-status';
 
 import * as keyActions from '../../actions/keys';
 import getMnemonicByKey from '../../crypto/getMnemonicByKey';
-import headerStyles from '../../styles/headerStyles';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
 import BackButton from '../../components/BackButton';
 import SettingsAttribute from '../../components/SettingsAttribute';
 import SettingsButton from '../../components/SettingsButton';
@@ -24,10 +25,10 @@ const OPEN_SETTINGS_URL_STRING = 'App-Prefs:';
 }))
 export default class RecoveryKeyScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Recovery Key',
-    headerStyle: headerStyles.header,
-    headerTitleStyle: headerStyles.title,
-    headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />)
+    headerTransparent: true,
+    headerBackground: <SettingsHeaderBackground />,
+    headerTitle: <HeaderTitle title='Recovery Key' />,
+    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
 
   state = {

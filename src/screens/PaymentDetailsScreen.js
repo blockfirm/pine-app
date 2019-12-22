@@ -18,10 +18,13 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ReactNativeHaptic from 'react-native-haptic';
 
+import { withTheme } from '../contexts/theme';
 import { cancelPayment } from '../actions/messages';
 import { handle as handleError } from '../actions/error';
 import headerStyles from '../styles/headerStyles';
 import CurrencyLabelContainer from '../containers/CurrencyLabelContainer';
+import HeaderTitle from '../components/HeaderTitle';
+import HeaderBackground from '../components/HeaderBackground';
 import Bullet from '../components/typography/Bullet';
 import ContentView from '../components/ContentView';
 import BackButton from '../components/BackButton';
@@ -56,14 +59,12 @@ const styles = StyleSheet.create({
   },
   detail: {
     paddingVertical: 15,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: '#ECECEC'
+    borderBottomWidth: StyleSheet.hairlineWidth
   },
   lastDetail: {
     borderBottomWidth: 0
   },
   label: {
-    color: '#8E8E93',
     fontSize: 15
   },
   valueWrapper: {
@@ -72,14 +73,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   value: {
-    color: '#000000',
     fontSize: 15,
     position: 'absolute',
     right: 0,
     top: 16
   },
   valueLabel: {
-    color: '#000000',
     fontSize: 15
   },
   share: {
@@ -89,14 +88,12 @@ const styles = StyleSheet.create({
     padding: 9 // The padding makes it easier to press.
   },
   arrow: {
-    color: '#9B9B9B',
     fontSize: 19,
     marginLeft: 7,
     marginTop: 2
   },
   statusText: {
     fontSize: 15,
-    color: 'black',
     marginTop: 5
   },
   footer: {
@@ -104,7 +101,6 @@ const styles = StyleSheet.create({
     right: 0
   },
   cancel: {
-    color: '#FF3B30',
     fontWeight: '400'
   }
 });
@@ -136,15 +132,15 @@ const shareTransaction = (txid, bitcoinNetwork) => {
     contact
   };
 })
-export default class PaymentDetailsScreen extends Component {
+class PaymentDetailsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { message, bitcoinNetwork } = navigation.state.params;
 
     return {
-      title: 'Payment Details',
       headerTransparent: true,
-      headerStyle: headerStyles.whiteHeader,
-      headerTitleStyle: headerStyles.title,
+      headerTitle: <HeaderTitle title='Payment Details' />,
+      headerBackground: <HeaderBackground />,
+      headerStyle: headerStyles.borderlessHeader,
       headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />,
       headerRight: (
         <TouchableOpacity onPress={shareTransaction.bind(null, message.txid, bitcoinNetwork)} style={styles.share}>
@@ -248,6 +244,7 @@ export default class PaymentDetailsScreen extends Component {
     return 'Confirmed';
   }
 
+  // eslint-disable-next-line max-statements
   _getStatusText() {
     const { transaction, message } = this.props.navigation.state.params;
 
@@ -287,25 +284,26 @@ export default class PaymentDetailsScreen extends Component {
   }
 
   _renderStatus() {
+    const { theme } = this.props;
     const { showStatusText } = this.state;
 
     return (
-      <View style={styles.detail}>
-        <StyledText style={styles.label}>Payment Status</StyledText>
+      <View style={[styles.detail, theme.tableBorder]}>
+        <StyledText style={[styles.label, theme.tableLabel]}>Payment Status</StyledText>
 
         { !showStatusText ? (
           <View style={styles.value}>
             <TouchableOpacity onPress={this._toggleStatusText} style={styles.valueWrapper}>
-              <StyledText style={styles.valueLabel}>
+              <StyledText style={[styles.valueLabel, theme.text]}>
                 { this._getStatus() }
               </StyledText>
-              <Icon name='ios-arrow-down' style={styles.arrow} />
+              <Icon name='ios-arrow-down' style={[styles.arrow, theme.tableArrow]} />
             </TouchableOpacity>
           </View>
         ) : null }
 
         { showStatusText ? (
-          <StyledText style={styles.statusText}>
+          <StyledText style={[styles.statusText, theme.text]}>
             { this._getStatusText() }
           </StyledText>
         ) : null }
@@ -330,11 +328,13 @@ export default class PaymentDetailsScreen extends Component {
   }
 
   _renderAmount() {
+    const { theme } = this.props;
     const { message, transaction } = this.props.navigation.state.params;
     const title = message.from ? 'Amount Received' : 'Amount Sent';
 
     const style = [
       styles.detail,
+      theme.tableBorder,
       message.from && styles.lastDetail
     ];
 
@@ -344,14 +344,22 @@ export default class PaymentDetailsScreen extends Component {
 
     return (
       <View style={style}>
-        <StyledText style={styles.label}>
+        <StyledText style={[styles.label, theme.tableLabel]}>
           {title}
         </StyledText>
         <View style={styles.value}>
           <View style={styles.valueWrapper}>
-            <CurrencyLabelContainer amountBtc={message.amountBtc} currencyType='primary' style={styles.valueLabel} />
+            <CurrencyLabelContainer
+              amountBtc={message.amountBtc}
+              currencyType='primary'
+              style={[styles.valueLabel, theme.text]}
+            />
             <Bullet />
-            <CurrencyLabelContainer amountBtc={message.amountBtc} currencyType='secondary' style={styles.valueLabel} />
+            <CurrencyLabelContainer
+              amountBtc={message.amountBtc}
+              currencyType='secondary'
+              style={[styles.valueLabel, theme.text]}
+            />
           </View>
         </View>
       </View>
@@ -359,7 +367,7 @@ export default class PaymentDetailsScreen extends Component {
   }
 
   _renderFee() {
-    const { navigation, defaultBitcoinUnit } = this.props;
+    const { navigation, defaultBitcoinUnit, theme } = this.props;
     const { message } = navigation.state.params;
 
     if (typeof message.feeBtc !== 'number') {
@@ -367,15 +375,15 @@ export default class PaymentDetailsScreen extends Component {
     }
 
     return (
-      <View style={styles.detail}>
-        <StyledText style={styles.label}>Fee</StyledText>
+      <View style={[styles.detail, theme.tableBorder]}>
+        <StyledText style={[styles.label, theme.tableLabel]}>Fee</StyledText>
         <View style={styles.value}>
           <FeeLabel
             fee={message.feeBtc}
             amount={message.amountBtc}
             currency={CURRENCY_BTC}
             unit={defaultBitcoinUnit}
-            style={styles.valueLabel}
+            style={[styles.valueLabel, theme.text]}
           />
         </View>
       </View>
@@ -383,7 +391,7 @@ export default class PaymentDetailsScreen extends Component {
   }
 
   _renderTotal() {
-    const { navigation } = this.props;
+    const { navigation, theme } = this.props;
     const { message, transaction } = navigation.state.params;
     const { amountBtc, feeBtc } = message;
 
@@ -399,19 +407,28 @@ export default class PaymentDetailsScreen extends Component {
 
     const style = [
       styles.detail,
+      theme.tableBorder,
       !message.from && styles.lastDetail
     ];
 
     return (
       <View style={style}>
-        <StyledText style={styles.label}>
+        <StyledText style={[styles.label, theme.tableLabel]}>
           Total Paid
         </StyledText>
         <View style={styles.value}>
           <View style={styles.valueWrapper}>
-            <CurrencyLabelContainer amountBtc={totalBtc} currencyType='primary' style={styles.valueLabel} />
+            <CurrencyLabelContainer
+              amountBtc={totalBtc}
+              currencyType='primary'
+              style={[styles.valueLabel, theme.text]}
+            />
             <Bullet />
-            <CurrencyLabelContainer amountBtc={totalBtc} currencyType='secondary' style={styles.valueLabel} />
+            <CurrencyLabelContainer
+              amountBtc={totalBtc}
+              currencyType='secondary'
+              style={[styles.valueLabel, theme.text]}
+            />
           </View>
         </View>
       </View>
@@ -419,6 +436,7 @@ export default class PaymentDetailsScreen extends Component {
   }
 
   _renderCancelButton() {
+    const { theme } = this.props;
     const { message, transaction } = this.props.navigation.state.params;
     const { cancelling } = this.state;
 
@@ -436,7 +454,7 @@ export default class PaymentDetailsScreen extends Component {
 
     return (
       <Footer style={styles.footer}>
-        <Link onPress={this._showCancelConfirmation} labelStyle={styles.cancel}>
+        <Link onPress={this._showCancelConfirmation} labelStyle={[styles.cancel, theme.destructiveLabel]}>
           Cancel Payment
         </Link>
       </Footer>
@@ -444,6 +462,7 @@ export default class PaymentDetailsScreen extends Component {
   }
 
   render() {
+    const { theme } = this.props;
     const { message } = this.props.navigation.state.params;
     const address = message.address && message.address.address;
     const createdDate = new Date(message.createdAt * 1000);
@@ -454,18 +473,18 @@ export default class PaymentDetailsScreen extends Component {
           <ScrollView style={styles.details}>
             { this._renderError() }
             { this._renderStatus() }
-            <View style={styles.detail}>
-              <StyledText style={styles.label}>Transaction ID</StyledText>
-              <AddressLabel address={message.txid} style={styles.value} textStyle={styles.valueLabel} />
+            <View style={[styles.detail, theme.tableBorder]}>
+              <StyledText style={[styles.label, theme.tableLabel]}>Transaction ID</StyledText>
+              <AddressLabel address={message.txid} style={styles.value} textStyle={[styles.valueLabel, theme.text]} />
             </View>
-            <View style={styles.detail}>
-              <StyledText style={styles.label}>To</StyledText>
-              <AddressLabel address={address} style={styles.value} textStyle={styles.valueLabel} />
+            <View style={[styles.detail, theme.tableBorder]}>
+              <StyledText style={[styles.label, theme.tableLabel]}>To</StyledText>
+              <AddressLabel address={address} style={styles.value} textStyle={[styles.valueLabel, theme.text]} />
             </View>
-            <View style={styles.detail}>
-              <StyledText style={styles.label}>Sent</StyledText>
+            <View style={[styles.detail, theme.tableBorder]}>
+              <StyledText style={[styles.label, theme.tableLabel]}>Sent</StyledText>
               <View style={styles.value}>
-                <DateLabel date={createdDate} style={styles.valueLabel} />
+                <DateLabel date={createdDate} style={[styles.valueLabel, theme.text]} />
               </View>
             </View>
             { this._renderAmount() }
@@ -484,5 +503,8 @@ PaymentDetailsScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   defaultBitcoinUnit: PropTypes.string,
-  contact: PropTypes.object
+  contact: PropTypes.object,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(PaymentDetailsScreen);

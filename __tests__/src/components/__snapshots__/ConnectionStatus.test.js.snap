@@ -30,9 +30,11 @@ exports[`ConnectionStatus renders Connected correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "#000000",
           "fontFamily": "System",
           "fontWeight": "400",
+        },
+        Object {
+          "color": "#000000",
         },
         Object {
           "fontSize": 15,
@@ -76,9 +78,11 @@ exports[`ConnectionStatus renders Inconsistent Networks correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "#000000",
           "fontFamily": "System",
           "fontWeight": "400",
+        },
+        Object {
+          "color": "#000000",
         },
         Object {
           "fontSize": 15,
@@ -122,9 +126,11 @@ exports[`ConnectionStatus renders Not Connected correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "#000000",
           "fontFamily": "System",
           "fontWeight": "400",
+        },
+        Object {
+          "color": "#000000",
         },
         Object {
           "fontSize": 15,
@@ -168,9 +174,11 @@ exports[`ConnectionStatus renders Server Not Connected to Node correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "#000000",
           "fontFamily": "System",
           "fontWeight": "400",
+        },
+        Object {
+          "color": "#000000",
         },
         Object {
           "fontSize": 15,

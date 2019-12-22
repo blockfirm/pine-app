@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
+
+import { withTheme } from '../../contexts/theme';
 import Legend from './Legend';
 
 const styles = StyleSheet.create({
@@ -10,12 +12,10 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flexDirection: 'row',
     overflow: 'hidden',
-    marginVertical: 13,
-    backgroundColor: '#efefef'
+    marginVertical: 13
   },
   stack: {
-    borderLeftWidth: StyleSheet.hairlineWidth * 2,
-    borderLeftColor: 'white'
+    borderLeftWidth: StyleSheet.hairlineWidth * 2
   },
   firstStack: {
     borderLeftWidth: 0
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class StackedBarChart extends PureComponent {
+class StackedBarChart extends PureComponent {
   _renderStacks() {
-    const { data } = this.props;
+    const { data, theme } = this.props;
     let isFirst = true;
 
     const total = data.reduce((sum, item) => {
@@ -46,6 +46,7 @@ export default class StackedBarChart extends PureComponent {
 
       const style = [
         styles.stack,
+        theme.stackedBarChartStack,
         { backgroundColor: item.color, width: `${percentage}%` },
         isFirst ? styles.firstStack : null
       ];
@@ -72,9 +73,11 @@ export default class StackedBarChart extends PureComponent {
   }
 
   render() {
+    const { theme } = this.props;
+
     return (
       <View style={styles.container}>
-        <View style={styles.chart}>
+        <View style={[styles.chart, theme.stackedBarChart]}>
           { this._renderStacks() }
         </View>
         <View style={styles.legends}>
@@ -90,5 +93,8 @@ StackedBarChart.propTypes = {
     color: PropTypes.string,
     label: PropTypes.string,
     value: PropTypes.number
-  }))
+  })),
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(StackedBarChart);

@@ -7,7 +7,6 @@ const settingsStyles = StyleSheet.create({
     justifyContent: 'center',
     paddingRight: 30,
     marginLeft: 15,
-    borderBottomColor: '#C8C7CC',
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   label: {
@@ -23,11 +22,8 @@ const settingsStyles = StyleSheet.create({
     position: 'absolute',
     right: 15,
     width: '60%',
-    color: '#8F8E94',
     backgroundColor: 'transparent'
   }
 });
-
-settingsStyles.underlayColor = '#FAFAFA';
 
 export default settingsStyles;

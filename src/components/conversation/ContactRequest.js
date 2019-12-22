@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, ActionSheetIOS } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { withTheme } from '../../contexts/theme';
 import Avatar from '../Avatar';
 import Paragraph from '../Paragraph';
 import SmallButton from '../buttons/SmallButton';
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
     paddingTop: 0
   },
   destructiveLabel: {
-    color: '#FF3B30',
     fontWeight: '400'
   },
   footer: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class ContactRequest extends Component {
+class ContactRequest extends Component {
   constructor() {
     super(...arguments);
 
@@ -102,7 +102,7 @@ export default class ContactRequest extends Component {
   }
 
   _renderIncoming() {
-    const { contact } = this.props;
+    const { contact, theme } = this.props;
 
     return (
       <View style={styles.wrapper}>
@@ -118,7 +118,7 @@ export default class ContactRequest extends Component {
           <Link
             onPress={this._confirmIgnore}
             style={styles.ignore}
-            labelStyle={styles.destructiveLabel}
+            labelStyle={[styles.destructiveLabel, theme.destructiveLabel]}
             showLoader={true}
             loaderHidingDelay={0}
           >
@@ -130,7 +130,7 @@ export default class ContactRequest extends Component {
   }
 
   _renderOutgoing() {
-    const { contact } = this.props;
+    const { contact, theme } = this.props;
 
     return (
       <View style={styles.wrapper}>
@@ -145,7 +145,7 @@ export default class ContactRequest extends Component {
           <Link
             onPress={this._confirmDelete}
             style={styles.delete}
-            labelStyle={styles.destructiveLabel}
+            labelStyle={[styles.destructiveLabel, theme.destructiveLabel]}
             showLoader={true}
             loaderHidingDelay={0}
           >
@@ -176,5 +176,8 @@ ContactRequest.propTypes = {
   userProfile: PropTypes.object,
   onAccept: PropTypes.func,
   onIgnore: PropTypes.func,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  theme: PropTypes.object
 };
+
+export default withTheme(ContactRequest);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import { withTheme } from '../../contexts/theme';
 
 const styles = StyleSheet.create({
   icon: {
@@ -9,18 +10,19 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class SettingsIcon extends Component {
+class SettingsIcon extends Component {
   render() {
-    const image = require('../../images/icons/Settings.png');
-
     return (
       <View style={this.props.style}>
-        <Image source={image} style={styles.icon} />
+        <Image source={this.props.theme.settingsIcon} style={styles.icon} />
       </View>
     );
   }
 }
 
 SettingsIcon.propTypes = {
-  style: PropTypes.any
+  style: PropTypes.any,
+  theme: PropTypes.object
 };
+
+export default withTheme(SettingsIcon);

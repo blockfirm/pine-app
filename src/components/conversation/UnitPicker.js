@@ -3,6 +3,7 @@ import { StyleSheet, View, TouchableOpacity, ActionSheetIOS } from 'react-native
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { withTheme } from '../../contexts/theme';
 import StyledText from '../StyledText';
 
 import {
@@ -22,12 +23,10 @@ const styles = StyleSheet.create({
     paddingRight: 25
   },
   title: {
-    color: '#999999',
     fontSize: 15,
     fontWeight: '500'
   },
   arrow: {
-    color: '#999999',
     position: 'absolute',
     right: 10,
     fontSize: 15,
@@ -54,7 +53,7 @@ const getDenominationsForCurrency = (currency, defaultBitcoinUnit) => {
   return denominations;
 };
 
-export default class UnitPicker extends Component {
+class UnitPicker extends Component {
   _getDenominations() {
     const { primaryCurrency, secondaryCurrency, defaultBitcoinUnit } = this.props;
 
@@ -98,7 +97,7 @@ export default class UnitPicker extends Component {
   }
 
   render() {
-    const { currency, unit, disabled } = this.props;
+    const { currency, unit, disabled, theme } = this.props;
     const title = currency === CURRENCY_BTC ? unit : currency;
 
     const style = [
@@ -109,8 +108,8 @@ export default class UnitPicker extends Component {
     return (
       <TouchableOpacity onPress={this._showOptions.bind(this)} disabled={disabled} style={style}>
         <View style={styles.wrapper}>
-          <StyledText style={styles.title}>{title}</StyledText>
-          <Icon name='ios-arrow-down' style={styles.arrow} />
+          <StyledText style={[theme.unitPicker, styles.title]}>{title}</StyledText>
+          <Icon name='ios-arrow-down' style={[theme.unitPicker, styles.arrow]} />
         </View>
       </TouchableOpacity>
     );
@@ -125,5 +124,8 @@ UnitPicker.propTypes = {
   currency: PropTypes.string.isRequired,
   unit: PropTypes.string,
   style: PropTypes.any,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(UnitPicker);

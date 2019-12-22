@@ -5,18 +5,22 @@ exports[`Paragraph renders correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
       },
+      Object {
+        "color": "#000000",
+      },
       Array [
         Object {
-          "color": "#B1AFB7",
           "fontSize": 15,
           "fontWeight": "400",
           "letterSpacing": -0.24,
           "lineHeight": 21,
           "marginBottom": 20,
+        },
+        Object {
+          "color": "#B1AFB7",
         },
         undefined,
       ],

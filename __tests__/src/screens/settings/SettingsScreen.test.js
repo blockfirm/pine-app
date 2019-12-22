@@ -3,8 +3,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import SettingsScreen from '../../../../src/screens/settings/SettingsScreen';
 
-jest.mock('../../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
-
 const storeMock = {
   getState: jest.fn(() => ({
     settings: {

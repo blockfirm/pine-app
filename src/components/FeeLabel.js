@@ -3,12 +3,10 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { formatPercentage } from '../localization';
+import { withTheme } from '../contexts/theme';
 import CurrencyLabelContainer from '../containers/CurrencyLabelContainer';
 import Bullet from './typography/Bullet';
 import StyledText from './StyledText';
-
-const FEE_HIGH_COLOR = '#FF3B30';
-const FEE_MEDIUM_COLOR = '#FF9500';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -18,21 +16,22 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class FeeLabel extends Component {
+class FeeLabel extends Component {
   _getPercentage() {
     const { amount, fee } = this.props;
     return fee / Math.abs(amount) * 100;
   }
 
   _getPercentageColor() {
+    const { theme } = this.props;
     const percentage = this._getPercentage();
 
     if (percentage > 20) {
-      return FEE_HIGH_COLOR;
+      return theme.feeLabelHighColor;
     }
 
     if (percentage > 5) {
-      return FEE_MEDIUM_COLOR;
+      return theme.feeLabelMediumColor;
     }
   }
 
@@ -71,5 +70,8 @@ FeeLabel.propTypes = {
   amount: PropTypes.number,
   fee: PropTypes.number,
   currency: PropTypes.string,
-  unit: PropTypes.string
+  unit: PropTypes.string,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(FeeLabel);

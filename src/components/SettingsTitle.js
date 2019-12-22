@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+
+import { withTheme } from '../contexts/theme';
 import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
   title: {
-    color: '#8A8A8F',
     fontSize: 13,
     lineHeight: 17,
     textTransform: 'uppercase',
@@ -15,10 +16,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class SettingsTitle extends Component {
+class SettingsTitle extends Component {
   render() {
+    const { theme } = this.props;
+
     return (
-      <StyledText style={styles.title}>
+      <StyledText style={[styles.title, theme.settingsTitle]}>
         {this.props.children}
       </StyledText>
     );
@@ -26,5 +29,8 @@ export default class SettingsTitle extends Component {
 }
 
 SettingsTitle.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(SettingsTitle);

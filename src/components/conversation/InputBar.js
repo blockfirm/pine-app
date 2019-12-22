@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import ReactNativeHaptic from 'react-native-haptic';
 
+import { withTheme } from '../../contexts/theme';
 import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
 import AmountInput from './AmountInput';
 import UnitPicker from './UnitPicker';
@@ -33,19 +34,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 13
   },
-  sendButton: {
-    backgroundColor: '#FFD23F'
-  },
-  cancelButton: {
-    backgroundColor: '#8A8A8F'
-  },
-  disableOverlay: {
+  disabledOverlay: {
     position: 'absolute',
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'white',
     opacity: 0.5,
     marginHorizontal: 15,
     marginVertical: 5,
@@ -53,7 +47,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class InputBar extends Component {
+class InputBar extends Component {
   constructor(props) {
     super(...arguments);
 
@@ -168,13 +162,14 @@ export default class InputBar extends Component {
   }
 
   _renderButton() {
+    const { theme } = this.props;
     const { amount, insufficientFunds, confirmTransaction } = this.state;
     const sendDisabled = !amount || insufficientFunds;
 
     if (confirmTransaction) {
       return (
         <InputBarButton
-          style={styles.cancelButton}
+          style={theme.inputCancelButton}
           containerStyle={styles.buttonContainer}
           Icon={CancelButtonIcon}
           onPress={this._onCancelPress}
@@ -185,7 +180,7 @@ export default class InputBar extends Component {
     return (
       <InputBarButton
         disabled={sendDisabled}
-        style={styles.sendButton}
+        style={theme.inputSendButton}
         containerStyle={styles.buttonContainer}
         Icon={SendButtonIcon}
         onPress={this._onSendPress}
@@ -194,8 +189,13 @@ export default class InputBar extends Component {
   }
 
   render() {
-    const { primaryCurrency, secondaryCurrency, defaultBitcoinUnit, disabled } = this.props;
-    const pointerEvents = disabled ? 'none' : null;
+    const {
+      primaryCurrency,
+      secondaryCurrency,
+      defaultBitcoinUnit,
+      disabled,
+      theme
+    } = this.props;
 
     const {
       initialAmount,
@@ -205,6 +205,8 @@ export default class InputBar extends Component {
       insufficientFundsReason,
       confirmTransaction
     } = this.state;
+
+    const pointerEvents = disabled ? 'none' : null;
 
     return (
       <View style={styles.toolbar} pointerEvents={pointerEvents}>
@@ -230,7 +232,7 @@ export default class InputBar extends Component {
           disabled={confirmTransaction}
         />
         { this._renderButton() }
-        { disabled && <View style={styles.disableOverlay} /> }
+        { disabled && <View style={[styles.disabledOverlay, theme.inputDisabledOverlay]} /> }
       </View>
     );
   }
@@ -249,5 +251,8 @@ InputBar.propTypes = {
   onCancelPress: PropTypes.func.isRequired,
   onChangeUnit: PropTypes.func.isRequired,
   initialAmountBtc: PropTypes.number,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  theme: PropTypes.object
 };
+
+export default withTheme(InputBar);

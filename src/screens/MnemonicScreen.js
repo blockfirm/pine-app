@@ -6,6 +6,8 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import { reset as navigateWithReset } from '../actions/navigate';
 import headerStyles from '../styles/headerStyles';
+import HeaderBackground from '../components/HeaderBackground';
+import HeaderTitle from '../components/HeaderTitle';
 import MnemonicWordsContainer from '../containers/MnemonicWordsContainer';
 import Paragraph from '../components/Paragraph';
 import CancelButton from '../components/CancelButton';
@@ -38,10 +40,10 @@ export default class MnemonicScreen extends Component {
     const headerRight = <HeaderButton label='Next' onPress={submit} disabled={!canSubmit} />;
 
     return {
-      title: 'Your Recovery Key',
       headerTransparent: true,
-      headerStyle: headerStyles.whiteHeader,
-      headerTitleStyle: headerStyles.title,
+      headerBackground: <HeaderBackground />,
+      headerTitle: <HeaderTitle title='Your Recovery Key' />,
+      headerStyle: headerStyles.borderlessHeader,
       headerLeft,
       headerRight
     };
@@ -83,7 +85,7 @@ export default class MnemonicScreen extends Component {
 
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
-        <StatusBar barStyle='dark-content' />
+        <StatusBar barStyle='default' />
 
         <Paragraph style={styles.paragraph}>
           Write down and store this recovery key in a safe place so you can recover your account if you would lose or break your phone.

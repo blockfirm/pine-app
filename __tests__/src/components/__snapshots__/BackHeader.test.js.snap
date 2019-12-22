@@ -20,10 +20,12 @@ exports[`BackHeader renders correctly with showBackButton set to false 1`] = `
     style={
       Array [
         Object {
-          "color": "black",
           "fontFamily": "System",
           "fontSize": 17,
           "fontWeight": "600",
+        },
+        Object {
+          "color": "#000000",
         },
         Object {
           "left": 40,
@@ -101,10 +103,12 @@ exports[`BackHeader renders correctly with showBackButton set to true 1`] = `
     style={
       Array [
         Object {
-          "color": "black",
           "fontFamily": "System",
           "fontSize": 17,
           "fontWeight": "600",
+        },
+        Object {
+          "color": "#000000",
         },
         Object {
           "left": 40,

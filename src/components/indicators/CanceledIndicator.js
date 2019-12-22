@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import { withTheme } from '../../contexts/theme';
 
 const COLOR_STYLE_COLOR = 'color';
 const COLOR_STYLE_LIGHT = 'light';
 
-const IMAGES = {
+const IMAGES_LIGHT = {
   [COLOR_STYLE_COLOR]: require('../../images/indicators/CanceledIndicator.png'),
   [COLOR_STYLE_LIGHT]: require('../../images/indicators/CanceledIndicatorLight.png')
+};
+
+const IMAGES_DARK = {
+  [COLOR_STYLE_COLOR]: require('../../images/indicators/CanceledIndicatorDark.png'),
+  [COLOR_STYLE_LIGHT]: require('../../images/indicators/CanceledIndicatorLightDark.png')
 };
 
 const styles = StyleSheet.create({
@@ -17,10 +23,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class CanceledIndicator extends Component {
+class CanceledIndicator extends Component {
   render() {
-    const { style, colorStyle } = this.props;
-    const image = IMAGES[colorStyle];
+    const { style, colorStyle, theme } = this.props;
+    const images = theme.name === 'dark' ? IMAGES_DARK : IMAGES_LIGHT;
+    const image = images[colorStyle];
 
     return (
       <View style={style}>
@@ -32,9 +39,12 @@ export default class CanceledIndicator extends Component {
 
 CanceledIndicator.propTypes = {
   style: PropTypes.any,
-  colorStyle: PropTypes.oneOf([COLOR_STYLE_COLOR, COLOR_STYLE_LIGHT])
+  colorStyle: PropTypes.oneOf([COLOR_STYLE_COLOR, COLOR_STYLE_LIGHT]),
+  theme: PropTypes.object.isRequired
 };
 
 CanceledIndicator.defaultProps = {
   colorStyle: COLOR_STYLE_COLOR
 };
+
+export default withTheme(CanceledIndicator);

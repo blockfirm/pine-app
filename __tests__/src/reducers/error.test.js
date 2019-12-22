@@ -1,4 +1,4 @@
-import * as errorActions from '../../../src/actions/error';
+import { ERROR_HANDLE, ERROR_DISMISS } from '../../../src/actions/error';
 import errorReducer from '../../../src/reducers/error';
 
 describe('errorReducer', () => {
@@ -10,7 +10,7 @@ describe('errorReducer', () => {
     it('returns the error', () => {
       const oldState = {};
       const fakeError = new Error('ba915a18-50cd-47d7-bb9e-d53daba85cb0');
-      const action = errorActions.handle(fakeError);
+      const action = { type: ERROR_HANDLE, error: fakeError };
       const errorState = errorReducer(oldState, action);
 
       expect(errorState).toBeInstanceOf(Error);
@@ -21,7 +21,7 @@ describe('errorReducer', () => {
   describe('when action is ERROR_DISMISS', () => {
     it('returns null', () => {
       const oldState = {};
-      const action = errorActions.dismiss();
+      const action = { type: ERROR_DISMISS };
       const errorState = errorReducer(oldState, action);
 
       expect(errorState).toBe(null);

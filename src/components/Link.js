@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+
+import { withTheme } from '../contexts/theme';
 import Button from './Button';
 
 const styles = StyleSheet.create({
@@ -11,7 +14,6 @@ const styles = StyleSheet.create({
     backgroundColor: null
   },
   label: {
-    color: '#007AFF',
     fontFamily: 'System',
     fontWeight: '600',
     fontSize: 16
@@ -21,17 +23,30 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class Link extends Component {
+class Link extends Component {
   render() {
+    const { theme } = this.props;
+
     return (
       <Button
         {...this.props}
         label={this.props.children}
         style={[styles.wrapper, this.props.style]}
-        labelStyle={[styles.label, this.props.labelStyle]}
+        labelStyle={[styles.label, theme.link, this.props.labelStyle]}
         disabledStyle={[styles.disabledStyle, this.props.disabledStyle]}
-        loaderColor={this.props.loaderColor || 'gray'}
+        loaderColor={this.props.loaderColor}
       />
     );
   }
 }
+
+Link.propTypes = {
+  children: PropTypes.node,
+  style: PropTypes.any,
+  labelStyle: PropTypes.any,
+  disabledStyle: PropTypes.any,
+  loaderColor: PropTypes.string,
+  theme: PropTypes.object
+};
+
+export default withTheme(Link);

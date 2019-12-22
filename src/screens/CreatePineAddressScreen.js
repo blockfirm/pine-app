@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import { StyleSheet, StatusBar, View, Text, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
@@ -10,6 +11,7 @@ import {
   UsernameContainsInvalidCharsError
 } from '../clients/paymentServer/address';
 
+import { withTheme } from '../contexts/theme';
 import { reset as navigateWithReset } from '../actions/navigate';
 import * as settingsActions from '../actions/settings';
 import * as keyActions from '../actions/keys';
@@ -18,6 +20,8 @@ import { create as createUser } from '../clients/paymentServer/user';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';
+import HeaderTitle from '../components/HeaderTitle';
+import HeaderBackground from '../components/HeaderBackground';
 import HeaderButton from '../components/buttons/HeaderButton';
 import CancelButton from '../components/CancelButton';
 import StyledText from '../components/StyledText';
@@ -41,8 +45,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   input: {
-    fontSize: 24,
-    color: '#000000'
+    fontSize: 24
   },
   suffixWrapper: {
     position: 'absolute',
@@ -54,11 +57,9 @@ const styles = StyleSheet.create({
     fontSize: 24
   },
   suffix: {
-    fontSize: 24,
-    color: '#C8C7CC'
+    fontSize: 24
   },
   error: {
-    color: '#FF3B30',
     fontSize: 12,
     marginTop: 35,
     position: 'absolute'
@@ -75,9 +76,6 @@ const styles = StyleSheet.create({
     lineHeight: 15,
     marginBottom: 0,
     marginLeft: 10
-  },
-  infoIcon: {
-    color: '#B1AFB7'
   }
 });
 
@@ -87,7 +85,7 @@ const styles = StyleSheet.create({
   bitcoinNetwork: state.settings.bitcoin.network,
   hasCreatedBackup: state.settings.user.hasCreatedBackup
 }))
-export default class CreatePineAddressScreen extends Component {
+class CreatePineAddressScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const nextIsDisabled = !navigation.getParam('canSubmit');
     const submit = navigation.getParam('submit');
@@ -96,10 +94,10 @@ export default class CreatePineAddressScreen extends Component {
     const headerRight = <HeaderButton label='Next' onPress={submit} disabled={nextIsDisabled} />;
 
     return {
-      title: 'Pick a Username',
       headerTransparent: true,
-      headerStyle: headerStyles.whiteHeader,
-      headerTitleStyle: headerStyles.title,
+      headerBackground: <HeaderBackground />,
+      headerTitle: <HeaderTitle title='Pick a Username' />,
+      headerStyle: headerStyles.borderlessHeader,
       headerLeft,
       headerRight
     };
@@ -213,34 +211,41 @@ export default class CreatePineAddressScreen extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+
+    const suffixStyle = [
+      styles.suffix,
+      { color: theme.bigInputPlaceholderColor }
+    ];
+
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
-        <StatusBar barStyle='dark-content' />
+        <StatusBar barStyle='default' />
 
         <View style={styles.content}>
           <View style={styles.inputWrapper}>
             <TextInput
-              style={styles.input}
+              style={[styles.input, theme.bigInput]}
               autoFocus={true}
               autoCorrect={false}
               autoCapitalize='none'
               maxLength={20}
               value={this.state.username}
-              selectionColor='#FFC431'
+              selectionColor={theme.bigInputSelectionColor}
               onChangeText={(text) => this._onChangeText(text)}
               blurOnSubmit={false}
             />
             <View style={styles.suffixWrapper} pointerEvents='none'>
               <Text style={styles.suffixPadding}>{this.state.username}</Text>
-              <Text style={styles.suffix}>@{this.state.domain}</Text>
+              <Text style={suffixStyle}>@{this.state.domain}</Text>
             </View>
-            <StyledText style={styles.error}>
+            <StyledText style={[styles.error, theme.errorText]}>
               {this.state.error}
             </StyledText>
           </View>
 
           <View style={styles.betaNoticeWrapper}>
-            <Icon name='info-with-circle' style={styles.infoIcon} />
+            <Icon name='info-with-circle' style={theme.paragraph} />
             <Paragraph style={styles.betaNotice}>
               During the beta it is not possible to use your own Pine server and domain name.
             </Paragraph>
@@ -260,5 +265,8 @@ CreatePineAddressScreen.propTypes = {
   keys: PropTypes.object,
   defaultPineAddressHostname: PropTypes.string,
   bitcoinNetwork: PropTypes.string,
-  hasCreatedBackup: PropTypes.bool
+  hasCreatedBackup: PropTypes.bool,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(CreatePineAddressScreen);

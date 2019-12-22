@@ -6,9 +6,11 @@ exports[`StyledText renders correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]

@@ -5,9 +5,11 @@ exports[`BtcLabel when unit is BTC renders -0.02784 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -23,9 +25,11 @@ exports[`BtcLabel when unit is BTC renders 0 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -40,9 +44,11 @@ exports[`BtcLabel when unit is BTC renders 0.00000002 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -57,9 +63,11 @@ exports[`BtcLabel when unit is BTC renders 0.00002001 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -74,9 +82,11 @@ exports[`BtcLabel when unit is BTC renders 2 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -91,9 +101,11 @@ exports[`BtcLabel when unit is BTC renders 2.00 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -108,9 +120,11 @@ exports[`BtcLabel when unit is BTC renders 2.30 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -125,9 +139,11 @@ exports[`BtcLabel when unit is BTC renders 4000 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -142,9 +158,11 @@ exports[`BtcLabel when unit is Satoshis renders -0.08 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -160,9 +178,11 @@ exports[`BtcLabel when unit is Satoshis renders 0 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -177,9 +197,11 @@ exports[`BtcLabel when unit is Satoshis renders 0.00000002 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -194,9 +216,11 @@ exports[`BtcLabel when unit is Satoshis renders 0.00002001 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -211,9 +235,11 @@ exports[`BtcLabel when unit is Satoshis renders 2 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -228,9 +254,11 @@ exports[`BtcLabel when unit is mBTC renders -1.4234 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -246,9 +274,11 @@ exports[`BtcLabel when unit is mBTC renders 0 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -263,9 +293,11 @@ exports[`BtcLabel when unit is mBTC renders 0.00000002 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -280,9 +312,11 @@ exports[`BtcLabel when unit is mBTC renders 0.00002001 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -297,9 +331,11 @@ exports[`BtcLabel when unit is mBTC renders 2 BTC correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -314,9 +350,11 @@ exports[`BtcLabel when unit is undefined renders without errors 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]

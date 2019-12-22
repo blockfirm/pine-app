@@ -34,6 +34,7 @@ import EmptyConversation from '../components/conversation/EmptyConversation';
 import Messages from '../components/conversation/Messages';
 import BackButton from '../components/BackButton';
 import Avatar from '../components/Avatar';
+import HeaderBackground from '../components/HeaderBackground';
 import ConfirmTransactionContainer from '../containers/conversation/ConfirmTransactionContainer';
 import ContactRequestContainer from '../containers/conversation/ContactRequestContainer';
 import InputBarContainer from '../containers/conversation/InputBarContainer';
@@ -117,8 +118,8 @@ export default class ConversationScreen extends Component {
     return {
       headerTitle,
       headerTransparent: true,
-      headerStyle: headerStyles.whiteHeader,
-      headerTitleStyle: headerStyles.title,
+      headerBackground: <HeaderBackground />,
+      headerStyle: headerStyles.borderlessHeader,
       headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />,
       headerRight: (contact && contact.contactRequest) ? null : headerRight
     };

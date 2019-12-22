@@ -4,10 +4,12 @@ import { StyleSheet, View, ActivityIndicator, TouchableOpacity } from 'react-nat
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { withTheme } from '../../contexts/theme';
 import { UNIT_BTC, UNIT_SATOSHIS, convert as convertBitcoin } from '../../crypto/bitcoin/convert';
 import { save as saveSettings } from '../../actions/settings';
 import { FEE_LEVEL_CUSTOM, getEstimate as getFeeEstimate, adjustFeeRate } from '../../actions/bitcoin/fees/getEstimate';
-import headerStyles from '../../styles/headerStyles';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
 import settingsStyles from '../../styles/settingsStyles';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import BackButton from '../../components/BackButton';
@@ -23,28 +25,24 @@ import BaseSettingsScreen from './BaseSettingsScreen';
 import config from '../../config';
 
 const AVERAGE_TRANSACTION_SIZE_BYTES = 225;
-const ERROR_COLOR = '#FF3B30';
 
 const styles = StyleSheet.create({
   fees: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center'
-  },
-  fiat: {
-    color: '#8A8A8F'
   }
 });
 
 @connect((state) => ({
   settings: state.settings
 }))
-export default class BitcoinFeeSettingsScreen extends Component {
+class BitcoinFeeSettingsScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Transaction Fees',
-    headerStyle: headerStyles.header,
-    headerTitleStyle: headerStyles.title,
-    headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />)
+    headerTransparent: true,
+    headerBackground: <SettingsHeaderBackground />,
+    headerTitle: <HeaderTitle title='Transaction Fees' />,
+    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
 
   constructor(props) {
@@ -113,12 +111,15 @@ export default class BitcoinFeeSettingsScreen extends Component {
   }
 
   _renderEstimatedFee() {
+    const { theme } = this.props;
     const { estimatedFeeRate, couldNotGetFeeRate } = this.state;
 
     if (couldNotGetFeeRate) {
       return (
         <TouchableOpacity onPress={this._loadFeeRate.bind(this)}>
-          <StyledText style={[settingsStyles.label, { color: ERROR_COLOR }]}>Could not estimate fee.</StyledText>
+          <StyledText style={[settingsStyles.label, theme.errorText]}>
+            Could not estimate fee.
+          </StyledText>
         </TouchableOpacity>
       );
     }
@@ -132,14 +133,23 @@ export default class BitcoinFeeSettingsScreen extends Component {
 
     return (
       <View style={styles.fees}>
-        <CurrencyLabelContainer amountBtc={estimatedFeeBtc} currencyType='primary' style={settingsStyles.label} />
+        <CurrencyLabelContainer
+          amountBtc={estimatedFeeBtc}
+          currencyType='primary'
+          style={settingsStyles.label}
+        />
         <Bullet />
-        <CurrencyLabelContainer amountBtc={estimatedFeeBtc} currencyType='secondary' style={[settingsStyles.label, styles.fiat]} />
+        <CurrencyLabelContainer
+          amountBtc={estimatedFeeBtc}
+          currencyType='secondary'
+          style={[settingsStyles.label, theme.settingsTitle]}
+        />
       </View>
     );
   }
 
   render() {
+    const { theme } = this.props;
     const feeSettings = this.props.settings.bitcoin.fee;
     const satoshisPerByte = feeSettings.satoshisPerByte;
 
@@ -149,7 +159,9 @@ export default class BitcoinFeeSettingsScreen extends Component {
           Estimated Fee
         </SettingsTitle>
         <SettingsGroup>
-          <View style={[settingsStyles.item, { borderBottomWidth: 0, alignItems: 'center' }]}>
+          <View
+            style={[settingsStyles.item, theme.settingsItem, { borderBottomWidth: 0, alignItems: 'center' }]}
+          >
             {this._renderEstimatedFee()}
           </View>
         </SettingsGroup>
@@ -214,5 +226,8 @@ export default class BitcoinFeeSettingsScreen extends Component {
 BitcoinFeeSettingsScreen.propTypes = {
   settings: PropTypes.object,
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(BitcoinFeeSettingsScreen);

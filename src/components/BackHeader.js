@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';
+import { withTheme } from '../contexts/theme';
 import BackButton from './BackButton';
 
 const styles = StyleSheet.create({
@@ -27,15 +28,15 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class BackHeader extends Component {
+class BackHeader extends Component {
   render() {
-    const { showBackButton } = this.props;
+    const { showBackButton, theme } = this.props;
 
     return (
       <View style={styles.header}>
         { showBackButton ? <BackButton onPress={this.props.onBackPress} /> : null }
 
-        <Text style={[headerStyles.title, styles.title]}>
+        <Text style={[headerStyles.title, theme.headerTitle, styles.title]}>
           {this.props.title}
         </Text>
       </View>
@@ -46,5 +47,8 @@ export default class BackHeader extends Component {
 BackHeader.propTypes = {
   showBackButton: PropTypes.bool,
   onBackPress: PropTypes.func,
-  title: PropTypes.string
+  title: PropTypes.string,
+  theme: PropTypes.object
 };
+
+export default withTheme(BackHeader);

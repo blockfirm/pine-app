@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { withTheme } from '../contexts/theme';
 import CopyText from './CopyText';
 import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
   errorWrapper: {
-    backgroundColor: '#FF3B30',
     padding: 15,
     borderRadius: 15,
     marginBottom: 16
@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class ErrorMessage extends Component {
+class ErrorMessage extends Component {
   render() {
-    const { title, message, details } = this.props;
+    const { title, message, details, theme } = this.props;
     const copyText = `${message}\n${details}`;
 
     return (
       <CopyText tooltipArrowDirection='up' copyText={copyText}>
-        <View style={styles.errorWrapper}>
+        <View style={[styles.errorWrapper, theme.errorMessage]}>
           <StyledText style={styles.errorTitle}>
             {title}
           </StyledText>
@@ -44,5 +44,8 @@ export default class ErrorMessage extends Component {
 ErrorMessage.propTypes = {
   title: PropTypes.string,
   message: PropTypes.string,
-  details: PropTypes.string
+  details: PropTypes.string,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(ErrorMessage);

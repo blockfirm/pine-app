@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
+
+import { withTheme } from '../contexts/theme';
 import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
@@ -10,17 +12,18 @@ const styles = StyleSheet.create({
     paddingRight: 16
   },
   text: {
-    fontSize: 17,
-    color: '#000000'
+    fontSize: 17
   }
 });
 
-export default class CancelButton extends Component {
+class CancelButton extends Component {
   render() {
+    const { theme } = this.props;
+
     return (
       <TouchableOpacity onPress={this.props.onPress} style={styles.button}>
         <Text>
-          <StyledText style={styles.text}>
+          <StyledText style={[styles.text, theme.text]}>
             Cancel
           </StyledText>
         </Text>
@@ -30,5 +33,8 @@ export default class CancelButton extends Component {
 }
 
 CancelButton.propTypes = {
-  onPress: PropTypes.func
+  onPress: PropTypes.func,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(CancelButton);

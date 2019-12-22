@@ -52,7 +52,7 @@ export default class CameraScreen extends Component {
     this.setState({ pauseCamera: true });
 
     if (this.props.homeScreenIndex === 0) {
-      StatusBar.setBarStyle('dark-content');
+      StatusBar.setBarStyle('default');
     }
   }
 

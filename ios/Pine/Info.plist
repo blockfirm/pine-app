@@ -74,8 +74,6 @@
 	<true/>
 	<key>UIStatusBarHidden</key>
 	<true/>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>

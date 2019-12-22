@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { withTheme } from '../contexts/theme';
 import headerStyles from '../styles/headerStyles';
 import StyledText from './StyledText';
 import Paragraph from './Paragraph';
 import SmallButton from './buttons/SmallButton';
-
-const illustration = require('../images/illustrations/EmptyListAvatar.png');
 
 const styles = StyleSheet.create({
   view: {
@@ -23,9 +22,6 @@ const styles = StyleSheet.create({
     height: 108,
     marginBottom: 40
   },
-  title: {
-    color: '#949494'
-  },
   paragraph: {
     textAlign: 'center',
     lineHeight: 22,
@@ -36,14 +32,16 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class ContactListEmpty extends Component {
+class ContactListEmpty extends Component {
   render() {
+    const { theme } = this.props;
+
     return (
       <View style={styles.view}>
         <View style={styles.wrapper}>
-          <Image source={illustration} style={styles.illustration} />
+          <Image source={theme.illustrationNoContacts} style={styles.illustration} />
 
-          <StyledText style={[headerStyles.title, styles.title]}>
+          <StyledText style={[headerStyles.title, theme.title]}>
             It&#39;s lonely here
           </StyledText>
           <Paragraph style={styles.paragraph}>
@@ -59,5 +57,8 @@ export default class ContactListEmpty extends Component {
 
 ContactListEmpty.propTypes = {
   address: PropTypes.string,
-  onAddContactPress: PropTypes.func
+  onAddContactPress: PropTypes.func,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(ContactListEmpty);

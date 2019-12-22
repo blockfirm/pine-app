@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import { setHomeScreenIndex } from '../actions/navigate/setHomeScreenIndex';
 import Toolbar from '../components/toolbar/Toolbar';
+import { withTheme } from '../contexts/theme';
 import ContactsScreen from './ContactsScreen';
 import CameraScreen from './CameraScreen';
 import ReceiveScreen from './ReceiveScreen';
@@ -31,15 +32,7 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0
   },
-  overlayCamera: {
-    backgroundColor: 'black'
-  },
-  overlayHome: {
-    backgroundColor: '#FEFEFE'
-  },
   overlayReceive: {
-    backgroundColor: '#FEFEFE',
-    borderColor: 'gray',
     borderLeftWidth: StyleSheet.hairlineWidth
   }
 });
@@ -47,7 +40,7 @@ const styles = StyleSheet.create({
 @connect((state) => ({
   homeScreenIndex: state.navigate.homeScreen.index
 }))
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
   static navigationOptions = {
     header: null
   }
@@ -61,7 +54,7 @@ export default class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    StatusBar.setBarStyle('dark-content');
+    StatusBar.setBarStyle('default');
   }
 
   componentDidUpdate(prevProps) {
@@ -84,7 +77,7 @@ export default class HomeScreen extends Component {
 
   _onIndexChanged(index) {
     const { dispatch } = this.props;
-    const barStyle = index === 0 ? 'light-content' : 'dark-content';
+    const barStyle = index === 0 ? 'light-content' : 'default';
 
     StatusBar.setBarStyle(barStyle);
     this.setState({ activeIndex: index });
@@ -178,23 +171,26 @@ export default class HomeScreen extends Component {
   }
 
   _renderScreen({ item }) {
+    const { theme } = this.props;
+
     const overlayStyles = [
       styles.overlay
     ];
 
     switch (item.key) {
       case 'camera':
-        overlayStyles.push(styles.overlayCamera);
+        overlayStyles.push(theme.overlayCamera);
         overlayStyles.push({ opacity: this.state.cameraOverlayOpacity });
         break;
 
       case 'home':
-        overlayStyles.push(styles.overlayHome);
+        overlayStyles.push(theme.overlayHome);
         overlayStyles.push({ opacity: this.state.homeOverlayOpacity });
         break;
 
       case 'receive':
         overlayStyles.push(styles.overlayReceive);
+        overlayStyles.push(theme.overlayReceive);
         overlayStyles.push({ opacity: this.state.receiveOverlayOpacity });
         break;
     }
@@ -208,8 +204,9 @@ export default class HomeScreen extends Component {
   }
 
   render() {
+    const { theme, navigation } = this.props;
     const showCameraPreview = this._shouldShowCameraPreview();
-    const props = { navigation: this.props.navigation };
+    const props = { theme, navigation };
 
     const screens = [
       { key: 'camera', screen: <CameraScreen {...props} showPreview={showCameraPreview} onBackPress={this._scrollToHome.bind(this)} /> },
@@ -251,5 +248,9 @@ export default class HomeScreen extends Component {
 
 HomeScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  homeScreenIndex: PropTypes.number,
+  navigation: PropTypes.any,
+  theme: PropTypes.object
 };
+
+export default withTheme(HomeScreen);

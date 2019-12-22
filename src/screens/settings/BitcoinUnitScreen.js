@@ -3,8 +3,10 @@ import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { withTheme } from '../../contexts/theme';
 import { save as saveSettings } from '../../actions/settings/save';
-import headerStyles from '../../styles/headerStyles';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
 import settingsStyles from '../../styles/settingsStyles';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
@@ -20,12 +22,12 @@ import config from '../../config';
   settings: state.settings,
   balance: state.bitcoin.wallet.balance
 }))
-export default class BitcoinUnitScreen extends Component {
+class BitcoinUnitScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Bitcoin Display Unit',
-    headerStyle: headerStyles.header,
-    headerTitleStyle: headerStyles.title,
-    headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />)
+    headerTransparent: true,
+    headerBackground: <SettingsHeaderBackground />,
+    headerTitle: <HeaderTitle title='Bitcoin Display Unit' />,
+    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
 
   constructor(props) {
@@ -54,11 +56,15 @@ export default class BitcoinUnitScreen extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+
     return (
       <BaseSettingsScreen>
         <SettingsTitle>Balance Preview</SettingsTitle>
         <SettingsGroup>
-          <View style={[settingsStyles.item, { borderBottomWidth: 0, alignItems: 'center' }]}>
+          <View
+            style={[settingsStyles.item, theme.settingsItem, { borderBottomWidth: 0, alignItems: 'center' }]}
+          >
             <BtcLabel amount={this.props.balance} unit={this.state.unit} style={settingsStyles.label} />
           </View>
         </SettingsGroup>
@@ -95,5 +101,8 @@ BitcoinUnitScreen.propTypes = {
   settings: PropTypes.object,
   balance: PropTypes.number,
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(BitcoinUnitScreen);

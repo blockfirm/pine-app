@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
-import StyledText from '../components/StyledText';
 
-const COLOR_ERROR = '#FF3B30';
-const COLOR_WARNING = '#FF8D36';
-const COLOR_SUCCESS = '#4CD964';
+import { withTheme } from '../contexts/theme';
+import StyledText from '../components/StyledText';
 
 const LABEL_NOT_CONNECTED = 'Not Connected';
 const LABEL_CONNECTED = 'Connected';
@@ -31,19 +29,19 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class ConnectionStatus extends Component {
+class ConnectionStatus extends Component {
   render() {
-    const { settings, serverInfo } = this.props;
-    let dotColor = COLOR_ERROR;
+    const { settings, serverInfo, theme } = this.props;
+    let dotColor = theme.statusErrorColor;
     let status = LABEL_NOT_CONNECTED;
 
     if (serverInfo) {
       if (serverInfo.isConnected) {
         if (serverInfo.network === settings.bitcoin.network) {
-          dotColor = COLOR_SUCCESS;
+          dotColor = theme.statusSuccessColor;
           status = LABEL_CONNECTED;
         } else {
-          dotColor = COLOR_WARNING;
+          dotColor = theme.statusWarningColor;
           status = LABEL_INCONSISTENT_NETWORKS;
         }
       } else if (serverInfo.isConnected === false) {
@@ -62,5 +60,8 @@ export default class ConnectionStatus extends Component {
 
 ConnectionStatus.propTypes = {
   settings: PropTypes.object,
-  serverInfo: PropTypes.object
+  serverInfo: PropTypes.object,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(ConnectionStatus);

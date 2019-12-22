@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import { withTheme } from '../../../contexts/theme';
 
-const IMAGE_DEFAULT = require('../../../images/icons/toolbar/Receive.png');
 const IMAGE_WHITE = require('../../../images/icons/toolbar/ReceiveWhite.png');
 
 const styles = StyleSheet.create({
@@ -12,9 +12,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class ReceiveIcon extends Component {
+class ReceiveIcon extends Component {
   render() {
-    const image = this.props.white ? IMAGE_WHITE : IMAGE_DEFAULT;
+    const { white, theme } = this.props;
+    const image = white ? IMAGE_WHITE : theme.toolbarReceiveIcon;
 
     return (
       <View style={this.props.style}>
@@ -26,5 +27,8 @@ export default class ReceiveIcon extends Component {
 
 ReceiveIcon.propTypes = {
   style: PropTypes.any,
-  white: PropTypes.bool
+  white: PropTypes.bool,
+  theme: PropTypes.object
 };
+
+export default withTheme(ReceiveIcon);

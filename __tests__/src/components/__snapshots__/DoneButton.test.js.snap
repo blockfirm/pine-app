@@ -3,7 +3,7 @@
 exports[`DoneButton renders correctly 1`] = `
 <View
   accessible={true}
-  focusable={false}
+  focusable={true}
   isTVSelectable={true}
   onClick={[Function]}
   onResponderGrant={[Function]}
@@ -20,26 +20,36 @@ exports[`DoneButton renders correctly 1`] = `
     }
   }
 >
-  <Text>
+  <View>
     <Text
       style={
         Array [
           Object {
-            "color": "#000000",
             "fontFamily": "System",
             "fontWeight": "400",
           },
           Object {
-            "color": "#007AFF",
-            "fontSize": 17,
-            "fontWeight": "600",
-            "letterSpacing": 0.1,
+            "color": "#000000",
           },
+          Array [
+            Object {
+              "fontSize": 17,
+              "fontWeight": "600",
+              "letterSpacing": 0.1,
+            },
+            Object {
+              "color": "#007AFF",
+            },
+            undefined,
+            Object {
+              "opacity": 1,
+            },
+          ],
         ]
       }
     >
       Done
     </Text>
-  </Text>
+  </View>
 </View>
 `;

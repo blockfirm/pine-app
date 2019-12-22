@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
-
-const BORDER_COLOR = '#DADADA';
-const BORDER_COLOR_FOCUS = '#007AFF';
+import { withTheme } from '../contexts/theme';
 
 const windowDimensions = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     padding: 17,
     paddingTop: 7,
     paddingBottom: 3,
@@ -23,19 +20,18 @@ const styles = StyleSheet.create({
   input: {
     fontSize: windowDimensions.width < 330 ? 11 : 13,
     letterSpacing: 1.45,
-    color: '#000000',
     width: windowDimensions.width < 330 ? 240 : 278,
     height: 27
   }
 });
 
-export default class StyledInput extends Component {
+class StyledInput extends Component {
   constructor(props) {
     super(...arguments);
 
     this.state = {
       value: props.value,
-      borderColor: BORDER_COLOR
+      borderColor: props.theme.input.borderColor
     };
   }
 
@@ -48,8 +44,10 @@ export default class StyledInput extends Component {
   }
 
   _onFocus() {
+    const { theme } = this.props;
+
     this.setState({
-      borderColor: BORDER_COLOR_FOCUS
+      borderColor: theme.inputFocus.borderColor
     });
 
     if (this.props.onFocus) {
@@ -58,8 +56,10 @@ export default class StyledInput extends Component {
   }
 
   _onBlur() {
+    const { theme } = this.props;
+
     this.setState({
-      borderColor: BORDER_COLOR
+      borderColor: theme.input.borderColor
     });
   }
 
@@ -81,22 +81,28 @@ export default class StyledInput extends Component {
   }
 
   render() {
+    const { theme } = this.props;
     const editable = !this.props.disabled;
 
     const borderColor = {
       borderColor: this.props.borderColor || this.state.borderColor
     };
 
+    const containerStyle = [
+      styles.container,
+      { backgroundColor: theme.input.backgroundColor },
+      this.props.containerStyle,
+      borderColor
+    ];
+
     return (
-      <View style={[styles.container, this.props.containerStyle, borderColor]}>
+      <View style={containerStyle}>
         <TextInput
           {...this.props}
           ref={(ref) => { this._input = ref; }}
-          style={[styles.input, this.props.style]}
+          style={[styles.input, theme.text, this.props.style]}
           autoCorrect={false}
           value={this.state.value}
-          placeholderTextColor={BORDER_COLOR}
-          selectionColor={BORDER_COLOR_FOCUS}
           enablesReturnKeyAutomatically={true}
           editable={editable}
           onFocus={this._onFocus.bind(this)}
@@ -117,5 +123,8 @@ StyledInput.propTypes = {
   borderColor: PropTypes.string,
   disabled: PropTypes.bool,
   onFocus: PropTypes.func,
-  onChangeText: PropTypes.func
+  onChangeText: PropTypes.func,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(StyledInput);

@@ -23,11 +23,13 @@ exports[`Button renders correctly 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#FFD23F",
           "borderRadius": 25,
           "height": 50,
           "justifyContent": "center",
           "width": 670,
+        },
+        Object {
+          "backgroundColor": "#FFD23F",
         },
         undefined,
       ]
@@ -37,10 +39,12 @@ exports[`Button renders correctly 1`] = `
       style={
         Array [
           Object {
-            "color": "white",
             "fontFamily": "System",
             "fontSize": 16,
             "fontWeight": "600",
+          },
+          Object {
+            "color": "#ffffff",
           },
           undefined,
           Object {
@@ -78,16 +82,20 @@ exports[`Button renders correctly as disabled 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#FFD23F",
           "borderRadius": 25,
           "height": 50,
           "justifyContent": "center",
           "width": 670,
         },
+        Object {
+          "backgroundColor": "#FFD23F",
+        },
         undefined,
         Object {
-          "backgroundColor": "#B1AFB7",
           "opacity": 0.7,
+        },
+        Object {
+          "backgroundColor": "#B1AFB7",
         },
         undefined,
       ]
@@ -97,10 +105,12 @@ exports[`Button renders correctly as disabled 1`] = `
       style={
         Array [
           Object {
-            "color": "white",
             "fontFamily": "System",
             "fontSize": 16,
             "fontWeight": "600",
+          },
+          Object {
+            "color": "#ffffff",
           },
           undefined,
           Object {
@@ -138,11 +148,13 @@ exports[`Button renders correctly in full width 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#FFD23F",
           "borderRadius": 25,
           "height": 50,
           "justifyContent": "center",
           "width": 670,
+        },
+        Object {
+          "backgroundColor": "#FFD23F",
         },
         undefined,
       ]
@@ -152,10 +164,12 @@ exports[`Button renders correctly in full width 1`] = `
       style={
         Array [
           Object {
-            "color": "white",
             "fontFamily": "System",
             "fontSize": 16,
             "fontWeight": "600",
+          },
+          Object {
+            "color": "#ffffff",
           },
           undefined,
           Object {

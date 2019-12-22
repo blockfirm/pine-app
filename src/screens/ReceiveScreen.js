@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Clipboard, Share, View, Dimensions } from 'react-native';
+import { StyleSheet, Share, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import QRCode from 'react-native-qrcode-svg';
@@ -10,6 +10,7 @@ import ContentView from '../components/ContentView';
 import Paragraph from '../components/Paragraph';
 import AddressLabel from '../components/AddressLabel';
 import Avatar from '../components/Avatar';
+import { withTheme } from '../contexts/theme';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const QR_CODE_WIDTH = WINDOW_WIDTH - 150;
@@ -30,18 +31,21 @@ const styles = StyleSheet.create({
   },
   address: {
     textAlign: 'center',
-    color: '#AAAAAA',
     marginTop: 15
   },
   qrWrapper: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 15,
+    borderRadius: 5,
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 5
   },
   qrAvatar: {
     width: AVATAR_WIDTH + 4,
     height: AVATAR_WIDTH + 4,
     borderWidth: 2,
-    borderColor: '#ffffff',
     position: 'absolute'
   }
 });
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
   pineAddress: state.settings.user.profile.address,
   address: state.bitcoin.wallet.addresses.external.unused
 }))
-export default class ReceiveScreen extends Component {
+class ReceiveScreen extends Component {
   static navigationOptions = {
     header: null
   }
@@ -67,7 +71,7 @@ export default class ReceiveScreen extends Component {
   }
 
   render() {
-    const { pineAddress, address, avatar } = this.props;
+    const { pineAddress, address, avatar, theme } = this.props;
     const qrData = this._getBitcoinUri();
 
     return (
@@ -79,21 +83,31 @@ export default class ReceiveScreen extends Component {
           </Paragraph>
 
           <View>
-            <AddressLabel address={pineAddress} shorten={false} textStyle={styles.pineAddress} tooltipArrowDirection='down' />
-            <View style={styles.qrWrapper}>
+            <AddressLabel
+              address={pineAddress}
+              shorten={false}
+              textStyle={[styles.pineAddress, theme.title]}
+              tooltipArrowDirection='down'
+            />
+            <View style={[styles.qrWrapper, theme.qrWrapper]}>
               <QRCode
                 value={qrData}
                 size={QR_CODE_WIDTH}
-                color='#111111'
+                backgroundColor={theme.qrBackground}
+                color={theme.qrForeground}
               />
               <Avatar
                 size={AVATAR_WIDTH}
                 pineAddress={pineAddress}
                 checksum={avatar && avatar.checksum}
-                style={styles.qrAvatar}
+                style={[styles.qrAvatar, theme.qrAvatar]}
               />
             </View>
-            <AddressLabel address={address} textStyle={styles.address} tooltipArrowDirection='up' />
+            <AddressLabel
+              address={address}
+              textStyle={[styles.address, theme.label]}
+              tooltipArrowDirection='up'
+            />
           </View>
 
           <View>{/* Used as a placeholder so that the QR code view aligns in the center */ }</View>
@@ -110,5 +124,8 @@ ReceiveScreen.propTypes = {
   }),
   pineAddress: PropTypes.string,
   address: PropTypes.string,
-  onBackPress: PropTypes.func
+  onBackPress: PropTypes.func,
+  theme: PropTypes.object
 };
+
+export default withTheme(ReceiveScreen);

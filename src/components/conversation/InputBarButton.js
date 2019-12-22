@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import PropTypes from 'prop-types';
+import { withTheme } from '../../contexts/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,20 +13,17 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  disabled: {
-    backgroundColor: '#D8D8DB'
   }
 });
 
-export default class InputBarButton extends Component {
+class InputBarButton extends Component {
   render() {
-    const { Icon, disabled, onPress, style, containerStyle } = this.props;
+    const { Icon, disabled, onPress, style, containerStyle, theme } = this.props;
 
     const buttonStyles = [
       styles.button,
       style,
-      disabled ? styles.disabled : undefined
+      disabled ? theme.inputDisabledButton : undefined
     ];
 
     return (
@@ -43,5 +41,8 @@ InputBarButton.propTypes = {
   disabled: PropTypes.bool,
   style: PropTypes.any,
   containerStyle: PropTypes.any,
-  Icon: PropTypes.func
+  Icon: PropTypes.func,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(InputBarButton);

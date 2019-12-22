@@ -11,6 +11,7 @@ import {
   Dimensions
 } from 'react-native';
 
+import { withTheme } from '../../contexts/theme';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import authentication from '../../authentication';
 import HelpIcon from '../icons/HelpIcon';
@@ -35,8 +36,6 @@ const styles = StyleSheet.create({
   view: {
     paddingHorizontal: 15,
     alignSelf: 'stretch',
-    backgroundColor: '#FAFAFA',
-    borderTopColor: '#F0F1F4',
     borderTopWidth: StyleSheet.hairlineWidth
   },
   footer: {
@@ -49,14 +48,12 @@ const styles = StyleSheet.create({
   },
   detail: {
     paddingVertical: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: '#ECECEC'
+    borderBottomWidth: StyleSheet.hairlineWidth
   },
   lastDetail: {
     borderBottomWidth: 0
   },
   label: {
-    color: '#8E8E93',
     fontSize: 15
   },
   feeLabelWrapper: {
@@ -69,23 +66,19 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   value: {
-    color: '#000000',
     fontSize: 15,
     position: 'absolute',
     right: 0,
     top: 16
   },
   valueLabel: {
-    color: '#000000',
     fontSize: 15
   },
   errorText: {
-    color: '#FF3B30',
     marginTop: 1
   },
   bold: {
-    fontWeight: '600',
-    color: 'black'
+    fontWeight: '600'
   },
   helpIcon: {
     paddingHorizontal: 5,
@@ -95,13 +88,12 @@ const styles = StyleSheet.create({
     opacity: 1
   },
   helpText: {
-    color: '#8E8E93',
     marginTop: 5,
     fontSize: 13
   }
 });
 
-export default class ConfirmTransaction extends Component {
+class ConfirmTransaction extends Component {
   state = {
     biometryType: null,
     showFeeHelpText: false
@@ -147,12 +139,14 @@ export default class ConfirmTransaction extends Component {
   }
 
   _renderFeeHelpText() {
+    const { theme } = this.props;
+
     if (!this.state.showFeeHelpText) {
       return null;
     }
 
     return (
-      <StyledText style={styles.helpText}>
+      <StyledText style={[styles.helpText, theme.confirmTransactionHelpText]}>
         The fee goes to the miner who mines the block containing your transaction.
         Pine or its developers does not charge any fees.
       </StyledText>
@@ -160,12 +154,12 @@ export default class ConfirmTransaction extends Component {
   }
 
   _renderFee() {
-    const { amountBtc, displayCurrency, displayUnit, fee, cannotAffordFee } = this.props;
+    const { amountBtc, displayCurrency, displayUnit, fee, cannotAffordFee, theme } = this.props;
     const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
 
     if (cannotAffordFee) {
       return (
-        <StyledText style={styles.errorText}>
+        <StyledText style={[styles.errorText, theme.confirmTransactionErrorText]}>
           Not enough funds to pay for the fee
         </StyledText>
       );
@@ -181,13 +175,13 @@ export default class ConfirmTransaction extends Component {
         amount={amountBtc}
         currency={displayCurrency}
         unit={displayUnit}
-        style={styles.valueLabel}
+        style={[styles.valueLabel, theme.confirmTransactionValue]}
       />
     );
   }
 
   _renderTotal() {
-    const { amountBtc, fee, displayCurrency, displayUnit } = this.props;
+    const { amountBtc, fee, displayCurrency, displayUnit, theme } = this.props;
     const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
     const totalAmount = amountBtc + feeBtc;
     let amountLabel = null;
@@ -198,7 +192,7 @@ export default class ConfirmTransaction extends Component {
           amountBtc={totalAmount}
           currency={displayCurrency}
           unit={displayUnit}
-          style={[styles.valueLabel, styles.bold]}
+          style={[styles.valueLabel, theme.confirmTransactionValue, styles.bold]}
         />
       );
     } else {
@@ -206,7 +200,7 @@ export default class ConfirmTransaction extends Component {
         <CurrencyLabelContainer
           amountBtc={totalAmount}
           currencyType='primary'
-          style={[styles.valueLabel, styles.bold]}
+          style={[styles.valueLabel, theme.confirmTransactionValue, styles.bold]}
         />
       );
     }
@@ -215,33 +209,42 @@ export default class ConfirmTransaction extends Component {
       <View style={styles.valueWrapper}>
         {amountLabel}
         <Bullet />
-        <CurrencyLabelContainer amountBtc={totalAmount} currencyType='secondary' style={[styles.valueLabel, styles.bold]} />
+        <CurrencyLabelContainer
+          amountBtc={totalAmount}
+          currencyType='secondary'
+          style={[styles.valueLabel, theme.confirmTransactionValue, styles.bold]}
+        />
       </View>
     );
   }
 
   render() {
+    const { theme } = this.props;
     const { showFeeHelpText } = this.state;
     const hideTotal = showFeeHelpText && WINDOW_HEIGHT < 700;
 
     return (
-      <View style={[styles.view, this.props.style]}>
+      <View style={[styles.view, theme.confirmTransactionView, this.props.style]}>
         <View style={styles.details}>
-          <View style={styles.detail}>
+          <View style={[styles.detail, theme.confirmTransactionDetail]}>
             <TouchableOpacity onPress={this._toggleFeeHelpText}>
               <View style={styles.feeLabelWrapper}>
-                <StyledText style={styles.label}>Fee</StyledText>
+                <StyledText style={[styles.label, theme.confirmTransactionLabel]}>
+                  Fee
+                </StyledText>
                 <HelpIcon style={[styles.helpIcon, showFeeHelpText && styles.helpIconActive]} />
               </View>
             </TouchableOpacity>
-            <View style={styles.value}>
+            <View style={[styles.value, theme.confirmTransactionValue]}>
               {this._renderFee()}
             </View>
             { this._renderFeeHelpText() }
           </View>
           <View style={[styles.detail, styles.lastDetail, hideTotal && { opacity: 0 }]}>
-            <StyledText style={[styles.label, styles.bold]}>You Pay</StyledText>
-            <View style={styles.value}>
+            <StyledText style={[styles.label, theme.confirmTransactionLabel, styles.bold]}>
+              You Pay
+            </StyledText>
+            <View style={[styles.value, theme.confirmTransactionValue]}>
               {this._renderTotal()}
             </View>
           </View>
@@ -268,5 +271,8 @@ ConfirmTransaction.propTypes = {
   fee: PropTypes.number,
   cannotAffordFee: PropTypes.bool,
   onPayPress: PropTypes.func,
-  style: PropTypes.any
+  style: PropTypes.any,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(ConfirmTransaction);

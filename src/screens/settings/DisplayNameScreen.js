@@ -7,7 +7,8 @@ import { update as updateUser } from '../../clients/paymentServer/user';
 import { save as saveSettings } from '../../actions/settings';
 import { handle as handleError } from '../../actions/error/handle';
 import getMnemonicByKey from '../../crypto/getMnemonicByKey';
-import headerStyles from '../../styles/headerStyles';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
 import HeaderButton from '../../components/buttons/HeaderButton';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
@@ -25,10 +26,10 @@ export default class DisplayNameScreen extends Component {
     const headerRight = <HeaderButton label='Done' onPress={submit} disabled={doneIsDisabled} />;
 
     return {
-      title: 'Display Name',
-      headerStyle: headerStyles.header,
-      headerTitleStyle: headerStyles.title,
-      headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />),
+      headerTransparent: true,
+      headerBackground: <SettingsHeaderBackground />,
+      headerTitle: <HeaderTitle title='Display Name' />,
+      headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />,
       headerRight
     };
   };

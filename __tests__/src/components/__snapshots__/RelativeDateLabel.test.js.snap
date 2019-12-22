@@ -5,9 +5,11 @@ exports[`RelativeDateLabel renders correctly when date is now 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -22,9 +24,11 @@ exports[`RelativeDateLabel renders correctly when date was 1 month ago but still
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -39,9 +43,11 @@ exports[`RelativeDateLabel renders correctly when date was 1 week ago 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -56,9 +62,11 @@ exports[`RelativeDateLabel renders correctly when date was 1 year ago 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -73,9 +81,11 @@ exports[`RelativeDateLabel renders correctly when date was 2 days ago but still 
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -90,9 +100,11 @@ exports[`RelativeDateLabel renders correctly when date was 2 hours ago but still
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -107,9 +119,11 @@ exports[`RelativeDateLabel renders correctly when date was 2 weeks ago but still
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -124,9 +138,11 @@ exports[`RelativeDateLabel renders correctly when date was yesterday 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]

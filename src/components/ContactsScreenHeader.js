@@ -6,6 +6,7 @@ import headerStyles from '../styles/headerStyles';
 import AddContactIcon from '../components/icons/AddContactIcon';
 import SettingsIcon from '../components/icons/SettingsIcon';
 import BalanceLabelContainer from '../containers/BalanceLabelContainer';
+import { withTheme } from '../contexts/theme';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 
@@ -42,14 +43,15 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     textAlign: 'center',
-    color: '#B1AFB7',
     fontSize: 13,
     fontWeight: '500'
   }
 });
 
-export default class ContactsScreenHeader extends Component {
+class ContactsScreenHeader extends Component {
   render() {
+    const { theme } = this.props;
+
     return (
       <View style={styles.header}>
         <TouchableOpacity onPress={this.props.onAddContactPress} style={styles.addContact}>
@@ -58,8 +60,14 @@ export default class ContactsScreenHeader extends Component {
 
         <View style={styles.titleWrapper}>
           <TouchableOpacity onPress={this.props.onBalancePress} style={styles.titleTouchable}>
-            <BalanceLabelContainer currencyType='primary' style={[headerStyles.title, styles.title]} />
-            <BalanceLabelContainer currencyType='secondary' style={[headerStyles.title, styles.subTitle]} />
+            <BalanceLabelContainer
+              currencyType='primary'
+              style={[headerStyles.title, theme.headerTitle, styles.title]}
+            />
+            <BalanceLabelContainer
+              currencyType='secondary'
+              style={[headerStyles.title, theme.headerSubtitle, styles.subTitle]}
+            />
           </TouchableOpacity>
         </View>
 
@@ -74,5 +82,8 @@ export default class ContactsScreenHeader extends Component {
 ContactsScreenHeader.propTypes = {
   onAddContactPress: PropTypes.func,
   onSettingsPress: PropTypes.func,
-  onBalancePress: PropTypes.func
+  onBalancePress: PropTypes.func,
+  theme: PropTypes.object
 };
+
+export default withTheme(ContactsScreenHeader);

@@ -5,9 +5,11 @@ exports[`FiatLabel when amount is null renders correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -22,9 +24,11 @@ exports[`FiatLabel when currency is SEK renders -300.5 SEK correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -39,9 +43,11 @@ exports[`FiatLabel when currency is SEK renders 0 SEK correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -56,9 +62,11 @@ exports[`FiatLabel when currency is SEK renders 2 SEK correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -73,9 +81,11 @@ exports[`FiatLabel when currency is SEK renders 2.00 SEK correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -90,9 +100,11 @@ exports[`FiatLabel when currency is SEK renders 2.30 SEK correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -107,9 +119,11 @@ exports[`FiatLabel when currency is SEK renders 4000 SEK correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -124,9 +138,11 @@ exports[`FiatLabel when currency is USD renders -20.5 USD correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -141,9 +157,11 @@ exports[`FiatLabel when currency is USD renders 0 USD correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -158,9 +176,11 @@ exports[`FiatLabel when currency is USD renders 2 USD correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -175,9 +195,11 @@ exports[`FiatLabel when currency is USD renders 2.00 USD correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -192,9 +214,11 @@ exports[`FiatLabel when currency is USD renders 2.30 USD correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]
@@ -209,9 +233,11 @@ exports[`FiatLabel when currency is USD renders 4000 USD correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000000",
         "fontFamily": "System",
         "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
       },
       undefined,
     ]

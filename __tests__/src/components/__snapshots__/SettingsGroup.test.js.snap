@@ -5,12 +5,14 @@ exports[`SettingsGroup renders correctly 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "white",
-        "borderBottomColor": "#C8C8CC",
         "borderBottomWidth": 0.5,
-        "borderTopColor": "#C8C8CC",
         "borderTopWidth": 0.5,
         "marginBottom": 35,
+      },
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderBottomColor": "#C8C8CC",
+        "borderTopColor": "#C8C8CC",
       },
       undefined,
     ]

@@ -21,11 +21,13 @@ exports[`FeeLabel renders high fees correctly 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#8A8A8F",
           "borderRadius": 2,
           "height": 3,
           "marginHorizontal": 10,
           "width": 3,
+        },
+        Object {
+          "backgroundColor": "#B1AFB7",
         },
         undefined,
       ]
@@ -35,9 +37,11 @@ exports[`FeeLabel renders high fees correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "#000000",
           "fontFamily": "System",
           "fontWeight": "400",
+        },
+        Object {
+          "color": "#000000",
         },
         Array [
           undefined,
@@ -74,11 +78,13 @@ exports[`FeeLabel renders low fees correctly 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#8A8A8F",
           "borderRadius": 2,
           "height": 3,
           "marginHorizontal": 10,
           "width": 3,
+        },
+        Object {
+          "backgroundColor": "#B1AFB7",
         },
         undefined,
       ]
@@ -88,9 +94,11 @@ exports[`FeeLabel renders low fees correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "#000000",
           "fontFamily": "System",
           "fontWeight": "400",
+        },
+        Object {
+          "color": "#000000",
         },
         Array [
           undefined,
@@ -125,11 +133,13 @@ exports[`FeeLabel renders medium fees correctly 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#8A8A8F",
           "borderRadius": 2,
           "height": 3,
           "marginHorizontal": 10,
           "width": 3,
+        },
+        Object {
+          "backgroundColor": "#B1AFB7",
         },
         undefined,
       ]
@@ -139,9 +149,11 @@ exports[`FeeLabel renders medium fees correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "#000000",
           "fontFamily": "System",
           "fontWeight": "400",
+        },
+        Object {
+          "color": "#000000",
         },
         Array [
           undefined,

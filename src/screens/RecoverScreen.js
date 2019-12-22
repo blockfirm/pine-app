@@ -16,6 +16,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
+import { withTheme } from '../contexts/theme';
 import { reset as resetApp } from '../actions';
 import { reset as navigateWithReset } from '../actions/navigate';
 import { handle as handleError } from '../actions/error';
@@ -65,7 +66,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     fontSize: 20,
-    color: '#C7C7CC',
     paddingTop: 2
   },
   loader: {
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 @connect((state) => ({
   defaultPineAddressHostname: state.settings.defaultPineAddressHostname
 }))
-export default class RecoverScreen extends Component {
+class RecoverScreen extends Component {
   static navigationOptions = {
     header: null
   }
@@ -192,6 +192,7 @@ export default class RecoverScreen extends Component {
   }
 
   _renderBackups() {
+    const { theme } = this.props;
     const { backups, recovering } = this.state;
 
     return backups.map((backup, index) => {
@@ -202,7 +203,7 @@ export default class RecoverScreen extends Component {
             {backup.pineAddress}
           </StyledText>
 
-          { (recovering !== backup) ? <Icon name='ios-arrow-forward' style={styles.chevron} /> : null }
+          { (recovering !== backup) ? <Icon name='ios-arrow-forward' style={[styles.chevron, theme.tableArrow]} /> : null }
           { (recovering === backup) ? <ActivityIndicator color='gray' style={styles.loader} size='small' /> : null }
         </TouchableOpacity>
       );
@@ -214,7 +215,7 @@ export default class RecoverScreen extends Component {
 
     return (
       <BaseScreen headerTitle='Recover Account' style={styles.view}>
-        <StatusBar barStyle='dark-content' />
+        <StatusBar barStyle='default' />
 
         <ContentView style={styles.content}>
           <ScrollView
@@ -239,5 +240,8 @@ export default class RecoverScreen extends Component {
 RecoverScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
-  defaultPineAddressHostname: PropTypes.string
+  defaultPineAddressHostname: PropTypes.string,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(RecoverScreen);

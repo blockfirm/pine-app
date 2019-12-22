@@ -18,13 +18,15 @@ exports[`SettingsLink renders correctly 1`] = `
     style={
       Array [
         Object {
-          "borderBottomColor": "#C8C7CC",
           "borderBottomWidth": 0.5,
           "flex": 1,
           "height": 44,
           "justifyContent": "center",
           "marginLeft": 15,
           "paddingRight": 30,
+        },
+        Object {
+          "borderBottomColor": "#C8C8CC",
         },
         undefined,
         undefined,
@@ -36,9 +38,11 @@ exports[`SettingsLink renders correctly 1`] = `
       style={
         Array [
           Object {
-            "color": "#000000",
             "fontFamily": "System",
             "fontWeight": "400",
+          },
+          Object {
+            "color": "#000000",
           },
           Object {
             "fontSize": 17,
@@ -55,14 +59,15 @@ exports[`SettingsLink renders correctly 1`] = `
       style={
         Array [
           Object {
-            "color": "#000000",
             "fontFamily": "System",
             "fontWeight": "400",
+          },
+          Object {
+            "color": "#000000",
           },
           Array [
             Object {
               "backgroundColor": "transparent",
-              "color": "#8F8E94",
               "fontSize": 17,
               "fontWeight": "400",
               "lineHeight": 22,
@@ -70,6 +75,9 @@ exports[`SettingsLink renders correctly 1`] = `
               "right": 15,
               "textAlign": "right",
               "width": "60%",
+            },
+            Object {
+              "color": "#8E8E93",
             },
             Object {
               "right": 35,
@@ -83,13 +91,17 @@ exports[`SettingsLink renders correctly 1`] = `
     <IoniconIcon
       name="ios-arrow-forward"
       style={
-        Object {
-          "color": "#C7C7CC",
-          "fontSize": 20,
-          "paddingTop": 2,
-          "position": "absolute",
-          "right": 15,
-        }
+        Array [
+          Object {
+            "fontSize": 20,
+            "paddingTop": 2,
+            "position": "absolute",
+            "right": 15,
+          },
+          Object {
+            "color": "#C7C7CC",
+          },
+        ]
       }
     />
   </View>
@@ -114,13 +126,15 @@ exports[`SettingsLink renders correctly as the last item 1`] = `
     style={
       Array [
         Object {
-          "borderBottomColor": "#C8C7CC",
           "borderBottomWidth": 0.5,
           "flex": 1,
           "height": 44,
           "justifyContent": "center",
           "marginLeft": 15,
           "paddingRight": 30,
+        },
+        Object {
+          "borderBottomColor": "#C8C8CC",
         },
         undefined,
         Object {
@@ -134,9 +148,11 @@ exports[`SettingsLink renders correctly as the last item 1`] = `
       style={
         Array [
           Object {
-            "color": "#000000",
             "fontFamily": "System",
             "fontWeight": "400",
+          },
+          Object {
+            "color": "#000000",
           },
           Object {
             "fontSize": 17,
@@ -153,14 +169,15 @@ exports[`SettingsLink renders correctly as the last item 1`] = `
       style={
         Array [
           Object {
-            "color": "#000000",
             "fontFamily": "System",
             "fontWeight": "400",
+          },
+          Object {
+            "color": "#000000",
           },
           Array [
             Object {
               "backgroundColor": "transparent",
-              "color": "#8F8E94",
               "fontSize": 17,
               "fontWeight": "400",
               "lineHeight": 22,
@@ -168,6 +185,9 @@ exports[`SettingsLink renders correctly as the last item 1`] = `
               "right": 15,
               "textAlign": "right",
               "width": "60%",
+            },
+            Object {
+              "color": "#8E8E93",
             },
             Object {
               "right": 35,
@@ -181,13 +201,17 @@ exports[`SettingsLink renders correctly as the last item 1`] = `
     <IoniconIcon
       name="ios-arrow-forward"
       style={
-        Object {
-          "color": "#C7C7CC",
-          "fontSize": 20,
-          "paddingTop": 2,
-          "position": "absolute",
-          "right": 15,
-        }
+        Array [
+          Object {
+            "fontSize": 20,
+            "paddingTop": 2,
+            "position": "absolute",
+            "right": 15,
+          },
+          Object {
+            "color": "#C7C7CC",
+          },
+        ]
       }
     />
   </View>

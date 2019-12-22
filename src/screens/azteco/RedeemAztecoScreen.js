@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { sync as syncWallet } from '../../actions/bitcoin/wallet';
 import { addVendor, addVendorAssociatedAddress } from '../../actions/contacts';
 import { handle as handleError } from '../../actions/error';
-import { reset as navigateWithReset, setHomeScreenIndex } from '../../actions/navigate';
+import { setHomeScreenIndex } from '../../actions/navigate';
 import vendors from '../../vendors';
 import * as azteco from '../../vendors/azteco';
 import Paragraph from '../../components/Paragraph';
@@ -16,8 +16,7 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white'
+    alignItems: 'center'
   },
   loader: {
     height: 42
@@ -70,7 +69,7 @@ export default class RedeemAztecoScreen extends Component {
          * Wait a little before syncing so that the redemption
          * transaction has time to propagate the network.
          */
-         return new Promise(resolve => setTimeout(resolve, 2000));
+        return new Promise(resolve => setTimeout(resolve, 2000));
       })
       .catch(() => {
         const error = new Error(

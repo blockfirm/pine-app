@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import headerStyles from '../../styles/headerStyles';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsLink from '../../components/SettingsLink';
@@ -9,10 +10,10 @@ import BaseSettingsScreen from './BaseSettingsScreen';
 
 export default class SecurityAndPrivacySettingsScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Security and Privacy',
-    headerStyle: headerStyles.header,
-    headerTitleStyle: headerStyles.title,
-    headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />)
+    headerTransparent: true,
+    headerBackground: <SettingsHeaderBackground />,
+    headerTitle: <HeaderTitle title='Security and Privacy' />,
+    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
 
   _showBitcoinServiceScreen() {

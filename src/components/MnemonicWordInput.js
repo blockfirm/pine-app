@@ -3,11 +3,9 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import ReactNativeHaptic from 'react-native-haptic';
 
+import { withTheme } from '../contexts/theme';
 import StyledText from './StyledText';
 import StyledInput from './StyledInput';
-
-const SUCCESS_COLOR = '#4CD964';
-const FAILURE_COLOR = '#FF3B30';
 
 const windowDimensions = Dimensions.get('window');
 
@@ -22,7 +20,6 @@ const styles = StyleSheet.create({
     left: 7,
     fontSize: windowDimensions.height < 600 ? 11 : 13,
     fontWeight: 'bold',
-    color: '#DDDDDF',
     textAlign: 'right',
     width: 20
   },
@@ -39,7 +36,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class MnemonicWordInput extends Component {
+class MnemonicWordInput extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.isCorrect && !this.props.isCorrect) {
       ReactNativeHaptic.generate('selection');
@@ -56,19 +53,19 @@ export default class MnemonicWordInput extends Component {
   }
 
   render() {
-    const index = this.props.index;
+    const { index, theme } = this.props;
     const returnKeyType = index < 11 ? 'next' : 'done';
     const colorStyle = {};
     let borderColor = null;
 
     if (this.props.isCorrect === true) {
-      colorStyle.color = SUCCESS_COLOR;
-      borderColor = SUCCESS_COLOR;
+      colorStyle.color = theme.mnemonicWordInputSuccessColor;
+      borderColor = theme.mnemonicWordInputSuccessColor;
     }
 
     if (this.props.isIncorrect === true) {
-      colorStyle.color = FAILURE_COLOR;
-      borderColor = FAILURE_COLOR;
+      colorStyle.color = theme.mnemonicWordInputErrorColor;
+      borderColor = theme.mnemonicWordInputErrorColor;
     }
 
     return (
@@ -88,7 +85,7 @@ export default class MnemonicWordInput extends Component {
             onSubmitEditing={this.props.onSubmitEditing}
             secureTextEntry={true}
           />
-          <StyledText style={[styles.number, colorStyle]}>
+          <StyledText style={[styles.number, theme.mnemonicWordNumber, colorStyle]}>
             {index + 1}.
           </StyledText>
         </View>
@@ -104,5 +101,8 @@ MnemonicWordInput.propTypes = {
   autoTab: PropTypes.bool,
   disabled: PropTypes.bool,
   onChangeText: PropTypes.func.isRequired,
-  onSubmitEditing: PropTypes.func
+  onSubmitEditing: PropTypes.func,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(MnemonicWordInput);

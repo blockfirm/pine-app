@@ -23,11 +23,13 @@ exports[`Link renders correctly 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#FFD23F",
           "borderRadius": 25,
           "height": 50,
           "justifyContent": "center",
           "width": 670,
+        },
+        Object {
+          "backgroundColor": "#FFD23F",
         },
         Array [
           Object {
@@ -46,17 +48,21 @@ exports[`Link renders correctly 1`] = `
       style={
         Array [
           Object {
-            "color": "white",
             "fontFamily": "System",
             "fontSize": 16,
             "fontWeight": "600",
           },
+          Object {
+            "color": "#ffffff",
+          },
           Array [
             Object {
-              "color": "#007AFF",
               "fontFamily": "System",
               "fontSize": 16,
               "fontWeight": "600",
+            },
+            Object {
+              "color": "#007AFF",
             },
             undefined,
           ],

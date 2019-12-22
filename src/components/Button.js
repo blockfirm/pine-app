@@ -4,6 +4,7 @@ import { StyleSheet, TouchableOpacity, View, Dimensions, Text, ActivityIndicator
 import PropTypes from 'prop-types';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import ReactNativeHaptic from 'react-native-haptic';
+import { withTheme } from '../contexts/theme';
 
 const windowDimensions = Dimensions.get('window');
 const FULL_WIDTH = windowDimensions.width;
@@ -13,7 +14,6 @@ const PRESS_FREEZE_MS = 1000; // Don't allow another press until 1s after the pr
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#FFD23F',
     width: DEFAULT_WIDTH,
     height: 50,
     alignItems: 'center',
@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     bottom: ifIphoneX(-24, 0)
   },
   label: {
-    color: 'white',
     fontFamily: 'System',
     fontWeight: '600',
     fontSize: 16
@@ -39,7 +38,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30
   },
   disabled: {
-    backgroundColor: '#B1AFB7',
     opacity: 0.7
   },
   loader: {
@@ -48,7 +46,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class Button extends Component {
+class Button extends Component {
   constructor(props) {
     super(...arguments);
 
@@ -189,16 +187,19 @@ export default class Button extends Component {
   }
 
   render() {
+    const { label, labelStyle, theme } = this.props;
     const { disabled, loading } = this.state;
-    const loaderColor = this.props.loaderColor || '#FFFFFF';
+    const loaderColor = this.props.loaderColor || theme.buttonLoaderColor;
 
     const buttonStyles = [
       styles.button,
+      theme.button,
       this.props.style
     ];
 
     if (disabled) {
       buttonStyles.push(styles.disabled);
+      buttonStyles.push(theme.buttonDisabled);
       buttonStyles.push(this.props.disabledStyle);
     }
 
@@ -210,8 +211,8 @@ export default class Button extends Component {
       <TouchableOpacity disabled={disabled} activeOpacity={0.7} onPress={this._onPress.bind(this)}>
         <View style={buttonStyles}>
           { loading && <ActivityIndicator color={loaderColor} style={styles.loader} size='small' /> }
-          <Text style={[styles.label, this.props.labelStyle, { opacity: loading ? 0 : 1 }]}>
-            {this.props.label}
+          <Text style={[styles.label, theme.buttonLabel, labelStyle, { opacity: loading ? 0 : 1 }]}>
+            {label}
           </Text>
           { this._renderSubtitle() }
         </View>
@@ -234,5 +235,8 @@ Button.propTypes = {
   loaderHidingDelay: PropTypes.number,
   disableThrottling: PropTypes.bool,
   hapticFeedback: PropTypes.bool,
-  runAfterInteractions: PropTypes.bool
+  runAfterInteractions: PropTypes.bool,
+  theme: PropTypes.object
 };
+
+export default withTheme(Button);

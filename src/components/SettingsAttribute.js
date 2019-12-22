@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Switch } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { withTheme } from '../contexts/theme';
 import settingsStyles from '../styles/settingsStyles';
 import StyledText from './StyledText';
 
@@ -11,9 +12,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class SettingsAttribute extends Component {
+class SettingsAttribute extends Component {
   _renderValue() {
-    const value = this.props.value;
+    const { value, theme } = this.props;
 
     if (typeof value === 'boolean') {
       return (
@@ -24,15 +25,18 @@ export default class SettingsAttribute extends Component {
     }
 
     return (
-      <StyledText style={settingsStyles.value} numberOfLines={1}>{value}</StyledText>
+      <StyledText style={[settingsStyles.value, theme.settingsValue]} numberOfLines={1}>
+        {value}
+      </StyledText>
     );
   }
 
   render() {
-    const isLastItem = this.props.isLastItem;
+    const { isLastItem, theme } = this.props;
 
     const containerStyles = [
       settingsStyles.item,
+      theme.settingsItem,
       isLastItem ? { borderBottomWidth: 0 } : undefined
     ];
 
@@ -49,5 +53,8 @@ SettingsAttribute.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.any,
   onValueChange: PropTypes.func,
-  isLastItem: PropTypes.bool
+  isLastItem: PropTypes.bool,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(SettingsAttribute);

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import Paragraph from '../Paragraph';
 
-const illustration = require('../../images/illustrations/BitcoinWithWings.png');
+import { withTheme } from '../../contexts/theme';
+import Paragraph from '../Paragraph';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class EmptyConversation extends Component {
+class EmptyConversation extends Component {
   render() {
-    const { contact } = this.props;
+    const { contact, theme } = this.props;
     const displayName = contact.displayName || contact.username || contact.address;
 
     if (contact.isVendor) {
@@ -33,7 +33,7 @@ export default class EmptyConversation extends Component {
 
     return (
       <View style={styles.wrapper}>
-        <Image source={illustration} style={styles.illustration} />
+        <Image source={theme.illustrationBitcoinWithWings} style={styles.illustration} />
         <Paragraph style={styles.paragraph}>
           Send your first payment to {displayName}
         </Paragraph>
@@ -43,5 +43,8 @@ export default class EmptyConversation extends Component {
 }
 
 EmptyConversation.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(EmptyConversation);

@@ -4,14 +4,10 @@ import { StyleSheet, View, Image, TouchableOpacity, Animated } from 'react-nativ
 import PropTypes from 'prop-types';
 import AppleEasing from 'react-apple-easing';
 
+import { withTheme } from '../../contexts/theme';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import Avatar from '../Avatar';
 import MessageIndicator from '../indicators/MessageIndicator';
-
-const bubbleEndLeft = require('../../images/message/BubbleEndLeft.png');
-const bubbleEndRight = require('../../images/message/BubbleEndRight.png');
-const bubbleEndLeftError = require('../../images/message/BubbleEndLeftError.png');
-const bubbleEndRightError = require('../../images/message/BubbleEndRightError.png');
 
 const HEIGHT = 73;
 
@@ -37,15 +33,6 @@ const styles = StyleSheet.create({
     paddingVertical: 18,
     borderRadius: 15
   },
-  bubbleReceived: {
-    backgroundColor: '#F0F0F0'
-  },
-  bubbleSent: {
-    backgroundColor: '#FEC300'
-  },
-  bubbleError: {
-    backgroundColor: '#FF3B30'
-  },
   bubbleSentFirst: {
     borderBottomRightRadius: 5
   },
@@ -59,24 +46,13 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5
   },
   textReceived: {
-    fontSize: 17,
-    color: 'black'
+    fontSize: 17
   },
   textSent: {
-    fontSize: 17,
-    color: 'white'
-  },
-  textError: {
-    color: 'white'
+    fontSize: 17
   },
   smallText: {
     fontSize: 13
-  },
-  smallTextReceived: {
-    opacity: 0.75
-  },
-  smallTextSent: {
-    opacity: 0.9
   },
   avatar: {
     position: 'absolute',
@@ -101,7 +77,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class Message extends Component {
+class Message extends Component {
   constructor() {
     super(...arguments);
 
@@ -217,16 +193,16 @@ export default class Message extends Component {
   }
 
   _renderBubbleEnd() {
-    const { message, transaction, isLast } = this.props;
+    const { message, transaction, isLast, theme } = this.props;
     const style = message.from ? styles.bubbleEndLeft : styles.bubbleEndRight;
-    let image = message.from ? bubbleEndLeft : bubbleEndRight;
+    let image = message.from ? theme.bubbleEndLeft : theme.bubbleEndRight;
 
     if (!isLast) {
       return null;
     }
 
     if (message.error || (message.canceled && !transaction)) {
-      image = message.from ? bubbleEndLeftError : bubbleEndRightError;
+      image = message.from ? theme.bubbleEndLeftError : theme.bubbleEndRightError;
     }
 
     return (
@@ -249,7 +225,7 @@ export default class Message extends Component {
 
   // eslint-disable-next-line max-statements
   render() {
-    const { message, transaction, isFirst, isLast, onPress, animate } = this.props;
+    const { message, transaction, isFirst, isLast, onPress, animate, theme } = this.props;
     const wrapperStyle = [styles.wrapper];
     const bubbleStyle = [styles.bubble];
     const textStyle = [];
@@ -261,19 +237,21 @@ export default class Message extends Component {
 
     if (message.from) {
       wrapperStyle.push(styles.wrapperReceived);
-      bubbleStyle.push(styles.bubbleReceived);
+      bubbleStyle.push(theme.bubbleReceived);
       textStyle.push(styles.textReceived);
-      smallTextStyle.push(styles.smallTextReceived);
+      textStyle.push(theme.bubbleReceivedText);
+      smallTextStyle.push(theme.bubbleReceivedTextSmall);
     } else {
       wrapperStyle.push(styles.wrapperSent);
-      bubbleStyle.push(styles.bubbleSent);
+      bubbleStyle.push(theme.bubbleSent);
       textStyle.push(styles.textSent);
-      smallTextStyle.push(styles.smallTextSent);
+      textStyle.push(theme.bubbleSentText);
+      smallTextStyle.push(theme.bubbleSentTextSmall);
     }
 
     if (message.error || (message.canceled && !transaction)) {
-      bubbleStyle.push(styles.bubbleError);
-      textStyle.push(styles.textError);
+      bubbleStyle.push(theme.bubbleError);
+      textStyle.push(theme.bubbleErrorText);
     }
 
     if (isFirst && !isLast) {
@@ -309,5 +287,8 @@ Message.propTypes = {
   isFirst: PropTypes.bool,
   isLast: PropTypes.bool,
   onPress: PropTypes.func,
-  animate: PropTypes.bool
+  animate: PropTypes.bool,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(Message);

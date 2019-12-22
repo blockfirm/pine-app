@@ -3,7 +3,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import MnemonicScreen from '../../../src/screens/MnemonicScreen';
 
-jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
 jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContainer');
 jest.mock('../../../src/containers/MnemonicWordsContainer', () => 'MnemonicWordsContainer');
 

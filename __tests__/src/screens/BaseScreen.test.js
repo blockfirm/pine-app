@@ -3,7 +3,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import BaseScreen from '../../../src/screens/BaseScreen';
 
-jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
 jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContainer');
 
 describe('BaseScreen', () => {

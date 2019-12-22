@@ -3,10 +3,11 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
-import ToolbarButton from './ToolbarButton';
+import { withTheme } from '../../contexts/theme';
 import SendIcon from '../icons/toolbar/SendIcon';
 import MessagesIcon from '../icons/toolbar/MessagesIcon';
 import ReceiveIcon from '../icons/toolbar/ReceiveIcon';
+import ToolbarButton from './ToolbarButton';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const TOOLBAR_SMALL_WIDTH = 255;
@@ -32,7 +33,6 @@ const styles = StyleSheet.create({
     height: 5,
     position: 'absolute',
     bottom: ifIphoneX(24, 15),
-    backgroundColor: '#BEBEBE',
     borderRadius: 5
   },
   dotWhite: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class Toolbar extends Component {
+class Toolbar extends Component {
   _onPress(index) {
     this.props.onPress(index);
   }
@@ -125,14 +125,14 @@ export default class Toolbar extends Component {
   }
 
   _getDotStyle(positionStyle, dotPosition) {
-    const contentOffsetX = this.props.contentOffsetX;
+    const { contentOffsetX, theme } = this.props;
     const screenPosition = WINDOW_WIDTH - contentOffsetX;
 
     if (screenPosition > dotPosition + positionStyle.left + 5) {
       return styles.dotWhite;
     }
 
-    return null;
+    return theme.toolbarDot;
   }
 
   _renderDot(positionStyle) {
@@ -168,5 +168,8 @@ export default class Toolbar extends Component {
 
 Toolbar.propTypes = {
   onPress: PropTypes.func.isRequired,
-  contentOffsetX: PropTypes.number
+  contentOffsetX: PropTypes.number,
+  theme: PropTypes.object
 };
+
+export default withTheme(Toolbar);

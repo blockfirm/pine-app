@@ -3,7 +3,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import SplashScreen from '../../../src/screens/SplashScreen';
 
-jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
 jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContainer');
 
 const storeMock = {

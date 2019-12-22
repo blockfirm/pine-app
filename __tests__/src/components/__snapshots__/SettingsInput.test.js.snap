@@ -17,17 +17,19 @@ exports[`SettingsInput renders correctly 1`] = `
     clearButtonMode="always"
     editable={true}
     placeholder="f69225ae-ee9b-4e45-9688-4a74ae3b82e9"
-    placeholderTextColor="#8E8E93"
     rejectResponderTermination={true}
     returnKeyType="done"
-    selectionColor="#426BF2"
     style={
-      Object {
-        "color": "#000000",
-        "fontFamily": "System",
-        "fontSize": 17,
-        "fontWeight": "400",
-      }
+      Array [
+        Object {
+          "fontFamily": "System",
+          "fontSize": 17,
+          "fontWeight": "400",
+        },
+        Object {
+          "color": "#000000",
+        },
+      ]
     }
     underlineColorAndroid="transparent"
     value="5f2d5a31-66cc-438f-9136-085e1c8ceb2b"

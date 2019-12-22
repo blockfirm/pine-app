@@ -18,13 +18,15 @@ exports[`SettingsButton renders correctly 1`] = `
     style={
       Array [
         Object {
-          "borderBottomColor": "#C8C7CC",
           "borderBottomWidth": 0.5,
           "flex": 1,
           "height": 44,
           "justifyContent": "center",
           "marginLeft": 15,
           "paddingRight": 30,
+        },
+        Object {
+          "borderBottomColor": "#C8C8CC",
         },
         undefined,
         undefined,
@@ -35,9 +37,11 @@ exports[`SettingsButton renders correctly 1`] = `
       style={
         Array [
           Object {
-            "color": "#000000",
             "fontFamily": "System",
             "fontWeight": "400",
+          },
+          Object {
+            "color": "#000000",
           },
           Array [
             Object {
@@ -79,13 +83,15 @@ exports[`SettingsButton renders correctly as the last item 1`] = `
     style={
       Array [
         Object {
-          "borderBottomColor": "#C8C7CC",
           "borderBottomWidth": 0.5,
           "flex": 1,
           "height": 44,
           "justifyContent": "center",
           "marginLeft": 15,
           "paddingRight": 30,
+        },
+        Object {
+          "borderBottomColor": "#C8C8CC",
         },
         Object {
           "borderBottomWidth": 0,
@@ -98,9 +104,11 @@ exports[`SettingsButton renders correctly as the last item 1`] = `
       style={
         Array [
           Object {
-            "color": "#000000",
             "fontFamily": "System",
             "fontWeight": "400",
+          },
+          Object {
+            "color": "#000000",
           },
           Array [
             Object {
@@ -142,13 +150,15 @@ exports[`SettingsButton renders correctly while loading 1`] = `
     style={
       Array [
         Object {
-          "borderBottomColor": "#C8C7CC",
           "borderBottomWidth": 0.5,
           "flex": 1,
           "height": 44,
           "justifyContent": "center",
           "marginLeft": 15,
           "paddingRight": 30,
+        },
+        Object {
+          "borderBottomColor": "#C8C8CC",
         },
         undefined,
         undefined,
@@ -159,9 +169,11 @@ exports[`SettingsButton renders correctly while loading 1`] = `
       style={
         Array [
           Object {
-            "color": "#000000",
             "fontFamily": "System",
             "fontWeight": "400",
+          },
+          Object {
+            "color": "#000000",
           },
           Array [
             Object {

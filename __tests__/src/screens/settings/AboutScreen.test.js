@@ -3,8 +3,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import AboutScreen from '../../../../src/screens/settings/AboutScreen';
 
-jest.mock('../../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
-
 const storeMock = {
   getState: jest.fn(() => ({})),
   dispatch: jest.fn()

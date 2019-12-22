@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
-
-const image = require('../../images/icons/AddContact.png');
+import { withTheme } from '../../contexts/theme';
 
 const styles = StyleSheet.create({
   icon: {
@@ -11,16 +10,19 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class AddContactIcon extends Component {
+class AddContactIcon extends Component {
   render() {
     return (
       <View style={this.props.style}>
-        <Image source={image} style={styles.icon} />
+        <Image source={this.props.theme.addContactIcon} style={styles.icon} />
       </View>
     );
   }
 }
 
 AddContactIcon.propTypes = {
-  style: PropTypes.any
+  style: PropTypes.any,
+  theme: PropTypes.object
 };
+
+export default withTheme(AddContactIcon);

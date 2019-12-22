@@ -1,164 +1,156 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App renders correctly 1`] = `
-<View
-  style={
-    Object {
-      "alignSelf": "stretch",
-      "flex": 1,
-    }
-  }
->
+<AppearanceProvider>
   <View
-    onLayout={[Function]}
     style={
       Object {
+        "alignSelf": "stretch",
         "flex": 1,
       }
     }
   >
     <View
-      onMoveShouldSetResponder={[Function]}
-      onMoveShouldSetResponderCapture={[Function]}
-      onResponderEnd={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderReject={[Function]}
-      onResponderRelease={[Function]}
-      onResponderStart={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      onStartShouldSetResponderCapture={[Function]}
+      onLayout={[Function]}
       style={
-        Array [
-          Object {
-            "flex": 1,
-            "flexDirection": "column-reverse",
-            "overflow": "hidden",
-          },
-          Object {
-            "backgroundColor": "#000",
-          },
-        ]
+        Object {
+          "flex": 1,
+        }
       }
     >
       <View
+        onMoveShouldSetResponder={[Function]}
+        onMoveShouldSetResponderCapture={[Function]}
+        onResponderEnd={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderReject={[Function]}
+        onResponderRelease={[Function]}
+        onResponderStart={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        onStartShouldSetResponderCapture={[Function]}
         style={
-          Object {
-            "flex": 1,
-          }
+          Array [
+            Object {
+              "flex": 1,
+              "flexDirection": "column-reverse",
+              "overflow": "hidden",
+            },
+            Object {
+              "backgroundColor": "#000",
+            },
+          ]
         }
       >
         <View
-          accessibilityElementsHidden={false}
-          pointerEvents="auto"
           style={
             Object {
-              "backgroundColor": "#E9E9EF",
-              "bottom": 0,
-              "left": 0,
-              "opacity": 1,
-              "paddingTop": 0,
-              "position": "absolute",
-              "right": 0,
-              "shadowColor": "black",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 0,
-              },
-              "shadowOpacity": 0.2,
-              "shadowRadius": 5,
-              "top": 0,
-              "transform": Array [
-                Object {
-                  "translateX": 0,
-                },
-                Object {
-                  "translateY": 0,
-                },
-              ],
+              "flex": 1,
             }
           }
         >
           <View
-            onLayout={[Function]}
+            accessibilityElementsHidden={false}
+            pointerEvents="auto"
             style={
               Object {
-                "flex": 1,
+                "backgroundColor": "#E9E9EF",
+                "bottom": 0,
+                "left": 0,
+                "opacity": 1,
+                "paddingTop": 0,
+                "position": "absolute",
+                "right": 0,
+                "shadowColor": "black",
+                "shadowOffset": Object {
+                  "height": 0,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.2,
+                "shadowRadius": 5,
+                "top": 0,
+                "transform": Array [
+                  Object {
+                    "translateX": 0,
+                  },
+                  Object {
+                    "translateY": 0,
+                  },
+                ],
               }
             }
           >
             <View
-              onMoveShouldSetResponder={[Function]}
-              onMoveShouldSetResponderCapture={[Function]}
-              onResponderEnd={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderReject={[Function]}
-              onResponderRelease={[Function]}
-              onResponderStart={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onStartShouldSetResponderCapture={[Function]}
+              onLayout={[Function]}
               style={
-                Array [
-                  Object {
-                    "flex": 1,
-                    "flexDirection": "column-reverse",
-                    "overflow": "hidden",
-                  },
-                  Object {
-                    "backgroundColor": "#000",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                }
               }
             >
               <View
+                onMoveShouldSetResponder={[Function]}
+                onMoveShouldSetResponderCapture={[Function]}
+                onResponderEnd={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderReject={[Function]}
+                onResponderRelease={[Function]}
+                onResponderStart={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                onStartShouldSetResponderCapture={[Function]}
                 style={
-                  Object {
-                    "flex": 1,
-                  }
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column-reverse",
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "backgroundColor": "#000",
+                    },
+                  ]
                 }
               >
                 <View
-                  accessibilityElementsHidden={false}
-                  pointerEvents="auto"
                   style={
                     Object {
-                      "backgroundColor": "#E9E9EF",
-                      "bottom": 0,
-                      "left": 0,
-                      "opacity": 1,
-                      "paddingTop": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "shadowColor": "black",
-                      "shadowOffset": Object {
-                        "height": 0,
-                        "width": 0,
-                      },
-                      "shadowOpacity": 0.2,
-                      "shadowRadius": 5,
-                      "top": 0,
-                      "transform": Array [
-                        Object {
-                          "translateX": 0,
-                        },
-                        Object {
-                          "translateY": 0,
-                        },
-                      ],
+                      "flex": 1,
                     }
                   }
                 >
                   <View
+                    accessibilityElementsHidden={false}
+                    pointerEvents="auto"
                     style={
                       Object {
-                        "flex": 1,
-                        "flexDirection": "column-reverse",
-                        "overflow": "hidden",
+                        "backgroundColor": "#E9E9EF",
+                        "bottom": 0,
+                        "left": 0,
+                        "opacity": 1,
+                        "paddingTop": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "shadowColor": "black",
+                        "shadowOffset": Object {
+                          "height": 0,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.2,
+                        "shadowRadius": 5,
+                        "top": 0,
+                        "transform": Array [
+                          Object {
+                            "translateX": 0,
+                          },
+                          Object {
+                            "translateY": 0,
+                          },
+                        ],
                       }
                     }
                   >
@@ -166,105 +158,462 @@ exports[`App renders correctly 1`] = `
                       style={
                         Object {
                           "flex": 1,
+                          "flexDirection": "column-reverse",
+                          "overflow": "hidden",
                         }
                       }
                     >
                       <View
                         style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "#ffffff",
-                              "flex": 1,
-                              "justifyContent": "center",
-                              "padding": 40,
-                            },
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "#FFD200",
-                              "flex": 1,
-                              "justifyContent": "center",
-                            },
-                          ]
+                          Object {
+                            "flex": 1,
+                          }
                         }
                       >
-                        <View
-                          style={
-                            Object {
-                              "alignSelf": "stretch",
-                              "backgroundColor": "transparent",
-                              "height": 44,
-                              "justifyContent": "center",
-                              "left": 0,
-                              "marginTop": 20,
-                              "position": "absolute",
-                              "right": 0,
-                              "top": 0,
-                            }
-                          }
-                        >
-                          <Text
-                            style={
-                              Array [
-                                Object {
-                                  "color": "black",
-                                  "fontFamily": "System",
-                                  "fontSize": 17,
-                                  "fontWeight": "600",
-                                },
-                                Object {
-                                  "left": 40,
-                                  "position": "absolute",
-                                  "right": 40,
-                                  "textAlign": "center",
-                                },
-                              ]
-                            }
-                          />
-                        </View>
-                        <Image
-                          source={
-                            Object {
-                              "uri": "LaunchScreenLogo",
-                            }
-                          }
-                          style={
-                            Object {
-                              "height": 57,
-                              "width": 128,
-                            }
-                          }
-                        />
                         <View
                           style={
                             Array [
                               Object {
                                 "alignItems": "center",
-                                "backgroundColor": "#ffffff",
-                                "bottom": 0,
-                                "left": 40,
-                                "paddingBottom": 30,
-                                "position": "absolute",
-                                "right": 40,
+                                "flex": 1,
+                                "justifyContent": "center",
+                                "padding": 40,
                               },
-                              null,
                               Object {
-                                "backgroundColor": "transparent",
+                                "backgroundColor": "#ffffff",
+                              },
+                              Object {
+                                "alignItems": "center",
+                                "backgroundColor": "#FFD200",
+                                "flex": 1,
+                                "justifyContent": "center",
                               },
                             ]
                           }
+                          theme={
+                            Object {
+                              "addContactIcon": Object {
+                                "testUri": "../../../src/images/icons/AddContact.png",
+                              },
+                              "backIcon": Object {
+                                "testUri": "../../../src/images/icons/Back.png",
+                              },
+                              "background": Object {
+                                "backgroundColor": "#ffffff",
+                              },
+                              "bigInput": Object {
+                                "color": "#000000",
+                              },
+                              "bigInputPlaceholderColor": "#C3C3C3",
+                              "bigInputSelectionColor": "#FFC431",
+                              "bubbleEndLeft": Object {
+                                "testUri": "../../../src/images/message/BubbleEndLeft.png",
+                              },
+                              "bubbleEndLeftError": Object {
+                                "testUri": "../../../src/images/message/BubbleEndLeftError.png",
+                              },
+                              "bubbleEndRight": Object {
+                                "testUri": "../../../src/images/message/BubbleEndRight.png",
+                              },
+                              "bubbleEndRightError": Object {
+                                "testUri": "../../../src/images/message/BubbleEndRightError.png",
+                              },
+                              "bubbleError": Object {
+                                "backgroundColor": "#FF3B30",
+                              },
+                              "bubbleErrorText": Object {
+                                "color": "#ffffff",
+                              },
+                              "bubbleReceived": Object {
+                                "backgroundColor": "#F0F0F0",
+                              },
+                              "bubbleReceivedText": Object {
+                                "color": "#000000",
+                              },
+                              "bubbleReceivedTextSmall": Object {
+                                "opacity": 0.75,
+                              },
+                              "bubbleSent": Object {
+                                "backgroundColor": "#FEC300",
+                              },
+                              "bubbleSentText": Object {
+                                "color": "#ffffff",
+                              },
+                              "bubbleSentTextSmall": Object {
+                                "opacity": 0.9,
+                              },
+                              "bulletPoint": Object {
+                                "backgroundColor": "#B1AFB7",
+                              },
+                              "button": Object {
+                                "backgroundColor": "#FFD23F",
+                              },
+                              "buttonDisabled": Object {
+                                "backgroundColor": "#B1AFB7",
+                              },
+                              "buttonLabel": Object {
+                                "color": "#ffffff",
+                              },
+                              "buttonLoaderColor": "#ffffff",
+                              "confirmTransactionDetail": Object {
+                                "borderColor": "#ECECEC",
+                              },
+                              "confirmTransactionErrorText": Object {
+                                "color": "#FF3B30",
+                              },
+                              "confirmTransactionHelpText": Object {
+                                "color": "#8E8E93",
+                              },
+                              "confirmTransactionLabel": Object {
+                                "color": "#8E8E93",
+                              },
+                              "confirmTransactionValue": Object {
+                                "color": "#000000",
+                              },
+                              "confirmTransactionView": Object {
+                                "backgroundColor": "#FAFAFA",
+                                "borderTopColor": "#F0F1F4",
+                              },
+                              "destructiveLabel": Object {
+                                "color": "#FF3B30",
+                              },
+                              "errorMessage": Object {
+                                "backgroundColor": "#FF3B30",
+                              },
+                              "errorText": Object {
+                                "color": "#FF3B30",
+                              },
+                              "feeLabelHighColor": "#FF3B30",
+                              "feeLabelMediumColor": "#FF9500",
+                              "header": Object {
+                                "backgroundColor": "#ffffff",
+                              },
+                              "headerButtonDisabled": Object {
+                                "color": "#E2E2E2",
+                              },
+                              "headerButtonPrimary": Object {
+                                "color": "#007AFF",
+                              },
+                              "headerSubtitle": Object {
+                                "color": "#B1AFB7",
+                              },
+                              "headerTitle": Object {
+                                "color": "#000000",
+                              },
+                              "homeGradientColors": Array [
+                                "rgba(255, 255, 255, 0.0)",
+                                "rgba(255, 255, 255, 1.0)",
+                              ],
+                              "illustrationBitcoinWithWings": Object {
+                                "testUri": "../../../src/images/illustrations/BitcoinWithWings.png",
+                              },
+                              "illustrationNoContacts": Object {
+                                "testUri": "../../../src/images/illustrations/EmptyListAvatar.png",
+                              },
+                              "illustrationNotification": Object {
+                                "testUri": "../../../src/images/illustrations/Notification.png",
+                              },
+                              "input": Object {
+                                "backgroundColor": "#F6F6F6",
+                                "borderColor": "#D8D8DB",
+                              },
+                              "inputBar": Object {
+                                "backgroundColor": "#F3F3F5",
+                              },
+                              "inputBarDisabledText": Object {
+                                "color": "#999999",
+                              },
+                              "inputBarErrorText": Object {
+                                "color": "#FF3B30",
+                              },
+                              "inputBarPlaceholderColor": "#999999",
+                              "inputBarSelectionColor": "#FFC431",
+                              "inputBarText": Object {
+                                "color": "#000000",
+                              },
+                              "inputCancelButton": Object {
+                                "backgroundColor": "#8A8A8F",
+                              },
+                              "inputDisabledButton": Object {
+                                "backgroundColor": "#D8D8DB",
+                              },
+                              "inputDisabledOverlay": Object {
+                                "backgroundColor": "#ffffff",
+                              },
+                              "inputFocus": Object {
+                                "borderColor": "#007AFF",
+                              },
+                              "inputSendButton": Object {
+                                "backgroundColor": "#FFD23F",
+                              },
+                              "label": Object {
+                                "color": "#B1AFB7",
+                              },
+                              "link": Object {
+                                "color": "#007AFF",
+                              },
+                              "mnemonicWord": Object {
+                                "color": "#999999",
+                              },
+                              "mnemonicWordInputErrorColor": "#FF3B30",
+                              "mnemonicWordInputSuccessColor": "#4CD964",
+                              "mnemonicWordNumber": Object {
+                                "color": "#999999",
+                              },
+                              "mnemonicWordWrapper": Object {
+                                "backgroundColor": "#F6F6F6",
+                                "borderColor": "#D8D8DB",
+                              },
+                              "name": "light",
+                              "offlineNoticeErrorColor": "#FF3B30",
+                              "offlineNoticeWarningColor": "#FF9500",
+                              "overlayCamera": Object {
+                                "backgroundColor": "#000000",
+                              },
+                              "overlayHome": Object {
+                                "backgroundColor": "#FEFEFE",
+                              },
+                              "overlayReceive": Object {
+                                "backgroundColor": "#FEFEFE",
+                                "borderColor": "gray",
+                              },
+                              "palette": Object {
+                                "background": "#ffffff",
+                                "background2": "#EFEFF3",
+                                "blue": "#007AFF",
+                                "foreground": "#000000",
+                                "gray1": "#B1AFB7",
+                                "gray10": "#C3C3C3",
+                                "gray11": "#E2E2E2",
+                                "gray12": "#A7A7AB",
+                                "gray13": "#C8C8CC",
+                                "gray14": "#C7C7CC",
+                                "gray2": "#8A8A8F",
+                                "gray3": "#BEBEBE",
+                                "gray4": "#D8D8DB",
+                                "gray5": "#999999",
+                                "gray6": "#F0F1F4",
+                                "gray7": "#ECECEC",
+                                "gray8": "#8E8E93",
+                                "gray9": "#9B9B9B",
+                                "green": "#4CD964",
+                                "middleground1": "#F6F6F6",
+                                "middleground2": "#F3F3F5",
+                                "middleground3": "#F0F0F0",
+                                "middleground4": "#FAFAFA",
+                                "middleground5": "#F2F2F6",
+                                "orange": "#FF9500",
+                                "orange2": "#FF8D36",
+                                "overlay": "#FEFEFE",
+                                "red": "#FF3B30",
+                                "yellow1": "#FFD23F",
+                                "yellow2": "#FFC431",
+                                "yellow3": "#FEC300",
+                              },
+                              "paragraph": Object {
+                                "color": "#B1AFB7",
+                              },
+                              "qrAvatar": Object {
+                                "borderColor": "#ffffff",
+                              },
+                              "qrBackground": "#ffffff",
+                              "qrForeground": "#000000",
+                              "qrWrapper": Object {
+                                "backgroundColor": "#ffffff",
+                                "shadowColor": "#000000",
+                              },
+                              "revealMnemonic": Object {
+                                "color": "#007AFF",
+                              },
+                              "sectionHeader": Object {
+                                "backgroundColor": "#F6F6F6",
+                              },
+                              "sectionHeaderText": Object {
+                                "color": "#8A8A8F",
+                              },
+                              "settingsArrow": Object {
+                                "color": "#C7C7CC",
+                              },
+                              "settingsBackground": Object {
+                                "backgroundColor": "#EFEFF3",
+                              },
+                              "settingsButtonDisabled": Object {
+                                "color": "#8A8A8F",
+                              },
+                              "settingsButtonPrimary": Object {
+                                "color": "#007AFF",
+                              },
+                              "settingsCheckmark": Object {
+                                "color": "#007AFF",
+                              },
+                              "settingsDescription": Object {
+                                "color": "#8A8A8F",
+                              },
+                              "settingsGreenCheckmark": Object {
+                                "color": "#4CD964",
+                              },
+                              "settingsGroup": Object {
+                                "backgroundColor": "#ffffff",
+                                "borderBottomColor": "#C8C8CC",
+                                "borderTopColor": "#C8C8CC",
+                              },
+                              "settingsHeader": Object {
+                                "backgroundColor": "#ffffff",
+                                "borderBottomColor": "#A7A7AB",
+                              },
+                              "settingsIcon": Object {
+                                "testUri": "../../../src/images/icons/Settings.png",
+                              },
+                              "settingsInput": Object {
+                                "color": "#000000",
+                              },
+                              "settingsItem": Object {
+                                "borderBottomColor": "#C8C8CC",
+                              },
+                              "settingsTitle": Object {
+                                "color": "#8A8A8F",
+                              },
+                              "settingsUnderlayColor": "#FAFAFA",
+                              "settingsValue": Object {
+                                "color": "#8E8E93",
+                              },
+                              "shareIcon": Object {
+                                "testUri": "../../../src/images/icons/Share.png",
+                              },
+                              "stackedBarChart": Object {
+                                "backgroundColor": "#F2F2F6",
+                              },
+                              "stackedBarChartStack": Object {
+                                "borderLeftColor": "#ffffff",
+                              },
+                              "statusErrorColor": "#FF3B30",
+                              "statusSuccessColor": "#4CD964",
+                              "statusWarningColor": "#FF8D36",
+                              "subtitle": Object {
+                                "color": "#B1AFB7",
+                              },
+                              "subtitleUnread": Object {
+                                "color": "#000000",
+                              },
+                              "tableArrow": Object {
+                                "color": "#9B9B9B",
+                              },
+                              "tableBorder": Object {
+                                "borderColor": "#ECECEC",
+                              },
+                              "tableLabel": Object {
+                                "color": "#8E8E93",
+                              },
+                              "text": Object {
+                                "color": "#000000",
+                              },
+                              "title": Object {
+                                "color": "#000000",
+                              },
+                              "toolbarDot": Object {
+                                "backgroundColor": "#BEBEBE",
+                              },
+                              "toolbarMessagesIcon": Object {
+                                "testUri": "../../../src/images/icons/toolbar/Messages.png",
+                              },
+                              "toolbarReceiveIcon": Object {
+                                "testUri": "../../../src/images/icons/toolbar/Receive.png",
+                              },
+                              "toolbarSendIcon": Object {
+                                "testUri": "../../../src/images/icons/toolbar/Send.png",
+                              },
+                              "unitPicker": Object {
+                                "color": "#999999",
+                              },
+                              "walletBalancePendingColor": "#FF9500",
+                              "walletBalanceReservedColor": "#C7C7CC",
+                              "walletBalanceSpendableColor": "#4CD964",
+                            }
+                          }
                         >
-                          <ActivityIndicator
-                            animating={true}
-                            color="#FFFFFF"
-                            hidesWhenStopped={true}
-                            size="small"
+                          <View
                             style={
                               Object {
-                                "height": 42,
+                                "alignSelf": "stretch",
+                                "backgroundColor": "transparent",
+                                "height": 44,
+                                "justifyContent": "center",
+                                "left": 0,
+                                "marginTop": 20,
+                                "position": "absolute",
+                                "right": 0,
+                                "top": 0,
+                              }
+                            }
+                          >
+                            <Text
+                              style={
+                                Array [
+                                  Object {
+                                    "fontFamily": "System",
+                                    "fontSize": 17,
+                                    "fontWeight": "600",
+                                  },
+                                  Object {
+                                    "color": "#000000",
+                                  },
+                                  Object {
+                                    "left": 40,
+                                    "position": "absolute",
+                                    "right": 40,
+                                    "textAlign": "center",
+                                  },
+                                ]
+                              }
+                            />
+                          </View>
+                          <Image
+                            source={
+                              Object {
+                                "uri": "LaunchScreenLogo",
+                              }
+                            }
+                            style={
+                              Object {
+                                "height": 57,
+                                "width": 128,
                               }
                             }
                           />
+                          <View
+                            style={
+                              Array [
+                                Object {
+                                  "alignItems": "center",
+                                  "backgroundColor": "transparent",
+                                  "bottom": 0,
+                                  "left": 40,
+                                  "paddingBottom": 30,
+                                  "position": "absolute",
+                                  "right": 40,
+                                },
+                                Object {
+                                  "backgroundColor": "#ffffff",
+                                },
+                                null,
+                                Object {
+                                  "backgroundColor": "transparent",
+                                },
+                              ]
+                            }
+                          >
+                            <ActivityIndicator
+                              animating={true}
+                              color="#FFFFFF"
+                              hidesWhenStopped={true}
+                              size="small"
+                              style={
+                                Object {
+                                  "height": 42,
+                                }
+                              }
+                            />
+                          </View>
                         </View>
                       </View>
                     </View>
@@ -277,187 +626,5 @@ exports[`App renders correctly 1`] = `
       </View>
     </View>
   </View>
-  <View
-    pointerEvents="none"
-    style={
-      Object {
-        "alignItems": "center",
-        "bottom": 0,
-        "flex": 1,
-        "justifyContent": "center",
-        "left": 0,
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
-        "zIndex": 2000,
-      }
-    }
-  >
-    <View
-      blurAmount={5}
-      blurType="dark"
-      pointerEvents="none"
-      style={
-        Array [
-          Object {
-            "bottom": 0,
-            "left": 0,
-            "opacity": 1,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          },
-          Object {
-            "opacity": 0,
-          },
-        ]
-      }
-    />
-    <View
-      style={
-        Array [
-          Object {
-            "backgroundColor": "#ffffff",
-            "borderRadius": 12,
-            "marginTop": 0,
-            "shadowColor": "#000000",
-            "shadowOffset": Object {
-              "height": 0,
-              "width": 0,
-            },
-            "shadowOpacity": 0.3,
-            "shadowRadius": 12,
-            "width": 710,
-          },
-          Object {
-            "marginTop": -500,
-            "opacity": 0,
-          },
-        ]
-      }
-    >
-      <View
-        style={
-          Object {
-            "backgroundColor": "#FFD6D6",
-            "borderTopLeftRadius": 12,
-            "borderTopRightRadius": 12,
-            "padding": 15,
-            "paddingTop": 17,
-          }
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#000000",
-                "fontFamily": "System",
-                "fontWeight": "400",
-              },
-              Object {
-                "color": "#FF5A59",
-                "fontSize": 16,
-                "fontWeight": "600",
-                "textAlign": "center",
-              },
-            ]
-          }
-        >
-          <IoniconIcon
-            name="ios-alert"
-            style={
-              Object {
-                "fontSize": 28,
-              }
-            }
-          />
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "padding": 25,
-            "paddingLeft": 30,
-            "paddingRight": 30,
-          }
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#000000",
-                "fontFamily": "System",
-                "fontWeight": "400",
-              },
-              Array [
-                Object {
-                  "color": "#B1AFB7",
-                  "fontSize": 15,
-                  "fontWeight": "400",
-                  "letterSpacing": -0.24,
-                  "lineHeight": 21,
-                  "marginBottom": 20,
-                },
-                Object {
-                  "marginBottom": 0,
-                },
-              ],
-            ]
-          }
-        >
-          
-        </Text>
-      </View>
-      <View>
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "borderBottomLeftRadius": 12,
-              "borderBottomRightRadius": 12,
-              "borderColor": "#fbfbfb",
-              "borderTopWidth": 1,
-              "padding": 15,
-            }
-          }
-        >
-          <Text
-            style={null}
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#000000",
-                    "fontFamily": "System",
-                    "fontWeight": "400",
-                  },
-                  Object {
-                    "color": "#322A51",
-                    "fontWeight": "600",
-                    "letterSpacing": 1,
-                  },
-                ]
-              }
-            >
-              OK
-            </Text>
-          </Text>
-        </View>
-      </View>
-    </View>
-  </View>
-</View>
+</AppearanceProvider>
 `;

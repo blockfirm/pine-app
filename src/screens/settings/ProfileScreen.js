@@ -1,16 +1,19 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import { ActionSheetIOS, Alert, StyleSheet, View, Linking, InteractionManager } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import iCloudAccountStatus from 'react-native-icloud-account-status';
 
+import { withTheme } from '../../contexts/theme';
 import { reset as navigateWithReset } from '../../actions/navigate';
 import * as keyActions from '../../actions/keys';
 import * as settingsActions from '../../actions/settings';
 import { handle as handleError } from '../../actions/error';
 import { avatar } from '../../clients/paymentServer/user';
 import getMnemonicByKey from '../../crypto/getMnemonicByKey';
-import headerStyles from '../../styles/headerStyles';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
 import BackButton from '../../components/BackButton';
 import SettingsTitle from '../../components/SettingsTitle';
 import SettingsGroup from '../../components/SettingsGroup';
@@ -37,8 +40,7 @@ const styles = StyleSheet.create({
   },
   address: {
     fontSize: 14,
-    textAlign: 'center',
-    color: '#8A8A8F'
+    textAlign: 'center'
   },
   signOutButtonContainer: {
     paddingRight: 0,
@@ -59,12 +61,12 @@ const styles = StyleSheet.create({
   hasCreatedBackup: state.settings.user.hasCreatedBackup,
   balance: state.bitcoin.wallet.balance
 }))
-export default class ProfileScreen extends Component {
+class ProfileScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Profile',
-    headerStyle: headerStyles.header,
-    headerTitleStyle: headerStyles.title,
-    headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />)
+    headerTransparent: true,
+    headerBackground: <SettingsHeaderBackground />,
+    headerTitle: <HeaderTitle title='Profile' />,
+    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
 
   state = {
@@ -252,7 +254,7 @@ export default class ProfileScreen extends Component {
   }
 
   render() {
-    const { userProfile } = this.props;
+    const { userProfile, theme } = this.props;
     const { address, displayName } = userProfile;
     const avatarChecksum = userProfile.avatar ? userProfile.avatar.checksum : null;
 
@@ -266,8 +268,14 @@ export default class ProfileScreen extends Component {
           />
           <View>
             <StyledText style={styles.displayName} numberOfLines={1}>{displayName}</StyledText>
-            <CopyText copyText={address} underlayColor='#EFEFF3' tooltipArrowDirection='up'>
-              <StyledText style={styles.address} numberOfLines={1}>{address}</StyledText>
+            <CopyText
+              copyText={address}
+              underlayColor={theme.settingsBackground.backgroundColor}
+              tooltipArrowDirection='up'
+            >
+              <StyledText style={[styles.address, theme.settingsTitle]} numberOfLines={1}>
+                {address}
+              </StyledText>
             </CopyText>
           </View>
         </View>
@@ -309,5 +317,8 @@ ProfileScreen.propTypes = {
   balance: PropTypes.number,
   screenProps: PropTypes.object,
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(ProfileScreen);

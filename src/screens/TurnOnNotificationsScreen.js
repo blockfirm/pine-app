@@ -4,6 +4,7 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { withTheme } from '../contexts/theme';
 import { handle as handleError } from '../actions/error';
 import { reset as navigateWithReset } from '../actions/navigate';
 import { setPermissions } from '../actions/notifications/setPermissions';
@@ -12,14 +13,11 @@ import Button from '../components/Button';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
-const notificationImage = require('../images/illustrations/Notification.png');
-
 const styles = StyleSheet.create({
   view: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white'
+    alignItems: 'center'
   },
   paragraph: {
     textAlign: 'center',
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
 });
 
 @connect()
-export default class TurnOnNotificationsScreen extends Component {
+class TurnOnNotificationsScreen extends Component {
   static navigationOptions = {
     header: null
   }
@@ -90,13 +88,15 @@ export default class TurnOnNotificationsScreen extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+
     if (this.state.loading) {
       return this._renderLoader();
     }
 
     return (
       <BaseScreen style={styles.view} headerTitle='Turn on Notifications'>
-        <Image source={notificationImage} style={styles.notificationImage} />
+        <Image source={theme.illustrationNotification} style={styles.notificationImage} />
 
         <Paragraph style={styles.paragraph}>
           Pine uses notifications to notify you about contact requests and incoming payments.
@@ -121,5 +121,8 @@ export default class TurnOnNotificationsScreen extends Component {
 
 TurnOnNotificationsScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(TurnOnNotificationsScreen);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
+import { withTheme } from '../contexts/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,21 +13,20 @@ const styles = StyleSheet.create({
   input: {
     fontFamily: 'System',
     fontWeight: '400',
-    fontSize: 17,
-    color: '#000000'
+    fontSize: 17
   }
 });
 
-export default class SettingsInput extends Component {
+class SettingsInput extends Component {
   render() {
+    const { theme } = this.props;
+
     return (
       <View style={styles.container}>
         <TextInput
-          style={styles.input}
+          style={[styles.input, theme.settingsInput]}
           value={this.props.value}
           placeholder={this.props.placeholder}
-          placeholderTextColor='#8E8E93'
-          selectionColor='#426BF2'
           clearButtonMode='always'
           autoFocus={true}
           keyboardType={this.props.keyboardType}
@@ -48,5 +48,8 @@ SettingsInput.propTypes = {
   onChangeText: PropTypes.func,
   onSubmitEditing: PropTypes.func,
   maxLength: PropTypes.number,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(SettingsInput);

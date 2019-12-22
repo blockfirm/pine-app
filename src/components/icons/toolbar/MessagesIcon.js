@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import { withTheme } from '../../../contexts/theme';
 
-const IMAGE_DEFAULT = require('../../../images/icons/toolbar/Messages.png');
 const IMAGE_WHITE = require('../../../images/icons/toolbar/MessagesWhite.png');
 
 const styles = StyleSheet.create({
@@ -12,9 +12,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class MessagesIcon extends Component {
+class MessagesIcon extends Component {
   render() {
-    const image = this.props.white ? IMAGE_WHITE : IMAGE_DEFAULT;
+    const { white, theme } = this.props;
+    const image = white ? IMAGE_WHITE : theme.toolbarMessagesIcon;
 
     return (
       <View style={this.props.style}>
@@ -26,5 +27,8 @@ export default class MessagesIcon extends Component {
 
 MessagesIcon.propTypes = {
   style: PropTypes.any,
-  white: PropTypes.bool
+  white: PropTypes.bool,
+  theme: PropTypes.object
 };
+
+export default withTheme(MessagesIcon);

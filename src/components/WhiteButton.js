@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class Title extends Component {
+export default class WhiteButton extends Component {
   render() {
     return (
       <Button
@@ -33,6 +33,6 @@ export default class Title extends Component {
   }
 }
 
-Title.propTypes = {
+WhiteButton.propTypes = {
   style: PropTypes.any
 };

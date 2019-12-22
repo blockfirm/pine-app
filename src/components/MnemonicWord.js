@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
+
+import { withTheme } from '../contexts/theme';
 import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
@@ -9,8 +11,6 @@ const styles = StyleSheet.create({
     padding: 4
   },
   wrapper: {
-    backgroundColor: '#F8F8F8',
-    borderColor: '#DADADA',
     borderWidth: 1,
     borderRadius: 30,
     padding: 11,
@@ -22,30 +22,27 @@ const styles = StyleSheet.create({
     left: 5,
     fontSize: 11,
     fontWeight: 'bold',
-    color: '#999999',
     width: 20,
     textAlign: 'right'
   },
   word: {
     fontFamily: 'Menlo-Regular',
     fontSize: 11,
-    color: '#999999',
     paddingLeft: 17
   }
 });
 
-export default class MnemonicWord extends Component {
+class MnemonicWord extends Component {
   render() {
-    const index = this.props.index;
-    const word = this.props.word;
+    const { index, word, theme } = this.props;
 
     return (
       <View style={styles.container}>
-        <View style={styles.wrapper}>
-          <StyledText style={styles.number}>
+        <View style={[styles.wrapper, theme.mnemonicWordWrapper]}>
+          <StyledText style={[styles.number, theme.mnemonicWordNumber]}>
             {index + 1}.
           </StyledText>
-          <StyledText style={styles.word}>
+          <StyledText style={[styles.word, theme.mnemonicWord]}>
             {word}
           </StyledText>
         </View>
@@ -56,5 +53,8 @@ export default class MnemonicWord extends Component {
 
 MnemonicWord.propTypes = {
   index: PropTypes.number.isRequired,
-  word: PropTypes.string.isRequired
+  word: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(MnemonicWord);

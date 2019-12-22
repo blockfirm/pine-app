@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 
+import { withTheme } from '../../contexts/theme';
 import vendors from '../../vendors';
 import headerStyles from '../../styles/headerStyles';
 import StyledText from '../StyledText';
@@ -14,7 +15,6 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     textAlign: 'center',
-    color: '#B1AFB7',
     fontSize: 13,
     fontWeight: '500'
   }
@@ -39,9 +39,9 @@ const formatVendorUrl = (url) => {
   return url.replace(/http(s?):\/\//i, '');
 };
 
-export default class HeaderTitle extends Component {
+class HeaderTitle extends Component {
   render() {
-    const { contact } = this.props;
+    const { contact, theme } = this.props;
     const { address, isBitcoinAddress, isVendor } = contact;
     let displayName = contact.displayName || contact.username || 'Unknown';
     let displayAddress = address;
@@ -57,10 +57,10 @@ export default class HeaderTitle extends Component {
 
     return (
       <View>
-        <StyledText style={[headerStyles.title, styles.title]}>
+        <StyledText style={[headerStyles.title, theme.headerTitle, styles.title]}>
           {displayName}
         </StyledText>
-        <StyledText style={[headerStyles.title, styles.subtitle]}>
+        <StyledText style={[headerStyles.title, theme.headerSubtitle, styles.subtitle]}>
           {displayAddress}
         </StyledText>
       </View>
@@ -76,5 +76,8 @@ HeaderTitle.propTypes = {
     isBitcoinAddress: PropTypes.bool,
     isVendor: PropTypes.bool,
     vendorId: PropTypes.string
-  })
+  }),
+  theme: PropTypes.object.isRequired
 };
+
+export default withTheme(HeaderTitle);

@@ -9,6 +9,7 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 import OfflineNoticeContainer from '../containers/OfflineNoticeContainer';
 import ContactListContainer from '../containers/ContactListContainer';
 import ContactsScreenHeader from '../components/ContactsScreenHeader';
+import { withTheme } from '../contexts/theme';
 import BaseScreen from './BaseScreen';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
 });
 
 @connect(null, null, null, { withRef: true })
-export default class ContactsScreen extends Component {
+class ContactsScreen extends Component {
   static navigationOptions = {
     header: null
   }
@@ -63,6 +64,8 @@ export default class ContactsScreen extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
         <ContactsScreenHeader
@@ -76,7 +79,7 @@ export default class ContactsScreen extends Component {
 
         <View style={styles.bottomGradient} pointerEvents='none'>
           <LinearGradient
-            colors={['rgba(255, 255, 255, 0.0)', 'rgba(255, 255, 255, 1.0)']}
+            colors={theme.homeGradientColors}
             locations={[0.1, 0.7]}
             style={styles.bottomGradient}
           />
@@ -87,5 +90,8 @@ export default class ContactsScreen extends Component {
 }
 
 ContactsScreen.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  theme: PropTypes.object
 };
+
+export default withTheme(ContactsScreen);

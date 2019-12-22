@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+
+import { withTheme } from '../contexts/theme';
 import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
   paragraph: {
-    color: '#B1AFB7',
     fontSize: 15,
     fontWeight: '400',
     lineHeight: 21,
@@ -14,10 +15,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class Paragraph extends Component {
+class Paragraph extends Component {
   render() {
+    const { style, theme } = this.props;
+
     return (
-      <StyledText style={[styles.paragraph, this.props.style]}>
+      <StyledText style={[styles.paragraph, theme.paragraph, style]}>
         {this.props.children}
       </StyledText>
     );
@@ -26,5 +29,8 @@ export default class Paragraph extends Component {
 
 Paragraph.propTypes = {
   style: PropTypes.any,
-  children: PropTypes.node
+  children: PropTypes.node,
+  theme: PropTypes.object
 };
+
+export default withTheme(Paragraph);

@@ -3,7 +3,8 @@ import { Linking } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import headerStyles from '../../styles/headerStyles';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsAttribute from '../../components/SettingsAttribute';
@@ -18,10 +19,10 @@ const BIP49_ACCOUNT_INDEX = 0;
 @connect()
 export default class AboutScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'About',
-    headerStyle: headerStyles.header,
-    headerTitleStyle: headerStyles.title,
-    headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />)
+    headerTransparent: true,
+    headerBackground: <SettingsHeaderBackground />,
+    headerTitle: <HeaderTitle title='About' />,
+    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
 
   _showTermsAndConditions() {

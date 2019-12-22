@@ -3,10 +3,355 @@
 exports[`BaseSettingsScreen renders correctly 1`] = `
 <View
   style={
+    Array [
+      Object {
+        "alignSelf": "stretch",
+        "flex": 1,
+        "marginTop": 64,
+      },
+      Object {
+        "backgroundColor": "#EFEFF3",
+      },
+    ]
+  }
+  theme={
     Object {
-      "alignSelf": "stretch",
-      "backgroundColor": "#EFEFF3",
-      "flex": 1,
+      "addContactIcon": Object {
+        "testUri": "../../../src/images/icons/AddContact.png",
+      },
+      "backIcon": Object {
+        "testUri": "../../../src/images/icons/Back.png",
+      },
+      "background": Object {
+        "backgroundColor": "#ffffff",
+      },
+      "bigInput": Object {
+        "color": "#000000",
+      },
+      "bigInputPlaceholderColor": "#C3C3C3",
+      "bigInputSelectionColor": "#FFC431",
+      "bubbleEndLeft": Object {
+        "testUri": "../../../src/images/message/BubbleEndLeft.png",
+      },
+      "bubbleEndLeftError": Object {
+        "testUri": "../../../src/images/message/BubbleEndLeftError.png",
+      },
+      "bubbleEndRight": Object {
+        "testUri": "../../../src/images/message/BubbleEndRight.png",
+      },
+      "bubbleEndRightError": Object {
+        "testUri": "../../../src/images/message/BubbleEndRightError.png",
+      },
+      "bubbleError": Object {
+        "backgroundColor": "#FF3B30",
+      },
+      "bubbleErrorText": Object {
+        "color": "#ffffff",
+      },
+      "bubbleReceived": Object {
+        "backgroundColor": "#F0F0F0",
+      },
+      "bubbleReceivedText": Object {
+        "color": "#000000",
+      },
+      "bubbleReceivedTextSmall": Object {
+        "opacity": 0.75,
+      },
+      "bubbleSent": Object {
+        "backgroundColor": "#FEC300",
+      },
+      "bubbleSentText": Object {
+        "color": "#ffffff",
+      },
+      "bubbleSentTextSmall": Object {
+        "opacity": 0.9,
+      },
+      "bulletPoint": Object {
+        "backgroundColor": "#B1AFB7",
+      },
+      "button": Object {
+        "backgroundColor": "#FFD23F",
+      },
+      "buttonDisabled": Object {
+        "backgroundColor": "#B1AFB7",
+      },
+      "buttonLabel": Object {
+        "color": "#ffffff",
+      },
+      "buttonLoaderColor": "#ffffff",
+      "confirmTransactionDetail": Object {
+        "borderColor": "#ECECEC",
+      },
+      "confirmTransactionErrorText": Object {
+        "color": "#FF3B30",
+      },
+      "confirmTransactionHelpText": Object {
+        "color": "#8E8E93",
+      },
+      "confirmTransactionLabel": Object {
+        "color": "#8E8E93",
+      },
+      "confirmTransactionValue": Object {
+        "color": "#000000",
+      },
+      "confirmTransactionView": Object {
+        "backgroundColor": "#FAFAFA",
+        "borderTopColor": "#F0F1F4",
+      },
+      "destructiveLabel": Object {
+        "color": "#FF3B30",
+      },
+      "errorMessage": Object {
+        "backgroundColor": "#FF3B30",
+      },
+      "errorText": Object {
+        "color": "#FF3B30",
+      },
+      "feeLabelHighColor": "#FF3B30",
+      "feeLabelMediumColor": "#FF9500",
+      "header": Object {
+        "backgroundColor": "#ffffff",
+      },
+      "headerButtonDisabled": Object {
+        "color": "#E2E2E2",
+      },
+      "headerButtonPrimary": Object {
+        "color": "#007AFF",
+      },
+      "headerSubtitle": Object {
+        "color": "#B1AFB7",
+      },
+      "headerTitle": Object {
+        "color": "#000000",
+      },
+      "homeGradientColors": Array [
+        "rgba(255, 255, 255, 0.0)",
+        "rgba(255, 255, 255, 1.0)",
+      ],
+      "illustrationBitcoinWithWings": Object {
+        "testUri": "../../../src/images/illustrations/BitcoinWithWings.png",
+      },
+      "illustrationNoContacts": Object {
+        "testUri": "../../../src/images/illustrations/EmptyListAvatar.png",
+      },
+      "illustrationNotification": Object {
+        "testUri": "../../../src/images/illustrations/Notification.png",
+      },
+      "input": Object {
+        "backgroundColor": "#F6F6F6",
+        "borderColor": "#D8D8DB",
+      },
+      "inputBar": Object {
+        "backgroundColor": "#F3F3F5",
+      },
+      "inputBarDisabledText": Object {
+        "color": "#999999",
+      },
+      "inputBarErrorText": Object {
+        "color": "#FF3B30",
+      },
+      "inputBarPlaceholderColor": "#999999",
+      "inputBarSelectionColor": "#FFC431",
+      "inputBarText": Object {
+        "color": "#000000",
+      },
+      "inputCancelButton": Object {
+        "backgroundColor": "#8A8A8F",
+      },
+      "inputDisabledButton": Object {
+        "backgroundColor": "#D8D8DB",
+      },
+      "inputDisabledOverlay": Object {
+        "backgroundColor": "#ffffff",
+      },
+      "inputFocus": Object {
+        "borderColor": "#007AFF",
+      },
+      "inputSendButton": Object {
+        "backgroundColor": "#FFD23F",
+      },
+      "label": Object {
+        "color": "#B1AFB7",
+      },
+      "link": Object {
+        "color": "#007AFF",
+      },
+      "mnemonicWord": Object {
+        "color": "#999999",
+      },
+      "mnemonicWordInputErrorColor": "#FF3B30",
+      "mnemonicWordInputSuccessColor": "#4CD964",
+      "mnemonicWordNumber": Object {
+        "color": "#999999",
+      },
+      "mnemonicWordWrapper": Object {
+        "backgroundColor": "#F6F6F6",
+        "borderColor": "#D8D8DB",
+      },
+      "name": "light",
+      "offlineNoticeErrorColor": "#FF3B30",
+      "offlineNoticeWarningColor": "#FF9500",
+      "overlayCamera": Object {
+        "backgroundColor": "#000000",
+      },
+      "overlayHome": Object {
+        "backgroundColor": "#FEFEFE",
+      },
+      "overlayReceive": Object {
+        "backgroundColor": "#FEFEFE",
+        "borderColor": "gray",
+      },
+      "palette": Object {
+        "background": "#ffffff",
+        "background2": "#EFEFF3",
+        "blue": "#007AFF",
+        "foreground": "#000000",
+        "gray1": "#B1AFB7",
+        "gray10": "#C3C3C3",
+        "gray11": "#E2E2E2",
+        "gray12": "#A7A7AB",
+        "gray13": "#C8C8CC",
+        "gray14": "#C7C7CC",
+        "gray2": "#8A8A8F",
+        "gray3": "#BEBEBE",
+        "gray4": "#D8D8DB",
+        "gray5": "#999999",
+        "gray6": "#F0F1F4",
+        "gray7": "#ECECEC",
+        "gray8": "#8E8E93",
+        "gray9": "#9B9B9B",
+        "green": "#4CD964",
+        "middleground1": "#F6F6F6",
+        "middleground2": "#F3F3F5",
+        "middleground3": "#F0F0F0",
+        "middleground4": "#FAFAFA",
+        "middleground5": "#F2F2F6",
+        "orange": "#FF9500",
+        "orange2": "#FF8D36",
+        "overlay": "#FEFEFE",
+        "red": "#FF3B30",
+        "yellow1": "#FFD23F",
+        "yellow2": "#FFC431",
+        "yellow3": "#FEC300",
+      },
+      "paragraph": Object {
+        "color": "#B1AFB7",
+      },
+      "qrAvatar": Object {
+        "borderColor": "#ffffff",
+      },
+      "qrBackground": "#ffffff",
+      "qrForeground": "#000000",
+      "qrWrapper": Object {
+        "backgroundColor": "#ffffff",
+        "shadowColor": "#000000",
+      },
+      "revealMnemonic": Object {
+        "color": "#007AFF",
+      },
+      "sectionHeader": Object {
+        "backgroundColor": "#F6F6F6",
+      },
+      "sectionHeaderText": Object {
+        "color": "#8A8A8F",
+      },
+      "settingsArrow": Object {
+        "color": "#C7C7CC",
+      },
+      "settingsBackground": Object {
+        "backgroundColor": "#EFEFF3",
+      },
+      "settingsButtonDisabled": Object {
+        "color": "#8A8A8F",
+      },
+      "settingsButtonPrimary": Object {
+        "color": "#007AFF",
+      },
+      "settingsCheckmark": Object {
+        "color": "#007AFF",
+      },
+      "settingsDescription": Object {
+        "color": "#8A8A8F",
+      },
+      "settingsGreenCheckmark": Object {
+        "color": "#4CD964",
+      },
+      "settingsGroup": Object {
+        "backgroundColor": "#ffffff",
+        "borderBottomColor": "#C8C8CC",
+        "borderTopColor": "#C8C8CC",
+      },
+      "settingsHeader": Object {
+        "backgroundColor": "#ffffff",
+        "borderBottomColor": "#A7A7AB",
+      },
+      "settingsIcon": Object {
+        "testUri": "../../../src/images/icons/Settings.png",
+      },
+      "settingsInput": Object {
+        "color": "#000000",
+      },
+      "settingsItem": Object {
+        "borderBottomColor": "#C8C8CC",
+      },
+      "settingsTitle": Object {
+        "color": "#8A8A8F",
+      },
+      "settingsUnderlayColor": "#FAFAFA",
+      "settingsValue": Object {
+        "color": "#8E8E93",
+      },
+      "shareIcon": Object {
+        "testUri": "../../../src/images/icons/Share.png",
+      },
+      "stackedBarChart": Object {
+        "backgroundColor": "#F2F2F6",
+      },
+      "stackedBarChartStack": Object {
+        "borderLeftColor": "#ffffff",
+      },
+      "statusErrorColor": "#FF3B30",
+      "statusSuccessColor": "#4CD964",
+      "statusWarningColor": "#FF8D36",
+      "subtitle": Object {
+        "color": "#B1AFB7",
+      },
+      "subtitleUnread": Object {
+        "color": "#000000",
+      },
+      "tableArrow": Object {
+        "color": "#9B9B9B",
+      },
+      "tableBorder": Object {
+        "borderColor": "#ECECEC",
+      },
+      "tableLabel": Object {
+        "color": "#8E8E93",
+      },
+      "text": Object {
+        "color": "#000000",
+      },
+      "title": Object {
+        "color": "#000000",
+      },
+      "toolbarDot": Object {
+        "backgroundColor": "#BEBEBE",
+      },
+      "toolbarMessagesIcon": Object {
+        "testUri": "../../../src/images/icons/toolbar/Messages.png",
+      },
+      "toolbarReceiveIcon": Object {
+        "testUri": "../../../src/images/icons/toolbar/Receive.png",
+      },
+      "toolbarSendIcon": Object {
+        "testUri": "../../../src/images/icons/toolbar/Send.png",
+      },
+      "unitPicker": Object {
+        "color": "#999999",
+      },
+      "walletBalancePendingColor": "#FF9500",
+      "walletBalanceReservedColor": "#C7C7CC",
+      "walletBalanceSpendableColor": "#4CD964",
     }
   }
 >

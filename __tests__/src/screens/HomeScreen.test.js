@@ -3,7 +3,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import HomeScreen from '../../../src/screens/HomeScreen';
 
-jest.mock('../../../src/containers/ErrorModalContainer', () => 'ErrorModalContainer');
 jest.mock('../../../src/containers/BackHeaderContainer', () => 'BackHeaderContainer');
 jest.mock('../../../src/containers/ContactListContainer', () => 'ContactListContainer');
 jest.mock('../../../src/screens/ContactsScreen', () => 'ContactsScreen');

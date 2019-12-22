@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import { withTheme } from '../../contexts/theme';
 
 const styles = StyleSheet.create({
   icon: {
@@ -9,18 +10,19 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class BackIcon extends Component {
+class BackIcon extends Component {
   render() {
-    const image = require('../../images/icons/Back.png');
-
     return (
       <View style={this.props.style}>
-        <Image source={image} style={styles.icon} />
+        <Image source={this.props.theme.backIcon} style={styles.icon} />
       </View>
     );
   }
 }
 
 BackIcon.propTypes = {
-  style: PropTypes.any
+  style: PropTypes.any,
+  theme: PropTypes.object
 };
+
+export default withTheme(BackIcon);

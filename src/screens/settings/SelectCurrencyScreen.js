@@ -6,7 +6,8 @@ import SearchBar from 'react-native-search-bar';
 
 import { save as saveSettings } from '../../actions/settings';
 import { get as getFiatRates } from '../../actions/bitcoin/fiatRates';
-import headerStyles from '../../styles/headerStyles';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsOption from '../../components/SettingsOption';
@@ -30,10 +31,10 @@ const styles = StyleSheet.create({
 }))
 export default class SelectCurrencyScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: TITLES[navigation.state.params.type],
-    headerStyle: headerStyles.header,
-    headerTitleStyle: headerStyles.title,
-    headerLeft: (<BackButton onPress={() => { navigation.goBack(); }} />)
+    headerTransparent: true,
+    headerBackground: <SettingsHeaderBackground />,
+    headerTitle: <HeaderTitle title={TITLES[navigation.state.params.type]} />,
+    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
 
   constructor(props) {
