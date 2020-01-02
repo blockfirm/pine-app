@@ -19,15 +19,17 @@ const styles = StyleSheet.create({
 
 class SettingsInput extends Component {
   render() {
-    const { theme } = this.props;
+    const { style, theme } = this.props;
 
     return (
-      <View style={styles.container}>
+      <View style={[style, styles.container]}>
         <TextInput
           style={[styles.input, theme.settingsInput]}
           value={this.props.value}
           placeholder={this.props.placeholder}
           clearButtonMode='always'
+          autoCapitalize={this.props.autoCapitalize}
+          autoCorrect={this.props.autoCorrect}
           autoFocus={true}
           keyboardType={this.props.keyboardType}
           returnKeyType='done'
@@ -42,6 +44,8 @@ class SettingsInput extends Component {
 }
 
 SettingsInput.propTypes = {
+  autoCapitalize: PropTypes.string,
+  autoCorrect: PropTypes.bool,
   value: PropTypes.string,
   placeholder: PropTypes.string,
   keyboardType: PropTypes.string,
@@ -49,6 +53,7 @@ SettingsInput.propTypes = {
   onSubmitEditing: PropTypes.func,
   maxLength: PropTypes.number,
   disabled: PropTypes.bool,
+  style: PropTypes.any,
   theme: PropTypes.object.isRequired
 };
 

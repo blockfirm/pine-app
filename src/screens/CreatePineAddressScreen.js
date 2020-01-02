@@ -4,7 +4,6 @@ import { StyleSheet, StatusBar, View, Text, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
-import Icon from 'react-native-vector-icons/Entypo';
 
 import {
   validateUsername,
@@ -20,12 +19,12 @@ import { create as createUser } from '../clients/paymentServer/user';
 import getStatusBarHeight from '../utils/getStatusBarHeight';
 import getNavBarHeight from '../utils/getNavBarHeight';
 import headerStyles from '../styles/headerStyles';
+import ChangeServerButtonContainer from '../containers/buttons/ChangeServerButtonContainer';
 import HeaderTitle from '../components/HeaderTitle';
 import HeaderBackground from '../components/HeaderBackground';
 import HeaderButton from '../components/buttons/HeaderButton';
 import CancelButton from '../components/CancelButton';
 import StyledText from '../components/StyledText';
-import Paragraph from '../components/Paragraph';
 import BaseScreen from './BaseScreen';
 
 const TOP_MARGIN = getStatusBarHeight() + getNavBarHeight();
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flexGrow: 1,
-    alignSelf: 'stretch',
+    marginTop: TOP_MARGIN,
     justifyContent: 'center'
   },
   inputWrapper: {
@@ -64,24 +63,17 @@ const styles = StyleSheet.create({
     marginTop: 35,
     position: 'absolute'
   },
-  betaNoticeWrapper: {
+  changeServerWrapper: {
     position: 'absolute',
     bottom: 16,
-    marginRight: 16,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  betaNotice: {
-    fontSize: 12,
-    lineHeight: 15,
-    marginBottom: 0,
-    marginLeft: 10
+    marginRight: 16
   }
 });
 
 @connect((state) => ({
   keys: state.keys.items,
   defaultPineAddressHostname: state.settings.defaultPineAddressHostname,
+  pineAddressHostname: state.settings.pineAddressHostname,
   bitcoinNetwork: state.settings.bitcoin.network,
   hasCreatedBackup: state.settings.user.hasCreatedBackup
 }))
@@ -103,20 +95,34 @@ class CreatePineAddressScreen extends Component {
     };
   };
 
-  constructor(props) {
-    super(...arguments);
-
-    this.state = {
-      domain: props.defaultPineAddressHostname,
-      username: '',
-      error: ''
-    };
-  }
+  state = {
+    username: '',
+    error: ''
+  };
 
   componentDidMount() {
-    this.props.navigation.setParams({ canSubmit: false });
-    this.props.navigation.setParams({ submit: this._onSubmit.bind(this) });
-    this.props.navigation.setParams({ cancel: this._cancel.bind(this) });
+    const { navigation } = this.props;
+
+    this._willFocusListener = navigation.addListener('willFocus', this.componentWillFocus.bind(this));
+
+    navigation.setParams({ canSubmit: false });
+    navigation.setParams({ submit: this._onSubmit.bind(this) });
+    navigation.setParams({ cancel: this._cancel.bind(this) });
+  }
+
+  componentWillUnmount() {
+    this._willFocusListener.remove();
+  }
+
+  componentWillFocus() {
+    if (this._input) {
+      setTimeout(() => this._input.focus(), 300);
+    }
+  }
+
+  _getPineHostname() {
+    const { pineAddressHostname, defaultPineAddressHostname } = this.props;
+    return pineAddressHostname || defaultPineAddressHostname;
   }
 
   _showDisclaimerScreen() {
@@ -134,8 +140,9 @@ class CreatePineAddressScreen extends Component {
 
   _onSubmit() {
     const { dispatch, bitcoinNetwork, hasCreatedBackup } = this.props;
-    const { username, domain } = this.state;
-    const pineAddress = `${username}@${domain}`;
+    const { username } = this.state;
+    const hostname = this._getPineHostname();
+    const pineAddress = `${username}@${hostname}`;
     let mnemonic;
     let user;
 
@@ -212,6 +219,7 @@ class CreatePineAddressScreen extends Component {
 
   render() {
     const { theme } = this.props;
+    const hostname = this._getPineHostname();
 
     const suffixStyle = [
       styles.suffix,
@@ -225,6 +233,7 @@ class CreatePineAddressScreen extends Component {
         <View style={styles.content}>
           <View style={styles.inputWrapper}>
             <TextInput
+              ref={(ref) => { this._input = ref; }}
               style={[styles.input, theme.bigInput]}
               autoFocus={true}
               autoCorrect={false}
@@ -237,23 +246,19 @@ class CreatePineAddressScreen extends Component {
             />
             <View style={styles.suffixWrapper} pointerEvents='none'>
               <Text style={styles.suffixPadding}>{this.state.username}</Text>
-              <Text style={suffixStyle}>@{this.state.domain}</Text>
+              <Text style={suffixStyle}>@{hostname}</Text>
             </View>
             <StyledText style={[styles.error, theme.errorText]}>
               {this.state.error}
             </StyledText>
           </View>
 
-          <View style={styles.betaNoticeWrapper}>
-            <Icon name='info-with-circle' style={theme.paragraph} />
-            <Paragraph style={styles.betaNotice}>
-              During the beta it is not possible to use your own Pine server and domain name.
-            </Paragraph>
-            <KeyboardSpacer topSpacing={-TOP_MARGIN} />
+          <View style={styles.changeServerWrapper}>
+            <ChangeServerButtonContainer />
           </View>
         </View>
 
-        <KeyboardSpacer topSpacing={-TOP_MARGIN} />
+        <KeyboardSpacer />
       </BaseScreen>
     );
   }
@@ -264,6 +269,7 @@ CreatePineAddressScreen.propTypes = {
   navigation: PropTypes.any,
   keys: PropTypes.object,
   defaultPineAddressHostname: PropTypes.string,
+  pineAddressHostname: PropTypes.string,
   bitcoinNetwork: PropTypes.string,
   hasCreatedBackup: PropTypes.bool,
   theme: PropTypes.object.isRequired

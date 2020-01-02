@@ -3,12 +3,15 @@
 exports[`SettingsInput renders correctly 1`] = `
 <View
   style={
-    Object {
-      "paddingBottom": 12,
-      "paddingLeft": 15,
-      "paddingRight": 15,
-      "paddingTop": 12,
-    }
+    Array [
+      undefined,
+      Object {
+        "paddingBottom": 12,
+        "paddingLeft": 15,
+        "paddingRight": 15,
+        "paddingTop": 12,
+      },
+    ]
   }
 >
   <TextInput
