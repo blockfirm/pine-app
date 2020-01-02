@@ -15,6 +15,11 @@ import * as settingsActions from '../actions/settings';
 import * as bitcoinWalletActions from '../actions/bitcoin/wallet';
 import { getById as getUserById } from '../clients/paymentServer/user';
 import { getAccountKeyPairFromMnemonic, getUserIdFromPublicKey } from '../clients/paymentServer/crypto';
+import { headerStyles } from '../styles';
+import ChangeServerHeaderButtonContainer from '../containers/buttons/ChangeServerHeaderButtonContainer';
+import HeaderBackground from '../components/HeaderBackground';
+import HeaderTitle from '../components/HeaderTitle';
+import BackButton from '../components/BackButton';
 import Paragraph from '../components/Paragraph';
 import MnemonicInput from '../components/MnemonicInput';
 import Button from '../components/Button';
@@ -46,9 +51,14 @@ const styles = StyleSheet.create({
   settings: state.settings
 }))
 export default class ImportMnemonicScreen extends Component {
-  static navigationOptions = {
-    header: null
-  }
+  static navigationOptions = ({ navigation }) => ({
+    headerTransparent: true,
+    headerBackground: <HeaderBackground />,
+    headerTitle: <HeaderTitle title='Enter Recovery Key' />,
+    headerStyle: headerStyles.borderlessHeader,
+    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />,
+    headerRight: <ChangeServerHeaderButtonContainer />
+  });
 
   state = {
     phrase: '',
@@ -58,6 +68,11 @@ export default class ImportMnemonicScreen extends Component {
 
   componentWillUnmount() {
     KeepAwake.deactivate();
+  }
+
+  _getPineHostname() {
+    const { pineAddressHostname, defaultPineAddressHostname } = this.props.settings;
+    return pineAddressHostname || defaultPineAddressHostname;
   }
 
   _onKeyboardToggle(keyboardState) {
@@ -90,7 +105,7 @@ export default class ImportMnemonicScreen extends Component {
   _importMnemonic() {
     const dispatch = this.props.dispatch;
     const mnemonic = this.state.phrase;
-    const { defaultPineAddressHostname } = this.props.settings;
+    const hostname = this._getPineHostname();
 
     this.setState({ loading: true });
     KeepAwake.activate();
@@ -98,7 +113,7 @@ export default class ImportMnemonicScreen extends Component {
     // Wait 300ms for the keyboard to animate away.
     return new Promise(resolve => setTimeout(resolve, 300))
       .then(() => {
-        const keepSettings = false;
+        const keepSettings = true;
         const keepBackup = true;
 
         // Reset the app in case the last recovery failed.
@@ -109,12 +124,12 @@ export default class ImportMnemonicScreen extends Component {
         const keyPair = getAccountKeyPairFromMnemonic(mnemonic);
         const userId = getUserIdFromPublicKey(keyPair.publicKey);
 
-        return getUserById(userId, defaultPineAddressHostname)
+        return getUserById(userId, hostname)
           .catch(() => {})
           .then((user) => {
             if (user) {
               // A Pine user was found for the mnemonic, save it to settings.
-              const pineAddress = `${user.username}@${defaultPineAddressHostname}`;
+              const pineAddress = `${user.username}@${hostname}`;
               dispatch(settingsActions.saveUserProfile(pineAddress, user));
             }
 
@@ -171,7 +186,7 @@ export default class ImportMnemonicScreen extends Component {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss.bind(Keyboard)}>
         <View style={styles.view}>
-          <BaseScreen headerTitle='Enter Recovery Key'>
+          <BaseScreen hideHeader={true}>
             <StatusBar barStyle='default' />
 
             <View style={contentStyles}>

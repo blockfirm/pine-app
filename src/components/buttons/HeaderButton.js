@@ -62,12 +62,13 @@ class HeaderButton extends Component {
   }
 
   render() {
-    const { disabled, theme } = this.props;
+    const { disabled, style, theme } = this.props;
     const { loading } = this.state;
 
     const textStyles = [
       styles.text,
       theme.headerButtonPrimary,
+      style,
       disabled ? theme.headerButtonDisabled : undefined,
       { opacity: loading ? 0 : 1 }
     ];
@@ -93,6 +94,7 @@ HeaderButton.propTypes = {
   label: PropTypes.string.isRequired,
   onPress: PropTypes.func,
   disabled: PropTypes.bool,
+  style: PropTypes.any,
   theme: PropTypes.object.isRequired
 };
 
