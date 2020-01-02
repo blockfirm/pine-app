@@ -24,8 +24,6 @@ import EditAvatar from '../../components/EditAvatar';
 import CopyText from '../../components/CopyText';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
-const PINE_PAYMENT_SERVER_REPO_URL = 'https://github.com/blockfirm/pine-payment-server';
-
 const styles = StyleSheet.create({
   profile: {
     paddingHorizontal: 15,
@@ -195,10 +193,6 @@ class ProfileScreen extends Component {
     navigation.navigate('DisplayName');
   }
 
-  _visitPinePaymentServerRepo() {
-    Linking.openURL(PINE_PAYMENT_SERVER_REPO_URL);
-  }
-
   _saveAvatarChecksum(checksum) {
     const { dispatch } = this.props;
 
@@ -283,14 +277,6 @@ class ProfileScreen extends Component {
         <SettingsTitle>Display Name</SettingsTitle>
         <SettingsGroup>
           <SettingsLink name={displayName} onPress={this._showDisplayNameScreen.bind(this)} isLastItem={true} />
-        </SettingsGroup>
-
-        <SettingsGroup>
-          <SettingsButton
-            title='Host Your Own Pine Server'
-            onPress={this._visitPinePaymentServerRepo.bind(this)}
-            isLastItem={true}
-          />
         </SettingsGroup>
 
         <SettingsGroup>

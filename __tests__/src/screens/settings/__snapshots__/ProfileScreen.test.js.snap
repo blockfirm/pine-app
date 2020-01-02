@@ -424,13 +424,6 @@ exports[`ProfileScreen renders correctly 1`] = `
         </SettingsGroup>
         <SettingsGroup>
           <SettingsButton
-            isLastItem={true}
-            onPress={[Function]}
-            title="Host Your Own Pine Server"
-          />
-        </SettingsGroup>
-        <SettingsGroup>
-          <SettingsButton
             containerStyle={
               Object {
                 "marginLeft": 0,
