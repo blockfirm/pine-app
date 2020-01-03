@@ -11,10 +11,12 @@ const formatTime = (date) => {
   };
 
   if (FORCE_12_HOUR_TIME) {
+    formatOptions.hour = 'numeric';
     formatOptions.hour12 = true;
   }
 
   if (FORCE_24_HOUR_TIME) {
+    formatOptions.hour = '2-digit';
     formatOptions.hour12 = false;
   }
 
