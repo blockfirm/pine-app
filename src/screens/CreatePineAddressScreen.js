@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar, View, Text, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, StatusBar, View, Text, TextInput, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
@@ -232,33 +232,35 @@ class CreatePineAddressScreen extends Component {
       <BaseScreen hideHeader={true} style={styles.view}>
         <StatusBar barStyle='default' />
 
-        <View style={styles.content}>
-          <View style={styles.inputWrapper}>
-            <TextInput
-              ref={(ref) => { this._input = ref; }}
-              style={[styles.input, theme.bigInput]}
-              autoFocus={true}
-              autoCorrect={false}
-              autoCapitalize='none'
-              maxLength={20}
-              value={this.state.username}
-              selectionColor={theme.bigInputSelectionColor}
-              onChangeText={(text) => this._onChangeText(text)}
-              blurOnSubmit={false}
-            />
-            <View style={styles.suffixWrapper} pointerEvents='none'>
-              <Text style={styles.suffixPadding}>{this.state.username}</Text>
-              <Text style={suffixStyle}>@{hostname}</Text>
+        <TouchableWithoutFeedback onPress={() => this._input.focus()}>
+          <View style={styles.content}>
+            <View style={styles.inputWrapper}>
+              <TextInput
+                ref={(ref) => { this._input = ref; }}
+                style={[styles.input, theme.bigInput]}
+                autoFocus={true}
+                autoCorrect={false}
+                autoCapitalize='none'
+                maxLength={20}
+                value={this.state.username}
+                selectionColor={theme.bigInputSelectionColor}
+                onChangeText={(text) => this._onChangeText(text)}
+                blurOnSubmit={false}
+              />
+              <View style={styles.suffixWrapper}>
+                <Text style={styles.suffixPadding}>{this.state.username}</Text>
+                <Text style={suffixStyle}>@{hostname}</Text>
+              </View>
+              <StyledText style={[styles.error, theme.errorText]}>
+                {this.state.error}
+              </StyledText>
             </View>
-            <StyledText style={[styles.error, theme.errorText]}>
-              {this.state.error}
-            </StyledText>
-          </View>
 
-          <View style={styles.changeServerWrapper}>
-            <ChangeServerButtonContainer />
+            <View style={styles.changeServerWrapper}>
+              <ChangeServerButtonContainer />
+            </View>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
 
         <KeyboardSpacer />
       </BaseScreen>
