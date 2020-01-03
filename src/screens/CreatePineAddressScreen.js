@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar, View, Text, TextInput } from 'react-native';
+import { StyleSheet, StatusBar, View, Text, TextInput, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
@@ -27,6 +27,7 @@ import CancelButton from '../components/CancelButton';
 import StyledText from '../components/StyledText';
 import BaseScreen from './BaseScreen';
 
+const WINDOW_WIDTH = Dimensions.get('window').width;
 const TOP_MARGIN = getStatusBarHeight() + getNavBarHeight();
 
 const styles = StyleSheet.create({
@@ -44,7 +45,8 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   input: {
-    fontSize: 24
+    fontSize: 24,
+    width: WINDOW_WIDTH
   },
   suffixWrapper: {
     position: 'absolute',
