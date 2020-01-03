@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     fontSize: 24
   },
   error: {
+    width: '100%',
     fontSize: 12,
     marginTop: 35,
     position: 'absolute'
