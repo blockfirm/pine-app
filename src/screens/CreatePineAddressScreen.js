@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
   defaultPineAddressHostname: state.settings.defaultPineAddressHostname,
   pineAddressHostname: state.settings.pineAddressHostname,
   bitcoinNetwork: state.settings.bitcoin.network,
-  hasCreatedBackup: state.settings.user.hasCreatedBackup
+  hasCreatedBackup: state.settings.user.hasCreatedBackup,
+  navIndex: state.nav.index
 }))
 class CreatePineAddressScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -106,20 +107,16 @@ class CreatePineAddressScreen extends Component {
   componentDidMount() {
     const { navigation } = this.props;
 
-    this._willFocusListener = navigation.addListener('willFocus', this.componentWillFocus.bind(this));
-
     navigation.setParams({ canSubmit: false });
     navigation.setParams({ submit: this._onSubmit.bind(this) });
     navigation.setParams({ cancel: this._cancel.bind(this) });
   }
 
-  componentWillUnmount() {
-    this._willFocusListener.remove();
-  }
-
-  componentWillFocus() {
-    if (this._input) {
-      setTimeout(() => this._input.focus(), 300);
+  componentDidUpdate(prevProps) {
+    if (this.props.navIndex === 0 && prevProps.navIndex > 0) {
+      if (this._input && !this._input.isFocused()) {
+        setTimeout(() => this._input.focus(), 300);
+      }
     }
   }
 
@@ -272,6 +269,7 @@ class CreatePineAddressScreen extends Component {
 CreatePineAddressScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
+  navIndex: PropTypes.number,
   keys: PropTypes.object,
   defaultPineAddressHostname: PropTypes.string,
   pineAddressHostname: PropTypes.string,
