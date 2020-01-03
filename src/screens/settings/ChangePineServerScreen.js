@@ -111,6 +111,7 @@ class ChangePineServerScreen extends Component {
           />
           <PineServerStatus
             hostname={hostname || settings.defaultPineAddressHostname}
+            bitcoinNetwork={settings.bitcoin.network}
             onStatusUpdated={this._onStatusUpdated}
             style={styles.serverStatus}
           />

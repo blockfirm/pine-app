@@ -38,7 +38,7 @@ class PineServerStatus extends PureComponent {
   }
 
   _updateStatus(delay = 0) {
-    const { hostname, onStatusUpdated } = this.props;
+    const { hostname, bitcoinNetwork, onStatusUpdated } = this.props;
     let ok = false;
 
     this.setState({ loading: true });
@@ -47,7 +47,11 @@ class PineServerStatus extends PureComponent {
     this._updateStatusTimer = setTimeout(() => {
       getServerInfo(hostname)
         .then((serverInfo) => {
-          ok = serverInfo && serverInfo.isOpenForRegistrations;
+          if (serverInfo) {
+            ok = serverInfo.isOpenForRegistrations && serverInfo.network === bitcoinNetwork;
+          } else {
+            ok = false;
+          }
         })
         .catch(() => {
           ok = false;
@@ -82,6 +86,7 @@ class PineServerStatus extends PureComponent {
 
 PineServerStatus.propTypes = {
   hostname: PropTypes.string,
+  bitcoinNetwork: PropTypes.string,
   style: PropTypes.any,
   onStatusUpdated: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired
