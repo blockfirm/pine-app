@@ -52,7 +52,8 @@ class ChangePineServerScreen extends Component {
     super(...arguments);
 
     this.state = {
-      hostname: props.settings.pineAddressHostname
+      hostname: props.settings.pineAddressHostname,
+      canSubmit: false
     };
 
     this._onStatusUpdated = this._onStatusUpdated.bind(this);
@@ -65,7 +66,11 @@ class ChangePineServerScreen extends Component {
 
   _onSubmit() {
     const { dispatch, screenProps } = this.props;
-    const { hostname } = this.state;
+    const { hostname, canSubmit } = this.state;
+
+    if (!canSubmit) {
+      return;
+    }
 
     dispatch(saveSettings({
       pineAddressHostname: hostname
@@ -79,8 +84,10 @@ class ChangePineServerScreen extends Component {
   }
 
   _onChangeHostname(hostname) {
-    this.setState({ hostname });
-    this.props.navigation.setParams({ canSubmit: false });
+    const canSubmit = false;
+
+    this.setState({ hostname, canSubmit });
+    this.props.navigation.setParams({ canSubmit });
   }
 
   _onStatusUpdated(ok) {
@@ -89,6 +96,7 @@ class ChangePineServerScreen extends Component {
     const newHostname = this.state.hostname;
     const canSubmit = ok && newHostname !== oldHostname;
 
+    this.setState({ canSubmit });
     navigation.setParams({ canSubmit });
   }
 
