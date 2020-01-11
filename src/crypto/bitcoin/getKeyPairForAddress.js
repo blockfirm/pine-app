@@ -2,6 +2,12 @@ import * as bip32 from 'bip32';
 import getBitcoinNetwork from './getBitcoinNetwork';
 import mnemonicToSeed from '../mnemonicToSeed';
 
+/**
+ * 49 is the BIP44 purpose code for the BIP49
+ * key derivation scheme.
+ */
+const PURPOSE_CODE_49 = 49;
+
 const getAddressIndex = (address, addresses) => {
   const externalAddresses = addresses.external.items;
   const internalAddresses = addresses.internal.items;
@@ -47,7 +53,7 @@ const getKeyPairForAddress = (address, addresses, mnemonic, network) => {
   const seed = mnemonicToSeed(mnemonic);
   const masterNode = bip32.fromSeed(seed, getBitcoinNetwork(network));
 
-  const purpose = 49; // BIP49
+  const purpose = PURPOSE_CODE_49;
   const coinType = network === 'testnet' ? 1 : 0; // Default to mainnet.
   const accountIndex = 0;
   const change = Number(internal); // 0 = external, 1 = internal change address
