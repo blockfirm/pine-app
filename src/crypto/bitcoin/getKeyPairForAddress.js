@@ -23,6 +23,20 @@ const getAddressIndex = (address, addresses) => {
   return {};
 };
 
+/**
+ * Gets the key pair that was used to derive the specified BIP49 address.
+ *
+ * @param {string} address - Bitcoin address to get key pair for.
+ * @param {Object} addresses - All bitcoin addresses from state.
+ * @param {Object} addresses.external - All external bitcoin addresses from state.
+ * @param {Object} addresses.external.items - Map of bitcoin addresses.
+ * @param {Object} addresses.internal - All internal bitcoin addresses from state.
+ * @param {Object} addresses.internal.items - Map of bitcoin addresses.
+ * @param {string} mnemonic - The BIP39 mnemonic as 12 words separated by space.
+ * @param {string} network - Bitcoin network of the address, 'testnet' or 'mainnet' (default).
+ *
+ * @returns {Object} A bitcoinjs key pair.
+ */
 const getKeyPairForAddress = (address, addresses, mnemonic, network) => {
   const { addressIndex, internal } = getAddressIndex(address, addresses);
 
