@@ -1,5 +1,5 @@
 import * as bip32 from 'bip32';
-import * as bip39 from 'bip39';
+import mnemonicToSeed from '../../../crypto/mnemonicToSeed';
 
 /**
  * 428 is the BIP44 purpose code for the Pine Payment Protocol.
@@ -18,7 +18,7 @@ const PURPOSE_CODE_428 = 428;
  * @returns {Object} A bitcoinjs key pair that is derived from the bip32 path "m/428'/{accountIndex}'".
  */
 const getAccountKeyPairFromMnemonic = (mnemonic, accountIndex = 0) => {
-  const seed = bip39.mnemonicToSeedSync(mnemonic);
+  const seed = mnemonicToSeed(mnemonic);
   const masterNode = bip32.fromSeed(seed);
   const path = `m/${PURPOSE_CODE_428}'/${accountIndex}'`;
   const keyPair = masterNode.derivePath(path);

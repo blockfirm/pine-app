@@ -1,6 +1,6 @@
 import * as bip32 from 'bip32';
-import * as bip39 from 'bip39';
 import { getBitcoinNetwork } from './bitcoin';
+import mnemonicToSeed from './mnemonicToSeed';
 
 /**
  * Gets an extended public key for the specified mnemonic, network, and account.
@@ -12,7 +12,7 @@ import { getBitcoinNetwork } from './bitcoin';
  * @returns {string} An extended public key for the specified account.
  */
 const getAccountPublicKeyFromMnemonic = (mnemonic, network, accountIndex) => {
-  const seed = bip39.mnemonicToSeedSync(mnemonic);
+  const seed = mnemonicToSeed(mnemonic);
   const bitcoinNetwork = getBitcoinNetwork(network);
   const masterNode = bip32.fromSeed(seed, bitcoinNetwork);
   const purpose = 49; // BIP49

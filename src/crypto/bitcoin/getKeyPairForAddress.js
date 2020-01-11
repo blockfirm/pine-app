@@ -1,6 +1,6 @@
 import * as bip32 from 'bip32';
-import * as bip39 from 'bip39';
 import getBitcoinNetwork from './getBitcoinNetwork';
+import mnemonicToSeed from '../mnemonicToSeed';
 
 const getAddressIndex = (address, addresses) => {
   const externalAddresses = addresses.external.items;
@@ -30,7 +30,7 @@ const getKeyPairForAddress = (address, addresses, mnemonic, network) => {
     return;
   }
 
-  const seed = bip39.mnemonicToSeedSync(mnemonic);
+  const seed = mnemonicToSeed(mnemonic);
   const masterNode = bip32.fromSeed(seed, getBitcoinNetwork(network));
 
   const purpose = 49; // BIP49
