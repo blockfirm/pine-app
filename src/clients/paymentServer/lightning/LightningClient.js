@@ -276,6 +276,7 @@ export default class LightningClient extends EventEmitter {
      * the ping interval + some assumption of latency.
      */
     this._pingTimeout = setTimeout(() => {
+      console.log('[LND] Ping failed, closing websocket...');
       this.websocket.close();
     }, serverPingInterval * 1000 + PING_LATENCY);
   }
