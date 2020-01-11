@@ -1,6 +1,7 @@
 import './typeDefs';
 import * as bitcoin from 'bitcoinjs-lib';
 import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
+import mnemonicToSeed from '../../../../crypto/mnemonicToSeed';
 import tweakKeyPair from '../../../../crypto/tweakKeyPair';
 
 import {
@@ -36,11 +37,11 @@ const getTxIdFromHash = (hash) => {
   return hash.toString('hex').match(/../g).reverse().join('');
 };
 
-const findKeyByOutputScript = (outputScript, addresses, mnemonic, network) => {
+const findKeyByOutputScript = (outputScript, addresses, seed, network) => {
   const bitcoinNetwork = getBitcoinNetwork(network);
   const address = bitcoin.address.fromOutputScript(outputScript, bitcoinNetwork);
 
-  return getKeyPairForAddress(address, addresses, mnemonic, network);
+  return getKeyPairForAddress(address, addresses, seed, network);
 };
 
 const getRedeemScript = (keyPair, network) => {
@@ -68,7 +69,7 @@ const getUtxo = (utxos, txid, index) => {
 };
 
 // eslint-disable-next-line max-params
-const createTransactionBuilder = (transaction, addresses, utxos, mnemonic, network) => {
+const createTransactionBuilder = (transaction, addresses, utxos, seed, network) => {
   const psbt = new bitcoin.Psbt({ network: getBitcoinNetwork(network) });
 
   psbt.setVersion(transaction.version);
@@ -89,7 +90,7 @@ const createTransactionBuilder = (transaction, addresses, utxos, mnemonic, netwo
       throw new Error(`No utxo could be found for input #${input.index}`);
     }
 
-    const keyPair = findKeyByOutputScript(utxo.script, addresses, mnemonic, network);
+    const keyPair = findKeyByOutputScript(utxo.script, addresses, seed, network);
     const redeemScript = getRedeemScript(keyPair, network);
 
     psbt.addInput({
@@ -151,14 +152,15 @@ export const computeInputScript = ({ transaction, signDescriptor }) => {
     dispatch({ type: PINE_LIGHTNING_RPC_COMPUTE_INPUT_SCRIPT });
 
     const mnemonic = await getMnemonic(state.keys.items);
-    const keyPair = findKeyByOutputScript(signDescriptor.output.pkScript, addresses, mnemonic, network);
+    const seed = mnemonicToSeed(mnemonic);
+    const keyPair = findKeyByOutputScript(signDescriptor.output.pkScript, addresses, seed, network);
 
     if (!keyPair) {
       throw new Error('Could not locate key for computing input script');
     }
 
     const tweakedKeyPair = tweakKeyPair(keyPair, signDescriptor);
-    const psbt = await createTransactionBuilder(transaction, addresses, utxos, mnemonic, network);
+    const psbt = await createTransactionBuilder(transaction, addresses, utxos, seed, network);
 
     return getInputScript(psbt, signDescriptor, tweakedKeyPair);
   };

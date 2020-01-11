@@ -38,7 +38,7 @@ const getAddressIndex = (address, addresses) => {
  * @param {Object} addresses.external.items - Map of bitcoin addresses.
  * @param {Object} addresses.internal - All internal bitcoin addresses from state.
  * @param {Object} addresses.internal.items - Map of bitcoin addresses.
- * @param {string} mnemonic - The BIP39 mnemonic as 12 words separated by space.
+ * @param {string|Buffer} mnemonic - A BIP39 mnemonic string or a BIP39 seed buffer.
  * @param {string} network - Bitcoin network of the address, 'testnet' or 'mainnet' (default).
  *
  * @returns {Object} A bitcoinjs key pair.
@@ -50,7 +50,7 @@ const getKeyPairForAddress = (address, addresses, mnemonic, network) => {
     return;
   }
 
-  const seed = mnemonicToSeed(mnemonic);
+  const seed = typeof mnemonic === 'string' ? mnemonicToSeed(mnemonic) : mnemonic;
   const masterNode = bip32.fromSeed(seed, getBitcoinNetwork(network));
 
   const purpose = PURPOSE_CODE_49;
