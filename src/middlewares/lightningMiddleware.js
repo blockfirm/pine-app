@@ -43,7 +43,6 @@ const lightningMiddleware = () => {
           client.registerMethods(getMethods(store.dispatch));
           client.connect();
         }
-
         break;
 
       // Disconnect when app is reset (user signed out).
@@ -53,12 +52,10 @@ const lightningMiddleware = () => {
           client.removeAllListeners();
           client = null;
         }
-
         break;
-
-      default:
-        return next(action);
     }
+
+    return next(action);
   };
 };
 
