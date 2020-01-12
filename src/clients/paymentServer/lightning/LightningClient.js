@@ -94,8 +94,8 @@ export default class LightningClient extends EventEmitter {
     return this.sendResponse(callId, null, error);
   }
 
-  openChannel(sats) {
-    return this.sendRequest('openChannel', { sats });
+  openChannel(sats, satsPerByte) {
+    return this.sendRequest('openChannel', { sats, satsPerByte });
   }
 
   closeChannel() {
