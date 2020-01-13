@@ -1,6 +1,7 @@
 /* eslint-disable lines-around-comment */
 import * as actions from '../actions';
 import { handle as handleError } from '../actions/error';
+import { sync as syncLightning } from '../actions/paymentServer/lightning';
 import * as lightningRpcActions from '../actions/paymentServer/lightning/rpc';
 import { LightningClient } from '../clients/paymentServer/lightning';
 
@@ -39,6 +40,7 @@ const lightningMiddleware = () => {
       case actions.READY:
         if (!client) {
           client = new LightningClient(pineAddress, state.pine.credentials, settings.lightning);
+          client.once('ready', () => store.dispatch(syncLightning(client)));
           client.on('error', (error) => store.dispatch(handleError(error)));
           client.registerMethods(getMethods(store.dispatch));
           client.connect();

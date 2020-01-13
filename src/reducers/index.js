@@ -14,6 +14,7 @@ import pineReducer from './pine';
 import loadedReducer from './loaded';
 import readyReducer from './ready';
 import navigateReducer from './navigate';
+import lightningReducer from './lightning';
 
 const getRootReducer = (navReducer) => {
   const rootReducer = combineReducers({
@@ -31,7 +32,8 @@ const getRootReducer = (navReducer) => {
     pine: pineReducer,
     loaded: loadedReducer,
     ready: readyReducer,
-    navigate: navigateReducer
+    navigate: navigateReducer,
+    lightning: lightningReducer
   });
 
   return (state, action) => {
