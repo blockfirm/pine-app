@@ -32,7 +32,7 @@ export const openChannel = (satsAmount, client) => {
     return dispatch(getEstimate())
       .then((satsPerByte) => {
         // TODO: The estimated fee is somehow too low and is rejected when broadcasted.
-        return client.openChannel(satsAmount, satsPerByte * 2);
+        return client.openChannel(satsAmount, satsPerByte * 10);
       })
       .then((result) => {
         const fundingTransactionHash = result.funding_txid_bytes;
