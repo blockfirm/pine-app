@@ -61,6 +61,21 @@ const styles = StyleSheet.create({
   }
 });
 
+const getLightningPaymentRequest = (data, network) => {
+  const networkPrefixMap = {
+    mainnet: 'lnbc',
+    testnet: 'lntb',
+    regtest: 'lnbcrt'
+  };
+
+  const expectedPrefix = networkPrefixMap[network];
+  const paymentRequest = data.replace(/^lightning:/i, '');
+
+  if (paymentRequest.startsWith(expectedPrefix)) {
+    return paymentRequest;
+  }
+};
+
 export default class QrCodeScanner extends Component {
   state = {
     cameraReady: false,
@@ -120,8 +135,9 @@ export default class QrCodeScanner extends Component {
     }
   }
 
+  // eslint-disable-next-line max-statements
   _onReceiveData(data, fromCamera) {
-    const { network, onReceiveAddress, onRedeemAzteco } = this.props;
+    const { network, onReceiveAddress, onReceiveLightningPaymentRequest, onRedeemAzteco } = this.props;
 
     if (!data || typeof data !== 'string') {
       if (!fromCamera) {
@@ -134,6 +150,13 @@ export default class QrCodeScanner extends Component {
       }
 
       return;
+    }
+
+    // Check if the data is a lightning payment request.
+    const lightningPaymentRequest = getLightningPaymentRequest(data, network);
+
+    if (lightningPaymentRequest) {
+      return onReceiveLightningPaymentRequest(lightningPaymentRequest, fromCamera);
     }
 
     if (azteco.isAztecoUrl(data)) {
@@ -280,6 +303,7 @@ export default class QrCodeScanner extends Component {
 
 QrCodeScanner.propTypes = {
   onReceiveAddress: PropTypes.func.isRequired,
+  onReceiveLightningPaymentRequest: PropTypes.func.isRequired,
   onRedeemAzteco: PropTypes.func.isRequired,
   showPreview: PropTypes.bool,
   network: PropTypes.string

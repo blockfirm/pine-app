@@ -5,6 +5,7 @@ export * from './process';
 export * from './remove';
 export * from './removeAllForContact';
 export * from './save';
+export * from './sendLegacyLightningPayment';
 export * from './sendLegacyPayment';
 export * from './sendPayment';
 export * from './sync';

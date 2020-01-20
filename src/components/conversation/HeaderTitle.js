@@ -42,12 +42,14 @@ const formatVendorUrl = (url) => {
 class HeaderTitle extends Component {
   render() {
     const { contact, theme } = this.props;
-    const { address, isBitcoinAddress, isVendor } = contact;
+    const { address, isBitcoinAddress, isLightningNode, isVendor } = contact;
     let displayName = contact.displayName || contact.username || 'Unknown';
     let displayAddress = address;
 
     if (isBitcoinAddress) {
       displayAddress = getShortenedAddress(address);
+    } else if (isLightningNode) {
+      displayAddress = getShortenedAddress(contact.lightningNodeKey);
     } else if (isVendor) {
       const vendor = vendors.get(contact.vendorId);
 
@@ -74,8 +76,10 @@ HeaderTitle.propTypes = {
     username: PropTypes.string,
     address: PropTypes.string,
     isBitcoinAddress: PropTypes.bool,
+    isLightningNode: PropTypes.bool,
     isVendor: PropTypes.bool,
-    vendorId: PropTypes.string
+    vendorId: PropTypes.string,
+    lightningNodeKey: PropTypes.string
   }),
   theme: PropTypes.object.isRequired
 };

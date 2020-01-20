@@ -213,6 +213,10 @@ class Message extends Component {
   _renderStatus() {
     const { message, transaction } = this.props;
 
+    if (!transaction) {
+      return;
+    }
+
     return (
       <MessageIndicator
         message={message}

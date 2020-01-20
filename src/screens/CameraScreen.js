@@ -76,6 +76,13 @@ export default class CameraScreen extends Component {
     navigation.navigate('Conversation', { bitcoinAddress, amount, autoFocus });
   }
 
+  _showConversationScreenForPaymentRequest(paymentRequest) {
+    const { navigation } = this.props;
+    const autoFocus = true;
+
+    navigation.navigate('Conversation', { paymentRequest, autoFocus });
+  }
+
   _onReceiveAddress(address, amount, fromCamera) {
     const { contacts, navigation } = this.props;
     const showPreview = this.props.showPreview && !this.state.pauseCamera;
@@ -105,6 +112,22 @@ export default class CameraScreen extends Component {
     return this._showConversationScreenForAddress(address, amount);
   }
 
+  _onReceiveLightningPaymentRequest(paymentRequest, fromCamera) {
+    const { navigation } = this.props;
+    const showPreview = this.props.showPreview && !this.state.pauseCamera;
+    const isFocused = navigation.isFocused();
+
+    if (!showPreview || !isFocused) {
+      return;
+    }
+
+    if (fromCamera) {
+      ReactNativeHaptic.generate('notificationSuccess');
+    }
+
+    return this._showConversationScreenForPaymentRequest(paymentRequest);
+  }
+
   _onRedeemAzteco(voucher) {
     const { navigation } = this.props;
     const showPreview = this.props.showPreview && !this.state.pauseCamera;
@@ -125,6 +148,7 @@ export default class CameraScreen extends Component {
         <QrCodeScannerContainer
           showPreview={showPreview}
           onReceiveAddress={this._onReceiveAddress.bind(this)}
+          onReceiveLightningPaymentRequest={this._onReceiveLightningPaymentRequest.bind(this)}
           onRedeemAzteco={this._onRedeemAzteco.bind(this)}
         />
 

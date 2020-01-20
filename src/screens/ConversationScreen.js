@@ -16,10 +16,17 @@ import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import * as bolt11 from 'bolt11';
 
 import { closeConversation, setHomeScreenIndex } from '../actions/navigate';
 import { handle as handleError } from '../actions/error/handle';
 import { remove as removeContact, markAsRead } from '../actions/contacts';
+
+import {
+  UNIT_BTC,
+  UNIT_SATOSHIS,
+  convert as convertBitcoin
+} from '../crypto/bitcoin/convert';
 
 import {
   load as loadMessages,
@@ -87,15 +94,18 @@ const styles = StyleSheet.create({
 }))
 export default class ConversationScreen extends Component {
   static navigationOptions = ({ navigation }) => {
-    const { contact, bitcoinAddress, showUserMenu, loading } = navigation.state.params;
+    const { contact, bitcoinAddress, decodedPaymentRequest, showUserMenu, loading } = navigation.state.params;
     const avatarChecksum = contact && contact.avatar && contact.avatar.checksum;
     let headerTitle;
     let headerRight;
 
     if (contact) {
       headerTitle = <HeaderTitle contact={contact} />;
-    } else {
+    } else if (bitcoinAddress) {
       headerTitle = <HeaderTitle contact={{ address: bitcoinAddress, isBitcoinAddress: true }} />;
+    } else if (decodedPaymentRequest) {
+      const lightningNodeKey = decodedPaymentRequest.payeeNodeKey;
+      headerTitle = <HeaderTitle contact={{ lightningNodeKey, isLightningNode: true }} />;
     }
 
     if (loading) {
@@ -128,17 +138,31 @@ export default class ConversationScreen extends Component {
   state = {
     confirmTransaction: false,
     amountBtc: 0,
+    initialAmountBtc: null,
     displayCurrency: 'BTC',
     displayUnit: 'BTC',
     keyboardHeight: 0,
     keyboardAnimationDuration: 300,
     keyboardAnimationEasing: null,
     keyboardIsVisible: false,
-    messagesLoaded: false
+    messagesLoaded: false,
+    decodedPaymentRequest: null
   }
 
-  constructor() {
+  constructor(props) {
     super(...arguments);
+
+    const { amount, paymentRequest } = props.navigation.state.params;
+
+    if (paymentRequest) {
+      const decodedPaymentRequest = bolt11.decode(paymentRequest);
+      const paymentRequestAmount = convertBitcoin(decodedPaymentRequest.satoshis, UNIT_SATOSHIS, UNIT_BTC);
+
+      this.state.decodedPaymentRequest = decodedPaymentRequest;
+      this.state.initialAmountBtc = paymentRequestAmount;
+    } else {
+      this.state.initialAmountBtc = amount;
+    }
 
     this._listeners = [];
 
@@ -164,7 +188,10 @@ export default class ConversationScreen extends Component {
       navigation.setParams({ contact });
     }
 
-    navigation.setParams({ showUserMenu: this._showUserMenu.bind(this) });
+    navigation.setParams({
+      showUserMenu: this._showUserMenu.bind(this),
+      decodedPaymentRequest: this.state.decodedPaymentRequest
+     });
 
     this._listeners.push(
       Keyboard.addListener('keyboardDidShow', this._onKeyboardDidShow)
@@ -312,7 +339,7 @@ export default class ConversationScreen extends Component {
         return Linking.openURL(vendor.url);
       }
 
-      if (contact.isBitcoinAddress || contact.isVendor) {
+      if (contact.isBitcoinAddress || contact.isLightningNode || contact.isVendor) {
         title = 'Deleting this contact will also delete its payment history.';
       } else {
         title = 'Deleting this contact will also delete its payment history and will prevent this contact from sending you any more bitcoin.';
@@ -422,7 +449,8 @@ export default class ConversationScreen extends Component {
   }
 
   _renderInputBar() {
-    const { contact, amount } = this.props.navigation.state.params;
+    const { initialAmountBtc } = this.state;
+    const { contact } = this.props.navigation.state.params;
     const disabled = Boolean(contact && !contact.address);
 
     return (
@@ -430,14 +458,14 @@ export default class ConversationScreen extends Component {
         ref={(ref) => { this._inputBar = ref && ref.getWrappedInstance(); }}
         onSendPress={this._onSendPress}
         onCancelPress={this._onCancelPress}
-        initialAmountBtc={amount}
+        initialAmountBtc={initialAmountBtc}
         disabled={disabled}
       />
     );
   }
 
   _renderConfirmTransactionView() {
-    const { contact, bitcoinAddress } = this.props.navigation.state.params;
+    const { contact, bitcoinAddress, paymentRequest } = this.props.navigation.state.params;
 
     const {
       keyboardHeight,
@@ -466,6 +494,7 @@ export default class ConversationScreen extends Component {
         displayUnit={displayUnit}
         contact={contact}
         bitcoinAddress={bitcoinAddress}
+        paymentRequest={paymentRequest}
         onTransactionSent={this._onTransactionSent}
       />
     );

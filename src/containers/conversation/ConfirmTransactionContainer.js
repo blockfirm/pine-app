@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -9,11 +10,12 @@ import {
 
 import { getAddress } from '../../actions/paymentServer/contacts/getAddress';
 import { getInboundCapacityForContact } from '../../actions/paymentServer/lightning';
-import { sendPayment, sendLegacyPayment } from '../../actions/messages';
+import { sendPayment, sendLegacyPayment, sendLegacyLightningPayment } from '../../actions/messages';
 import { handle as handleError } from '../../actions/error/handle';
 import { convert, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
 import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
+import ConfirmLightningTransaction from '../../components/conversation/ConfirmLightningTransaction';
 
 const mapStateToProps = (state) => {
   return {
@@ -30,6 +32,7 @@ class ConfirmTransactionContainer extends Component {
     bitcoinAddress: PropTypes.string,
     amountBtc: PropTypes.number,
     onTransactionSent: PropTypes.func,
+    paymentRequest: PropTypes.string,
     lightningBalance: PropTypes.number,
     lightningBalanceIsPending: PropTypes.bool
   };
@@ -46,7 +49,9 @@ class ConfirmTransactionContainer extends Component {
 
   constructor() {
     super(...arguments);
+
     this._onPayPress = this._onPayPress.bind(this);
+    this._onPayLightningPress = this._onPayLightningPress.bind(this);
   }
 
   componentDidMount() {
@@ -68,7 +73,7 @@ class ConfirmTransactionContainer extends Component {
   _loadContactInboundCapacity() {
     const { dispatch, contact, lightningBalanceIsPending } = this.props;
 
-    if (lightningBalanceIsPending) {
+    if (lightningBalanceIsPending || !contact || !contact.userId) {
       return;
     }
 
@@ -119,7 +124,11 @@ class ConfirmTransactionContainer extends Component {
   }
 
   _createTransaction() {
-    const { dispatch, amountBtc } = this.props;
+    const { dispatch, amountBtc, paymentRequest } = this.props;
+
+    if (paymentRequest) {
+      return;
+    }
 
     this.setState({
       inputs: null,
@@ -184,6 +193,19 @@ class ConfirmTransactionContainer extends Component {
       });
   }
 
+  _sendLightningPayment() {
+    const { dispatch, contact, paymentRequest, amountBtc } = this.props;
+    const transactionMetadata = { amountBtc };
+
+    return dispatch(sendLegacyLightningPayment(paymentRequest, transactionMetadata, contact))
+      .then((result) => {
+        this.props.onTransactionSent(result || {});
+      })
+      .catch((error) => {
+        dispatch(handleError(error));
+      });
+  }
+
   _onPayPress() {
     return authentication.authenticate().then((authenticated) => {
       if (authenticated) {
@@ -192,8 +214,27 @@ class ConfirmTransactionContainer extends Component {
     });
   }
 
+  _onPayLightningPress() {
+    return authentication.authenticate().then((authenticated) => {
+      if (authenticated) {
+        return this._sendLightningPayment();
+      }
+    });
+  }
+
   render() {
+    const { paymentRequest } = this.props;
     const { fee, cannotAffordFee } = this.state;
+
+    if (paymentRequest) {
+      return (
+        <ConfirmLightningTransaction
+          {...this.props}
+          paymentRequest={paymentRequest}
+          onPayPress={this._onPayLightningPress}
+        />
+      );
+    }
 
     return (
       <ConfirmTransaction
