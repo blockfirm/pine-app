@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, InteractionManager } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import * as bolt11 from 'bolt11';
 
 import { withTheme } from '../../contexts/theme';

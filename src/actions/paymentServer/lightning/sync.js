@@ -24,12 +24,12 @@ const syncFailure = (error) => {
   };
 };
 
-export const sync = (client) => {
+export const sync = () => {
   return (dispatch) => {
     console.log('LIGHTNING sync');
     dispatch(syncRequest());
 
-    return dispatch(getBalance(client))
+    return dispatch(getBalance())
       .then(() => {
         dispatch(syncSuccess());
       })

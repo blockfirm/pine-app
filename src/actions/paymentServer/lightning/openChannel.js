@@ -1,3 +1,4 @@
+import { getClient } from '../../../clients/paymentServer/lightning';
 import { getEstimate } from '../../bitcoin/fees';
 
 export const PINE_LIGHTNING_OPEN_CHANNEL_REQUEST = 'PINE_LIGHTNING_OPEN_CHANNEL_REQUEST';
@@ -24,9 +25,10 @@ const openChannelFailure = (error) => {
   };
 };
 
-export const openChannel = (satsAmount, client) => {
+export const openChannel = (satsAmount) => {
   return (dispatch) => {
     console.log('LIGHTNING openChannel');
+    const client = getClient();
     dispatch(openChannelRequest());
 
     return dispatch(getEstimate())

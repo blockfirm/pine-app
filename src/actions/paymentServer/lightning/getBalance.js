@@ -1,3 +1,4 @@
+import { getClient } from '../../../clients/paymentServer/lightning';
 import { openChannel } from './openChannel';
 
 export const PINE_LIGHTNING_GET_BALANCE_REQUEST = 'PINE_LIGHTNING_GET_BALANCE_REQUEST';
@@ -24,9 +25,10 @@ const getBalanceFailure = (error) => {
   };
 };
 
-export const getBalance = (client) => {
+export const getBalance = () => {
   return (dispatch) => {
     console.log('LIGHTNING getBalance');
+    const client = getClient();
     dispatch(getBalanceRequest());
 
     return client.getBalance()
