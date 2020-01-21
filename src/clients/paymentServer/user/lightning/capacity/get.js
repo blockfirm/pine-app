@@ -1,4 +1,4 @@
-import { getAccountKeyPairFromMnemonic, getUserIdFromPublicKey } from '../../../crypto';
+import { getAccountKeyPairFromMnemonic } from '../../../crypto';
 import { parse as parseAddress, resolveBaseUrl } from '../../../address';
 import { getAuthorizationHeader } from '../../../authentication';
 
