@@ -10,7 +10,14 @@ import {
 
 import { getAddress } from '../../actions/paymentServer/contacts/getAddress';
 import { getInboundCapacityForContact } from '../../actions/paymentServer/lightning';
-import { sendPayment, sendLegacyPayment, sendLegacyLightningPayment } from '../../actions/messages';
+
+import {
+  sendPayment,
+  sendLegacyPayment,
+  sendLightningPayment,
+  sendLegacyLightningPayment
+} from '../../actions/messages';
+
 import { handle as handleError } from '../../actions/error/handle';
 import { convert, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
 import authentication from '../../authentication';
@@ -105,6 +112,13 @@ class ConfirmTransactionContainer extends Component {
     this.setState({ hasLightningCapacity });
   }
 
+  _isLightning() {
+    const { paymentRequest } = this.props;
+    const { hasLightningCapacity } = this.state;
+
+    return Boolean(paymentRequest || hasLightningCapacity);
+  }
+
   _getAddress() {
     const { dispatch, contact, bitcoinAddress } = this.props;
 
@@ -124,9 +138,9 @@ class ConfirmTransactionContainer extends Component {
   }
 
   _createTransaction() {
-    const { dispatch, amountBtc, paymentRequest } = this.props;
+    const { dispatch, amountBtc } = this.props;
 
-    if (paymentRequest) {
+    if (this._isLightning()) {
       return;
     }
 
@@ -193,17 +207,23 @@ class ConfirmTransactionContainer extends Component {
       });
   }
 
-  _sendLightningPayment() {
+  async _sendLightningPayment() {
     const { dispatch, contact, paymentRequest, amountBtc } = this.props;
     const transactionMetadata = { amountBtc };
 
-    return dispatch(sendLegacyLightningPayment(paymentRequest, transactionMetadata, contact))
-      .then((result) => {
-        this.props.onTransactionSent(result || {});
-      })
-      .catch((error) => {
-        dispatch(handleError(error));
-      });
+    try {
+      let result;
+
+      if (paymentRequest) {
+        result = await dispatch(sendLegacyLightningPayment(paymentRequest, transactionMetadata, contact));
+      } else {
+        result = await dispatch(sendLightningPayment(transactionMetadata, contact));
+      }
+
+      this.props.onTransactionSent(result || {});
+    } catch (error) {
+      dispatch(handleError(error));
+    }
   }
 
   _onPayPress() {
@@ -226,7 +246,7 @@ class ConfirmTransactionContainer extends Component {
     const { paymentRequest } = this.props;
     const { fee, cannotAffordFee } = this.state;
 
-    if (paymentRequest) {
+    if (this._isLightning()) {
       return (
         <ConfirmLightningTransaction
           {...this.props}

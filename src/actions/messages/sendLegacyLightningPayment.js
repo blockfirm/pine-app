@@ -71,7 +71,7 @@ export const sendLegacyLightningPayment = (paymentRequest, metadata, contact = n
       .then(async (lightningContact) => {
         const message = {
           id: uuidv4(),
-          type: 'payment',
+          type: 'lightning_payment',
           from: null,
           createdAt: Math.floor(Date.now() / 1000),
           data: { paymentRequest },

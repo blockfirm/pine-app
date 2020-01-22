@@ -7,5 +7,6 @@ export * from './removeAllForContact';
 export * from './save';
 export * from './sendLegacyLightningPayment';
 export * from './sendLegacyPayment';
+export * from './sendLightningPayment';
 export * from './sendPayment';
 export * from './sync';

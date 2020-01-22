@@ -74,6 +74,16 @@ class ConfirmLightningTransaction extends Component {
     amountBtc: 0
   }
 
+  static getDerivedStateFromProps(props) {
+    if (props.paymentRequest) {
+      return null;
+    }
+
+    return {
+      amountBtc: props.amountBtc
+    };
+  }
+
   componentDidMount() {
     const { paymentRequest } = this.props;
 
@@ -173,9 +183,10 @@ class ConfirmLightningTransaction extends Component {
 
 ConfirmLightningTransaction.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  paymentRequest: PropTypes.string.isRequired,
+  amountBtc: PropTypes.number.isRequired,
   displayCurrency: PropTypes.string.isRequired,
   displayUnit: PropTypes.string,
+  paymentRequest: PropTypes.string,
   onPayPress: PropTypes.func,
   style: PropTypes.any,
   theme: PropTypes.object.isRequired

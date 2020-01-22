@@ -11,7 +11,11 @@ const COLOR_STYLE_LIGHT = 'light';
 
 export default class MessageIndicator extends Component {
   _getTransactionStatus() {
-    const { transaction } = this.props;
+    const { transaction, message } = this.props;
+
+    if (message && message.type === 'lightning_payment') {
+      return 2;
+    }
 
     if (!transaction) {
       return 0;
