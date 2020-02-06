@@ -4,6 +4,7 @@ import { load as loadSettings } from './settings';
 import { load as loadContacts } from './contacts';
 import { load as loadMessageTxids } from './messages/txids';
 import { load as loadPineCredentials } from './paymentServer/credentials';
+import { load as loadLightningInvoices } from './lightning/invoices';
 
 export const LOAD_REQUEST = 'LOAD_REQUEST';
 export const LOAD_SUCCESS = 'LOAD_SUCCESS';
@@ -40,7 +41,8 @@ export const load = () => {
       dispatch(loadKeys()),
       dispatch(loadContacts()),
       dispatch(loadMessageTxids()),
-      dispatch(loadBitcoinWallet())
+      dispatch(loadBitcoinWallet()),
+      dispatch(loadLightningInvoices())
     ];
 
     return Promise.all(promises)
