@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import errorRreducer from './error';
+import errorReducer from './error';
 import itemsReducer from './items';
 
 const transactionsReducer = combineReducers({
-  error: errorRreducer,
+  error: errorReducer,
   items: itemsReducer
 });
 
