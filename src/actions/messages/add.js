@@ -42,7 +42,9 @@ export const add = (contactId, message, persistContact = true, markAsUnread = tr
     await loadExistingMessages(contactId, dispatch, state);
 
     // Add txid to the list of message transaction IDs.
-    await dispatch(addToMessageTxIds(message.txid));
+    if (message.txid) {
+      await dispatch(addToMessageTxIds(message.txid));
+    }
 
     /**
      * The message is added to the state by the reducer so this
