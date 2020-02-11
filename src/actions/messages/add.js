@@ -27,7 +27,7 @@ const loadExistingMessages = (contactId, dispatch, state) => {
  * @param {boolean} [persistContact=true] - Whether to persist the contact changes or not.
  * @param {boolean} [markAsUnread=true] - Mark conversation as unread (only for received messages).
  *
- * @returns {Promise} A promise that resolves when the message has been added.
+ * @returns {Promise.Object} A promise that resolves when the message has been added.
  */
 export const add = (contactId, message, persistContact = true, markAsUnread = true) => {
   return async (dispatch, getState) => {
@@ -65,7 +65,8 @@ export const add = (contactId, message, persistContact = true, markAsUnread = tr
     }
 
     await dispatch(setLastMessageToContact({ id: contactId }, message, persistContact));
+    await dispatch(save(contactId));
 
-    return dispatch(save(contactId));
+    return message;
   };
 };
