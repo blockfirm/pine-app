@@ -51,7 +51,7 @@ const saveInvoice = (invoice, contact, dispatch) => {
  * @param {string} contact.userId - The contact's user ID.
  * @param {string} contact.publicKey - The contact's public key.
  *
- * @returns {Promise} A promise that resolves when the payment has been sent and saved.
+ * @returns {Promise.{ message }} A promise that resolves when the payment has been sent and saved.
  */
 export const sendLightningPayment = (metadata, contact) => {
   const { amountBtc } = metadata;
@@ -77,7 +77,7 @@ export const sendLightningPayment = (metadata, contact) => {
       const paymentHash = await dispatch(sendPayment(invoice.paymentRequest));
 
       // Add message to conversation.
-      await dispatch(addMessage(contact.id, {
+      const createdMessage = await dispatch(addMessage(contact.id, {
         ...paymentMessage,
         data: {
           ...paymentMessage.data,
@@ -90,6 +90,8 @@ export const sendLightningPayment = (metadata, contact) => {
       }));
 
       dispatch(sendLightningPaymentSuccess());
+
+      return { message: createdMessage };
     } catch (error) {
       dispatch(sendLightningPaymentFailure(error));
       throw error;
