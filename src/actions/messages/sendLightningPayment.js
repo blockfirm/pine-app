@@ -4,6 +4,7 @@ import {
   convert as convertBitcoin
 } from '../../crypto/bitcoin/convert';
 
+import { add as addInvoice } from '../lightning/invoices';
 import { getInvoice, sendPayment } from '../paymentServer/lightning';
 import { add as addMessage } from './add';
 
@@ -32,12 +33,20 @@ const sendLightningPaymentFailure = (error) => {
   };
 };
 
+const saveInvoice = (invoice, contact, dispatch) => {
+  return dispatch(addInvoice([{
+    ...invoice,
+    payee: contact.address
+  }]));
+};
+
 /**
  * Action to send a lightning payment to a contact.
  *
  * @param {Object} metadata - Metadata about the transaction.
  * @param {number} metadata.amountBtc - The amount in BTC of the transaction excluding fees.
  * @param {Object} contact - Contact to send the payment to.
+ * @param {string} contact.id - The contact's local ID.
  * @param {string} contact.address - The contact's Pine address.
  * @param {string} contact.userId - The contact's user ID.
  * @param {string} contact.publicKey - The contact's public key.
@@ -54,34 +63,36 @@ export const sendLightningPayment = (metadata, contact) => {
     data: {}
   };
 
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(sendLightningPaymentRequest());
 
-    // Get a lightning invoice from the contact's Pine server.
-    return dispatch(getInvoice(amountSats, paymentMessage, contact))
-      .then((invoice) => {
-        // Pay the invoice.
-        return dispatch(sendPayment(invoice.paymentRequest)).then((paymentHash) => {
-          // Add message to conversation.
-          return dispatch(addMessage(contact.id, {
-            ...paymentMessage,
-            data: {
-              ...paymentMessage.data,
-              invoice,
-              paymentHash
-            },
-            from: null,
-            createdAt: Math.floor(Date.now() / 1000),
-            amountBtc
-          }));
-        });
-      })
-      .then(() => {
-        dispatch(sendLightningPaymentSuccess());
-      })
-      .catch((error) => {
-        dispatch(sendLightningPaymentFailure(error));
-        throw error;
-      });
+    try {
+      // Get a lightning invoice from the contact's Pine server.
+      const invoice = await dispatch(getInvoice(amountSats, paymentMessage, contact));
+
+      // Save the invoice locally.
+      await saveInvoice(invoice, contact, dispatch);
+
+      // Pay the invoice.
+      const paymentHash = await dispatch(sendPayment(invoice.paymentRequest));
+
+      // Add message to conversation.
+      await dispatch(addMessage(contact.id, {
+        ...paymentMessage,
+        data: {
+          ...paymentMessage.data,
+          invoice,
+          paymentHash
+        },
+        from: null,
+        createdAt: Math.floor(Date.now() / 1000),
+        amountBtc
+      }));
+
+      dispatch(sendLightningPaymentSuccess());
+    } catch (error) {
+      dispatch(sendLightningPaymentFailure(error));
+      throw error;
+    }
   };
 };
