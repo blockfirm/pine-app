@@ -1,3 +1,5 @@
+import uuidv4 from 'uuid/v4';
+
 import {
   UNIT_BTC,
   UNIT_SATOSHIS,
@@ -79,6 +81,7 @@ export const sendLightningPayment = (metadata, contact) => {
       // Add message to conversation.
       const createdMessage = await dispatch(addMessage(contact.id, {
         ...paymentMessage,
+        id: uuidv4(),
         data: {
           ...paymentMessage.data,
           invoice,
