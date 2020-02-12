@@ -2,7 +2,7 @@ import {
   UNIT_BTC,
   UNIT_SATOSHIS,
   convert as convertBitcoin
-} from '../../../../crypto/bitcoin/convert';
+} from '../../../crypto/bitcoin/convert';
 
 export const PINE_LIGHTNING_RPC_FETCH_INPUT_INFO = 'PINE_LIGHTNING_RPC_FETCH_INPUT_INFO';
 

@@ -1,8 +1,8 @@
 import './typeDefs';
 import * as bitcoin from 'bitcoinjs-lib';
-import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
-import mnemonicToSeed from '../../../../crypto/mnemonicToSeed';
-import tweakKeyPair from '../../../../crypto/tweakKeyPair';
+import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
+import mnemonicToSeed from '../../../crypto/mnemonicToSeed';
+import tweakKeyPair from '../../../crypto/tweakKeyPair';
 
 import {
   UNIT_BTC,
@@ -10,7 +10,7 @@ import {
   convert as convertBitcoin,
   getKeyPairForAddress,
   getBitcoinNetwork
-} from '../../../../crypto/bitcoin';
+} from '../../../crypto/bitcoin';
 
 const HASH_TYPE_OLD = 0;
 const HASH_TYPE_ALL = 1;

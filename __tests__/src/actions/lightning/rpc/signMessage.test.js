@@ -1,7 +1,7 @@
 import {
   signMessage,
   PINE_LIGHTNING_RPC_SIGN_MESSAGE
-} from '../../../../../../src/actions/paymentServer/lightning/rpc/signMessage';
+} from '../../../../../src/actions/lightning/rpc/signMessage';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -26,7 +26,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../../src/crypto/getMnemonicByKey', () => {
+jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
   return jest.fn(() => Promise.resolve('chicken approve topic suit shiver party whale holiday pitch source angry naive'));
 });
 

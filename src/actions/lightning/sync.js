@@ -1,7 +1,7 @@
-import { handle as handleError } from '../../error';
-import { add as addInvoices } from '../../lightning/invoices';
+import { getUnredeemedInvoices } from '../paymentServer/lightning/getUnredeemedInvoices';
+import { handle as handleError } from '../error';
+import { add as addInvoices } from './invoices';
 import { getBalance } from './getBalance';
-import { getUnredeemedInvoices } from './getUnredeemedInvoices';
 
 export const PINE_LIGHTNING_SYNC_REQUEST = 'PINE_LIGHTNING_SYNC_REQUEST';
 export const PINE_LIGHTNING_SYNC_SUCCESS = 'PINE_LIGHTNING_SYNC_SUCCESS';

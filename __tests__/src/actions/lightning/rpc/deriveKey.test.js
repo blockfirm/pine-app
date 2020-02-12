@@ -1,7 +1,7 @@
 import {
   deriveKey,
   PINE_LIGHTNING_RPC_DERIVE_KEY
-} from '../../../../../../src/actions/paymentServer/lightning/rpc/deriveKey';
+} from '../../../../../src/actions/lightning/rpc/deriveKey';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {

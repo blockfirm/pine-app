@@ -1,19 +1,19 @@
 import {
   computeInputScript,
   PINE_LIGHTNING_RPC_COMPUTE_INPUT_SCRIPT
-} from '../../../../../../src/actions/paymentServer/lightning/rpc/computeInputScript';
+} from '../../../../../src/actions/lightning/rpc/computeInputScript';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
-    return action(jest.fn(), () => require('../../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
+    return action(jest.fn(), () => require('../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
   }
 
   return action;
 });
 
-const getStateMock = jest.fn(() => require('../../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
+const getStateMock = jest.fn(() => require('../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
 
-jest.mock('../../../../../../src/crypto/getMnemonicByKey', () => {
+jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
   return jest.fn(() => Promise.resolve('chicken approve topic suit shiver party whale holiday pitch source angry naive'));
 });
 

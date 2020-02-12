@@ -1,19 +1,19 @@
 import {
   getRevocationRootKey,
   PINE_LIGHTNING_RPC_GET_REVOCATION_ROOT_KEY
-} from '../../../../../../src/actions/paymentServer/lightning/rpc/getRevocationRootKey';
+} from '../../../../../src/actions/lightning/rpc/getRevocationRootKey';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
-    return action(jest.fn(), () => require('../../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
+    return action(jest.fn(), () => require('../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
   }
 
   return action;
 });
 
-const getStateMock = jest.fn(() => require('../../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
+const getStateMock = jest.fn(() => require('../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
 
-jest.mock('../../../../../../src/crypto/getMnemonicByKey', () => {
+jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
   return jest.fn(() => Promise.resolve('chicken approve topic suit shiver party whale holiday pitch source angry naive'));
 });
 

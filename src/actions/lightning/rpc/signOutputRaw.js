@@ -2,9 +2,9 @@
 import './typeDefs';
 import * as bitcoin from 'bitcoinjs-lib';
 
-import tweakKeyPair from '../../../../crypto/tweakKeyPair';
-import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
-import { getLightningKeyPairFromMnemonic } from '../../../../clients/paymentServer/crypto';
+import tweakKeyPair from '../../../crypto/tweakKeyPair';
+import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
+import { getLightningKeyPairFromMnemonic } from '../../../clients/paymentServer/crypto';
 
 const MAX_UINT16 = 65535;
 const MAX_UINT32 = 4294967295;

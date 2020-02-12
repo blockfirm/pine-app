@@ -1,4 +1,4 @@
-import { reserve as reserveUtxos } from '../../../bitcoin/wallet/utxos';
+import { reserve as reserveUtxos } from '../../bitcoin/wallet/utxos';
 
 export const PINE_LIGHTNING_RPC_LOCK_OUTPOINT = 'PINE_LIGHTNING_RPC_LOCK_OUTPOINT';
 

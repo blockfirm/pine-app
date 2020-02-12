@@ -1,7 +1,7 @@
 import {
   signOutputRaw,
   PINE_LIGHTNING_RPC_SIGN_OUTPUT_RAW
-} from '../../../../../../src/actions/paymentServer/lightning/rpc/signOutputRaw';
+} from '../../../../../src/actions/lightning/rpc/signOutputRaw';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -26,7 +26,7 @@ const getStateMock = jest.fn(() => ({
   }
 }));
 
-jest.mock('../../../../../../src/crypto/getMnemonicByKey', () => {
+jest.mock('../../../../../src/crypto/getMnemonicByKey', () => {
   return jest.fn(() => Promise.resolve('abandon category occur glad square empower half chef door puzzle sauce begin coral text drive clarify always kid lizard piano dentist canyon practice together'));
 });
 

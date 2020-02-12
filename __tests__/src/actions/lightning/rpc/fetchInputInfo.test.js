@@ -1,7 +1,7 @@
 import {
   fetchInputInfo,
   PINE_LIGHTNING_RPC_FETCH_INPUT_INFO
-} from '../../../../../../src/actions/paymentServer/lightning/rpc/fetchInputInfo';
+} from '../../../../../src/actions/lightning/rpc/fetchInputInfo';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {

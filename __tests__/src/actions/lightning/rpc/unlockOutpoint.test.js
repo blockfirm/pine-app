@@ -1,9 +1,9 @@
-import { unreserve } from '../../../../../../src/actions/bitcoin/wallet/utxos/unreserve';
+import { unreserve } from '../../../../../src/actions/bitcoin/wallet/utxos/unreserve';
 
 import {
   unlockOutpoint,
   PINE_LIGHTNING_RPC_UNLOCK_OUTPOINT
-} from '../../../../../../src/actions/paymentServer/lightning/rpc/unlockOutpoint';
+} from '../../../../../src/actions/lightning/rpc/unlockOutpoint';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -13,7 +13,7 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
-jest.mock('../../../../../../src/actions/bitcoin/wallet/utxos/unreserve', () => ({
+jest.mock('../../../../../src/actions/bitcoin/wallet/utxos/unreserve', () => ({
   unreserve: jest.fn(() => Promise.resolve())
 }));
 

@@ -1,4 +1,4 @@
-import * as lightningActions from '../../../actions/paymentServer/lightning';
+import * as lightningActions from '../../../actions/lightning';
 
 const remoteReducer = (state = 0, action) => {
   switch (action.type) {

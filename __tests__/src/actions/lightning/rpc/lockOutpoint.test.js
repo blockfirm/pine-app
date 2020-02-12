@@ -1,9 +1,9 @@
-import { reserve } from '../../../../../../src/actions/bitcoin/wallet/utxos/reserve';
+import { reserve } from '../../../../../src/actions/bitcoin/wallet/utxos/reserve';
 
 import {
   lockOutpoint,
   PINE_LIGHTNING_RPC_LOCK_OUTPOINT
-} from '../../../../../../src/actions/paymentServer/lightning/rpc/lockOutpoint';
+} from '../../../../../src/actions/lightning/rpc/lockOutpoint';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
@@ -13,7 +13,7 @@ const dispatchMock = jest.fn((action) => {
   return action;
 });
 
-jest.mock('../../../../../../src/actions/bitcoin/wallet/utxos/reserve', () => ({
+jest.mock('../../../../../src/actions/bitcoin/wallet/utxos/reserve', () => ({
   reserve: jest.fn(() => Promise.resolve())
 }));
 

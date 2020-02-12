@@ -1,4 +1,4 @@
-import { unreserve as unreserveUtxos } from '../../../bitcoin/wallet/utxos';
+import { unreserve as unreserveUtxos } from '../../bitcoin/wallet/utxos';
 
 export const PINE_LIGHTNING_RPC_UNLOCK_OUTPOINT = 'PINE_LIGHTNING_RPC_UNLOCK_OUTPOINT';
 

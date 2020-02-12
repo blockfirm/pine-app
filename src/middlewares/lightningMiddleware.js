@@ -1,8 +1,8 @@
 /* eslint-disable lines-around-comment */
 import * as actions from '../actions';
 import { handle as handleError } from '../actions/error';
-import * as lightningActions from '../actions/paymentServer/lightning';
-import * as lightningRpcActions from '../actions/paymentServer/lightning/rpc';
+import * as lightningActions from '../actions/lightning';
+import * as lightningRpcActions from '../actions/lightning/rpc';
 import { LightningClient, setClient } from '../clients/lightning';
 
 /**

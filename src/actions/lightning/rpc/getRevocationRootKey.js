@@ -1,5 +1,5 @@
-import getMnemonicByKey from '../../../../crypto/getMnemonicByKey';
-import { getLightningKeyPairFromMnemonic } from '../../../../clients/paymentServer/crypto';
+import getMnemonicByKey from '../../../crypto/getMnemonicByKey';
+import { getLightningKeyPairFromMnemonic } from '../../../clients/paymentServer/crypto';
 
 export const PINE_LIGHTNING_RPC_GET_REVOCATION_ROOT_KEY = 'PINE_LIGHTNING_RPC_GET_REVOCATION_ROOT_KEY';
 

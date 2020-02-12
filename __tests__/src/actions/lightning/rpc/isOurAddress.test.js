@@ -1,17 +1,17 @@
 import {
   isOurAddress,
   PINE_LIGHTNING_RPC_IS_OUR_ADDRESS
-} from '../../../../../../src/actions/paymentServer/lightning/rpc/isOurAddress';
+} from '../../../../../src/actions/lightning/rpc/isOurAddress';
 
 const dispatchMock = jest.fn((action) => {
   if (typeof action === 'function') {
-    return action(jest.fn(), () => require('../../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
+    return action(jest.fn(), () => require('../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
   }
 
   return action;
 });
 
-const getStateMock = jest.fn(() => require('../../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
+const getStateMock = jest.fn(() => require('../../../actions/bitcoin/wallet/transactions/__fixtures__/state'));
 
 describe('PINE_LIGHTNING_RPC_IS_OUR_ADDRESS', () => {
   it('equals "PINE_LIGHTNING_RPC_IS_OUR_ADDRESS"', () => {

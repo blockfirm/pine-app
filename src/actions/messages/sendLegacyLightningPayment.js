@@ -1,7 +1,7 @@
 import uuidv4 from 'uuid/v4';
 import * as bolt11 from 'bolt11';
 
-import { sendPayment } from '../paymentServer/lightning';
+import { sendPayment } from '../lightning';
 import { addLightning as addLightningContact } from '../contacts';
 import { add as addMessage } from './add';
 

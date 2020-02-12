@@ -6,8 +6,9 @@ import {
   convert as convertBitcoin
 } from '../../crypto/bitcoin/convert';
 
+import { sendPayment } from '../lightning';
 import { add as addInvoice } from '../lightning/invoices';
-import { getInvoice, sendPayment } from '../paymentServer/lightning';
+import { getInvoice } from '../paymentServer/lightning';
 import { add as addMessage } from './add';
 
 export const MESSAGES_SEND_LIGHTNING_PAYMENT_REQUEST = 'MESSAGES_SEND_LIGHTNING_PAYMENT_REQUEST';

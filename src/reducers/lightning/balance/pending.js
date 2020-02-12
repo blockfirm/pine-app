@@ -1,4 +1,4 @@
-import * as lightningActions from '../../../actions/paymentServer/lightning';
+import * as lightningActions from '../../../actions/lightning';
 
 const pendingReducer = (state = false, action) => {
   switch (action.type) {
