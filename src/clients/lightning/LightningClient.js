@@ -7,8 +7,8 @@ import {
   serializeRequest
 } from './serializers';
 
-import { parse as parseAddress, resolveBaseUrl } from '../address';
-import { getAuthorizationHeader } from '../authentication';
+import { parse as parseAddress, resolveBaseUrl } from '../paymentServer/address';
+import { getAuthorizationHeader } from '../paymentServer/authentication';
 
 const PING_LATENCY = 2000; // 2 seconds
 const RECONNECT_INTERVAL = 1000; // 1 second

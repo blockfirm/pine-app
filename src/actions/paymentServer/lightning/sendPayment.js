@@ -1,4 +1,4 @@
-import { getClient } from '../../../clients/paymentServer/lightning';
+import { getClient } from '../../../clients/lightning';
 
 export const PINE_LIGHTNING_SEND_PAYMENT_REQUEST = 'PINE_LIGHTNING_SEND_PAYMENT_REQUEST';
 export const PINE_LIGHTNING_SEND_PAYMENT_SUCCESS = 'PINE_LIGHTNING_SEND_PAYMENT_SUCCESS';

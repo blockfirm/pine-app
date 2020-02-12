@@ -1,4 +1,4 @@
-import { getClient } from '../../../clients/paymentServer/lightning';
+import { getClient } from '../../../clients/lightning';
 import { openChannel } from './openChannel';
 
 export const PINE_LIGHTNING_GET_BALANCE_REQUEST = 'PINE_LIGHTNING_GET_BALANCE_REQUEST';

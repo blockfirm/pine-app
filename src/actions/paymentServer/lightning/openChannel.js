@@ -1,4 +1,4 @@
-import { getClient } from '../../../clients/paymentServer/lightning';
+import { getClient } from '../../../clients/lightning';
 import { getEstimate } from '../../bitcoin/fees';
 
 export const PINE_LIGHTNING_OPEN_CHANNEL_REQUEST = 'PINE_LIGHTNING_OPEN_CHANNEL_REQUEST';
