@@ -1,3 +1,4 @@
+export * from './createInvoice';
 export * from './getBalance';
 export * from './openChannel';
 export * from './sendPayment';

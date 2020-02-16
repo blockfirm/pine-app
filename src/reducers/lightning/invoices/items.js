@@ -38,6 +38,16 @@ const mergeInvoices = (oldInvoices, newInvoices) => {
   return updatedInvoices;
 };
 
+const flagAsRedeemed = (invoice) => ({
+  ...invoice,
+  redeemed: true
+});
+
+const flagAsFailed = (invoice, error) => ({
+  ...invoice,
+  redeemError: error.message
+});
+
 const itemsReducer = (state = [], action) => {
   switch (action.type) {
     case invoicesActions.LIGHTNING_INVOICES_LOAD_SUCCESS:
@@ -49,6 +59,24 @@ const itemsReducer = (state = [], action) => {
       }
 
       return mergeInvoices(state, action.invoices);
+
+    case invoicesActions.LIGHTNING_INVOICES_REDEEM_SUCCESS:
+      return state.map((invoice) => {
+        if (invoice.id === action.invoice.id) {
+          return flagAsRedeemed(invoice);
+        }
+
+        return invoice;
+      });
+
+    case invoicesActions.LIGHTNING_INVOICES_REDEEM_FAILURE:
+      return state.map((invoice) => {
+        if (invoice.id === action.invoice.id) {
+          return flagAsFailed(invoice, action.error);
+        }
+
+        return invoice;
+      });
 
     default:
       return state;

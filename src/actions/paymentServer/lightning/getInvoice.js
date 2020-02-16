@@ -27,6 +27,9 @@ const getInvoiceFailure = (error) => {
 /**
  * Action to get a new lightning invoice for a Pine contact.
  *
+ * Note: This gets an invoice to the contact's gateway node and not to the
+ * contact's own lightning node. Once paid, it will be redeemed by the contact.
+ *
  * @param {number} amountSats - Amount in satoshis the invoice should be for.
  * @param {Object} message - Payment message to send to contact when invoice has been paid.
  * @param {number} message.version - Always 1.

@@ -1,6 +1,6 @@
 import { getUnredeemedInvoices } from '../paymentServer/lightning/getUnredeemedInvoices';
 import { handle as handleError } from '../error';
-import { add as addInvoices } from './invoices';
+import { add as addInvoices, redeemAll } from './invoices';
 import { getBalance } from './getBalance';
 
 export const PINE_LIGHTNING_SYNC_REQUEST = 'PINE_LIGHTNING_SYNC_REQUEST';
@@ -38,6 +38,13 @@ export const sync = () => {
 
     return dispatch(getBalance())
       .then(() => syncUnredeemedInvoices(dispatch))
+      .then(() => {
+        return dispatch(redeemAll()).catch(() => {
+          /**
+           * Ignore redemption errors - they are logged and managed on each payment.
+           */
+        });
+      })
       .then(() => dispatch(syncSuccess()))
       .catch((error) => {
         dispatch(syncFailure(error));
