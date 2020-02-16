@@ -32,8 +32,8 @@ const findAllFailure = (error) => {
  * Merges a transactions map with the previous result
  * by transforming the map into an array of objects.
  *
- * @param {array} result - List of addresses and transactions, [{ address, transactions }].
- * @param {object} transactionsMap - Object mapping addresses to list of transactions.
+ * @param {Object[]} result - List of addresses and transactions, [{ address, transactions }].
+ * @param {Object} transactionsMap - Object mapping addresses to list of transactions.
  */
 const mergeResult = (prevResult, transactionsMap) => {
   const result = prevResult || [];
@@ -51,7 +51,7 @@ const mergeResult = (prevResult, transactionsMap) => {
 /**
  * Removes trailing unused addresses from the result.
  *
- * @param {array} result - List of addresses and transactions, [{ address, transactions }].
+ * @param {Object[]} result - List of addresses and transactions, [{ address, transactions }].
  * @param {number} addressGap - Number of unused addresses that should be removed.
  */
 const cleanResult = (result, addressGap) => {
@@ -67,7 +67,7 @@ const cleanResult = (result, addressGap) => {
  * Returns the number of consecutive unused addresses at the end of the list.
  * <https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#address-gap-limit>
  *
- * @param {array} addresses - List of addresses in the format of [{ address, transactions }].
+ * @param {Object[]} addresses - List of addresses in the format of [{ address, transactions }].
  */
 const getAddressGap = (addresses) => {
   const reversedAddresses = [...addresses];
@@ -90,11 +90,11 @@ const getAddressGap = (addresses) => {
 /**
  * Generates a specified amount of addresses starting at `addressInfo.index`.
  *
- * @param {object} addressInfo - An object describing an address using BIP44.
- * - @param {string} publicKey - Public key for account to use when deriving the address.
- * - @param {string} network - 'mainnet' or 'testnet'.
- * - @param {boolean} internal - Whether or not to search for internal addresses (change addresses).
- * - @param {number} index - The index of the address starting at 0.
+ * @param {Object} addressInfo - An object describing an address using BIP44.
+ * @param {string} addressInfo.publicKey - Public key for account to use when deriving the address.
+ * @param {string} addressInfo.network - 'mainnet' or 'testnet'.
+ * @param {boolean} addressInfo.internal - Whether or not to search for internal addresses (change addresses).
+ * @param {number} addressInfo.index - The index of the address starting at 0.
  * @param {number} amount - Number of addresses to generate.
  */
 const generateAddresses = (addressInfo, amount) => {
@@ -118,11 +118,11 @@ const generateAddresses = (addressInfo, amount) => {
  * are no used addresses beyond this point and stops searching.
  *
  * @param {function} dispatch - A redux dispatch function.
- * @param {object} addressInfo - An object describing an address using BIP44.
- * - @param {string} publicKey - Public key for account to use when deriving the address.
- * - @param {string} network - 'mainnet' or 'testnet'.
- * - @param {boolean} internal - Whether or not to search for internal addresses (change addresses).
- * - @param {number} index - The index of the address starting at 0.
+ * @param {Object} addressInfo - An object describing an address using BIP44.
+ * @param {string} addressInfo.publicKey - Public key for account to use when deriving the address.
+ * @param {string} addressInfo.network - 'mainnet' or 'testnet'.
+ * @param {boolean} addressInfo.internal - Whether or not to search for internal addresses (change addresses).
+ * @param {number} addressInfo.index - The index of the address starting at 0.
  * @param {array} result - An aggregation of all addresses that has been searched and its transactions.
  */
 const getAddressesForAccount = (dispatch, addressInfo, result) => {
