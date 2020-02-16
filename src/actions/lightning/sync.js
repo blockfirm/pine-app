@@ -1,3 +1,4 @@
+import { getClient } from '../../clients/lightning';
 import { getUnredeemedInvoices } from '../paymentServer/lightning/getUnredeemedInvoices';
 import { handle as handleError } from '../error';
 import { add as addInvoices, redeemAll } from './invoices';
@@ -34,6 +35,12 @@ const syncUnredeemedInvoices = async (dispatch) => {
 export const sync = () => {
   return (dispatch) => {
     console.log('LIGHTNING sync');
+    const client = getClient();
+
+    if (!client.ready || client.disconnected) {
+      return Promise.resolve();
+    }
+
     dispatch(syncRequest());
 
     return dispatch(getBalance())

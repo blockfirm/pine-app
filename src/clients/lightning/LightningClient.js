@@ -28,6 +28,7 @@ export default class LightningClient extends EventEmitter {
     this.callCounter = 1;
     this.callbacks = {};
     this.disconnected = true;
+    this.ready = false;
   }
 
   registerMethods(methods) {
@@ -178,6 +179,7 @@ export default class LightningClient extends EventEmitter {
 
   _onReady() {
     console.log('[LND] Ready');
+    this.ready = true;
     this.emit('ready');
   }
 

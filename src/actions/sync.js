@@ -1,6 +1,7 @@
 import { sync as syncBitcoinWallet } from './bitcoin/wallet';
 import { sync as syncContacts, updateProfiles } from './contacts';
 import { sync as syncMessages } from './messages';
+import { sync as syncLightning } from './lightning';
 import { syncIncoming as syncIncomingContactRequests } from './contacts/contactRequests';
 
 export const SYNC_REQUEST = 'SYNC_REQUEST';
@@ -51,6 +52,7 @@ export const sync = (options) => {
       .then(() => dispatch(syncIncomingContactRequests()))
       .then(() => dispatch(syncMessages()))
       .then(() => dispatch(syncBitcoinWallet()))
+      .then(() => dispatch(syncLightning()))
       .then(() => syncProfiles && dispatch(updateProfiles()))
       .then(() => dispatch(syncSuccess()))
       .catch((error) => dispatch(syncFailure(error)));
