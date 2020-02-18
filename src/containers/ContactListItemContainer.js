@@ -7,7 +7,8 @@ import ContactListItem from '../components/ContactListItem';
 
 const mapStateToProps = (state) => {
   return {
-    userProfile: state.settings.user.profile
+    userProfile: state.settings.user.profile,
+    invoicesByMessageId: state.lightning.invoices.itemsByMessageId
   };
 };
 
@@ -16,7 +17,8 @@ class ContactListItemContainer extends Component {
     dispatch: PropTypes.func,
     navigation: PropTypes.any,
     contact: PropTypes.object.isRequired,
-    userProfile: PropTypes.object.isRequired
+    userProfile: PropTypes.object.isRequired,
+    invoicesByMessageId: PropTypes.object.isRequired
   };
 
   constructor() {
@@ -29,10 +31,22 @@ class ContactListItemContainer extends Component {
     dispatch(openConversation(contact));
   }
 
+  _findInvoice() {
+    const { contact, invoicesByMessageId } = this.props;
+    const { lastMessage } = contact;
+
+    if (lastMessage && lastMessage.type === 'lightning_payment') {
+      return invoicesByMessageId[lastMessage.id];
+    }
+  }
+
   render() {
+    const lastMessageInvoice = this._findInvoice();
+
     return (
       <ContactListItem
         {...this.props}
+        lastMessageInvoice={lastMessageInvoice}
         onPress={this._onPress}
       />
     );

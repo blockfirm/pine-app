@@ -4,6 +4,7 @@ import { StyleSheet, View, Image, TouchableOpacity, Animated } from 'react-nativ
 import PropTypes from 'prop-types';
 import AppleEasing from 'react-apple-easing';
 
+import { satsToBtc } from '../../crypto/bitcoin/convert';
 import { withTheme } from '../../contexts/theme';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import Avatar from '../Avatar';
@@ -154,17 +155,18 @@ class Message extends Component {
   }
 
   _renderBubbleContent(textStyle, smallTextStyle) {
-    const { message } = this.props;
+    const { message, invoice } = this.props;
+    const amountBtc = invoice ? satsToBtc(invoice.paidAmount) : message.amountBtc;
 
     return (
       <View>
         <CurrencyLabelContainer
-          amountBtc={message.amountBtc}
+          amountBtc={amountBtc}
           currencyType='primary'
           style={textStyle}
         />
         <CurrencyLabelContainer
-          amountBtc={message.amountBtc}
+          amountBtc={amountBtc}
           currencyType='secondary'
           style={[textStyle, smallTextStyle]}
         />
@@ -288,6 +290,7 @@ Message.propTypes = {
   message: PropTypes.object,
   contact: PropTypes.object,
   transaction: PropTypes.object,
+  invoice: PropTypes.object,
   isFirst: PropTypes.bool,
   isLast: PropTypes.bool,
   onPress: PropTypes.func,

@@ -8,6 +8,7 @@ import {
   CURRENCY_TYPE_PRIMARY
 } from '../containers/CurrencyLabelContainer';
 
+import { satsToBtc } from '../crypto/bitcoin/convert';
 import vendors from '../vendors';
 import MessageIndicatorContainer from '../containers/indicators/MessageIndicatorContainer';
 import { withTheme } from '../contexts/theme';
@@ -139,21 +140,23 @@ class ContactListItem extends Component {
   }
 
   _renderSubtitle() {
-    const { contact, userProfile } = this.props;
+    const { contact, userProfile, lastMessageInvoice } = this.props;
     const { lastMessage, contactRequest } = contact;
 
     if (lastMessage) {
+      const amountBtc = lastMessageInvoice ? satsToBtc(lastMessageInvoice.paidAmount) : lastMessage.amountBtc;
+
       if (lastMessage.from) {
         return (
           <Text>
-            {this._getReceivedText()} {this._renderBtcAmount(lastMessage.amountBtc)}
+            {this._getReceivedText()} {this._renderBtcAmount(amountBtc)}
           </Text>
         );
       }
 
       return (
         <Text>
-          You sent {this._renderBtcAmount(lastMessage.amountBtc)}
+          You sent {this._renderBtcAmount(amountBtc)}
         </Text>
       );
     }
@@ -206,6 +209,7 @@ ContactListItem.propTypes = {
   contact: PropTypes.object.isRequired,
   userProfile: PropTypes.object.isRequired,
   onPress: PropTypes.func,
+  lastMessageInvoice: PropTypes.object,
   theme: PropTypes.object
 };
 
