@@ -213,9 +213,9 @@ class Message extends Component {
   }
 
   _renderStatus() {
-    const { message, transaction } = this.props;
+    const { message, transaction, invoice } = this.props;
 
-    if (!transaction) {
+    if (!transaction && !invoice) {
       return;
     }
 
@@ -223,6 +223,7 @@ class Message extends Component {
       <MessageIndicator
         message={message}
         transaction={transaction}
+        invoice={invoice}
         colorStyle='light'
         style={styles.indicator}
       />

@@ -5,14 +5,16 @@ import MessageIndicator from '../../components/indicators/MessageIndicator';
 
 const mapStateToProps = (state) => {
   return {
-    transactions: state.bitcoin.wallet.transactions.items
+    transactions: state.bitcoin.wallet.transactions.items,
+    invoicesByMessageId: state.lightning.invoices.itemsByMessageId
   };
 };
 
 class MessageIndicatorContainer extends PureComponent {
   static propTypes = {
     message: PropTypes.object,
-    transactions: PropTypes.array
+    transactions: PropTypes.array,
+    invoicesByMessageId: PropTypes.object.isRequired
   };
 
   _findTransaction() {
@@ -27,13 +29,23 @@ class MessageIndicatorContainer extends PureComponent {
     });
   }
 
+  _findInvoice() {
+    const { message, invoicesByMessageId } = this.props;
+
+    if (message && message.type === 'lightning_payment') {
+      return invoicesByMessageId[message.id];
+    }
+  }
+
   render() {
     const transaction = this._findTransaction();
+    const invoice = this._findInvoice();
 
     return (
       <MessageIndicator
         {...this.props}
         transaction={transaction}
+        invoice={invoice}
       />
     );
   }

@@ -48,6 +48,11 @@ const flagAsFailed = (invoice, error) => ({
   redeemError: error.message
 });
 
+const setPaymentHash = (invoice, paymentHash) => ({
+  ...invoice,
+  paymentHash
+});
+
 const itemsReducer = (state = [], action) => {
   switch (action.type) {
     case invoicesActions.LIGHTNING_INVOICES_LOAD_SUCCESS:
@@ -73,6 +78,15 @@ const itemsReducer = (state = [], action) => {
       return state.map((invoice) => {
         if (invoice.id === action.invoice.id) {
           return flagAsFailed(invoice, action.error);
+        }
+
+        return invoice;
+      });
+
+    case invoicesActions.LIGHTNING_INVOICES_SET_PAYMENT_HASH:
+      return state.map((invoice) => {
+        if (invoice.id === action.invoice.id) {
+          return setPaymentHash(invoice, action.paymentHash);
         }
 
         return invoice;

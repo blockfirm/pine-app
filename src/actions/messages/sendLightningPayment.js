@@ -7,7 +7,7 @@ import {
 } from '../../crypto/bitcoin/convert';
 
 import { sendPayment } from '../lightning';
-import { add as addInvoice } from '../lightning/invoices';
+import { add as addInvoice, setPaymentHash } from '../lightning/invoices';
 import { getInvoice } from '../paymentServer/lightning';
 import { add as addMessage } from './add';
 
@@ -77,15 +77,12 @@ export const sendLightningPayment = (metadata, contact) => {
 
       // Pay the invoice.
       const paymentHash = await dispatch(sendPayment(invoice.paymentRequest));
+      await dispatch(setPaymentHash(invoice, paymentHash));
 
       // Add message to conversation.
       const createdMessage = await dispatch(addMessage(contact.id, {
         ...paymentMessage,
         id: messageId,
-        data: {
-          ...paymentMessage.data,
-          paymentHash
-        },
         from: null,
         createdAt: Math.floor(Date.now() / 1000)
       }));

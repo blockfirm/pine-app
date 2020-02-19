@@ -32,7 +32,10 @@ const itemsByMessageIdReducer = (state = {}, action) => {
 
       return {
         ...state,
-        [action.invoice.messageId]: { ...action.invoice, redeemed: true }
+        [action.invoice.messageId]: {
+          ...state[action.invoice.messageId],
+          redeemed: true
+        }
       };
 
     case invoicesActions.LIGHTNING_INVOICES_REDEEM_FAILURE:
@@ -43,8 +46,21 @@ const itemsByMessageIdReducer = (state = {}, action) => {
       return {
         ...state,
         [action.invoice.messageId]: {
-          ...action.invoice,
+          ...state[action.invoice.messageId],
           redeemError: action.error.message
+        }
+      };
+
+    case invoicesActions.LIGHTNING_INVOICES_SET_PAYMENT_HASH:
+      if (!action.invoice.messageId) {
+        return state;
+      }
+
+      return {
+        ...state,
+        [action.invoice.messageId]: {
+          ...state[action.invoice.messageId],
+          paymentHash: action.paymentHash
         }
       };
 
