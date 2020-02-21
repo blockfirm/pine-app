@@ -1,7 +1,7 @@
 import { getClient } from '../../clients/lightning';
 import { getUnredeemedInvoices } from '../paymentServer/lightning/getUnredeemedInvoices';
 import { handle as handleError } from '../error';
-import { add as addInvoices, redeemAll } from './invoices';
+import { add as addInvoices, redeemAll, updateAll } from './invoices';
 import { getBalance } from './getBalance';
 
 export const PINE_LIGHTNING_SYNC_REQUEST = 'PINE_LIGHTNING_SYNC_REQUEST';
@@ -48,7 +48,14 @@ export const sync = () => {
       .then(() => {
         return dispatch(redeemAll()).catch(() => {
           /**
-           * Ignore redemption errors - they are logged and managed on each payment.
+           * Ignore redemption errors - they are logged and retried again the next sync.
+           */
+        });
+      })
+      .then(() => {
+        return dispatch(updateAll()).catch(() => {
+          /**
+           * Ignore update errors - they will be retried again the next sync.
            */
         });
       })

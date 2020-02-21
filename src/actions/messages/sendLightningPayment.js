@@ -8,7 +8,7 @@ import {
 
 import { sendPayment } from '../lightning';
 import { add as addInvoice, setPaymentHash } from '../lightning/invoices';
-import { getInvoice } from '../paymentServer/lightning';
+import { getNewInvoice } from '../paymentServer/lightning';
 import { add as addMessage } from './add';
 
 export const MESSAGES_SEND_LIGHTNING_PAYMENT_REQUEST = 'MESSAGES_SEND_LIGHTNING_PAYMENT_REQUEST';
@@ -65,8 +65,8 @@ export const sendLightningPayment = (metadata, contact) => {
     try {
       const messageId = uuidv4();
 
-      // Get a lightning invoice from the contact's Pine server.
-      const invoice = await dispatch(getInvoice(amountSats, paymentMessage, contact));
+      // Get a new lightning invoice from the contact's Pine server.
+      const invoice = await dispatch(getNewInvoice(amountSats, paymentMessage, contact));
 
       invoice.messageId = messageId;
       invoice.paidAmount = amountSats.toString();

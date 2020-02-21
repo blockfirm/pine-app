@@ -65,6 +65,15 @@ const itemsReducer = (state = [], action) => {
 
       return mergeInvoices(state, action.invoices);
 
+    case invoicesActions.LIGHTNING_INVOICES_UPDATE_SUCCESS:
+      return state.map((invoice) => {
+        if (invoice.id === action.invoice.id) {
+          return { ...invoice, ...action.invoice };
+        }
+
+        return invoice;
+      });
+
     case invoicesActions.LIGHTNING_INVOICES_REDEEM_SUCCESS:
       return state.map((invoice) => {
         if (invoice.id === action.invoice.id) {

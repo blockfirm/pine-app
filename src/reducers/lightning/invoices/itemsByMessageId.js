@@ -10,7 +10,14 @@ const createMessageIdMap = (items) => {
   }, {});
 };
 
+const findInvoiceById = (state, invoiceId) => {
+  const invoices = Object.values(state);
+  return invoices.find(invoice => invoice.id === invoiceId);
+};
+
 const itemsByMessageIdReducer = (state = {}, action) => {
+  let invoice;
+
   switch (action.type) {
     case invoicesActions.LIGHTNING_INVOICES_LOAD_SUCCESS:
       return createMessageIdMap(action.invoices);
@@ -23,6 +30,21 @@ const itemsByMessageIdReducer = (state = {}, action) => {
       return {
         ...state,
         ...createMessageIdMap(action.invoices)
+      };
+
+    case invoicesActions.LIGHTNING_INVOICES_UPDATE_SUCCESS:
+      invoice = findInvoiceById(state, action.invoice.id);
+
+      if (!invoice || !invoice.messageId) {
+        return state;
+      }
+
+      return {
+        ...state,
+        [invoice.messageId]: {
+          ...invoice,
+          ...action.invoice
+        }
       };
 
     case invoicesActions.LIGHTNING_INVOICES_REDEEM_SUCCESS:
