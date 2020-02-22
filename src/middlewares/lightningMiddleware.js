@@ -42,7 +42,6 @@ const lightningMiddleware = () => {
         if (!client) {
           client = new LightningClient(pineAddress, state.pine.credentials, settings.lightning);
           client.once('ready', () => store.dispatch(lightningActions.sync()));
-          client.on('error', (error) => store.dispatch(handleError(error)));
           client.registerMethods(getMethods(store.dispatch));
           client.connect();
 
