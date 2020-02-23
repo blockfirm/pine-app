@@ -1,3 +1,4 @@
+export * from './closeChannel';
 export * from './createInvoice';
 export * from './getBalance';
 export * from './openChannel';
