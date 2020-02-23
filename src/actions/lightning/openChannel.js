@@ -11,10 +11,9 @@ const openChannelRequest = () => {
   };
 };
 
-const openChannelSuccess = (fundingTransactionHash) => {
+const openChannelSuccess = () => {
   return {
-    type: PINE_LIGHTNING_OPEN_CHANNEL_SUCCESS,
-    fundingTransactionHash
+    type: PINE_LIGHTNING_OPEN_CHANNEL_SUCCESS
   };
 };
 
@@ -26,24 +25,22 @@ const openChannelFailure = (error) => {
 };
 
 export const openChannel = (satsAmount) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     console.log('LIGHTNING openChannel');
     const client = getClient();
+
     dispatch(openChannelRequest());
 
-    return dispatch(getEstimate())
-      .then((satsPerByte) => {
-        // TODO: The estimated fee is somehow too low and is rejected when broadcasted.
-        return client.openChannel(satsAmount, satsPerByte * 10);
-      })
-      .then((result) => {
-        const fundingTransactionHash = result.funding_txid_bytes;
-        dispatch(openChannelSuccess(fundingTransactionHash));
-        return fundingTransactionHash;
-      })
-      .catch((error) => {
-        dispatch(openChannelFailure(error));
-        throw error;
-      });
+    try {
+      const satsPerByte = await dispatch(getEstimate());
+
+      // TODO: The estimated fee is somehow too low and is rejected when broadcasted.
+      await client.openChannel(satsAmount, satsPerByte * 10);
+    } catch (error) {
+      dispatch(openChannelFailure(error));
+      throw error;
+    }
+
+    dispatch(openChannelSuccess());
   };
 };
