@@ -213,7 +213,7 @@ const createConversationsForTransactions = (transactions, dispatch, state) => {
       state.bitcoin.wallet.addresses.internal.items
     );
 
-    if (isLightningAddress(address)) {
+    if (isLightningAddress(address, state)) {
       return; // Don't display lightning funding/closing transactions.
     }
 
