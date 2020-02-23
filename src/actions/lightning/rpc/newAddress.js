@@ -27,7 +27,7 @@ export const newAddress = ({ type, change }) => {
       address = state.bitcoin.wallet.addresses.external.unused;
     }
 
-    dispatch({ type: PINE_LIGHTNING_RPC_NEW_ADDRESS });
+    dispatch({ type: PINE_LIGHTNING_RPC_NEW_ADDRESS, address });
 
     return { address };
   };
