@@ -48,9 +48,11 @@ class MessageContainer extends PureComponent {
   _onPress() {
     const { navigation, message, bitcoinNetwork } = this.props;
     const transaction = this._findTransaction();
+    const invoice = this._findInvoice();
 
     navigation.navigate('PaymentDetails', {
       transaction,
+      invoice,
       message,
       bitcoinNetwork
     });
