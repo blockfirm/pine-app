@@ -105,6 +105,9 @@ const styles = StyleSheet.create({
   },
   cancel: {
     fontWeight: '400'
+  },
+  errorWrapper: {
+    paddingTop: 16
   }
 });
 
@@ -402,11 +405,13 @@ class PaymentDetailsScreen extends Component {
     }
 
     return (
-      <ErrorMessage
-        title={messageError ? 'Invalid Payment' : 'Redeem Error'}
-        message={error}
-        details={JSON.stringify({ message, invoice }, null, 2)}
-      />
+      <View style={styles.errorWrapper}>
+        <ErrorMessage
+          title={messageError ? 'Invalid Payment' : 'Redeem Error'}
+          message={error}
+          details={JSON.stringify({ message, invoice }, null, 2)}
+        />
+      </View>
     );
   }
 
