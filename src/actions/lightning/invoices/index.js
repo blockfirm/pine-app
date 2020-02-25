@@ -4,5 +4,6 @@ export * from './redeem';
 export * from './redeemAll';
 export * from './save';
 export * from './setPaymentHash';
+export * from './sync';
 export * from './update';
 export * from './updateAll';

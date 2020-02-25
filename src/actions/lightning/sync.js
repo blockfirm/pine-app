@@ -1,7 +1,6 @@
 import { getClient } from '../../clients/lightning';
-import { getUnredeemedInvoices } from '../paymentServer/lightning/getUnredeemedInvoices';
 import { handle as handleError } from '../error';
-import { add as addInvoices, redeemAll, updateAll } from './invoices';
+import { redeemAll, updateAll, sync as syncInvoices } from './invoices';
 import { getBalance } from './getBalance';
 
 export const PINE_LIGHTNING_SYNC_REQUEST = 'PINE_LIGHTNING_SYNC_REQUEST';
@@ -27,11 +26,6 @@ const syncFailure = (error) => {
   };
 };
 
-const syncUnredeemedInvoices = async (dispatch) => {
-  const invoices = await dispatch(getUnredeemedInvoices());
-  return dispatch(addInvoices(invoices));
-};
-
 export const sync = () => {
   return (dispatch) => {
     console.log('LIGHTNING sync');
@@ -44,7 +38,7 @@ export const sync = () => {
     dispatch(syncRequest());
 
     return dispatch(getBalance())
-      .then(() => syncUnredeemedInvoices(dispatch))
+      .then(() => dispatch(syncInvoices()))
       .then(() => {
         return dispatch(redeemAll()).catch(() => {
           /**
