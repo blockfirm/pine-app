@@ -392,17 +392,20 @@ class PaymentDetailsScreen extends Component {
   }
 
   _renderError() {
-    const { message } = this.props.navigation.state.params;
+    const { message, invoice } = this.props.navigation.state.params;
+    const messageError = message && message.error;
+    const redeemError = invoice && invoice.redeemError;
+    const error = messageError || redeemError;
 
-    if (!message.error) {
+    if (!error) {
       return;
     }
 
     return (
       <ErrorMessage
-        title='Invalid Payment'
-        message={message.error}
-        details={JSON.stringify(message, null, 2)}
+        title={messageError ? 'Invalid Payment' : 'Redeem Error'}
+        message={error}
+        details={JSON.stringify({ message, invoice }, null, 2)}
       />
     );
   }

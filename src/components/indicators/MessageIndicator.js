@@ -53,14 +53,14 @@ export default class MessageIndicator extends Component {
   }
 
   render() {
-    const { message, transaction, style, colorStyle } = this.props;
+    const { message, transaction, invoice, style, colorStyle } = this.props;
     const status = this._getStatus();
 
     if (!message) {
       return null;
     }
 
-    if (message.error) {
+    if (message.error || (invoice && invoice.redeemError)) {
       return <ErrorIndicator style={style} colorStyle={colorStyle} />;
     }
 

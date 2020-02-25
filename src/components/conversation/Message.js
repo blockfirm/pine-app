@@ -134,6 +134,11 @@ class Message extends Component {
     });
   }
 
+  _hasError() {
+    const { message, transaction, invoice } = this.props;
+    return message.error || (invoice && invoice.redeemError) || (message.canceled && !transaction);
+  }
+
   _getFirstBubbleStyle() {
     const { message } = this.props;
 
@@ -195,7 +200,7 @@ class Message extends Component {
   }
 
   _renderBubbleEnd() {
-    const { message, transaction, isLast, theme } = this.props;
+    const { message, isLast, theme } = this.props;
     const style = message.from ? styles.bubbleEndLeft : styles.bubbleEndRight;
     let image = message.from ? theme.bubbleEndLeft : theme.bubbleEndRight;
 
@@ -203,7 +208,7 @@ class Message extends Component {
       return null;
     }
 
-    if (message.error || (message.canceled && !transaction)) {
+    if (this._hasError()) {
       image = message.from ? theme.bubbleEndLeftError : theme.bubbleEndRightError;
     }
 
@@ -228,7 +233,7 @@ class Message extends Component {
 
   // eslint-disable-next-line max-statements
   render() {
-    const { message, transaction, isFirst, isLast, onPress, animate, theme } = this.props;
+    const { message, isFirst, isLast, onPress, animate, theme } = this.props;
     const wrapperStyle = [styles.wrapper];
     const bubbleStyle = [styles.bubble];
     const textStyle = [];
@@ -252,7 +257,7 @@ class Message extends Component {
       smallTextStyle.push(theme.bubbleSentTextSmall);
     }
 
-    if (message.error || (message.canceled && !transaction)) {
+    if (this._hasError()) {
       bubbleStyle.push(theme.bubbleError);
       textStyle.push(theme.bubbleErrorText);
     }
