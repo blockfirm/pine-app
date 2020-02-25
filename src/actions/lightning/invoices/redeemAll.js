@@ -28,14 +28,16 @@ const redeemAllFailure = (errors) => {
  */
 export const redeemAll = () => {
   return async (dispatch, getState) => {
-    const invoices = getState().lightning.invoices.items;
+    const state = getState();
+    const pineAddress = state.settings.user.profile.address;
+    const invoices = state.lightning.invoices.items;
     const errors = [];
 
     console.log('redeeming invoices', invoices);
     dispatch(redeemAllRequest());
 
     for (const invoice of invoices) {
-      if (!invoice.redeemed && invoice.payer) {
+      if (!invoice.redeemed && invoice.payer !== pineAddress) {
         try {
           await dispatch(redeem(invoice));
         } catch (error) {
