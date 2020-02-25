@@ -23,6 +23,10 @@ const redeemAllFailure = (errors) => {
   };
 };
 
+const shouldRedeem = (invoice, pineAddress) => {
+  return !invoice.redeemed && invoice.payer && invoice.payer !== pineAddress;
+};
+
 /**
  * Action to redeem all unredeemed invoices.
  */
@@ -37,7 +41,7 @@ export const redeemAll = () => {
     dispatch(redeemAllRequest());
 
     for (const invoice of invoices) {
-      if (!invoice.redeemed && invoice.payer !== pineAddress) {
+      if (shouldRedeem(invoice, pineAddress)) {
         try {
           await dispatch(redeem(invoice));
         } catch (error) {
