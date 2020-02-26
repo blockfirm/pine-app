@@ -2,6 +2,7 @@ import { sync as syncBitcoinWallet } from './bitcoin/wallet';
 import { sync as syncContacts, updateProfiles } from './contacts';
 import { sync as syncMessages } from './messages';
 import { sync as syncLightning } from './lightning';
+import { sync as syncInvoices } from './lightning/invoices';
 import { syncIncoming as syncIncomingContactRequests } from './contacts/contactRequests';
 
 export const SYNC_REQUEST = 'SYNC_REQUEST';
@@ -50,6 +51,7 @@ export const sync = (options) => {
 
     syncPromise = dispatch(syncContacts())
       .then(() => dispatch(syncIncomingContactRequests()))
+      .then(() => dispatch(syncInvoices())) // Sync invoices before messages as ligtning payments will depend on them.
       .then(() => dispatch(syncMessages()))
       .then(() => dispatch(syncBitcoinWallet()))
       .then(() => dispatch(syncLightning()))
