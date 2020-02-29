@@ -1,3 +1,4 @@
+/* eslint-disable lines-around-comment */
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
@@ -34,8 +35,12 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
-  bitcoinBalance: state.bitcoin.wallet.balance, // On-chain balance is in BTC.
-  lightningBalance: state.lightning.balance // Off-chain balances are in sats.
+  // On-chain balances are in BTC.
+  bitcoinBalance: state.bitcoin.wallet.balance,
+  spendableBitcoinBalance: state.bitcoin.wallet.spendableBalance,
+
+  // Off-chain balances are in sats.
+  lightningBalance: state.lightning.balance
 }))
 class WalletBalanceScreen extends Component {
   static navigationOptions = ({ screenProps }) => ({
@@ -57,9 +62,11 @@ class WalletBalanceScreen extends Component {
   }
 
   render() {
-    const { theme, bitcoinBalance, lightningBalance } = this.props;
+    const { theme, bitcoinBalance, spendableBitcoinBalance, lightningBalance } = this.props;
     const lightningBalanceBtc = satsToBtc(lightningBalance.local + lightningBalance.commitFee);
+    const localLightningBalanceBtc = satsToBtc(lightningBalance.local);
     const totalBtc = normalizeBtcAmount(bitcoinBalance + lightningBalanceBtc);
+    const spendableBtc = normalizeBtcAmount(spendableBitcoinBalance + localLightningBalanceBtc);
 
     const balanceData = [
       { label: 'On-chain', color: theme.walletBalanceOnChainColor, value: bitcoinBalance },
@@ -73,10 +80,17 @@ class WalletBalanceScreen extends Component {
           <View style={[settingsStyles.item, styles.wrapper]}>
             <StyledText style={styles.chartTitle}>
               <CurrencyLabelContainer
+                amountBtc={spendableBtc}
+                currencyType='primary'
+                style={styles.spendableText}
+              />
+              &nbsp;of&nbsp;
+              <CurrencyLabelContainer
                 amountBtc={totalBtc}
                 currencyType='primary'
                 style={styles.spendableText}
               />
+              &nbsp;Spendable
             </StyledText>
             <StackedBarChart data={balanceData} />
           </View>
@@ -104,6 +118,7 @@ WalletBalanceScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   bitcoinBalance: PropTypes.number,
+  spendableBitcoinBalance: PropTypes.number,
   lightningBalance: PropTypes.object,
   theme: PropTypes.object.isRequired
 };
