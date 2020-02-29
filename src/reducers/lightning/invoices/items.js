@@ -40,7 +40,8 @@ const mergeInvoices = (oldInvoices, newInvoices) => {
 
 const flagAsRedeemed = (invoice) => ({
   ...invoice,
-  redeemed: true
+  redeemed: true,
+  redeemError: null
 });
 
 const flagAsFailed = (invoice, error) => ({
@@ -86,6 +87,10 @@ const itemsReducer = (state = [], action) => {
     case invoicesActions.LIGHTNING_INVOICES_REDEEM_FAILURE:
       return state.map((invoice) => {
         if (invoice.id === action.invoice.id) {
+          if (action.error.message.includes('has already been redeemed')) {
+            return flagAsRedeemed(invoice);
+          }
+
           return flagAsFailed(invoice, action.error);
         }
 
