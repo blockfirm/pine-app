@@ -81,7 +81,7 @@ const getCoinAggregates = (utxos) => {
 @connect((state) => ({
   utxos: state.bitcoin.wallet.utxos.items
 }))
-class WalletBalanceScreen extends Component {
+class OnChainBalanceScreen extends Component {
   static navigationOptions = ({ screenProps }) => ({
     headerTransparent: true,
     headerBackground: <SettingsHeaderBackground />,
@@ -171,11 +171,11 @@ class WalletBalanceScreen extends Component {
   }
 }
 
-WalletBalanceScreen.propTypes = {
+OnChainBalanceScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   utxos: PropTypes.arrayOf(PropTypes.object),
   theme: PropTypes.object.isRequired
 };
 
-export default withTheme(WalletBalanceScreen);
+export default withTheme(OnChainBalanceScreen);
