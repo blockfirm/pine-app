@@ -8,7 +8,7 @@ import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
 import settingsStyles from '../../styles/settingsStyles';
-import DoneButton from '../../components/DoneButton';
+import BackButton from '../../components/BackButton';
 import SettingsTitle from '../../components/SettingsTitle';
 import SettingsDescription from '../../components/SettingsDescription';
 import SettingsGroup from '../../components/SettingsGroup';
@@ -82,12 +82,11 @@ const getCoinAggregates = (utxos) => {
   utxos: state.bitcoin.wallet.utxos.items
 }))
 class OnChainBalanceScreen extends Component {
-  static navigationOptions = ({ screenProps }) => ({
+  static navigationOptions = ({ navigation }) => ({
     headerTransparent: true,
     headerBackground: <SettingsHeaderBackground />,
-    headerTitle: <HeaderTitle title='Wallet Balance' />,
-    headerBackTitle: null,
-    headerRight: <DoneButton onPress={screenProps.dismiss} />
+    headerTitle: <HeaderTitle title='On-chain Balance' />,
+    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
 
   constructor(props) {

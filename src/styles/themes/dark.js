@@ -26,7 +26,8 @@ const palette = {
   yellow: '#FEC300',
   blue: '#0A84FF',
   orange: '#FF9F0A',
-  green: '#30d158'
+  green: '#30d158',
+  indigo: '#5e5ce6'
 };
 
 export default {
@@ -144,6 +145,8 @@ export default {
   walletBalanceSpendableColor: palette.green,
   walletBalancePendingColor: palette.orange,
   walletBalanceReservedColor: palette.gray13,
+  walletBalanceOnChainColor: palette.green,
+  walletBalanceOffChainColor: palette.indigo,
   stackedBarChart: { backgroundColor: palette.middleground6 },
   stackedBarChartStack: { borderLeftColor: palette.background },
   revealMnemonic: { color: palette.blue },

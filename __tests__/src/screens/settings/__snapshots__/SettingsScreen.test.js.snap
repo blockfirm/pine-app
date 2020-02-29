@@ -221,6 +221,7 @@ exports[`SettingsScreen renders correctly 1`] = `
         "gray8": "#8E8E93",
         "gray9": "#9B9B9B",
         "green": "#4CD964",
+        "indigo": "#5856d6",
         "middleground1": "#F6F6F6",
         "middleground2": "#F3F3F5",
         "middleground3": "#F0F0F0",
@@ -349,6 +350,8 @@ exports[`SettingsScreen renders correctly 1`] = `
       "unitPicker": Object {
         "color": "#999999",
       },
+      "walletBalanceOffChainColor": "#5856d6",
+      "walletBalanceOnChainColor": "#4CD964",
       "walletBalancePendingColor": "#FF9500",
       "walletBalanceReservedColor": "#C7C7CC",
       "walletBalanceSpendableColor": "#4CD964",
