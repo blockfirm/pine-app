@@ -1,0 +1,139 @@
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { withTheme } from '../../contexts/theme';
+import { normalizeBtcAmount, satsToBtc } from '../../crypto/bitcoin';
+import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import HeaderTitle from '../../components/HeaderTitle';
+import settingsStyles from '../../styles/settingsStyles';
+import BackButton from '../../components/BackButton';
+import SettingsTitle from '../../components/SettingsTitle';
+import SettingsDescription from '../../components/SettingsDescription';
+import SettingsGroup from '../../components/SettingsGroup';
+import StyledText from '../../components/StyledText';
+import StrongText from '../../components/StrongText';
+import StackedBarChart from '../../components/charts/StackedBarChart';
+import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
+import BaseSettingsScreen from './BaseSettingsScreen';
+
+const styles = StyleSheet.create({
+  wrapper: {
+    height: null,
+    borderBottomWidth: 0,
+    justifyContent: 'center',
+    paddingRight: 0,
+    marginRight: 15,
+    marginVertical: 15
+  },
+  chartTitle: {
+    fontSize: 15
+  }
+});
+
+@connect((state) => ({
+  balance: state.lightning.balance // Off-chain balances are in sats.
+}))
+class OffChainBalanceScreen extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerTransparent: true,
+    headerBackground: <SettingsHeaderBackground />,
+    headerTitle: <HeaderTitle title='Off-chain Balance' />,
+    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
+  });
+
+  render() {
+    const { theme, balance } = this.props;
+    const { local, remote, commitFee } = balance;
+    const localBtc = satsToBtc(local);
+    const remoteBtc = satsToBtc(remote);
+    const commitFeeBtc = satsToBtc(commitFee);
+
+    const balanceData = [
+      { label: 'Spendable', color: theme.walletBalanceOffChainColor, value: local },
+      { label: 'Reserved', color: theme.walletBalanceReservedColor, value: commitFee }
+    ];
+
+    const capacityData = [
+      { label: 'Outbound', color: theme.walletBalanceOffChainColor, value: local },
+      { label: 'Inbound', color: theme.walletBalancePendingColor, value: remote }
+    ];
+
+    return (
+      <BaseSettingsScreen>
+        <SettingsTitle>Balance</SettingsTitle>
+        <SettingsGroup>
+          <View style={[settingsStyles.item, styles.wrapper]}>
+            <StyledText style={styles.chartTitle}>
+              <CurrencyLabelContainer
+                amountBtc={localBtc}
+                currencyType='primary'
+                style={styles.spendableText}
+              />
+              &nbsp;of&nbsp;
+              <CurrencyLabelContainer
+                amountBtc={normalizeBtcAmount(localBtc + commitFeeBtc)}
+                currencyType='primary'
+                style={styles.spendableText}
+              />
+              &nbsp;Spendable
+            </StyledText>
+            <StackedBarChart data={balanceData} />
+          </View>
+        </SettingsGroup>
+
+        <SettingsDescription>
+          <StrongText>Spendable</StrongText> balance can be spent over the Lightning network.
+        </SettingsDescription>
+        <SettingsDescription>
+          <StrongText>Reserved</StrongText> balance is reserved for the fee that will have to be paid
+          when transferring the funds back to the on-chain balance. This can change over time.
+        </SettingsDescription>
+
+        <SettingsTitle>Lightning Capacity</SettingsTitle>
+        <SettingsGroup>
+          <View style={[settingsStyles.item, styles.wrapper]}>
+            <View>
+              <StyledText style={styles.chartTitle}>
+                Outbound:&nbsp;
+                <CurrencyLabelContainer
+                  amountBtc={localBtc}
+                  currencyType='primary'
+                  style={styles.spendableText}
+                />
+              </StyledText>
+            </View>
+            <View>
+              <StyledText style={styles.chartTitle}>
+                Inbound:&nbsp;
+                <CurrencyLabelContainer
+                  amountBtc={remoteBtc}
+                  currencyType='primary'
+                  style={styles.spendableText}
+                />
+              </StyledText>
+            </View>
+            <StackedBarChart data={capacityData} />
+          </View>
+        </SettingsGroup>
+
+        <SettingsDescription>
+          <StrongText>Outbound</StrongText> capacity is how much you can spend over the Lightning network.
+        </SettingsDescription>
+        <SettingsDescription>
+          <StrongText>Inbound</StrongText> capacity is how much you can receive over the Lightning network.
+        </SettingsDescription>
+      </BaseSettingsScreen>
+    );
+  }
+}
+
+OffChainBalanceScreen.propTypes = {
+  dispatch: PropTypes.func,
+  navigation: PropTypes.any,
+  balance: PropTypes.object,
+  theme: PropTypes.object.isRequired
+};
+
+export default withTheme(OffChainBalanceScreen);

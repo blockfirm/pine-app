@@ -51,6 +51,11 @@ class WalletBalanceScreen extends Component {
     navigation.navigate('OnChainBalance');
   }
 
+  _showOffChainBalance() {
+    const { navigation } = this.props;
+    navigation.navigate('OffChainBalance');
+  }
+
   render() {
     const { theme, bitcoinBalance, lightningBalance } = this.props;
     const lightningBalanceBtc = satsToBtc(lightningBalance);
@@ -87,7 +92,8 @@ class WalletBalanceScreen extends Component {
         </SettingsDescription>
 
         <SettingsGroup>
-          <SettingsLink name='On-chain' onPress={this._showOnChainBalance.bind(this)} isLastItem={true} />
+          <SettingsLink name='On-chain' onPress={this._showOnChainBalance.bind(this)} />
+          <SettingsLink name='Off-chain' onPress={this._showOffChainBalance.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );
