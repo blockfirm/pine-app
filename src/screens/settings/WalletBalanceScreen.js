@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 
 @connect((state) => ({
   bitcoinBalance: state.bitcoin.wallet.balance, // On-chain balance is in BTC.
-  lightningBalance: state.lightning.balance.local // Off-chain balance is in sats.
+  lightningBalance: state.lightning.balance // Off-chain balances are in sats.
 }))
 class WalletBalanceScreen extends Component {
   static navigationOptions = ({ screenProps }) => ({
@@ -58,7 +58,7 @@ class WalletBalanceScreen extends Component {
 
   render() {
     const { theme, bitcoinBalance, lightningBalance } = this.props;
-    const lightningBalanceBtc = satsToBtc(lightningBalance);
+    const lightningBalanceBtc = satsToBtc(lightningBalance.local + lightningBalance.commitFee);
     const totalBtc = normalizeBtcAmount(bitcoinBalance + lightningBalanceBtc);
 
     const balanceData = [
@@ -104,7 +104,7 @@ WalletBalanceScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   bitcoinBalance: PropTypes.number,
-  lightningBalance: PropTypes.number,
+  lightningBalance: PropTypes.object,
   theme: PropTypes.object.isRequired
 };
 
