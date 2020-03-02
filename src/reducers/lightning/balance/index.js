@@ -1,16 +1,17 @@
-import { combineReducers } from 'redux';
 import capacityReducer from './capacity';
 import commitFeeReducer from './commitFee';
 import localReducer from './local';
 import remoteReducer from './remote';
 import pendingReducer from './pending';
+import unredeemedReducer from './unredeemed';
 
-const lightningBalanceReducer = combineReducers({
-  capacity: capacityReducer,
-  commitFee: commitFeeReducer,
-  local: localReducer,
-  remote: remoteReducer,
-  pending: pendingReducer
+const lightningBalanceReducer = (state = {}, action, invoices) => ({
+  capacity: capacityReducer(state.capacity, action),
+  commitFee: commitFeeReducer(state.commitFee, action),
+  local: localReducer(state.local, action),
+  remote: remoteReducer(state.remote, action),
+  pending: pendingReducer(state.pending, action),
+  unredeemed: unredeemedReducer(state.unredeemed, action, invoices)
 });
 
 export default lightningBalanceReducer;

@@ -20,8 +20,9 @@ class BalanceLabelContainer extends Component {
 
   getTotalBalance() {
     const { balance, lightningBalance } = this.props;
-    const lightningBalanceBtc = satsToBtc(lightningBalance.local + lightningBalance.commitFee);
-    const totalBtc = normalizeBtcAmount(balance + lightningBalanceBtc);
+    const totalLightningBalance = lightningBalance.local + lightningBalance.commitFee + lightningBalance.unredeemed;
+    const totalLightningBalanceBtc = satsToBtc(totalLightningBalance);
+    const totalBtc = normalizeBtcAmount(balance + totalLightningBalanceBtc);
 
     return totalBtc;
   }

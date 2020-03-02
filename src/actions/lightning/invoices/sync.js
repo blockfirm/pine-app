@@ -30,6 +30,11 @@ export const sync = () => {
 
     try {
       const invoices = await dispatch(getUnredeemedInvoices());
+
+      invoices.forEach((invoice) => {
+        invoice.redeem = true; // Flag invoice to be redeemed.
+      });
+
       await dispatch(addInvoices(invoices));
     } catch (error) {
       dispatch(syncFailure(error));

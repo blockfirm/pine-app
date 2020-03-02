@@ -45,13 +45,15 @@ class OffChainBalanceScreen extends Component {
 
   render() {
     const { theme, balance } = this.props;
-    const { local, remote, commitFee } = balance;
+    const { local, remote, commitFee, unredeemed } = balance;
     const localBtc = satsToBtc(local);
     const remoteBtc = satsToBtc(remote);
     const commitFeeBtc = satsToBtc(commitFee);
+    const unredeemedBtc = satsToBtc(unredeemed);
 
     const balanceData = [
       { label: 'Spendable', color: theme.walletBalanceOffChainColor, value: local },
+      { label: 'Pending', color: theme.walletBalancePendingColor, value: unredeemed },
       { label: 'Reserved', color: theme.walletBalanceReservedColor, value: commitFee }
     ];
 
@@ -73,7 +75,7 @@ class OffChainBalanceScreen extends Component {
               />
               &nbsp;of&nbsp;
               <CurrencyLabelContainer
-                amountBtc={normalizeBtcAmount(localBtc + commitFeeBtc)}
+                amountBtc={normalizeBtcAmount(localBtc + commitFeeBtc + unredeemedBtc)}
                 currencyType='primary'
                 style={styles.spendableText}
               />
@@ -85,6 +87,10 @@ class OffChainBalanceScreen extends Component {
 
         <SettingsDescription>
           <StrongText>Spendable</StrongText> balance can be spent over the Lightning network.
+        </SettingsDescription>
+        <SettingsDescription>
+          <StrongText>Pending</StrongText> balance is incoming payments waiting to be redeemed.
+          This could be because of insufficient inbound capacity.
         </SettingsDescription>
         <SettingsDescription>
           <StrongText>Reserved</StrongText> balance is reserved for the fee that will have to be paid

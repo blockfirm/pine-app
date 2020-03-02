@@ -23,8 +23,8 @@ const redeemAllFailure = (errors) => {
   };
 };
 
-const shouldRedeem = (invoice, pineAddress) => {
-  return !invoice.redeemed && invoice.payer && invoice.payer !== pineAddress;
+const shouldRedeem = (invoice) => {
+  return invoice.redeem && !invoice.redeemed;
 };
 
 /**
@@ -32,16 +32,14 @@ const shouldRedeem = (invoice, pineAddress) => {
  */
 export const redeemAll = () => {
   return async (dispatch, getState) => {
-    const state = getState();
-    const pineAddress = state.settings.user.profile.address;
-    const invoices = state.lightning.invoices.items;
+    const invoices = getState().lightning.invoices.items;
     const errors = [];
 
     console.log('redeeming invoices', invoices);
     dispatch(redeemAllRequest());
 
     for (const invoice of invoices) {
-      if (shouldRedeem(invoice, pineAddress)) {
+      if (shouldRedeem(invoice)) {
         try {
           await dispatch(redeem(invoice));
         } catch (error) {

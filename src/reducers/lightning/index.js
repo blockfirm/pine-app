@@ -1,10 +1,11 @@
-import { combineReducers } from 'redux';
 import lightningBalanceReducer from './balance';
 import lightningInvoicesReducer from './invoices';
 
-const lightningReducer = combineReducers({
-  balance: lightningBalanceReducer,
-  invoices: lightningInvoicesReducer
-});
+const lightningReducer = (state = {}, action) => {
+  const invoices = lightningInvoicesReducer(state.invoices, action);
+  const balance = lightningBalanceReducer(state.balance, action, invoices.items);
+
+  return { balance, invoices };
+};
 
 export default lightningReducer;
