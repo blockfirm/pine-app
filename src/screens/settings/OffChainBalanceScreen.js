@@ -1,8 +1,11 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ActionSheetIOS } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { closeChannel } from '../../actions/lightning';
+import { handle as handleError } from '../../actions/error';
 import { withTheme } from '../../contexts/theme';
 import { normalizeBtcAmount, satsToBtc } from '../../crypto/bitcoin';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
@@ -12,6 +15,7 @@ import BackButton from '../../components/BackButton';
 import SettingsTitle from '../../components/SettingsTitle';
 import SettingsDescription from '../../components/SettingsDescription';
 import SettingsGroup from '../../components/SettingsGroup';
+import SettingsButton from '../../components/SettingsButton';
 import StyledText from '../../components/StyledText';
 import StrongText from '../../components/StrongText';
 import StackedBarChart from '../../components/charts/StackedBarChart';
@@ -29,6 +33,17 @@ const styles = StyleSheet.create({
   },
   chartTitle: {
     fontSize: 15
+  },
+  channelButtonContainer: {
+    paddingRight: 0,
+    marginLeft: 0
+  },
+  channelButton: {
+    alignSelf: 'center'
+  },
+  channelButtonLoader: {
+    right: null,
+    alignSelf: 'center'
   }
 });
 
@@ -42,6 +57,60 @@ class OffChainBalanceScreen extends Component {
     headerTitle: <HeaderTitle title='Off-chain Balance' />,
     headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
+
+  state = {
+    closingChannel: false
+  };
+
+  async _closeChannel() {
+    const { dispatch } = this.props;
+
+    this.setState({ closingChannel: true });
+
+    try {
+      await dispatch(closeChannel());
+    } catch (error) {
+      dispatch(handleError(error));
+    }
+
+    this.setState({ closingChannel: false });
+  }
+
+  _showCloseChannelConfirmation() {
+    ActionSheetIOS.showActionSheetWithOptions({
+      title: 'Do you want to close your Lightning channel? This will move all your on-chain funds to your off-chain funds, excluding fees. You can always reopen the channel later.',
+      options: ['Cancel', 'Close Channel'],
+      destructiveButtonIndex: 1,
+      cancelButtonIndex: 0
+    }, (buttonIndex) => {
+      if (buttonIndex === 1) {
+        this._closeChannel();
+      }
+    });
+  }
+
+  _renderButtons() {
+    const { pending } = this.props.balance;
+
+    if (pending) {
+      return null;
+    }
+
+    return (
+      <SettingsGroup>
+        <SettingsButton
+          title='Close Channel'
+          type='destructive'
+          onPress={this._showCloseChannelConfirmation.bind(this)}
+          loading={this.state.closingChannel}
+          style={styles.channelButton}
+          containerStyle={styles.channelButtonContainer}
+          loaderStyle={styles.channelButtonLoader}
+          isLastItem={true}
+        />
+      </SettingsGroup>
+    );
+  }
 
   render() {
     const { theme, balance } = this.props;
@@ -93,7 +162,7 @@ class OffChainBalanceScreen extends Component {
         </SettingsDescription>
         <SettingsDescription>
           <StrongText>Pending</StrongText> balance is waiting to be confirmed in a funding
-          transaction and should soon be spendable.
+          or closing transaction and should soon be spendable either on-chain or off-chain.
         </SettingsDescription>
         <SettingsDescription>
           <StrongText>Unredeemed</StrongText> balance is incoming payments waiting to be redeemed.
@@ -137,6 +206,8 @@ class OffChainBalanceScreen extends Component {
         <SettingsDescription>
           <StrongText>Inbound</StrongText> capacity is how much you can receive over the Lightning network.
         </SettingsDescription>
+
+        { this._renderButtons() }
       </BaseSettingsScreen>
     );
   }
