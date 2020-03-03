@@ -30,7 +30,8 @@ const palette = {
   orange: '#FF9500',
   orange2: '#FF8D36',
   green: '#4CD964',
-  indigo: '#5856d6'
+  indigo: '#5856d6',
+  pink: '#ff2d55'
 };
 
 export default {
@@ -146,6 +147,7 @@ export default {
   statusWarningColor: palette.orange2,
   statusErrorColor: palette.red,
   walletBalanceSpendableColor: palette.green,
+  walletBalanceUnredeemedColor: palette.pink,
   walletBalancePendingColor: palette.orange,
   walletBalanceReservedColor: palette.gray14,
   walletBalanceOnChainColor: palette.green,

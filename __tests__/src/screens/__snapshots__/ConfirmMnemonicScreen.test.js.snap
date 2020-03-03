@@ -249,6 +249,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
           "orange": "#FF9500",
           "orange2": "#FF8D36",
           "overlay": "#FEFEFE",
+          "pink": "#ff2d55",
           "red": "#FF3B30",
           "yellow1": "#FFD23F",
           "yellow2": "#FFC431",
@@ -374,6 +375,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
         "walletBalancePendingColor": "#FF9500",
         "walletBalanceReservedColor": "#C7C7CC",
         "walletBalanceSpendableColor": "#4CD964",
+        "walletBalanceUnredeemedColor": "#ff2d55",
       }
     }
   >
@@ -738,6 +740,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -863,6 +866,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}
@@ -1200,6 +1204,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -1325,6 +1330,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}
@@ -1662,6 +1668,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -1787,6 +1794,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}
@@ -2124,6 +2132,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -2249,6 +2258,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}
@@ -2586,6 +2596,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -2711,6 +2722,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}
@@ -3048,6 +3060,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -3173,6 +3186,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}
@@ -3510,6 +3524,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -3635,6 +3650,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}
@@ -3972,6 +3988,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -4097,6 +4114,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}
@@ -4434,6 +4452,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -4559,6 +4578,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}
@@ -4896,6 +4916,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -5021,6 +5042,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}
@@ -5358,6 +5380,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -5483,6 +5506,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}
@@ -5820,6 +5844,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "orange": "#FF9500",
                       "orange2": "#FF8D36",
                       "overlay": "#FEFEFE",
+                      "pink": "#ff2d55",
                       "red": "#FF3B30",
                       "yellow1": "#FFD23F",
                       "yellow2": "#FFC431",
@@ -5945,6 +5970,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     "walletBalancePendingColor": "#FF9500",
                     "walletBalanceReservedColor": "#C7C7CC",
                     "walletBalanceSpendableColor": "#4CD964",
+                    "walletBalanceUnredeemedColor": "#ff2d55",
                   }
                 }
                 trim={true}

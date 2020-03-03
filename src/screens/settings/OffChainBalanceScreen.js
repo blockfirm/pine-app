@@ -50,10 +50,13 @@ class OffChainBalanceScreen extends Component {
     const remoteBtc = satsToBtc(remote);
     const commitFeeBtc = satsToBtc(commitFee);
     const unredeemedBtc = satsToBtc(unredeemed);
+    const spendable = balance.pending ? 0 : local;
+    const pending = balance.pending ? local : 0;
 
     const balanceData = [
-      { label: 'Spendable', color: theme.walletBalanceOffChainColor, value: local },
-      { label: 'Pending', color: theme.walletBalancePendingColor, value: unredeemed },
+      { label: 'Spendable', color: theme.walletBalanceOffChainColor, value: spendable },
+      { label: 'Pending', color: theme.walletBalancePendingColor, value: pending },
+      { label: 'Unredeemed', color: theme.walletBalanceUnredeemedColor, value: unredeemed },
       { label: 'Reserved', color: theme.walletBalanceReservedColor, value: commitFee }
     ];
 
@@ -69,7 +72,7 @@ class OffChainBalanceScreen extends Component {
           <View style={[settingsStyles.item, styles.wrapper]}>
             <StyledText style={styles.chartTitle}>
               <CurrencyLabelContainer
-                amountBtc={localBtc}
+                amountBtc={balance.pending ? 0 : localBtc}
                 currencyType='primary'
                 style={styles.spendableText}
               />
@@ -89,8 +92,12 @@ class OffChainBalanceScreen extends Component {
           <StrongText>Spendable</StrongText> balance can be spent over the Lightning network.
         </SettingsDescription>
         <SettingsDescription>
-          <StrongText>Pending</StrongText> balance is incoming payments waiting to be redeemed.
-          This could be because of insufficient inbound capacity.
+          <StrongText>Pending</StrongText> balance is waiting to be confirmed in a funding
+          transaction and should soon be spendable.
+        </SettingsDescription>
+        <SettingsDescription>
+          <StrongText>Unredeemed</StrongText> balance is incoming payments waiting to be redeemed.
+          Make sure you have sufficient inbound capacity.
         </SettingsDescription>
         <SettingsDescription>
           <StrongText>Reserved</StrongText> balance is reserved for the fee that will have to be paid

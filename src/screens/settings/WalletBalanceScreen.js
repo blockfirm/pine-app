@@ -66,8 +66,9 @@ class WalletBalanceScreen extends Component {
     const totalLightningBalance = lightningBalance.local + lightningBalance.commitFee + lightningBalance.unredeemed;
     const totalLightningBalanceBtc = satsToBtc(totalLightningBalance);
     const localLightningBalanceBtc = satsToBtc(lightningBalance.local);
+    const spendableLightningBalanceBtc = lightningBalance.pending ? 0 : localLightningBalanceBtc;
     const totalBtc = normalizeBtcAmount(bitcoinBalance + totalLightningBalanceBtc);
-    const spendableBtc = normalizeBtcAmount(spendableBitcoinBalance + localLightningBalanceBtc);
+    const spendableBtc = normalizeBtcAmount(spendableBitcoinBalance + spendableLightningBalanceBtc);
 
     const balanceData = [
       { label: 'On-chain', color: theme.walletBalanceOnChainColor, value: bitcoinBalance },
