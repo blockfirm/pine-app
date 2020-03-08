@@ -1,5 +1,4 @@
 import { getClient } from '../../clients/lightning';
-import { openChannel } from './openChannel';
 
 export const PINE_LIGHTNING_GET_BALANCE_REQUEST = 'PINE_LIGHTNING_GET_BALANCE_REQUEST';
 export const PINE_LIGHTNING_GET_BALANCE_SUCCESS = 'PINE_LIGHTNING_GET_BALANCE_SUCCESS';
@@ -34,9 +33,12 @@ export const getBalance = () => {
     return client.getBalance()
       .catch((error) => {
         if (error.message.includes('No open channels')) {
-          // DEBUG: Open channel with 20,000 satoshis if no channel is already open.
-          const satsAmount = 20000;
-          return dispatch(openChannel(satsAmount, client)).then(() => client.getBalance());
+          return {
+            local: 0,
+            remote: 0,
+            commitFee: 0,
+            pending: false
+          };
         }
 
         throw error;

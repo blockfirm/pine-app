@@ -89,13 +89,12 @@ class OffChainBalanceScreen extends Component {
     });
   }
 
-  _renderButtons() {
-    const { pending } = this.props.balance;
+  _showOpenChannelScreen() {
+    const { navigation } = this.props;
+    navigation.navigate('OpenLightningChannel');
+  }
 
-    if (pending) {
-      return null;
-    }
-
+  _renderCloseChannelButton() {
     return (
       <SettingsGroup>
         <SettingsButton
@@ -110,6 +109,35 @@ class OffChainBalanceScreen extends Component {
         />
       </SettingsGroup>
     );
+  }
+
+  _renderOpenChannelButton() {
+    return (
+      <SettingsGroup>
+        <SettingsButton
+          title='Open Channel'
+          onPress={this._showOpenChannelScreen.bind(this)}
+          style={styles.channelButton}
+          containerStyle={styles.channelButtonContainer}
+          loaderStyle={styles.channelButtonLoader}
+          isLastItem={true}
+        />
+      </SettingsGroup>
+    );
+  }
+
+  _renderButtons() {
+    const { pending, local, remote } = this.props.balance;
+
+    if (pending) {
+      return null;
+    }
+
+    if (local || remote) {
+      return this._renderCloseChannelButton();
+    }
+
+    return this._renderOpenChannelButton();
   }
 
   render() {

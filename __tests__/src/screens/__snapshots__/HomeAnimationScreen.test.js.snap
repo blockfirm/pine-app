@@ -332,6 +332,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "background": "#ffffff",
                         "background2": "#EFEFF3",
                         "blue": "#007AFF",
+                        "blue2": "#3478F5",
                         "foreground": "#000000",
                         "gray1": "#B1AFB7",
                         "gray10": "#C3C3C3",
@@ -339,6 +340,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "gray12": "#A7A7AB",
                         "gray13": "#C8C8CC",
                         "gray14": "#C7C7CC",
+                        "gray15": "#CECED0",
                         "gray2": "#8A8A8F",
                         "gray3": "#BEBEBE",
                         "gray4": "#D8D8DB",
@@ -433,6 +435,8 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                       "shareIcon": Object {
                         "testUri": "../../../src/images/icons/Share.png",
                       },
+                      "sliderTrackTintBackgroundColor": "#CECED0",
+                      "sliderTrackTintColor": "#3478F5",
                       "stackedBarChart": Object {
                         "backgroundColor": "#F2F2F6",
                       },
@@ -682,6 +686,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "background": "#ffffff",
                         "background2": "#EFEFF3",
                         "blue": "#007AFF",
+                        "blue2": "#3478F5",
                         "foreground": "#000000",
                         "gray1": "#B1AFB7",
                         "gray10": "#C3C3C3",
@@ -689,6 +694,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "gray12": "#A7A7AB",
                         "gray13": "#C8C8CC",
                         "gray14": "#C7C7CC",
+                        "gray15": "#CECED0",
                         "gray2": "#8A8A8F",
                         "gray3": "#BEBEBE",
                         "gray4": "#D8D8DB",
@@ -783,6 +789,8 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                       "shareIcon": Object {
                         "testUri": "../../../src/images/icons/Share.png",
                       },
+                      "sliderTrackTintBackgroundColor": "#CECED0",
+                      "sliderTrackTintColor": "#3478F5",
                       "stackedBarChart": Object {
                         "backgroundColor": "#F2F2F6",
                       },
@@ -1033,6 +1041,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "background": "#ffffff",
                         "background2": "#EFEFF3",
                         "blue": "#007AFF",
+                        "blue2": "#3478F5",
                         "foreground": "#000000",
                         "gray1": "#B1AFB7",
                         "gray10": "#C3C3C3",
@@ -1040,6 +1049,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "gray12": "#A7A7AB",
                         "gray13": "#C8C8CC",
                         "gray14": "#C7C7CC",
+                        "gray15": "#CECED0",
                         "gray2": "#8A8A8F",
                         "gray3": "#BEBEBE",
                         "gray4": "#D8D8DB",
@@ -1134,6 +1144,8 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                       "shareIcon": Object {
                         "testUri": "../../../src/images/icons/Share.png",
                       },
+                      "sliderTrackTintBackgroundColor": "#CECED0",
+                      "sliderTrackTintColor": "#3478F5",
                       "stackedBarChart": Object {
                         "backgroundColor": "#F2F2F6",
                       },
@@ -1437,6 +1449,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "background": "#ffffff",
                         "background2": "#EFEFF3",
                         "blue": "#007AFF",
+                        "blue2": "#3478F5",
                         "foreground": "#000000",
                         "gray1": "#B1AFB7",
                         "gray10": "#C3C3C3",
@@ -1444,6 +1457,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "gray12": "#A7A7AB",
                         "gray13": "#C8C8CC",
                         "gray14": "#C7C7CC",
+                        "gray15": "#CECED0",
                         "gray2": "#8A8A8F",
                         "gray3": "#BEBEBE",
                         "gray4": "#D8D8DB",
@@ -1538,6 +1552,8 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                       "shareIcon": Object {
                         "testUri": "../../../src/images/icons/Share.png",
                       },
+                      "sliderTrackTintBackgroundColor": "#CECED0",
+                      "sliderTrackTintColor": "#3478F5",
                       "stackedBarChart": Object {
                         "backgroundColor": "#F2F2F6",
                       },
@@ -1824,6 +1840,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "background": "#ffffff",
                         "background2": "#EFEFF3",
                         "blue": "#007AFF",
+                        "blue2": "#3478F5",
                         "foreground": "#000000",
                         "gray1": "#B1AFB7",
                         "gray10": "#C3C3C3",
@@ -1831,6 +1848,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "gray12": "#A7A7AB",
                         "gray13": "#C8C8CC",
                         "gray14": "#C7C7CC",
+                        "gray15": "#CECED0",
                         "gray2": "#8A8A8F",
                         "gray3": "#BEBEBE",
                         "gray4": "#D8D8DB",
@@ -1925,6 +1943,8 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                       "shareIcon": Object {
                         "testUri": "../../../src/images/icons/Share.png",
                       },
+                      "sliderTrackTintBackgroundColor": "#CECED0",
+                      "sliderTrackTintColor": "#3478F5",
                       "stackedBarChart": Object {
                         "backgroundColor": "#F2F2F6",
                       },
@@ -2212,6 +2232,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "background": "#ffffff",
                         "background2": "#EFEFF3",
                         "blue": "#007AFF",
+                        "blue2": "#3478F5",
                         "foreground": "#000000",
                         "gray1": "#B1AFB7",
                         "gray10": "#C3C3C3",
@@ -2219,6 +2240,7 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                         "gray12": "#A7A7AB",
                         "gray13": "#C8C8CC",
                         "gray14": "#C7C7CC",
+                        "gray15": "#CECED0",
                         "gray2": "#8A8A8F",
                         "gray3": "#BEBEBE",
                         "gray4": "#D8D8DB",
@@ -2313,6 +2335,8 @@ exports[`HomeAnimationScreen renders correctly 1`] = `
                       "shareIcon": Object {
                         "testUri": "../../../src/images/icons/Share.png",
                       },
+                      "sliderTrackTintBackgroundColor": "#CECED0",
+                      "sliderTrackTintColor": "#3478F5",
                       "stackedBarChart": Object {
                         "backgroundColor": "#F2F2F6",
                       },

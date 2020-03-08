@@ -25,6 +25,7 @@ const palette = {
   red2: '#FF3B30',
   yellow: '#FEC300',
   blue: '#0A84FF',
+  blue2: '#3B82F6',
   orange: '#FF9F0A',
   green: '#30d158',
   indigo: '#5e5ce6',
@@ -165,5 +166,7 @@ export default {
     borderColor: palette.gray9
   },
   inputFocus: { borderColor: palette.blue },
+  sliderTrackTintColor: palette.blue2,
+  sliderTrackTintBackgroundColor: palette.gray9,
   palette
 };
