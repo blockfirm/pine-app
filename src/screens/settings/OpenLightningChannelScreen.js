@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Slider from '@react-native-community/slider';
 
+import { sync } from '../../actions';
 import { openChannel } from '../../actions/lightning';
 import { handle as handleError } from '../../actions/error';
 import { withTheme } from '../../contexts/theme';
@@ -76,6 +77,7 @@ class OpenLightningChannelScreen extends Component {
 
     try {
       await dispatch(openChannel(satsAmount));
+      await dispatch(sync());
       navigation.goBack();
     } catch (error) {
       this.setState({ openingChannel: false });

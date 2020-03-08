@@ -4,6 +4,7 @@ import { StyleSheet, View, ActionSheetIOS } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { sync } from '../../actions';
 import { closeChannel } from '../../actions/lightning';
 import { handle as handleError } from '../../actions/error';
 import { withTheme } from '../../contexts/theme';
@@ -69,6 +70,7 @@ class OffChainBalanceScreen extends Component {
 
     try {
       await dispatch(closeChannel());
+      await dispatch(sync());
     } catch (error) {
       dispatch(handleError(error));
     }
