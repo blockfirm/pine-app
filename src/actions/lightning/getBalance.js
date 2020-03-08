@@ -1,3 +1,4 @@
+import { save as saveSettings } from '../settings';
 import { getClient } from '../../clients/lightning';
 
 export const PINE_LIGHTNING_GET_BALANCE_REQUEST = 'PINE_LIGHTNING_GET_BALANCE_REQUEST';
@@ -44,8 +45,14 @@ export const getBalance = () => {
         throw error;
       })
       .then((balance) => {
+        // Cache balance in settings.
+        dispatch(saveSettings({
+          lightning: { balance }
+        }));
+
         dispatch(getBalanceSuccess(balance));
         console.log('LIGHTNING BALANCE', balance);
+
         return balance;
       })
       .catch((error) => {
