@@ -40,6 +40,8 @@ import ShareIcon from '../components/icons/ShareIcon';
 import BaseScreen from './BaseScreen';
 
 const CURRENCY_BTC = 'BTC';
+const TYPE_LIGHTNING_PAYMENT = 'lightning_payment';
+const TYPE_LEGACY_LIGHTNING_PAYMENT = 'legacy_lightning_payment';
 
 const styles = StyleSheet.create({
   view: {
@@ -148,7 +150,7 @@ class PaymentDetailsScreen extends Component {
         <TouchableOpacity onPress={shareTransaction.bind(null, message.txid, bitcoinNetwork)} style={styles.share}>
           <ShareIcon />
         </TouchableOpacity>
-      )
+      );
     }
 
     return {
@@ -171,6 +173,16 @@ class PaymentDetailsScreen extends Component {
 
     this._showCancelConfirmation = this._showCancelConfirmation.bind(this);
     this._toggleStatusText = this._toggleStatusText.bind(this);
+  }
+
+  _isLightning() {
+    const { message } = this.props.navigation.state.params;
+
+    if (!message) {
+      return false;
+    }
+
+    return [TYPE_LIGHTNING_PAYMENT, TYPE_LEGACY_LIGHTNING_PAYMENT].includes(message.type);
   }
 
   _cancelPayment() {
@@ -239,14 +251,13 @@ class PaymentDetailsScreen extends Component {
 
   _renderTransactionType() {
     const { theme } = this.props;
-    const { invoice } = this.props.navigation.state.params;
 
     return (
       <View style={[styles.detail, theme.tableBorder]}>
         <StyledText style={[styles.label, theme.tableLabel]}>Payment Type</StyledText>
         <View style={styles.value}>
           <StyledText style={[styles.valueLabel, theme.text]}>
-            { invoice ? 'Off-chain (Lightning)' : 'On-chain' }
+            { this._isLightning() ? 'Off-chain (Lightning)' : 'On-chain' }
           </StyledText>
         </View>
       </View>
@@ -290,10 +301,14 @@ class PaymentDetailsScreen extends Component {
   }
 
   _getStatus() {
-    const { invoice } = this.props.navigation.state.params;
+    const { message, invoice } = this.props.navigation.state.params;
 
     if (invoice) {
       return this._getInvoiceStatus();
+    }
+
+    if (message && message.type === TYPE_LEGACY_LIGHTNING_PAYMENT) {
+      return 'Sent';
     }
 
     return this._getTransactionStatus();
@@ -357,10 +372,14 @@ class PaymentDetailsScreen extends Component {
   }
 
   _getStatusText() {
-    const { invoice } = this.props.navigation.state.params;
+    const { message, invoice } = this.props.navigation.state.params;
 
     if (invoice) {
       return this._getInvoiceStatusText();
+    }
+
+    if (message && message.type === TYPE_LEGACY_LIGHTNING_PAYMENT) {
+      return 'The payment has been received by its recipient.';
     }
 
     return this._getTransactionStatusText();
@@ -526,10 +545,10 @@ class PaymentDetailsScreen extends Component {
 
   _renderCancelButton() {
     const { theme } = this.props;
-    const { message, transaction, invoice } = this.props.navigation.state.params;
+    const { message, transaction } = this.props.navigation.state.params;
     const { cancelling } = this.state;
 
-    if (transaction || invoice || message.from || message.canceled) {
+    if (transaction || this._isLightning() || message.from || message.canceled) {
       return null;
     }
 

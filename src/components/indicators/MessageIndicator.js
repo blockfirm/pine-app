@@ -9,6 +9,8 @@ import CanceledIndicator from './CanceledIndicator';
 const COLOR_STYLE_COLOR = 'color';
 const COLOR_STYLE_LIGHT = 'light';
 
+const TYPE_LEGACY_LIGHTNING_PAYMENT = 'legacy_lightning_payment';
+
 export default class MessageIndicator extends Component {
   _getTransactionStatus() {
     const { transaction } = this.props;
@@ -39,7 +41,7 @@ export default class MessageIndicator extends Component {
   }
 
   _getStatus() {
-    const { transaction, invoice } = this.props;
+    const { message, transaction, invoice } = this.props;
 
     if (invoice) {
       return this._getInvoiceStatus();
@@ -47,6 +49,10 @@ export default class MessageIndicator extends Component {
 
     if (transaction) {
       return this._getTransactionStatus();
+    }
+
+    if (message && message.type === TYPE_LEGACY_LIGHTNING_PAYMENT) {
+      return 2;
     }
 
     return 0;
