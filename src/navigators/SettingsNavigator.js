@@ -15,6 +15,7 @@ import SatoshisPerByteScreen from '../screens/settings/SatoshisPerByteScreen';
 import RecoveryKeyScreen from '../screens/settings/RecoveryKeyScreen';
 import SelectCurrencyScreen from '../screens/settings/SelectCurrencyScreen';
 import LightningSettingsScreen from '../screens/settings/LightningSettingsScreen';
+import OnChainBalanceScreen from '../screens/settings/OnChainBalanceScreen';
 import OffChainBalanceScreen from '../screens/settings/OffChainBalanceScreen';
 
 import createDismissableStackNavigator from '../createDismissableStackNavigator';
@@ -37,6 +38,7 @@ const SettingsNavigator = createDismissableStackNavigator({
   RecoveryKey: { screen: RecoveryKeyScreen },
   SelectCurrency: { screen: SelectCurrencyScreen },
   LightningSettings: { screen: LightningSettingsScreen },
+  OnChainBalance: { screen: OnChainBalanceScreen },
   OffChainBalance: { screen: OffChainBalanceScreen }
 }, {
   headerMode: 'float',

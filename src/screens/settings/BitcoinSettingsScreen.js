@@ -23,18 +23,27 @@ export default class BitcoinSettingsScreen extends Component {
   });
 
   _showBitcoinUnit() {
-    const navigation = this.props.navigation;
+    const { navigation } = this.props;
     navigation.navigate('BitcoinUnit');
   }
 
+  _showOnChainBalance() {
+    const { navigation } = this.props;
+    navigation.navigate('OnChainBalance');
+  }
+
   render() {
-    const settings = this.props.settings;
+    const { settings } = this.props;
 
     return (
       <BaseSettingsScreen>
         <SettingsGroup>
           <SettingsAttribute name='Network' value={config.bitcoin.network} />
           <SettingsLink name='Display Unit' value={settings.bitcoin.unit} onPress={this._showBitcoinUnit.bind(this)} isLastItem={true} />
+        </SettingsGroup>
+
+        <SettingsGroup>
+          <SettingsLink name='Balance' onPress={this._showOnChainBalance.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );
