@@ -52,9 +52,21 @@ export default class LightningClient extends EventEmitter {
     this.websocket.addEventListener('message', this._onMessage.bind(this));
   }
 
+  reconnect() {
+    // Try to reconnect.
+    console.log('[LND] Reconnecting...');
+
+    setTimeout(() => {
+      this.connect().catch(() => {
+        this.reconnect();
+      });
+    }, RECONNECT_INTERVAL);
+  }
+
   disconnect() {
     const { websocket } = this;
 
+    this.ready = false;
     this.disconnected = true;
 
     if (!websocket) {
@@ -161,15 +173,14 @@ export default class LightningClient extends EventEmitter {
   }
 
   _onClose() {
+    this.ready = false;
     clearTimeout(this._pingTimeout);
 
     if (this.disconnected) {
       return console.log('[LND] Disconnected');
     }
 
-    // Try to reconnect.
-    console.log('[LND] Reconnecting...');
-    setTimeout(this.connect.bind(this), RECONNECT_INTERVAL);
+    this.reconnect();
   }
 
   _onError(error) {

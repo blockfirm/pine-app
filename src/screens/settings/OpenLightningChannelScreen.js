@@ -11,7 +11,8 @@ import { withTheme } from '../../contexts/theme';
 import { satsToBtc, btcToSats } from '../../crypto/bitcoin';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
-import BackButton from '../../components/BackButton';
+import CancelButton from '../../components/CancelButton';
+import HeaderButton from '../../components/buttons/HeaderButton';
 import StyledText from '../../components/StyledText';
 import SettingsTitle from '../../components/SettingsTitle';
 import SettingsDescription from '../../components/SettingsDescription';
@@ -57,20 +58,35 @@ const styles = StyleSheet.create({
   spendableBitcoinBalance: state.bitcoin.wallet.spendableBalance
 }))
 class OpenLightningChannelScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    headerTransparent: true,
-    headerBackground: <SettingsHeaderBackground />,
-    headerTitle: <HeaderTitle title='Open Channel' />,
-    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
-  });
+  static navigationOptions = ({ navigation, screenProps }) => {
+    const canSubmit = navigation.getParam('canSubmit');
+    const submit = navigation.getParam('submit');
+
+    return {
+      headerTransparent: true,
+      headerBackground: <SettingsHeaderBackground />,
+      headerTitle: <HeaderTitle title='Open Channel' />,
+      headerLeft: <CancelButton onPress={screenProps.dismiss} />,
+      headerRight: <HeaderButton label='Open' onPress={submit} disable={!canSubmit} />
+    };
+  };
 
   state = {
     openingChannel: false,
     satsAmount: MIN_SATS_AMOUNT
   };
 
+  componentDidMount() {
+    const { navigation } = this.props;
+
+    navigation.setParams({
+      canSubmit: false,
+      submit: this._showOpenChannelConfirmation.bind(this)
+    });
+  }
+
   async _openChannel() {
-    const { dispatch, navigation } = this.props;
+    const { dispatch, screenProps } = this.props;
     const { satsAmount } = this.state;
 
     this.setState({ openingChannel: true });
@@ -78,7 +94,7 @@ class OpenLightningChannelScreen extends Component {
     try {
       await dispatch(openChannel(satsAmount));
       await dispatch(sync());
-      navigation.goBack();
+      screenProps.dismiss();
     } catch (error) {
       this.setState({ openingChannel: false });
       dispatch(handleError(error));
@@ -158,18 +174,6 @@ class OpenLightningChannelScreen extends Component {
         <SettingsDescription>
           Select the amount you would like to move from your on-chain funds to an off-chain channel.
         </SettingsDescription>
-
-        <SettingsGroup>
-          <SettingsButton
-            title='Open'
-            onPress={this._showOpenChannelConfirmation.bind(this)}
-            loading={this.state.openingChannel}
-            style={styles.channelButton}
-            containerStyle={styles.channelButtonContainer}
-            loaderStyle={styles.channelButtonLoader}
-            isLastItem={true}
-          />
-        </SettingsGroup>
       </BaseSettingsScreen>
     );
   }
@@ -178,6 +182,7 @@ class OpenLightningChannelScreen extends Component {
 OpenLightningChannelScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
+  screenProps: PropTypes.object,
   spendableBitcoinBalance: PropTypes.number,
   theme: PropTypes.object.isRequired
 };

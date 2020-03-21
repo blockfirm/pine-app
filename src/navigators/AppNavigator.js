@@ -9,6 +9,7 @@ import AddContactNavigator from './AddContactNavigator';
 import WalletBalanceNavigator from './WalletBalanceNavigator';
 import AztecoNavigator from './AztecoNavigator';
 import ChangePineServerNavigator from './ChangePineServerNavigator';
+import OpenLightningChannelNavigator from './OpenLightningChannelNavigator';
 
 const AppNavigator = createStackNavigator({
   Main: { screen: MainNavigator },
@@ -19,7 +20,8 @@ const AppNavigator = createStackNavigator({
   AddContact: { screen: AddContactNavigator },
   WalletBalance: { screen: WalletBalanceNavigator },
   Azteco: { screen: AztecoNavigator },
-  ChangePineServer: { screen: ChangePineServerNavigator }
+  ChangePineServer: { screen: ChangePineServerNavigator },
+  OpenLightningChannel: { screen: OpenLightningChannelNavigator }
 }, {
   mode: 'modal',
   headerMode: 'none',

@@ -14,6 +14,8 @@ import BitcoinFeeSettingsScreen from '../screens/settings/BitcoinFeeSettingsScre
 import SatoshisPerByteScreen from '../screens/settings/SatoshisPerByteScreen';
 import RecoveryKeyScreen from '../screens/settings/RecoveryKeyScreen';
 import SelectCurrencyScreen from '../screens/settings/SelectCurrencyScreen';
+import LightningSettingsScreen from '../screens/settings/LightningSettingsScreen';
+import OffChainBalanceScreen from '../screens/settings/OffChainBalanceScreen';
 
 import createDismissableStackNavigator from '../createDismissableStackNavigator';
 
@@ -33,7 +35,9 @@ const SettingsNavigator = createDismissableStackNavigator({
   BitcoinFeeSettings: { screen: BitcoinFeeSettingsScreen },
   SatoshisPerByte: { screen: SatoshisPerByteScreen },
   RecoveryKey: { screen: RecoveryKeyScreen },
-  SelectCurrency: { screen: SelectCurrencyScreen }
+  SelectCurrency: { screen: SelectCurrencyScreen },
+  LightningSettings: { screen: LightningSettingsScreen },
+  OffChainBalance: { screen: OffChainBalanceScreen }
 }, {
   headerMode: 'float',
   initialRouteName: 'Settings'
