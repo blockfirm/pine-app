@@ -189,8 +189,13 @@ class ProfileScreen extends Component {
   }
 
   _showDisplayNameScreen() {
-    const navigation = this.props.navigation;
+    const { navigation } = this.props;
     navigation.navigate('DisplayName');
+  }
+
+  _showRecoveryKeyScreen() {
+    const { navigation } = this.props;
+    navigation.navigate('RecoveryKey');
   }
 
   _saveAvatarChecksum(checksum) {
@@ -277,6 +282,11 @@ class ProfileScreen extends Component {
         <SettingsTitle>Display Name</SettingsTitle>
         <SettingsGroup>
           <SettingsLink name={displayName} onPress={this._showDisplayNameScreen.bind(this)} isLastItem={true} />
+        </SettingsGroup>
+
+        <SettingsTitle>Account Security</SettingsTitle>
+        <SettingsGroup>
+          <SettingsLink name='Recovery Key' onPress={this._showRecoveryKeyScreen.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
         <SettingsGroup>

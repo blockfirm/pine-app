@@ -431,6 +431,16 @@ exports[`ProfileScreen renders correctly 1`] = `
             onPress={[Function]}
           />
         </SettingsGroup>
+        <SettingsTitle>
+          Account Security
+        </SettingsTitle>
+        <SettingsGroup>
+          <SettingsLink
+            isLastItem={true}
+            name="Recovery Key"
+            onPress={[Function]}
+          />
+        </SettingsGroup>
         <SettingsGroup>
           <SettingsButton
             containerStyle={

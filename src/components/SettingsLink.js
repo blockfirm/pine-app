@@ -8,13 +8,11 @@ import settingsStyles from '../styles/settingsStyles';
 import StyledText from './StyledText';
 
 const ICON_GEAR = 'Gear';
-const ICON_LOCK = 'Lock';
 const ICON_BITCOIN = 'Bitcoin';
 const ICON_LIGHTNING = 'Lightning';
 
 const ICON_IMAGES = {
   [ICON_GEAR]: require('../images/icons/settings/Gear.png'),
-  [ICON_LOCK]: require('../images/icons/settings/Lock.png'),
   [ICON_BITCOIN]: require('../images/icons/settings/Bitcoin.png'),
   [ICON_LIGHTNING]: require('../images/icons/settings/Lightning.png')
 };
@@ -42,7 +40,6 @@ const styles = StyleSheet.create({
 
 class SettingsLink extends Component {
   static ICON_GEAR = ICON_GEAR;
-  static ICON_LOCK = ICON_LOCK;
   static ICON_BITCOIN = ICON_BITCOIN;
   static ICON_LIGHTNING = ICON_LIGHTNING;
 
