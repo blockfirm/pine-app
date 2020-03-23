@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 
 import ErrorIndicator from './ErrorIndicator';
 import ReceivedIndicator from './ReceivedIndicator';
+import ReceivedLightningIndicator from './ReceivedLightningIndicator';
 import SentIndicator from './SentIndicator';
+import SentLightningIndicator from './SentLightningIndicator';
 import CanceledIndicator from './CanceledIndicator';
 
 const COLOR_STYLE_COLOR = 'color';
 const COLOR_STYLE_LIGHT = 'light';
 
+const TYPE_LIGHTNING_PAYMENT = 'lightning_payment';
 const TYPE_LEGACY_LIGHTNING_PAYMENT = 'legacy_lightning_payment';
 
 export default class MessageIndicator extends Component {
@@ -58,9 +61,35 @@ export default class MessageIndicator extends Component {
     return 0;
   }
 
+  _isLightning() {
+    const { message } = this.props;
+    return [TYPE_LIGHTNING_PAYMENT, TYPE_LEGACY_LIGHTNING_PAYMENT].includes(message.type);
+  }
+
+  _renderReceivedIndicator() {
+    const { style, colorStyle } = this.props;
+    const status = this._getStatus();
+
+    if (this._isLightning()) {
+      return <ReceivedLightningIndicator status={status} style={style} colorStyle={colorStyle} />;
+    }
+
+    return <ReceivedIndicator status={status} style={style} colorStyle={colorStyle} />;
+  }
+
+  _renderSentIndicator() {
+    const { style, colorStyle } = this.props;
+    const status = this._getStatus();
+
+    if (this._isLightning()) {
+      return <SentLightningIndicator status={status} style={style} colorStyle={colorStyle} />;
+    }
+
+    return <SentIndicator status={status} style={style} colorStyle={colorStyle} />;
+  }
+
   render() {
     const { message, transaction, invoice, style, colorStyle } = this.props;
-    const status = this._getStatus();
 
     if (!message) {
       return null;
@@ -75,10 +104,10 @@ export default class MessageIndicator extends Component {
     }
 
     if (message.from) {
-      return <ReceivedIndicator status={status} style={style} colorStyle={colorStyle} />;
+      return this._renderReceivedIndicator();
     }
 
-    return <SentIndicator status={status} style={style} colorStyle={colorStyle} />;
+    return this._renderSentIndicator();
   }
 }
 
