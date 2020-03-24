@@ -168,5 +168,6 @@ export default {
   inputFocus: { borderColor: palette.blue },
   sliderTrackTintColor: palette.blue2,
   sliderTrackTintBackgroundColor: palette.gray9,
+  lightningBadgeImage: require('../../images/badges/LightningBadgeDark.png'),
   palette
 };

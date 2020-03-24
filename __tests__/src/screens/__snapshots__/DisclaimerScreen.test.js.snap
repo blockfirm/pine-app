@@ -175,6 +175,9 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
       "label": Object {
         "color": "#B1AFB7",
       },
+      "lightningBadgeImage": Object {
+        "testUri": "../../../src/images/badges/LightningBadge.png",
+      },
       "link": Object {
         "color": "#007AFF",
       },
@@ -984,6 +987,9 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
       },
       "label": Object {
         "color": "#B1AFB7",
+      },
+      "lightningBadgeImage": Object {
+        "testUri": "../../../src/images/badges/LightningBadge.png",
       },
       "link": Object {
         "color": "#007AFF",

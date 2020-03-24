@@ -255,6 +255,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               "label": Object {
                 "color": "#B1AFB7",
               },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
+              },
               "link": Object {
                 "color": "#007AFF",
               },
@@ -722,6 +725,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               },
               "label": Object {
                 "color": "#B1AFB7",
+              },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
               },
               "link": Object {
                 "color": "#007AFF",
@@ -1191,6 +1197,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               "label": Object {
                 "color": "#B1AFB7",
               },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
+              },
               "link": Object {
                 "color": "#007AFF",
               },
@@ -1658,6 +1667,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               },
               "label": Object {
                 "color": "#B1AFB7",
+              },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
               },
               "link": Object {
                 "color": "#007AFF",
@@ -2127,6 +2139,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               "label": Object {
                 "color": "#B1AFB7",
               },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
+              },
               "link": Object {
                 "color": "#007AFF",
               },
@@ -2594,6 +2609,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               },
               "label": Object {
                 "color": "#B1AFB7",
+              },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
               },
               "link": Object {
                 "color": "#007AFF",
@@ -3063,6 +3081,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               "label": Object {
                 "color": "#B1AFB7",
               },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
+              },
               "link": Object {
                 "color": "#007AFF",
               },
@@ -3530,6 +3551,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               },
               "label": Object {
                 "color": "#B1AFB7",
+              },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
               },
               "link": Object {
                 "color": "#007AFF",
@@ -3999,6 +4023,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               "label": Object {
                 "color": "#B1AFB7",
               },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
+              },
               "link": Object {
                 "color": "#007AFF",
               },
@@ -4466,6 +4493,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               },
               "label": Object {
                 "color": "#B1AFB7",
+              },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
               },
               "link": Object {
                 "color": "#007AFF",
@@ -4935,6 +4965,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               "label": Object {
                 "color": "#B1AFB7",
               },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
+              },
               "link": Object {
                 "color": "#007AFF",
               },
@@ -5402,6 +5435,9 @@ exports[`MnemonicInput renders correctly 1`] = `
               },
               "label": Object {
                 "color": "#B1AFB7",
+              },
+              "lightningBadgeImage": Object {
+                "testUri": "../../../src/images/badges/LightningBadge.png",
               },
               "link": Object {
                 "color": "#007AFF",

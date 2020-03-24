@@ -16,6 +16,7 @@ import Bullet from './typography/Bullet';
 import Avatar from './Avatar';
 import StyledText from './StyledText';
 import RelativeDateLabelShort from './RelativeDateLabelShort';
+import LightningBadge from './badges/LightningBadge';
 
 const styles = StyleSheet.create({
   item: {
@@ -64,6 +65,11 @@ const styles = StyleSheet.create({
   },
   indicator: {
     marginRight: 3
+  },
+  badge: {
+    position: 'absolute',
+    bottom: 0,
+    right: 4
   }
 });
 
@@ -172,6 +178,18 @@ class ContactListItem extends Component {
     return this._getAddedText();
   }
 
+  _renderBadge() {
+    const { contact } = this.props;
+
+    if (!contact.hasLightningCapacity) {
+      return null;
+    }
+
+    return (
+      <LightningBadge style={styles.badge} />
+    );
+  }
+
   render() {
     const { contact, theme } = this.props;
     const avatarChecksum = contact.avatar ? contact.avatar.checksum : null;
@@ -186,6 +204,7 @@ class ContactListItem extends Component {
             checksum={avatarChecksum}
             size={60}
           />
+          { this._renderBadge() }
         </View>
         <View style={styles.titleWrapper}>
           <StyledText style={styles.title} numberOfLines={1}>
