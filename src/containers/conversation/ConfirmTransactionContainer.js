@@ -27,7 +27,7 @@ import ConfirmLightningTransaction from '../../components/conversation/ConfirmLi
 const mapStateToProps = (state) => {
   return {
     userProfile: state.settings.user.profile,
-    lightningBalance: state.lightning.balance.local,
+    lightningBalance: state.lightning.balance.spendable,
     lightningBalanceIsPending: state.lightning.balance.pending
   };
 };

@@ -144,19 +144,20 @@ class OffChainBalanceScreen extends Component {
 
   render() {
     const { theme, balance } = this.props;
-    const { local, remote, commitFee, unredeemed } = balance;
+    const { local, remote, commitFee, unredeemed, spendable } = balance;
     const localBtc = satsToBtc(local);
     const remoteBtc = satsToBtc(remote);
+    const spendableBtc = satsToBtc(spendable);
     const commitFeeBtc = satsToBtc(commitFee);
     const unredeemedBtc = satsToBtc(unredeemed);
-    const spendable = balance.pending ? 0 : local;
     const pending = balance.pending ? local : 0;
+    const reserved = commitFee + (balance.pending ? 0 : (local - spendable));
 
     const balanceData = [
       { label: 'Spendable', color: theme.walletBalanceOffChainColor, value: spendable },
       { label: 'Pending', color: theme.walletBalancePendingColor, value: pending },
       { label: 'Unredeemed', color: theme.walletBalanceUnredeemedColor, value: unredeemed },
-      { label: 'Reserved', color: theme.walletBalanceReservedColor, value: commitFee }
+      { label: 'Reserved', color: theme.walletBalanceReservedColor, value: reserved }
     ];
 
     const capacityData = [
@@ -171,7 +172,7 @@ class OffChainBalanceScreen extends Component {
           <View style={[settingsStyles.item, styles.wrapper]}>
             <StyledText style={styles.chartTitle}>
               <CurrencyLabelContainer
-                amountBtc={balance.pending ? 0 : localBtc}
+                amountBtc={spendableBtc}
                 currencyType='primary'
                 style={styles.spendableText}
               />
@@ -199,8 +200,7 @@ class OffChainBalanceScreen extends Component {
           Make sure you have sufficient inbound capacity.
         </SettingsDescription>
         <SettingsDescription>
-          <StrongText>Reserved</StrongText> balance is reserved for the fee that will have to be paid
-          when transferring the funds back to the on-chain balance. This can change over time.
+          <StrongText>Reserved</StrongText> balance is reserved for potential fees. This can change over time.
         </SettingsDescription>
 
         <SettingsTitle>Lightning Capacity</SettingsTitle>
