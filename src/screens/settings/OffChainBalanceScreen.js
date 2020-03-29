@@ -167,6 +167,8 @@ class OffChainBalanceScreen extends Component {
 
     return (
       <BaseSettingsScreen>
+        { this._renderButtons() }
+
         <SettingsTitle>Balance</SettingsTitle>
         <SettingsGroup>
           <View style={[settingsStyles.item, styles.wrapper]}>
@@ -236,8 +238,6 @@ class OffChainBalanceScreen extends Component {
         <SettingsDescription>
           <StrongText>Inbound</StrongText> capacity is how much you can receive over the Lightning network.
         </SettingsDescription>
-
-        { this._renderButtons() }
       </BaseSettingsScreen>
     );
   }
