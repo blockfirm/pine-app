@@ -173,5 +173,6 @@ export default {
   sliderTrackTintColor: palette.blue2,
   sliderTrackTintBackgroundColor: palette.gray15,
   lightningBadgeImage: require('../../images/badges/LightningBadge.png'),
+  smallLightningIconImage: require('../../images/icons/SmallLightning.png'),
   palette
 };

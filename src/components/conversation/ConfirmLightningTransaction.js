@@ -6,6 +6,7 @@ import * as bolt11 from 'bolt11';
 import { withTheme } from '../../contexts/theme';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import authentication from '../../authentication';
+import SmallLightningIcon from '../icons/SmallLightningIcon';
 import Button from '../Button';
 import Footer from '../Footer';
 import StyledText from '../StyledText';
@@ -64,6 +65,9 @@ const styles = StyleSheet.create({
   },
   bold: {
     fontWeight: '600'
+  },
+  lightningIcon: {
+    marginRight: 5
   }
 });
 
@@ -142,6 +146,7 @@ class ConfirmLightningTransaction extends Component {
 
     return (
       <View style={styles.valueWrapper}>
+        <SmallLightningIcon style={styles.lightningIcon} />
         {amountLabel}
         <Bullet />
         <CurrencyLabelContainer

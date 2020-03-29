@@ -332,6 +332,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
         },
         "sliderTrackTintBackgroundColor": "#CECED0",
         "sliderTrackTintColor": "#3478F5",
+        "smallLightningIconImage": Object {
+          "testUri": "../../../src/images/icons/SmallLightning.png",
+        },
         "stackedBarChart": Object {
           "backgroundColor": "#F2F2F6",
         },
@@ -830,6 +833,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
@@ -1301,6 +1307,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
@@ -1772,6 +1781,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
@@ -2243,6 +2255,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
@@ -2714,6 +2729,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
@@ -3185,6 +3203,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
@@ -3656,6 +3677,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
@@ -4127,6 +4151,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
@@ -4598,6 +4625,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
@@ -5069,6 +5099,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
@@ -5540,6 +5573,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
@@ -6011,6 +6047,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "sliderTrackTintBackgroundColor": "#CECED0",
                     "sliderTrackTintColor": "#3478F5",
+                    "smallLightningIconImage": Object {
+                      "testUri": "../../../src/images/icons/SmallLightning.png",
+                    },
                     "stackedBarChart": Object {
                       "backgroundColor": "#F2F2F6",
                     },
