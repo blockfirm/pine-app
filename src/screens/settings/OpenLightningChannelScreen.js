@@ -17,7 +17,6 @@ import StyledText from '../../components/StyledText';
 import SettingsTitle from '../../components/SettingsTitle';
 import SettingsDescription from '../../components/SettingsDescription';
 import SettingsGroup from '../../components/SettingsGroup';
-import SettingsButton from '../../components/SettingsButton';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
@@ -67,7 +66,7 @@ class OpenLightningChannelScreen extends Component {
       headerBackground: <SettingsHeaderBackground />,
       headerTitle: <HeaderTitle title='Open Channel' />,
       headerLeft: <CancelButton onPress={screenProps.dismiss} />,
-      headerRight: <HeaderButton label='Open' onPress={submit} disable={!canSubmit} />
+      headerRight: <HeaderButton label='Open' onPress={submit} disabled={!canSubmit} />
     };
   };
 
@@ -77,10 +76,12 @@ class OpenLightningChannelScreen extends Component {
   };
 
   componentDidMount() {
-    const { navigation } = this.props;
+    const { navigation, spendableBitcoinBalance } = this.props;
+    const spendableSats = btcToSats(spendableBitcoinBalance);
+    const canSubmit = spendableSats >= MIN_SATS_AMOUNT;
 
     navigation.setParams({
-      canSubmit: false,
+      canSubmit,
       submit: this._showOpenChannelConfirmation.bind(this)
     });
   }
