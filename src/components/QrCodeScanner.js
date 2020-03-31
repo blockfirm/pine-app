@@ -120,6 +120,12 @@ export default class QrCodeScanner extends Component {
     const { network } = this.props;
     const pineAddress = getAddressFromUri(copiedString);
     const paymentInfo = getPaymentInfoFromString(copiedString, network);
+    const lightningPaymentRequest = getLightningPaymentRequest(copiedString, network);
+
+    if (lightningPaymentRequest) {
+      // Copied string is a lightning payment request.
+      return lightningPaymentRequest;
+    }
 
     if (paymentInfo) {
       // Copied string is a BIP21 URI or bitcoin address.
