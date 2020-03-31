@@ -78,7 +78,7 @@ export default class VibrancyButton extends Component {
     }
 
     return (
-      <Text style={subtitleStyles} numberOfLines={1}>
+      <Text style={subtitleStyles} numberOfLines={1} ellipsizeMode='middle'>
         {subtitle}
       </Text>
     );

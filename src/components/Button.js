@@ -180,7 +180,7 @@ class Button extends Component {
     }
 
     return (
-      <Text style={styles.subtitle} numberOfLines={1}>
+      <Text style={styles.subtitle} numberOfLines={1} ellipsizeMode='middle'>
         {subtitle}
       </Text>
     );
