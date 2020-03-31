@@ -30,9 +30,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 53
   },
-  buttonContainer: {
+  buttonsContainer: {
     position: 'absolute',
-    right: 13
+    right: 13,
+    width: 45,
+    height: 45
   },
   disabledOverlay: {
     position: 'absolute',
@@ -76,6 +78,7 @@ class InputBar extends Component {
     this._onChangeAmount = this._onChangeAmount.bind(this);
     this._onChangeUnit = this._onChangeUnit.bind(this);
     this._onSendPress = this._onSendPress.bind(this);
+    this._onSendLongPress = this._onSendLongPress.bind(this);
     this._onCancelPress = this._onCancelPress.bind(this);
     this._onInputPress = this._onInputPress.bind(this);
   }
@@ -133,7 +136,7 @@ class InputBar extends Component {
     this.setState({ insufficientFunds, insufficientFundsReason });
   }
 
-  _onSendPress() {
+  _send(forceOnChain = false) {
     const amountBtc = this._getBtcAmount(this.state.amount);
     const displayCurrency = this.state.currency;
     const displayUnit = this.state.unit;
@@ -141,7 +144,22 @@ class InputBar extends Component {
     ReactNativeHaptic.generate('selection');
 
     this.setState({ confirmTransaction: true });
-    this.props.onSendPress({ amountBtc, displayCurrency, displayUnit });
+
+    this.props.onSendPress({
+      amountBtc,
+      displayCurrency,
+      displayUnit,
+      forceOnChain
+    });
+  }
+
+  _onSendPress() {
+    this._send();
+  }
+
+  _onSendLongPress() {
+    const forceOnChain = true;
+    this._send(forceOnChain);
   }
 
   _onCancelPress() {
@@ -166,25 +184,31 @@ class InputBar extends Component {
     const { amount, insufficientFunds, confirmTransaction } = this.state;
     const sendDisabled = !amount || insufficientFunds;
 
-    if (confirmTransaction) {
-      return (
-        <InputBarButton
-          style={theme.inputCancelButton}
-          containerStyle={styles.buttonContainer}
-          Icon={CancelButtonIcon}
-          onPress={this._onCancelPress}
-        />
-      );
-    }
-
     return (
-      <InputBarButton
-        disabled={sendDisabled}
-        style={theme.inputSendButton}
-        containerStyle={styles.buttonContainer}
-        Icon={SendButtonIcon}
-        onPress={this._onSendPress}
-      />
+      <View style={styles.buttonsContainer}>
+        <View
+          style={{ position: 'absolute', opacity: confirmTransaction ? 1 : 0 }}
+          pointerEvents={confirmTransaction ? 'auto' : 'none'}
+        >
+          <InputBarButton
+            style={theme.inputCancelButton}
+            Icon={CancelButtonIcon}
+            onPress={this._onCancelPress}
+          />
+        </View>
+        <View
+          style={{ position: 'absolute', opacity: confirmTransaction ? 0 : 1 }}
+          pointerEvents={confirmTransaction ? 'none' : 'auto'}
+        >
+          <InputBarButton
+            disabled={sendDisabled}
+            style={theme.inputSendButton}
+            Icon={SendButtonIcon}
+            onPress={this._onSendPress}
+            onLongPress={this._onSendLongPress}
+          />
+        </View>
+      </View>
     );
   }
 

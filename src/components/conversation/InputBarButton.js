@@ -18,7 +18,14 @@ const styles = StyleSheet.create({
 
 class InputBarButton extends Component {
   render() {
-    const { Icon, disabled, onPress, style, containerStyle, theme } = this.props;
+    const {
+      Icon,
+      disabled,
+      onPress,
+      onLongPress,
+      style,
+      theme
+    } = this.props;
 
     const buttonStyles = [
       styles.button,
@@ -27,7 +34,12 @@ class InputBarButton extends Component {
     ];
 
     return (
-      <TouchableOpacity onPress={onPress} disabled={disabled} style={[styles.container, containerStyle]}>
+      <TouchableOpacity
+        onLongPress={onLongPress}
+        onPress={onPress}
+        disabled={disabled}
+        style={styles.container}
+      >
         <View style={buttonStyles}>
           <Icon />
         </View>
@@ -38,9 +50,9 @@ class InputBarButton extends Component {
 
 InputBarButton.propTypes = {
   onPress: PropTypes.func,
+  onLongPress: PropTypes.func,
   disabled: PropTypes.bool,
   style: PropTypes.any,
-  containerStyle: PropTypes.any,
   Icon: PropTypes.func,
   theme: PropTypes.object.isRequired
 };

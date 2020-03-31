@@ -146,7 +146,8 @@ export default class ConversationScreen extends Component {
     keyboardAnimationEasing: null,
     keyboardIsVisible: false,
     messagesLoaded: false,
-    decodedPaymentRequest: null
+    decodedPaymentRequest: null,
+    forceOnChain: false
   }
 
   constructor(props) {
@@ -370,12 +371,13 @@ export default class ConversationScreen extends Component {
     this.props.navigation.goBack();
   }
 
-  _onSendPress({ amountBtc, displayCurrency, displayUnit }) {
+  _onSendPress({ amountBtc, displayCurrency, displayUnit, forceOnChain }) {
     this.setState({
       confirmTransaction: true,
       amountBtc,
       displayCurrency,
-      displayUnit
+      displayUnit,
+      forceOnChain
     });
 
     if (this.state.keyboardIsVisible) {
@@ -472,7 +474,8 @@ export default class ConversationScreen extends Component {
       confirmTransaction,
       amountBtc,
       displayCurrency,
-      displayUnit
+      displayUnit,
+      forceOnChain
     } = this.state;
 
     if (!keyboardHeight) {
@@ -495,6 +498,7 @@ export default class ConversationScreen extends Component {
         contact={contact}
         bitcoinAddress={bitcoinAddress}
         paymentRequest={paymentRequest}
+        forceOnChain={forceOnChain}
         onTransactionSent={this._onTransactionSent}
       />
     );

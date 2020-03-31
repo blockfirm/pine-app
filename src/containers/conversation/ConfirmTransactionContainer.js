@@ -40,6 +40,7 @@ class ConfirmTransactionContainer extends Component {
     amountBtc: PropTypes.number,
     onTransactionSent: PropTypes.func,
     paymentRequest: PropTypes.string,
+    forceOnChain: PropTypes.bool,
     lightningBalance: PropTypes.number,
     lightningBalanceIsPending: PropTypes.bool
   };
@@ -243,10 +244,10 @@ class ConfirmTransactionContainer extends Component {
   }
 
   render() {
-    const { paymentRequest } = this.props;
+    const { paymentRequest, forceOnChain } = this.props;
     const { fee, cannotAffordFee } = this.state;
 
-    if (this._isLightning()) {
+    if (!forceOnChain && this._isLightning()) {
       return (
         <ConfirmLightningTransaction
           {...this.props}
