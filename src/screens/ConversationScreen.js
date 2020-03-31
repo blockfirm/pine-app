@@ -452,8 +452,15 @@ export default class ConversationScreen extends Component {
 
   _renderInputBar() {
     const { initialAmountBtc } = this.state;
-    const { contact } = this.props.navigation.state.params;
+    const { contact, bitcoinAddress, paymentRequest } = this.props.navigation.state.params;
     const disabled = Boolean(contact && !contact.address);
+    let paymentType = InputBarContainer.PAYMENT_TYPE_BOTH;
+
+    if (paymentRequest) {
+      paymentType = InputBarContainer.PAYMENT_TYPE_OFFCHAIN;
+    } else if (bitcoinAddress) {
+      paymentType = InputBarContainer.PAYMENT_TYPE_ONCHAIN;
+    }
 
     return (
       <InputBarContainer
@@ -462,6 +469,7 @@ export default class ConversationScreen extends Component {
         onCancelPress={this._onCancelPress}
         initialAmountBtc={initialAmountBtc}
         disabled={disabled}
+        paymentType={paymentType}
       />
     );
   }

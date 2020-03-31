@@ -19,6 +19,10 @@ const mapStateToProps = (state) => {
 };
 
 class InputBarContainer extends PureComponent {
+  static PAYMENT_TYPE_BOTH = InputBar.PAYMENT_TYPE_BOTH;
+  static PAYMENT_TYPE_ONCHAIN = InputBar.PAYMENT_TYPE_ONCHAIN;
+  static PAYMENT_TYPE_OFFCHAIN = InputBar.PAYMENT_TYPE_OFFCHAIN;
+
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     primaryCurrency: PropTypes.string.isRequired,

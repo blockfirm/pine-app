@@ -50,6 +50,10 @@ const styles = StyleSheet.create({
 });
 
 class InputBar extends Component {
+  static PAYMENT_TYPE_BOTH = 'both';
+  static PAYMENT_TYPE_ONCHAIN = 'on-chain';
+  static PAYMENT_TYPE_OFFCHAIN = 'off-chain';
+
   constructor(props) {
     super(...arguments);
 
@@ -159,7 +163,13 @@ class InputBar extends Component {
 
   _onSendLongPress() {
     const forceOnChain = true;
-    this._send(forceOnChain);
+    const { paymentType } = this.props;
+
+    if (paymentType === InputBar.PAYMENT_TYPE_OFFCHAIN) {
+      ReactNativeHaptic.generate('notificationError');
+    } else {
+      this._send(forceOnChain);
+    }
   }
 
   _onCancelPress() {
@@ -274,9 +284,18 @@ InputBar.propTypes = {
   onSendPress: PropTypes.func.isRequired,
   onCancelPress: PropTypes.func.isRequired,
   onChangeUnit: PropTypes.func.isRequired,
+  paymentType: PropTypes.oneOf([
+    InputBar.PAYMENT_TYPE_BOTH,
+    InputBar.PAYMENT_TYPE_ONCHAIN,
+    InputBar.PAYMENT_TYPE_OFFCHAIN
+  ]),
   initialAmountBtc: PropTypes.number,
   disabled: PropTypes.bool,
   theme: PropTypes.object
+};
+
+InputBar.defaultPropTypes = {
+  paymentType: InputBar.PAYMENT_TYPE_BOTH
 };
 
 export default withTheme(InputBar);
