@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as bolt11 from 'bolt11';
 
 import {
   StyleSheet,
@@ -12,20 +13,16 @@ import {
 } from 'react-native';
 
 import { withTheme } from '../../contexts/theme';
+import { UNIT_BTC, satsToBtc } from '../../crypto/bitcoin/convert';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import authentication from '../../authentication';
 import HelpIcon from '../icons/HelpIcon';
+import SmallLightningIcon from '../icons/SmallLightningIcon';
 import Button from '../Button';
 import Footer from '../Footer';
 import StyledText from '../StyledText';
 import Bullet from '../typography/Bullet';
 import FeeLabel from '../FeeLabel';
-
-import {
-  UNIT_BTC,
-  UNIT_SATOSHIS,
-  convert as convertBitcoin
-} from '../../crypto/bitcoin/convert';
 
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
@@ -90,13 +87,27 @@ const styles = StyleSheet.create({
   helpText: {
     marginTop: 5,
     fontSize: 13
+  },
+  lightningIcon: {
+    marginRight: 5
   }
 });
 
 class ConfirmTransaction extends Component {
   state = {
     biometryType: null,
-    showFeeHelpText: false
+    showFeeHelpText: false,
+    amountBtc: 0
+  }
+
+  static getDerivedStateFromProps(props) {
+    if (props.paymentRequest) {
+      return null;
+    }
+
+    return {
+      amountBtc: props.amountBtc
+    };
   }
 
   constructor() {
@@ -105,10 +116,23 @@ class ConfirmTransaction extends Component {
   }
 
   componentDidMount() {
+    const { paymentRequest } = this.props;
+
     // Get the supported biometry authentication type.
     authentication.getSupportedBiometryType().then((biometryType) => {
       this.setState({ biometryType });
     });
+
+    // Get amount from lightning payment request.
+    if (paymentRequest) {
+      const decodedPaymentRequest = bolt11.decode(paymentRequest);
+      const amountBtc = satsToBtc(decodedPaymentRequest.satoshis);
+
+      this.setState({
+        decodedPaymentRequest,
+        amountBtc
+      });
+    }
   }
 
   _getButtonLabel() {
@@ -139,23 +163,33 @@ class ConfirmTransaction extends Component {
   }
 
   _renderFeeHelpText() {
-    const { theme } = this.props;
+    const { theme, isLightning } = this.props;
 
     if (!this.state.showFeeHelpText) {
       return null;
     }
 
+    if (isLightning) {
+      return (
+        <StyledText style={[styles.helpText, theme.confirmTransactionHelpText]}>
+          The fee goes to various node operators on the Lightning network,
+          including Pine.
+        </StyledText>
+      );
+    }
+
     return (
       <StyledText style={[styles.helpText, theme.confirmTransactionHelpText]}>
         The fee goes to the miner who mines the block containing your transaction.
-        Pine or its developers does not charge any fees.
+        Pine and its developers does not charge any fees.
       </StyledText>
     );
   }
 
   _renderFee() {
-    const { amountBtc, displayCurrency, displayUnit, fee, cannotAffordFee, theme } = this.props;
-    const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
+    const { displayCurrency, displayUnit, fee, cannotAffordFee, isLightning, theme } = this.props;
+    const { amountBtc } = this.state;
+    const feeBtc = fee ? satsToBtc(fee) : 0;
 
     if (cannotAffordFee) {
       return (
@@ -165,12 +199,13 @@ class ConfirmTransaction extends Component {
       );
     }
 
-    if (!feeBtc) {
+    if (typeof fee !== 'number') {
       return <ActivityIndicator color='gray' size='small' />;
     }
 
     return (
       <FeeLabel
+        prefix={isLightning ? '~' : null}
         fee={feeBtc}
         amount={amountBtc}
         currency={displayCurrency}
@@ -181,8 +216,9 @@ class ConfirmTransaction extends Component {
   }
 
   _renderTotal() {
-    const { amountBtc, fee, displayCurrency, displayUnit, theme } = this.props;
-    const feeBtc = fee ? convertBitcoin(fee, UNIT_SATOSHIS, UNIT_BTC) : 0;
+    const { fee, displayCurrency, displayUnit, isLightning, theme } = this.props;
+    const { amountBtc } = this.state;
+    const feeBtc = fee ? satsToBtc(fee) : 0;
     const totalAmount = amountBtc + feeBtc;
     let amountLabel = null;
 
@@ -207,6 +243,7 @@ class ConfirmTransaction extends Component {
 
     return (
       <View style={styles.valueWrapper}>
+        {isLightning && <SmallLightningIcon style={styles.lightningIcon} />}
         {amountLabel}
         <Bullet />
         <CurrencyLabelContainer
@@ -269,7 +306,9 @@ ConfirmTransaction.propTypes = {
   displayCurrency: PropTypes.string.isRequired,
   displayUnit: PropTypes.string,
   fee: PropTypes.number,
+  paymentRequest: PropTypes.string,
   cannotAffordFee: PropTypes.bool,
+  isLightning: PropTypes.bool,
   onPayPress: PropTypes.func,
   style: PropTypes.any,
   theme: PropTypes.object.isRequired

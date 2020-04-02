@@ -21,7 +21,6 @@ import { handle as handleError } from '../../actions/error/handle';
 import { convert, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
 import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
-import ConfirmLightningTransaction from '../../components/conversation/ConfirmLightningTransaction';
 
 const mapStateToProps = (state) => {
   return {
@@ -267,24 +266,17 @@ class ConfirmTransactionContainer extends Component {
   render() {
     const { paymentRequest } = this.props;
     const { fee, cannotAffordFee } = this.state;
-
-    if (this._isLightning()) {
-      return (
-        <ConfirmLightningTransaction
-          {...this.props}
-          paymentRequest={paymentRequest}
-          fee={fee}
-          onPayPress={this._onPayLightningPress}
-        />
-      );
-    }
+    const isLightning = this._isLightning();
+    const onPayPress = isLightning ? this._onPayLightningPress : this._onPayPress;
 
     return (
       <ConfirmTransaction
         {...this.props}
         fee={fee}
+        paymentRequest={paymentRequest}
         cannotAffordFee={cannotAffordFee}
-        onPayPress={this._onPayPress}
+        isLightning={isLightning}
+        onPayPress={onPayPress}
       />
     );
   }
