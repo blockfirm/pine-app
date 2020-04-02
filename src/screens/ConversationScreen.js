@@ -21,6 +21,7 @@ import * as bolt11 from 'bolt11';
 import { closeConversation, setHomeScreenIndex } from '../actions/navigate';
 import { handle as handleError } from '../actions/error/handle';
 import { remove as removeContact, markAsRead } from '../actions/contacts';
+import { getInboundCapacityForContact } from '../actions/paymentServer/lightning';
 
 import {
   UNIT_BTC,
@@ -90,7 +91,8 @@ const styles = StyleSheet.create({
 
 @connect((state) => ({
   contacts: state.contacts.items,
-  messages: state.messages.itemsByContact
+  messages: state.messages.itemsByContact,
+  lightningBalance: state.lightning.balance.spendable
 }))
 export default class ConversationScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -147,7 +149,8 @@ export default class ConversationScreen extends Component {
     keyboardIsVisible: false,
     messagesLoaded: false,
     decodedPaymentRequest: null,
-    forceOnChain: false
+    forceOnChain: false,
+    contactInboundCapacity: -1
   }
 
   constructor(props) {
@@ -242,6 +245,10 @@ export default class ConversationScreen extends Component {
     const { navigation, contacts } = this.props;
     const prevContact = prevProps.navigation.state.params.contact;
 
+    if (navigation.state.params.contact !== prevContact) {
+      this._loadContactInboundCapacity();
+    }
+
     if (!prevContact || !prevContact.id) {
       return;
     }
@@ -275,6 +282,23 @@ export default class ConversationScreen extends Component {
 
   _onKeyboardDidHide() {
     this.setState({ keyboardIsVisible: false });
+  }
+
+  async _loadContactInboundCapacity() {
+    const { dispatch, navigation, lightningBalance } = this.props;
+    const { contact } = navigation.state.params;
+    const hasContactRequest = Boolean(contact && contact.contactRequest);
+
+    if (!lightningBalance || hasContactRequest || !contact || !contact.userId) {
+      return;
+    }
+
+    try {
+      const inbound = await dispatch(getInboundCapacityForContact(contact.userId));
+      this.setState({ contactInboundCapacity: inbound });
+    } catch (error) {
+      this.setState({ contactInboundCapacity: -1 });
+    }
   }
 
   _markConversationAsRead() {
@@ -451,7 +475,7 @@ export default class ConversationScreen extends Component {
   }
 
   _renderInputBar() {
-    const { initialAmountBtc } = this.state;
+    const { initialAmountBtc, contactInboundCapacity } = this.state;
     const { contact, bitcoinAddress, paymentRequest } = this.props.navigation.state.params;
     const disabled = Boolean(contact && !contact.address);
     let paymentType = InputBarContainer.PAYMENT_TYPE_BOTH;
@@ -470,6 +494,7 @@ export default class ConversationScreen extends Component {
         initialAmountBtc={initialAmountBtc}
         disabled={disabled}
         paymentType={paymentType}
+        contactInboundCapacity={contactInboundCapacity}
       />
     );
   }
@@ -483,7 +508,8 @@ export default class ConversationScreen extends Component {
       amountBtc,
       displayCurrency,
       displayUnit,
-      forceOnChain
+      forceOnChain,
+      contactInboundCapacity
     } = this.state;
 
     if (!keyboardHeight) {
@@ -508,6 +534,7 @@ export default class ConversationScreen extends Component {
         paymentRequest={paymentRequest}
         forceOnChain={forceOnChain}
         onTransactionSent={this._onTransactionSent}
+        contactInboundCapacity={contactInboundCapacity}
       />
     );
   }
@@ -572,5 +599,6 @@ ConversationScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   contacts: PropTypes.object,
-  messages: PropTypes.object
+  messages: PropTypes.object,
+  lightningBalance: PropTypes.number
 };

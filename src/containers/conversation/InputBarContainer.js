@@ -6,17 +6,17 @@ import { save as saveSettings } from '../../actions/settings';
 import { UNIT_BTC } from '../../crypto/bitcoin/convert';
 import InputBar from '../../components/conversation/InputBar';
 
-const mapStateToProps = (state) => {
-  return {
-    primaryCurrency: state.settings.currency.primary,
-    secondaryCurrency: state.settings.currency.secondary,
-    defaultBitcoinUnit: state.settings.bitcoin.unit,
-    lastUsedDenomination: state.settings.user.lastUsedDenomination,
-    balance: state.bitcoin.wallet.balance,
-    spendableBalance: state.bitcoin.wallet.spendableBalance,
-    fiatRates: state.bitcoin.fiat.rates
-  };
-};
+const mapStateToProps = (state) => ({
+  primaryCurrency: state.settings.currency.primary,
+  secondaryCurrency: state.settings.currency.secondary,
+  defaultBitcoinUnit: state.settings.bitcoin.unit,
+  lastUsedDenomination: state.settings.user.lastUsedDenomination,
+  onChainBalance: state.bitcoin.wallet.balance,
+  onChainSpendableBalance: state.bitcoin.wallet.spendableBalance,
+  offChainBalance: state.lightning.balance.local,
+  offChainSpendableBalance: state.lightning.balance.spendable,
+  fiatRates: state.bitcoin.fiat.rates
+});
 
 class InputBarContainer extends PureComponent {
   static PAYMENT_TYPE_BOTH = InputBar.PAYMENT_TYPE_BOTH;

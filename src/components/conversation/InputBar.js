@@ -14,7 +14,8 @@ import CancelButtonIcon from '../icons/CancelButtonIcon';
 
 import {
   UNIT_BTC,
-  convert as convertBitcoin
+  convert as convertBitcoin,
+  satsToBtc
 } from '../../crypto/bitcoin/convert';
 
 const CURRENCY_BTC = 'BTC';
@@ -125,16 +126,49 @@ class InputBar extends Component {
     return amountBtc;
   }
 
+  // eslint-disable-next-line max-statements
   _checkBalance(amount) {
-    const { spendableBalance, balance } = this.props;
+    const {
+      onChainBalance,
+      onChainSpendableBalance,
+      offChainSpendableBalance,
+      contactInboundCapacity,
+      paymentType
+    } = this.props;
+
+    const offChainSpendableBalanceBtc = satsToBtc(offChainSpendableBalance);
+    const contactInboundCapacityBtc = satsToBtc(contactInboundCapacity);
     const amountBtc = this._getBtcAmount(amount);
-    const insufficientFunds = amountBtc > spendableBalance;
+
+    let insufficientFunds;
     let insufficientFundsReason;
 
-    if (amountBtc > balance) {
-      insufficientFundsReason = 'Insufficient funds';
-    } else if (amountBtc > spendableBalance) {
-      insufficientFundsReason = 'Insufficient confirmed funds';
+    switch (paymentType) {
+      case InputBar.PAYMENT_TYPE_BOTH:
+        if (amountBtc > offChainSpendableBalanceBtc || amountBtc > contactInboundCapacityBtc) {
+          if (amountBtc > onChainBalance) {
+            insufficientFunds = true;
+            insufficientFundsReason = 'Insufficient funds';
+          } else if (amountBtc > onChainSpendableBalance) {
+            insufficientFunds = true;
+            insufficientFundsReason = 'Insufficient spendable funds';
+          }
+        }
+        break;
+
+      case InputBar.PAYMENT_TYPE_ONCHAIN:
+        if (amountBtc > onChainSpendableBalance) {
+          insufficientFunds = true;
+          insufficientFundsReason = 'Insufficient on-chain funds';
+        }
+        break;
+
+      case InputBar.PAYMENT_TYPE_OFFCHAIN:
+        if (amountBtc > offChainSpendableBalanceBtc) {
+          insufficientFunds = true;
+          insufficientFundsReason = 'Insufficient off-chain funds';
+        }
+        break;
     }
 
     this.setState({ insufficientFunds, insufficientFundsReason });
@@ -278,8 +312,10 @@ InputBar.propTypes = {
   defaultBitcoinUnit: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   unit: PropTypes.string.isRequired,
-  balance: PropTypes.number.isRequired,
-  spendableBalance: PropTypes.number.isRequired,
+  onChainBalance: PropTypes.number.isRequired,
+  onChainSpendableBalance: PropTypes.number.isRequired,
+  offChainBalance: PropTypes.number.isRequired,
+  offChainSpendableBalance: PropTypes.number.isRequired,
   fiatRates: PropTypes.object.isRequired,
   onSendPress: PropTypes.func.isRequired,
   onCancelPress: PropTypes.func.isRequired,
@@ -290,6 +326,7 @@ InputBar.propTypes = {
     InputBar.PAYMENT_TYPE_OFFCHAIN
   ]),
   initialAmountBtc: PropTypes.number,
+  contactInboundCapacity: PropTypes.number,
   disabled: PropTypes.bool,
   theme: PropTypes.object
 };

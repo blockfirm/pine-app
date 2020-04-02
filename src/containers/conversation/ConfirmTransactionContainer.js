@@ -8,9 +8,6 @@ import {
   sign as signTransaction
 } from '../../actions/bitcoin/wallet/transactions';
 
-import { getAddress } from '../../actions/paymentServer/contacts/getAddress';
-import { getInboundCapacityForContact } from '../../actions/paymentServer/lightning';
-
 import {
   sendPayment,
   sendLegacyPayment,
@@ -18,6 +15,7 @@ import {
   sendLegacyLightningPayment
 } from '../../actions/messages';
 
+import { getAddress } from '../../actions/paymentServer/contacts/getAddress';
 import { handle as handleError } from '../../actions/error/handle';
 import { convert, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
 import authentication from '../../authentication';
@@ -27,8 +25,7 @@ import ConfirmLightningTransaction from '../../components/conversation/ConfirmLi
 const mapStateToProps = (state) => {
   return {
     userProfile: state.settings.user.profile,
-    lightningBalance: state.lightning.balance.spendable,
-    lightningBalanceIsPending: state.lightning.balance.pending
+    lightningBalance: state.lightning.balance.spendable
   };
 };
 
@@ -42,7 +39,7 @@ class ConfirmTransactionContainer extends Component {
     paymentRequest: PropTypes.string,
     forceOnChain: PropTypes.bool,
     lightningBalance: PropTypes.number,
-    lightningBalanceIsPending: PropTypes.bool
+    contactInboundCapacity: PropTypes.number
   };
 
   state = {
@@ -51,7 +48,6 @@ class ConfirmTransactionContainer extends Component {
     outputs: null,
     fee: null,
     cannotAffordFee: false,
-    contactInboundCapacity: -1,
     hasLightningCapacity: false
   }
 
@@ -63,11 +59,15 @@ class ConfirmTransactionContainer extends Component {
   }
 
   componentDidMount() {
-    this._loadContactInboundCapacity();
+    this._checkLightningCapacities();
     this._createTransaction();
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.contactInboundCapacity !== prevProps.contactInboundCapacity) {
+      this._checkLightningCapacities();
+    }
+
     if (this.props.amountBtc !== prevProps.amountBtc) {
       this._checkLightningCapacities();
       this._createTransaction();
@@ -78,38 +78,21 @@ class ConfirmTransactionContainer extends Component {
     }
   }
 
-  _loadContactInboundCapacity() {
-    const { dispatch, contact, lightningBalanceIsPending } = this.props;
-
-    if (lightningBalanceIsPending || !contact || !contact.userId) {
-      return;
-    }
-
-    return dispatch(getInboundCapacityForContact(contact.userId))
-      .then((inbound) => {
-        this.setState({ contactInboundCapacity: inbound });
-      })
-      .then(() => {
-        this._checkLightningCapacities();
-      })
-      .catch((error) => {
-        dispatch(handleError(error));
-      });
-  }
-
   _checkLightningCapacities() {
-    const { amountBtc, lightningBalance, lightningBalanceIsPending } = this.props;
-    const { contactInboundCapacity } = this.state;
+    const {
+      amountBtc,
+      lightningBalance,
+      contactInboundCapacity
+    } = this.props;
+
     const amountSats = convert(amountBtc, UNIT_BTC, UNIT_SATOSHIS);
     const hasOutboundCapacity = amountSats <= lightningBalance;
     const hasInboundCapacity = amountSats <= contactInboundCapacity;
-
-    const hasLightningCapacity = (
-      !lightningBalanceIsPending && hasOutboundCapacity && hasInboundCapacity
-    );
+    const hasLightningCapacity = hasOutboundCapacity && hasInboundCapacity;
 
     console.log('contactInboundCapacity', contactInboundCapacity);
-    console.log('hasLightningCapacity', hasLightningCapacity);
+    console.log('lightningBalance', lightningBalance);
+
     this.setState({ hasLightningCapacity });
   }
 
