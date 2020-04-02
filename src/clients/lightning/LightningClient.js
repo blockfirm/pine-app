@@ -123,6 +123,10 @@ export default class LightningClient extends EventEmitter {
     return this.sendRequest('sendPayment', { paymentRequest });
   }
 
+  estimateFee(paymentRequest) {
+    return this.sendRequest('estimateFee', { paymentRequest });
+  }
+
   createInvoice(amount) {
     return this.sendRequest('createInvoice', { amount });
   }

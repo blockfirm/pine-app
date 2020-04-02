@@ -35,23 +35,41 @@ class FeeLabel extends Component {
     }
   }
 
-  _renderFeePercentage() {
-    const percentage = this._getPercentage();
-    return formatPercentage(percentage);
+  _renderPrefix() {
+    const { prefix, style } = this.props;
+
+    if (!prefix) {
+      return null;
+    }
+
+    return (
+      <StyledText style={style}>{prefix}</StyledText>
+    );
   }
 
-  render() {
-    const { fee, currency, unit, style } = this.props;
-    const percentage = this._renderFeePercentage();
+  _renderFeePercentage() {
+    const { style } = this.props;
+    const percentage = this._getPercentage();
     const percentageColor = this._getPercentageColor();
 
     const percentageStyles = [
-      this.props.style,
+      style,
       percentageColor ? { color: percentageColor } : null
     ];
 
     return (
-      <View style={[styles.wrapper, this.props.style]}>
+      <StyledText style={percentageStyles}>
+        {formatPercentage(percentage)}
+      </StyledText>
+    );
+  }
+
+  render() {
+    const { fee, currency, unit, style } = this.props;
+
+    return (
+      <View style={[styles.wrapper, style]}>
+        {this._renderPrefix()}
         <CurrencyLabelContainer
           amountBtc={fee}
           currency={currency}
@@ -59,7 +77,7 @@ class FeeLabel extends Component {
           style={style}
         />
         <Bullet />
-        <StyledText style={percentageStyles}>{percentage}</StyledText>
+        {this._renderFeePercentage()}
       </View>
     );
   }
@@ -71,6 +89,7 @@ FeeLabel.propTypes = {
   fee: PropTypes.number,
   currency: PropTypes.string,
   unit: PropTypes.string,
+  prefix: PropTypes.string,
   theme: PropTypes.object.isRequired
 };
 

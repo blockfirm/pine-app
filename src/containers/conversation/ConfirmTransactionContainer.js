@@ -15,6 +15,7 @@ import {
   sendLegacyLightningPayment
 } from '../../actions/messages';
 
+import { estimateFee as estimateLightningFee } from '../../actions/lightning';
 import { getAddress } from '../../actions/paymentServer/contacts/getAddress';
 import { handle as handleError } from '../../actions/error/handle';
 import { convert, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
@@ -59,22 +60,48 @@ class ConfirmTransactionContainer extends Component {
   }
 
   componentDidMount() {
-    this._checkLightningCapacities();
-    this._createTransaction();
+    this._createState();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.contactInboundCapacity !== prevProps.contactInboundCapacity) {
-      this._checkLightningCapacities();
+      return this._createState();
     }
 
     if (this.props.amountBtc !== prevProps.amountBtc) {
-      this._checkLightningCapacities();
-      this._createTransaction();
+      return this._createState();
     }
 
     if (this.props.contact !== prevProps.contact) {
-      this.setState({ address: null });
+      return this._createState();
+    }
+
+    if (this.props.forceOnChain !== prevProps.forceOnChain) {
+      return this._createState();
+    }
+  }
+
+  _resetState() {
+    return new Promise(resolve => {
+      this.setState({
+        address: null,
+        inputs: null,
+        outputs: null,
+        fee: null,
+        cannotAffordFee: false,
+        hasLightningCapacity: false
+      }, resolve);
+    });
+  }
+
+  async _createState() {
+    await this._resetState();
+    await this._checkLightningCapacities();
+
+    if (this._isLightning()) {
+      this._estimateLightningFee();
+    } else {
+      this._createTransaction();
     }
   }
 
@@ -90,17 +117,35 @@ class ConfirmTransactionContainer extends Component {
     const hasInboundCapacity = amountSats <= contactInboundCapacity;
     const hasLightningCapacity = hasOutboundCapacity && hasInboundCapacity;
 
-    console.log('contactInboundCapacity', contactInboundCapacity);
-    console.log('lightningBalance', lightningBalance);
-
-    this.setState({ hasLightningCapacity });
+    return new Promise(resolve => {
+      this.setState({ hasLightningCapacity }, resolve);
+    });
   }
 
   _isLightning() {
-    const { paymentRequest } = this.props;
+    const { paymentRequest, forceOnChain } = this.props;
     const { hasLightningCapacity } = this.state;
 
+    if (forceOnChain) {
+      return false;
+    }
+
     return Boolean(paymentRequest || hasLightningCapacity);
+  }
+
+  async _estimateLightningFee() {
+    const { dispatch, paymentRequest } = this.props;
+
+    if (!paymentRequest) {
+      return;
+    }
+
+    try {
+      const { high } = await dispatch(estimateLightningFee(paymentRequest));
+      this.setState({ fee: high });
+    } catch (error) {
+      dispatch(handleError(error));
+    }
   }
 
   _getAddress() {
@@ -127,13 +172,6 @@ class ConfirmTransactionContainer extends Component {
     if (this._isLightning()) {
       return;
     }
-
-    this.setState({
-      inputs: null,
-      outputs: null,
-      fee: null,
-      cannotAffordFee: false
-    });
 
     return this._getAddress()
       .then((address) => {
@@ -227,14 +265,15 @@ class ConfirmTransactionContainer extends Component {
   }
 
   render() {
-    const { paymentRequest, forceOnChain } = this.props;
+    const { paymentRequest } = this.props;
     const { fee, cannotAffordFee } = this.state;
 
-    if (!forceOnChain && this._isLightning()) {
+    if (this._isLightning()) {
       return (
         <ConfirmLightningTransaction
           {...this.props}
           paymentRequest={paymentRequest}
+          fee={fee}
           onPayPress={this._onPayLightningPress}
         />
       );

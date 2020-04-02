@@ -1,6 +1,7 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import * as bolt11 from 'bolt11';
 
 import { withTheme } from '../../contexts/theme';
@@ -11,11 +12,13 @@ import Button from '../Button';
 import Footer from '../Footer';
 import StyledText from '../StyledText';
 import Bullet from '../typography/Bullet';
+import FeeLabel from '../FeeLabel';
 
 import {
   UNIT_BTC,
   UNIT_SATOSHIS,
-  convert as convertBitcoin
+  convert as convertBitcoin,
+  satsToBtc
 } from '../../crypto/bitcoin/convert';
 
 const BIOMETRY_TYPE_TOUCH_ID = 'TouchID';
@@ -120,9 +123,32 @@ class ConfirmLightningTransaction extends Component {
     }
   }
 
+  _renderFee() {
+    const { fee, displayCurrency, displayUnit, theme } = this.props;
+    const { amountBtc } = this.state;
+    const feeBtc = fee ? satsToBtc(fee) : 0;
+
+    if (typeof fee !== 'number') {
+      return <ActivityIndicator color='gray' size='small' />;
+    }
+
+    return (
+      <FeeLabel
+        prefix='~'
+        fee={feeBtc}
+        amount={amountBtc}
+        currency={displayCurrency}
+        unit={displayUnit}
+        style={[styles.valueLabel, theme.confirmTransactionValue]}
+      />
+    );
+  }
+
   _renderTotal() {
-    const { displayCurrency, displayUnit, theme } = this.props;
-    const totalAmount = this.state.amountBtc;
+    const { fee, displayCurrency, displayUnit, theme } = this.props;
+    const { amountBtc } = this.state;
+    const feeBtc = fee ? satsToBtc(fee) : 0;
+    const totalAmount = amountBtc + feeBtc;
     let amountLabel = null;
 
     if (displayCurrency === UNIT_BTC) {
@@ -164,6 +190,16 @@ class ConfirmLightningTransaction extends Component {
     return (
       <View style={[styles.view, theme.confirmTransactionView, this.props.style]}>
         <View style={styles.details}>
+          <View style={[styles.detail, theme.confirmTransactionDetail]}>
+            <View style={styles.feeLabelWrapper}>
+              <StyledText style={[styles.label, theme.confirmTransactionLabel]}>
+                Fee
+              </StyledText>
+            </View>
+            <View style={[styles.value, theme.confirmTransactionValue]}>
+              {this._renderFee()}
+            </View>
+          </View>
           <View style={[styles.detail, styles.lastDetail]}>
             <StyledText style={[styles.label, theme.confirmTransactionLabel, styles.bold]}>
               You Pay
@@ -179,6 +215,7 @@ class ConfirmLightningTransaction extends Component {
             onPress={this.props.onPayPress}
             showLoader={true}
             hapticFeedback={true}
+            disabled={this.props.fee === null}
           />
         </Footer>
       </View>
@@ -191,6 +228,7 @@ ConfirmLightningTransaction.propTypes = {
   amountBtc: PropTypes.number.isRequired,
   displayCurrency: PropTypes.string.isRequired,
   displayUnit: PropTypes.string,
+  fee: PropTypes.number,
   paymentRequest: PropTypes.string,
   onPayPress: PropTypes.func,
   style: PropTypes.any,
