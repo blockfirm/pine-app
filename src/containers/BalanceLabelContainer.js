@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { normalizeBtcAmount, satsToBtc } from '../crypto/bitcoin';
+import BtcLabel from '../components/BtcLabel';
 import CurrencyLabelContainer from './CurrencyLabelContainer';
 
-const mapStateToProps = (state) => {
-  return {
-    balance: state.bitcoin.wallet.balance, // On-chain balance is in BTC.
-    lightningBalance: state.lightning.balance // Off-chain balances are in sats.
-  };
-};
+const mapStateToProps = (state) => ({
+  balance: state.bitcoin.wallet.balance, // On-chain balance is in BTC.
+  lightningBalance: state.lightning.balance // Off-chain balances are in sats.
+});
 
 class BalanceLabelContainer extends Component {
   static propTypes = {
     balance: PropTypes.number,
-    lightningBalance: PropTypes.object
+    lightningBalance: PropTypes.object,
+    unit: PropTypes.string
   };
 
   getTotalBalance() {
@@ -28,7 +28,17 @@ class BalanceLabelContainer extends Component {
   }
 
   render() {
+    const { unit } = this.props;
     const totalBalance = this.getTotalBalance();
+
+    if (unit) {
+      return (
+        <BtcLabel
+          {...this.props}
+          amount={totalBalance}
+        />
+      );
+    }
 
     return (
       <CurrencyLabelContainer

@@ -3,16 +3,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import BitcoinUnitScreen from '../../../../src/screens/settings/BitcoinUnitScreen';
 
+jest.mock('../../../../src/containers/BalanceLabelContainer', () => 'BalanceLabelContainer');
+
 const storeMock = {
   getState: jest.fn(() => ({
     settings: {
       bitcoin: {
         unit: 'BTC'
-      }
-    },
-    bitcoin: {
-      wallet: {
-        balance: 1.37484
       }
     }
   })),
