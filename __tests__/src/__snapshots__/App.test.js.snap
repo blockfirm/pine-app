@@ -537,6 +537,7 @@ exports[`App renders correctly 1`] = `
                               "unitPicker": Object {
                                 "color": "#999999",
                               },
+                              "walletBalanceInboundColor": "#FEC300",
                               "walletBalanceOffChainColor": "#5856d6",
                               "walletBalanceOnChainColor": "#4CD964",
                               "walletBalancePendingColor": "#FF9500",

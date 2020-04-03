@@ -162,7 +162,7 @@ class OffChainBalanceScreen extends Component {
 
     const capacityData = [
       { label: 'Outbound', color: theme.walletBalanceOffChainColor, value: local },
-      { label: 'Inbound', color: theme.walletBalancePendingColor, value: remote }
+      { label: 'Inbound', color: theme.walletBalanceInboundColor, value: remote }
     ];
 
     return (

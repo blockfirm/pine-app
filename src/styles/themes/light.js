@@ -154,6 +154,7 @@ export default {
   walletBalanceReservedColor: palette.gray14,
   walletBalanceOnChainColor: palette.green,
   walletBalanceOffChainColor: palette.indigo,
+  walletBalanceInboundColor: palette.yellow3,
   stackedBarChart: { backgroundColor: palette.middleground5 },
   stackedBarChartStack: { borderLeftColor: palette.background },
   revealMnemonic: { color: palette.blue },
