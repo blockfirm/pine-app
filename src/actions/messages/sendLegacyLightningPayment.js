@@ -9,6 +9,8 @@ export const MESSAGES_SEND_LEGACY_LIGHTNING_PAYMENT_REQUEST = 'MESSAGES_SEND_LEG
 export const MESSAGES_SEND_LEGACY_LIGHTNING_PAYMENT_SUCCESS = 'MESSAGES_SEND_LEGACY_LIGHTNING_PAYMENT_SUCCESS';
 export const MESSAGES_SEND_LEGACY_LIGHTNING_PAYMENT_FAILURE = 'MESSAGES_SEND_LEGACY_LIGHTNING_PAYMENT_FAILURE';
 
+const MESSAGE_TYPE_LEGACY_LIGHTNING_PAYMENT = 'legacy_lightning_payment';
+
 const sendLegacyLightningPaymentRequest = () => {
   return {
     type: MESSAGES_SEND_LEGACY_LIGHTNING_PAYMENT_REQUEST
@@ -35,17 +37,15 @@ const sendLegacyLightningPaymentFailure = (error) => {
  * <https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md>
  *
  * @param {string} paymentRequest - BOLT11 payment request to pay.
- * @param {Object} metadata - Metadata about the transaction.
- * @param {number} metadata.amountBtc - The amount in BTC of the transaction excluding fees.
+ * @param {number} amountBtc - The amount in BTC of the transaction excluding fees.
  * @param {Object} [contact] - Contact the payment is for. One will be created if not specified.
  * @param {string} contact.id - The contact's ID.
  *
  * @returns {Promise.{ message, createdContact }} A promise that resolves when the payment has sent.
  */
-export const sendLegacyLightningPayment = (paymentRequest, metadata, contact = null) => {
+export const sendLegacyLightningPayment = (paymentRequest, amountBtc, contact = null) => {
   const decodedPaymentRequest = bolt11.decode(paymentRequest);
   const lightningNodeKey = decodedPaymentRequest.payeeNodeKey;
-  const { amountBtc } = metadata;
   let createdContact;
   let createdMessage;
 
@@ -71,7 +71,7 @@ export const sendLegacyLightningPayment = (paymentRequest, metadata, contact = n
       .then(async (lightningContact) => {
         const message = {
           id: uuidv4(),
-          type: 'legacy_lightning_payment',
+          type: MESSAGE_TYPE_LEGACY_LIGHTNING_PAYMENT,
           from: null,
           createdAt: Math.floor(Date.now() / 1000),
           data: { paymentRequest },

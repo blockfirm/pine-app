@@ -17,17 +17,18 @@ import {
 
 import { estimateFee as estimateLightningFee } from '../../actions/lightning';
 import { getAddress } from '../../actions/paymentServer/contacts/getAddress';
+import { getNewInvoice } from '../../actions/paymentServer/lightning';
 import { handle as handleError } from '../../actions/error/handle';
-import { convert, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
+import { convert, btcToSats, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
 import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
 
-const mapStateToProps = (state) => {
-  return {
-    userProfile: state.settings.user.profile,
-    lightningBalance: state.lightning.balance.spendable
-  };
-};
+const MESSAGE_TYPE_LIGHTNING_PAYMENT = 'lightning_payment';
+
+const mapStateToProps = (state) => ({
+  userProfile: state.settings.user.profile,
+  lightningBalance: state.lightning.balance.spendable
+});
 
 class ConfirmTransactionContainer extends Component {
   static propTypes = {
@@ -48,7 +49,9 @@ class ConfirmTransactionContainer extends Component {
     outputs: null,
     fee: null,
     cannotAffordFee: false,
-    hasLightningCapacity: false
+    hasLightningCapacity: false,
+    paymentMessage: null,
+    invoice: null
   }
 
   constructor() {
@@ -88,7 +91,9 @@ class ConfirmTransactionContainer extends Component {
         outputs: null,
         fee: null,
         cannotAffordFee: false,
-        hasLightningCapacity: false
+        hasLightningCapacity: false,
+        paymentMessage: null,
+        invoice: null
       }, resolve);
     });
   }
@@ -98,6 +103,7 @@ class ConfirmTransactionContainer extends Component {
     await this._checkLightningCapacities();
 
     if (this._isLightning()) {
+      await this._createLightningInvoice();
       this._estimateLightningFee();
     } else {
       this._createTransaction();
@@ -134,14 +140,38 @@ class ConfirmTransactionContainer extends Component {
 
   async _estimateLightningFee() {
     const { dispatch, paymentRequest } = this.props;
+    const { invoice } = this.state;
 
-    if (!paymentRequest) {
+    if (!paymentRequest && !invoice) {
       return;
     }
 
     try {
-      const { high } = await dispatch(estimateLightningFee(paymentRequest));
+      const { high } = await dispatch(estimateLightningFee(paymentRequest || invoice.paymentRequest));
       this.setState({ fee: high });
+    } catch (error) {
+      dispatch(handleError(error));
+    }
+  }
+
+  async _createLightningInvoice() {
+    const { dispatch, contact, paymentRequest, amountBtc } = this.props;
+    const amountSats = btcToSats(amountBtc);
+
+    if (paymentRequest || !amountSats) {
+      return;
+    }
+
+    const paymentMessage = {
+      version: 1,
+      type: MESSAGE_TYPE_LIGHTNING_PAYMENT,
+      data: {}
+    };
+
+    try {
+      // Get a new lightning invoice from the contact's Pine server.
+      const invoice = await dispatch(getNewInvoice(amountSats, paymentMessage, contact));
+      this.setState({ paymentMessage, invoice });
     } catch (error) {
       dispatch(handleError(error));
     }
@@ -167,10 +197,6 @@ class ConfirmTransactionContainer extends Component {
 
   _createTransaction() {
     const { dispatch, amountBtc } = this.props;
-
-    if (this._isLightning()) {
-      return;
-    }
 
     return this._getAddress()
       .then((address) => {
@@ -230,15 +256,17 @@ class ConfirmTransactionContainer extends Component {
 
   async _sendLightningPayment() {
     const { dispatch, contact, paymentRequest, amountBtc } = this.props;
-    const transactionMetadata = { amountBtc };
+    const { invoice, paymentMessage } = this.state;
 
     try {
       let result;
 
       if (paymentRequest) {
-        result = await dispatch(sendLegacyLightningPayment(paymentRequest, transactionMetadata, contact));
+        result = await dispatch(sendLegacyLightningPayment(paymentRequest, amountBtc, contact));
+      } else if (invoice && paymentMessage) {
+        result = await dispatch(sendLightningPayment(invoice, paymentMessage, amountBtc, contact));
       } else {
-        result = await dispatch(sendLightningPayment(transactionMetadata, contact));
+        throw new Error('Unable to send lightning payment without invoice or payment request.');
       }
 
       this.props.onTransactionSent(result || {});

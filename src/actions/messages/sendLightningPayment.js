@@ -1,21 +1,13 @@
 import uuidv4 from 'uuid/v4';
 
-import {
-  UNIT_BTC,
-  UNIT_SATOSHIS,
-  convert as convertBitcoin
-} from '../../crypto/bitcoin/convert';
-
+import { btcToSats } from '../../crypto/bitcoin/convert';
 import { sendPayment } from '../lightning';
 import { add as addInvoice, setPaymentHash } from '../lightning/invoices';
-import { getNewInvoice } from '../paymentServer/lightning';
 import { add as addMessage } from './add';
 
 export const MESSAGES_SEND_LIGHTNING_PAYMENT_REQUEST = 'MESSAGES_SEND_LIGHTNING_PAYMENT_REQUEST';
 export const MESSAGES_SEND_LIGHTNING_PAYMENT_SUCCESS = 'MESSAGES_SEND_LIGHTNING_PAYMENT_SUCCESS';
 export const MESSAGES_SEND_LIGHTNING_PAYMENT_FAILURE = 'MESSAGES_SEND_LIGHTNING_PAYMENT_FAILURE';
-
-const MESSAGE_TYPE_LIGHTNING_PAYMENT = 'lightning_payment';
 
 const sendLightningPaymentRequest = () => {
   return {
@@ -39,8 +31,9 @@ const sendLightningPaymentFailure = (error) => {
 /**
  * Action to send a lightning payment to a contact.
  *
- * @param {Object} metadata - Metadata about the transaction.
- * @param {number} metadata.amountBtc - The amount in BTC of the transaction excluding fees.
+ * @param {Object} invoice - Pine lightning invoice to pay.
+ * @param {Object} paymentMessage - Pine payment message that was used to create the invoice.
+ * @param {number} amountBtc - The amount in BTC of the transaction excluding fees.
  * @param {Object} contact - Contact to send the payment to.
  * @param {string} contact.id - The contact's local ID.
  * @param {string} contact.address - The contact's Pine address.
@@ -49,24 +42,14 @@ const sendLightningPaymentFailure = (error) => {
  *
  * @returns {Promise.{ message }} A promise that resolves when the payment has been sent and saved.
  */
-export const sendLightningPayment = (metadata, contact) => {
-  const { amountBtc } = metadata;
-  const amountSats = convertBitcoin(amountBtc, UNIT_BTC, UNIT_SATOSHIS);
-
-  const paymentMessage = {
-    version: 1,
-    type: MESSAGE_TYPE_LIGHTNING_PAYMENT,
-    data: {}
-  };
+export const sendLightningPayment = (invoice, paymentMessage, amountBtc, contact) => {
+  const amountSats = btcToSats(amountBtc);
 
   return async (dispatch) => {
     dispatch(sendLightningPaymentRequest());
 
     try {
       const messageId = uuidv4();
-
-      // Get a new lightning invoice from the contact's Pine server.
-      const invoice = await dispatch(getNewInvoice(amountSats, paymentMessage, contact));
 
       invoice.messageId = messageId;
       invoice.paidAmount = amountSats.toString();
