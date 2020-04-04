@@ -48,8 +48,14 @@ const styles = StyleSheet.create({
   }
 });
 
+const getReservedCapacity = (capacity, percentCapacityReservedForFees) => {
+  const reserved = capacity * percentCapacityReservedForFees / 100;
+  return Math.floor(reserved);
+};
+
 @connect((state) => ({
-  balance: state.lightning.balance // Off-chain balances are in sats.
+  balance: state.lightning.balance, // Off-chain balances are in sats.
+  percentCapacityReservedForFees: state.settings.lightning.percentCapacityReservedForFees
 }))
 class OffChainBalanceScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -143,15 +149,17 @@ class OffChainBalanceScreen extends Component {
   }
 
   render() {
-    const { theme, balance } = this.props;
-    const { local, remote, commitFee, unredeemed, spendable } = balance;
+    const { theme, balance, percentCapacityReservedForFees } = this.props;
+    const { capacity, local, remote, commitFee, unredeemed, spendable } = balance;
     const localBtc = satsToBtc(local);
-    const remoteBtc = satsToBtc(remote);
     const spendableBtc = satsToBtc(spendable);
     const commitFeeBtc = satsToBtc(commitFee);
     const unredeemedBtc = satsToBtc(unredeemed);
     const pending = balance.pending ? local : 0;
     const reserved = commitFee + (balance.pending ? 0 : (local - spendable));
+    const reservedCapacity = getReservedCapacity(capacity, percentCapacityReservedForFees);
+    const spendCapacity = Math.max(0, local - reservedCapacity);
+    const receiveCapacity = Math.max(0, remote - reservedCapacity);
 
     const balanceData = [
       { label: 'Spendable', color: theme.walletBalanceOffChainColor, value: spendable },
@@ -161,8 +169,8 @@ class OffChainBalanceScreen extends Component {
     ];
 
     const capacityData = [
-      { label: 'Outbound', color: theme.walletBalanceOffChainColor, value: local },
-      { label: 'Inbound', color: theme.walletBalanceInboundColor, value: remote }
+      { label: 'Spend', color: theme.walletBalanceOffChainColor, value: spendCapacity },
+      { label: 'Receive', color: theme.walletBalanceInboundColor, value: receiveCapacity }
     ];
 
     return (
@@ -195,7 +203,7 @@ class OffChainBalanceScreen extends Component {
         </SettingsDescription>
         <SettingsDescription>
           <StrongText>Pending</StrongText> balance is waiting to be confirmed in a funding
-          or closing transaction and should soon be spendable either on-chain or off-chain.
+          or closing transaction and should soon be spendable.
         </SettingsDescription>
         <SettingsDescription>
           <StrongText>Unredeemed</StrongText> balance is incoming payments waiting to be redeemed.
@@ -205,14 +213,14 @@ class OffChainBalanceScreen extends Component {
           <StrongText>Reserved</StrongText> balance is reserved for potential fees. This can change over time.
         </SettingsDescription>
 
-        <SettingsTitle>Lightning Capacity</SettingsTitle>
+        <SettingsTitle>Capacity</SettingsTitle>
         <SettingsGroup>
           <View style={[settingsStyles.item, styles.wrapper]}>
             <View>
               <StyledText style={styles.chartTitle}>
-                Outbound:&nbsp;
+                Spend:&nbsp;
                 <CurrencyLabelContainer
-                  amountBtc={localBtc}
+                  amountBtc={satsToBtc(spendCapacity)}
                   currencyType='primary'
                   style={styles.spendableText}
                 />
@@ -220,9 +228,9 @@ class OffChainBalanceScreen extends Component {
             </View>
             <View>
               <StyledText style={styles.chartTitle}>
-                Inbound:&nbsp;
+                Receive:&nbsp;
                 <CurrencyLabelContainer
-                  amountBtc={remoteBtc}
+                  amountBtc={satsToBtc(receiveCapacity)}
                   currencyType='primary'
                   style={styles.spendableText}
                 />
@@ -233,10 +241,8 @@ class OffChainBalanceScreen extends Component {
         </SettingsGroup>
 
         <SettingsDescription>
-          <StrongText>Outbound</StrongText> capacity is how much you can spend over the Lightning network.
-        </SettingsDescription>
-        <SettingsDescription>
-          <StrongText>Inbound</StrongText> capacity is how much you can receive over the Lightning network.
+          2% of the total channel capacity has been deducted from
+          both amounts as it is reserved for potential fees.
         </SettingsDescription>
       </BaseSettingsScreen>
     );
@@ -247,6 +253,7 @@ OffChainBalanceScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   balance: PropTypes.object,
+  percentCapacityReservedForFees: PropTypes.number,
   theme: PropTypes.object.isRequired
 };
 
