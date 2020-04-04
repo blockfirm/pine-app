@@ -32,7 +32,6 @@ const createInvoiceFailure = (error) => {
  */
 export const createInvoice = (satsAmount) => {
   return (dispatch) => {
-    console.log('LIGHTNING createInvoice');
     const client = getClient();
     dispatch(createInvoiceRequest());
 

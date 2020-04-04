@@ -40,7 +40,6 @@ export const redeem = (invoice) => {
 
     try {
       const paymentRequest = await dispatch(createInvoice(invoice.paidAmount));
-      console.log('redeeming invoice: ', invoice, paymentRequest);
       await dispatch(redeemInvoice(invoice.id, paymentRequest));
     } catch (error) {
       dispatch(redeemFailure(invoice, error));

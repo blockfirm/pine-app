@@ -27,7 +27,6 @@ const getBalanceFailure = (error) => {
 
 export const getBalance = () => {
   return (dispatch) => {
-    console.log('LIGHTNING getBalance');
     const client = getClient();
     dispatch(getBalanceRequest());
 
@@ -51,7 +50,6 @@ export const getBalance = () => {
         }));
 
         dispatch(getBalanceSuccess(balance));
-        console.log('LIGHTNING BALANCE', balance);
 
         return balance;
       })

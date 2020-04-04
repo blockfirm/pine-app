@@ -26,7 +26,6 @@ const openChannelFailure = (error) => {
 
 export const openChannel = (satsAmount) => {
   return async (dispatch) => {
-    console.log('LIGHTNING openChannel');
     const client = getClient();
 
     dispatch(openChannelRequest());

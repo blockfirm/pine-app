@@ -54,8 +54,6 @@ export default class LightningClient extends EventEmitter {
 
   reconnect() {
     // Try to reconnect.
-    console.log('[LND] Reconnecting...');
-
     setTimeout(() => {
       this.connect().catch(() => {
         this.reconnect();
@@ -155,7 +153,6 @@ export default class LightningClient extends EventEmitter {
       })
       .then(response => {
         this.sessionId = response.sessionId;
-        console.log('[LND] Started new session:', this.sessionId);
         return this.sessionId;
       });
   }
@@ -171,7 +168,6 @@ export default class LightningClient extends EventEmitter {
   }
 
   _onOpen() {
-    console.log('[LND] Connected');
     this.disconnected = false;
     this._onPing();
   }
@@ -181,19 +177,17 @@ export default class LightningClient extends EventEmitter {
     clearTimeout(this._pingTimeout);
 
     if (this.disconnected) {
-      return console.log('[LND] Disconnected');
+      return;
     }
 
     this.reconnect();
   }
 
   _onError(error) {
-    console.log('[LND] Error:', error.message);
     this.emit('error', error);
   }
 
   _onReady() {
-    console.log('[LND] Ready');
     this.ready = true;
     this.emit('ready');
   }
@@ -211,9 +205,6 @@ export default class LightningClient extends EventEmitter {
 
       case 'ready':
         return this._onReady();
-
-      default:
-        console.log(`[LND] Unknown event '${event}'`);
     }
   }
 
@@ -222,7 +213,6 @@ export default class LightningClient extends EventEmitter {
     const callback = this.callbacks[id];
 
     if (!callback) {
-      console.log(`[LND] No callback found for call`);
       return; // No callback found for call.
     }
 
@@ -293,7 +283,6 @@ export default class LightningClient extends EventEmitter {
      * the ping interval + some assumption of latency.
      */
     this._pingTimeout = setTimeout(() => {
-      console.log('[LND] Ping failed, closing websocket...');
       this.websocket.close();
     }, serverPingInterval * 1000 + PING_LATENCY);
   }

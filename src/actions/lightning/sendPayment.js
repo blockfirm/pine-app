@@ -26,7 +26,6 @@ const sendPaymentFailure = (error) => {
 
 export const sendPayment = (paymentRequest) => {
   return (dispatch) => {
-    console.log('LIGHTNING sendPayment');
     const client = getClient();
     dispatch(sendPaymentRequest());
 

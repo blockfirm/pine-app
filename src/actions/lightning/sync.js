@@ -28,7 +28,6 @@ const syncFailure = (error) => {
 
 export const sync = () => {
   return (dispatch) => {
-    console.log('LIGHTNING sync');
     const client = getClient();
 
     if (!client.ready || client.disconnected) {

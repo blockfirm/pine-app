@@ -25,7 +25,6 @@ const closeChannelFailure = (error) => {
 
 export const closeChannel = () => {
   return async (dispatch) => {
-    console.log('LIGHTNING closeChannel');
     const client = getClient();
 
     dispatch(closeChannelRequest());

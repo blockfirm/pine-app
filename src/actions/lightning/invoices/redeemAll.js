@@ -35,7 +35,6 @@ export const redeemAll = () => {
     const invoices = getState().lightning.invoices.items;
     const errors = [];
 
-    console.log('redeeming invoices', invoices);
     dispatch(redeemAllRequest());
 
     for (const invoice of invoices) {
