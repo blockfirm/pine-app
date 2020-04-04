@@ -22,11 +22,6 @@ export default class BitcoinSettingsScreen extends Component {
     headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
 
-  _showBitcoinUnit() {
-    const { navigation } = this.props;
-    navigation.navigate('BitcoinUnit');
-  }
-
   _showBitcoinServiceScreen() {
     const { navigation } = this.props;
     navigation.navigate('BitcoinService');
@@ -44,7 +39,6 @@ export default class BitcoinSettingsScreen extends Component {
       <BaseSettingsScreen>
         <SettingsGroup>
           <SettingsAttribute name='Network' value={config.bitcoin.network} />
-          <SettingsLink name='Display Unit' value={settings.bitcoin.unit} onPress={this._showBitcoinUnit.bind(this)} />
           <SettingsLink name='Bitcoin Service' onPress={this._showBitcoinServiceScreen.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
