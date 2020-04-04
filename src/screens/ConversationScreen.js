@@ -18,16 +18,11 @@ import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import * as bolt11 from 'bolt11';
 
+import { satsToBtc } from '../crypto/bitcoin/convert';
 import { closeConversation, setHomeScreenIndex } from '../actions/navigate';
 import { handle as handleError } from '../actions/error/handle';
 import { remove as removeContact, markAsRead } from '../actions/contacts';
 import { getInboundCapacityForContact } from '../actions/paymentServer/lightning';
-
-import {
-  UNIT_BTC,
-  UNIT_SATOSHIS,
-  convert as convertBitcoin
-} from '../crypto/bitcoin/convert';
 
 import {
   load as loadMessages,
@@ -159,11 +154,17 @@ export default class ConversationScreen extends Component {
     const { amount, paymentRequest } = props.navigation.state.params;
 
     if (paymentRequest) {
-      const decodedPaymentRequest = bolt11.decode(paymentRequest);
-      const paymentRequestAmount = convertBitcoin(decodedPaymentRequest.satoshis, UNIT_SATOSHIS, UNIT_BTC);
+      try {
+        const decodedPaymentRequest = bolt11.decode(paymentRequest);
+        const paymentRequestAmount = satsToBtc(decodedPaymentRequest.satoshis);
 
-      this.state.decodedPaymentRequest = decodedPaymentRequest;
-      this.state.initialAmountBtc = paymentRequestAmount;
+        this.state.decodedPaymentRequest = decodedPaymentRequest;
+        this.state.initialAmountBtc = paymentRequestAmount;
+      } catch (error) {
+        this.state.loadingError = error;
+        props.navigation.goBack();
+        props.dispatch(handleError(new Error('Invalid payment request.')));
+      }
     } else {
       this.state.initialAmountBtc = amount;
     }
@@ -572,7 +573,7 @@ export default class ConversationScreen extends Component {
   render() {
     const { navigation } = this.props;
     const { contact } = navigation.state.params;
-    const { confirmTransaction } = this.state;
+    const { confirmTransaction, loadingError } = this.state;
     const hasContactRequest = Boolean(contact && contact.contactRequest);
 
     const contentStyle = [
@@ -581,6 +582,10 @@ export default class ConversationScreen extends Component {
     ];
 
     const keyboardSpacerStyle = confirmTransaction && { position: 'absolute' };
+
+    if (loadingError) {
+      return <BaseScreen hideHeader={true} style={styles.view} />;
+    }
 
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
