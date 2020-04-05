@@ -158,7 +158,7 @@ class OffChainBalanceScreen extends Component {
     const pending = balance.pending ? local : 0;
     const reserved = commitFee + (balance.pending ? 0 : (local - spendable));
     const reservedCapacity = getReservedCapacity(capacity, percentCapacityReservedForFees);
-    const spendCapacity = Math.max(0, local - reservedCapacity);
+    const sendCapacity = Math.max(0, local - reservedCapacity);
     const receiveCapacity = Math.max(0, remote - reservedCapacity);
 
     const balanceData = [
@@ -169,7 +169,7 @@ class OffChainBalanceScreen extends Component {
     ];
 
     const capacityData = [
-      { label: 'Spend', color: theme.walletBalanceOffChainColor, value: spendCapacity },
+      { label: 'Send', color: theme.walletBalanceOffChainColor, value: sendCapacity },
       { label: 'Receive', color: theme.walletBalanceInboundColor, value: receiveCapacity }
     ];
 
@@ -218,9 +218,9 @@ class OffChainBalanceScreen extends Component {
           <View style={[settingsStyles.item, styles.wrapper]}>
             <View>
               <StyledText style={styles.chartTitle}>
-                Spend:&nbsp;
+                Can Send:&nbsp;
                 <CurrencyLabelContainer
-                  amountBtc={satsToBtc(spendCapacity)}
+                  amountBtc={satsToBtc(sendCapacity)}
                   currencyType='primary'
                   style={styles.spendableText}
                 />
@@ -228,7 +228,7 @@ class OffChainBalanceScreen extends Component {
             </View>
             <View>
               <StyledText style={styles.chartTitle}>
-                Receive:&nbsp;
+                Can Receive:&nbsp;
                 <CurrencyLabelContainer
                   amountBtc={satsToBtc(receiveCapacity)}
                   currencyType='primary'
