@@ -42,6 +42,11 @@ export default class SettingsScreen extends Component {
     navigation.navigate('LightningSettings');
   }
 
+  _showBetaSettings() {
+    const { navigation } = this.props;
+    navigation.navigate('BetaSettings');
+  }
+
   render() {
     const userProfile = this.props.settings.user.profile;
 
@@ -54,7 +59,8 @@ export default class SettingsScreen extends Component {
         <SettingsGroup>
           <SettingsLink icon={SettingsLink.ICON_GEAR} name='General' onPress={this._showGeneralSettings.bind(this)} />
           <SettingsLink icon={SettingsLink.ICON_BITCOIN} name='Bitcoin' onPress={this._showBitcoinSettings.bind(this)} />
-          <SettingsLink icon={SettingsLink.ICON_LIGHTNING} name='Lightning' onPress={this._showLightningSettings.bind(this)} isLastItem={true} />
+          <SettingsLink icon={SettingsLink.ICON_LIGHTNING} name='Lightning' onPress={this._showLightningSettings.bind(this)} />
+          <SettingsLink icon={SettingsLink.ICON_BETA} name='Beta' onPress={this._showBetaSettings.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );

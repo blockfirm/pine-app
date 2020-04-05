@@ -16,6 +16,8 @@ import SelectCurrencyScreen from '../screens/settings/SelectCurrencyScreen';
 import LightningSettingsScreen from '../screens/settings/LightningSettingsScreen';
 import OnChainBalanceScreen from '../screens/settings/OnChainBalanceScreen';
 import OffChainBalanceScreen from '../screens/settings/OffChainBalanceScreen';
+import BetaSettingsScreen from '../screens/settings/BetaSettingsScreen';
+import AboutBetaScreen from '../screens/settings/AboutBetaScreen';
 
 import createDismissableStackNavigator from '../createDismissableStackNavigator';
 
@@ -37,7 +39,9 @@ const SettingsNavigator = createDismissableStackNavigator({
   SelectCurrency: { screen: SelectCurrencyScreen },
   LightningSettings: { screen: LightningSettingsScreen },
   OnChainBalance: { screen: OnChainBalanceScreen },
-  OffChainBalance: { screen: OffChainBalanceScreen }
+  OffChainBalance: { screen: OffChainBalanceScreen },
+  BetaSettings: { screen: BetaSettingsScreen },
+  AboutBeta: { screen: AboutBetaScreen }
 }, {
   headerMode: 'float',
   initialRouteName: 'Settings'
