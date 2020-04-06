@@ -1,17 +1,21 @@
 import * as settingsActions from '../../../actions/settings';
 import * as lightningActions from '../../../actions/lightning';
 
-const pendingReducer = (state = false, action) => {
+const pendingReducer = (state = 0, action) => {
   switch (action.type) {
     case settingsActions.SETTINGS_LOAD_SUCCESS:
-      if (action.settings.lightning.balance) {
-        return Boolean(action.settings.lightning.balance.pending);
+      if (!state && action.settings.lightning.balance && action.settings.lightning.balance.pending) {
+        return parseInt(action.settings.lightning.balance.pending);
       }
 
       return state;
 
     case lightningActions.PINE_LIGHTNING_GET_BALANCE_SUCCESS:
-      return Boolean(action.balance.pending);
+      if (action.balance.pending) {
+        return parseInt(action.balance.local);
+      }
+
+      return 0;
 
     default:
       return state;

@@ -17,6 +17,7 @@ import SettingsLink from '../../components/SettingsLink';
 import StyledText from '../../components/StyledText';
 import StrongText from '../../components/StrongText';
 import StackedBarChart from '../../components/charts/StackedBarChart';
+import PendingBalanceIndicatorContainer from '../../containers/indicators/PendingBalanceIndicatorContainer';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
@@ -31,6 +32,13 @@ const styles = StyleSheet.create({
   },
   chartTitle: {
     fontSize: 15
+  },
+  linkAndDotWrapper: {
+    justifyContent: 'center'
+  },
+  balancePendingDot: {
+    position: 'absolute',
+    right: 35
   }
 });
 
@@ -107,8 +115,20 @@ class WalletBalanceScreen extends Component {
         </SettingsDescription>
 
         <SettingsGroup>
-          <SettingsLink name='On-chain' onPress={this._showOnChainBalance.bind(this)} />
-          <SettingsLink name='Off-chain' onPress={this._showOffChainBalance.bind(this)} isLastItem={true} />
+          <View style={styles.linkAndDotWrapper}>
+            <SettingsLink name='On-chain' onPress={this._showOnChainBalance.bind(this)} />
+            <PendingBalanceIndicatorContainer
+              style={styles.balancePendingDot}
+              balanceType={PendingBalanceIndicatorContainer.BALANCE_TYPE_ONCHAIN}
+            />
+          </View>
+          <View style={styles.linkAndDotWrapper}>
+            <SettingsLink name='Off-chain' onPress={this._showOffChainBalance.bind(this)} isLastItem={true} />
+            <PendingBalanceIndicatorContainer
+              style={styles.balancePendingDot}
+              balanceType={PendingBalanceIndicatorContainer.BALANCE_TYPE_OFFCHAIN}
+            />
+          </View>
         </SettingsGroup>
       </BaseSettingsScreen>
     );

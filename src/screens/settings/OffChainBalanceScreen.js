@@ -150,13 +150,12 @@ class OffChainBalanceScreen extends Component {
 
   render() {
     const { theme, balance, percentCapacityReservedForFees } = this.props;
-    const { capacity, local, remote, commitFee, unredeemed, spendable } = balance;
+    const { capacity, local, remote, commitFee, unredeemed, spendable, pending } = balance;
     const localBtc = satsToBtc(local);
     const spendableBtc = satsToBtc(spendable);
     const commitFeeBtc = satsToBtc(commitFee);
     const unredeemedBtc = satsToBtc(unredeemed);
-    const pending = balance.pending ? local : 0;
-    const reserved = commitFee + (balance.pending ? 0 : (local - spendable));
+    const reserved = commitFee + (pending ? 0 : (local - spendable));
     const reservedCapacity = getReservedCapacity(capacity, percentCapacityReservedForFees);
     const sendCapacity = Math.max(0, local - reservedCapacity);
     const receiveCapacity = Math.max(0, remote - reservedCapacity);
