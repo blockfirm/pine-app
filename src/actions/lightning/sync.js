@@ -30,7 +30,7 @@ export const sync = () => {
   return (dispatch) => {
     const client = getClient();
 
-    if (!client.ready || client.disconnected) {
+    if (!client || !client.ready || client.disconnected) {
       return Promise.resolve();
     }
 
