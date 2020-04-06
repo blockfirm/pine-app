@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import { getClient } from '../clients/lightning';
 import Status from '../components/Status';
 
@@ -8,8 +11,17 @@ const LABEL_NOT_CONNECTED = 'Not Connected';
 const LABEL_CONNECTING = 'Connecting...';
 const LABEL_WAITING = 'Waiting for Node...';
 const LABEL_CONNECTED = 'Connected';
+const LABEL_SYNC_ERROR = 'Sync Error';
+
+const mapStateToProps = (state) => ({
+  syncError: state.lightning.syncError
+});
 
 class LightningConnectionStatusContainer extends Component {
+  static propTypes = {
+    syncError: PropTypes.object
+  };
+
   state = {
     status: Status.STATUS_ERROR,
     label: LABEL_NOT_CONNECTED
@@ -28,6 +40,7 @@ class LightningConnectionStatusContainer extends Component {
   }
 
   _updateStatus() {
+    const { syncError } = this.props;
     const client = getClient();
 
     if (!client) {
@@ -41,6 +54,13 @@ class LightningConnectionStatusContainer extends Component {
       return this.setState({
         status: Status.STATUS_WARNING,
         label: LABEL_CONNECTING
+      });
+    }
+
+    if (syncError) {
+      return this.setState({
+        status: Status.STATUS_ERROR,
+        label: LABEL_SYNC_ERROR
       });
     }
 
@@ -66,4 +86,8 @@ class LightningConnectionStatusContainer extends Component {
   }
 }
 
-export default LightningConnectionStatusContainer;
+const LightningConnectionStatusConnector = connect(
+  mapStateToProps
+)(LightningConnectionStatusContainer);
+
+export default LightningConnectionStatusConnector;

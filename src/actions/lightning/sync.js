@@ -1,5 +1,4 @@
 import { getClient } from '../../clients/lightning';
-import { handle as handleError } from '../error';
 import { redeemAll, updateAll } from './invoices';
 import { getBalance } from './getBalance';
 
@@ -54,7 +53,6 @@ export const sync = () => {
       .then(() => dispatch(syncSuccess()))
       .catch((error) => {
         dispatch(syncFailure(error));
-        dispatch(handleError(error));
       });
   };
 };
