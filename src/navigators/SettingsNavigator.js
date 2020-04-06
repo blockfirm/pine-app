@@ -18,6 +18,8 @@ import OnChainBalanceScreen from '../screens/settings/OnChainBalanceScreen';
 import OffChainBalanceScreen from '../screens/settings/OffChainBalanceScreen';
 import BetaSettingsScreen from '../screens/settings/BetaSettingsScreen';
 import AboutBetaScreen from '../screens/settings/AboutBetaScreen';
+import LogsScreen from '../screens/settings/LogsScreen';
+import LogDetailsScreen from '../screens/settings/LogDetailsScreen';
 
 import createDismissableStackNavigator from '../createDismissableStackNavigator';
 
@@ -41,7 +43,9 @@ const SettingsNavigator = createDismissableStackNavigator({
   OnChainBalance: { screen: OnChainBalanceScreen },
   OffChainBalance: { screen: OffChainBalanceScreen },
   BetaSettings: { screen: BetaSettingsScreen },
-  AboutBeta: { screen: AboutBetaScreen }
+  AboutBeta: { screen: AboutBetaScreen },
+  Logs: { screen: LogsScreen },
+  LogDetails: { screen: LogDetailsScreen }
 }, {
   headerMode: 'float',
   initialRouteName: 'Settings'

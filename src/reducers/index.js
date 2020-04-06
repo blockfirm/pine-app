@@ -15,6 +15,7 @@ import loadedReducer from './loaded';
 import readyReducer from './ready';
 import navigateReducer from './navigate';
 import lightningReducer from './lightning';
+import logsReducer from './logs';
 
 const getRootReducer = (navReducer) => {
   const rootReducer = combineReducers({
@@ -33,7 +34,8 @@ const getRootReducer = (navReducer) => {
     loaded: loadedReducer,
     ready: readyReducer,
     navigate: navigateReducer,
-    lightning: lightningReducer
+    lightning: lightningReducer,
+    logs: logsReducer
   });
 
   return (state, action) => {

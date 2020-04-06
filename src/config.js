@@ -53,5 +53,12 @@ export default {
   currency: {
     primary: 'BTC',
     secondary: REGION_CURRENCY
+  },
+  logging: {
+    /**
+     * Logs are only stored temporarily and are cleared once the app restarts.
+     * They never leave the device.
+     */
+    enabled: false
   }
 };

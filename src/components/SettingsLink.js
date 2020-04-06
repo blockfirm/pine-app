@@ -60,7 +60,7 @@ class SettingsLink extends Component {
   }
 
   render() {
-    const { isLastItem, theme } = this.props;
+    const { isLastItem, labelStyle, theme } = this.props;
     const icon = this._renderIcon();
 
     const containerStyles = [
@@ -74,7 +74,7 @@ class SettingsLink extends Component {
       <TouchableHighlight onPress={this.props.onPress} underlayColor={theme.settingsUnderlayColor}>
         <View style={containerStyles}>
           { icon }
-          <StyledText style={settingsStyles.label} numberOfLines={1}>{this.props.name}</StyledText>
+          <StyledText style={[settingsStyles.label, labelStyle]} numberOfLines={1}>{this.props.name}</StyledText>
           <StyledText style={[settingsStyles.value, theme.settingsValue, styles.value]} numberOfLines={1}>
             {this.props.value}
           </StyledText>
@@ -91,6 +91,7 @@ SettingsLink.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   isLastItem: PropTypes.bool,
+  labelStyle: PropTypes.any,
   theme: PropTypes.object.isRequired
 };
 

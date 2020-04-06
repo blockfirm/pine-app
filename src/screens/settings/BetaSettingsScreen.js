@@ -23,11 +23,17 @@ export default class BetaSettingsScreen extends Component {
     navigation.navigate('AboutBeta');
   }
 
+  _showLogs() {
+    const { navigation } = this.props;
+    navigation.navigate('Logs');
+  }
+
   render() {
     return (
       <BaseSettingsScreen>
         <SettingsGroup>
-          <SettingsLink name='About' onPress={this._showAbout.bind(this)} isLastItem={true} />
+          <SettingsLink name='About' onPress={this._showAbout.bind(this)} />
+          <SettingsLink name='Logs' onPress={this._showLogs.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );

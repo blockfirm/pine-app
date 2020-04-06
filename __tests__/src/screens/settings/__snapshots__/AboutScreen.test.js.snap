@@ -763,11 +763,14 @@ exports[`AboutScreen renders correctly 1`] = `
                     Object {
                       "color": "#000000",
                     },
-                    Object {
-                      "fontSize": 17,
-                      "fontWeight": "400",
-                      "lineHeight": 22,
-                    },
+                    Array [
+                      Object {
+                        "fontSize": 17,
+                        "fontWeight": "400",
+                        "lineHeight": 22,
+                      },
+                      undefined,
+                    ],
                   ]
                 }
               >
@@ -868,11 +871,14 @@ exports[`AboutScreen renders correctly 1`] = `
                     Object {
                       "color": "#000000",
                     },
-                    Object {
-                      "fontSize": 17,
-                      "fontWeight": "400",
-                      "lineHeight": 22,
-                    },
+                    Array [
+                      Object {
+                        "fontSize": 17,
+                        "fontWeight": "400",
+                        "lineHeight": 22,
+                      },
+                      undefined,
+                    ],
                   ]
                 }
               >
