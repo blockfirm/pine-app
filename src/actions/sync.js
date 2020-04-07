@@ -42,6 +42,7 @@ export const sync = (options) => {
   return (dispatch, getState) => {
     const state = getState();
     const syncProfiles = options && options.syncProfiles;
+    const errors = [];
 
     if (state.syncing) {
       return syncPromise || Promise.resolve();
@@ -53,9 +54,15 @@ export const sync = (options) => {
       .then(() => dispatch(syncIncomingContactRequests()))
       .then(() => dispatch(syncInvoices())) // Sync invoices before messages as ligtning payments will depend on them.
       .then(() => dispatch(syncMessages()))
+      .catch((error) => errors.push(error))
       .then(() => dispatch(syncBitcoinWallet()))
       .then(() => dispatch(syncLightning()))
       .then(() => syncProfiles && dispatch(updateProfiles()))
+      .then(() => {
+        if (errors.length) {
+          throw errors[0];
+        }
+      })
       .then(() => dispatch(syncSuccess()))
       .catch((error) => dispatch(syncFailure(error)));
 
