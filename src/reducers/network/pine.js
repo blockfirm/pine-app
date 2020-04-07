@@ -1,17 +1,17 @@
 import {
-  PINE_CONTACT_REQUESTS_GET_SUCCESS,
-  PINE_CONTACT_REQUESTS_GET_FAILURE
-} from '../../actions/paymentServer/contactRequests/get';
+  CONTACTS_SYNC_SUCCESS,
+  CONTACTS_SYNC_FAILURE
+} from '../../actions/contacts/sync';
 
 const pine = (state = {}, action) => {
   switch (action.type) {
-    case PINE_CONTACT_REQUESTS_GET_SUCCESS:
+    case CONTACTS_SYNC_SUCCESS:
       return {
         ...state,
         disconnected: false
       };
 
-    case PINE_CONTACT_REQUESTS_GET_FAILURE:
+    case CONTACTS_SYNC_FAILURE:
       return {
         ...state,
         disconnected: true

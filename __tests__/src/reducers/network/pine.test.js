@@ -1,7 +1,7 @@
 import {
-  PINE_CONTACT_REQUESTS_GET_SUCCESS,
-  PINE_CONTACT_REQUESTS_GET_FAILURE
-} from '../../../../src/actions/paymentServer/contactRequests/get';
+  CONTACTS_SYNC_SUCCESS,
+  CONTACTS_SYNC_FAILURE
+} from '../../../../src/actions/contacts/sync';
 
 import pineReducer from '../../../../src/reducers/network/pine';
 
@@ -10,10 +10,10 @@ describe('pineReducer', () => {
     expect(typeof pineReducer).toBe('function');
   });
 
-  describe('when action is PINE_CONTACT_REQUESTS_GET_SUCCESS', () => {
+  describe('when action is CONTACTS_SYNC_SUCCESS', () => {
     it('returns an object with disconnected set to false', () => {
       const oldState = { disconnected: true };
-      const action = { type: PINE_CONTACT_REQUESTS_GET_SUCCESS };
+      const action = { type: CONTACTS_SYNC_SUCCESS };
       const newState = pineReducer(oldState, action);
 
       const expectedState = {
@@ -24,10 +24,10 @@ describe('pineReducer', () => {
     });
   });
 
-  describe('when action is PINE_CONTACT_REQUESTS_GET_FAILURE', () => {
+  describe('when action is CONTACTS_SYNC_FAILURE', () => {
     it('returns an object with disconnected set to true', () => {
       const oldState = { disconnected: false };
-      const action = { type: PINE_CONTACT_REQUESTS_GET_FAILURE };
+      const action = { type: CONTACTS_SYNC_FAILURE };
       const newState = pineReducer(oldState, action);
 
       const expectedState = {
