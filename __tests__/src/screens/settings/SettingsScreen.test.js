@@ -3,6 +3,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import SettingsScreen from '../../../../src/screens/settings/SettingsScreen';
 
+jest.mock('../../../../src/containers/indicators/ConnectionIndicatorContainer', () => 'ConnectionIndicatorContainer');
+
 const storeMock = {
   getState: jest.fn(() => ({
     settings: {

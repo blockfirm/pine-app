@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import ConnectionIndicatorContainer from '../../containers/indicators/ConnectionIndicatorContainer';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
 import DoneButton from '../../components/DoneButton';
@@ -9,6 +11,16 @@ import SettingsGroup from '../../components/SettingsGroup';
 import SettingsLink from '../../components/SettingsLink';
 import SettingsUserLink from '../../components/SettingsUserLink';
 import BaseSettingsScreen from './BaseSettingsScreen';
+
+const styles = StyleSheet.create({
+  linkAndDotWrapper: {
+    justifyContent: 'center'
+  },
+  connectionWarning: {
+    position: 'absolute',
+    right: 35
+  }
+});
 
 @connect((state) => ({
   settings: state.settings
@@ -58,8 +70,20 @@ export default class SettingsScreen extends Component {
 
         <SettingsGroup>
           <SettingsLink icon={SettingsLink.ICON_GEAR} name='General' onPress={this._showGeneralSettings.bind(this)} />
-          <SettingsLink icon={SettingsLink.ICON_BITCOIN} name='Bitcoin' onPress={this._showBitcoinSettings.bind(this)} />
-          <SettingsLink icon={SettingsLink.ICON_LIGHTNING} name='Lightning' onPress={this._showLightningSettings.bind(this)} />
+          <View style={styles.linkAndDotWrapper}>
+            <SettingsLink icon={SettingsLink.ICON_BITCOIN} name='Bitcoin' onPress={this._showBitcoinSettings.bind(this)} />
+            <ConnectionIndicatorContainer
+              style={styles.connectionWarning}
+              connectionType={ConnectionIndicatorContainer.CONNECTION_TYPE_BITCOIN}
+            />
+          </View>
+          <View style={styles.linkAndDotWrapper}>
+            <SettingsLink icon={SettingsLink.ICON_LIGHTNING} name='Lightning' onPress={this._showLightningSettings.bind(this)} />
+            <ConnectionIndicatorContainer
+              style={styles.connectionWarning}
+              connectionType={ConnectionIndicatorContainer.CONNECTION_TYPE_LIGHTNING}
+            />
+          </View>
           <SettingsLink icon={SettingsLink.ICON_BETA} name='Beta' onPress={this._showBetaSettings.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>

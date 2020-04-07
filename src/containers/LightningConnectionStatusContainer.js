@@ -11,7 +11,7 @@ const LABEL_NOT_CONNECTED = 'Not Connected';
 const LABEL_CONNECTING = 'Connecting...';
 const LABEL_WAITING = 'Waiting for Node...';
 const LABEL_CONNECTED = 'Connected';
-const LABEL_SYNC_ERROR = 'Sync Error';
+const LABEL_SYNC_ERROR = 'Syncing Error';
 
 const mapStateToProps = (state) => ({
   syncError: state.lightning.syncError

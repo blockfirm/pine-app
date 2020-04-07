@@ -1,4 +1,4 @@
-/* eslint-disable lines-around-comment */
+/* eslint-disable operator-linebreak */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -46,11 +46,11 @@ class PendingBalanceIndicatorContainer extends PureComponent {
         return pendingLightningBalance > 0 || unredeemedLightningBalance > 0;
 
       default:
-        if (pendingBitcoinBalance > 0) {
-          return true;
-        }
-
-        return pendingLightningBalance > 0 || unredeemedLightningBalance > 0;
+        return (
+          pendingBitcoinBalance > 0 ||
+          pendingLightningBalance > 0 ||
+          unredeemedLightningBalance > 0
+        );
     }
   }
 

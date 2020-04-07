@@ -8,27 +8,36 @@ const styles = StyleSheet.create({
     width: 6,
     height: 6,
     borderRadius: 3
+  },
+  border: {
+    width: 10,
+    height: 10,
+    borderWidth: 2,
+    borderRadius: 5
   }
 });
 
 class WarningDotIndicator extends Component {
   render() {
-    const { style, theme } = this.props;
+    const { style, withBorder, theme } = this.props;
 
-    const dotStyle = [
-      styles.dot,
-      { backgroundColor: theme.statusWarningColor },
-      style
-    ];
+    if (withBorder) {
+      return (
+        <View style={[styles.border, { borderColor: theme.palette.background }, style]}>
+          <View style={[styles.dot, { backgroundColor: theme.statusWarningColor }]} />
+        </View>
+      );
+    }
 
     return (
-      <View style={dotStyle} />
+      <View style={[styles.dot, { backgroundColor: theme.statusWarningColor }, style]} />
     );
   }
 }
 
 WarningDotIndicator.propTypes = {
   style: PropTypes.any,
+  withBorder: PropTypes.bool,
   theme: PropTypes.object
 };
 

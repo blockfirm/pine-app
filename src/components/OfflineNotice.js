@@ -7,9 +7,6 @@ import StyledText from '../components/StyledText';
 
 const HEIGHT = 30;
 
-const LABEL_DISCONNECTED_FROM_INTERNET = 'No Internet Connection';
-const LABEL_DISCONNECTED_FROM_SERVER = 'Waiting for Network...';
-
 const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
@@ -35,40 +32,21 @@ const styles = StyleSheet.create({
 });
 
 class OfflineNotice extends Component {
-  state = {}
+  state = {};
 
   static getDerivedStateFromProps(props, state) {
-    const { theme } = props;
-    let { backgroundColor, label } = state;
-    let isVisible = false;
-
-    if (props.isDisconnectedFromInternet) {
-      isVisible = true;
-      backgroundColor = theme.offlineNoticeErrorColor;
-      label = LABEL_DISCONNECTED_FROM_INTERNET;
-    } else if (props.isDisconnectedFromServer || props.isDisconnectedFromPineServer) {
-      isVisible = true;
-      backgroundColor = theme.offlineNoticeWarningColor;
-      label = LABEL_DISCONNECTED_FROM_SERVER;
-    }
+    const isVisible = props.isDisconnectedFromInternet;
 
     if (isVisible !== state.isVisible) {
       LayoutAnimation.easeInEaseOut();
     }
 
-    return {
-      isVisible,
-      backgroundColor,
-      label
-    };
+    return { isVisible };
   }
 
   render() {
-    const {
-      isVisible,
-      backgroundColor,
-      label
-    } = this.state;
+    const { theme } = this.props;
+    const { isVisible } = this.state;
 
     const containerStyles = [
       styles.container,
@@ -77,7 +55,7 @@ class OfflineNotice extends Component {
 
     const noticeStyles = [
       styles.notice,
-      { backgroundColor },
+      { backgroundColor: theme.offlineNoticeErrorColor },
       !isVisible ? styles.noticeHidden : null
     ];
 
@@ -85,7 +63,7 @@ class OfflineNotice extends Component {
       <View style={containerStyles}>
         <View style={noticeStyles}>
           <StyledText style={styles.text}>
-            {label}
+            No Internet Connection
           </StyledText>
         </View>
       </View>
@@ -94,9 +72,7 @@ class OfflineNotice extends Component {
 }
 
 OfflineNotice.propTypes = {
-  isDisconnectedFromInternet: PropTypes.bool,
-  isDisconnectedFromServer: PropTypes.bool,
-  isDisconnectedFromPineServer: PropTypes.bool,
+  isDisconnectedFromInternet: PropTypes.bool.isRequired,
   theme: PropTypes.object.isRequired
 };
 
