@@ -17,7 +17,7 @@ const mapStateToProps = (state) => ({
   serverInfo: state.network.server.info
 });
 
-class ConnectionStatusContainer extends Component {
+class BitcoinConnectionStatusContainer extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
     settings: PropTypes.object,
@@ -77,8 +77,8 @@ class ConnectionStatusContainer extends Component {
   }
 }
 
-const ConnectionStatusConnector = connect(
+const BitcoinConnectionStatusConnector = connect(
   mapStateToProps
-)(ConnectionStatusContainer);
+)(BitcoinConnectionStatusContainer);
 
-export default ConnectionStatusConnector;
+export default BitcoinConnectionStatusConnector;

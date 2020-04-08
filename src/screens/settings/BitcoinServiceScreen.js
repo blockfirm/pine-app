@@ -7,7 +7,7 @@ import { withTheme } from '../../contexts/theme';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
 import settingsStyles from '../../styles/settingsStyles';
-import ConnectionStatusContainer from '../../containers/ConnectionStatusContainer';
+import BitcoinConnectionStatusContainer from '../../containers/BitcoinConnectionStatusContainer';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsDescription from '../../components/SettingsDescription';
@@ -46,7 +46,7 @@ class BitcoinServiceScreen extends Component {
           <View
             style={[settingsStyles.item, theme.settingsItem, { borderBottomWidth: 0, alignItems: 'center' }]}
           >
-            <ConnectionStatusContainer />
+            <BitcoinConnectionStatusContainer />
           </View>
         </SettingsGroup>
 
