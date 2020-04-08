@@ -6,12 +6,14 @@ import { connect } from 'react-redux';
 import iCloudAccountStatus from 'react-native-icloud-account-status';
 
 import { withTheme } from '../../contexts/theme';
+import settingsStyles from '../../styles/settingsStyles';
 import { reset as navigateWithReset } from '../../actions/navigate';
 import * as keyActions from '../../actions/keys';
 import * as settingsActions from '../../actions/settings';
 import { handle as handleError } from '../../actions/error';
 import { avatar } from '../../clients/paymentServer/user';
 import getMnemonicByKey from '../../crypto/getMnemonicByKey';
+import PineConnectionStatusContainer from '../../containers/PineConnectionStatusContainer';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
 import BackButton from '../../components/BackButton';
@@ -50,6 +52,10 @@ const styles = StyleSheet.create({
   signOutButtonLoader: {
     right: null,
     alignSelf: 'center'
+  },
+  statusWrapper: {
+    borderBottomWidth: 0,
+    alignItems: 'center'
   }
 });
 
@@ -287,6 +293,13 @@ class ProfileScreen extends Component {
         <SettingsTitle>Account Security</SettingsTitle>
         <SettingsGroup>
           <SettingsLink name='Recovery Key' onPress={this._showRecoveryKeyScreen.bind(this)} isLastItem={true} />
+        </SettingsGroup>
+
+        <SettingsTitle>Pine Server Status</SettingsTitle>
+        <SettingsGroup>
+          <View style={[settingsStyles.item, theme.settingsItem, styles.statusWrapper]}>
+            <PineConnectionStatusContainer />
+          </View>
         </SettingsGroup>
 
         <SettingsGroup>

@@ -65,7 +65,13 @@ export default class SettingsScreen extends Component {
     return (
       <BaseSettingsScreen>
         <SettingsGroup>
-          <SettingsUserLink user={userProfile} onPress={this._showProfile.bind(this)} />
+          <View style={styles.linkAndDotWrapper}>
+            <SettingsUserLink user={userProfile} onPress={this._showProfile.bind(this)} />
+            <ConnectionIndicatorContainer
+              style={styles.connectionWarning}
+              connectionType={ConnectionIndicatorContainer.CONNECTION_TYPE_PINE}
+            />
+          </View>
         </SettingsGroup>
 
         <SettingsGroup>
