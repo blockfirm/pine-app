@@ -224,9 +224,9 @@ class InputBar extends Component {
   }
 
   _renderButton() {
-    const { theme } = this.props;
+    const { theme, locked } = this.props;
     const { amount, insufficientFunds, confirmTransaction } = this.state;
-    const sendDisabled = !amount || insufficientFunds;
+    const sendDisabled = locked || !amount || insufficientFunds;
 
     return (
       <View style={styles.buttonsContainer}>
@@ -262,6 +262,7 @@ class InputBar extends Component {
       secondaryCurrency,
       defaultBitcoinUnit,
       disabled,
+      locked,
       theme
     } = this.props;
 
@@ -287,7 +288,7 @@ class InputBar extends Component {
           onPress={this._onInputPress}
           hasError={insufficientFunds}
           errorText={insufficientFundsReason}
-          editable={!confirmTransaction}
+          editable={!locked && !confirmTransaction}
         />
         <UnitPicker
           primaryCurrency={primaryCurrency}
@@ -297,7 +298,7 @@ class InputBar extends Component {
           unit={unit}
           onChangeUnit={this._onChangeUnit}
           style={styles.unitPicker}
-          disabled={confirmTransaction}
+          disabled={locked || confirmTransaction}
         />
         { this._renderButton() }
         { disabled && <View style={[styles.disabledOverlay, theme.inputDisabledOverlay]} /> }
@@ -327,7 +328,8 @@ InputBar.propTypes = {
   ]),
   initialAmountBtc: PropTypes.number,
   contactInboundCapacity: PropTypes.number,
-  disabled: PropTypes.bool,
+  disabled: PropTypes.bool, // This is used when the input bar can't be used at all.
+  locked: PropTypes.bool, // This is used to lock the amount, e.g. when paying a lightning invoice.
   theme: PropTypes.object
 };
 

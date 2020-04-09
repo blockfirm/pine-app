@@ -138,14 +138,15 @@ export default class ConversationScreen extends Component {
     initialAmountBtc: null,
     displayCurrency: 'BTC',
     displayUnit: 'BTC',
-    keyboardHeight: 0,
-    keyboardAnimationDuration: 300,
-    keyboardAnimationEasing: null,
+    keyboardHeight: 291,
+    keyboardAnimationDuration: 250,
+    keyboardAnimationEasing: 'keyboard',
     keyboardIsVisible: false,
     messagesLoaded: false,
     decodedPaymentRequest: null,
     forceOnChain: false,
-    contactInboundCapacity: -1
+    contactInboundCapacity: -1,
+    inputLocked: false
   }
 
   constructor(props) {
@@ -160,6 +161,8 @@ export default class ConversationScreen extends Component {
 
         this.state.decodedPaymentRequest = decodedPaymentRequest;
         this.state.initialAmountBtc = paymentRequestAmount;
+        this.state.inputLocked = true;
+        this.state.confirmTransaction = true;
       } catch (error) {
         this.state.loadingError = error;
         props.navigation.goBack();
@@ -476,7 +479,7 @@ export default class ConversationScreen extends Component {
   }
 
   _renderInputBar() {
-    const { initialAmountBtc, contactInboundCapacity } = this.state;
+    const { initialAmountBtc, contactInboundCapacity, inputLocked } = this.state;
     const { contact, bitcoinAddress, paymentRequest } = this.props.navigation.state.params;
     const disabled = Boolean(contact && !contact.address);
     let paymentType = InputBarContainer.PAYMENT_TYPE_BOTH;
@@ -494,6 +497,7 @@ export default class ConversationScreen extends Component {
         onCancelPress={this._onCancelPress}
         initialAmountBtc={initialAmountBtc}
         disabled={disabled}
+        locked={inputLocked}
         paymentType={paymentType}
         contactInboundCapacity={contactInboundCapacity}
       />
