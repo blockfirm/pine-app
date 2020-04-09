@@ -59,37 +59,30 @@ export default class SettingsScreen extends Component {
     navigation.navigate('BetaSettings');
   }
 
+  _showStatus() {
+    const { navigation } = this.props;
+    navigation.navigate('Status');
+  }
+
   render() {
     const userProfile = this.props.settings.user.profile;
 
     return (
       <BaseSettingsScreen>
         <SettingsGroup>
-          <View style={styles.linkAndDotWrapper}>
-            <SettingsUserLink user={userProfile} onPress={this._showProfile.bind(this)} />
-            <ConnectionIndicatorContainer
-              style={styles.connectionWarning}
-              connectionType={ConnectionIndicatorContainer.CONNECTION_TYPE_PINE}
-            />
-          </View>
+          <SettingsUserLink user={userProfile} onPress={this._showProfile.bind(this)} />
         </SettingsGroup>
 
         <SettingsGroup>
           <SettingsLink icon={SettingsLink.ICON_GEAR} name='General' onPress={this._showGeneralSettings.bind(this)} />
+          <SettingsLink icon={SettingsLink.ICON_BITCOIN} name='Bitcoin' onPress={this._showBitcoinSettings.bind(this)} />
+          <SettingsLink icon={SettingsLink.ICON_LIGHTNING} name='Lightning' onPress={this._showLightningSettings.bind(this)} />
+
           <View style={styles.linkAndDotWrapper}>
-            <SettingsLink icon={SettingsLink.ICON_BITCOIN} name='Bitcoin' onPress={this._showBitcoinSettings.bind(this)} />
-            <ConnectionIndicatorContainer
-              style={styles.connectionWarning}
-              connectionType={ConnectionIndicatorContainer.CONNECTION_TYPE_BITCOIN}
-            />
+            <SettingsLink icon={SettingsLink.ICON_STATUS} name='Status' onPress={this._showStatus.bind(this)} />
+            <ConnectionIndicatorContainer style={styles.connectionWarning} />
           </View>
-          <View style={styles.linkAndDotWrapper}>
-            <SettingsLink icon={SettingsLink.ICON_LIGHTNING} name='Lightning' onPress={this._showLightningSettings.bind(this)} />
-            <ConnectionIndicatorContainer
-              style={styles.connectionWarning}
-              connectionType={ConnectionIndicatorContainer.CONNECTION_TYPE_LIGHTNING}
-            />
-          </View>
+
           <SettingsLink icon={SettingsLink.ICON_BETA} name='Beta' onPress={this._showBetaSettings.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>

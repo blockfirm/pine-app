@@ -401,153 +401,137 @@ exports[`SettingsScreen renders correctly 1`] = `
           }
         >
           <View
-            style={
-              Object {
-                "justifyContent": "center",
-              }
-            }
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
           >
             <View
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={null}
+              style={
+                Array [
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
+                    "marginLeft": 15,
+                    "paddingRight": 30,
+                  },
+                  Object {
+                    "borderBottomColor": "#C8C8CC",
+                  },
+                  Object {
+                    "borderBottomWidth": 0,
+                    "height": 60,
+                    "justifyContent": "center",
+                    "marginVertical": 10,
+                    "paddingLeft": 75,
+                    "paddingRight": 30,
+                  },
+                ]
+              }
             >
               <View
                 style={
-                  Array [
-                    Object {
-                      "borderBottomWidth": 0.5,
-                      "flex": 1,
-                      "height": 44,
-                      "justifyContent": "center",
-                      "marginLeft": 15,
-                      "paddingRight": 30,
-                    },
-                    Object {
-                      "borderBottomColor": "#C8C8CC",
-                    },
-                    Object {
-                      "borderBottomWidth": 0,
-                      "height": 60,
-                      "justifyContent": "center",
-                      "marginVertical": 10,
-                      "paddingLeft": 75,
-                      "paddingRight": 30,
-                    },
-                  ]
+                  Object {
+                    "position": "absolute",
+                  }
                 }
               >
                 <View
                   style={
-                    Object {
-                      "position": "absolute",
-                    }
+                    Array [
+                      Object {
+                        "backgroundColor": "#F6F6F6",
+                        "borderRadius": 100,
+                        "overflow": "hidden",
+                      },
+                      undefined,
+                      Object {
+                        "height": 60,
+                        "width": 60,
+                      },
+                    ]
                   }
                 >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "#F6F6F6",
-                          "borderRadius": 100,
-                          "overflow": "hidden",
-                        },
-                        undefined,
-                        Object {
-                          "height": 60,
-                          "width": 60,
-                        },
-                      ]
+                  <Image
+                    source={
+                      Object {
+                        "testUri": "../../../src/images/AvatarPlaceholder.png",
+                      }
                     }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "testUri": "../../../src/images/AvatarPlaceholder.png",
-                        }
-                      }
-                      style={
-                        Object {
-                          "height": 60,
-                          "width": 60,
-                        }
-                      }
-                    />
-                  </View>
-                </View>
-                <View>
-                  <Text
-                    numberOfLines={1}
                     style={
-                      Array [
-                        Object {
-                          "fontFamily": "System",
-                          "fontWeight": "400",
-                        },
-                        Object {
-                          "color": "#000000",
-                        },
-                        Object {
-                          "fontSize": 22,
-                          "marginBottom": 5,
-                        },
-                      ]
+                      Object {
+                        "height": 60,
+                        "width": 60,
+                      }
                     }
                   />
-                  <Text
-                    numberOfLines={1}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "System",
-                          "fontWeight": "400",
-                        },
-                        Object {
-                          "color": "#000000",
-                        },
-                        Object {
-                          "fontSize": 13,
-                        },
-                      ]
-                    }
-                  >
-                    timothy@pine.cash
-                  </Text>
                 </View>
-                <IoniconIcon
-                  name="ios-arrow-forward"
+              </View>
+              <View>
+                <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
-                        "fontSize": 20,
-                        "paddingTop": 2,
-                        "position": "absolute",
-                        "right": 15,
+                        "fontFamily": "System",
+                        "fontWeight": "400",
                       },
                       Object {
-                        "color": "#C7C7CC",
+                        "color": "#000000",
+                      },
+                      Object {
+                        "fontSize": 22,
+                        "marginBottom": 5,
                       },
                     ]
                   }
                 />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": "System",
+                        "fontWeight": "400",
+                      },
+                      Object {
+                        "color": "#000000",
+                      },
+                      Object {
+                        "fontSize": 13,
+                      },
+                    ]
+                  }
+                >
+                  timothy@pine.cash
+                </Text>
               </View>
-            </View>
-            <ConnectionIndicatorContainer
-              style={
-                Object {
-                  "position": "absolute",
-                  "right": 35,
+              <IoniconIcon
+                name="ios-arrow-forward"
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 20,
+                      "paddingTop": 2,
+                      "position": "absolute",
+                      "right": 15,
+                    },
+                    Object {
+                      "color": "#C7C7CC",
+                    },
+                  ]
                 }
-              }
-            />
+              />
+            </View>
           </View>
         </View>
         <View
@@ -691,143 +675,250 @@ exports[`SettingsScreen renders correctly 1`] = `
             </View>
           </View>
           <View
-            style={
-              Object {
-                "justifyContent": "center",
-              }
-            }
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
           >
             <View
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={null}
+              style={
+                Array [
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
+                    "marginLeft": 15,
+                    "paddingRight": 30,
+                  },
+                  Object {
+                    "borderBottomColor": "#C8C8CC",
+                  },
+                  Object {
+                    "marginLeft": 59,
+                  },
+                  undefined,
+                ]
+              }
             >
-              <View
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/icons/settings/Bitcoin.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 29,
+                    "left": -44,
+                    "position": "absolute",
+                    "width": 29,
+                  }
+                }
+              />
+              <Text
+                numberOfLines={1}
                 style={
                   Array [
                     Object {
-                      "borderBottomWidth": 0.5,
-                      "flex": 1,
-                      "height": 44,
-                      "justifyContent": "center",
-                      "marginLeft": 15,
-                      "paddingRight": 30,
+                      "fontFamily": "System",
+                      "fontWeight": "400",
                     },
                     Object {
-                      "borderBottomColor": "#C8C8CC",
+                      "color": "#000000",
                     },
-                    Object {
-                      "marginLeft": 59,
-                    },
-                    undefined,
+                    Array [
+                      Object {
+                        "fontSize": 17,
+                        "fontWeight": "400",
+                        "lineHeight": 22,
+                      },
+                      undefined,
+                    ],
                   ]
                 }
               >
-                <Image
-                  source={
+                Bitcoin
+              </Text>
+              <Text
+                numberOfLines={1}
+                style={
+                  Array [
                     Object {
-                      "testUri": "../../../src/images/icons/settings/Bitcoin.png",
-                    }
-                  }
-                  style={
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
                     Object {
-                      "height": 29,
-                      "left": -44,
-                      "position": "absolute",
-                      "width": 29,
-                    }
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
+                      "color": "#000000",
+                    },
                     Array [
                       Object {
-                        "fontFamily": "System",
+                        "backgroundColor": "transparent",
+                        "fontSize": 17,
                         "fontWeight": "400",
-                      },
-                      Object {
-                        "color": "#000000",
-                      },
-                      Array [
-                        Object {
-                          "fontSize": 17,
-                          "fontWeight": "400",
-                          "lineHeight": 22,
-                        },
-                        undefined,
-                      ],
-                    ]
-                  }
-                >
-                  Bitcoin
-                </Text>
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "System",
-                        "fontWeight": "400",
-                      },
-                      Object {
-                        "color": "#000000",
-                      },
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "fontSize": 17,
-                          "fontWeight": "400",
-                          "lineHeight": 22,
-                          "position": "absolute",
-                          "right": 15,
-                          "textAlign": "right",
-                          "width": "60%",
-                        },
-                        Object {
-                          "color": "#8E8E93",
-                        },
-                        Object {
-                          "right": 35,
-                        },
-                      ],
-                    ]
-                  }
-                />
-                <IoniconIcon
-                  name="ios-arrow-forward"
-                  style={
-                    Array [
-                      Object {
-                        "fontSize": 20,
-                        "paddingTop": 2,
+                        "lineHeight": 22,
                         "position": "absolute",
                         "right": 15,
+                        "textAlign": "right",
+                        "width": "60%",
                       },
                       Object {
-                        "color": "#C7C7CC",
+                        "color": "#8E8E93",
                       },
-                    ]
-                  }
-                />
-              </View>
-            </View>
-            <ConnectionIndicatorContainer
-              style={
-                Object {
-                  "position": "absolute",
-                  "right": 35,
+                      Object {
+                        "right": 35,
+                      },
+                    ],
+                  ]
                 }
+              />
+              <IoniconIcon
+                name="ios-arrow-forward"
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 20,
+                      "paddingTop": 2,
+                      "position": "absolute",
+                      "right": 15,
+                    },
+                    Object {
+                      "color": "#C7C7CC",
+                    },
+                  ]
+                }
+              />
+            </View>
+          </View>
+          <View
+            accessible={true}
+            focusable={true}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={null}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "height": 44,
+                    "justifyContent": "center",
+                    "marginLeft": 15,
+                    "paddingRight": 30,
+                  },
+                  Object {
+                    "borderBottomColor": "#C8C8CC",
+                  },
+                  Object {
+                    "marginLeft": 59,
+                  },
+                  undefined,
+                ]
               }
-            />
+            >
+              <Image
+                source={
+                  Object {
+                    "testUri": "../../../src/images/icons/settings/Lightning.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": 29,
+                    "left": -44,
+                    "position": "absolute",
+                    "width": 29,
+                  }
+                }
+              />
+              <Text
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Object {
+                      "color": "#000000",
+                    },
+                    Array [
+                      Object {
+                        "fontSize": 17,
+                        "fontWeight": "400",
+                        "lineHeight": 22,
+                      },
+                      undefined,
+                    ],
+                  ]
+                }
+              >
+                Lightning
+              </Text>
+              <Text
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "System",
+                      "fontWeight": "400",
+                    },
+                    Object {
+                      "color": "#000000",
+                    },
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "fontSize": 17,
+                        "fontWeight": "400",
+                        "lineHeight": 22,
+                        "position": "absolute",
+                        "right": 15,
+                        "textAlign": "right",
+                        "width": "60%",
+                      },
+                      Object {
+                        "color": "#8E8E93",
+                      },
+                      Object {
+                        "right": 35,
+                      },
+                    ],
+                  ]
+                }
+              />
+              <IoniconIcon
+                name="ios-arrow-forward"
+                style={
+                  Array [
+                    Object {
+                      "fontSize": 20,
+                      "paddingTop": 2,
+                      "position": "absolute",
+                      "right": 15,
+                    },
+                    Object {
+                      "color": "#C7C7CC",
+                    },
+                  ]
+                }
+              />
+            </View>
           </View>
           <View
             style={
@@ -873,7 +964,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                 <Image
                   source={
                     Object {
-                      "testUri": "../../../src/images/icons/settings/Lightning.png",
+                      "testUri": "../../../src/images/icons/settings/Status.png",
                     }
                   }
                   style={
@@ -907,7 +998,7 @@ exports[`SettingsScreen renders correctly 1`] = `
                     ]
                   }
                 >
-                  Lightning
+                  Status
                 </Text>
                 <Text
                   numberOfLines={1}

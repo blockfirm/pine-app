@@ -448,34 +448,6 @@ exports[`ProfileScreen renders correctly 1`] = `
             onPress={[Function]}
           />
         </SettingsGroup>
-        <SettingsTitle>
-          Pine Server Status
-        </SettingsTitle>
-        <SettingsGroup>
-          <View
-            style={
-              Array [
-                Object {
-                  "borderBottomWidth": 0.5,
-                  "flex": 1,
-                  "height": 44,
-                  "justifyContent": "center",
-                  "marginLeft": 15,
-                  "paddingRight": 30,
-                },
-                Object {
-                  "borderBottomColor": "#C8C8CC",
-                },
-                Object {
-                  "alignItems": "center",
-                  "borderBottomWidth": 0,
-                },
-              ]
-            }
-          >
-            <PineConnectionStatusContainer />
-          </View>
-        </SettingsGroup>
         <SettingsGroup>
           <SettingsButton
             containerStyle={

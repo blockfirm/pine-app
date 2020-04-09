@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import ConnectionIndicatorContainer from '../../containers/indicators/ConnectionIndicatorContainer';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
 import BackButton from '../../components/BackButton';
@@ -11,16 +9,6 @@ import SettingsGroup from '../../components/SettingsGroup';
 import SettingsAttribute from '../../components/SettingsAttribute';
 import SettingsLink from '../../components/SettingsLink';
 import BaseSettingsScreen from './BaseSettingsScreen';
-
-const styles = StyleSheet.create({
-  linkAndDotWrapper: {
-    justifyContent: 'center'
-  },
-  connectionWarning: {
-    position: 'absolute',
-    right: 35
-  }
-});
 
 @connect((state) => ({
   settings: state.settings
@@ -30,7 +18,7 @@ export default class BitcoinSettingsScreen extends Component {
     headerTransparent: true,
     headerBackground: <SettingsHeaderBackground />,
     headerTitle: <HeaderTitle title='Bitcoin' />,
-    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
+    headerLeft: <BackButton onPress={() => navigation.goBack()} />
   });
 
   _showBitcoinServiceScreen() {
@@ -50,13 +38,7 @@ export default class BitcoinSettingsScreen extends Component {
       <BaseSettingsScreen>
         <SettingsGroup>
           <SettingsAttribute name='Network' value={settings.bitcoin.network} />
-          <View style={styles.linkAndDotWrapper}>
-            <SettingsLink name='Bitcoin Service' onPress={this._showBitcoinServiceScreen.bind(this)} isLastItem={true} />
-            <ConnectionIndicatorContainer
-              style={styles.connectionWarning}
-              connectionType={ConnectionIndicatorContainer.CONNECTION_TYPE_BITCOIN}
-            />
-          </View>
+          <SettingsLink name='Bitcoin Service' onPress={this._showBitcoinServiceScreen.bind(this)} isLastItem={true} />
         </SettingsGroup>
 
         <SettingsGroup>

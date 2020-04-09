@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { withTheme } from '../../contexts/theme';
-import settingsStyles from '../../styles/settingsStyles';
-import LightningConnectionStatusContainer from '../../containers/LightningConnectionStatusContainer';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
 import BackButton from '../../components/BackButton';
@@ -19,7 +15,7 @@ class LightningSettingsScreen extends Component {
     headerTransparent: true,
     headerBackground: <SettingsHeaderBackground />,
     headerTitle: <HeaderTitle title='Lightning' />,
-    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
+    headerLeft: <BackButton onPress={() => navigation.goBack()} />
   });
 
   _showOffChainBalance() {
@@ -28,20 +24,10 @@ class LightningSettingsScreen extends Component {
   }
 
   render() {
-    const { theme } = this.props;
-
     return (
       <BaseSettingsScreen>
         <SettingsGroup>
-          <View
-            style={[settingsStyles.item, theme.settingsItem, { borderBottomWidth: 0, alignItems: 'center' }]}
-          >
-            <LightningConnectionStatusContainer />
-          </View>
-        </SettingsGroup>
-
-        <SettingsGroup>
-          <SettingsLink name='Balance & Capacity' onPress={this._showOffChainBalance.bind(this)} isLastItem={true} />
+          <SettingsLink name='Balance &amp; Capacity' onPress={this._showOffChainBalance.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );
@@ -50,8 +36,7 @@ class LightningSettingsScreen extends Component {
 
 LightningSettingsScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.any,
-  theme: PropTypes.object.isRequired
+  navigation: PropTypes.any
 };
 
-export default withTheme(LightningSettingsScreen);
+export default LightningSettingsScreen;

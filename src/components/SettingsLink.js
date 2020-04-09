@@ -11,12 +11,14 @@ const ICON_GEAR = 'Gear';
 const ICON_BITCOIN = 'Bitcoin';
 const ICON_LIGHTNING = 'Lightning';
 const ICON_BETA = 'Beta';
+const ICON_STATUS = 'Status';
 
 const ICON_IMAGES = {
   [ICON_GEAR]: require('../images/icons/settings/Gear.png'),
   [ICON_BITCOIN]: require('../images/icons/settings/Bitcoin.png'),
   [ICON_LIGHTNING]: require('../images/icons/settings/Lightning.png'),
-  [ICON_BETA]: require('../images/icons/settings/Beta.png')
+  [ICON_BETA]: require('../images/icons/settings/Beta.png'),
+  [ICON_STATUS]: require('../images/icons/settings/Status.png')
 };
 
 const styles = StyleSheet.create({
@@ -45,6 +47,7 @@ class SettingsLink extends Component {
   static ICON_BITCOIN = ICON_BITCOIN;
   static ICON_LIGHTNING = ICON_LIGHTNING;
   static ICON_BETA = ICON_BETA;
+  static ICON_STATUS = ICON_STATUS;
 
   _renderIcon() {
     const iconName = this.props.icon;

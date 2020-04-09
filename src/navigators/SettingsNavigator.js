@@ -20,6 +20,7 @@ import BetaSettingsScreen from '../screens/settings/BetaSettingsScreen';
 import AboutBetaScreen from '../screens/settings/AboutBetaScreen';
 import LogsScreen from '../screens/settings/LogsScreen';
 import LogDetailsScreen from '../screens/settings/LogDetailsScreen';
+import StatusScreen from '../screens/settings/StatusScreen';
 
 import createDismissableStackNavigator from '../createDismissableStackNavigator';
 
@@ -45,7 +46,8 @@ const SettingsNavigator = createDismissableStackNavigator({
   BetaSettings: { screen: BetaSettingsScreen },
   AboutBeta: { screen: AboutBetaScreen },
   Logs: { screen: LogsScreen },
-  LogDetails: { screen: LogDetailsScreen }
+  LogDetails: { screen: LogDetailsScreen },
+  Status: { screen: StatusScreen }
 }, {
   headerMode: 'float',
   initialRouteName: 'Settings'

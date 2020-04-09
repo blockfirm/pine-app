@@ -30,7 +30,7 @@ class ConnectionIndicatorContainer extends PureComponent {
       ConnectionIndicatorContainer.CONNECTION_TYPE_BITCOIN,
       ConnectionIndicatorContainer.CONNECTION_TYPE_LIGHTNING,
       ConnectionIndicatorContainer.CONNECTION_TYPE_PINE,
-      ConnectionIndicatorContainer.BALANCE_TYPE_ALL
+      ConnectionIndicatorContainer.CONNECTION_TYPE_ALL
     ])
   };
 
