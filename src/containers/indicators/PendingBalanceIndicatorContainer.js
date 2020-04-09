@@ -26,7 +26,7 @@ class PendingBalanceIndicatorContainer extends PureComponent {
     ])
   };
 
-  static defaultPropTypes = {
+  static defaultProps = {
     balanceType: PendingBalanceIndicatorContainer.BALANCE_TYPE_ALL
   };
 

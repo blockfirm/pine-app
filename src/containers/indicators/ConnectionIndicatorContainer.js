@@ -34,7 +34,7 @@ class ConnectionIndicatorContainer extends PureComponent {
     ])
   };
 
-  static defaultPropTypes = {
+  static defaultProps = {
     connectionType: ConnectionIndicatorContainer.CONNECTION_TYPE_ALL
   };
 

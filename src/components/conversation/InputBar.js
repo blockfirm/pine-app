@@ -333,7 +333,7 @@ InputBar.propTypes = {
   theme: PropTypes.object
 };
 
-InputBar.defaultPropTypes = {
+InputBar.defaultProps = {
   paymentType: InputBar.PAYMENT_TYPE_BOTH
 };
 
