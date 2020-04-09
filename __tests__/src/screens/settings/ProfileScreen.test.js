@@ -3,7 +3,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import ProfileScreen from '../../../../src/screens/settings/ProfileScreen';
 
-jest.mock('../../../../src/containers/PineConnectionStatusContainer', () => 'PineConnectionStatusContainer');
 jest.mock('../../../../src/components/BackButton', () => 'BackButtonBackButton');
 jest.mock('../../../../src/components/SettingsTitle', () => 'SettingsTitle');
 jest.mock('../../../../src/components/SettingsGroup', () => 'SettingsGroup');

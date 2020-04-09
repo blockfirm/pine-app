@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getClient } from '../clients/lightning';
-import Status from '../components/Status';
+import { getClient } from '../../clients/lightning';
+import Status from '../../components/Status';
 
 const UPDATE_INTERVAL = 1000;
 

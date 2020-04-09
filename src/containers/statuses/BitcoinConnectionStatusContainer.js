@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getInfo as getServerInfo } from '../actions/network/server/getInfo';
-import Status from '../components/Status';
+import { getInfo as getServerInfo } from '../../actions/network/server/getInfo';
+import Status from '../../components/Status';
 
 const UPDATE_INTERVAL = 3000;
 

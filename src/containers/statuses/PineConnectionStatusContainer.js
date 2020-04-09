@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import parseAddress from '../clients/paymentServer/address/parse';
-import { get as getServerInfo } from '../clients/paymentServer/info';
-import Status from '../components/Status';
+import parseAddress from '../../clients/paymentServer/address/parse';
+import { get as getServerInfo } from '../../clients/paymentServer/info';
+import Status from '../../components/Status';
 
 const UPDATE_INTERVAL = 3000;
 
