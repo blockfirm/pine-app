@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { get as getServerInfo } from '../clients/paymentServer/info';
+import * as api from '../clients/api';
 import { withTheme } from '../contexts/theme';
 
 const DEBOUNCE_DELAY = 1000;
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   }
 });
 
-class PineServerStatus extends PureComponent {
+class BitcoinServiceStatus extends PureComponent {
   state = {
     loading: true,
     ok: false
@@ -32,28 +32,28 @@ class PineServerStatus extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.hostname !== this.props.hostname) {
+    if (prevProps.serviceUrl !== this.props.serviceUrl) {
       this._updateStatus(DEBOUNCE_DELAY);
     }
   }
 
   _updateStatus(delay = 0) {
-    const { hostname, bitcoinNetwork, onStatusUpdated } = this.props;
+    const { serviceUrl, bitcoinNetwork, onStatusUpdated } = this.props;
     let ok = false;
 
     this.setState({ loading: true });
     clearTimeout(this._updateStatusTimer);
 
-    if (!hostname) {
+    if (!serviceUrl) {
       onStatusUpdated(ok);
       return this.setState({ ok, loading: false });
     }
 
     this._updateStatusTimer = setTimeout(() => {
-      getServerInfo(hostname)
+      api.info.get({ baseUrl: serviceUrl })
         .then((serverInfo) => {
           if (serverInfo) {
-            ok = serverInfo.isOpenForRegistrations && serverInfo.network === bitcoinNetwork;
+            ok = serverInfo.network === bitcoinNetwork;
           } else {
             ok = false;
           }
@@ -89,12 +89,16 @@ class PineServerStatus extends PureComponent {
   }
 }
 
-PineServerStatus.propTypes = {
-  hostname: PropTypes.string,
+BitcoinServiceStatus.propTypes = {
+  serviceUrl: PropTypes.string,
   bitcoinNetwork: PropTypes.string,
   style: PropTypes.any,
-  onStatusUpdated: PropTypes.func.isRequired,
+  onStatusUpdated: PropTypes.func,
   theme: PropTypes.object.isRequired
 };
 
-export default withTheme(PineServerStatus);
+BitcoinServiceStatus.defaultProps = {
+  onStatusUpdated: () => {}
+};
+
+export default withTheme(BitcoinServiceStatus);

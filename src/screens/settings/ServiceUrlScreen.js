@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -9,8 +10,22 @@ import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsInput from '../../components/SettingsInput';
 import SettingsDescription from '../../components/SettingsDescription';
+import BitcoinServiceStatus from '../../components/BitcoinServiceStatus';
 import BaseSettingsScreen from './BaseSettingsScreen';
 import config from '../../config';
+
+const styles = StyleSheet.create({
+  group: {
+    justifyContent: 'center'
+  },
+  input: {
+    marginRight: 26
+  },
+  serverStatus: {
+    position: 'absolute',
+    right: 16
+  }
+});
 
 @connect((state) => ({
   settings: state.settings
@@ -20,7 +35,7 @@ export default class ServiceUrlScreen extends Component {
     headerTransparent: true,
     headerBackground: <SettingsHeaderBackground />,
     headerTitle: <HeaderTitle title='Service URL' />,
-    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
+    headerLeft: <BackButton onPress={() => navigation.goBack()} />
   });
 
   constructor(props) {
@@ -33,10 +48,6 @@ export default class ServiceUrlScreen extends Component {
 
   componentWillUnmount() {
     this._save();
-  }
-
-  _goBack() {
-    this.props.navigation.goBack();
   }
 
   _save() {
@@ -53,19 +64,31 @@ export default class ServiceUrlScreen extends Component {
     }));
   }
 
-  _onChangeText(text) {
-    this.setState({ serviceUrl: text });
+  _onChangeServiceUrl(serviceUrl) {
+    this.setState({
+      serviceUrl: serviceUrl.trim()
+    });
   }
 
   render() {
+    const { navigation, settings } = this.props;
+
     return (
       <BaseSettingsScreen>
-        <SettingsGroup>
+        <SettingsGroup style={styles.group}>
           <SettingsInput
+            autoCapitalize='none'
+            autoCorrect={false}
             value={this.state.serviceUrl}
             placeholder={config.api.baseUrl}
-            onChangeText={this._onChangeText.bind(this)}
-            onSubmitEditing={this._goBack.bind(this)}
+            onChangeText={this._onChangeServiceUrl.bind(this)}
+            onSubmitEditing={() => navigation.goBack()}
+            style={styles.input}
+          />
+          <BitcoinServiceStatus
+            serviceUrl={this.state.serviceUrl || config.api.baseUrl}
+            bitcoinNetwork={settings.bitcoin.network}
+            style={styles.serverStatus}
           />
         </SettingsGroup>
 
