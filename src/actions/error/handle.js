@@ -6,8 +6,21 @@ const UNKNOWN_ERROR_MESSAGE = 'An unknown error occurred. Please try again or co
 
 export const ERROR_HANDLE = 'ERROR_HANDLE';
 
+const addPeriod = (message) => {
+  if (!message) {
+    return message;
+  }
+
+  // Add period (.) if message ends with letter a-z.
+  if (/[a-z]$/.test(message.trim())) {
+    return `${message.trim()}.`;
+  }
+
+  return message;
+};
+
 export const handle = (error) => {
-  const errorMessage = error && error.message;
+  const errorMessage = error && addPeriod(error.message);
 
   ReactNativeHaptic.generate('notificationError');
 
