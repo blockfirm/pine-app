@@ -1,7 +1,9 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
+import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 
 import {
   create as createTransaction,
@@ -24,6 +26,18 @@ import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
 
 const MESSAGE_TYPE_LIGHTNING_PAYMENT = 'lightning_payment';
+
+const getLightningErrorMessage = (error) => {
+  if (error.message.includes('expired')) {
+    return 'The Lightning invoice has expired.';
+  }
+
+  if (error.message.includes('too large')) {
+    return 'The payment is too large.';
+  }
+
+  return error.message;
+};
 
 const mapStateToProps = (state) => ({
   userProfile: state.settings.user.profile,
@@ -51,8 +65,9 @@ class ConfirmTransactionContainer extends Component {
     cannotAffordFee: false,
     hasLightningCapacity: false,
     paymentMessage: null,
-    invoice: null
-  }
+    invoice: null,
+    forceOnChain: false
+  };
 
   constructor() {
     super(...arguments);
@@ -83,6 +98,11 @@ class ConfirmTransactionContainer extends Component {
     }
   }
 
+  _goBack() {
+    const { dispatch } = this.props;
+    dispatch(NavigationActions.back());
+  }
+
   _resetState() {
     return new Promise(resolve => {
       this.setState({
@@ -93,7 +113,8 @@ class ConfirmTransactionContainer extends Component {
         cannotAffordFee: false,
         hasLightningCapacity: false,
         paymentMessage: null,
-        invoice: null
+        invoice: null,
+        forceOnChain: false
       }, resolve);
     });
   }
@@ -108,6 +129,14 @@ class ConfirmTransactionContainer extends Component {
     } else {
       this._createTransaction();
     }
+  }
+
+  async _forceOnChain() {
+    await this._resetState();
+
+    this.setState({ forceOnChain: true }, () => {
+      this._createTransaction();
+    });
   }
 
   _checkLightningCapacities() {
@@ -128,10 +157,10 @@ class ConfirmTransactionContainer extends Component {
   }
 
   _isLightning() {
-    const { paymentRequest, forceOnChain } = this.props;
+    const { paymentRequest } = this.props;
     const { hasLightningCapacity } = this.state;
 
-    if (forceOnChain) {
+    if (this.props.forceOnChain || this.state.forceOnChain) {
       return false;
     }
 
@@ -150,7 +179,7 @@ class ConfirmTransactionContainer extends Component {
       const { high } = await dispatch(estimateLightningFee(paymentRequest || invoice.paymentRequest));
       this.setState({ fee: high });
     } catch (error) {
-      dispatch(handleError(error));
+      this._handleLightningFeeError(error);
     }
   }
 
@@ -271,8 +300,48 @@ class ConfirmTransactionContainer extends Component {
 
       this.props.onTransactionSent(result || {});
     } catch (error) {
-      dispatch(handleError(error));
+      this._handleLightningPaymentError(error);
     }
+  }
+
+  _handleLightningFeeError(error) {
+    const { paymentRequest } = this.props;
+    const title = 'Payment Not Possible';
+    const message = getLightningErrorMessage(error) || 'An unknown error occurred when estimating the fee.';
+
+    if (!paymentRequest) {
+      return this._forceOnChain();
+    }
+
+    Alert.alert(
+      title,
+      message,
+      [{ text: 'OK', onPress: () => this._goBack(), style: 'cancel' }],
+      { cancelable: false }
+    );
+  }
+
+  _handleLightningPaymentError(error) {
+    const { paymentRequest } = this.props;
+    const title = 'Payment Failed';
+    let message = getLightningErrorMessage(error) || 'An unknown error occurred when making the payment.';
+    let buttons = [{ text: 'OK', style: 'cancel' }];
+
+    if (!paymentRequest) {
+      message += ' Do you want to make the payment on-chain instead?';
+
+      buttons = [
+        { text: 'Pay On-chain...', onPress: () => this._forceOnChain(), style: 'cancel' },
+        { text: 'Cancel', style: 'default' }
+      ];
+    }
+
+    Alert.alert(
+      title,
+      message,
+      buttons,
+      { cancelable: false }
+    );
   }
 
   _onPayPress() {
