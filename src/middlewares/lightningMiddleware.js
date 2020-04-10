@@ -42,7 +42,7 @@ const lightningMiddleware = () => {
           client = new LightningClient(pineAddress, state.pine.credentials, settings.lightning);
           client.once('ready', () => store.dispatch(lightningActions.sync()));
           client.registerMethods(getMethods(store.dispatch));
-          client.connect();
+          client.connect().catch(() => client.reconnect());
 
           setClient(client);
         }
