@@ -8,12 +8,11 @@ export const PINE_LIGHTNING_RPC_DERIVE_NEXT_KEY = 'PINE_LIGHTNING_RPC_DERIVE_NEX
  *
  * @param {Object} request
  * @param {number} request.keyFamily - Key family index of the key.
+ * @param {number} request.keyIndex - Index of the key.
  *
  * @returns {Promise.Object} A promise resolving to an object with a key descriptor.
  */
-export const deriveNextKey = ({ keyFamily }) => {
-  const keyIndex = 1; // TODO: Increment so that a new key is always returned.
-
+export const deriveNextKey = ({ keyFamily, keyIndex }) => {
   return async (dispatch, getState) => {
     const state = getState();
     const { credentials } = state.pine;

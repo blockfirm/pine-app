@@ -28,12 +28,13 @@ describe('getRevocationRootKey', () => {
     expect(typeof getRevocationRootKey).toBe('function');
   });
 
-  it('returns a new revocation root key', () => {
+  it('returns the revocation root key with the specified key index', () => {
+    const request = { keyIndex: 0 };
     const expectedPrivateKey = '693c08b89849d739f7dd66992234e7d8bee11dfb6a63057fe65c57891900fb3b';
 
     expect.hasAssertions();
 
-    return getRevocationRootKey()(dispatchMock, getStateMock).then(response => {
+    return getRevocationRootKey(request)(dispatchMock, getStateMock).then(response => {
       expect(response.privateKey.toString('hex')).toBe(expectedPrivateKey);
     });
   });

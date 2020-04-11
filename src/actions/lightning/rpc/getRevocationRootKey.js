@@ -13,11 +13,12 @@ const getMnemonic = (keys) => {
 /**
  * Action that returns a new revocation root key.
  *
+ * @param {Object} request
+ * @param {number} request.keyIndex - Index of the key.
+ *
  * @returns {Promise.Object} A promise resolving to an object with a private key.
  */
-export const getRevocationRootKey = () => {
-  const keyIndex = 0; // TODO: Increment so that a new key is always returned.
-
+export const getRevocationRootKey = ({ keyIndex }) => {
   return async (dispatch, getState) => {
     const state = getState();
     const { network } = state.settings.bitcoin;

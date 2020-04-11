@@ -33,9 +33,10 @@ describe('deriveNextKey', () => {
     expect(typeof deriveNextKey).toBe('function');
   });
 
-  it('returns a key descriptor for the next key in the specified key family', () => {
+  it('returns a key descriptor for the key with the specified key family and index', () => {
     const request = {
-      keyFamily: 2
+      keyFamily: 2,
+      keyIndex: 1
     };
 
     expect.hasAssertions();
