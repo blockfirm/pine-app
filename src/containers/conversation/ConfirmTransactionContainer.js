@@ -227,6 +227,10 @@ class ConfirmTransactionContainer extends Component {
   _createTransaction() {
     const { dispatch, amountBtc } = this.props;
 
+    if (!amountBtc) {
+      return;
+    }
+
     return this._getAddress()
       .then((address) => {
         this.setState({ address });
