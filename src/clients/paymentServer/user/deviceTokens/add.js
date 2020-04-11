@@ -48,10 +48,17 @@ const add = (deviceToken, credentials) => {
     })
     .then((response) => {
       if (!response.id) {
-        throw new Error('Unknown error when adding device token');
+        throw new SyntaxError();
       }
 
       return response.id;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to add device token');
+      }
+
+      throw error;
     });
 };
 

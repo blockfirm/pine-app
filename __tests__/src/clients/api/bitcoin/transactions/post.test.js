@@ -84,12 +84,12 @@ describe('post(rawTransaction, options)', () => {
       }));
     });
 
-    it('rejects the returned promise with an "Unknown error" error', () => {
+    it('rejects the returned promise with an "invalid response" error', () => {
       expect.hasAssertions();
 
       return postTransaction(fakeTransaction, fakeOptions).catch((error) => {
         expect(error).toBeTruthy();
-        expect(error.message).toContain('Unknown error');
+        expect(error.message).toContain('invalid response');
       });
     });
   });

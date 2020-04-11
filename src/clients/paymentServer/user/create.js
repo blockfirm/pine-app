@@ -55,10 +55,17 @@ const create = (pineAddress, mnemonic, bitcoinNetwork) => {
     })
     .then((response) => {
       if (response.id !== userId || response.publicKey !== body.publicKey) {
-        throw new Error('Unknown error when creating user');
+        throw new SyntaxError();
       }
 
       return response;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to create user');
+      }
+
+      throw error;
     });
 };
 

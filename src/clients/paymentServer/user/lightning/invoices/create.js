@@ -66,10 +66,19 @@ const create = async (amountSats, message, contact, credentials) => {
     })
     .then((response) => {
       if (!response || !response.id) {
-        throw new Error('Unknown error when requesting a new lightning invoice');
+        throw new SyntaxError();
       }
 
       return response;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error(
+          'Received an invalid response when trying to request new lightning invoice'
+        );
+      }
+
+      throw error;
     });
 };
 

@@ -39,6 +39,13 @@ const remove = (contactId, credentials) => {
       return response.json().then((error) => {
         throw new Error(error.message);
       });
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to delete contact');
+      }
+
+      throw error;
     });
 };
 

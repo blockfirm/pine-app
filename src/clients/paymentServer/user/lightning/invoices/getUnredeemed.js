@@ -40,10 +40,19 @@ const getUnredeemed = (credentials) => {
     })
     .then((response) => {
       if (!Array.isArray(response)) {
-        throw new Error('Unknown error when getting unredeemed invoices');
+        throw new SyntaxError();
       }
 
       return response;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error(
+          'Received an invalid response when trying to get unredeemed lightning invoices'
+        );
+      }
+
+      throw error;
     });
 };
 

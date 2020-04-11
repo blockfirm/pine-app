@@ -40,10 +40,19 @@ const get = (userId, credentials) => {
     })
     .then((response) => {
       if (!response || !response.inbound) {
-        throw new Error('Unknown error when getting inbound lightning capacity for contact');
+        throw new SyntaxError();
       }
 
       return parseInt(response.inbound);
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error(
+          'Received an invalid response when trying to get inbound lightning capacity for contact'
+        );
+      }
+
+      throw error;
     });
 };
 

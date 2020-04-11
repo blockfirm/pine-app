@@ -39,6 +39,13 @@ const remove = (deviceTokenId, credentials) => {
       return response.json().then((error) => {
         throw new Error(error.message);
       });
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to delete device token');
+      }
+
+      throw error;
     });
 };
 

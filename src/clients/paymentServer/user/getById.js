@@ -24,10 +24,17 @@ const getById = (id, hostname) => {
     })
     .then((response) => {
       if (response.id !== id) {
-        throw new Error('Unknown error when getting user');
+        throw new SyntaxError();
       }
 
       return response;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to get user');
+      }
+
+      throw error;
     });
 };
 

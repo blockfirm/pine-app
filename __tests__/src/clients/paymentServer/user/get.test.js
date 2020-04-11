@@ -64,7 +64,7 @@ describe('get', () => {
 
         return getUser(address).catch((error) => {
           expect(error).toBeTruthy();
-          expect(error.message).toContain('Unknown error');
+          expect(error.message).toContain('invalid response');
         });
       });
     });
@@ -80,7 +80,7 @@ describe('get', () => {
 
         return getUser(address).catch((error) => {
           expect(error).toBeTruthy();
-          expect(error.message).toContain('Unknown error');
+          expect(error.message).toContain('invalid response');
         });
       });
     });
@@ -96,7 +96,7 @@ describe('get', () => {
 
         return getUser(address).catch((error) => {
           expect(error).toBeTruthy();
-          expect(error.message).toContain('Unknown error');
+          expect(error.message).toContain('invalid response');
         });
       });
     });

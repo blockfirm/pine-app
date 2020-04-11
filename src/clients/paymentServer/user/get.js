@@ -28,16 +28,23 @@ const get = (pineAddress) => {
     })
     .then((response) => {
       if (!Array.isArray(response)) {
-        throw new Error('Unknown error when getting user');
+        throw new SyntaxError();
       }
 
       const user = response[0];
 
       if (!user || !user.id || user.username !== username) {
-        throw new Error('Unknown error when getting user');
+        throw new SyntaxError();
       }
 
       return user;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to get user');
+      }
+
+      throw error;
     });
 };
 

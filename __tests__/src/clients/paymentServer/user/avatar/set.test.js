@@ -94,7 +94,7 @@ describe('set', () => {
 
         return setAvatar(image, credentials).catch((error) => {
           expect(error).toBeTruthy();
-          expect(error.message).toContain('Unknown error');
+          expect(error.message).toContain('invalid response');
         });
       });
     });

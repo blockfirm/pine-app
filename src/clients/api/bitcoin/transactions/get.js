@@ -10,10 +10,19 @@ const get = (addresses, page, pageSize, reverse, options) => {
     })
     .then((response) => {
       if (response.error !== undefined) {
-        throw new Error(response.error || 'Unknown error when getting transactions.');
+        throw new Error(response.error);
       }
 
       return response;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error(
+          'Received an invalid response when trying to get transactions'
+        );
+      }
+
+      throw error;
     });
 };
 

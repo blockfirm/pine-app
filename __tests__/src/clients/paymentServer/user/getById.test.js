@@ -66,7 +66,7 @@ describe('getById', () => {
 
         return getUserById(userId, hostname).catch((error) => {
           expect(error).toBeTruthy();
-          expect(error.message).toContain('Unknown error');
+          expect(error.message).toContain('invalid response');
         });
       });
     });

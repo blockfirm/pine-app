@@ -53,10 +53,17 @@ const add = (contact, credentials) => {
     })
     .then((response) => {
       if (!response.id) {
-        throw new Error('Unknown error when adding contact');
+        throw new SyntaxError();
       }
 
       return response;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to add contact');
+      }
+
+      throw error;
     });
 };
 

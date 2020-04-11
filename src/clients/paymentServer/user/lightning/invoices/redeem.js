@@ -15,6 +15,7 @@ import { getAuthorizationHeader } from '../../../authentication';
  *
  * @returns {Promise} A promise that resolves when the invoice has been redeemed.
  */
+// eslint-disable-next-line max-statements
 const redeem = async (invoiceId, paymentRequest, credentials) => {
   const { hostname } = parseAddress(credentials.address);
   const keyPair = credentials.keyPair || getAccountKeyPairFromMnemonic(credentials.mnemonic);
@@ -38,9 +39,19 @@ const redeem = async (invoiceId, paymentRequest, credentials) => {
 
   const response = await fetch(url, fetchOptions);
 
-  if (!response.ok) {
+  if (response.ok) {
+    return;
+  }
+
+  try {
     const error = await response.json();
     throw new Error(error.message);
+  } catch (error) {
+    if (error.name === 'SyntaxError') {
+      throw new Error('Received an invalid response when trying to redeem lightning invoice');
+    }
+
+    throw error;
   }
 };
 

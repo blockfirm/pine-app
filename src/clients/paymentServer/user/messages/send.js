@@ -64,10 +64,17 @@ const send = async (message, contact, credentials) => {
     })
     .then((response) => {
       if (!response || !response.id) {
-        throw new Error('Unknown error when sending message');
+        throw new SyntaxError();
       }
 
       return response;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to send message');
+      }
+
+      throw error;
     });
 };
 

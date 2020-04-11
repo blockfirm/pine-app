@@ -12,10 +12,19 @@ const get = (options) => {
     })
     .then((response) => {
       if (response.error !== undefined) {
-        throw new Error(response.error || 'Unknown error when getting server information.');
+        throw new Error(response.error);
       }
 
       return response;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error(
+          'Received an invalid response when trying to get server info'
+        );
+      }
+
+      throw error;
     });
 };
 

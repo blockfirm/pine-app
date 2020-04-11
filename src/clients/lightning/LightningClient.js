@@ -154,6 +154,15 @@ export default class LightningClient extends EventEmitter {
       .then(response => {
         this.sessionId = response.sessionId;
         return this.sessionId;
+      })
+      .catch(error => {
+        if (error.name === 'SyntaxError') {
+          throw new Error(
+            'Received an invalid response when trying to start new lightning session'
+          );
+        }
+
+        throw error;
       });
   }
 

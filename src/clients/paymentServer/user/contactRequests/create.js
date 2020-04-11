@@ -61,7 +61,7 @@ const create = (to, credentials) => {
     })
     .then(({ contactRequest, accepted }) => {
       if (contactRequest && !contactRequest.id) {
-        throw new Error('Unknown error when creating contact request');
+        throw new SyntaxError();
       }
 
       if (contactRequest) {
@@ -78,6 +78,13 @@ const create = (to, credentials) => {
       delete user.id;
 
       return { contact: user, accepted };
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to send contact request');
+      }
+
+      throw error;
     });
 };
 
