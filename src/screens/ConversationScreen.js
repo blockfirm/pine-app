@@ -387,6 +387,21 @@ export default class ConversationScreen extends Component {
     });
   }
 
+  _listenKeyboardDidShow() {
+    return new Promise(resolve => {
+      const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+        resolve();
+
+        if (!keyboardDidShowListener.removed) {
+          keyboardDidShowListener.remove();
+          keyboardDidShowListener.removed = true;
+        }
+      });
+
+      this._listeners.push(keyboardDidShowListener);
+    });
+  }
+
   _onContactRequestAccept(contact) {
     this.props.navigation.setParams({ contact });
   }
@@ -422,36 +437,24 @@ export default class ConversationScreen extends Component {
   }
 
   _onCancelPress() {
-    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+    this._listenKeyboardDidShow().then(() => {
       this.setState({ confirmTransaction: false });
-
-      if (!keyboardDidShowListener.removed) {
-        keyboardDidShowListener.remove();
-        keyboardDidShowListener.removed = true;
-      }
     });
-
-    this._listeners.push(keyboardDidShowListener);
   }
 
   _onTransactionSent({ createdContact }) {
     const { dispatch, navigation } = this.props;
 
-    const animation = LayoutAnimation.create(
-      this.state.keyboardAnimationDuration,
-      LayoutAnimation.Types[this.state.keyboardAnimationEasing],
-      LayoutAnimation.Properties.opacity,
-    );
-
-    LayoutAnimation.configureNext(animation);
-
-    this.setState({
-      confirmTransaction: false,
-      amountBtc: 0
+    this._listenKeyboardDidShow().then(() => {
+      this.setState({
+        confirmTransaction: false,
+        amountBtc: 0
+      });
     });
 
     if (this._inputBar) {
       this._inputBar.reset();
+      this._inputBar.focus();
     }
 
     if (createdContact) {
