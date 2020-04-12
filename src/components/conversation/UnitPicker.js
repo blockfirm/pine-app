@@ -43,8 +43,12 @@ const getDenominationsForCurrency = (currency, defaultBitcoinUnit) => {
   if (currency === CURRENCY_BTC) {
     denominations.push(defaultBitcoinUnit);
 
-    if (defaultBitcoinUnit !== CURRENCY_BTC) {
-      denominations.push(CURRENCY_BTC);
+    if (defaultBitcoinUnit !== UNIT_BTC) {
+      denominations.push(UNIT_BTC);
+    }
+
+    if (defaultBitcoinUnit !== UNIT_SATOSHIS) {
+      denominations.push(UNIT_SATOSHIS);
     }
   } else {
     denominations.push(currency);
