@@ -119,16 +119,13 @@ class AboutBetaScreen extends Component {
               🔜 Receive non-Pine Lightning payments
             </Paragraph>
             <Paragraph style={[paragraphStyles, styles.listItem]}>
-              🔜 Receive using lnpay
-            </Paragraph>
-            <Paragraph style={[paragraphStyles, styles.listItem]}>
               🔜 Pay to bitcoin addresses using Lightning
             </Paragraph>
             <Paragraph style={[paragraphStyles, styles.listItem]}>
               🔜 Automatic management of Lightning funds
             </Paragraph>
             <Paragraph style={[paragraphStyles, styles.listItem]}>
-              🔜 Independent recovery
+              🔜 Independent recovery of Lightning funds
             </Paragraph>
           </View>
 
