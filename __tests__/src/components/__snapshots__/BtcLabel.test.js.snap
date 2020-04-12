@@ -192,6 +192,25 @@ exports[`BtcLabel when unit is Satoshis renders 0 BTC correctly 1`] = `
 </Text>
 `;
 
+exports[`BtcLabel when unit is Satoshis renders 0.00000001 BTC as 1 sat 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "fontFamily": "System",
+        "fontWeight": "400",
+      },
+      Object {
+        "color": "#000000",
+      },
+      undefined,
+    ]
+  }
+>
+  1 sat
+</Text>
+`;
+
 exports[`BtcLabel when unit is Satoshis renders 0.00000002 BTC correctly 1`] = `
 <Text
   style={
@@ -360,6 +379,6 @@ exports[`BtcLabel when unit is undefined renders without errors 1`] = `
     ]
   }
 >
-  ❓
+  -
 </Text>
 `;
