@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { save as saveSettings } from '../../actions/settings';
-import { UNIT_BTC } from '../../crypto/bitcoin/convert';
+import { UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
 import InputBar from '../../components/conversation/InputBar';
 
 const mapStateToProps = (state) => ({
@@ -87,7 +87,7 @@ class InputBarContainer extends PureComponent {
     }
 
     if (lastUsedDenomination.unit) {
-      if ([defaultBitcoinUnit, UNIT_BTC].includes(lastUsedDenomination.unit)) {
+      if ([defaultBitcoinUnit, UNIT_BTC, UNIT_SATOSHIS].includes(lastUsedDenomination.unit)) {
         unit = lastUsedDenomination.unit;
       }
     }
