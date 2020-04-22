@@ -4,9 +4,6 @@ import { StyleSheet, View, ActionSheetIOS } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { sync } from '../../actions';
-import { closeChannel } from '../../actions/lightning';
-import { handle as handleError } from '../../actions/error';
 import { withTheme } from '../../contexts/theme';
 import { normalizeBtcAmount, satsToBtc } from '../../crypto/bitcoin';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
@@ -41,10 +38,6 @@ const styles = StyleSheet.create({
   },
   channelButton: {
     alignSelf: 'center'
-  },
-  channelButtonLoader: {
-    right: null,
-    alignSelf: 'center'
   }
 });
 
@@ -65,25 +58,6 @@ class OffChainBalanceScreen extends Component {
     headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
 
-  state = {
-    closingChannel: false
-  };
-
-  async _closeChannel() {
-    const { dispatch } = this.props;
-
-    this.setState({ closingChannel: true });
-
-    try {
-      await dispatch(closeChannel());
-      await dispatch(sync());
-    } catch (error) {
-      dispatch(handleError(error));
-    }
-
-    this.setState({ closingChannel: false });
-  }
-
   _showCloseChannelConfirmation() {
     ActionSheetIOS.showActionSheetWithOptions({
       title: 'Do you want to close your Lightning channel? This will move all your on-chain funds to your off-chain funds, excluding fees. You can always reopen the channel later.',
@@ -95,6 +69,11 @@ class OffChainBalanceScreen extends Component {
         this._closeChannel();
       }
     });
+  }
+
+  _closeChannel() {
+    const { navigation } = this.props;
+    navigation.navigate('ClosingChannel');
   }
 
   _showOpenChannelScreen() {
@@ -109,10 +88,8 @@ class OffChainBalanceScreen extends Component {
           title='Close Channel'
           type='destructive'
           onPress={this._showCloseChannelConfirmation.bind(this)}
-          loading={this.state.closingChannel}
           style={styles.channelButton}
           containerStyle={styles.channelButtonContainer}
-          loaderStyle={styles.channelButtonLoader}
           isLastItem={true}
         />
       </SettingsGroup>
@@ -127,7 +104,6 @@ class OffChainBalanceScreen extends Component {
           onPress={this._showOpenChannelScreen.bind(this)}
           style={styles.channelButton}
           containerStyle={styles.channelButtonContainer}
-          loaderStyle={styles.channelButtonLoader}
           isLastItem={true}
         />
       </SettingsGroup>

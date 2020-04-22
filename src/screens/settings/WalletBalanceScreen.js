@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { inactivateSync, reactivateSync } from '../../actions';
 import { withTheme } from '../../contexts/theme';
 import { normalizeBtcAmount, satsToBtc } from '../../crypto/bitcoin';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
@@ -58,6 +59,18 @@ class WalletBalanceScreen extends Component {
     headerBackTitle: null,
     headerRight: <DoneButton onPress={screenProps.dismiss} />
   });
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+
+    // Inactivate sync temporarily to not block the UI.
+    dispatch(inactivateSync());
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(reactivateSync());
+  }
 
   _showOnChainBalance() {
     const { navigation } = this.props;

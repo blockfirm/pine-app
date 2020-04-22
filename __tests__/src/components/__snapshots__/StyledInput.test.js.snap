@@ -287,6 +287,7 @@ exports[`StyledInput renders correctly 1`] = `
         },
         "progressBarBackgroundColor": "#F6F6F6",
         "progressBarForegroundColor": "#FFCD00",
+        "progressBarForegroundColorRed": "#FF3B30",
         "qrAvatar": Object {
           "borderColor": "#ffffff",
         },
@@ -704,6 +705,7 @@ exports[`StyledInput renders correctly with border color 1`] = `
         },
         "progressBarBackgroundColor": "#F6F6F6",
         "progressBarForegroundColor": "#FFCD00",
+        "progressBarForegroundColorRed": "#FF3B30",
         "qrAvatar": Object {
           "borderColor": "#ffffff",
         },

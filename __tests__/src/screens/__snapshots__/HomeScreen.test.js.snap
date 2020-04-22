@@ -251,6 +251,7 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "progressBarBackgroundColor": "#F6F6F6",
                 "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },
@@ -615,6 +616,7 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "progressBarBackgroundColor": "#F6F6F6",
                 "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },
@@ -980,6 +982,7 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "progressBarBackgroundColor": "#F6F6F6",
                 "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },
@@ -1398,6 +1401,7 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "progressBarBackgroundColor": "#F6F6F6",
                 "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },
@@ -1799,6 +1803,7 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "progressBarBackgroundColor": "#F6F6F6",
                 "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },
@@ -2201,6 +2206,7 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "progressBarBackgroundColor": "#F6F6F6",
                 "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },

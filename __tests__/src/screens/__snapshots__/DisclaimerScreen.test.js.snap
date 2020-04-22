@@ -249,6 +249,7 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
       },
       "progressBarBackgroundColor": "#F6F6F6",
       "progressBarForegroundColor": "#FFCD00",
+      "progressBarForegroundColorRed": "#FF3B30",
       "qrAvatar": Object {
         "borderColor": "#ffffff",
       },
@@ -1069,6 +1070,7 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
       },
       "progressBarBackgroundColor": "#F6F6F6",
       "progressBarForegroundColor": "#FFCD00",
+      "progressBarForegroundColorRed": "#FF3B30",
       "qrAvatar": Object {
         "borderColor": "#ffffff",
       },

@@ -26,31 +26,28 @@ class ProgressBar extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.progress !== prevProps.progress) {
-      LayoutAnimation.easeInEaseOut();
+    const { progress, animationDuration } = this.props;
 
-      this.setState({
-        progress: this.props.progress
-      });
+    if (progress !== prevProps.progress) {
+      LayoutAnimation.configureNext(
+        LayoutAnimation.create(animationDuration, 'easeInEaseOut', 'opacity')
+      );
+
+      this.setState({ progress });
     }
   }
 
   render() {
-    const { theme, style } = this.props;
+    const { theme, style, destructive } = this.props;
     const { progress } = this.state;
     const width = `${Math.min(progress * 100, 100)}%`;
 
+    const backgroundColor = theme.progressBarBackgroundColor;
+    const foregroundColor = destructive ? theme.progressBarForegroundColorRed : theme.progressBarForegroundColor;
+
     return (
-      <View style={[
-        styles.bar,
-        { backgroundColor: theme.progressBarBackgroundColor },
-        style
-      ]}>
-        <View style={[
-          styles.progress,
-          { backgroundColor: theme.progressBarForegroundColor },
-          { width }
-        ]} />
+      <View style={[styles.bar, { backgroundColor }, style]}>
+        <View style={[styles.progress, { backgroundColor: foregroundColor, width }]} />
       </View>
     );
   }
@@ -59,11 +56,15 @@ class ProgressBar extends PureComponent {
 ProgressBar.propTypes = {
   theme: PropTypes.object.isRequired,
   style: PropTypes.any,
-  progress: PropTypes.number
+  progress: PropTypes.number,
+  destructive: PropTypes.bool,
+  animationDuration: PropTypes.number
 };
 
 ProgressBar.defaultProps = {
-  progress: 0
+  progress: 0,
+  destructive: false,
+  animationDuration: 300
 };
 
 export default withTheme(ProgressBar);

@@ -178,5 +178,6 @@ export default {
   smallLightningIconImage: require('../../images/icons/SmallLightning.png'),
   progressBarBackgroundColor: palette.middleground1,
   progressBarForegroundColor: palette.yellow4,
+  progressBarForegroundColorRed: palette.red,
   palette
 };
