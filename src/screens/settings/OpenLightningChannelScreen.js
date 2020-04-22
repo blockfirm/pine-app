@@ -103,7 +103,9 @@ class OpenLightningChannelScreen extends Component {
   }
 
   _onAmountChange(satsAmount) {
-    this.setState({ satsAmount });
+    requestAnimationFrame(() => {
+      this.setState({ satsAmount });
+    });
   }
 
   _renderNotEnoughFunds() {
