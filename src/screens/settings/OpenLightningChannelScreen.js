@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Slider from '@react-native-community/slider';
 
+import { inactivateSync, reactivateSync } from '../../actions';
 import { withTheme } from '../../contexts/theme';
 import { satsToBtc, btcToSats } from '../../crypto/bitcoin';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
@@ -75,7 +76,7 @@ class OpenLightningChannelScreen extends Component {
   };
 
   componentDidMount() {
-    const { navigation, spendableBitcoinBalance } = this.props;
+    const { dispatch, navigation, spendableBitcoinBalance } = this.props;
     const spendableSats = btcToSats(spendableBitcoinBalance);
     const canSubmit = spendableSats >= MIN_SATS_AMOUNT;
 
@@ -83,6 +84,14 @@ class OpenLightningChannelScreen extends Component {
       canSubmit,
       submit: this._showOpenChannelConfirmation.bind(this)
     });
+
+    // Inactivate sync temporarily to not slow down UI.
+    dispatch(inactivateSync());
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(reactivateSync());
   }
 
   _openChannel() {

@@ -44,7 +44,7 @@ export const sync = (options) => {
     const syncProfiles = options && options.syncProfiles;
     const errors = [];
 
-    if (state.syncing) {
+    if (state.syncing || !state.syncActive) {
       return syncPromise || Promise.resolve();
     }
 

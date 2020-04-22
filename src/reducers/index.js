@@ -9,6 +9,7 @@ import networkReducer from './network';
 import notificationsReducer from './notifications';
 import contactsReducer from './contacts';
 import messagesReducer from './messages';
+import syncActiveReducer from './syncActive';
 import syncingReducer from './syncing';
 import pineReducer from './pine';
 import loadedReducer from './loaded';
@@ -29,6 +30,7 @@ const getRootReducer = (navReducer) => {
     notifications: notificationsReducer,
     contacts: contactsReducer,
     messages: messagesReducer,
+    syncActive: syncActiveReducer,
     syncing: syncingReducer,
     pine: pineReducer,
     loaded: loadedReducer,
