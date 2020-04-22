@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Slider from '@react-native-community/slider';
 
-import { sync } from '../../actions';
-import { openChannel } from '../../actions/lightning';
-import { handle as handleError } from '../../actions/error';
 import { withTheme } from '../../contexts/theme';
 import { satsToBtc, btcToSats } from '../../crypto/bitcoin';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
@@ -20,7 +17,8 @@ import SettingsGroup from '../../components/SettingsGroup';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
-const MIN_SATS_AMOUNT = 10000;
+const MIN_SATS_AMOUNT = 20000;
+const MAX_SATS_AMOUNT = 500000;
 
 const styles = StyleSheet.create({
   amountWrapper: {
@@ -71,7 +69,6 @@ class OpenLightningChannelScreen extends Component {
   };
 
   state = {
-    openingChannel: false,
     satsAmount: MIN_SATS_AMOUNT
   };
 
@@ -86,20 +83,11 @@ class OpenLightningChannelScreen extends Component {
     });
   }
 
-  async _openChannel() {
-    const { dispatch, screenProps } = this.props;
+  _openChannel() {
+    const { navigation } = this.props;
     const { satsAmount } = this.state;
 
-    this.setState({ openingChannel: true });
-
-    try {
-      await dispatch(openChannel(satsAmount));
-      await dispatch(sync());
-      screenProps.dismiss();
-    } catch (error) {
-      this.setState({ openingChannel: false });
-      dispatch(handleError(error));
-    }
+    navigation.navigate('OpeningChannel', { satsAmount });
   }
 
   _showOpenChannelConfirmation() {
@@ -164,7 +152,7 @@ class OpenLightningChannelScreen extends Component {
               style={styles.slider}
               step={1000}
               minimumValue={MIN_SATS_AMOUNT}
-              maximumValue={spendableSats}
+              maximumValue={Math.min(spendableSats, MAX_SATS_AMOUNT)}
               value={satsAmount}
               onValueChange={this._onAmountChange.bind(this)}
               minimumTrackTintColor={theme.sliderTrackTintColor}

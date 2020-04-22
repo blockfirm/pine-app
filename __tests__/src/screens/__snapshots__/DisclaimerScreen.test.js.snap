@@ -242,10 +242,13 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
         "yellow1": "#FFD23F",
         "yellow2": "#FFC431",
         "yellow3": "#FEC300",
+        "yellow4": "#FFCD00",
       },
       "paragraph": Object {
         "color": "#B1AFB7",
       },
+      "progressBarBackgroundColor": "#F6F6F6",
+      "progressBarForegroundColor": "#FFCD00",
       "qrAvatar": Object {
         "borderColor": "#ffffff",
       },
@@ -1059,10 +1062,13 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
         "yellow1": "#FFD23F",
         "yellow2": "#FFC431",
         "yellow3": "#FEC300",
+        "yellow4": "#FFCD00",
       },
       "paragraph": Object {
         "color": "#B1AFB7",
       },
+      "progressBarBackgroundColor": "#F6F6F6",
+      "progressBarForegroundColor": "#FFCD00",
       "qrAvatar": Object {
         "borderColor": "#ffffff",
       },

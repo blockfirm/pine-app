@@ -27,6 +27,7 @@ const palette = {
   yellow1: '#FFD23F',
   yellow2: '#FFC431',
   yellow3: '#FEC300',
+  yellow4: '#FFCD00',
   blue: '#007AFF',
   blue2: '#3478F5',
   orange: '#FF9500',
@@ -175,5 +176,7 @@ export default {
   sliderTrackTintBackgroundColor: palette.gray15,
   lightningBadgeImage: require('../../images/badges/LightningBadge.png'),
   smallLightningIconImage: require('../../images/icons/SmallLightning.png'),
+  progressBarBackgroundColor: palette.middleground1,
+  progressBarForegroundColor: palette.yellow4,
   palette
 };

@@ -172,5 +172,7 @@ export default {
   sliderTrackTintBackgroundColor: palette.gray9,
   lightningBadgeImage: require('../../images/badges/LightningBadgeDark.png'),
   smallLightningIconImage: require('../../images/icons/SmallLightningDark.png'),
+  progressBarBackgroundColor: palette.middleground1,
+  progressBarForegroundColor: palette.yellow,
   palette
 };
