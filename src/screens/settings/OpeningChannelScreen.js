@@ -63,7 +63,7 @@ export default class OpeningChannelScreen extends Component {
 
     try {
       await dispatch(openChannel(satsAmount));
-      await dispatch(sync());
+      await dispatch(sync({ force: true }));
       screenProps.dismiss();
     } catch (error) {
       dispatch(handleError(error));

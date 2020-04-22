@@ -35,6 +35,7 @@ const syncFailure = (error) => {
  *
  * @param {Object} options - Sync options.
  * @param {bool} options.syncProfiles - Whether or not to also sync contact profiles (avatar etc.).
+ * @param {bool} options.force - Force sync even if sync has been inactivated.
  *
  * @returns {Promise} A promise that resolves when the sync is complete.
  */
@@ -42,9 +43,10 @@ export const sync = (options) => {
   return (dispatch, getState) => {
     const state = getState();
     const syncProfiles = options && options.syncProfiles;
+    const force = options && options.force;
     const errors = [];
 
-    if (state.syncing || !state.syncActive) {
+    if (state.syncing || (!state.syncActive && !force)) {
       return syncPromise || Promise.resolve();
     }
 
