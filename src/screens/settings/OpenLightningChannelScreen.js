@@ -14,6 +14,7 @@ import StyledText from '../../components/StyledText';
 import SettingsTitle from '../../components/SettingsTitle';
 import SettingsDescription from '../../components/SettingsDescription';
 import SettingsGroup from '../../components/SettingsGroup';
+import Bullet from '../../components/typography/Bullet';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
@@ -23,6 +24,7 @@ const MAX_SATS_AMOUNT = 500000;
 const styles = StyleSheet.create({
   amountWrapper: {
     flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 15
@@ -147,6 +149,11 @@ class OpenLightningChannelScreen extends Component {
             <CurrencyLabelContainer
               amountBtc={btcAmount}
               currencyType='primary'
+            />
+            <Bullet />
+            <CurrencyLabelContainer
+              amountBtc={btcAmount}
+              currencyType='secondary'
             />
           </View>
           <View style={styles.sliderWrapper}>
