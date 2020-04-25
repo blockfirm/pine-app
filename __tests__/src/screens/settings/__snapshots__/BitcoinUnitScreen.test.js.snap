@@ -217,6 +217,7 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
         "gray13": "#C8C8CC",
         "gray14": "#C7C7CC",
         "gray15": "#CECED0",
+        "gray16": "#E2E2E9",
         "gray2": "#8A8A8F",
         "gray3": "#BEBEBE",
         "gray4": "#D8D8DB",
@@ -305,6 +306,9 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
       "settingsItem": Object {
         "borderBottomColor": "#C8C8CC",
       },
+      "settingsLabelWrapper": Object {
+        "backgroundColor": "#E2E2E9",
+      },
       "settingsTitle": Object {
         "color": "#8A8A8F",
       },
@@ -387,34 +391,43 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
           ]
         }
       >
-        <Text
+        <View
           style={
-            Array [
-              Object {
-                "fontFamily": "System",
-                "fontWeight": "400",
-              },
-              Object {
-                "color": "#000000",
-              },
-              Array [
-                Object {
-                  "fontSize": 13,
-                  "lineHeight": 17,
-                  "marginBottom": 5.5,
-                  "paddingLeft": 15,
-                  "paddingRight": 15,
-                  "textTransform": "uppercase",
-                },
-                Object {
-                  "color": "#8A8A8F",
-                },
-              ],
-            ]
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+            }
           }
         >
-          Balance Preview
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "System",
+                  "fontWeight": "400",
+                },
+                Object {
+                  "color": "#000000",
+                },
+                Array [
+                  Object {
+                    "fontSize": 13,
+                    "lineHeight": 17,
+                    "marginBottom": 5.5,
+                    "paddingLeft": 15,
+                    "paddingRight": 10,
+                    "textTransform": "uppercase",
+                  },
+                  Object {
+                    "color": "#8A8A8F",
+                  },
+                ],
+              ]
+            }
+          >
+            Balance Preview
+          </Text>
+        </View>
         <View
           style={
             Array [
@@ -493,34 +506,43 @@ exports[`BitcoinUnitScreen renders correctly 1`] = `
         >
           This is how your current account balance looks like with the selected unit below.
         </Text>
-        <Text
+        <View
           style={
-            Array [
-              Object {
-                "fontFamily": "System",
-                "fontWeight": "400",
-              },
-              Object {
-                "color": "#000000",
-              },
-              Array [
-                Object {
-                  "fontSize": 13,
-                  "lineHeight": 17,
-                  "marginBottom": 5.5,
-                  "paddingLeft": 15,
-                  "paddingRight": 15,
-                  "textTransform": "uppercase",
-                },
-                Object {
-                  "color": "#8A8A8F",
-                },
-              ],
-            ]
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+            }
           }
         >
-          Display Unit
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "System",
+                  "fontWeight": "400",
+                },
+                Object {
+                  "color": "#000000",
+                },
+                Array [
+                  Object {
+                    "fontSize": 13,
+                    "lineHeight": 17,
+                    "marginBottom": 5.5,
+                    "paddingLeft": 15,
+                    "paddingRight": 10,
+                    "textTransform": "uppercase",
+                  },
+                  Object {
+                    "color": "#8A8A8F",
+                  },
+                ],
+              ]
+            }
+          >
+            Display Unit
+          </Text>
+        </View>
         <View
           style={
             Array [

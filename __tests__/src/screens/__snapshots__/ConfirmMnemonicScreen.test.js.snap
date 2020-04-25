@@ -236,6 +236,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
           "gray13": "#C8C8CC",
           "gray14": "#C7C7CC",
           "gray15": "#CECED0",
+          "gray16": "#E2E2E9",
           "gray2": "#8A8A8F",
           "gray3": "#BEBEBE",
           "gray4": "#D8D8DB",
@@ -323,6 +324,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
         },
         "settingsItem": Object {
           "borderBottomColor": "#C8C8CC",
+        },
+        "settingsLabelWrapper": Object {
+          "backgroundColor": "#E2E2E9",
         },
         "settingsTitle": Object {
           "color": "#8A8A8F",
@@ -742,6 +746,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -829,6 +834,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",
@@ -1221,6 +1229,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -1308,6 +1317,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",
@@ -1700,6 +1712,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -1787,6 +1800,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",
@@ -2179,6 +2195,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -2266,6 +2283,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",
@@ -2658,6 +2678,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -2745,6 +2766,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",
@@ -3137,6 +3161,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -3224,6 +3249,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",
@@ -3616,6 +3644,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -3703,6 +3732,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",
@@ -4095,6 +4127,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -4182,6 +4215,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",
@@ -4574,6 +4610,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -4661,6 +4698,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",
@@ -5053,6 +5093,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -5140,6 +5181,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",
@@ -5532,6 +5576,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -5619,6 +5664,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",
@@ -6011,6 +6059,7 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                       "gray13": "#C8C8CC",
                       "gray14": "#C7C7CC",
                       "gray15": "#CECED0",
+                      "gray16": "#E2E2E9",
                       "gray2": "#8A8A8F",
                       "gray3": "#BEBEBE",
                       "gray4": "#D8D8DB",
@@ -6098,6 +6147,9 @@ exports[`ConfirmMnemonicScreen renders correctly 1`] = `
                     },
                     "settingsItem": Object {
                       "borderBottomColor": "#C8C8CC",
+                    },
+                    "settingsLabelWrapper": Object {
+                      "backgroundColor": "#E2E2E9",
                     },
                     "settingsTitle": Object {
                       "color": "#8A8A8F",

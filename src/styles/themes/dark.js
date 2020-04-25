@@ -142,6 +142,7 @@ export default {
   settingsDescription: { color: palette.gray4 },
   settingsInput: { color: palette.foreground },
   settingsArrow: { color: palette.gray12 },
+  settingsLabelWrapper: { backgroundColor: palette.middleground2 },
   statusSuccessColor: palette.green,
   statusWarningColor: palette.orange,
   statusErrorColor: palette.red1,

@@ -9,7 +9,6 @@ import settingsStyles from '../../styles/settingsStyles';
 import PineConnectionStatusContainer from '../../containers/statuses/PineConnectionStatusContainer';
 import LightningConnectionStatusContainer from '../../containers/statuses/LightningConnectionStatusContainer';
 import BitcoinConnectionStatusContainer from '../../containers/statuses/BitcoinConnectionStatusContainer';
-import LowercaseText from '../../components/typography/LowercaseText';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
 import BackButton from '../../components/BackButton';
@@ -63,8 +62,8 @@ class StatusScreen extends Component {
 
     return (
       <BaseSettingsScreen>
-        <SettingsTitle>
-          Pine Server (<LowercaseText>{pineHostname}</LowercaseText>)
+        <SettingsTitle label={pineHostname.toLowerCase()}>
+          Pine Server
         </SettingsTitle>
         <SettingsGroup>
           <View style={statusWrapperStyle}>
@@ -76,8 +75,8 @@ class StatusScreen extends Component {
           relays end-to-end encrypted bitcoin payments between Pine users.
         </SettingsDescription>
 
-        <SettingsTitle>
-          Bitcoin Service (<LowercaseText>{bitcoinServiceHostname}</LowercaseText>)
+        <SettingsTitle label={bitcoinServiceHostname.toLowerCase()}>
+          Bitcoin Service
         </SettingsTitle>
         <SettingsGroup>
           <View style={statusWrapperStyle}>
@@ -89,8 +88,8 @@ class StatusScreen extends Component {
           to the bitcoin network. It does not have any access to your bitcoins.
         </SettingsDescription>
 
-        <SettingsTitle>
-          Lightning Service (<LowercaseText>{pineHostname}</LowercaseText>)
+        <SettingsTitle label={pineHostname.toLowerCase()}>
+          Lightning Service
         </SettingsTitle>
         <SettingsGroup>
           <View style={statusWrapperStyle}>
