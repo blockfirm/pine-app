@@ -43,7 +43,8 @@ const itemsByMessageIdReducer = (state = {}, action) => {
         ...state,
         [invoice.messageId]: {
           ...invoice,
-          ...action.invoice
+          ...action.invoice,
+          paidAmount: action.invoice.paidAmount || invoice.paidAmount
         }
       };
 

@@ -69,7 +69,11 @@ const itemsReducer = (state = [], action) => {
     case invoicesActions.LIGHTNING_INVOICES_UPDATE_SUCCESS:
       return state.map((invoice) => {
         if (invoice.id === action.invoice.id) {
-          return { ...invoice, ...action.invoice };
+          return {
+            ...invoice,
+            ...action.invoice,
+            paidAmount: action.invoice.paidAmount || invoice.paidAmount
+          };
         }
 
         return invoice;
