@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { withTheme } from '../../contexts/theme';
-import BtcLabelContainer from '../../containers/BtcLabelContainer';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
 import Title from '../../components/Title';
@@ -78,9 +77,6 @@ class AboutBetaScreen extends Component {
     return (
       <BaseSettingsScreen>
         <SettingsGroup style={styles.view}>
-          <Title style={[titleStyles, { marginTop: 0 }]}>
-            Welcome to the private beta for Pine's Lightning integration!
-          </Title>
           <View style={styles.paragraphWrapper}>
             <Paragraph style={paragraphStyles}>
               Pine's Lightning integration is finally in beta! It is non-custodial, meaning
@@ -91,8 +87,8 @@ class AboutBetaScreen extends Component {
             </Paragraph>
             <Paragraph style={paragraphStyles}>
               Keep in mind that the integration is not complete, and once it comes out of beta
-              you won't have to think about opening and closing channels or even think about
-              whether your funds are on-chain or off-chain – it will all be automatic.
+              you won't have to think about rebalancing your channel or even whether your funds
+              are on-chain or off-chain – it will all be automatic and seamless.
             </Paragraph>
           </View>
 
@@ -108,6 +104,9 @@ class AboutBetaScreen extends Component {
             </Paragraph>
             <Paragraph style={[paragraphStyles, styles.listItem]}>
               ⚡️ Send non-Pine Lightning payments
+            </Paragraph>
+            <Paragraph style={[paragraphStyles, styles.listItem]}>
+              ⚡️ Manually open and close your Lightning channel
             </Paragraph>
           </View>
 
@@ -126,35 +125,6 @@ class AboutBetaScreen extends Component {
             </Paragraph>
             <Paragraph style={[paragraphStyles, styles.listItem]}>
               🔜 Independent recovery of Lightning funds
-            </Paragraph>
-          </View>
-
-          <Title style={titleStyles}>
-            Getting Started
-          </Title>
-          <View style={styles.paragraphWrapper}>
-            <Paragraph style={paragraphStyles}>
-              <Text>To get started using Lightning with Pine, you need at least </Text>
-              <BtcLabelContainer amount={0.0002} />
-              <Text> on-chain in your wallet. From the Home screen, swipe right to
-              find your address and QR code that you can use to transfer funds to
-              your wallet.</Text>
-            </Paragraph>
-            <Paragraph style={paragraphStyles}>
-              Now you can open a Lightning channel. Do this by pressing on your balance
-              on the Home screen and then on Off-chain Balance and then Open Channel.
-              Pick the amount you would like to move to the channel and press Open.
-            </Paragraph>
-            <Paragraph style={paragraphStyles}>
-              Wait while the funding transaction is being confirmed (~10-60 mins).
-              Once confirmed you can pay Lightning invoices by scanning a QR code
-              or pasting an invoice. You can also pay other Pine users by adding
-              them as contacts and sending a payment.
-            </Paragraph>
-            <Paragraph style={paragraphStyles}>
-              Please note that with Lightning it is not enough that you have the
-              funds to make a payment, but the recipient also needs to have sufficient
-              inbound capacity to receive it.
             </Paragraph>
           </View>
 
