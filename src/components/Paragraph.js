@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '400',
     lineHeight: 21,
-    letterSpacing: -0.24,
     marginBottom: 20
   }
 });

@@ -424,7 +424,6 @@ exports[`ImportMnemonicScreen renders correctly 1`] = `
               Object {
                 "fontSize": 15,
                 "fontWeight": "400",
-                "letterSpacing": -0.24,
                 "lineHeight": 21,
                 "marginBottom": 20,
               },
