@@ -9,9 +9,20 @@ Pine Wallet
 
 ## Getting Started
 
+### Install XCode from the App Store
+
+<https://apps.apple.com/se/app/xcode/id497799835?l=en&mt=12>
+
+### Install nvm:
+
+[nvm](https://github.com/nvm-sh/nvm) (Node Version Manager) is used to install different versions
+of Node.js and npm. Follow these instructions to install nvm:
+
+<https://github.com/nvm-sh/nvm#install--update-script>
+
 ### Install Node.js
 
-Install [Node.js](https://nodejs.org) (`v8`) using [nvm](https://github.com/creationix/nvm):
+Install [Node.js](https://nodejs.org) (`v8`) using nvm:
 
 	$ nvm install v8
 
@@ -19,19 +30,37 @@ Install [Node.js](https://nodejs.org) (`v8`) using [nvm](https://github.com/crea
 
 This project is using [Yarn](https://yarnpkg.com) as a package manager instead of npm.
 
-	$ brew install yarn --without-node
+	$ npm install -g yarn
 
 Or follow the instructions here: <https://yarnpkg.com/en/docs/install>
+
+### Install CocoaPods
+
+[CocoaPods](https://cocoapods.org) is used as a dependency manager for the iOS project.
+Install it using the following command:
+
+    $ sudo gem install cocoapods
+
+### Clone the project
+
+    $ git clone https://github.com/blockfirm/pine-app.git
+    $ cd pine-app
 
 ### Install dependencies
 
 	$ yarn install
-	$ yarn global add react-native-cli
-	$ react-native link
+    $ cd ios
+    $ pod install
+
+### Start the React Native bundler
+
+Start the bundler ([Metro](https://facebook.github.io/metro/)):
+
+    $ yarn start
 
 ### Start the iOS application
 
-	$ react-native run-ios
+Open `ios/Pine.xcworkspace` with XCode and build and run the app in a simulator or real device.
 
 ## Build for production
 
