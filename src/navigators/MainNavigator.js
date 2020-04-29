@@ -14,6 +14,9 @@ import PaymentDetailsScreen from '../screens/PaymentDetailsScreen';
 import ConversationScreen from '../screens/ConversationScreen';
 import ResetScreen from '../screens/ResetScreen';
 import TurnOnNotificationsScreen from '../screens/TurnOnNotificationsScreen';
+import LightningBetaScreen from '../screens/LightningBetaScreen';
+import ActivatingLightningScreen from '../screens/ActivatingLightningScreen';
+import LightningSetupCompleteScreen from '../screens/LightningSetupCompleteScreen';
 
 const MainNavigator = createStackNavigator({
   Splash: { screen: SplashScreen },
@@ -29,7 +32,10 @@ const MainNavigator = createStackNavigator({
   PaymentDetails: { screen: PaymentDetailsScreen },
   Conversation: { screen: ConversationScreen },
   Reset: { screen: ResetScreen },
-  TurnOnNotifications: { screen: TurnOnNotificationsScreen }
+  TurnOnNotifications: { screen: TurnOnNotificationsScreen },
+  LightningBeta: { screen: LightningBetaScreen },
+  ActivatingLightning: { screen: ActivatingLightningScreen },
+  LightningSetupComplete: { screen: LightningSetupCompleteScreen }
 }, {
   headerMode: 'screen',
   initialRouteName: 'Splash'

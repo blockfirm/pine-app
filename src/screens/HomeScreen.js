@@ -4,7 +4,7 @@ import { StatusBar, View, StyleSheet, FlatList, Dimensions } from 'react-native'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { setHomeScreenIndex } from '../actions/navigate/setHomeScreenIndex';
+import { setHomeScreenIndex, reset as navigateWithReset } from '../actions/navigate';
 import Toolbar from '../components/toolbar/Toolbar';
 import { withTheme } from '../contexts/theme';
 import ContactsScreen from './ContactsScreen';
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
 });
 
 @connect((state) => ({
-  homeScreenIndex: state.navigate.homeScreen.index
+  homeScreenIndex: state.navigate.homeScreen.index,
+  hasSetupLightning: state.settings.lightning.isSetup
 }))
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -54,7 +55,13 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
+    const { dispatch, hasSetupLightning } = this.props;
+
     StatusBar.setBarStyle('default');
+
+    if (!hasSetupLightning) {
+      dispatch(navigateWithReset('LightningBeta'));
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -249,6 +256,7 @@ class HomeScreen extends Component {
 HomeScreen.propTypes = {
   dispatch: PropTypes.func,
   homeScreenIndex: PropTypes.number,
+  hasSetupLightning: PropTypes.bool,
   navigation: PropTypes.any,
   theme: PropTypes.object
 };

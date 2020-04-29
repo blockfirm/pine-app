@@ -48,7 +48,9 @@ export default {
     serverPingInterval: 30, // Expect a ping from server every 30 seconds.
 
     // How many percent of the total channel capacity is reserved for fees.
-    percentCapacityReservedForFees: 2
+    percentCapacityReservedForFees: 2,
+
+    isSetup: false
   },
   currency: {
     primary: 'BTC',
