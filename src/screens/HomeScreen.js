@@ -60,7 +60,7 @@ class HomeScreen extends Component {
     StatusBar.setBarStyle('default');
 
     if (!hasSetupLightning) {
-      dispatch(navigateWithReset('LightningBeta'));
+      dispatch(navigateWithReset('ActivateLightning'));
     }
   }
 

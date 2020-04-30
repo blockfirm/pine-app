@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 });
 
 @connect()
-export default class LightningBetaScreen extends Component {
+export default class ActivateLightningScreen extends Component {
   static navigationOptions = () => ({
     header: null
   });
@@ -77,7 +77,7 @@ export default class LightningBetaScreen extends Component {
   }
 }
 
-LightningBetaScreen.propTypes = {
+ActivateLightningScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any
 };

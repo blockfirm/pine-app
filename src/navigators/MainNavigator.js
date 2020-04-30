@@ -14,7 +14,7 @@ import PaymentDetailsScreen from '../screens/PaymentDetailsScreen';
 import ConversationScreen from '../screens/ConversationScreen';
 import ResetScreen from '../screens/ResetScreen';
 import TurnOnNotificationsScreen from '../screens/TurnOnNotificationsScreen';
-import LightningBetaScreen from '../screens/LightningBetaScreen';
+import ActivateLightningScreen from '../screens/ActivateLightningScreen';
 import ActivatingLightningScreen from '../screens/ActivatingLightningScreen';
 import LightningSetupCompleteScreen from '../screens/LightningSetupCompleteScreen';
 
@@ -33,7 +33,7 @@ const MainNavigator = createStackNavigator({
   Conversation: { screen: ConversationScreen },
   Reset: { screen: ResetScreen },
   TurnOnNotifications: { screen: TurnOnNotificationsScreen },
-  LightningBeta: { screen: LightningBetaScreen },
+  ActivateLightning: { screen: ActivateLightningScreen },
   ActivatingLightning: { screen: ActivatingLightningScreen },
   LightningSetupComplete: { screen: LightningSetupCompleteScreen }
 }, {
