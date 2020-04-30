@@ -150,8 +150,6 @@ class OffChainBalanceScreen extends Component {
 
     return (
       <BaseSettingsScreen>
-        { this._renderButtons() }
-
         <SettingsTitle>Balance</SettingsTitle>
         <SettingsGroup>
           <View style={[settingsStyles.item, styles.wrapper]}>
@@ -219,6 +217,8 @@ class OffChainBalanceScreen extends Component {
           2% of the total channel capacity has been deducted from
           both amounts as it is reserved for potential fees.
         </SettingsDescription>
+
+        { this._renderButtons() }
       </BaseSettingsScreen>
     );
   }
