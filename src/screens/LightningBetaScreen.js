@@ -25,6 +25,11 @@ const styles = StyleSheet.create({
   paragraph: {
     textAlign: 'center'
   },
+  footerParagraph: {
+    textAlign: 'center',
+    fontSize: 12,
+    lineHeight: 16
+  },
   confetti: {
     width: 100,
     height: 96,
@@ -45,22 +50,22 @@ export default class LightningBetaScreen extends Component {
 
   render() {
     return (
-      <BaseScreen style={styles.view} hideHeader={true}>
+      <BaseScreen style={styles.view} headerTitle='Lightning Payments'>
         {/*<Image source={confettiImage} style={styles.confetti} />*/}
 
-        <Title style={styles.title}>
-          Welcome to Pine's Lightning Beta!
-        </Title>
- 
         <Paragraph style={styles.paragraph}>
-          This beta allows you for the first time try out the Lightning Network with Pine.
+          Lightning payments are cheaper and faster than conventional bitcoin payments.
+          Connect Pine to Lightning to enjoy seamless Lightning payments while still
+          holding on to your private keys.
         </Paragraph>
-        <Paragraph style={styles.paragraph}>
-          Pine is non-custodial, including the Lightning integration. This means that Pine
-          signs all transactions on your device without having access to your private keys.
-        </Paragraph>
-
+  
         <Footer>
+          <Paragraph style={styles.footerParagraph}>
+            The Lightning integration is in beta which means it's not feature-complete
+            and might have bugs. You will get some satoshis to try with so you don't
+            have to risk your own.
+          </Paragraph>
+
           <Button
             label='Activate Lightning'
             onPress={this._activate.bind(this)}
