@@ -102,6 +102,7 @@ export default class ActivatingLightningScreen extends Component {
       }, PROGRESS_BAR_ANIMATION_DURATION);
     } catch (error) {
       dispatch(handleError(error));
+      navigation.goBack();
     }
   }
 
