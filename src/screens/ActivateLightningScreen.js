@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { reset as navigateWithReset } from '../actions/navigate';
-import headerStyles from '../styles/headerStyles';
-import Title from '../components/Title';
+import { save as saveSettings } from '../actions/settings';
 import Paragraph from '../components/Paragraph';
 import Button from '../components/Button';
+import Link from '../components/Link';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16
   },
+  link: {
+    marginTop: 10
+  },
   confetti: {
     width: 100,
     height: 96,
@@ -46,6 +49,16 @@ export default class ActivateLightningScreen extends Component {
   _activate() {
     const { navigation } = this.props;
     navigation.navigate('ActivatingLightning');
+  }
+
+  _skip() {
+    const { dispatch } = this.props;
+
+    dispatch(saveSettings({
+      lightning: { isSetup: true }
+    }));
+
+    dispatch(navigateWithReset('Home'));
   }
 
   render() {
@@ -71,6 +84,13 @@ export default class ActivateLightningScreen extends Component {
             onPress={this._activate.bind(this)}
             runAfterInteractions={true}
           />
+
+          <Link
+            onPress={this._skip.bind(this)}
+            style={styles.link}
+          >
+            Activate Later in Settings
+          </Link>
         </Footer>
       </BaseScreen>
     );
