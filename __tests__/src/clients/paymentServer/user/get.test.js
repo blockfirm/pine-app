@@ -80,7 +80,7 @@ describe('get', () => {
 
         return getUser(address).catch((error) => {
           expect(error).toBeTruthy();
-          expect(error.message).toContain('invalid response');
+          expect(error.message).toBe('User does not exist');
         });
       });
     });

@@ -33,7 +33,11 @@ const get = (pineAddress) => {
 
       const user = response[0];
 
-      if (!user || !user.id || user.username !== username) {
+      if (!user) {
+        throw new Error('User does not exist');
+      }
+
+      if (!user.id || user.username !== username) {
         throw new SyntaxError();
       }
 
