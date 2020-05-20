@@ -11,9 +11,7 @@ const mapStateToProps = (state) => ({
   secondaryCurrency: state.settings.currency.secondary,
   defaultBitcoinUnit: state.settings.bitcoin.unit,
   lastUsedDenomination: state.settings.user.lastUsedDenomination,
-  onChainBalance: state.bitcoin.wallet.balance,
   onChainSpendableBalance: state.bitcoin.wallet.spendableBalance,
-  offChainBalance: state.lightning.balance.local,
   offChainSpendableBalance: state.lightning.balance.spendable,
   fiatRates: state.bitcoin.fiat.rates
 });

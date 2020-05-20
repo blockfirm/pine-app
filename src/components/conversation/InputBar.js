@@ -129,7 +129,6 @@ class InputBar extends Component {
   // eslint-disable-next-line max-statements
   _checkBalance(amount) {
     const {
-      onChainBalance,
       onChainSpendableBalance,
       offChainSpendableBalance,
       contactInboundCapacity,
@@ -145,14 +144,15 @@ class InputBar extends Component {
 
     switch (paymentType) {
       case InputBar.PAYMENT_TYPE_BOTH:
-        if (amountBtc > offChainSpendableBalanceBtc || amountBtc > contactInboundCapacityBtc) {
-          if (amountBtc > onChainBalance) {
-            insufficientFunds = true;
-            insufficientFundsReason = 'Insufficient funds';
-          } else if (amountBtc > onChainSpendableBalance) {
-            insufficientFunds = true;
-            insufficientFundsReason = 'Insufficient spendable funds';
-          }
+        if (amountBtc > normalizeBtcAmount(offChainSpendableBalanceBtc + onChainSpendableBalance)) {
+          insufficientFunds = true;
+          insufficientFundsReason = 'Insufficient spendable funds';
+        } else if (amountBtc > offChainSpendableBalanceBtc && amountBtc > onChainSpendableBalance) {
+          insufficientFunds = true;
+          insufficientFundsReason = 'Use either on or off-chain funds';
+        } else if (amountBtc > onChainSpendableBalance && amountBtc <= offChainSpendableBalanceBtc && amountBtc > contactInboundCapacityBtc) {
+          insufficientFunds = true;
+          insufficientFundsReason = 'Contact cannot receive this amount';
         }
         break;
 
@@ -313,9 +313,7 @@ InputBar.propTypes = {
   defaultBitcoinUnit: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   unit: PropTypes.string.isRequired,
-  onChainBalance: PropTypes.number.isRequired,
   onChainSpendableBalance: PropTypes.number.isRequired,
-  offChainBalance: PropTypes.number.isRequired,
   offChainSpendableBalance: PropTypes.number.isRequired,
   fiatRates: PropTypes.object.isRequired,
   onSendPress: PropTypes.func.isRequired,
