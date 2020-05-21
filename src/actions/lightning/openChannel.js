@@ -32,9 +32,7 @@ export const openChannel = (satsAmount) => {
 
     try {
       const satsPerByte = await dispatch(getEstimate());
-
-      // TODO: The estimated fee is somehow too low and is rejected when broadcasted.
-      await client.openChannel(satsAmount, satsPerByte * 10);
+      await client.openChannel(satsAmount, satsPerByte);
     } catch (error) {
       dispatch(openChannelFailure(error));
       throw error;
