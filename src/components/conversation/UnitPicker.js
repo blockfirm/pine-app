@@ -60,11 +60,16 @@ const getDenominationsForCurrency = (currency, defaultBitcoinUnit) => {
 class UnitPicker extends Component {
   _getDenominations() {
     const { primaryCurrency, secondaryCurrency, defaultBitcoinUnit } = this.props;
+    let denominations = getDenominationsForCurrency(primaryCurrency, defaultBitcoinUnit);
 
-    return [
-      ...getDenominationsForCurrency(primaryCurrency, defaultBitcoinUnit),
-      ...getDenominationsForCurrency(secondaryCurrency, defaultBitcoinUnit)
-    ];
+    if (secondaryCurrency) {
+      denominations = [
+        ...denominations,
+        ...getDenominationsForCurrency(secondaryCurrency, defaultBitcoinUnit)
+      ];
+    }
+
+    return denominations;
   }
 
   _showOptions() {
@@ -123,7 +128,7 @@ class UnitPicker extends Component {
 UnitPicker.propTypes = {
   onChangeUnit: PropTypes.func.isRequired,
   primaryCurrency: PropTypes.string.isRequired,
-  secondaryCurrency: PropTypes.string.isRequired,
+  secondaryCurrency: PropTypes.string,
   defaultBitcoinUnit: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   unit: PropTypes.string,

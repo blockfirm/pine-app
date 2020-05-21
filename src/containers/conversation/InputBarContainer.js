@@ -30,7 +30,8 @@ class InputBarContainer extends PureComponent {
       currency: PropTypes.string,
       unit: PropTypes.string
     }).isRequired,
-    initialAmountBtc: PropTypes.number
+    initialAmountBtc: PropTypes.number,
+    fiatRates: PropTypes.object
   };
 
   constructor() {
@@ -68,7 +69,8 @@ class InputBarContainer extends PureComponent {
       secondaryCurrency,
       defaultBitcoinUnit,
       lastUsedDenomination,
-      initialAmountBtc
+      initialAmountBtc,
+      fiatRates
     } = this.props;
 
     let currency = primaryCurrency;
@@ -78,16 +80,16 @@ class InputBarContainer extends PureComponent {
       return { currency: UNIT_BTC, unit };
     }
 
-    if (lastUsedDenomination.currency) {
-      if ([primaryCurrency, secondaryCurrency].includes(lastUsedDenomination.currency)) {
+    if (lastUsedDenomination.currency === primaryCurrency) {
+      currency = lastUsedDenomination.currency;
+    } else if (lastUsedDenomination.currency === secondaryCurrency) {
+      if (fiatRates[secondaryCurrency]) {
         currency = lastUsedDenomination.currency;
       }
     }
 
-    if (lastUsedDenomination.unit) {
-      if ([defaultBitcoinUnit, UNIT_BTC, UNIT_SATOSHIS].includes(lastUsedDenomination.unit)) {
-        unit = lastUsedDenomination.unit;
-      }
+    if ([defaultBitcoinUnit, UNIT_BTC, UNIT_SATOSHIS].includes(lastUsedDenomination.unit)) {
+      unit = lastUsedDenomination.unit;
     }
 
     return { currency, unit };

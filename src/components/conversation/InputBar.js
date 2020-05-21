@@ -261,6 +261,7 @@ class InputBar extends Component {
       primaryCurrency,
       secondaryCurrency,
       defaultBitcoinUnit,
+      fiatRates,
       disabled,
       locked,
       theme
@@ -276,6 +277,7 @@ class InputBar extends Component {
     } = this.state;
 
     const pointerEvents = disabled ? 'none' : null;
+    const hideSecondaryCurrency = !fiatRates[secondaryCurrency];
 
     return (
       <View style={styles.toolbar} pointerEvents={pointerEvents}>
@@ -292,7 +294,7 @@ class InputBar extends Component {
         />
         <UnitPicker
           primaryCurrency={primaryCurrency}
-          secondaryCurrency={secondaryCurrency}
+          secondaryCurrency={hideSecondaryCurrency ? null : secondaryCurrency}
           defaultBitcoinUnit={defaultBitcoinUnit}
           currency={currency}
           unit={unit}
