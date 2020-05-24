@@ -3,6 +3,7 @@ import { StyleSheet, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactNativeHaptic from 'react-native-haptic';
+import * as permissions from 'react-native-permissions';
 
 import QrCodeScannerContainer from '../containers/QrCodeScannerContainer';
 import CameraScreenHeader from '../components/CameraScreenHeader';
@@ -25,6 +26,7 @@ export default class CameraScreen extends Component {
   }
 
   state = {
+    showCamera: false,
     pauseCamera: false
   }
 
@@ -33,11 +35,33 @@ export default class CameraScreen extends Component {
 
     this._willFocusListener = navigation.addListener('willFocus', this.componentWillFocus.bind(this));
     this._willBlurListener = navigation.addListener('willBlur', this.componentWillBlur.bind(this));
+
+    permissions.check(permissions.PERMISSIONS.IOS.CAMERA)
+      .then(cameraPermission => {
+        if (cameraPermission !== permissions.RESULTS.DENIED) {
+          /**
+           * Show camera unless permissions haven't been requested yet,
+           * and in that case wait until camera screen becomes active.
+           */
+          this.setState({ showCamera: true });
+        }
+      })
+      .catch(() => {
+        // Fall back to let the camera component handle the permissions.
+        this.setState({ showCamera: true });
+      });
   }
 
   componentWillUnmount() {
     this._willFocusListener.remove();
     this._willBlurListener.remove();
+  }
+
+  componentDidUpdate() {
+    if (this.props.homeScreenIndex === 0 && !this.state.showCamera) {
+      // Show camera if camera screen becomes active and is not already shown.
+      this.setState({ showCamera: true });
+    }
   }
 
   componentWillFocus() {
@@ -140,18 +164,28 @@ export default class CameraScreen extends Component {
     navigation.navigate('RedeemAzteco', { voucher });
   }
 
-  render() {
-    const showPreview = this.props.showPreview && !this.state.pauseCamera;
+  _renderQrCodeScanner() {
+    const { showCamera, pauseCamera } = this.state;
+    const showPreview = this.props.showPreview && !pauseCamera;
+
+    if (!showCamera) {
+      return null;
+    }
 
     return (
-      <BaseScreen style={styles.view}>
-        <QrCodeScannerContainer
-          showPreview={showPreview}
-          onReceiveAddress={this._onReceiveAddress.bind(this)}
-          onReceiveLightningPaymentRequest={this._onReceiveLightningPaymentRequest.bind(this)}
-          onRedeemAzteco={this._onRedeemAzteco.bind(this)}
-        />
+      <QrCodeScannerContainer
+        showPreview={showPreview}
+        onReceiveAddress={this._onReceiveAddress.bind(this)}
+        onReceiveLightningPaymentRequest={this._onReceiveLightningPaymentRequest.bind(this)}
+        onRedeemAzteco={this._onRedeemAzteco.bind(this)}
+      />
+    );
+  }
 
+  render() {
+    return (
+      <BaseScreen style={styles.view}>
+        {this._renderQrCodeScanner()}
         <CameraScreenHeader onBackPress={this.props.onBackPress} />
       </BaseScreen>
     );
