@@ -63,6 +63,7 @@
     "react-native-keyboard-spacer": "^0.4.1",
     "react-native-keychain": "^3.0.0-rc.3",
     "react-native-linear-gradient": "^2.4.2",
+    "react-native-permissions": "^2.1.5",
     "react-native-qrcode-svg": "^5.3.2",
     "react-native-randombytes": "^3.0.0",
     "react-native-search-bar": "^3.5.1",

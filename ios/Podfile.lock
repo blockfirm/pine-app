@@ -21,6 +21,8 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
+  - Permission-Camera (2.1.5):
+    - RNPermissions
   - QBImagePickerController (3.4.0)
   - RCTRequired (0.61.4)
   - RCTTypeSafety (0.61.4):
@@ -270,6 +272,8 @@ PODS:
     - RSKImageCropper
   - RNKeychain (3.1.3):
     - React
+  - RNPermissions (2.1.5):
+    - React
   - RNSearchBar (3.5.1):
     - React
   - RNStaticSafeAreaInsets (1.3.4):
@@ -293,6 +297,7 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
@@ -335,6 +340,7 @@ DEPENDENCIES:
   - RNICloudStore (from `../node_modules/react-native-icloudstore`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNSearchBar (from `../node_modules/react-native-search-bar`)
   - RNStaticSafeAreaInsets (from `../node_modules/react-native-static-safe-area-insets`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -343,7 +349,7 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - boost-for-react-native
     - QBImagePickerController
     - RSKImageCropper
@@ -362,6 +368,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  Permission-Camera:
+    :path: "../node_modules/react-native-permissions/ios/Camera.podspec"
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -440,6 +448,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-crop-picker"
   RNKeychain:
     :path: "../node_modules/react-native-keychain"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNSearchBar:
     :path: "../node_modules/react-native-search-bar"
   RNStaticSafeAreaInsets:
@@ -461,6 +471,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 51477b84b1bf7ab6f9ef307c24e3dd675391be44
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  Permission-Camera: afad27bf90337684d4a86f3825112d648c8c4d3b
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   RCTRequired: f3b3fb6f4723e8e52facb229d0c75fdc76773849
   RCTTypeSafety: 2ec60de6abb1db050b56ecc4b60188026078fd10
@@ -501,6 +512,7 @@ SPEC CHECKSUMS:
   RNICloudStore: bc6e225811637c09bd1eb055d6cd7448e61cd451
   RNImageCropPicker: bfb3ea9c8622f290532e2fe63f369e0d5a52f597
   RNKeychain: c658833a9cb2cbcba6423bdd6e16cce59e27da0e
+  RNPermissions: ad71dd4f767ec254f2cd57592fbee02afee75467
   RNSearchBar: 9860431356b7d12a8449d2fddb2b5f3c78d1e99f
   RNStaticSafeAreaInsets: e7f24b4b48990726d2d4184cb0cc4d0f2a904512
   RNSVG: f6177f8d7c095fada7cfee2e4bb7388ba426064c
@@ -510,6 +522,6 @@ SPEC CHECKSUMS:
   TouchID: b816a3db79ac3f9da547d0d0d4bd87ff6e338ca9
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: e16f33025be5e02441a7c32a0e289202f18d3816
+PODFILE CHECKSUM: 23e1c84ae4c8c8401686653a35abcd8f02952ee7
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.9.1
