@@ -239,8 +239,4 @@ Button.propTypes = {
   theme: PropTypes.object
 };
 
-Button.defaultProps = {
-  loaderColor: 'gray'
-};
-
 export default withTheme(Button);

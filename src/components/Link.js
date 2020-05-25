@@ -48,4 +48,8 @@ Link.propTypes = {
   theme: PropTypes.object
 };
 
+Link.defaultProps = {
+  loaderColor: 'gray'
+};
+
 export default withTheme(Link);
