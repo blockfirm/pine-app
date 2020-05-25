@@ -40,13 +40,15 @@ export const ignore = (contact) => {
     dispatch(ignoreRequest());
 
     return dispatch(removeIncomingContactRequest(contact.contactRequest.id))
+      .catch((error) => {
+        if (error.name !== 'NotFound') {
+          dispatch(ignoreFailure(error));
+          throw error;
+        }
+      })
       .then(() => {
         dispatch(ignoreSuccess(contact));
         return dispatch(save()).then(() => contact);
-      })
-      .catch((error) => {
-        dispatch(ignoreFailure(error));
-        throw error;
       });
   };
 };

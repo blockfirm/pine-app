@@ -37,7 +37,10 @@ const removeIncoming = (contactRequestId, credentials) => {
       }
 
       return response.json().then((error) => {
-        throw new Error(error.message);
+        throw {
+          name: error.code,
+          message: error.message
+        };
       });
     })
     .catch((error) => {
