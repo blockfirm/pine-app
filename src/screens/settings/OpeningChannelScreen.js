@@ -22,8 +22,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   paragraph: {
-    textAlign: 'center',
-    fontSize: 13
+    textAlign: 'center'
   }
 });
 
@@ -97,7 +96,7 @@ export default class OpeningChannelScreen extends Component {
         <ActivityIndicator color='gray' size='small' />
         <ProgressBar progress={progress} style={styles.progressBar} />
         <Paragraph style={styles.paragraph}>
-          Opening Channel: This can take a while, please keep this screen active until it's done.
+          Opening channel. This may take a moment, please keep this screen active until it's done.
         </Paragraph>
       </BaseScreen>
     );

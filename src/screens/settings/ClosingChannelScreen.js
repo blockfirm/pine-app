@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   paragraph: {
-    textAlign: 'center',
-    fontSize: 13
+    textAlign: 'center'
   }
 });
 
@@ -132,7 +131,7 @@ export default class CloseChannelScreen extends Component {
         />
 
         <Paragraph style={styles.paragraph}>
-          Closing Channel: This can take a few seconds, please keep this screen active until it's done.
+          Closing channel. This may take a few seconds, please keep this screen active until it's done.
         </Paragraph>
       </BaseScreen>
     );

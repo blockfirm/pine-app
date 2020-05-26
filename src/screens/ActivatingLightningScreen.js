@@ -27,8 +27,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   paragraph: {
-    textAlign: 'center',
-    fontSize: 13
+    textAlign: 'center'
   }
 });
 
@@ -164,7 +163,7 @@ export default class ActivatingLightningScreen extends Component {
         />
 
         <Paragraph style={styles.paragraph}>
-          Activating Lightning: Please keep this screen open until it's done.
+          Activating Lightning. This may take a moment, please keep this screen active until it's done.
         </Paragraph>
       </BaseScreen>
     );
