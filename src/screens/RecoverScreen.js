@@ -127,7 +127,10 @@ class RecoverScreen extends Component {
     const dispatch = this.props.dispatch;
 
     const newSettings = {
-      initialized: true
+      initialized: true,
+      lightning: {
+        isSetup: true // Flag as setup to prevent Activate Lightning screen from showing.
+      }
     };
 
     return dispatch(settingsActions.save(newSettings));
