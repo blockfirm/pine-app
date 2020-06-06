@@ -123,6 +123,10 @@ class ConfirmTransactionContainer extends Component {
     await this._resetState();
     await this._checkLightningCapacities();
 
+    if (!this.props.amountBtc) {
+      return;
+    }
+
     if (this._isLightning()) {
       await this._createLightningInvoice();
       this._estimateLightningFee();
