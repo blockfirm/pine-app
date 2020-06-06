@@ -64,7 +64,7 @@ class HomeScreen extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     const { homeScreenIndex } = this.props;
 
     /**
