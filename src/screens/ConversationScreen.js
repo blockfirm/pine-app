@@ -276,6 +276,16 @@ export default class ConversationScreen extends Component {
     }
   }
 
+  _configureNextAnimation() {
+    const animation = LayoutAnimation.create(
+      this.state.keyboardAnimationDuration,
+      LayoutAnimation.Types[this.state.keyboardAnimationEasing],
+      LayoutAnimation.Properties.opacity
+    );
+
+    LayoutAnimation.configureNext(animation);
+  }
+
   _onKeyboardDidShow(event) {
     this.setState({
       keyboardHeight: event.endCoordinates.height,
@@ -428,13 +438,7 @@ export default class ConversationScreen extends Component {
       return Keyboard.dismiss();
     }
 
-    const animation = LayoutAnimation.create(
-      this.state.keyboardAnimationDuration,
-      LayoutAnimation.Types[this.state.keyboardAnimationEasing],
-      LayoutAnimation.Properties.opacity,
-    );
-
-    LayoutAnimation.configureNext(animation);
+    this._configureNextAnimation();
   }
 
   _onCancelPress() {
@@ -445,13 +449,23 @@ export default class ConversationScreen extends Component {
 
   _onTransactionSent({ createdContact }) {
     const { dispatch, navigation } = this.props;
+    const { inputLocked } = this.state;
 
-    this._listenKeyboardDidShow().then(() => {
+    if (inputLocked) {
+      this._configureNextAnimation();
+
       this.setState({
         confirmTransaction: false,
         amountBtc: 0
       });
-    });
+    } else {
+      this._listenKeyboardDidShow().then(() => {
+        this.setState({
+          confirmTransaction: false,
+          amountBtc: 0
+        });
+      });
+    }
 
     if (this._inputBar) {
       this._inputBar.reset();
