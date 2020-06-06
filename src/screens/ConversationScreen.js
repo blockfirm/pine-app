@@ -160,6 +160,7 @@ export default class ConversationScreen extends Component {
         const paymentRequestAmount = satsToBtc(decodedPaymentRequest.satoshis);
 
         this.state.decodedPaymentRequest = decodedPaymentRequest;
+        this.state.amountBtc = paymentRequestAmount;
         this.state.initialAmountBtc = paymentRequestAmount;
         this.state.inputLocked = true;
         this.state.confirmTransaction = true;
