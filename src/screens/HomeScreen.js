@@ -4,6 +4,7 @@ import { StatusBar, View, StyleSheet, FlatList, Dimensions } from 'react-native'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import config from '../config';
 import { setHomeScreenIndex, reset as navigateWithReset } from '../actions/navigate';
 import Toolbar from '../components/toolbar/Toolbar';
 import { withTheme } from '../contexts/theme';
@@ -59,7 +60,7 @@ class HomeScreen extends Component {
 
     StatusBar.setBarStyle('default');
 
-    if (!hasSetupLightning) {
+    if (config.lightning.enabled && !hasSetupLightning) {
       dispatch(navigateWithReset('ActivateLightning'));
     }
   }

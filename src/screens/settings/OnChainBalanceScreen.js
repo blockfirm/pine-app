@@ -3,12 +3,14 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import config from '../../config';
 import { withTheme } from '../../contexts/theme';
 import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
 import settingsStyles from '../../styles/settingsStyles';
 import BackButton from '../../components/BackButton';
+import DoneButton from '../../components/DoneButton';
 import SettingsTitle from '../../components/SettingsTitle';
 import SettingsDescription from '../../components/SettingsDescription';
 import SettingsGroup from '../../components/SettingsGroup';
@@ -82,12 +84,17 @@ const getCoinAggregates = (utxos) => {
   utxos: state.bitcoin.wallet.utxos.items
 }))
 class OnChainBalanceScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    headerTransparent: true,
-    headerBackground: <SettingsHeaderBackground />,
-    headerTitle: <HeaderTitle title='On-chain Balance' />,
-    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
-  });
+  static navigationOptions = ({ navigation, screenProps }) => {
+    const isModal = navigation.getParam('isModal') || false;
+
+    return {
+      headerTransparent: true,
+      headerBackground: <SettingsHeaderBackground />,
+      headerTitle: <HeaderTitle title={config.lightning.enabled ? 'On-chain Balance' : 'Wallet Balance'} />,
+      headerLeft: isModal ? null : <BackButton onPress={() => { navigation.goBack(); }} />,
+      headerRight: isModal ? <DoneButton onPress={screenProps.dismiss} /> : null
+    };
+  };
 
   constructor(props) {
     super(...arguments);

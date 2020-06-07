@@ -7,6 +7,7 @@ import SettingsNavigator from './SettingsNavigator';
 import BackUpMnemonicNavigator from './BackUpMnemonicNavigator';
 import AddContactNavigator from './AddContactNavigator';
 import WalletBalanceNavigator from './WalletBalanceNavigator';
+import OnChainBalanceNavigator from './OnChainBalanceNavigator';
 import AztecoNavigator from './AztecoNavigator';
 import ChangePineServerNavigator from './ChangePineServerNavigator';
 import OpenLightningChannelNavigator from './OpenLightningChannelNavigator';
@@ -19,6 +20,7 @@ const AppNavigator = createStackNavigator({
   BackUpMnemonic: { screen: BackUpMnemonicNavigator },
   AddContact: { screen: AddContactNavigator },
   WalletBalance: { screen: WalletBalanceNavigator },
+  OnChainBalanceModal: { screen: OnChainBalanceNavigator },
   Azteco: { screen: AztecoNavigator },
   ChangePineServer: { screen: ChangePineServerNavigator },
   OpenLightningChannel: { screen: OpenLightningChannelNavigator }

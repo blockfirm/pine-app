@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import config from '../../config';
 import parseAddress from '../../clients/paymentServer/address/parse';
 import { withTheme } from '../../contexts/theme';
 import settingsStyles from '../../styles/settingsStyles';
@@ -49,6 +50,38 @@ class StatusScreen extends Component {
     return matches && matches[1];
   }
 
+  _renderLightningStatus() {
+    const { theme } = this.props;
+    const pineHostname = this._getPineHostname();
+
+    const statusWrapperStyle = [
+      settingsStyles.item,
+      theme.settingsItem,
+      styles.statusWrapper
+    ];
+
+    if (!config.lightning.enabled) {
+      return null;
+    }
+
+    return (
+      <>
+        <SettingsTitle label={pineHostname.toLowerCase()}>
+          Lightning Service
+        </SettingsTitle>
+        <SettingsGroup>
+          <View style={statusWrapperStyle}>
+            <LightningConnectionStatusContainer />
+          </View>
+        </SettingsGroup>
+        <SettingsDescription>
+          The Lightning Service provides non-custodial access to the Lightning Network
+          without exposing your private keys. Transactions are securely signed on the device.
+        </SettingsDescription>
+      </>
+    );
+  }
+
   render() {
     const { theme } = this.props;
     const pineHostname = this._getPineHostname();
@@ -88,18 +121,7 @@ class StatusScreen extends Component {
           to the bitcoin network. It does not have any access to your bitcoins.
         </SettingsDescription>
 
-        <SettingsTitle label={pineHostname.toLowerCase()}>
-          Lightning Service
-        </SettingsTitle>
-        <SettingsGroup>
-          <View style={statusWrapperStyle}>
-            <LightningConnectionStatusContainer />
-          </View>
-        </SettingsGroup>
-        <SettingsDescription>
-          The Lightning Service provides non-custodial access to the Lightning Network
-          without exposing your private keys. Transactions are securely signed on the device.
-        </SettingsDescription>
+        { this._renderLightningStatus() }
       </BaseSettingsScreen>
     );
   }

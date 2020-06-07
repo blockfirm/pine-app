@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ReactNativeHaptic from 'react-native-haptic';
 import * as permissions from 'react-native-permissions';
 
+import config from '../config';
 import QrCodeScannerContainer from '../containers/QrCodeScannerContainer';
 import CameraScreenHeader from '../components/CameraScreenHeader';
 import BaseScreen from './BaseScreen';
@@ -141,7 +142,7 @@ export default class CameraScreen extends Component {
     const showPreview = this.props.showPreview && !this.state.pauseCamera;
     const isFocused = navigation.isFocused();
 
-    if (!showPreview || !isFocused) {
+    if (!showPreview || !isFocused || !config.lightning.enabled) {
       return;
     }
 

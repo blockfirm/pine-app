@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import config from '../../config';
 import ConnectionIndicatorContainer from '../../containers/indicators/ConnectionIndicatorContainer';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
@@ -76,14 +77,21 @@ export default class SettingsScreen extends Component {
         <SettingsGroup>
           <SettingsLink icon={SettingsLink.ICON_GEAR} name='General' onPress={this._showGeneralSettings.bind(this)} />
           <SettingsLink icon={SettingsLink.ICON_BITCOIN} name='Bitcoin' onPress={this._showBitcoinSettings.bind(this)} />
-          <SettingsLink icon={SettingsLink.ICON_LIGHTNING} name='Lightning' onPress={this._showLightningSettings.bind(this)} />
+
+          {
+            config.lightning.enabled ?
+            <SettingsLink icon={SettingsLink.ICON_LIGHTNING} name='Lightning' onPress={this._showLightningSettings.bind(this)} /> : null
+          }
 
           <View style={styles.linkAndDotWrapper}>
             <SettingsLink icon={SettingsLink.ICON_STATUS} name='Status' onPress={this._showStatus.bind(this)} />
             <ConnectionIndicatorContainer style={styles.connectionWarning} />
           </View>
 
-          <SettingsLink icon={SettingsLink.ICON_BETA} name='Beta' onPress={this._showBetaSettings.bind(this)} isLastItem={true} />
+          {
+            config.lightning.enabled ?
+            <SettingsLink icon={SettingsLink.ICON_BETA} name='Beta' onPress={this._showBetaSettings.bind(this)} isLastItem={true} /> : null
+          }
         </SettingsGroup>
       </BaseSettingsScreen>
     );
