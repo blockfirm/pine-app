@@ -43,7 +43,7 @@ export default {
     }
   },
   lightning: {
-    enabled: true,
+    enabled: false,
     serverPingInterval: 30, // Expect a ping from server every 30 seconds.
 
     // How many percent of the total channel capacity is reserved for fees.
