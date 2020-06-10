@@ -45,6 +45,13 @@ const flagAsUsed = (addresses, credentials) => {
       return response.json().then((error) => {
         throw new Error(error.message);
       });
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to flag address as used');
+      }
+
+      throw error;
     });
 };
 

@@ -14,7 +14,8 @@ import CancelButtonIcon from '../icons/CancelButtonIcon';
 
 import {
   UNIT_BTC,
-  convert as convertBitcoin
+  convert as convertBitcoin,
+  satsToBtc
 } from '../../crypto/bitcoin/convert';
 
 const CURRENCY_BTC = 'BTC';
@@ -30,9 +31,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 53
   },
-  buttonContainer: {
+  buttonsContainer: {
     position: 'absolute',
-    right: 13
+    right: 13,
+    width: 45,
+    height: 45
   },
   disabledOverlay: {
     position: 'absolute',
@@ -48,6 +51,10 @@ const styles = StyleSheet.create({
 });
 
 class InputBar extends Component {
+  static PAYMENT_TYPE_BOTH = 'both';
+  static PAYMENT_TYPE_ONCHAIN = 'on-chain';
+  static PAYMENT_TYPE_OFFCHAIN = 'off-chain';
+
   constructor(props) {
     super(...arguments);
 
@@ -76,6 +83,7 @@ class InputBar extends Component {
     this._onChangeAmount = this._onChangeAmount.bind(this);
     this._onChangeUnit = this._onChangeUnit.bind(this);
     this._onSendPress = this._onSendPress.bind(this);
+    this._onSendLongPress = this._onSendLongPress.bind(this);
     this._onCancelPress = this._onCancelPress.bind(this);
     this._onInputPress = this._onInputPress.bind(this);
   }
@@ -118,22 +126,55 @@ class InputBar extends Component {
     return amountBtc;
   }
 
+  // eslint-disable-next-line max-statements
   _checkBalance(amount) {
-    const { spendableBalance, balance } = this.props;
+    const {
+      onChainSpendableBalance,
+      offChainSpendableBalance,
+      contactInboundCapacity,
+      paymentType
+    } = this.props;
+
+    const offChainSpendableBalanceBtc = satsToBtc(offChainSpendableBalance);
+    const contactInboundCapacityBtc = satsToBtc(contactInboundCapacity);
     const amountBtc = this._getBtcAmount(amount);
-    const insufficientFunds = amountBtc > spendableBalance;
+
+    let insufficientFunds;
     let insufficientFundsReason;
 
-    if (amountBtc > balance) {
-      insufficientFundsReason = 'Insufficient funds';
-    } else if (amountBtc > spendableBalance) {
-      insufficientFundsReason = 'Insufficient confirmed funds';
+    switch (paymentType) {
+      case InputBar.PAYMENT_TYPE_BOTH:
+        if (amountBtc > normalizeBtcAmount(offChainSpendableBalanceBtc + onChainSpendableBalance)) {
+          insufficientFunds = true;
+          insufficientFundsReason = 'Insufficient spendable funds';
+        } else if (amountBtc > offChainSpendableBalanceBtc && amountBtc > onChainSpendableBalance) {
+          insufficientFunds = true;
+          insufficientFundsReason = 'Use either on or off-chain funds';
+        } else if (amountBtc > onChainSpendableBalance && amountBtc <= offChainSpendableBalanceBtc && amountBtc > contactInboundCapacityBtc) {
+          insufficientFunds = true;
+          insufficientFundsReason = 'Contact cannot receive this amount';
+        }
+        break;
+
+      case InputBar.PAYMENT_TYPE_ONCHAIN:
+        if (amountBtc > onChainSpendableBalance) {
+          insufficientFunds = true;
+          insufficientFundsReason = 'Insufficient on-chain funds';
+        }
+        break;
+
+      case InputBar.PAYMENT_TYPE_OFFCHAIN:
+        if (amountBtc > offChainSpendableBalanceBtc) {
+          insufficientFunds = true;
+          insufficientFundsReason = 'Insufficient off-chain funds';
+        }
+        break;
     }
 
     this.setState({ insufficientFunds, insufficientFundsReason });
   }
 
-  _onSendPress() {
+  _send(forceOnChain = false) {
     const amountBtc = this._getBtcAmount(this.state.amount);
     const displayCurrency = this.state.currency;
     const displayUnit = this.state.unit;
@@ -141,7 +182,28 @@ class InputBar extends Component {
     ReactNativeHaptic.generate('selection');
 
     this.setState({ confirmTransaction: true });
-    this.props.onSendPress({ amountBtc, displayCurrency, displayUnit });
+
+    this.props.onSendPress({
+      amountBtc,
+      displayCurrency,
+      displayUnit,
+      forceOnChain
+    });
+  }
+
+  _onSendPress() {
+    this._send();
+  }
+
+  _onSendLongPress() {
+    const forceOnChain = true;
+    const { paymentType } = this.props;
+
+    if (paymentType === InputBar.PAYMENT_TYPE_OFFCHAIN) {
+      ReactNativeHaptic.generate('notificationError');
+    } else {
+      this._send(forceOnChain);
+    }
   }
 
   _onCancelPress() {
@@ -162,29 +224,35 @@ class InputBar extends Component {
   }
 
   _renderButton() {
-    const { theme } = this.props;
+    const { theme, locked } = this.props;
     const { amount, insufficientFunds, confirmTransaction } = this.state;
-    const sendDisabled = !amount || insufficientFunds;
-
-    if (confirmTransaction) {
-      return (
-        <InputBarButton
-          style={theme.inputCancelButton}
-          containerStyle={styles.buttonContainer}
-          Icon={CancelButtonIcon}
-          onPress={this._onCancelPress}
-        />
-      );
-    }
+    const sendDisabled = locked || !amount || insufficientFunds;
 
     return (
-      <InputBarButton
-        disabled={sendDisabled}
-        style={theme.inputSendButton}
-        containerStyle={styles.buttonContainer}
-        Icon={SendButtonIcon}
-        onPress={this._onSendPress}
-      />
+      <View style={styles.buttonsContainer}>
+        <View
+          style={{ position: 'absolute', opacity: confirmTransaction ? 1 : 0 }}
+          pointerEvents={confirmTransaction ? 'auto' : 'none'}
+        >
+          <InputBarButton
+            style={theme.inputCancelButton}
+            Icon={CancelButtonIcon}
+            onPress={this._onCancelPress}
+          />
+        </View>
+        <View
+          style={{ position: 'absolute', opacity: confirmTransaction ? 0 : 1 }}
+          pointerEvents={confirmTransaction ? 'none' : 'auto'}
+        >
+          <InputBarButton
+            disabled={sendDisabled}
+            style={theme.inputSendButton}
+            Icon={SendButtonIcon}
+            onPress={this._onSendPress}
+            onLongPress={this._onSendLongPress}
+          />
+        </View>
+      </View>
     );
   }
 
@@ -193,7 +261,9 @@ class InputBar extends Component {
       primaryCurrency,
       secondaryCurrency,
       defaultBitcoinUnit,
+      fiatRates,
       disabled,
+      locked,
       theme
     } = this.props;
 
@@ -207,6 +277,7 @@ class InputBar extends Component {
     } = this.state;
 
     const pointerEvents = disabled ? 'none' : null;
+    const hideSecondaryCurrency = !fiatRates[secondaryCurrency];
 
     return (
       <View style={styles.toolbar} pointerEvents={pointerEvents}>
@@ -219,17 +290,17 @@ class InputBar extends Component {
           onPress={this._onInputPress}
           hasError={insufficientFunds}
           errorText={insufficientFundsReason}
-          editable={!confirmTransaction}
+          editable={!locked && !confirmTransaction}
         />
         <UnitPicker
           primaryCurrency={primaryCurrency}
-          secondaryCurrency={secondaryCurrency}
+          secondaryCurrency={hideSecondaryCurrency ? null : secondaryCurrency}
           defaultBitcoinUnit={defaultBitcoinUnit}
           currency={currency}
           unit={unit}
           onChangeUnit={this._onChangeUnit}
           style={styles.unitPicker}
-          disabled={confirmTransaction}
+          disabled={locked || confirmTransaction}
         />
         { this._renderButton() }
         { disabled && <View style={[styles.disabledOverlay, theme.inputDisabledOverlay]} /> }
@@ -244,15 +315,26 @@ InputBar.propTypes = {
   defaultBitcoinUnit: PropTypes.string.isRequired,
   currency: PropTypes.string.isRequired,
   unit: PropTypes.string.isRequired,
-  balance: PropTypes.number.isRequired,
-  spendableBalance: PropTypes.number.isRequired,
+  onChainSpendableBalance: PropTypes.number.isRequired,
+  offChainSpendableBalance: PropTypes.number.isRequired,
   fiatRates: PropTypes.object.isRequired,
   onSendPress: PropTypes.func.isRequired,
   onCancelPress: PropTypes.func.isRequired,
   onChangeUnit: PropTypes.func.isRequired,
+  paymentType: PropTypes.oneOf([
+    InputBar.PAYMENT_TYPE_BOTH,
+    InputBar.PAYMENT_TYPE_ONCHAIN,
+    InputBar.PAYMENT_TYPE_OFFCHAIN
+  ]),
   initialAmountBtc: PropTypes.number,
-  disabled: PropTypes.bool,
+  contactInboundCapacity: PropTypes.number,
+  disabled: PropTypes.bool, // This is used when the input bar can't be used at all.
+  locked: PropTypes.bool, // This is used to lock the amount, e.g. when paying a lightning invoice.
   theme: PropTypes.object
+};
+
+InputBar.defaultProps = {
+  paymentType: InputBar.PAYMENT_TYPE_BOTH
 };
 
 export default withTheme(InputBar);

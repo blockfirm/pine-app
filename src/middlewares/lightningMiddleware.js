@@ -1,8 +1,8 @@
 /* eslint-disable lines-around-comment */
 import * as actions from '../actions';
-import { handle as handleError } from '../actions/error';
-import * as lightningRpcActions from '../actions/paymentServer/lightning/rpc';
-import { LightningClient } from '../clients/paymentServer/lightning';
+import * as lightningActions from '../actions/lightning';
+import * as lightningRpcActions from '../actions/lightning/rpc';
+import { LightningClient, setClient } from '../clients/lightning';
 
 /**
  * Returns a map of lightning RPC client methods to redux implementations.
@@ -24,6 +24,7 @@ const getMethods = (dispatch) => {
 const lightningMiddleware = () => {
   let client;
 
+  // eslint-disable-next-line max-statements
   return store => next => action => {
     const state = store.getState();
     const { settings } = state;
@@ -39,9 +40,11 @@ const lightningMiddleware = () => {
       case actions.READY:
         if (!client) {
           client = new LightningClient(pineAddress, state.pine.credentials, settings.lightning);
-          client.on('error', (error) => store.dispatch(handleError(error)));
+          client.once('ready', () => store.dispatch(lightningActions.sync()));
           client.registerMethods(getMethods(store.dispatch));
-          client.connect();
+          client.connect().catch(() => client.reconnect());
+
+          setClient(client);
         }
         break;
 
@@ -51,6 +54,8 @@ const lightningMiddleware = () => {
           client.disconnect();
           client.removeAllListeners();
           client = null;
+
+          setClient(client);
         }
         break;
     }

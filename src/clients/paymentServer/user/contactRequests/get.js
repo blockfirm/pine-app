@@ -41,10 +41,17 @@ const get = (credentials) => {
     })
     .then((response) => {
       if (!Array.isArray(response)) {
-        throw new Error('Unknown error when getting contact requests');
+        throw new SyntaxError();
       }
 
       return response;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to get contact requests');
+      }
+
+      throw error;
     });
 };
 

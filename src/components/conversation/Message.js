@@ -4,6 +4,7 @@ import { StyleSheet, View, Image, TouchableOpacity, Animated } from 'react-nativ
 import PropTypes from 'prop-types';
 import AppleEasing from 'react-apple-easing';
 
+import { satsToBtc } from '../../crypto/bitcoin/convert';
 import { withTheme } from '../../contexts/theme';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import Avatar from '../Avatar';
@@ -133,6 +134,11 @@ class Message extends Component {
     });
   }
 
+  _hasError() {
+    const { message, transaction, invoice } = this.props;
+    return message.error || (invoice && invoice.redeemError) || (message.canceled && !transaction);
+  }
+
   _getFirstBubbleStyle() {
     const { message } = this.props;
 
@@ -154,17 +160,18 @@ class Message extends Component {
   }
 
   _renderBubbleContent(textStyle, smallTextStyle) {
-    const { message } = this.props;
+    const { message, invoice } = this.props;
+    const amountBtc = invoice ? satsToBtc(invoice.paidAmount) : message.amountBtc;
 
     return (
       <View>
         <CurrencyLabelContainer
-          amountBtc={message.amountBtc}
+          amountBtc={amountBtc}
           currencyType='primary'
           style={textStyle}
         />
         <CurrencyLabelContainer
-          amountBtc={message.amountBtc}
+          amountBtc={amountBtc}
           currencyType='secondary'
           style={[textStyle, smallTextStyle]}
         />
@@ -193,7 +200,7 @@ class Message extends Component {
   }
 
   _renderBubbleEnd() {
-    const { message, transaction, isLast, theme } = this.props;
+    const { message, isLast, theme } = this.props;
     const style = message.from ? styles.bubbleEndLeft : styles.bubbleEndRight;
     let image = message.from ? theme.bubbleEndLeft : theme.bubbleEndRight;
 
@@ -201,7 +208,7 @@ class Message extends Component {
       return null;
     }
 
-    if (message.error || (message.canceled && !transaction)) {
+    if (this._hasError()) {
       image = message.from ? theme.bubbleEndLeftError : theme.bubbleEndRightError;
     }
 
@@ -211,12 +218,13 @@ class Message extends Component {
   }
 
   _renderStatus() {
-    const { message, transaction } = this.props;
+    const { message, transaction, invoice } = this.props;
 
     return (
       <MessageIndicator
         message={message}
         transaction={transaction}
+        invoice={invoice}
         colorStyle='light'
         style={styles.indicator}
       />
@@ -225,7 +233,7 @@ class Message extends Component {
 
   // eslint-disable-next-line max-statements
   render() {
-    const { message, transaction, isFirst, isLast, onPress, animate, theme } = this.props;
+    const { message, isFirst, isLast, onPress, animate, theme } = this.props;
     const wrapperStyle = [styles.wrapper];
     const bubbleStyle = [styles.bubble];
     const textStyle = [];
@@ -249,7 +257,7 @@ class Message extends Component {
       smallTextStyle.push(theme.bubbleSentTextSmall);
     }
 
-    if (message.error || (message.canceled && !transaction)) {
+    if (this._hasError()) {
       bubbleStyle.push(theme.bubbleError);
       textStyle.push(theme.bubbleErrorText);
     }
@@ -284,6 +292,7 @@ Message.propTypes = {
   message: PropTypes.object,
   contact: PropTypes.object,
   transaction: PropTypes.object,
+  invoice: PropTypes.object,
   isFirst: PropTypes.bool,
   isLast: PropTypes.bool,
   onPress: PropTypes.func,

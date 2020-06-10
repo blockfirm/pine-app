@@ -24,9 +24,13 @@ const palette = {
   red1: '#ff453a',
   red2: '#FF3B30',
   yellow: '#FEC300',
+  yellow2: '#ffd60a',
   blue: '#0A84FF',
+  blue2: '#3B82F6',
   orange: '#FF9F0A',
-  green: '#30d158'
+  green: '#30d158',
+  indigo: '#5e5ce6',
+  pink: '#ff375f'
 };
 
 export default {
@@ -138,12 +142,17 @@ export default {
   settingsDescription: { color: palette.gray4 },
   settingsInput: { color: palette.foreground },
   settingsArrow: { color: palette.gray12 },
+  settingsLabelWrapper: { backgroundColor: palette.middleground2 },
   statusSuccessColor: palette.green,
   statusWarningColor: palette.orange,
   statusErrorColor: palette.red1,
   walletBalanceSpendableColor: palette.green,
   walletBalancePendingColor: palette.orange,
+  walletBalanceUnredeemedColor: palette.pink,
   walletBalanceReservedColor: palette.gray13,
+  walletBalanceOnChainColor: palette.green,
+  walletBalanceOffChainColor: palette.indigo,
+  walletBalanceInboundColor: palette.yellow2,
   stackedBarChart: { backgroundColor: palette.middleground6 },
   stackedBarChartStack: { borderLeftColor: palette.background },
   revealMnemonic: { color: palette.blue },
@@ -160,5 +169,12 @@ export default {
     borderColor: palette.gray9
   },
   inputFocus: { borderColor: palette.blue },
+  sliderTrackTintColor: palette.blue2,
+  sliderTrackTintBackgroundColor: palette.gray9,
+  lightningBadgeImage: require('../../images/badges/LightningBadgeDark.png'),
+  smallLightningIconImage: require('../../images/icons/SmallLightningDark.png'),
+  progressBarBackgroundColor: palette.middleground1,
+  progressBarForegroundColor: palette.yellow,
+  progressBarForegroundColorRed: palette.red1,
   palette
 };

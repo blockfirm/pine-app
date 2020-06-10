@@ -34,7 +34,6 @@ class Link extends Component {
         style={[styles.wrapper, this.props.style]}
         labelStyle={[styles.label, theme.link, this.props.labelStyle]}
         disabledStyle={[styles.disabledStyle, this.props.disabledStyle]}
-        loaderColor={this.props.loaderColor}
       />
     );
   }
@@ -47,6 +46,10 @@ Link.propTypes = {
   disabledStyle: PropTypes.any,
   loaderColor: PropTypes.string,
   theme: PropTypes.object
+};
+
+Link.defaultProps = {
+  loaderColor: 'gray'
 };
 
 export default withTheme(Link);

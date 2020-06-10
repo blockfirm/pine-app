@@ -36,6 +36,9 @@ target 'Pine' do
 
   pod 'react-native-haptic', :path => '../node_modules/react-native-haptic'
 
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
+
   target 'PineTests' do
     inherit! :search_paths
     # Pods for testing

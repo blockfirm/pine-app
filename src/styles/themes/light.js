@@ -21,15 +21,21 @@ const palette = {
   gray12: '#A7A7AB',
   gray13: '#C8C8CC',
   gray14: '#C7C7CC',
+  gray15: '#CECED0',
+  gray16: '#E2E2E9',
   overlay: '#FEFEFE',
   red: '#FF3B30',
   yellow1: '#FFD23F',
   yellow2: '#FFC431',
   yellow3: '#FEC300',
+  yellow4: '#FFCD00',
   blue: '#007AFF',
+  blue2: '#3478F5',
   orange: '#FF9500',
   orange2: '#FF8D36',
-  green: '#4CD964'
+  green: '#4CD964',
+  indigo: '#5856d6',
+  pink: '#ff2d55'
 };
 
 export default {
@@ -141,12 +147,17 @@ export default {
   settingsDescription: { color: palette.gray2 },
   settingsInput: { color: palette.foreground },
   settingsArrow: { color: palette.gray14 },
+  settingsLabelWrapper: { backgroundColor: palette.gray16 },
   statusSuccessColor: palette.green,
   statusWarningColor: palette.orange2,
   statusErrorColor: palette.red,
   walletBalanceSpendableColor: palette.green,
+  walletBalanceUnredeemedColor: palette.pink,
   walletBalancePendingColor: palette.orange,
   walletBalanceReservedColor: palette.gray14,
+  walletBalanceOnChainColor: palette.green,
+  walletBalanceOffChainColor: palette.indigo,
+  walletBalanceInboundColor: palette.yellow3,
   stackedBarChart: { backgroundColor: palette.middleground5 },
   stackedBarChartStack: { borderLeftColor: palette.background },
   revealMnemonic: { color: palette.blue },
@@ -163,5 +174,12 @@ export default {
     borderColor: palette.gray4
   },
   inputFocus: { borderColor: palette.blue },
+  sliderTrackTintColor: palette.blue2,
+  sliderTrackTintBackgroundColor: palette.gray15,
+  lightningBadgeImage: require('../../images/badges/LightningBadge.png'),
+  smallLightningIconImage: require('../../images/icons/SmallLightning.png'),
+  progressBarBackgroundColor: palette.middleground1,
+  progressBarForegroundColor: palette.yellow4,
+  progressBarForegroundColorRed: palette.red,
   palette
 };

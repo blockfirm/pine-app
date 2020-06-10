@@ -3,6 +3,8 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 import headerStyles from '../styles/headerStyles';
+import PendingBalanceIndicatorContainer from '../containers/indicators/PendingBalanceIndicatorContainer';
+import ConnectionIndicatorContainer from '../containers/indicators/ConnectionIndicatorContainer';
 import AddContactIcon from '../components/icons/AddContactIcon';
 import SettingsIcon from '../components/icons/SettingsIcon';
 import BalanceLabelContainer from '../containers/BalanceLabelContainer';
@@ -35,6 +37,11 @@ const styles = StyleSheet.create({
     left: 60,
     right: 60
   },
+  titleAndDotWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   titleTouchable: {
     alignSelf: 'center'
   },
@@ -45,6 +52,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 13,
     fontWeight: '500'
+  },
+  balanceWarning: {
+    position: 'absolute',
+    left: -12
+  },
+  connectionWarning: {
+    position: 'absolute',
+    right: 10,
+    top: 10
   }
 });
 
@@ -60,10 +76,13 @@ class ContactsScreenHeader extends Component {
 
         <View style={styles.titleWrapper}>
           <TouchableOpacity onPress={this.props.onBalancePress} style={styles.titleTouchable}>
-            <BalanceLabelContainer
-              currencyType='primary'
-              style={[headerStyles.title, theme.headerTitle, styles.title]}
-            />
+            <View style={styles.titleAndDotWrapper}>
+              <PendingBalanceIndicatorContainer style={styles.balanceWarning} />
+              <BalanceLabelContainer
+                currencyType='primary'
+                style={[headerStyles.title, theme.headerTitle, styles.title]}
+              />
+            </View>
             <BalanceLabelContainer
               currencyType='secondary'
               style={[headerStyles.title, theme.headerSubtitle, styles.subTitle]}
@@ -73,6 +92,10 @@ class ContactsScreenHeader extends Component {
 
         <TouchableOpacity onPress={this.props.onSettingsPress} style={styles.settings}>
           <SettingsIcon />
+          <ConnectionIndicatorContainer
+            style={styles.connectionWarning}
+            withBorder={true}
+          />
         </TouchableOpacity>
       </View>
     );

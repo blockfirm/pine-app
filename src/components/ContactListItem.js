@@ -8,6 +8,7 @@ import {
   CURRENCY_TYPE_PRIMARY
 } from '../containers/CurrencyLabelContainer';
 
+import { satsToBtc } from '../crypto/bitcoin/convert';
 import vendors from '../vendors';
 import MessageIndicatorContainer from '../containers/indicators/MessageIndicatorContainer';
 import { withTheme } from '../contexts/theme';
@@ -15,6 +16,7 @@ import Bullet from './typography/Bullet';
 import Avatar from './Avatar';
 import StyledText from './StyledText';
 import RelativeDateLabelShort from './RelativeDateLabelShort';
+import LightningBadge from './badges/LightningBadge';
 
 const styles = StyleSheet.create({
   item: {
@@ -63,6 +65,11 @@ const styles = StyleSheet.create({
   },
   indicator: {
     marginRight: 3
+  },
+  badge: {
+    position: 'absolute',
+    bottom: 0,
+    right: 4
   }
 });
 
@@ -139,21 +146,23 @@ class ContactListItem extends Component {
   }
 
   _renderSubtitle() {
-    const { contact, userProfile } = this.props;
+    const { contact, userProfile, lastMessageInvoice } = this.props;
     const { lastMessage, contactRequest } = contact;
 
     if (lastMessage) {
+      const amountBtc = lastMessageInvoice ? satsToBtc(lastMessageInvoice.paidAmount) : lastMessage.amountBtc;
+
       if (lastMessage.from) {
         return (
           <Text>
-            {this._getReceivedText()} {this._renderBtcAmount(lastMessage.amountBtc)}
+            {this._getReceivedText()} {this._renderBtcAmount(amountBtc)}
           </Text>
         );
       }
 
       return (
         <Text>
-          You sent {this._renderBtcAmount(lastMessage.amountBtc)}
+          You sent {this._renderBtcAmount(amountBtc)}
         </Text>
       );
     }
@@ -167,6 +176,18 @@ class ContactListItem extends Component {
     }
 
     return this._getAddedText();
+  }
+
+  _renderBadge() {
+    const { contact } = this.props;
+
+    if (!contact.hasLightningCapacity) {
+      return null;
+    }
+
+    return (
+      <LightningBadge style={styles.badge} />
+    );
   }
 
   render() {
@@ -183,6 +204,7 @@ class ContactListItem extends Component {
             checksum={avatarChecksum}
             size={60}
           />
+          { this._renderBadge() }
         </View>
         <View style={styles.titleWrapper}>
           <StyledText style={styles.title} numberOfLines={1}>
@@ -206,6 +228,7 @@ ContactListItem.propTypes = {
   contact: PropTypes.object.isRequired,
   userProfile: PropTypes.object.isRequired,
   onPress: PropTypes.func,
+  lastMessageInvoice: PropTypes.object,
   theme: PropTypes.object
 };
 

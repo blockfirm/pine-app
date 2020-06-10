@@ -6,6 +6,7 @@ import { NavigationActions } from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
+import config from '../config';
 import OfflineNoticeContainer from '../containers/OfflineNoticeContainer';
 import ContactListContainer from '../containers/ContactListContainer';
 import ContactsScreenHeader from '../components/ContactsScreenHeader';
@@ -50,11 +51,11 @@ class ContactsScreen extends Component {
   }
 
   _showWalletBalance() {
-    const { dispatch } = this.props;
+    const { navigation } = this.props;
+    const routeName = config.lightning.enabled ? 'WalletBalance' : 'OnChainBalanceModal';
+    const isModal = true;
 
-    dispatch(
-      NavigationActions.navigate({ routeName: 'WalletBalance' })
-    );
+    navigation.navigate(routeName, { isModal });
   }
 
   scrollToTop() {
@@ -91,6 +92,7 @@ class ContactsScreen extends Component {
 
 ContactsScreen.propTypes = {
   dispatch: PropTypes.func,
+  navigation: PropTypes.any,
   theme: PropTypes.object
 };
 

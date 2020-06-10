@@ -20,6 +20,11 @@ const storeMock = {
       homeScreen: {
         index: 1
       }
+    },
+    settings: {
+      lightning: {
+        isSetup: true
+      }
     }
   })),
   dispatch: jest.fn(() => Promise.resolve()),

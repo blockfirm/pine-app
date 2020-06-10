@@ -179,13 +179,31 @@ const addTransactionToContact = (transaction, contact, address, dispatch, state)
   return dispatch(addMessage(contact.id, message));
 };
 
+const isLightningAddress = (address, state) => {
+  const externalAddresses = state.bitcoin.wallet.addresses.external.items;
+  const internalAddresses = state.bitcoin.wallet.addresses.internal.items;
+
+  if (address in externalAddresses) {
+    return Boolean(externalAddresses[address].lightning);
+  }
+
+  if (address in internalAddresses) {
+    return Boolean(internalAddresses[address].lightning);
+  }
+
+  return false;
+};
+
 /**
  * Creates contacts and messages for transactions that wasn't sent using a Pine message.
  */
 const createConversationsForTransactions = (transactions, dispatch, state) => {
   const promises = transactions.map((transaction) => {
     if (transaction.txid in state.messages.txids) {
-      // Don't create contacts/messages for transactions that already have a message.
+      /**
+       * Don't create contacts/messages for transactions that already
+       * have a message (because it's a Pine transaction).
+       */
       return;
     }
 
@@ -194,6 +212,10 @@ const createConversationsForTransactions = (transactions, dispatch, state) => {
       state.bitcoin.wallet.addresses.external.items,
       state.bitcoin.wallet.addresses.internal.items
     );
+
+    if (!address || isLightningAddress(address, state)) {
+      return; // Don't display lightning funding/closing transactions.
+    }
 
     const contacts = Object.values(state.contacts.items);
 

@@ -37,8 +37,18 @@ const removeIncoming = (contactRequestId, credentials) => {
       }
 
       return response.json().then((error) => {
-        throw new Error(error.message);
+        throw {
+          name: error.code,
+          message: error.message
+        };
       });
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to delete incoming contact request');
+      }
+
+      throw error;
     });
 };
 

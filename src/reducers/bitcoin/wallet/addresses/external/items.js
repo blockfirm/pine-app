@@ -1,5 +1,6 @@
 import * as externalAddressActions from '../../../../../actions/bitcoin/wallet/addresses/external';
 import * as addressActions from '../../../../../actions/bitcoin/wallet/addresses';
+import * as lightningRpcActions from '../../../../../actions/lightning/rpc';
 
 const itemsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -22,6 +23,16 @@ const itemsReducer = (state = {}, action) => {
           };
         }
       });
+
+      return state;
+
+    case lightningRpcActions.PINE_LIGHTNING_RPC_NEW_ADDRESS:
+      if (action.address in state) {
+        state[action.address] = {
+          ...state[action.address],
+          lightning: true
+        };
+      }
 
       return state;
 

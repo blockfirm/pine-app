@@ -47,10 +47,17 @@ const set = (image, credentials) => {
     })
     .then((response) => {
       if (!response.checksum) {
-        throw new Error('Unknown error when uploading avatar');
+        throw new SyntaxError();
       }
 
       return response;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to upload avatar');
+      }
+
+      throw error;
     });
 };
 

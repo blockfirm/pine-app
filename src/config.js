@@ -43,11 +43,23 @@ export default {
     }
   },
   lightning: {
-    enabled: false,
-    serverPingInterval: 30 // Expect a ping from server every 30 seconds.
+    enabled: true,
+    serverPingInterval: 30, // Expect a ping from server every 30 seconds.
+
+    // How many percent of the total channel capacity is reserved for fees.
+    percentCapacityReservedForFees: 2,
+
+    isSetup: false
   },
   currency: {
     primary: 'BTC',
     secondary: REGION_CURRENCY
+  },
+  logging: {
+    /**
+     * Logs are only stored temporarily and are cleared once the app restarts.
+     * They never leave the device.
+     */
+    enabled: false
   }
 };

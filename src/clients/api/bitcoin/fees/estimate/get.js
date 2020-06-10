@@ -13,11 +13,24 @@ const get = (numberOfBlocks, options) => {
       return response.json();
     })
     .then((response) => {
-      if (response.error !== undefined || !response.hasOwnProperty('satoshisPerByte')) {
-        throw new Error(response.error || 'Unknown error when estimating transaction fee.');
+      if (response.error !== undefined) {
+        throw new Error(response.error);
+      }
+
+      if (!response.hasOwnProperty('satoshisPerByte')) {
+        throw new SyntaxError();
       }
 
       return response.satoshisPerByte;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error(
+          'Received an invalid response when trying to estimate transaction fee'
+        );
+      }
+
+      throw error;
     });
 };
 

@@ -49,3 +49,11 @@ export const convert = (amount, fromUnit, toUnit) => {
       return Math.round(btc * 100000000);
   }
 };
+
+export const satsToBtc = (sats) => {
+  return convert(parseInt(sats), UNIT_SATOSHIS, UNIT_BTC);
+};
+
+export const btcToSats = (btc) => {
+  return convert(btc, UNIT_BTC, UNIT_SATOSHIS);
+};

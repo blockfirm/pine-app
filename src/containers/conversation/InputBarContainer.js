@@ -3,22 +3,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { save as saveSettings } from '../../actions/settings';
-import { UNIT_BTC } from '../../crypto/bitcoin/convert';
+import { UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
 import InputBar from '../../components/conversation/InputBar';
 
-const mapStateToProps = (state) => {
-  return {
-    primaryCurrency: state.settings.currency.primary,
-    secondaryCurrency: state.settings.currency.secondary,
-    defaultBitcoinUnit: state.settings.bitcoin.unit,
-    lastUsedDenomination: state.settings.user.lastUsedDenomination,
-    balance: state.bitcoin.wallet.balance,
-    spendableBalance: state.bitcoin.wallet.spendableBalance,
-    fiatRates: state.bitcoin.fiat.rates
-  };
-};
+const mapStateToProps = (state) => ({
+  primaryCurrency: state.settings.currency.primary,
+  secondaryCurrency: state.settings.currency.secondary,
+  defaultBitcoinUnit: state.settings.bitcoin.unit,
+  lastUsedDenomination: state.settings.user.lastUsedDenomination,
+  onChainSpendableBalance: state.bitcoin.wallet.spendableBalance,
+  offChainSpendableBalance: state.lightning.balance.spendable,
+  fiatRates: state.bitcoin.fiat.rates
+});
 
 class InputBarContainer extends PureComponent {
+  static PAYMENT_TYPE_BOTH = InputBar.PAYMENT_TYPE_BOTH;
+  static PAYMENT_TYPE_ONCHAIN = InputBar.PAYMENT_TYPE_ONCHAIN;
+  static PAYMENT_TYPE_OFFCHAIN = InputBar.PAYMENT_TYPE_OFFCHAIN;
+
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     primaryCurrency: PropTypes.string.isRequired,
@@ -28,7 +30,8 @@ class InputBarContainer extends PureComponent {
       currency: PropTypes.string,
       unit: PropTypes.string
     }).isRequired,
-    initialAmountBtc: PropTypes.number
+    initialAmountBtc: PropTypes.number,
+    fiatRates: PropTypes.object
   };
 
   constructor() {
@@ -66,7 +69,8 @@ class InputBarContainer extends PureComponent {
       secondaryCurrency,
       defaultBitcoinUnit,
       lastUsedDenomination,
-      initialAmountBtc
+      initialAmountBtc,
+      fiatRates
     } = this.props;
 
     let currency = primaryCurrency;
@@ -76,16 +80,16 @@ class InputBarContainer extends PureComponent {
       return { currency: UNIT_BTC, unit };
     }
 
-    if (lastUsedDenomination.currency) {
-      if ([primaryCurrency, secondaryCurrency].includes(lastUsedDenomination.currency)) {
+    if (lastUsedDenomination.currency === primaryCurrency) {
+      currency = lastUsedDenomination.currency;
+    } else if (lastUsedDenomination.currency === secondaryCurrency) {
+      if (fiatRates[secondaryCurrency]) {
         currency = lastUsedDenomination.currency;
       }
     }
 
-    if (lastUsedDenomination.unit) {
-      if ([defaultBitcoinUnit, UNIT_BTC].includes(lastUsedDenomination.unit)) {
-        unit = lastUsedDenomination.unit;
-      }
+    if ([defaultBitcoinUnit, UNIT_BTC, UNIT_SATOSHIS].includes(lastUsedDenomination.unit)) {
+      unit = lastUsedDenomination.unit;
     }
 
     return { currency, unit };

@@ -1,5 +1,6 @@
 export * from './add';
 export * from './addLegacy';
+export * from './addLightning';
 export * from './addVendor';
 export * from './addVendorAssociatedAddress';
 export * from './load';

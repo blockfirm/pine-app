@@ -9,11 +9,14 @@ import networkReducer from './network';
 import notificationsReducer from './notifications';
 import contactsReducer from './contacts';
 import messagesReducer from './messages';
+import syncActiveReducer from './syncActive';
 import syncingReducer from './syncing';
 import pineReducer from './pine';
 import loadedReducer from './loaded';
 import readyReducer from './ready';
 import navigateReducer from './navigate';
+import lightningReducer from './lightning';
+import logsReducer from './logs';
 
 const getRootReducer = (navReducer) => {
   const rootReducer = combineReducers({
@@ -27,11 +30,14 @@ const getRootReducer = (navReducer) => {
     notifications: notificationsReducer,
     contacts: contactsReducer,
     messages: messagesReducer,
+    syncActive: syncActiveReducer,
     syncing: syncingReducer,
     pine: pineReducer,
     loaded: loadedReducer,
     ready: readyReducer,
-    navigate: navigateReducer
+    navigate: navigateReducer,
+    lightning: lightningReducer,
+    logs: logsReducer
   });
 
   return (state, action) => {

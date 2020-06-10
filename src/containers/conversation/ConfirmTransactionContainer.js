@@ -1,23 +1,48 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
+import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 
 import {
   create as createTransaction,
   sign as signTransaction
 } from '../../actions/bitcoin/wallet/transactions';
 
+import {
+  sendPayment,
+  sendLegacyPayment,
+  sendLightningPayment,
+  sendLegacyLightningPayment
+} from '../../actions/messages';
+
+import { estimateFee as estimateLightningFee } from '../../actions/lightning';
 import { getAddress } from '../../actions/paymentServer/contacts/getAddress';
-import { sendPayment, sendLegacyPayment } from '../../actions/messages';
+import { getNewInvoice } from '../../actions/paymentServer/lightning';
 import { handle as handleError } from '../../actions/error/handle';
+import { convert, btcToSats, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
 import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
 
-const mapStateToProps = (state) => {
-  return {
-    userProfile: state.settings.user.profile
-  };
+const MESSAGE_TYPE_LIGHTNING_PAYMENT = 'lightning_payment';
+
+const getLightningErrorMessage = (error) => {
+  if (error.message.includes('expired')) {
+    return 'The Lightning invoice has expired.';
+  }
+
+  if (error.message.includes('too large')) {
+    return 'The payment is too large.';
+  }
+
+  return error.message;
 };
+
+const mapStateToProps = (state) => ({
+  userProfile: state.settings.user.profile,
+  lightningBalance: state.lightning.balance.spendable
+});
 
 class ConfirmTransactionContainer extends Component {
   static propTypes = {
@@ -25,7 +50,11 @@ class ConfirmTransactionContainer extends Component {
     contact: PropTypes.object,
     bitcoinAddress: PropTypes.string,
     amountBtc: PropTypes.number,
-    onTransactionSent: PropTypes.func
+    onTransactionSent: PropTypes.func,
+    paymentRequest: PropTypes.string,
+    forceOnChain: PropTypes.bool,
+    lightningBalance: PropTypes.number,
+    contactInboundCapacity: PropTypes.number
   };
 
   state = {
@@ -33,25 +62,151 @@ class ConfirmTransactionContainer extends Component {
     inputs: null,
     outputs: null,
     fee: null,
-    cannotAffordFee: false
-  }
+    cannotAffordFee: false,
+    hasLightningCapacity: false,
+    paymentMessage: null,
+    invoice: null,
+    forceOnChain: false
+  };
 
   constructor() {
     super(...arguments);
+
     this._onPayPress = this._onPayPress.bind(this);
+    this._onPayLightningPress = this._onPayLightningPress.bind(this);
   }
 
   componentDidMount() {
-    this._createTransaction();
+    this._createState();
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.contactInboundCapacity !== prevProps.contactInboundCapacity) {
+      return this._createState();
+    }
+
     if (this.props.amountBtc !== prevProps.amountBtc) {
-      this._createTransaction();
+      return this._createState();
     }
 
     if (this.props.contact !== prevProps.contact) {
-      this.setState({ address: null });
+      return this._createState();
+    }
+
+    if (this.props.forceOnChain !== prevProps.forceOnChain) {
+      return this._createState();
+    }
+  }
+
+  _goBack() {
+    const { dispatch } = this.props;
+    dispatch(NavigationActions.back());
+  }
+
+  _resetState() {
+    return new Promise(resolve => {
+      this.setState({
+        address: null,
+        inputs: null,
+        outputs: null,
+        fee: null,
+        cannotAffordFee: false,
+        hasLightningCapacity: false,
+        paymentMessage: null,
+        invoice: null,
+        forceOnChain: false
+      }, resolve);
+    });
+  }
+
+  async _createState() {
+    await this._resetState();
+    await this._checkLightningCapacities();
+
+    if (!this.props.amountBtc) {
+      return;
+    }
+
+    if (this._isLightning()) {
+      await this._createLightningInvoice();
+      this._estimateLightningFee();
+    } else {
+      this._createTransaction();
+    }
+  }
+
+  async _forceOnChain() {
+    await this._resetState();
+
+    this.setState({ forceOnChain: true }, () => {
+      this._createTransaction();
+    });
+  }
+
+  _checkLightningCapacities() {
+    const {
+      amountBtc,
+      lightningBalance,
+      contactInboundCapacity
+    } = this.props;
+
+    const amountSats = convert(amountBtc, UNIT_BTC, UNIT_SATOSHIS);
+    const hasOutboundCapacity = amountSats <= lightningBalance;
+    const hasInboundCapacity = amountSats <= contactInboundCapacity;
+    const hasLightningCapacity = hasOutboundCapacity && hasInboundCapacity;
+
+    return new Promise(resolve => {
+      this.setState({ hasLightningCapacity }, resolve);
+    });
+  }
+
+  _isLightning() {
+    const { paymentRequest } = this.props;
+    const { hasLightningCapacity } = this.state;
+
+    if (this.props.forceOnChain || this.state.forceOnChain) {
+      return false;
+    }
+
+    return Boolean(paymentRequest || hasLightningCapacity);
+  }
+
+  async _estimateLightningFee() {
+    const { dispatch, paymentRequest } = this.props;
+    const { invoice } = this.state;
+
+    if (!paymentRequest && !invoice) {
+      return;
+    }
+
+    try {
+      const { high } = await dispatch(estimateLightningFee(paymentRequest || invoice.paymentRequest));
+      this.setState({ fee: high });
+    } catch (error) {
+      this._handleLightningFeeError(error);
+    }
+  }
+
+  async _createLightningInvoice() {
+    const { dispatch, contact, paymentRequest, amountBtc } = this.props;
+    const amountSats = btcToSats(amountBtc);
+
+    if (paymentRequest || !amountSats) {
+      return;
+    }
+
+    const paymentMessage = {
+      version: 1,
+      type: MESSAGE_TYPE_LIGHTNING_PAYMENT,
+      data: {}
+    };
+
+    try {
+      // Get a new lightning invoice from the contact's Pine server.
+      const invoice = await dispatch(getNewInvoice(amountSats, paymentMessage, contact));
+      this.setState({ paymentMessage, invoice });
+    } catch (error) {
+      dispatch(handleError(error));
     }
   }
 
@@ -76,12 +231,9 @@ class ConfirmTransactionContainer extends Component {
   _createTransaction() {
     const { dispatch, amountBtc } = this.props;
 
-    this.setState({
-      inputs: null,
-      outputs: null,
-      fee: null,
-      cannotAffordFee: false
-    });
+    if (!amountBtc) {
+      return;
+    }
 
     return this._getAddress()
       .then((address) => {
@@ -139,6 +291,67 @@ class ConfirmTransactionContainer extends Component {
       });
   }
 
+  async _sendLightningPayment() {
+    const { dispatch, contact, paymentRequest, amountBtc } = this.props;
+    const { invoice, paymentMessage } = this.state;
+
+    try {
+      let result;
+
+      if (paymentRequest) {
+        result = await dispatch(sendLegacyLightningPayment(paymentRequest, amountBtc, contact));
+      } else if (invoice && paymentMessage) {
+        result = await dispatch(sendLightningPayment(invoice, paymentMessage, amountBtc, contact));
+      } else {
+        throw new Error('Unable to send lightning payment without invoice or payment request.');
+      }
+
+      this.props.onTransactionSent(result || {});
+    } catch (error) {
+      this._handleLightningPaymentError(error);
+    }
+  }
+
+  _handleLightningFeeError(error) {
+    const { paymentRequest } = this.props;
+    const title = 'Payment Not Possible';
+    const message = getLightningErrorMessage(error) || 'An unknown error occurred when estimating the fee.';
+
+    if (!paymentRequest) {
+      return this._forceOnChain();
+    }
+
+    Alert.alert(
+      title,
+      message,
+      [{ text: 'OK', onPress: () => this._goBack(), style: 'cancel' }],
+      { cancelable: false }
+    );
+  }
+
+  _handleLightningPaymentError(error) {
+    const { paymentRequest } = this.props;
+    const title = 'Payment Failed';
+    let message = getLightningErrorMessage(error) || 'An unknown error occurred when making the payment.';
+    let buttons = [{ text: 'OK', style: 'cancel' }];
+
+    if (!paymentRequest) {
+      message += ' Do you want to make the payment on-chain instead?';
+
+      buttons = [
+        { text: 'Pay On-chain...', onPress: () => this._forceOnChain(), style: 'cancel' },
+        { text: 'Cancel', style: 'default' }
+      ];
+    }
+
+    Alert.alert(
+      title,
+      message,
+      buttons,
+      { cancelable: false }
+    );
+  }
+
   _onPayPress() {
     return authentication.authenticate().then((authenticated) => {
       if (authenticated) {
@@ -147,15 +360,28 @@ class ConfirmTransactionContainer extends Component {
     });
   }
 
+  _onPayLightningPress() {
+    return authentication.authenticate().then((authenticated) => {
+      if (authenticated) {
+        return this._sendLightningPayment();
+      }
+    });
+  }
+
   render() {
+    const { paymentRequest } = this.props;
     const { fee, cannotAffordFee } = this.state;
+    const isLightning = this._isLightning();
+    const onPayPress = isLightning ? this._onPayLightningPress : this._onPayPress;
 
     return (
       <ConfirmTransaction
         {...this.props}
         fee={fee}
+        paymentRequest={paymentRequest}
         cannotAffordFee={cannotAffordFee}
-        onPayPress={this._onPayPress}
+        isLightning={isLightning}
+        onPayPress={onPayPress}
       />
     );
   }

@@ -12,7 +12,7 @@ const singleTweakKeyPair = (keyPair, tweak) => {
   tweakInt = tweakInt.add(privateKeyInt);
   tweakInt = tweakInt.mod(ecparams.n);
 
-  const tweakedBuffer = tweakInt.toBuffer('be');
+  const tweakedBuffer = tweakInt.toArrayLike(Buffer, 'be');
   const tweakedKeyPair = bitcoin.ECPair.fromPrivateKey(tweakedBuffer);
 
   return tweakedKeyPair;

@@ -39,6 +39,7 @@ const updateContact = async (contact) => {
     ...contact,
     displayName: user.displayName,
     avatar: user.avatar,
+    hasLightningCapacity: user.hasLightningCapacity,
     updatedAt: Date.now() / 1000
   };
 };

@@ -11,9 +11,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   color: {
-    height: 11,
-    width: 11,
-    borderRadius: 3
+    height: 7,
+    width: 7,
+    borderRadius: 4
   },
   label: {
     marginLeft: 6,

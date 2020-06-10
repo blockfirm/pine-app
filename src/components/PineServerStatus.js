@@ -44,6 +44,11 @@ class PineServerStatus extends PureComponent {
     this.setState({ loading: true });
     clearTimeout(this._updateStatusTimer);
 
+    if (!hostname) {
+      onStatusUpdated(ok);
+      return this.setState({ ok, loading: false });
+    }
+
     this._updateStatusTimer = setTimeout(() => {
       getServerInfo(hostname)
         .then((serverInfo) => {

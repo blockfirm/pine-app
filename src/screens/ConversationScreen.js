@@ -16,10 +16,13 @@ import { connect } from 'react-redux';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import * as bolt11 from 'bolt11';
 
+import { satsToBtc } from '../crypto/bitcoin/convert';
 import { closeConversation, setHomeScreenIndex } from '../actions/navigate';
 import { handle as handleError } from '../actions/error/handle';
 import { remove as removeContact, markAsRead } from '../actions/contacts';
+import { getInboundCapacityForContact } from '../actions/paymentServer/lightning';
 
 import {
   load as loadMessages,
@@ -83,19 +86,23 @@ const styles = StyleSheet.create({
 
 @connect((state) => ({
   contacts: state.contacts.items,
-  messages: state.messages.itemsByContact
+  messages: state.messages.itemsByContact,
+  lightningBalance: state.lightning.balance.spendable
 }))
 export default class ConversationScreen extends Component {
   static navigationOptions = ({ navigation }) => {
-    const { contact, bitcoinAddress, showUserMenu, loading } = navigation.state.params;
+    const { contact, bitcoinAddress, decodedPaymentRequest, showUserMenu, loading } = navigation.state.params;
     const avatarChecksum = contact && contact.avatar && contact.avatar.checksum;
     let headerTitle;
     let headerRight;
 
     if (contact) {
       headerTitle = <HeaderTitle contact={contact} />;
-    } else {
+    } else if (bitcoinAddress) {
       headerTitle = <HeaderTitle contact={{ address: bitcoinAddress, isBitcoinAddress: true }} />;
+    } else if (decodedPaymentRequest) {
+      const lightningNodeKey = decodedPaymentRequest.payeeNodeKey;
+      headerTitle = <HeaderTitle contact={{ lightningNodeKey, isLightningNode: true }} />;
     }
 
     if (loading) {
@@ -128,17 +135,43 @@ export default class ConversationScreen extends Component {
   state = {
     confirmTransaction: false,
     amountBtc: 0,
+    initialAmountBtc: null,
     displayCurrency: 'BTC',
     displayUnit: 'BTC',
-    keyboardHeight: 0,
-    keyboardAnimationDuration: 300,
-    keyboardAnimationEasing: null,
+    keyboardHeight: 291,
+    keyboardAnimationDuration: 250,
+    keyboardAnimationEasing: 'keyboard',
     keyboardIsVisible: false,
-    messagesLoaded: false
+    messagesLoaded: false,
+    decodedPaymentRequest: null,
+    forceOnChain: false,
+    contactInboundCapacity: -1,
+    inputLocked: false
   }
 
-  constructor() {
+  constructor(props) {
     super(...arguments);
+
+    const { amount, paymentRequest } = props.navigation.state.params;
+
+    if (paymentRequest) {
+      try {
+        const decodedPaymentRequest = bolt11.decode(paymentRequest);
+        const paymentRequestAmount = satsToBtc(decodedPaymentRequest.satoshis);
+
+        this.state.decodedPaymentRequest = decodedPaymentRequest;
+        this.state.amountBtc = paymentRequestAmount;
+        this.state.initialAmountBtc = paymentRequestAmount;
+        this.state.inputLocked = true;
+        this.state.confirmTransaction = true;
+      } catch (error) {
+        this.state.loadingError = error;
+        props.navigation.goBack();
+        props.dispatch(handleError(new Error('Invalid payment request.')));
+      }
+    } else {
+      this.state.initialAmountBtc = amount;
+    }
 
     this._listeners = [];
 
@@ -164,7 +197,10 @@ export default class ConversationScreen extends Component {
       navigation.setParams({ contact });
     }
 
-    navigation.setParams({ showUserMenu: this._showUserMenu.bind(this) });
+    navigation.setParams({
+      showUserMenu: this._showUserMenu.bind(this),
+      decodedPaymentRequest: this.state.decodedPaymentRequest
+     });
 
     this._listeners.push(
       Keyboard.addListener('keyboardDidShow', this._onKeyboardDidShow)
@@ -214,6 +250,10 @@ export default class ConversationScreen extends Component {
     const { navigation, contacts } = this.props;
     const prevContact = prevProps.navigation.state.params.contact;
 
+    if (navigation.state.params.contact !== prevContact) {
+      this._loadContactInboundCapacity();
+    }
+
     if (!prevContact || !prevContact.id) {
       return;
     }
@@ -236,6 +276,16 @@ export default class ConversationScreen extends Component {
     }
   }
 
+  _configureNextAnimation() {
+    const animation = LayoutAnimation.create(
+      this.state.keyboardAnimationDuration,
+      LayoutAnimation.Types[this.state.keyboardAnimationEasing],
+      LayoutAnimation.Properties.opacity
+    );
+
+    LayoutAnimation.configureNext(animation);
+  }
+
   _onKeyboardDidShow(event) {
     this.setState({
       keyboardHeight: event.endCoordinates.height,
@@ -247,6 +297,23 @@ export default class ConversationScreen extends Component {
 
   _onKeyboardDidHide() {
     this.setState({ keyboardIsVisible: false });
+  }
+
+  async _loadContactInboundCapacity() {
+    const { dispatch, navigation, lightningBalance } = this.props;
+    const { contact } = navigation.state.params;
+    const hasContactRequest = Boolean(contact && contact.contactRequest);
+
+    if (!lightningBalance || hasContactRequest || !contact || !contact.userId) {
+      return;
+    }
+
+    try {
+      const inbound = await dispatch(getInboundCapacityForContact(contact.userId));
+      this.setState({ contactInboundCapacity: inbound });
+    } catch (error) {
+      this.setState({ contactInboundCapacity: -1 });
+    }
   }
 
   _markConversationAsRead() {
@@ -312,7 +379,7 @@ export default class ConversationScreen extends Component {
         return Linking.openURL(vendor.url);
       }
 
-      if (contact.isBitcoinAddress || contact.isVendor) {
+      if (contact.isBitcoinAddress || contact.isLightningNode || contact.isVendor) {
         title = 'Deleting this contact will also delete its payment history.';
       } else {
         title = 'Deleting this contact will also delete its payment history and will prevent this contact from sending you any more bitcoin.';
@@ -331,6 +398,21 @@ export default class ConversationScreen extends Component {
     });
   }
 
+  _listenKeyboardDidShow() {
+    return new Promise(resolve => {
+      const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+        resolve();
+
+        if (!keyboardDidShowListener.removed) {
+          keyboardDidShowListener.remove();
+          keyboardDidShowListener.removed = true;
+        }
+      });
+
+      this._listeners.push(keyboardDidShowListener);
+    });
+  }
+
   _onContactRequestAccept(contact) {
     this.props.navigation.setParams({ contact });
   }
@@ -343,58 +425,51 @@ export default class ConversationScreen extends Component {
     this.props.navigation.goBack();
   }
 
-  _onSendPress({ amountBtc, displayCurrency, displayUnit }) {
+  _onSendPress({ amountBtc, displayCurrency, displayUnit, forceOnChain }) {
     this.setState({
       confirmTransaction: true,
       amountBtc,
       displayCurrency,
-      displayUnit
+      displayUnit,
+      forceOnChain
     });
 
     if (this.state.keyboardIsVisible) {
       return Keyboard.dismiss();
     }
 
-    const animation = LayoutAnimation.create(
-      this.state.keyboardAnimationDuration,
-      LayoutAnimation.Types[this.state.keyboardAnimationEasing],
-      LayoutAnimation.Properties.opacity,
-    );
-
-    LayoutAnimation.configureNext(animation);
+    this._configureNextAnimation();
   }
 
   _onCancelPress() {
-    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+    this._listenKeyboardDidShow().then(() => {
       this.setState({ confirmTransaction: false });
-
-      if (!keyboardDidShowListener.removed) {
-        keyboardDidShowListener.remove();
-        keyboardDidShowListener.removed = true;
-      }
     });
-
-    this._listeners.push(keyboardDidShowListener);
   }
 
   _onTransactionSent({ createdContact }) {
     const { dispatch, navigation } = this.props;
+    const { inputLocked } = this.state;
 
-    const animation = LayoutAnimation.create(
-      this.state.keyboardAnimationDuration,
-      LayoutAnimation.Types[this.state.keyboardAnimationEasing],
-      LayoutAnimation.Properties.opacity,
-    );
+    if (inputLocked) {
+      this._configureNextAnimation();
 
-    LayoutAnimation.configureNext(animation);
-
-    this.setState({
-      confirmTransaction: false,
-      amountBtc: 0
-    });
+      this.setState({
+        confirmTransaction: false,
+        amountBtc: 0
+      });
+    } else {
+      this._listenKeyboardDidShow().then(() => {
+        this.setState({
+          confirmTransaction: false,
+          amountBtc: 0
+        });
+      });
+    }
 
     if (this._inputBar) {
       this._inputBar.reset();
+      this._inputBar.focus();
     }
 
     if (createdContact) {
@@ -422,29 +497,42 @@ export default class ConversationScreen extends Component {
   }
 
   _renderInputBar() {
-    const { contact, amount } = this.props.navigation.state.params;
+    const { initialAmountBtc, contactInboundCapacity, inputLocked } = this.state;
+    const { contact, bitcoinAddress, paymentRequest } = this.props.navigation.state.params;
     const disabled = Boolean(contact && !contact.address);
+    let paymentType = InputBarContainer.PAYMENT_TYPE_BOTH;
+
+    if (paymentRequest) {
+      paymentType = InputBarContainer.PAYMENT_TYPE_OFFCHAIN;
+    } else if (bitcoinAddress) {
+      paymentType = InputBarContainer.PAYMENT_TYPE_ONCHAIN;
+    }
 
     return (
       <InputBarContainer
         ref={(ref) => { this._inputBar = ref && ref.getWrappedInstance(); }}
         onSendPress={this._onSendPress}
         onCancelPress={this._onCancelPress}
-        initialAmountBtc={amount}
+        initialAmountBtc={initialAmountBtc}
         disabled={disabled}
+        locked={inputLocked}
+        paymentType={paymentType}
+        contactInboundCapacity={contactInboundCapacity}
       />
     );
   }
 
   _renderConfirmTransactionView() {
-    const { contact, bitcoinAddress } = this.props.navigation.state.params;
+    const { contact, bitcoinAddress, paymentRequest } = this.props.navigation.state.params;
 
     const {
       keyboardHeight,
       confirmTransaction,
       amountBtc,
       displayCurrency,
-      displayUnit
+      displayUnit,
+      forceOnChain,
+      contactInboundCapacity
     } = this.state;
 
     if (!keyboardHeight) {
@@ -466,7 +554,10 @@ export default class ConversationScreen extends Component {
         displayUnit={displayUnit}
         contact={contact}
         bitcoinAddress={bitcoinAddress}
+        paymentRequest={paymentRequest}
+        forceOnChain={forceOnChain}
         onTransactionSent={this._onTransactionSent}
+        contactInboundCapacity={contactInboundCapacity}
       />
     );
   }
@@ -504,7 +595,7 @@ export default class ConversationScreen extends Component {
   render() {
     const { navigation } = this.props;
     const { contact } = navigation.state.params;
-    const { confirmTransaction } = this.state;
+    const { confirmTransaction, loadingError } = this.state;
     const hasContactRequest = Boolean(contact && contact.contactRequest);
 
     const contentStyle = [
@@ -513,6 +604,10 @@ export default class ConversationScreen extends Component {
     ];
 
     const keyboardSpacerStyle = confirmTransaction && { position: 'absolute' };
+
+    if (loadingError) {
+      return <BaseScreen hideHeader={true} style={styles.view} />;
+    }
 
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
@@ -531,5 +626,6 @@ ConversationScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
   contacts: PropTypes.object,
-  messages: PropTypes.object
+  messages: PropTypes.object,
+  lightningBalance: PropTypes.number
 };

@@ -9,7 +9,6 @@ import SettingsGroup from '../../components/SettingsGroup';
 import SettingsAttribute from '../../components/SettingsAttribute';
 import SettingsLink from '../../components/SettingsLink';
 import BaseSettingsScreen from './BaseSettingsScreen';
-import config from '../../config';
 
 @connect((state) => ({
   settings: state.settings
@@ -19,22 +18,31 @@ export default class BitcoinSettingsScreen extends Component {
     headerTransparent: true,
     headerBackground: <SettingsHeaderBackground />,
     headerTitle: <HeaderTitle title='Bitcoin' />,
-    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
+    headerLeft: <BackButton onPress={() => navigation.goBack()} />
   });
 
-  _showBitcoinUnit() {
-    const navigation = this.props.navigation;
-    navigation.navigate('BitcoinUnit');
+  _showBitcoinServiceScreen() {
+    const { navigation } = this.props;
+    navigation.navigate('BitcoinService');
+  }
+
+  _showOnChainBalance() {
+    const { navigation } = this.props;
+    navigation.navigate('OnChainBalance');
   }
 
   render() {
-    const settings = this.props.settings;
+    const { settings } = this.props;
 
     return (
       <BaseSettingsScreen>
         <SettingsGroup>
-          <SettingsAttribute name='Network' value={config.bitcoin.network} />
-          <SettingsLink name='Display Unit' value={settings.bitcoin.unit} onPress={this._showBitcoinUnit.bind(this)} isLastItem={true} />
+          <SettingsAttribute name='Network' value={settings.bitcoin.network} />
+          <SettingsLink name='Bitcoin Service' onPress={this._showBitcoinServiceScreen.bind(this)} isLastItem={true} />
+        </SettingsGroup>
+
+        <SettingsGroup>
+          <SettingsLink name='Balance' onPress={this._showOnChainBalance.bind(this)} isLastItem={true} />
         </SettingsGroup>
       </BaseSettingsScreen>
     );

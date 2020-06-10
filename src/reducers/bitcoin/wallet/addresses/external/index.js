@@ -1,5 +1,6 @@
 import * as externalAddressActions from '../../../../../actions/bitcoin/wallet/addresses/external';
 import * as addressActions from '../../../../../actions/bitcoin/wallet/addresses';
+import * as lightningRpcActions from '../../../../../actions/lightning/rpc';
 import error from './error';
 import items from './items';
 import unused from './unused';
@@ -18,6 +19,8 @@ const externalReducer = (state = {}, action) => {
 
     case addressActions.BITCOIN_WALLET_ADDRESSES_GET_UNUSED_SUCCESS:
     case addressActions.BITCOIN_WALLET_ADDRESSES_FLAG_AS_USED:
+
+    case lightningRpcActions.PINE_LIGHTNING_RPC_NEW_ADDRESS:
       return {
         ...state,
         error: error(state.error, action),

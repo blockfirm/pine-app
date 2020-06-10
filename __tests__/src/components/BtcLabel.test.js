@@ -148,6 +148,14 @@ describe('BtcLabel', () => {
       expect(tree).toMatchSnapshot();
     });
 
+    it('renders 0.00000001 BTC as 1 sat', () => {
+      const tree = renderer.create(
+        <BtcLabel amount={0.00000001} unit={UNIT_SATOSHIS} />
+      ).toJSON();
+
+      expect(tree).toMatchSnapshot();
+    });
+
     it('renders -0.08 BTC correctly', () => {
       const tree = renderer.create(
         <BtcLabel amount={-0.08} unit={UNIT_SATOSHIS} />

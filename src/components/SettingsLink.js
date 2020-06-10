@@ -8,13 +8,17 @@ import settingsStyles from '../styles/settingsStyles';
 import StyledText from './StyledText';
 
 const ICON_GEAR = 'Gear';
-const ICON_LOCK = 'Lock';
 const ICON_BITCOIN = 'Bitcoin';
+const ICON_LIGHTNING = 'Lightning';
+const ICON_BETA = 'Beta';
+const ICON_STATUS = 'Status';
 
 const ICON_IMAGES = {
   [ICON_GEAR]: require('../images/icons/settings/Gear.png'),
-  [ICON_LOCK]: require('../images/icons/settings/Lock.png'),
-  [ICON_BITCOIN]: require('../images/icons/settings/Bitcoin.png')
+  [ICON_BITCOIN]: require('../images/icons/settings/Bitcoin.png'),
+  [ICON_LIGHTNING]: require('../images/icons/settings/Lightning.png'),
+  [ICON_BETA]: require('../images/icons/settings/Beta.png'),
+  [ICON_STATUS]: require('../images/icons/settings/Status.png')
 };
 
 const styles = StyleSheet.create({
@@ -40,8 +44,10 @@ const styles = StyleSheet.create({
 
 class SettingsLink extends Component {
   static ICON_GEAR = ICON_GEAR;
-  static ICON_LOCK = ICON_LOCK;
   static ICON_BITCOIN = ICON_BITCOIN;
+  static ICON_LIGHTNING = ICON_LIGHTNING;
+  static ICON_BETA = ICON_BETA;
+  static ICON_STATUS = ICON_STATUS;
 
   _renderIcon() {
     const iconName = this.props.icon;
@@ -57,7 +63,7 @@ class SettingsLink extends Component {
   }
 
   render() {
-    const { isLastItem, theme } = this.props;
+    const { isLastItem, labelStyle, theme } = this.props;
     const icon = this._renderIcon();
 
     const containerStyles = [
@@ -71,7 +77,7 @@ class SettingsLink extends Component {
       <TouchableHighlight onPress={this.props.onPress} underlayColor={theme.settingsUnderlayColor}>
         <View style={containerStyles}>
           { icon }
-          <StyledText style={settingsStyles.label} numberOfLines={1}>{this.props.name}</StyledText>
+          <StyledText style={[settingsStyles.label, labelStyle]} numberOfLines={1}>{this.props.name}</StyledText>
           <StyledText style={[settingsStyles.value, theme.settingsValue, styles.value]} numberOfLines={1}>
             {this.props.value}
           </StyledText>
@@ -88,6 +94,7 @@ SettingsLink.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   isLastItem: PropTypes.bool,
+  labelStyle: PropTypes.any,
   theme: PropTypes.object.isRequired
 };
 

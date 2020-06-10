@@ -15,6 +15,7 @@ export const MESSAGES_PROCESS_SUCCESS = 'MESSAGES_PROCESS_SUCCESS';
 export const MESSAGES_PROCESS_FAILURE = 'MESSAGES_PROCESS_FAILURE';
 
 const MESSAGE_TYPE_PAYMENT = 'payment';
+const MESSAGE_TYPE_LIGHTNING_PAYMENT = 'lightning_payment';
 const ADDRESS_LOOK_AHEAD = 25;
 
 const processRequest = () => {
@@ -46,20 +47,22 @@ const validateMessage = (message, network) => {
     throw new Error('Message version must be 1');
   }
 
-  if (message.type !== MESSAGE_TYPE_PAYMENT) {
-    throw new Error('Message type must be payment');
+  if (![MESSAGE_TYPE_PAYMENT, MESSAGE_TYPE_LIGHTNING_PAYMENT].includes(message.type)) {
+    throw new Error('Message type must be either "payment" or "lightning_payment"');
   }
 
   if (!message.data || typeof message.data !== 'object') {
     throw new Error('Message data must be an object');
   }
 
-  if (typeof message.data.transaction !== 'string') {
-    throw new Error('Message transaction must be a string');
-  }
+  if (message.type === MESSAGE_TYPE_PAYMENT) {
+    if (typeof message.data.transaction !== 'string') {
+      throw new Error('Message transaction must be a string');
+    }
 
-  if (message.data.network !== `bitcoin_${network}`) {
-    throw new Error(`Message network must be bitcoin_${network}`);
+    if (message.data.network !== `bitcoin_${network}`) {
+      throw new Error(`Message network must be bitcoin_${network}`);
+    }
   }
 
   return true;
@@ -168,8 +171,8 @@ const saveAddresses = (addresses, dispatch) => {
  * @param {number} message.version - Version of the structure. Must be set to 1.
  * @param {string} message.type - Type of the message. Must be set to 'payment'.
  * @param {Object} message.data - Message data.
- * @param {string} message.data.transaction - Raw serialized bitcoin transaction.
- * @param {string} message.data.network - Network the transaction is for. Must be either 'bitcoin_testnet' or 'bitcoin_mainnet'.
+ * @param {string} [message.data.transaction] - Raw serialized bitcoin transaction.
+ * @param {string} [message.data.network] - Network the transaction is for. Must be either 'bitcoin_testnet' or 'bitcoin_mainnet'.
  *
  * @returns {Promise.Object} A promise that resolves to the processed message.
  */
@@ -186,6 +189,10 @@ export const process = (message) => {
     return Promise.resolve()
       .then(() => {
         validateMessage(message, network);
+
+        if (message.type === MESSAGE_TYPE_LIGHTNING_PAYMENT) {
+          return message;
+        }
 
         const rawTransaction = message.data.transaction;
         const transaction = bitcoin.Transaction.fromHex(rawTransaction);

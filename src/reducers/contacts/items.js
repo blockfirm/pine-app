@@ -15,6 +15,7 @@ const items = (state = {}, action) => {
 
     case contactsActions.CONTACTS_ADD_SUCCESS:
     case contactsActions.CONTACTS_ADD_LEGACY:
+    case contactsActions.CONTACTS_ADD_LIGHTNING:
     case contactsActions.CONTACTS_ADD_VENDOR:
       contact = { ...action.contact };
 

@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { Linking, View } from 'react-native';
+import { Linking } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { withTheme } from '../../contexts/theme';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
-import settingsStyles from '../../styles/settingsStyles';
-import ConnectionStatusContainer from '../../containers/ConnectionStatusContainer';
 import BackButton from '../../components/BackButton';
 import SettingsGroup from '../../components/SettingsGroup';
 import SettingsDescription from '../../components/SettingsDescription';
@@ -25,7 +22,7 @@ class BitcoinServiceScreen extends Component {
     headerTransparent: true,
     headerBackground: <SettingsHeaderBackground />,
     headerTitle: <HeaderTitle title='Bitcoin Service' />,
-    headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
+    headerLeft: <BackButton onPress={() => navigation.goBack()} />
   });
 
   _visitPineAPIRepo() {
@@ -33,23 +30,15 @@ class BitcoinServiceScreen extends Component {
   }
 
   _showServiceUrlScreen() {
-    const navigation = this.props.navigation;
+    const { navigation } = this.props;
     navigation.navigate('ServiceUrl');
   }
 
   render() {
-    const { settings, theme } = this.props;
+    const { settings } = this.props;
 
     return (
       <BaseSettingsScreen>
-        <SettingsGroup>
-          <View
-            style={[settingsStyles.item, theme.settingsItem, { borderBottomWidth: 0, alignItems: 'center' }]}
-          >
-            <ConnectionStatusContainer />
-          </View>
-        </SettingsGroup>
-
         <SettingsGroup>
           <SettingsLink name='Service URL' value={settings.api.baseUrl} onPress={this._showServiceUrlScreen.bind(this)} isLastItem={true} />
         </SettingsGroup>
@@ -72,8 +61,7 @@ class BitcoinServiceScreen extends Component {
 BitcoinServiceScreen.propTypes = {
   settings: PropTypes.object,
   dispatch: PropTypes.func,
-  navigation: PropTypes.any,
-  theme: PropTypes.object.isRequired
+  navigation: PropTypes.any
 };
 
-export default withTheme(BitcoinServiceScreen);
+export default BitcoinServiceScreen;

@@ -1,10 +1,12 @@
+/* eslint-disable lines-around-comment */
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { inactivateSync, reactivateSync } from '../../actions';
 import { withTheme } from '../../contexts/theme';
-import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
+import { normalizeBtcAmount, satsToBtc } from '../../crypto/bitcoin';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
 import settingsStyles from '../../styles/settingsStyles';
@@ -12,9 +14,11 @@ import DoneButton from '../../components/DoneButton';
 import SettingsTitle from '../../components/SettingsTitle';
 import SettingsDescription from '../../components/SettingsDescription';
 import SettingsGroup from '../../components/SettingsGroup';
+import SettingsLink from '../../components/SettingsLink';
 import StyledText from '../../components/StyledText';
 import StrongText from '../../components/StrongText';
 import StackedBarChart from '../../components/charts/StackedBarChart';
+import PendingBalanceIndicatorContainer from '../../containers/indicators/PendingBalanceIndicatorContainer';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
@@ -29,57 +33,23 @@ const styles = StyleSheet.create({
   },
   chartTitle: {
     fontSize: 15
+  },
+  linkAndDotWrapper: {
+    justifyContent: 'center'
+  },
+  balancePendingDot: {
+    position: 'absolute',
+    right: 35
   }
 });
 
-const getBalanceAggregates = (utxos) => {
-  return utxos.reduce((sums, utxo) => {
-    if (utxo.reserved) {
-      sums.reserved = normalizeBtcAmount(sums.reserved + utxo.value);
-    } else if (utxo.confirmed || utxo.internal) {
-      sums.spendable = normalizeBtcAmount(sums.spendable + utxo.value);
-    } else {
-      sums.pending = normalizeBtcAmount(sums.pending + utxo.value);
-    }
-
-    if (utxo.reserved && utxo.reservedBtcAmount) {
-      sums.total = normalizeBtcAmount(sums.total + utxo.value - utxo.reservedBtcAmount);
-    } else {
-      sums.total = normalizeBtcAmount(sums.total + utxo.value);
-    }
-
-    return sums;
-  }, {
-    spendable: 0,
-    total: 0,
-    pending: 0,
-    reserved: 0
-  });
-};
-
-const getCoinAggregates = (utxos) => {
-  return utxos.reduce((sums, utxo) => {
-    if (utxo.reserved) {
-      sums.reserved++;
-    } else if (utxo.confirmed || utxo.internal) {
-      sums.spendable++;
-    } else {
-      sums.pending++;
-    }
-
-    sums.total++;
-
-    return sums;
-  }, {
-    spendable: 0,
-    total: 0,
-    pending: 0,
-    reserved: 0
-  });
-};
-
 @connect((state) => ({
-  utxos: state.bitcoin.wallet.utxos.items
+  // On-chain balances are in BTC.
+  bitcoinBalance: state.bitcoin.wallet.balance,
+  spendableBitcoinBalance: state.bitcoin.wallet.spendableBalance,
+
+  // Off-chain balances are in sats.
+  lightningBalance: state.lightning.balance
 }))
 class WalletBalanceScreen extends Component {
   static navigationOptions = ({ screenProps }) => ({
@@ -90,30 +60,39 @@ class WalletBalanceScreen extends Component {
     headerRight: <DoneButton onPress={screenProps.dismiss} />
   });
 
-  constructor(props) {
-    super(...arguments);
+  componentDidMount() {
+    const { dispatch } = this.props;
 
-    const { utxos } = props;
-    const balances = getBalanceAggregates(utxos);
-    const coins = getCoinAggregates(utxos);
+    // Inactivate sync temporarily to not block the UI.
+    dispatch(inactivateSync());
+  }
 
-    this.state = { balances, coins };
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(reactivateSync());
+  }
+
+  _showOnChainBalance() {
+    const { navigation } = this.props;
+    navigation.navigate('OnChainBalance');
+  }
+
+  _showOffChainBalance() {
+    const { navigation } = this.props;
+    navigation.navigate('OffChainBalance');
   }
 
   render() {
-    const { theme } = this.props;
-    const { balances, coins } = this.state;
+    const { theme, bitcoinBalance, spendableBitcoinBalance, lightningBalance } = this.props;
+    const totalLightningBalance = lightningBalance.local + lightningBalance.commitFee + lightningBalance.unredeemed;
+    const totalLightningBalanceBtc = satsToBtc(totalLightningBalance);
+    const spendableLightningBalanceBtc = satsToBtc(lightningBalance.spendable);
+    const totalBtc = normalizeBtcAmount(bitcoinBalance + totalLightningBalanceBtc);
+    const spendableBtc = normalizeBtcAmount(spendableBitcoinBalance + spendableLightningBalanceBtc);
 
     const balanceData = [
-      { label: 'Spendable', color: theme.walletBalanceSpendableColor, value: balances.spendable },
-      { label: 'Pending', color: theme.walletBalancePendingColor, value: balances.pending },
-      { label: 'Reserved', color: theme.walletBalanceReservedColor, value: balances.reserved }
-    ];
-
-    const coinData = [
-      { label: 'Spendable', color: theme.walletBalanceSpendableColor, value: coins.spendable },
-      { label: 'Pending', color: theme.walletBalancePendingColor, value: coins.pending },
-      { label: 'Reserved', color: theme.walletBalanceReservedColor, value: coins.reserved }
+      { label: 'On-chain', color: theme.walletBalanceOnChainColor, value: bitcoinBalance },
+      { label: 'Off-chain', color: theme.walletBalanceOffChainColor, value: totalLightningBalanceBtc }
     ];
 
     return (
@@ -123,13 +102,13 @@ class WalletBalanceScreen extends Component {
           <View style={[settingsStyles.item, styles.wrapper]}>
             <StyledText style={styles.chartTitle}>
               <CurrencyLabelContainer
-                amountBtc={balances.spendable}
+                amountBtc={spendableBtc}
                 currencyType='primary'
                 style={styles.spendableText}
               />
               &nbsp;of&nbsp;
               <CurrencyLabelContainer
-                amountBtc={balances.total}
+                amountBtc={totalBtc}
                 currencyType='primary'
                 style={styles.spendableText}
               />
@@ -140,32 +119,30 @@ class WalletBalanceScreen extends Component {
         </SettingsGroup>
 
         <SettingsDescription>
-          <StrongText>Spendable</StrongText> balance includes confirmed payments and unconfirmed change.
+          <StrongText>On-chain</StrongText> balance is your bitcoin stored on the blockchain.
+          This type of balance is the safest but transactions are slower and more expensive.
         </SettingsDescription>
         <SettingsDescription>
-          <StrongText>Pending</StrongText> balance includes unconfirmed incoming payments.
-        </SettingsDescription>
-        <SettingsDescription>
-          <StrongText>Reserved</StrongText> balance includes coins that have been reserved for outgoing payments
-          but have not yet been broadcasted by its recepients. It doesn't include the amount that was sent.
-          It will be available once the recipient has received the payment or the payment has been canceled.
+          <StrongText>Off-chain</StrongText> balance is your bitcoin stored in Lightning payment channels.
+          This type of balance is faster and cheaper, but less secure than on-chain.
         </SettingsDescription>
 
-        <SettingsTitle>Coins</SettingsTitle>
         <SettingsGroup>
-          <View style={[settingsStyles.item, styles.wrapper]}>
-            <StyledText style={styles.chartTitle}>
-              {coins.spendable} of {coins.total} Coins Spendable
-            </StyledText>
-            <StackedBarChart data={coinData} />
+          <View style={styles.linkAndDotWrapper}>
+            <SettingsLink name='On-chain' onPress={this._showOnChainBalance.bind(this)} />
+            <PendingBalanceIndicatorContainer
+              style={styles.balancePendingDot}
+              balanceType={PendingBalanceIndicatorContainer.BALANCE_TYPE_ONCHAIN}
+            />
+          </View>
+          <View style={styles.linkAndDotWrapper}>
+            <SettingsLink name='Off-chain' onPress={this._showOffChainBalance.bind(this)} isLastItem={true} />
+            <PendingBalanceIndicatorContainer
+              style={styles.balancePendingDot}
+              balanceType={PendingBalanceIndicatorContainer.BALANCE_TYPE_OFFCHAIN}
+            />
           </View>
         </SettingsGroup>
-
-        <SettingsDescription>
-          Whole coins must be used when making payments which means that the reserved amount will
-          likely be higher than the actual sent amount. The difference will be spendable as soon
-          as the transaction has been broadcasted and change coins have been received.
-        </SettingsDescription>
       </BaseSettingsScreen>
     );
   }
@@ -174,7 +151,9 @@ class WalletBalanceScreen extends Component {
 WalletBalanceScreen.propTypes = {
   dispatch: PropTypes.func,
   navigation: PropTypes.any,
-  utxos: PropTypes.arrayOf(PropTypes.object),
+  bitcoinBalance: PropTypes.number,
+  spendableBitcoinBalance: PropTypes.number,
+  lightningBalance: PropTypes.object,
   theme: PropTypes.object.isRequired
 };
 

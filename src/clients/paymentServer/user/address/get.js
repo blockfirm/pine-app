@@ -45,10 +45,17 @@ const get = (user, credentials) => {
     })
     .then((response) => {
       if (!response || !response.address) {
-        throw new Error('Unknown error when getting address');
+        throw new SyntaxError();
       }
 
       return response.address;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to get a new address');
+      }
+
+      throw error;
     });
 };
 

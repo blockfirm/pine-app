@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LowercaseText renders text as lowercase 1`] = `
+<Text
+  style={
+    Object {
+      "textTransform": "lowercase",
+    }
+  }
+>
+  LOWERCASE
+</Text>
+`;

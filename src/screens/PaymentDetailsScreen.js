@@ -18,6 +18,7 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ReactNativeHaptic from 'react-native-haptic';
 
+import { satsToBtc } from '../crypto/bitcoin/convert';
 import { withTheme } from '../contexts/theme';
 import { cancelPayment } from '../actions/messages';
 import { handle as handleError } from '../actions/error';
@@ -39,6 +40,8 @@ import ShareIcon from '../components/icons/ShareIcon';
 import BaseScreen from './BaseScreen';
 
 const CURRENCY_BTC = 'BTC';
+const TYPE_LIGHTNING_PAYMENT = 'lightning_payment';
+const TYPE_LEGACY_LIGHTNING_PAYMENT = 'legacy_lightning_payment';
 
 const styles = StyleSheet.create({
   view: {
@@ -54,7 +57,6 @@ const styles = StyleSheet.create({
   },
   details: {
     alignSelf: 'stretch',
-    paddingTop: 16,
     marginHorizontal: 20
   },
   detail: {
@@ -76,7 +78,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     position: 'absolute',
     right: 0,
-    top: 16
+    top: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   valueLabel: {
     fontSize: 15
@@ -102,6 +107,9 @@ const styles = StyleSheet.create({
   },
   cancel: {
     fontWeight: '400'
+  },
+  errorWrapper: {
+    paddingTop: 16
   }
 });
 
@@ -135,6 +143,15 @@ const shareTransaction = (txid, bitcoinNetwork) => {
 class PaymentDetailsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { message, bitcoinNetwork } = navigation.state.params;
+    let headerRight;
+
+    if (message.txid) {
+      headerRight = (
+        <TouchableOpacity onPress={shareTransaction.bind(null, message.txid, bitcoinNetwork)} style={styles.share}>
+          <ShareIcon />
+        </TouchableOpacity>
+      );
+    }
 
     return {
       headerTransparent: true,
@@ -142,11 +159,7 @@ class PaymentDetailsScreen extends Component {
       headerBackground: <HeaderBackground />,
       headerStyle: headerStyles.borderlessHeader,
       headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />,
-      headerRight: (
-        <TouchableOpacity onPress={shareTransaction.bind(null, message.txid, bitcoinNetwork)} style={styles.share}>
-          <ShareIcon />
-        </TouchableOpacity>
-      )
+      headerRight
     };
   };
 
@@ -160,6 +173,16 @@ class PaymentDetailsScreen extends Component {
 
     this._showCancelConfirmation = this._showCancelConfirmation.bind(this);
     this._toggleStatusText = this._toggleStatusText.bind(this);
+  }
+
+  _isLightning() {
+    const { message } = this.props.navigation.state.params;
+
+    if (!message) {
+      return false;
+    }
+
+    return [TYPE_LIGHTNING_PAYMENT, TYPE_LEGACY_LIGHTNING_PAYMENT].includes(message.type);
   }
 
   _cancelPayment() {
@@ -226,7 +249,40 @@ class PaymentDetailsScreen extends Component {
     });
   }
 
-  _getStatus() {
+  _renderTransactionType() {
+    const { theme } = this.props;
+
+    return (
+      <View style={[styles.detail, theme.tableBorder]}>
+        <StyledText style={[styles.label, theme.tableLabel]}>Payment Type</StyledText>
+        <View style={styles.value}>
+          <StyledText style={[styles.valueLabel, theme.text]}>
+            { this._isLightning() ? 'Off-chain (Lightning)' : 'On-chain' }
+          </StyledText>
+        </View>
+      </View>
+    );
+  }
+
+  _getInvoiceStatus() {
+    const { invoice } = this.props.navigation.state.params;
+
+    if (invoice.payee) {
+      if (invoice.redeemed) {
+        return 'Sent';
+      }
+
+      return 'To be Redeemed';
+    }
+
+    if (invoice.redeemed) {
+      return 'Received';
+    }
+
+    return 'To be Redeemed';
+  }
+
+  _getTransactionStatus() {
     const { transaction, message } = this.props.navigation.state.params;
 
     if (!transaction) {
@@ -244,8 +300,40 @@ class PaymentDetailsScreen extends Component {
     return 'Confirmed';
   }
 
+  _getStatus() {
+    const { message, invoice } = this.props.navigation.state.params;
+
+    if (invoice) {
+      return this._getInvoiceStatus();
+    }
+
+    if (message && message.type === TYPE_LEGACY_LIGHTNING_PAYMENT) {
+      return 'Sent';
+    }
+
+    return this._getTransactionStatus();
+  }
+
+  _getInvoiceStatusText() {
+    const { invoice } = this.props.navigation.state.params;
+
+    if (invoice.payee) {
+      if (invoice.redeemed) {
+        return 'The payment has been received by its recipient.';
+      }
+
+      return 'The payment has been sent to its recipient\'s gateway node and is waiting to be redeemed.';
+    }
+
+    if (invoice.redeemed) {
+      return 'The payment has been received.';
+    }
+
+    return 'The payment is waiting to be redeemed from your gateway node. You need sufficient inbound capacity in order to redeem this payment.';
+  }
+
   // eslint-disable-next-line max-statements
-  _getStatusText() {
+  _getTransactionStatusText() {
     const { transaction, message } = this.props.navigation.state.params;
 
     if (!transaction) {
@@ -283,6 +371,20 @@ class PaymentDetailsScreen extends Component {
     return 'The transaction has been confirmed in a block and can now be spent by its recipient.';
   }
 
+  _getStatusText() {
+    const { message, invoice } = this.props.navigation.state.params;
+
+    if (invoice) {
+      return this._getInvoiceStatusText();
+    }
+
+    if (message && message.type === TYPE_LEGACY_LIGHTNING_PAYMENT) {
+      return 'The payment has been received by its recipient.';
+    }
+
+    return this._getTransactionStatusText();
+  }
+
   _renderStatus() {
     const { theme } = this.props;
     const { showStatusText } = this.state;
@@ -312,30 +414,36 @@ class PaymentDetailsScreen extends Component {
   }
 
   _renderError() {
-    const { message } = this.props.navigation.state.params;
+    const { message, invoice } = this.props.navigation.state.params;
+    const messageError = message && message.error;
+    const redeemError = invoice && invoice.redeemError;
+    const error = messageError || redeemError;
 
-    if (!message.error) {
+    if (!error) {
       return;
     }
 
     return (
-      <ErrorMessage
-        title='Invalid Payment'
-        message={message.error}
-        details={JSON.stringify(message, null, 2)}
-      />
+      <View style={styles.errorWrapper}>
+        <ErrorMessage
+          title={messageError ? 'Invalid Payment' : 'Redeem Error'}
+          message={error}
+          details={JSON.stringify({ message, invoice }, null, 2)}
+        />
+      </View>
     );
   }
 
   _renderAmount() {
     const { theme } = this.props;
-    const { message, transaction } = this.props.navigation.state.params;
+    const { message, transaction, invoice } = this.props.navigation.state.params;
     const title = message.from ? 'Amount Received' : 'Amount Sent';
+    const amountBtc = invoice ? satsToBtc(invoice.paidAmount) : message.amountBtc;
 
     const style = [
       styles.detail,
       theme.tableBorder,
-      message.from && styles.lastDetail
+      (message.from || invoice) ? styles.lastDetail : null
     ];
 
     if (message.canceled && !transaction) {
@@ -350,13 +458,13 @@ class PaymentDetailsScreen extends Component {
         <View style={styles.value}>
           <View style={styles.valueWrapper}>
             <CurrencyLabelContainer
-              amountBtc={message.amountBtc}
+              amountBtc={amountBtc}
               currencyType='primary'
               style={[styles.valueLabel, theme.text]}
             />
             <Bullet />
             <CurrencyLabelContainer
-              amountBtc={message.amountBtc}
+              amountBtc={amountBtc}
               currencyType='secondary'
               style={[styles.valueLabel, theme.text]}
             />
@@ -440,7 +548,7 @@ class PaymentDetailsScreen extends Component {
     const { message, transaction } = this.props.navigation.state.params;
     const { cancelling } = this.state;
 
-    if (transaction || message.from || message.canceled) {
+    if (transaction || this._isLightning() || message.from || message.canceled) {
       return null;
     }
 
@@ -461,32 +569,65 @@ class PaymentDetailsScreen extends Component {
     );
   }
 
-  render() {
+  _renderTransactionID() {
+    const { theme } = this.props;
+    const { transaction, message } = this.props.navigation.state.params;
+
+    if (!transaction) {
+      return null;
+    }
+
+    return (
+      <View style={[styles.detail, theme.tableBorder]}>
+        <StyledText style={[styles.label, theme.tableLabel]}>Transaction ID</StyledText>
+        <AddressLabel address={message.txid} style={styles.value} textStyle={[styles.valueLabel, theme.text]} />
+      </View>
+    );
+  }
+
+  _renderTo() {
     const { theme } = this.props;
     const { message } = this.props.navigation.state.params;
     const address = message.address && message.address.address;
+
+    if (!address) {
+      return null;
+    }
+
+    return (
+      <View style={[styles.detail, theme.tableBorder]}>
+        <StyledText style={[styles.label, theme.tableLabel]}>To</StyledText>
+        <AddressLabel address={address} style={styles.value} textStyle={[styles.valueLabel, theme.text]} />
+      </View>
+    );
+  }
+
+  _renderSentDate() {
+    const { theme } = this.props;
+    const { message } = this.props.navigation.state.params;
     const createdDate = new Date(message.createdAt * 1000);
 
+    return (
+      <View style={[styles.detail, theme.tableBorder]}>
+        <StyledText style={[styles.label, theme.tableLabel]}>Sent</StyledText>
+        <View style={styles.value}>
+          <DateLabel date={createdDate} style={[styles.valueLabel, theme.text]} />
+        </View>
+      </View>
+    );
+  }
+
+  render() {
     return (
       <BaseScreen hideHeader={true} style={styles.view}>
         <ContentView style={styles.content}>
           <ScrollView style={styles.details}>
             { this._renderError() }
+            { this._renderTransactionType() }
             { this._renderStatus() }
-            <View style={[styles.detail, theme.tableBorder]}>
-              <StyledText style={[styles.label, theme.tableLabel]}>Transaction ID</StyledText>
-              <AddressLabel address={message.txid} style={styles.value} textStyle={[styles.valueLabel, theme.text]} />
-            </View>
-            <View style={[styles.detail, theme.tableBorder]}>
-              <StyledText style={[styles.label, theme.tableLabel]}>To</StyledText>
-              <AddressLabel address={address} style={styles.value} textStyle={[styles.valueLabel, theme.text]} />
-            </View>
-            <View style={[styles.detail, theme.tableBorder]}>
-              <StyledText style={[styles.label, theme.tableLabel]}>Sent</StyledText>
-              <View style={styles.value}>
-                <DateLabel date={createdDate} style={[styles.valueLabel, theme.text]} />
-              </View>
-            </View>
+            { this._renderTransactionID() }
+            { this._renderTo() }
+            { this._renderSentDate() }
             { this._renderAmount() }
             { this._renderFee() }
             { this._renderTotal() }

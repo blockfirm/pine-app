@@ -45,6 +45,13 @@ const removeOutgoing = (contactRequest, credentials) => {
         error.code = response.status;
         throw error;
       });
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error('Received an invalid response when trying to delete outgoing contact request');
+      }
+
+      throw error;
     });
 };
 

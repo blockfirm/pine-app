@@ -18,11 +18,24 @@ const post = (rawTransaction, options) => {
       return response.json();
     })
     .then((response) => {
+      if (response.error !== undefined) {
+        throw new Error(response.error);
+      }
+
       if (!response.txid) {
-        throw new Error(response.error || 'Unknown error when posting transaction.');
+        throw new SyntaxError();
       }
 
       return response;
+    })
+    .catch((error) => {
+      if (error.name === 'SyntaxError') {
+        throw new Error(
+          'Received an invalid response when trying to post transaction'
+        );
+      }
+
+      throw error;
     });
 };
 

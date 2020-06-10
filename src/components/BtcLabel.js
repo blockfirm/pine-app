@@ -8,9 +8,9 @@ const UNIT_BTC = 'BTC';
 const UNIT_MBTC = 'mBTC';
 const UNIT_SATOSHIS = 'Satoshis';
 
-const getUnitLabel = (unit) => {
+const getUnitLabel = (amountString, unit) => {
   if (unit === UNIT_SATOSHIS) {
-    return 'sats';
+    return amountString === '1' ? 'sat' : 'sats';
   }
 
   return unit;
@@ -29,9 +29,10 @@ const formatSatoshis = (amount) => {
 };
 
 const formatAmount = (amount, unit, hideUnit) => {
-  const unitLabel = hideUnit ? '' : getUnitLabel(unit);
+  let unitLabel;
 
   if (!amount) {
+    unitLabel = hideUnit ? '' : getUnitLabel('0', unit);
     return `0 ${unitLabel}`.trim();
   }
 
@@ -51,9 +52,10 @@ const formatAmount = (amount, unit, hideUnit) => {
       break;
 
     default:
-      return '❓';
+      return '-';
   }
 
+  unitLabel = hideUnit ? '' : getUnitLabel(amountString, unit);
   amountString = formatNumber(amountString);
 
   return `${amountString} ${unitLabel}`.trim();

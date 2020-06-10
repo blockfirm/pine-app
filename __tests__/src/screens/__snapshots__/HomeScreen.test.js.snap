@@ -177,6 +177,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "label": Object {
                   "color": "#B1AFB7",
                 },
+                "lightningBadgeImage": Object {
+                  "testUri": "../../../src/images/badges/LightningBadge.png",
+                },
                 "link": Object {
                   "color": "#007AFF",
                 },
@@ -209,6 +212,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "background": "#ffffff",
                   "background2": "#EFEFF3",
                   "blue": "#007AFF",
+                  "blue2": "#3478F5",
                   "foreground": "#000000",
                   "gray1": "#B1AFB7",
                   "gray10": "#C3C3C3",
@@ -216,6 +220,8 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray12": "#A7A7AB",
                   "gray13": "#C8C8CC",
                   "gray14": "#C7C7CC",
+                  "gray15": "#CECED0",
+                  "gray16": "#E2E2E9",
                   "gray2": "#8A8A8F",
                   "gray3": "#BEBEBE",
                   "gray4": "#D8D8DB",
@@ -225,6 +231,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray8": "#8E8E93",
                   "gray9": "#9B9B9B",
                   "green": "#4CD964",
+                  "indigo": "#5856d6",
                   "middleground1": "#F6F6F6",
                   "middleground2": "#F3F3F5",
                   "middleground3": "#F0F0F0",
@@ -233,14 +240,19 @@ exports[`HomeScreen renders correctly 1`] = `
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
                   "overlay": "#FEFEFE",
+                  "pink": "#ff2d55",
                   "red": "#FF3B30",
                   "yellow1": "#FFD23F",
                   "yellow2": "#FFC431",
                   "yellow3": "#FEC300",
+                  "yellow4": "#FFCD00",
                 },
                 "paragraph": Object {
                   "color": "#B1AFB7",
                 },
+                "progressBarBackgroundColor": "#F6F6F6",
+                "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },
@@ -298,6 +310,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "settingsItem": Object {
                   "borderBottomColor": "#C8C8CC",
                 },
+                "settingsLabelWrapper": Object {
+                  "backgroundColor": "#E2E2E9",
+                },
                 "settingsTitle": Object {
                   "color": "#8A8A8F",
                 },
@@ -307,6 +322,11 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
+                },
+                "sliderTrackTintBackgroundColor": "#CECED0",
+                "sliderTrackTintColor": "#3478F5",
+                "smallLightningIconImage": Object {
+                  "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
                 "stackedBarChart": Object {
                   "backgroundColor": "#F2F2F6",
@@ -353,9 +373,13 @@ exports[`HomeScreen renders correctly 1`] = `
                 "unitPicker": Object {
                   "color": "#999999",
                 },
+                "walletBalanceInboundColor": "#FEC300",
+                "walletBalanceOffChainColor": "#5856d6",
+                "walletBalanceOnChainColor": "#4CD964",
                 "walletBalancePendingColor": "#FF9500",
                 "walletBalanceReservedColor": "#C7C7CC",
                 "walletBalanceSpendableColor": "#4CD964",
+                "walletBalanceUnredeemedColor": "#ff2d55",
               }
             }
           />,
@@ -522,6 +546,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "label": Object {
                   "color": "#B1AFB7",
                 },
+                "lightningBadgeImage": Object {
+                  "testUri": "../../../src/images/badges/LightningBadge.png",
+                },
                 "link": Object {
                   "color": "#007AFF",
                 },
@@ -554,6 +581,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "background": "#ffffff",
                   "background2": "#EFEFF3",
                   "blue": "#007AFF",
+                  "blue2": "#3478F5",
                   "foreground": "#000000",
                   "gray1": "#B1AFB7",
                   "gray10": "#C3C3C3",
@@ -561,6 +589,8 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray12": "#A7A7AB",
                   "gray13": "#C8C8CC",
                   "gray14": "#C7C7CC",
+                  "gray15": "#CECED0",
+                  "gray16": "#E2E2E9",
                   "gray2": "#8A8A8F",
                   "gray3": "#BEBEBE",
                   "gray4": "#D8D8DB",
@@ -570,6 +600,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray8": "#8E8E93",
                   "gray9": "#9B9B9B",
                   "green": "#4CD964",
+                  "indigo": "#5856d6",
                   "middleground1": "#F6F6F6",
                   "middleground2": "#F3F3F5",
                   "middleground3": "#F0F0F0",
@@ -578,14 +609,19 @@ exports[`HomeScreen renders correctly 1`] = `
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
                   "overlay": "#FEFEFE",
+                  "pink": "#ff2d55",
                   "red": "#FF3B30",
                   "yellow1": "#FFD23F",
                   "yellow2": "#FFC431",
                   "yellow3": "#FEC300",
+                  "yellow4": "#FFCD00",
                 },
                 "paragraph": Object {
                   "color": "#B1AFB7",
                 },
+                "progressBarBackgroundColor": "#F6F6F6",
+                "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },
@@ -643,6 +679,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "settingsItem": Object {
                   "borderBottomColor": "#C8C8CC",
                 },
+                "settingsLabelWrapper": Object {
+                  "backgroundColor": "#E2E2E9",
+                },
                 "settingsTitle": Object {
                   "color": "#8A8A8F",
                 },
@@ -652,6 +691,11 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
+                },
+                "sliderTrackTintBackgroundColor": "#CECED0",
+                "sliderTrackTintColor": "#3478F5",
+                "smallLightningIconImage": Object {
+                  "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
                 "stackedBarChart": Object {
                   "backgroundColor": "#F2F2F6",
@@ -698,9 +742,13 @@ exports[`HomeScreen renders correctly 1`] = `
                 "unitPicker": Object {
                   "color": "#999999",
                 },
+                "walletBalanceInboundColor": "#FEC300",
+                "walletBalanceOffChainColor": "#5856d6",
+                "walletBalanceOnChainColor": "#4CD964",
                 "walletBalancePendingColor": "#FF9500",
                 "walletBalanceReservedColor": "#C7C7CC",
                 "walletBalanceSpendableColor": "#4CD964",
+                "walletBalanceUnredeemedColor": "#ff2d55",
               }
             }
           />,
@@ -868,6 +916,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "label": Object {
                   "color": "#B1AFB7",
                 },
+                "lightningBadgeImage": Object {
+                  "testUri": "../../../src/images/badges/LightningBadge.png",
+                },
                 "link": Object {
                   "color": "#007AFF",
                 },
@@ -900,6 +951,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "background": "#ffffff",
                   "background2": "#EFEFF3",
                   "blue": "#007AFF",
+                  "blue2": "#3478F5",
                   "foreground": "#000000",
                   "gray1": "#B1AFB7",
                   "gray10": "#C3C3C3",
@@ -907,6 +959,8 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray12": "#A7A7AB",
                   "gray13": "#C8C8CC",
                   "gray14": "#C7C7CC",
+                  "gray15": "#CECED0",
+                  "gray16": "#E2E2E9",
                   "gray2": "#8A8A8F",
                   "gray3": "#BEBEBE",
                   "gray4": "#D8D8DB",
@@ -916,6 +970,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray8": "#8E8E93",
                   "gray9": "#9B9B9B",
                   "green": "#4CD964",
+                  "indigo": "#5856d6",
                   "middleground1": "#F6F6F6",
                   "middleground2": "#F3F3F5",
                   "middleground3": "#F0F0F0",
@@ -924,14 +979,19 @@ exports[`HomeScreen renders correctly 1`] = `
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
                   "overlay": "#FEFEFE",
+                  "pink": "#ff2d55",
                   "red": "#FF3B30",
                   "yellow1": "#FFD23F",
                   "yellow2": "#FFC431",
                   "yellow3": "#FEC300",
+                  "yellow4": "#FFCD00",
                 },
                 "paragraph": Object {
                   "color": "#B1AFB7",
                 },
+                "progressBarBackgroundColor": "#F6F6F6",
+                "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },
@@ -989,6 +1049,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "settingsItem": Object {
                   "borderBottomColor": "#C8C8CC",
                 },
+                "settingsLabelWrapper": Object {
+                  "backgroundColor": "#E2E2E9",
+                },
                 "settingsTitle": Object {
                   "color": "#8A8A8F",
                 },
@@ -998,6 +1061,11 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
+                },
+                "sliderTrackTintBackgroundColor": "#CECED0",
+                "sliderTrackTintColor": "#3478F5",
+                "smallLightningIconImage": Object {
+                  "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
                 "stackedBarChart": Object {
                   "backgroundColor": "#F2F2F6",
@@ -1044,9 +1112,13 @@ exports[`HomeScreen renders correctly 1`] = `
                 "unitPicker": Object {
                   "color": "#999999",
                 },
+                "walletBalanceInboundColor": "#FEC300",
+                "walletBalanceOffChainColor": "#5856d6",
+                "walletBalanceOnChainColor": "#4CD964",
                 "walletBalancePendingColor": "#FF9500",
                 "walletBalanceReservedColor": "#C7C7CC",
                 "walletBalanceSpendableColor": "#4CD964",
+                "walletBalanceUnredeemedColor": "#ff2d55",
               }
             }
           />,
@@ -1267,6 +1339,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "label": Object {
                   "color": "#B1AFB7",
                 },
+                "lightningBadgeImage": Object {
+                  "testUri": "../../../src/images/badges/LightningBadge.png",
+                },
                 "link": Object {
                   "color": "#007AFF",
                 },
@@ -1299,6 +1374,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "background": "#ffffff",
                   "background2": "#EFEFF3",
                   "blue": "#007AFF",
+                  "blue2": "#3478F5",
                   "foreground": "#000000",
                   "gray1": "#B1AFB7",
                   "gray10": "#C3C3C3",
@@ -1306,6 +1382,8 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray12": "#A7A7AB",
                   "gray13": "#C8C8CC",
                   "gray14": "#C7C7CC",
+                  "gray15": "#CECED0",
+                  "gray16": "#E2E2E9",
                   "gray2": "#8A8A8F",
                   "gray3": "#BEBEBE",
                   "gray4": "#D8D8DB",
@@ -1315,6 +1393,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray8": "#8E8E93",
                   "gray9": "#9B9B9B",
                   "green": "#4CD964",
+                  "indigo": "#5856d6",
                   "middleground1": "#F6F6F6",
                   "middleground2": "#F3F3F5",
                   "middleground3": "#F0F0F0",
@@ -1323,14 +1402,19 @@ exports[`HomeScreen renders correctly 1`] = `
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
                   "overlay": "#FEFEFE",
+                  "pink": "#ff2d55",
                   "red": "#FF3B30",
                   "yellow1": "#FFD23F",
                   "yellow2": "#FFC431",
                   "yellow3": "#FEC300",
+                  "yellow4": "#FFCD00",
                 },
                 "paragraph": Object {
                   "color": "#B1AFB7",
                 },
+                "progressBarBackgroundColor": "#F6F6F6",
+                "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },
@@ -1388,6 +1472,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "settingsItem": Object {
                   "borderBottomColor": "#C8C8CC",
                 },
+                "settingsLabelWrapper": Object {
+                  "backgroundColor": "#E2E2E9",
+                },
                 "settingsTitle": Object {
                   "color": "#8A8A8F",
                 },
@@ -1397,6 +1484,11 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
+                },
+                "sliderTrackTintBackgroundColor": "#CECED0",
+                "sliderTrackTintColor": "#3478F5",
+                "smallLightningIconImage": Object {
+                  "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
                 "stackedBarChart": Object {
                   "backgroundColor": "#F2F2F6",
@@ -1443,9 +1535,13 @@ exports[`HomeScreen renders correctly 1`] = `
                 "unitPicker": Object {
                   "color": "#999999",
                 },
+                "walletBalanceInboundColor": "#FEC300",
+                "walletBalanceOffChainColor": "#5856d6",
+                "walletBalanceOnChainColor": "#4CD964",
                 "walletBalancePendingColor": "#FF9500",
                 "walletBalanceReservedColor": "#C7C7CC",
                 "walletBalanceSpendableColor": "#4CD964",
+                "walletBalanceUnredeemedColor": "#ff2d55",
               }
             }
           />
@@ -1649,6 +1745,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "label": Object {
                   "color": "#B1AFB7",
                 },
+                "lightningBadgeImage": Object {
+                  "testUri": "../../../src/images/badges/LightningBadge.png",
+                },
                 "link": Object {
                   "color": "#007AFF",
                 },
@@ -1681,6 +1780,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "background": "#ffffff",
                   "background2": "#EFEFF3",
                   "blue": "#007AFF",
+                  "blue2": "#3478F5",
                   "foreground": "#000000",
                   "gray1": "#B1AFB7",
                   "gray10": "#C3C3C3",
@@ -1688,6 +1788,8 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray12": "#A7A7AB",
                   "gray13": "#C8C8CC",
                   "gray14": "#C7C7CC",
+                  "gray15": "#CECED0",
+                  "gray16": "#E2E2E9",
                   "gray2": "#8A8A8F",
                   "gray3": "#BEBEBE",
                   "gray4": "#D8D8DB",
@@ -1697,6 +1799,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray8": "#8E8E93",
                   "gray9": "#9B9B9B",
                   "green": "#4CD964",
+                  "indigo": "#5856d6",
                   "middleground1": "#F6F6F6",
                   "middleground2": "#F3F3F5",
                   "middleground3": "#F0F0F0",
@@ -1705,14 +1808,19 @@ exports[`HomeScreen renders correctly 1`] = `
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
                   "overlay": "#FEFEFE",
+                  "pink": "#ff2d55",
                   "red": "#FF3B30",
                   "yellow1": "#FFD23F",
                   "yellow2": "#FFC431",
                   "yellow3": "#FEC300",
+                  "yellow4": "#FFCD00",
                 },
                 "paragraph": Object {
                   "color": "#B1AFB7",
                 },
+                "progressBarBackgroundColor": "#F6F6F6",
+                "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },
@@ -1770,6 +1878,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "settingsItem": Object {
                   "borderBottomColor": "#C8C8CC",
                 },
+                "settingsLabelWrapper": Object {
+                  "backgroundColor": "#E2E2E9",
+                },
                 "settingsTitle": Object {
                   "color": "#8A8A8F",
                 },
@@ -1779,6 +1890,11 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
+                },
+                "sliderTrackTintBackgroundColor": "#CECED0",
+                "sliderTrackTintColor": "#3478F5",
+                "smallLightningIconImage": Object {
+                  "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
                 "stackedBarChart": Object {
                   "backgroundColor": "#F2F2F6",
@@ -1825,9 +1941,13 @@ exports[`HomeScreen renders correctly 1`] = `
                 "unitPicker": Object {
                   "color": "#999999",
                 },
+                "walletBalanceInboundColor": "#FEC300",
+                "walletBalanceOffChainColor": "#5856d6",
+                "walletBalanceOnChainColor": "#4CD964",
                 "walletBalancePendingColor": "#FF9500",
                 "walletBalanceReservedColor": "#C7C7CC",
                 "walletBalanceSpendableColor": "#4CD964",
+                "walletBalanceUnredeemedColor": "#ff2d55",
               }
             }
           />
@@ -2032,6 +2152,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "label": Object {
                   "color": "#B1AFB7",
                 },
+                "lightningBadgeImage": Object {
+                  "testUri": "../../../src/images/badges/LightningBadge.png",
+                },
                 "link": Object {
                   "color": "#007AFF",
                 },
@@ -2064,6 +2187,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "background": "#ffffff",
                   "background2": "#EFEFF3",
                   "blue": "#007AFF",
+                  "blue2": "#3478F5",
                   "foreground": "#000000",
                   "gray1": "#B1AFB7",
                   "gray10": "#C3C3C3",
@@ -2071,6 +2195,8 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray12": "#A7A7AB",
                   "gray13": "#C8C8CC",
                   "gray14": "#C7C7CC",
+                  "gray15": "#CECED0",
+                  "gray16": "#E2E2E9",
                   "gray2": "#8A8A8F",
                   "gray3": "#BEBEBE",
                   "gray4": "#D8D8DB",
@@ -2080,6 +2206,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "gray8": "#8E8E93",
                   "gray9": "#9B9B9B",
                   "green": "#4CD964",
+                  "indigo": "#5856d6",
                   "middleground1": "#F6F6F6",
                   "middleground2": "#F3F3F5",
                   "middleground3": "#F0F0F0",
@@ -2088,14 +2215,19 @@ exports[`HomeScreen renders correctly 1`] = `
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
                   "overlay": "#FEFEFE",
+                  "pink": "#ff2d55",
                   "red": "#FF3B30",
                   "yellow1": "#FFD23F",
                   "yellow2": "#FFC431",
                   "yellow3": "#FEC300",
+                  "yellow4": "#FFCD00",
                 },
                 "paragraph": Object {
                   "color": "#B1AFB7",
                 },
+                "progressBarBackgroundColor": "#F6F6F6",
+                "progressBarForegroundColor": "#FFCD00",
+                "progressBarForegroundColorRed": "#FF3B30",
                 "qrAvatar": Object {
                   "borderColor": "#ffffff",
                 },
@@ -2153,6 +2285,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "settingsItem": Object {
                   "borderBottomColor": "#C8C8CC",
                 },
+                "settingsLabelWrapper": Object {
+                  "backgroundColor": "#E2E2E9",
+                },
                 "settingsTitle": Object {
                   "color": "#8A8A8F",
                 },
@@ -2162,6 +2297,11 @@ exports[`HomeScreen renders correctly 1`] = `
                 },
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
+                },
+                "sliderTrackTintBackgroundColor": "#CECED0",
+                "sliderTrackTintColor": "#3478F5",
+                "smallLightningIconImage": Object {
+                  "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
                 "stackedBarChart": Object {
                   "backgroundColor": "#F2F2F6",
@@ -2208,9 +2348,13 @@ exports[`HomeScreen renders correctly 1`] = `
                 "unitPicker": Object {
                   "color": "#999999",
                 },
+                "walletBalanceInboundColor": "#FEC300",
+                "walletBalanceOffChainColor": "#5856d6",
+                "walletBalanceOnChainColor": "#4CD964",
                 "walletBalancePendingColor": "#FF9500",
                 "walletBalanceReservedColor": "#C7C7CC",
                 "walletBalanceSpendableColor": "#4CD964",
+                "walletBalanceUnredeemedColor": "#ff2d55",
               }
             }
           />

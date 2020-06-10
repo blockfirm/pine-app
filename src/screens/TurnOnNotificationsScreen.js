@@ -26,10 +26,8 @@ const styles = StyleSheet.create({
   },
   footerParagraph: {
     textAlign: 'center',
-    fontSize: 13,
-    fontWeight: '500',
-    lineHeight: 18,
-    letterSpacing: undefined
+    fontSize: 12,
+    lineHeight: 16
   },
   notificationImage: {
     width: 313,
@@ -105,7 +103,7 @@ class TurnOnNotificationsScreen extends Component {
 
         <Footer>
           <Paragraph style={styles.footerParagraph}>
-            When asked, allow Pine to send notifications for the best experience ✨👌
+            When asked, allow Pine to send notifications for the best experience.
           </Paragraph>
 
           <Button

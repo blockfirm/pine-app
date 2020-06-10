@@ -122,7 +122,7 @@ export default class NotificationService {
       return dispatch(openConversation(address));
     }
 
-    dispatch(syncApp()).then(() => {
+    dispatch(syncApp({ force: true })).then(() => {
       dispatch(openConversation(address));
     });
   }
