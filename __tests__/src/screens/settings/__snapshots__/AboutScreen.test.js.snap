@@ -475,7 +475,7 @@ exports[`AboutScreen renders correctly 1`] = `
                 ]
               }
             >
-              1.2.0
+              1.3.0
             </Text>
           </View>
           <View
