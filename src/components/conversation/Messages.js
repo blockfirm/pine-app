@@ -4,14 +4,16 @@ import PropTypes from 'prop-types';
 
 import MessageContainer from '../../containers/conversation/MessageContainer';
 import DateSectionList from '../DateSectionList';
+import CardMessage from './CardMessage';
+
+const MESSAGE_HEIGHT = 73;
+const CARD_MESSAGE_HEIGHT = CardMessage.getHeight();
 
 const styles = StyleSheet.create({
   view: {
     flex: 1,
     alignSelf: 'stretch',
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    marginBottom: -16
+    paddingHorizontal: 16
   }
 });
 
@@ -20,8 +22,61 @@ export default class Messages extends PureComponent {
     super(...arguments);
 
     this._newMessage = null;
-    this._previousLength = null;
     this._renderMessage = this._renderMessage.bind(this);
+  }
+
+  /**
+   * Checks if more messages have been added since last time
+   * and if so, saves the latest one so it can be animated.
+   */
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillUpdate(nextProps) {
+    if (!this._list) {
+      return;
+    }
+
+    if (!this.props.messages || !this.props.messages.length) {
+      return;
+    }
+
+    if (nextProps.messages && nextProps.messages.length > this.props.messages.length) {
+      this._newMessage = nextProps.messages[nextProps.messages.length - 1];
+    } else {
+      this._newMessage = null;
+      return;
+    }
+
+    /**
+     * Scroll to the position of the previous message without
+     * animating the scroll. This will hide the new message.
+     */
+    this._list.scrollToLocation({
+      itemIndex: 1,
+      sectionIndex: 0,
+      viewOffset: -this._getNewMessageHeight(),
+      viewPosition: 0,
+      animated: false
+    });
+
+    /**
+     * Scroll to the bottom with an animation to reveal the
+     * new message in a smooth way. The message itself is
+     * also animated to make the effect even better.
+     */
+    this._list.scrollToLocation({
+      itemIndex: 0,
+      sectionIndex: 0,
+      animated: true
+    });
+  }
+
+  _getNewMessageHeight() {
+    if (!this._newMessage) {
+      return 0;
+    }
+
+    const hasCard = Boolean(this._newMessage.data.card);
+    return hasCard ? CARD_MESSAGE_HEIGHT : MESSAGE_HEIGHT;
   }
 
   _keyExtractor(item, index) {
@@ -30,20 +85,6 @@ export default class Messages extends PureComponent {
 
   _shouldAnimateMessage(message) {
     return message === this._newMessage;
-  }
-
-  /**
-   * Checks if more messages have been added since last time
-   * and if so, saves the latest one so it can be animated.
-   */
-  _setNewMessage(messages) {
-    if (this._previousLength !== null && messages.length > this._previousLength) {
-      this._newMessage = messages[0]; // First message because the list is reversed.
-    } else {
-      this._newMessage = null;
-    }
-
-    this._previousLength = messages.length;
   }
 
   _renderMessage({ item, index, section }) {
@@ -71,10 +112,9 @@ export default class Messages extends PureComponent {
       return b.createdAt - a.createdAt;
     });
 
-    this._setNewMessage(messages);
-
     return (
       <DateSectionList
+        ref={(ref) => { this._list = ref; }}
         style={styles.view}
         inverted={true}
         data={messages}

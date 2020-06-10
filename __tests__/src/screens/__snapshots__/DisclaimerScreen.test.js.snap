@@ -18,6 +18,12 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
   }
   theme={
     Object {
+      "addCardActiveIcon": Object {
+        "testUri": "../../../src/images/icons/AddCardActive.png",
+      },
+      "addCardIcon": Object {
+        "testUri": "../../../src/images/icons/AddCard.png",
+      },
       "addContactIcon": Object {
         "testUri": "../../../src/images/icons/AddContact.png",
       },
@@ -81,6 +87,12 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
         "color": "#ffffff",
       },
       "buttonLoaderColor": "#ffffff",
+      "cardSelected": Object {
+        "borderColor": "#007AFF",
+      },
+      "checkIconAddOn": Object {
+        "testUri": "../../../src/images/icons/addons/CheckIconAddOn.png",
+      },
       "confirmTransactionDetail": Object {
         "borderColor": "#ECECEC",
       },
@@ -247,6 +259,9 @@ exports[`DisclaimerScreen renders correctly when user has a manual backup (not u
       },
       "paragraph": Object {
         "color": "#B1AFB7",
+      },
+      "plusIconAddOn": Object {
+        "testUri": "../../../src/images/icons/addons/PlusIconAddOn.png",
       },
       "progressBarBackgroundColor": "#F6F6F6",
       "progressBarForegroundColor": "#FFCD00",
@@ -839,6 +854,12 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
   }
   theme={
     Object {
+      "addCardActiveIcon": Object {
+        "testUri": "../../../src/images/icons/AddCardActive.png",
+      },
+      "addCardIcon": Object {
+        "testUri": "../../../src/images/icons/AddCard.png",
+      },
       "addContactIcon": Object {
         "testUri": "../../../src/images/icons/AddContact.png",
       },
@@ -902,6 +923,12 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
         "color": "#ffffff",
       },
       "buttonLoaderColor": "#ffffff",
+      "cardSelected": Object {
+        "borderColor": "#007AFF",
+      },
+      "checkIconAddOn": Object {
+        "testUri": "../../../src/images/icons/addons/CheckIconAddOn.png",
+      },
       "confirmTransactionDetail": Object {
         "borderColor": "#ECECEC",
       },
@@ -1068,6 +1095,9 @@ exports[`DisclaimerScreen renders correctly when user has no manual backup (usin
       },
       "paragraph": Object {
         "color": "#B1AFB7",
+      },
+      "plusIconAddOn": Object {
+        "testUri": "../../../src/images/icons/addons/PlusIconAddOn.png",
       },
       "progressBarBackgroundColor": "#F6F6F6",
       "progressBarForegroundColor": "#FFCD00",

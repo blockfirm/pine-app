@@ -9,8 +9,10 @@ import { withTheme } from '../../contexts/theme';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import Avatar from '../Avatar';
 import MessageIndicator from '../indicators/MessageIndicator';
+import CardMessage from './CardMessage';
 
-const HEIGHT = 73;
+const MESSAGE_HEIGHT = 73;
+const CARD_MESSAGE_HEIGHT = CardMessage.getHeight();
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -83,51 +85,35 @@ class Message extends Component {
     super(...arguments);
 
     this.state = {
-      animatedWrapper: new Animated.Value(0),
       animatedBubble: new Animated.Value(0)
     };
   }
 
   componentDidMount() {
-    const { message, animate } = this.props;
+    const { animate } = this.props;
 
-    if (animate && !message.from) {
+    if (animate) {
       this._animate();
     }
   }
 
   _animate() {
-    requestAnimationFrame(() => {
-      Animated.parallel([
-        Animated.timing(this.state.animatedWrapper, {
-          toValue: 1,
-          duration: 500,
-          easing: AppleEasing.default
-        }),
-        Animated.timing(this.state.animatedBubble, {
-          toValue: 1,
-          duration: 300,
-          delay: 200,
-          easing: AppleEasing.default,
-          useNativeDriver: true
-        })
-      ]).start();
-    });
+    Animated.timing(this.state.animatedBubble, {
+      toValue: 1,
+      duration: 450,
+      easing: AppleEasing.easeOut,
+      useNativeDriver: true
+    }).start();
   }
 
-  _applyAnimationStyles(wrapperStyle, bubbleStyle) {
-    wrapperStyle.push({
-      height: this.state.animatedWrapper.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, HEIGHT]
-      })
-    });
+  _applyAnimationStyles(wrapperStyle) {
+    const height = this._hasCard() ? CARD_MESSAGE_HEIGHT : MESSAGE_HEIGHT;
 
-    bubbleStyle.push({
+    wrapperStyle.push({
       transform: [{
         translateY: this.state.animatedBubble.interpolate({
           inputRange: [0, 1],
-          outputRange: [100, 0],
+          outputRange: [height, 0],
           extrapolate: 'clamp'
         })
       }]
@@ -137,6 +123,11 @@ class Message extends Component {
   _hasError() {
     const { message, transaction, invoice } = this.props;
     return message.error || (invoice && invoice.redeemError) || (message.canceled && !transaction);
+  }
+
+  _hasCard() {
+    const { message } = this.props;
+    return Boolean(message.data.card);
   }
 
   _getFirstBubbleStyle() {
@@ -231,16 +222,47 @@ class Message extends Component {
     );
   }
 
+  _renderStandardMessage(bubbleStyle, textStyle, smallTextStyle) {
+    const { onPress } = this.props;
+
+    return (
+      <TouchableOpacity onPress={onPress} activeOpacity={0.75}>
+        <Animated.View style={bubbleStyle}>
+          { this._renderBubbleContent(textStyle, smallTextStyle) }
+          { this._renderBubbleEnd() }
+          { this._renderStatus() }
+        </Animated.View>
+      </TouchableOpacity>
+    );
+  }
+
+  _renderCardMessage(textStyle) {
+    const { message, transaction, invoice, onPress } = this.props;
+    const hasError = this._hasError();
+
+    return (
+      <CardMessage
+        message={message}
+        transaction={transaction}
+        invoice={invoice}
+        onPress={onPress}
+        textStyle={textStyle}
+        hasError={hasError}
+      />
+    );
+  }
+
   // eslint-disable-next-line max-statements
   render() {
-    const { message, isFirst, isLast, onPress, animate, theme } = this.props;
+    const { message, isFirst, isLast, animate, theme } = this.props;
     const wrapperStyle = [styles.wrapper];
     const bubbleStyle = [styles.bubble];
     const textStyle = [];
     const smallTextStyle = [styles.smallText];
+    const hasCard = this._hasCard();
 
-    if (animate && !message.from) {
-      this._applyAnimationStyles(wrapperStyle, bubbleStyle);
+    if (animate) {
+      this._applyAnimationStyles(wrapperStyle);
     }
 
     if (message.from) {
@@ -276,13 +298,8 @@ class Message extends Component {
     return (
       <Animated.View style={wrapperStyle}>
         { this._renderAvatar() }
-        <TouchableOpacity onPress={onPress}>
-          <Animated.View style={bubbleStyle}>
-            { this._renderBubbleContent(textStyle, smallTextStyle) }
-            { this._renderBubbleEnd() }
-            { this._renderStatus() }
-          </Animated.View>
-        </TouchableOpacity>
+        { !hasCard && this._renderStandardMessage(bubbleStyle, textStyle, smallTextStyle) }
+        { hasCard && this._renderCardMessage(textStyle) }
       </Animated.View>
     );
   }

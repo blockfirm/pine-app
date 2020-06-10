@@ -55,6 +55,8 @@ export default {
   overlayHome: { backgroundColor: palette.overlay },
   overlayReceive: { backgroundColor: palette.overlay, borderColor: 'gray' },
   homeGradientColors: ['rgba(255, 255, 255, 0.0)', 'rgba(255, 255, 255, 1.0)'],
+  addCardIcon: require('../../images/icons/AddCard.png'),
+  addCardActiveIcon: require('../../images/icons/AddCardActive.png'),
   addContactIcon: require('../../images/icons/AddContact.png'),
   settingsIcon: require('../../images/icons/Settings.png'),
   backIcon: require('../../images/icons/Back.png'),
@@ -62,6 +64,8 @@ export default {
   toolbarMessagesIcon: require('../../images/icons/toolbar/Messages.png'),
   toolbarReceiveIcon: require('../../images/icons/toolbar/Receive.png'),
   toolbarSendIcon: require('../../images/icons/toolbar/Send.png'),
+  plusIconAddOn: require('../../images/icons/addons/PlusIconAddOn.png'),
+  checkIconAddOn: require('../../images/icons/addons/CheckIconAddOn.png'),
   toolbarDot: { backgroundColor: palette.gray3 },
   header: { backgroundColor: palette.background },
   headerTitle: { color: palette.foreground },
@@ -181,5 +185,6 @@ export default {
   progressBarBackgroundColor: palette.middleground1,
   progressBarForegroundColor: palette.yellow4,
   progressBarForegroundColorRed: palette.red,
+  cardSelected: { borderColor: palette.blue },
   palette
 };

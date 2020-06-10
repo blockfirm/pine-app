@@ -57,7 +57,8 @@ class ConfirmTransactionContainer extends Component {
     paymentRequest: PropTypes.string,
     forceOnChain: PropTypes.bool,
     lightningBalance: PropTypes.number,
-    contactInboundCapacity: PropTypes.number
+    contactInboundCapacity: PropTypes.number,
+    selectedCard: PropTypes.string
   };
 
   state = {
@@ -229,7 +230,7 @@ class ConfirmTransactionContainer extends Component {
   }
 
   async _createLightningInvoice() {
-    const { dispatch, contact, paymentRequest, amountBtc } = this.props;
+    const { dispatch, contact, paymentRequest, amountBtc, selectedCard } = this.props;
     const amountSats = btcToSats(amountBtc);
 
     if (paymentRequest || !amountSats) {
@@ -239,7 +240,9 @@ class ConfirmTransactionContainer extends Component {
     const paymentMessage = {
       version: 1,
       type: MESSAGE_TYPE_LIGHTNING_PAYMENT,
-      data: {}
+      data: {
+        card: selectedCard
+      }
     };
 
     try {
@@ -294,7 +297,7 @@ class ConfirmTransactionContainer extends Component {
   }
 
   _signAndPay() {
-    const { dispatch, contact, amountBtc } = this.props;
+    const { dispatch, contact, amountBtc, selectedCard } = this.props;
     const { inputs, outputs, fee, address } = this.state;
 
     return dispatch(signTransaction(inputs, outputs))
@@ -307,7 +310,8 @@ class ConfirmTransactionContainer extends Component {
           address,
           amountBtc,
           fee,
-          inputs
+          inputs,
+          card: selectedCard
         };
 
         if (!contact || contact.isBitcoinAddress) {

@@ -7,6 +7,7 @@ import {
   ActionSheetIOS,
   ActivityIndicator,
   Keyboard,
+  Animated,
   LayoutAnimation,
   Linking
 } from 'react-native';
@@ -39,6 +40,7 @@ import Messages from '../components/conversation/Messages';
 import BackButton from '../components/BackButton';
 import Avatar from '../components/Avatar';
 import HeaderBackground from '../components/HeaderBackground';
+import CardPicker from '../components/conversation/CardPicker';
 import ConfirmTransactionContainer from '../containers/conversation/ConfirmTransactionContainer';
 import ContactRequestContainer from '../containers/conversation/ContactRequestContainer';
 import InputBarContainer from '../containers/conversation/InputBarContainer';
@@ -135,11 +137,14 @@ export default class ConversationScreen extends Component {
 
   state = {
     confirmTransaction: false,
+    confirmTransactionOpacity: new Animated.Value(0),
+    showCardPicker: false,
+    cardPickerOpacity: new Animated.Value(0),
     amountBtc: 0,
     initialAmountBtc: null,
     displayCurrency: 'BTC',
     displayUnit: 'BTC',
-    keyboardHeight: 291,
+    keyboardHeight: 301,
     keyboardAnimationDuration: 250,
     keyboardAnimationEasing: 'keyboard',
     keyboardIsVisible: false,
@@ -147,7 +152,8 @@ export default class ConversationScreen extends Component {
     decodedPaymentRequest: null,
     forceOnChain: false,
     contactInboundCapacity: null,
-    inputLocked: false
+    inputLocked: false,
+    selectedCard: null
   }
 
   constructor(props) {
@@ -169,6 +175,7 @@ export default class ConversationScreen extends Component {
         this.state.initialAmountBtc = paymentRequestAmount;
         this.state.inputLocked = true;
         this.state.confirmTransaction = true;
+        this.state.confirmTransactionOpacity = new Animated.Value(1);
       } catch (error) {
         this.state.loadingError = error;
 
@@ -189,9 +196,10 @@ export default class ConversationScreen extends Component {
     this._onContactRequestDelete = this._onContactRequestDelete.bind(this);
 
     this._onSendPress = this._onSendPress.bind(this);
-    this._onCancelPress = this._onCancelPress.bind(this);
+    this._onAddCardPress = this._onAddCardPress.bind(this);
     this._onTransactionSent = this._onTransactionSent.bind(this);
 
+    this._onKeyboardWillShow = this._onKeyboardWillShow.bind(this); 
     this._onKeyboardDidShow = this._onKeyboardDidShow.bind(this);
     this._onKeyboardDidHide = this._onKeyboardDidHide.bind(this);
   }
@@ -210,6 +218,10 @@ export default class ConversationScreen extends Component {
       showUserMenu: this._showUserMenu.bind(this),
       decodedPaymentRequest: this.state.decodedPaymentRequest
      });
+
+    this._listeners.push(
+      Keyboard.addListener('keyboardWillShow', this._onKeyboardWillShow)
+    );
 
     this._listeners.push(
       Keyboard.addListener('keyboardDidShow', this._onKeyboardDidShow)
@@ -285,6 +297,11 @@ export default class ConversationScreen extends Component {
     }
   }
 
+  _isPineContact() {
+    const { contact } = this.props.navigation.state.params;
+    return Boolean(contact && !contact.isBitcoinAddress && !contact.isLightningNode);
+  }
+
   _configureNextAnimation() {
     const animation = LayoutAnimation.create(
       this.state.keyboardAnimationDuration,
@@ -295,6 +312,16 @@ export default class ConversationScreen extends Component {
     LayoutAnimation.configureNext(animation);
   }
 
+  _onKeyboardWillShow() {
+    if (this.state.confirmTransaction) {
+      this._hideConfirmTransaction();
+    }
+
+    if (this.state.showCardPicker) { 
+      this._hideCardPicker();
+    }
+  }
+
   _onKeyboardDidShow(event) {
     this.setState({
       keyboardHeight: event.endCoordinates.height,
@@ -302,10 +329,60 @@ export default class ConversationScreen extends Component {
       keyboardAnimationEasing: event.easing,
       keyboardIsVisible: true
     });
+
+    this._hideCardPicker();
   }
 
   _onKeyboardDidHide() {
-    this.setState({ keyboardIsVisible: false });
+    this.setState({ keyboardIsVisible: false }); 
+  }
+
+  _showConfirmTransaction() {
+    this.setState({ confirmTransaction: true });
+
+    if (this.state.showCardPicker) {
+      this._hideCardPicker(); 
+    }
+
+    Animated.timing(this.state.confirmTransactionOpacity, {
+      toValue: 1,
+      duration: 0,
+      useNativeDriver: true
+    }).start();
+  }
+
+  _hideConfirmTransaction() {
+    this.setState({ confirmTransaction: false });
+
+    Animated.timing(this.state.confirmTransactionOpacity, {
+      toValue: 0,
+      duration: this.state.keyboardAnimationDuration + 50,
+      useNativeDriver: true
+    }).start();
+  }
+
+  _showCardPicker() {
+    this.setState({ showCardPicker: true });
+
+    if (this.state.confirmTransaction) {
+      this._hideConfirmTransaction();
+    }
+
+    Animated.timing(this.state.cardPickerOpacity, {
+      toValue: 1,
+      duration: 0,
+      useNativeDriver: true
+    }).start();
+  }
+
+  _hideCardPicker() {
+    this.setState({ showCardPicker: false });
+
+    Animated.timing(this.state.cardPickerOpacity, {
+      toValue: 0,
+      duration: this.state.keyboardAnimationDuration + 50,
+      useNativeDriver: true
+    }).start();
   }
 
   async _loadContactInboundCapacity() {
@@ -407,21 +484,6 @@ export default class ConversationScreen extends Component {
     });
   }
 
-  _listenKeyboardDidShow() {
-    return new Promise(resolve => {
-      const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
-        resolve();
-
-        if (!keyboardDidShowListener.removed) {
-          keyboardDidShowListener.remove();
-          keyboardDidShowListener.removed = true;
-        }
-      });
-
-      this._listeners.push(keyboardDidShowListener);
-    });
-  }
-
   _onContactRequestAccept(contact) {
     this.props.navigation.setParams({ contact });
   }
@@ -435,13 +497,29 @@ export default class ConversationScreen extends Component {
   }
 
   _onSendPress({ amountBtc, displayCurrency, displayUnit, forceOnChain }) {
+    this._showConfirmTransaction();
+
     this.setState({
-      confirmTransaction: true,
       amountBtc,
       displayCurrency,
       displayUnit,
       forceOnChain
-    });
+    }); 
+
+    if (this.state.keyboardIsVisible) {
+      return Keyboard.dismiss();
+    } 
+
+    this._configureNextAnimation();
+  }
+
+  _onAddCardPress() {
+    if (this.state.showCardPicker) {
+      this._configureNextAnimation();
+      return this._inputBar.focus();
+    }
+
+    this._showCardPicker();
 
     if (this.state.keyboardIsVisible) {
       return Keyboard.dismiss();
@@ -450,31 +528,19 @@ export default class ConversationScreen extends Component {
     this._configureNextAnimation();
   }
 
-  _onCancelPress() {
-    this._listenKeyboardDidShow().then(() => {
-      this.setState({ confirmTransaction: false });
-    });
-  }
-
   _onTransactionSent({ createdContact }) {
     const { dispatch, navigation } = this.props;
     const { inputLocked } = this.state;
 
     if (inputLocked) {
       this._configureNextAnimation();
-
-      this.setState({
-        confirmTransaction: false,
-        amountBtc: 0
-      });
-    } else {
-      this._listenKeyboardDidShow().then(() => {
-        this.setState({
-          confirmTransaction: false,
-          amountBtc: 0
-        });
-      });
+      this._hideConfirmTransaction();
     }
+
+    this.setState({
+      amountBtc: 0,
+      selectedCard: null
+    });
 
     if (this._inputBar) {
       this._inputBar.reset();
@@ -488,11 +554,11 @@ export default class ConversationScreen extends Component {
     dispatch(setHomeScreenIndex(1));
 
     /**
-     * Schedule a sync 1s after transaction was sent.
+     * Schedule a sync 3s after transaction was sent.
      * The delay is there to prevent it from interfering
      * with any animations/interactions.
      */
-    setTimeout(() => dispatch(syncApp()), 1000);
+    setTimeout(() => dispatch(syncApp()), 3000);
   }
 
   _renderContactRequest(contact) {
@@ -513,9 +579,17 @@ export default class ConversationScreen extends Component {
   }
 
   _renderInputBar() {
-    const { initialAmountBtc, contactInboundCapacity, inputLocked } = this.state;
+    const {
+      initialAmountBtc,
+      contactInboundCapacity,
+      inputLocked,
+      showCardPicker,
+      selectedCard
+    } = this.state;
+
     const { contact, bitcoinAddress, paymentRequest } = this.props.navigation.state.params;
     const disabled = Boolean(contact && !contact.address);
+    const enableCardPicker = this._isPineContact();
     let paymentType = InputBarContainer.PAYMENT_TYPE_BOTH;
 
     if (paymentRequest) {
@@ -528,12 +602,15 @@ export default class ConversationScreen extends Component {
       <InputBarContainer
         ref={(ref) => { this._inputBar = ref && ref.getWrappedInstance(); }}
         onSendPress={this._onSendPress}
-        onCancelPress={this._onCancelPress}
+        onAddCardPress={this._onAddCardPress}
         initialAmountBtc={initialAmountBtc}
         disabled={disabled}
         locked={inputLocked}
         paymentType={paymentType}
         contactInboundCapacity={contactInboundCapacity}
+        enableCardPicker={enableCardPicker}
+        isCardPickerActive={showCardPicker}
+        hasSelectedCard={Boolean(selectedCard)}
       />
     );
   }
@@ -544,21 +621,19 @@ export default class ConversationScreen extends Component {
     const {
       keyboardHeight,
       confirmTransaction,
+      confirmTransactionOpacity,
       amountBtc,
       displayCurrency,
       displayUnit,
       forceOnChain,
-      contactInboundCapacity
+      contactInboundCapacity,
+      selectedCard
     } = this.state;
-
-    if (!keyboardHeight) {
-      return;
-    }
 
     const style = {
       marginTop: KEYBOARD_MARGIN_TOP,
       marginBottom: confirmTransaction ? 0 : -(keyboardHeight + KEYBOARD_MARGIN_TOP),
-      opacity: confirmTransaction ? 1 : 0,
+      opacity: confirmTransactionOpacity,
       minHeight: keyboardHeight
     };
 
@@ -574,6 +649,28 @@ export default class ConversationScreen extends Component {
         forceOnChain={forceOnChain}
         onTransactionSent={this._onTransactionSent}
         contactInboundCapacity={contactInboundCapacity}
+        selectedCard={selectedCard}
+      />
+    );
+  }
+
+  _renderCardPickerView() {
+    const { keyboardHeight, showCardPicker, cardPickerOpacity } = this.state;
+
+    const style = {
+      marginTop: KEYBOARD_MARGIN_TOP,
+      marginBottom: showCardPicker ? 0 : -(keyboardHeight + KEYBOARD_MARGIN_TOP),
+      opacity: cardPickerOpacity,
+      minHeight: keyboardHeight
+    };
+
+    return (
+      <CardPicker
+        pointerEvents={showCardPicker ? null : 'none'}
+        style={style}
+        height={keyboardHeight}
+        selectedCard={this.state.selectedCard}
+        onSelectCard={selectedCard => this.setState({ selectedCard })}
       />
     );
   }
@@ -611,15 +708,16 @@ export default class ConversationScreen extends Component {
   render() {
     const { navigation } = this.props;
     const { contact } = navigation.state.params;
-    const { confirmTransaction, loadingError } = this.state;
+    const { confirmTransaction, showCardPicker, loadingError } = this.state;
     const hasContactRequest = Boolean(contact && contact.contactRequest);
+    const showKeyboardView = confirmTransaction || showCardPicker;
 
     const contentStyle = [
       styles.content,
-      confirmTransaction && { paddingBottom: 0, marginBottom: 0 }
+      showKeyboardView ? { paddingBottom: 0, marginBottom: 0 } : null
     ];
 
-    const keyboardSpacerStyle = confirmTransaction && { position: 'absolute' };
+    const keyboardSpacerStyle = showKeyboardView ? { position: 'absolute' } : null;
 
     if (loadingError) {
       return <BaseScreen hideHeader={true} style={styles.view} />;
@@ -631,6 +729,7 @@ export default class ConversationScreen extends Component {
           { this.renderContent() }
           { !hasContactRequest && this._renderInputBar() }
           { this._renderConfirmTransactionView() }
+          { this._renderCardPickerView() }
           <KeyboardSpacer style={keyboardSpacerStyle} topSpacing={KEYBOARD_TOP_SPACING} />
         </ContentView>
       </BaseScreen>

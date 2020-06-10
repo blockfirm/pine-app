@@ -1,8 +1,9 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import ReactNativeHaptic from 'react-native-haptic';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { withTheme } from '../../contexts/theme';
 import normalizeBtcAmount from '../../crypto/bitcoin/normalizeBtcAmount';
@@ -11,6 +12,7 @@ import UnitPicker from './UnitPicker';
 import InputBarButton from './InputBarButton';
 import SendButtonIcon from '../icons/SendButtonIcon';
 import CancelButtonIcon from '../icons/CancelButtonIcon';
+import AddCardButton from './AddCardButton';
 
 import {
   UNIT_BTC,
@@ -18,14 +20,16 @@ import {
   satsToBtc
 } from '../../crypto/bitcoin/convert';
 
+const WINDOW_WIDTH = Dimensions.get('window').width;
 const CURRENCY_BTC = 'BTC';
 
 const styles = StyleSheet.create({
   toolbar: {
+    flexDirection: 'row',
     paddingHorizontal: 15,
     paddingVertical: 5,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    alignItems: 'center'
   },
   unitPicker: {
     position: 'absolute',
@@ -44,9 +48,19 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     opacity: 0.5,
-    marginHorizontal: 15,
-    marginVertical: 5,
-    borderRadius: 50
+    marginVertical: 5
+  },
+  addCardButton: {
+    padding: 10,
+    marginRight: 1,
+    marginLeft: -10
+  },
+  topGradient: {
+    alignSelf: 'stretch',
+    position: 'absolute',
+    top: -10,
+    height: 20,
+    width: WINDOW_WIDTH
   }
 });
 
@@ -55,6 +69,7 @@ class InputBar extends Component {
   static PAYMENT_TYPE_ONCHAIN = 'on-chain';
   static PAYMENT_TYPE_OFFCHAIN = 'off-chain';
 
+  // eslint-disable-next-line max-statements
   constructor(props) {
     super(...arguments);
 
@@ -86,6 +101,7 @@ class InputBar extends Component {
     this._onSendLongPress = this._onSendLongPress.bind(this);
     this._onCancelPress = this._onCancelPress.bind(this);
     this._onInputPress = this._onInputPress.bind(this);
+    this._onAddCardPress = this._onAddCardPress.bind(this);
   }
 
   reset() {
@@ -210,7 +226,6 @@ class InputBar extends Component {
     ReactNativeHaptic.generate('selection');
 
     this.setState({ confirmTransaction: false }, () => {
-      this.props.onCancelPress();
       this.focus();
     });
   }
@@ -221,6 +236,12 @@ class InputBar extends Component {
     }
 
     this.focus();
+  }
+
+  _onAddCardPress() {
+    ReactNativeHaptic.generate('selection');
+    this.setState({ confirmTransaction: false });
+    this.props.onAddCardPress();
   }
 
   _renderButton() {
@@ -264,7 +285,10 @@ class InputBar extends Component {
       fiatRates,
       disabled,
       locked,
-      theme
+      theme,
+      enableCardPicker,
+      isCardPickerActive,
+      hasSelectedCard
     } = this.props;
 
     const {
@@ -281,6 +305,20 @@ class InputBar extends Component {
 
     return (
       <View style={styles.toolbar} pointerEvents={pointerEvents}>
+        { theme.name === 'dark' ? 
+          <LinearGradient
+            colors={theme.homeGradientColors}
+            style={styles.topGradient}
+          /> : null
+        }
+        { enableCardPicker &&
+          <AddCardButton
+            style={styles.addCardButton}
+            active={isCardPickerActive}
+            checked={hasSelectedCard}
+            onPress={this._onAddCardPress}
+          />
+        }
         <AmountInput
           ref={(ref) => { this._amountInput = ref; }}
           currency={currency}
@@ -319,8 +357,8 @@ InputBar.propTypes = {
   offChainSpendableBalance: PropTypes.number.isRequired,
   fiatRates: PropTypes.object.isRequired,
   onSendPress: PropTypes.func.isRequired,
-  onCancelPress: PropTypes.func.isRequired,
   onChangeUnit: PropTypes.func.isRequired,
+  onAddCardPress: PropTypes.func.isRequired,
   paymentType: PropTypes.oneOf([
     InputBar.PAYMENT_TYPE_BOTH,
     InputBar.PAYMENT_TYPE_ONCHAIN,
@@ -330,11 +368,17 @@ InputBar.propTypes = {
   contactInboundCapacity: PropTypes.number,
   disabled: PropTypes.bool, // This is used when the input bar can't be used at all.
   locked: PropTypes.bool, // This is used to lock the amount, e.g. when paying a lightning invoice.
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  enableCardPicker: PropTypes.bool,
+  isCardPickerActive: PropTypes.bool,
+  hasSelectedCard: PropTypes.bool
 };
 
 InputBar.defaultProps = {
-  paymentType: InputBar.PAYMENT_TYPE_BOTH
+  paymentType: InputBar.PAYMENT_TYPE_BOTH,
+  enableCardPicker: false,
+  isCardPickerActive: false,
+  hasSelectedCard: false
 };
 
 export default withTheme(InputBar);

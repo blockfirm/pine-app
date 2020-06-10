@@ -69,6 +69,12 @@ export default class DateSectionList extends Component {
     }
   }
 
+  scrollToLocation() {
+    if (this._list) {
+      this._list.scrollToLocation(...arguments);
+    }
+  }
+
   render() {
     const { data, inverted } = this.props;
     const sections = this._getSections(data);

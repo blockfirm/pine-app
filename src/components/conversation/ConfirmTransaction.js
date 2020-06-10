@@ -9,7 +9,8 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   LayoutAnimation,
-  Dimensions
+  Dimensions,
+  Animated
 } from 'react-native';
 
 import { withTheme } from '../../contexts/theme';
@@ -261,7 +262,7 @@ class ConfirmTransaction extends Component {
     const hideTotal = showFeeHelpText && WINDOW_HEIGHT < 700;
 
     return (
-      <View style={[styles.view, theme.confirmTransactionView, this.props.style]}>
+      <Animated.View style={[styles.view, theme.confirmTransactionView, this.props.style]}>
         <View style={styles.details}>
           <View style={[styles.detail, theme.confirmTransactionDetail]}>
             <TouchableOpacity onPress={this._toggleFeeHelpText}>
@@ -295,7 +296,7 @@ class ConfirmTransaction extends Component {
             disabled={this.props.fee === null}
           />
         </Footer>
-      </View>
+      </Animated.View>
     );
   }
 }

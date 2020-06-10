@@ -10,6 +10,8 @@ import CanceledIndicator from './CanceledIndicator';
 
 const COLOR_STYLE_COLOR = 'color';
 const COLOR_STYLE_LIGHT = 'light';
+const COLOR_STYLE_WHITE = 'white';
+const COLOR_STYLE_BLACK = 'black';
 
 const TYPE_LIGHTNING_PAYMENT = 'lightning_payment';
 const TYPE_LEGACY_LIGHTNING_PAYMENT = 'legacy_lightning_payment';
@@ -90,17 +92,18 @@ export default class MessageIndicator extends Component {
 
   render() {
     const { message, transaction, invoice, style, colorStyle } = this.props;
+    const errorColorStyle = colorStyle === COLOR_STYLE_COLOR ? COLOR_STYLE_COLOR : COLOR_STYLE_LIGHT;
 
     if (!message) {
       return null;
     }
 
     if (message.error || (invoice && invoice.redeemError)) {
-      return <ErrorIndicator style={style} colorStyle={colorStyle} />;
+      return <ErrorIndicator style={style} colorStyle={errorColorStyle} />;
     }
 
     if (message.canceled && !transaction) {
-      return <CanceledIndicator style={style} colorStyle={colorStyle} />;
+      return <CanceledIndicator style={style} colorStyle={errorColorStyle} />;
     }
 
     if (message.from) {
@@ -113,7 +116,12 @@ export default class MessageIndicator extends Component {
 
 MessageIndicator.propTypes = {
   style: PropTypes.any,
-  colorStyle: PropTypes.oneOf([COLOR_STYLE_COLOR, COLOR_STYLE_LIGHT]),
+  colorStyle: PropTypes.oneOf([
+    COLOR_STYLE_COLOR,
+    COLOR_STYLE_LIGHT,
+    COLOR_STYLE_WHITE,
+    COLOR_STYLE_BLACK
+  ]),
   message: PropTypes.object,
   transaction: PropTypes.object,
   invoice: PropTypes.object

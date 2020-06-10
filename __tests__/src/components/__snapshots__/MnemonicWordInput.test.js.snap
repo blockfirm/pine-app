@@ -86,6 +86,12 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
         }
         theme={
           Object {
+            "addCardActiveIcon": Object {
+              "testUri": "../../../src/images/icons/AddCardActive.png",
+            },
+            "addCardIcon": Object {
+              "testUri": "../../../src/images/icons/AddCard.png",
+            },
             "addContactIcon": Object {
               "testUri": "../../../src/images/icons/AddContact.png",
             },
@@ -149,6 +155,12 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
               "color": "#ffffff",
             },
             "buttonLoaderColor": "#ffffff",
+            "cardSelected": Object {
+              "borderColor": "#007AFF",
+            },
+            "checkIconAddOn": Object {
+              "testUri": "../../../src/images/icons/addons/CheckIconAddOn.png",
+            },
             "confirmTransactionDetail": Object {
               "borderColor": "#ECECEC",
             },
@@ -315,6 +327,9 @@ exports[`MnemonicWordInput renders correct words correctly 1`] = `
             },
             "paragraph": Object {
               "color": "#B1AFB7",
+            },
+            "plusIconAddOn": Object {
+              "testUri": "../../../src/images/icons/addons/PlusIconAddOn.png",
             },
             "progressBarBackgroundColor": "#F6F6F6",
             "progressBarForegroundColor": "#FFCD00",
@@ -573,6 +588,12 @@ exports[`MnemonicWordInput renders correctly 1`] = `
         }
         theme={
           Object {
+            "addCardActiveIcon": Object {
+              "testUri": "../../../src/images/icons/AddCardActive.png",
+            },
+            "addCardIcon": Object {
+              "testUri": "../../../src/images/icons/AddCard.png",
+            },
             "addContactIcon": Object {
               "testUri": "../../../src/images/icons/AddContact.png",
             },
@@ -636,6 +657,12 @@ exports[`MnemonicWordInput renders correctly 1`] = `
               "color": "#ffffff",
             },
             "buttonLoaderColor": "#ffffff",
+            "cardSelected": Object {
+              "borderColor": "#007AFF",
+            },
+            "checkIconAddOn": Object {
+              "testUri": "../../../src/images/icons/addons/CheckIconAddOn.png",
+            },
             "confirmTransactionDetail": Object {
               "borderColor": "#ECECEC",
             },
@@ -802,6 +829,9 @@ exports[`MnemonicWordInput renders correctly 1`] = `
             },
             "paragraph": Object {
               "color": "#B1AFB7",
+            },
+            "plusIconAddOn": Object {
+              "testUri": "../../../src/images/icons/addons/PlusIconAddOn.png",
             },
             "progressBarBackgroundColor": "#F6F6F6",
             "progressBarForegroundColor": "#FFCD00",
@@ -1060,6 +1090,12 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
         }
         theme={
           Object {
+            "addCardActiveIcon": Object {
+              "testUri": "../../../src/images/icons/AddCardActive.png",
+            },
+            "addCardIcon": Object {
+              "testUri": "../../../src/images/icons/AddCard.png",
+            },
             "addContactIcon": Object {
               "testUri": "../../../src/images/icons/AddContact.png",
             },
@@ -1123,6 +1159,12 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
               "color": "#ffffff",
             },
             "buttonLoaderColor": "#ffffff",
+            "cardSelected": Object {
+              "borderColor": "#007AFF",
+            },
+            "checkIconAddOn": Object {
+              "testUri": "../../../src/images/icons/addons/CheckIconAddOn.png",
+            },
             "confirmTransactionDetail": Object {
               "borderColor": "#ECECEC",
             },
@@ -1289,6 +1331,9 @@ exports[`MnemonicWordInput renders incorrect words correctly 1`] = `
             },
             "paragraph": Object {
               "color": "#B1AFB7",
+            },
+            "plusIconAddOn": Object {
+              "testUri": "../../../src/images/icons/addons/PlusIconAddOn.png",
             },
             "progressBarBackgroundColor": "#F6F6F6",
             "progressBarForegroundColor": "#FFCD00",

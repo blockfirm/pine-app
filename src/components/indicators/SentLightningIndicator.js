@@ -5,6 +5,8 @@ import { withTheme } from '../../contexts/theme';
 
 const COLOR_STYLE_COLOR = 'color';
 const COLOR_STYLE_LIGHT = 'light';
+const COLOR_STYLE_WHITE = 'white';
+const COLOR_STYLE_BLACK = 'black';
 
 const IMAGES_LIGHT = {
   [COLOR_STYLE_COLOR]: [
@@ -16,6 +18,16 @@ const IMAGES_LIGHT = {
     require('../../images/indicators/SentLightningIndicatorLight0.png'),
     require('../../images/indicators/SentLightningIndicatorLight1.png'),
     require('../../images/indicators/SentLightningIndicatorLight2.png')
+  ],
+  [COLOR_STYLE_WHITE]: [
+    require('../../images/indicators/ReceivedLightningIndicatorLightDark0.png'),
+    require('../../images/indicators/ReceivedLightningIndicatorLightDark1.png'),
+    require('../../images/indicators/ReceivedLightningIndicatorLightDark2.png')
+  ],
+  [COLOR_STYLE_BLACK]: [
+    require('../../images/indicators/SentLightningIndicatorBlack0.png'),
+    require('../../images/indicators/SentLightningIndicatorBlack1.png'),
+    require('../../images/indicators/SentLightningIndicatorBlack2.png')
   ]
 };
 
@@ -29,6 +41,16 @@ const IMAGES_DARK = {
     require('../../images/indicators/SentLightningIndicatorLightDark0.png'),
     require('../../images/indicators/SentLightningIndicatorLightDark1.png'),
     require('../../images/indicators/SentLightningIndicatorLightDark2.png')
+  ],
+  [COLOR_STYLE_WHITE]: [
+    require('../../images/indicators/ReceivedLightningIndicatorLightDark0.png'),
+    require('../../images/indicators/ReceivedLightningIndicatorLightDark1.png'),
+    require('../../images/indicators/ReceivedLightningIndicatorLightDark2.png')
+  ],
+  [COLOR_STYLE_BLACK]: [
+    require('../../images/indicators/SentLightningIndicatorBlack0.png'),
+    require('../../images/indicators/SentLightningIndicatorBlack1.png'),
+    require('../../images/indicators/SentLightningIndicatorBlack2.png')
   ]
 };
 
@@ -55,7 +77,12 @@ class SentLightningIndicator extends Component {
 
 SentLightningIndicator.propTypes = {
   style: PropTypes.any,
-  colorStyle: PropTypes.oneOf([COLOR_STYLE_COLOR, COLOR_STYLE_LIGHT]),
+  colorStyle: PropTypes.oneOf([
+    COLOR_STYLE_COLOR,
+    COLOR_STYLE_LIGHT,
+    COLOR_STYLE_WHITE,
+    COLOR_STYLE_BLACK
+  ]),
   status: PropTypes.oneOf([0, 1, 2]),
   theme: PropTypes.object.isRequired
 };

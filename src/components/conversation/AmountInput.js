@@ -17,6 +17,8 @@ const CURRENCY_BTC = 'BTC';
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    alignSelf: 'stretch',
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 25

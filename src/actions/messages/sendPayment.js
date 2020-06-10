@@ -45,6 +45,7 @@ const sendPaymentFailure = (error) => {
  * @param {number} metadata.amountBtc - The amount in BTC of the transaction excluding fees.
  * @param {number} metadata.fee - The transaction fee in satoshis.
  * @param {Object[]} metadata.inputs - Inputs that was used to build the transaction (returned by the createTransaction action).
+ * @param {string} [metadata.card] - A Pine greeting card to attach to the payment (optional).
  * @param {Object} contact - Contact to send the payment to.
  * @param {string} contact.address - The contact's Pine address.
  * @param {string} contact.userId - The contact's user ID.
@@ -68,7 +69,10 @@ export const sendPayment = (rawTransaction, metadata, contact) => {
           from: null,
           address: { address },
           createdAt: sentMessage.createdAt,
-          data: { transaction: rawTransaction },
+          data: {
+            transaction: rawTransaction,
+            card: metadata.card
+          },
           txid,
           amountBtc,
           feeBtc
