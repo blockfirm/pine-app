@@ -9,6 +9,26 @@ import StyledText from '../StyledText';
 
 const STUB_LENGTH = 8;
 
+/**
+ * Node aliases are displayed instead of the node public key on the
+ * ConversationScreen for non-Pine lightning payments to custodial
+ * lightning services. They are not necessarily the same alias that
+ * is defined by the node itself.
+ *
+ * Node keys should not be updated in order to preserve existing
+ * payment history. Instead, append new node keys with their
+ * respective aliases.
+ */
+const ALIAS_BLUE_WALLET = 'BlueWallet';
+const ALIAS_WALLET_OF_SATOSHI = 'Wallet of Satoshi';
+const ALIAS_TIPPIN_ME = 'tippin.me';
+
+const NODE_ALIASES = {
+  '02e89ca9e8da72b33d896bae51d20e7e6675aa971f7557500b6591b15429e717f1': ALIAS_BLUE_WALLET,
+  '02004c625d622245606a1ea2c1c69cfb4516b703b47945a3647713c05fe4aaeb1c': ALIAS_WALLET_OF_SATOSHI,
+  '03c2abfa93eacec04721c019644584424aab2ba4dff3ac9bdab4e9c97007491dda': ALIAS_TIPPIN_ME
+};
+
 const styles = StyleSheet.create({
   title: {
     textAlign: 'center'
@@ -31,6 +51,14 @@ const getShortenedAddress = (address) => {
   return `${start}...${end}`;
 };
 
+const getLightningNodeAlias = (lightningNodeKey) => {
+  if (NODE_ALIASES[lightningNodeKey]) {
+    return NODE_ALIASES[lightningNodeKey];
+  }
+
+  return getShortenedAddress(lightningNodeKey);
+};
+
 const formatVendorUrl = (url) => {
   if (!url) {
     return '';
@@ -49,7 +77,7 @@ class HeaderTitle extends Component {
     if (isBitcoinAddress) {
       displayAddress = getShortenedAddress(address);
     } else if (isLightningNode) {
-      displayAddress = getShortenedAddress(contact.lightningNodeKey);
+      displayAddress = getLightningNodeAlias(contact.lightningNodeKey);
     } else if (isVendor) {
       const vendor = vendors.get(contact.vendorId);
 
