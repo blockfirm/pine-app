@@ -1,6 +1,5 @@
 /* eslint-disable lines-around-comment */
 import * as actions from '../actions';
-import * as lightningActions from '../actions/lightning';
 import * as lightningRpcActions from '../actions/lightning/rpc';
 import { LightningClient, setClient } from '../clients/lightning';
 
@@ -40,7 +39,7 @@ const lightningMiddleware = () => {
       case actions.READY:
         if (!client) {
           client = new LightningClient(pineAddress, state.pine.credentials, settings.lightning);
-          client.once('ready', () => store.dispatch(lightningActions.sync()));
+          client.on('ready', () => store.dispatch(actions.sync({ force: true })));
           client.registerMethods(getMethods(store.dispatch));
           client.connect().catch(() => client.reconnect());
 
