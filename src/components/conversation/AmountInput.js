@@ -92,7 +92,7 @@ class AmountInput extends Component {
     const { initialAmount } = this.props;
 
     if (initialAmount) {
-      this._onChangeText(initialAmount.toString());
+      this._onChangeText(initialAmount.toFixed(8));
       this.focus();
     }
   }
