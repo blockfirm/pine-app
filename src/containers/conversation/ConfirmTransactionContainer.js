@@ -22,6 +22,7 @@ import { getAddress } from '../../actions/paymentServer/contacts/getAddress';
 import { getNewInvoice } from '../../actions/paymentServer/lightning';
 import { handle as handleError } from '../../actions/error/handle';
 import { convert, btcToSats, UNIT_BTC, UNIT_SATOSHIS } from '../../crypto/bitcoin/convert';
+import { waitForLightningClient } from '../../clients/lightning';
 import authentication from '../../authentication';
 import ConfirmTransaction from '../../components/conversation/ConfirmTransaction';
 
@@ -180,6 +181,9 @@ class ConfirmTransactionContainer extends Component {
     }
 
     try {
+      // Wait up to 5s for the lightning node to get ready before estimating fee.
+      await waitForLightningClient(5000);
+
       const { high } = await dispatch(estimateLightningFee(paymentRequest || invoice.paymentRequest));
       this.setState({ fee: high });
     } catch (error) {
