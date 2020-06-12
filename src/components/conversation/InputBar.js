@@ -136,7 +136,7 @@ class InputBar extends Component {
     } = this.props;
 
     const offChainSpendableBalanceBtc = satsToBtc(offChainSpendableBalance);
-    const contactInboundCapacityBtc = satsToBtc(contactInboundCapacity);
+    const contactInboundCapacityBtc = satsToBtc(contactInboundCapacity || 0);
     const amountBtc = this._getBtcAmount(amount);
 
     let insufficientFunds;

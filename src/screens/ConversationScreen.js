@@ -145,7 +145,7 @@ export default class ConversationScreen extends Component {
     messagesLoaded: false,
     decodedPaymentRequest: null,
     forceOnChain: false,
-    contactInboundCapacity: -1,
+    contactInboundCapacity: null,
     inputLocked: false
   }
 
@@ -305,7 +305,7 @@ export default class ConversationScreen extends Component {
     const hasContactRequest = Boolean(contact && contact.contactRequest);
 
     if (!lightningBalance || hasContactRequest || !contact || !contact.userId) {
-      return;
+      return this.setState({ contactInboundCapacity: -1 });
     }
 
     try {

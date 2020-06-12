@@ -70,6 +70,8 @@ class ConfirmTransactionContainer extends Component {
     forceOnChain: false
   };
 
+  _timeouts = [];
+
   constructor() {
     super(...arguments);
 
@@ -79,6 +81,10 @@ class ConfirmTransactionContainer extends Component {
 
   componentDidMount() {
     this._createState();
+  }
+
+  componentWillUnmount() {
+    this._timeouts.forEach(clearTimeout);
   }
 
   componentDidUpdate(prevProps) {
@@ -144,17 +150,30 @@ class ConfirmTransactionContainer extends Component {
     });
   }
 
-  _checkLightningCapacities() {
+  async _checkLightningCapacities() {
     const {
       amountBtc,
       lightningBalance,
       contactInboundCapacity
     } = this.props;
 
+    if (this.props.forceOnChain || this.state.forceOnChain) {
+      return;
+    }
+
     const amountSats = convert(amountBtc, UNIT_BTC, UNIT_SATOSHIS);
     const hasOutboundCapacity = amountSats <= lightningBalance;
     const hasInboundCapacity = amountSats <= contactInboundCapacity;
     const hasLightningCapacity = hasOutboundCapacity && hasInboundCapacity;
+
+    if (hasOutboundCapacity && contactInboundCapacity === null) {
+      // Wait for contact's inbound capacity to load and check again.
+      return new Promise(resolve => {
+        this._timeouts.push(
+          setTimeout(() => this._checkLightningCapacities().then(resolve), 250)
+        );
+      });
+    }
 
     return new Promise(resolve => {
       this.setState({ hasLightningCapacity }, resolve);
