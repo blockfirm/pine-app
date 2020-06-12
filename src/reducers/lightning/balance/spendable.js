@@ -19,8 +19,8 @@ const getSpendableBalance = (balance) => {
 const spendableReducer = (state = 0, action) => {
   switch (action.type) {
     case settingsActions.SETTINGS_LOAD_SUCCESS:
-      if (!state && action.settings.lightning.balance && action.settings.lightning.balance.spendable) {
-        return parseInt(action.settings.lightning.balance.spendable);
+      if (!state && action.settings.lightning.balance) {
+        return getSpendableBalance(action.settings.lightning.balance);
       }
 
       return state;
