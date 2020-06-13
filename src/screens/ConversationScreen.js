@@ -159,6 +159,10 @@ export default class ConversationScreen extends Component {
         const decodedPaymentRequest = bolt11.decode(paymentRequest);
         const paymentRequestAmount = satsToBtc(decodedPaymentRequest.satoshis);
 
+        if (!paymentRequestAmount) {
+          throw new Error('Invoice must have an amount.');
+        }
+
         this.state.decodedPaymentRequest = decodedPaymentRequest;
         this.state.amountBtc = paymentRequestAmount;
         this.state.initialAmountBtc = paymentRequestAmount;
@@ -167,7 +171,10 @@ export default class ConversationScreen extends Component {
       } catch (error) {
         this.state.loadingError = error;
         props.navigation.goBack();
-        props.dispatch(handleError(new Error('Invalid payment request.')));
+
+        props.dispatch(
+          handleError(new Error(`Invalid payment request: ${error.message}`))
+        );
       }
     } else {
       this.state.initialAmountBtc = amount;
