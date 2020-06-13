@@ -61,6 +61,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     top: 10
+  },
+  connectionWarningLightning: {
+    position: 'absolute',
+    right: 9,
+    top: 9
   }
 });
 
@@ -94,7 +99,9 @@ class ContactsScreenHeader extends Component {
           <SettingsIcon />
           <ConnectionIndicatorContainer
             style={styles.connectionWarning}
+            lightningBoltStyle={styles.connectionWarningLightning}
             withBorder={true}
+            withLightningBolt={true}
           />
         </TouchableOpacity>
       </View>

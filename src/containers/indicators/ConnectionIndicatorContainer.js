@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { getClient as getLightningClient } from '../../clients/lightning';
 import WarningDotIndicator from '../../components/indicators/WarningDotIndicator';
+import WarningLightningIndicator from '../../components/indicators/WarningLightningIndicator';
 
 const LIGHTNING_UPDATE_INTERVAL = 2000;
 
@@ -31,11 +32,14 @@ class ConnectionIndicatorContainer extends PureComponent {
       ConnectionIndicatorContainer.CONNECTION_TYPE_LIGHTNING,
       ConnectionIndicatorContainer.CONNECTION_TYPE_PINE,
       ConnectionIndicatorContainer.CONNECTION_TYPE_ALL
-    ])
+    ]),
+    withLightningBolt: PropTypes.bool,
+    lightningBoltStyle: PropTypes.any
   };
 
   static defaultProps = {
-    connectionType: ConnectionIndicatorContainer.CONNECTION_TYPE_ALL
+    connectionType: ConnectionIndicatorContainer.CONNECTION_TYPE_ALL,
+    withLightningBolt: false
   };
 
   state = {
@@ -112,6 +116,15 @@ class ConnectionIndicatorContainer extends PureComponent {
   render() {
     if (!this._shouldShow()) {
       return null;
+    }
+
+    if (this.props.withLightningBolt && !this.state.lightningStatus) {
+      return (
+        <WarningLightningIndicator
+          {...this.props}
+          style={this.props.lightningBoltStyle}
+        />
+      );
     }
 
     return (
