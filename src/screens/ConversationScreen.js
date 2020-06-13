@@ -170,11 +170,12 @@ export default class ConversationScreen extends Component {
         this.state.confirmTransaction = true;
       } catch (error) {
         this.state.loadingError = error;
-        props.navigation.goBack();
 
         props.dispatch(
           handleError(new Error(`Invalid payment request: ${error.message}`))
         );
+
+        setTimeout(() => props.navigation.goBack(), 1000);
       }
     } else {
       this.state.initialAmountBtc = amount;
