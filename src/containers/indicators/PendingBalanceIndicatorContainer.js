@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import WarningDotIndicator from '../../components/indicators/WarningDotIndicator';
+import WarningLightningIndicator from '../../components/indicators/WarningLightningIndicator';
 
 const mapStateToProps = (state) => ({
   pendingBitcoinBalance: state.bitcoin.wallet.pendingBalance,
@@ -23,11 +24,14 @@ class PendingBalanceIndicatorContainer extends PureComponent {
       PendingBalanceIndicatorContainer.BALANCE_TYPE_ONCHAIN,
       PendingBalanceIndicatorContainer.BALANCE_TYPE_OFFCHAIN,
       PendingBalanceIndicatorContainer.BALANCE_TYPE_ALL
-    ])
+    ]),
+    withLightningBolt: PropTypes.bool,
+    lightningBoltStyle: PropTypes.any
   };
 
   static defaultProps = {
-    balanceType: PendingBalanceIndicatorContainer.BALANCE_TYPE_ALL
+    balanceType: PendingBalanceIndicatorContainer.BALANCE_TYPE_ALL,
+    withLightningBolt: false
   };
 
   _shouldShow() {
@@ -55,8 +59,24 @@ class PendingBalanceIndicatorContainer extends PureComponent {
   }
 
   render() {
+    const {
+      pendingLightningBalance,
+      unredeemedLightningBalance,
+      withLightningBolt,
+      lightningBoltStyle
+    } = this.props;
+
     if (!this._shouldShow()) {
       return null;
+    }
+
+    if (withLightningBolt && (pendingLightningBalance > 0 || unredeemedLightningBalance > 0)) {
+      return (
+        <WarningLightningIndicator
+          {...this.props}
+          style={lightningBoltStyle}
+        />
+      );
     }
 
     return (

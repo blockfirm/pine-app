@@ -55,7 +55,13 @@ const styles = StyleSheet.create({
   },
   balanceWarning: {
     position: 'absolute',
-    left: -12
+    left: -10,
+    transform: [{ scale: 0.75 }]
+  },
+  balanceWarningLightning: {
+    position: 'absolute',
+    left: -12,
+    transform: [{ scale: 0.75 }]
   },
   connectionWarning: {
     position: 'absolute',
@@ -82,7 +88,11 @@ class ContactsScreenHeader extends Component {
         <View style={styles.titleWrapper}>
           <TouchableOpacity onPress={this.props.onBalancePress} style={styles.titleTouchable}>
             <View style={styles.titleAndDotWrapper}>
-              <PendingBalanceIndicatorContainer style={styles.balanceWarning} />
+              <PendingBalanceIndicatorContainer
+                style={styles.balanceWarning}
+                lightningBoltStyle={styles.balanceWarningLightning}
+                withLightningBolt={true}
+              />
               <BalanceLabelContainer
                 currencyType='primary'
                 style={[headerStyles.title, theme.headerTitle, styles.title]}
