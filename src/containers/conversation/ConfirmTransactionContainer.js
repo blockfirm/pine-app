@@ -154,7 +154,8 @@ class ConfirmTransactionContainer extends Component {
     const {
       amountBtc,
       lightningBalance,
-      contactInboundCapacity
+      contactInboundCapacity,
+      paymentRequest
     } = this.props;
 
     if (this.props.forceOnChain || this.state.forceOnChain) {
@@ -166,7 +167,7 @@ class ConfirmTransactionContainer extends Component {
     const hasInboundCapacity = amountSats <= contactInboundCapacity;
     const hasLightningCapacity = hasOutboundCapacity && hasInboundCapacity;
 
-    if (hasOutboundCapacity && contactInboundCapacity === null) {
+    if (!paymentRequest && hasOutboundCapacity && contactInboundCapacity === null) {
       // Wait for contact's inbound capacity to load and check again.
       return new Promise(resolve => {
         this._timeouts.push(
