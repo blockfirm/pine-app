@@ -54,7 +54,7 @@ export const sync = (options) => {
 
     syncPromise = dispatch(syncContacts())
       .then(() => dispatch(syncIncomingContactRequests()))
-      .then(() => dispatch(syncInvoices())) // Sync invoices before messages as ligtning payments will depend on them.
+      .then(() => dispatch(syncInvoices())) // Sync invoices before messages as lightning payments will depend on them.
       .then(() => dispatch(syncMessages()))
       .catch((error) => errors.push(error))
       .then(() => dispatch(syncBitcoinWallet()))
