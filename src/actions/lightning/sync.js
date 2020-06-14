@@ -1,5 +1,5 @@
 import { getClient } from '../../clients/lightning';
-import { redeemAll, updateAll } from './invoices';
+import { redeemAll } from './invoices';
 import { getBalance } from './getBalance';
 
 export const PINE_LIGHTNING_SYNC_REQUEST = 'PINE_LIGHTNING_SYNC_REQUEST';
@@ -40,13 +40,6 @@ export const sync = () => {
         return dispatch(redeemAll()).catch(() => {
           /**
            * Ignore redemption errors - they are logged and retried again the next sync.
-           */
-        });
-      })
-      .then(() => {
-        return dispatch(updateAll()).catch(() => {
-          /**
-           * Ignore update errors - they will be retried again the next sync.
            */
         });
       })
