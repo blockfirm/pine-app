@@ -60,8 +60,7 @@ const styles = StyleSheet.create({
   },
   balanceWarningLightning: {
     position: 'absolute',
-    left: -12,
-    transform: [{ scale: 0.75 }]
+    left: -12
   },
   connectionWarning: {
     position: 'absolute',
