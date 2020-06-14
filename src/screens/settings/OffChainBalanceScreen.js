@@ -176,7 +176,7 @@ class OffChainBalanceScreen extends Component {
         </SettingsDescription>
         <SettingsDescription>
           <StrongText>Pending</StrongText> balance is waiting to be confirmed in a funding
-          or closing transaction and should soon be spendable.
+          transaction and should soon be spendable.
         </SettingsDescription>
         <SettingsDescription>
           <StrongText>Unredeemed</StrongText> balance is incoming payments waiting to be redeemed.
