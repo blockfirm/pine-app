@@ -50,15 +50,12 @@ export default class LightningSetupCompleteScreen extends Component {
         {/*<Image source={confettiImage} style={styles.confetti} />*/}
 
         <Title style={styles.title}>
-          Your Pine account is now Lightning-enabled!
+          Lightning has been activated
         </Title>
 
         <Paragraph style={styles.paragraph}>
-          But you'll have to wait 10 minutes or so until it has been confirmed on the blockchain.
-        </Paragraph>
-        <Paragraph style={styles.paragraph}>
-          Explore the rest of the app or grab a cup of coffee while you wait. You will get a
-          notification when it's ready.
+          But you'll have to wait about 10 minutes until your funds have been confirmed
+          on the blockchain and can be used. You will get a notification when it's ready.
         </Paragraph>
 
         <Footer>
