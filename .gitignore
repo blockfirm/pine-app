@@ -58,3 +58,7 @@ buck-out/
 
 # Test coverage
 coverage/
+
+# Vim swap files
+*.swp
+*.swo
