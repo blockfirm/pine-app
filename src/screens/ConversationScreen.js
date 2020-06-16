@@ -19,6 +19,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 import * as bolt11 from 'bolt11';
 
 import { satsToBtc } from '../crypto/bitcoin/convert';
+import { sync as syncApp } from '../actions';
 import { closeConversation, setHomeScreenIndex } from '../actions/navigate';
 import { handle as handleError } from '../actions/error/handle';
 import { remove as removeContact, markAsRead } from '../actions/contacts';
@@ -485,6 +486,13 @@ export default class ConversationScreen extends Component {
     }
 
     dispatch(setHomeScreenIndex(1));
+
+    /**
+     * Schedule a sync 1s after transaction was sent.
+     * The delay is there to prevent it from interfering
+     * with any animations/interactions.
+     */
+    setTimeout(() => dispatch(syncApp()), 1000);
   }
 
   _renderContactRequest(contact) {
