@@ -3,6 +3,7 @@ import { StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { withTheme } from '../contexts/theme';
 import { reset as navigateWithReset } from '../actions/navigate';
 import { save as saveSettings } from '../actions/settings';
 import Paragraph from '../components/Paragraph';
@@ -11,7 +12,8 @@ import Link from '../components/Link';
 import Footer from '../components/Footer';
 import BaseScreen from './BaseScreen';
 
-//const confettiImage = require('../images/illustrations/Confetti.png');
+const ILLUSTRATION_LIGHT = require('../images/illustrations/ActivateLightningLight.png');
+const ILLUSTRATION_DARK = require('../images/illustrations/ActivateLightningDark.png');
 
 const styles = StyleSheet.create({
   view: {
@@ -23,7 +25,8 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   paragraph: {
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: 150
   },
   footerParagraph: {
     textAlign: 'center',
@@ -33,15 +36,15 @@ const styles = StyleSheet.create({
   link: {
     marginTop: 10
   },
-  confetti: {
-    width: 100,
-    height: 96,
-    marginBottom: 40
+  illustration: {
+    width: 124,
+    height: 171,
+    marginBottom: 80
   }
 });
 
 @connect()
-export default class ActivateLightningScreen extends Component {
+class ActivateLightningScreen extends Component {
   static navigationOptions = () => ({
     header: null
   });
@@ -62,16 +65,19 @@ export default class ActivateLightningScreen extends Component {
   }
 
   render() {
+    const { theme } = this.props;
+    const illustration = theme.name === 'dark' ? ILLUSTRATION_DARK : ILLUSTRATION_LIGHT;
+
     return (
       <BaseScreen style={styles.view} headerTitle='Lightning Payments'>
-        {/*<Image source={confettiImage} style={styles.confetti} />*/}
+        <Image source={illustration} style={styles.illustration} />
 
         <Paragraph style={styles.paragraph}>
           Lightning payments are cheaper and faster than conventional bitcoin payments.
           Connect Pine to Lightning to enjoy seamless Lightning payments while still
           holding on to your private keys.
         </Paragraph>
-  
+
         <Footer>
           <Paragraph style={styles.footerParagraph}>
             The Lightning integration is in beta which means it's not feature-complete
@@ -99,5 +105,8 @@ export default class ActivateLightningScreen extends Component {
 
 ActivateLightningScreen.propTypes = {
   dispatch: PropTypes.func,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  theme: PropTypes.object
 };
+
+export default withTheme(ActivateLightningScreen);
