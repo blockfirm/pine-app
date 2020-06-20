@@ -6006,6 +6006,10 @@ react-native-background-fetch@^2.6.0:
     plist "^3.0.1"
     xcode "^2.0.0"
 
+"react-native-begin-background-task@git+https://github.com/blockfirm/react-native-begin-background-task.git":
+  version "0.1.0"
+  resolved "git+https://github.com/blockfirm/react-native-begin-background-task.git#c2aa793249db6cc6298a812905f955a99b864e78"
+
 react-native-camera@^1.13.1:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.13.1.tgz#19277ccae0a49dbf1b96049da5b95c847ea7aff2"
