@@ -71,7 +71,7 @@ const getLightningPaymentRequest = (data, network) => {
   const expectedPrefix = networkPrefixMap[network];
   const paymentRequest = data.replace(/^lightning:/i, '');
 
-  if (paymentRequest.startsWith(expectedPrefix)) {
+  if (paymentRequest.toLowerCase().startsWith(expectedPrefix)) {
     return paymentRequest;
   }
 };
