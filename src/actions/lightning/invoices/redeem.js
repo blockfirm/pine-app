@@ -1,3 +1,4 @@
+import { beginBackgroundTask, endBackgroundTask } from 'react-native-begin-background-task';
 import { redeemInvoice } from '../../paymentServer/lightning';
 import { createInvoice } from '../createInvoice';
 import { save } from './save';
@@ -36,6 +37,8 @@ const redeemFailure = (invoice, error) => {
  */
 export const redeem = (invoice) => {
   return async (dispatch) => {
+    const backgroundTaskId = await beginBackgroundTask();
+
     dispatch(redeemRequest());
 
     try {
@@ -45,6 +48,8 @@ export const redeem = (invoice) => {
       dispatch(redeemFailure(invoice, error));
       await dispatch(save());
       throw error;
+    } finally {
+      await endBackgroundTask(backgroundTaskId);
     }
 
     dispatch(redeemSuccess(invoice));

@@ -3,6 +3,7 @@ import { StyleSheet, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
+import { beginBackgroundTask, endBackgroundTask } from 'react-native-begin-background-task';
 
 import { sync } from '../../actions';
 import { handle as handleError } from '../../actions/error';
@@ -47,12 +48,19 @@ export default class OpeningChannelScreen extends Component {
       computeInputScriptCallsStart: rpcMetrics.COMPUTE_INPUT_SCRIPT || 0
     });
 
-    this._openChannel();
- 
     KeepAwake.activate();
+
+    beginBackgroundTask().then(backgroundTaskId => {
+      this._backgroundTaskId = backgroundTaskId;
+      this._openChannel();
+    });
   }
 
   componentWillUnmount() {
+    if (this._backgroundTaskId) {
+      endBackgroundTask(this._backgroundTaskId);
+    }
+
     KeepAwake.deactivate();
   }
 

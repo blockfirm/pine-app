@@ -4,6 +4,8 @@ import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import KeepAwake from 'react-native-keep-awake';
+import { beginBackgroundTask, endBackgroundTask } from 'react-native-begin-background-task';
 
 import {
   create as createTransaction,
@@ -85,6 +87,7 @@ class ConfirmTransactionContainer extends Component {
 
   componentWillUnmount() {
     this._timeouts.forEach(clearTimeout);
+    this._endBackgroundTask();
   }
 
   componentDidUpdate(prevProps) {
@@ -102,6 +105,20 @@ class ConfirmTransactionContainer extends Component {
 
     if (this.props.forceOnChain !== prevProps.forceOnChain) {
       return this._createState();
+    }
+  }
+
+  async _beginBackgroundTask() {
+    KeepAwake.activate();
+    this._backgroundTaskId = await beginBackgroundTask();
+  }
+
+  async _endBackgroundTask() {
+    KeepAwake.deactivate();
+
+    if (this._backgroundTaskId) {
+      await endBackgroundTask(this._backgroundTaskId);
+      this._backgroundTaskId = null;
     }
   }
 
@@ -386,9 +403,17 @@ class ConfirmTransactionContainer extends Component {
 
   _onPayLightningPress() {
     return authentication.authenticate().then((authenticated) => {
-      if (authenticated) {
-        return this._sendLightningPayment();
+      if (!authenticated) {
+        return;
       }
+
+      return this._beginBackgroundTask()
+        .then(() => {
+          return this._sendLightningPayment();
+        })
+        .finally(() => {
+          this._endBackgroundTask();
+        });
     });
   }
 

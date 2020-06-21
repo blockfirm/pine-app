@@ -3,6 +3,7 @@ import { StyleSheet, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import KeepAwake from 'react-native-keep-awake';
+import { beginBackgroundTask, endBackgroundTask } from 'react-native-begin-background-task';
 
 import { sync } from '../actions';
 import { reset as navigateWithReset } from '../actions/navigate';
@@ -56,12 +57,19 @@ export default class ActivatingLightningScreen extends Component {
       signOutputRawCallsStart: rpcMetrics.SIGN_OUTPUT_RAW || 0
     });
 
-    this._openInboundChannelWhenReady();
-
     KeepAwake.activate();
+
+    beginBackgroundTask().then(backgroundTaskId => {
+      this._backgroundTaskId = backgroundTaskId;
+      this._openInboundChannelWhenReady();
+    });
   }
 
   componentWillUnmount() {
+    if (this._backgroundTaskId) {
+      endBackgroundTask(this._backgroundTaskId);
+    }
+
     KeepAwake.deactivate();
   }
 
