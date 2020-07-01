@@ -292,7 +292,6 @@ class ConfirmTransaction extends Component {
             label={this._getButtonLabel()}
             onPress={this.props.onPayPress}
             showLoader={true}
-            hapticFeedback={true}
             disabled={this.props.fee === null}
           />
         </Footer>
