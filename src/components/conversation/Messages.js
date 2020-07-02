@@ -123,6 +123,7 @@ export default class Messages extends PureComponent {
         initialNumToRender={15}
         maxToRenderPerBatch={15}
         windowSize={7}
+        onScrollBeginDrag={this.props.onScrollBeginDrag}
       />
     );
   }
@@ -130,5 +131,6 @@ export default class Messages extends PureComponent {
 
 Messages.propTypes = {
   messages: PropTypes.array,
-  contact: PropTypes.object
+  contact: PropTypes.object,
+  onScrollBeginDrag: PropTypes.func
 };

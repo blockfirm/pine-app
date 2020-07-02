@@ -198,6 +198,7 @@ export default class ConversationScreen extends Component {
     this._onSendPress = this._onSendPress.bind(this);
     this._onAddCardPress = this._onAddCardPress.bind(this);
     this._onTransactionSent = this._onTransactionSent.bind(this);
+    this._onScrollBeginDrag = this._onScrollBeginDrag.bind(this);
 
     this._onKeyboardWillShow = this._onKeyboardWillShow.bind(this); 
     this._onKeyboardDidShow = this._onKeyboardDidShow.bind(this);
@@ -335,6 +336,17 @@ export default class ConversationScreen extends Component {
 
   _onKeyboardDidHide() {
     this.setState({ keyboardIsVisible: false }); 
+  }
+
+  _onScrollBeginDrag() {
+    if (this.state.keyboardIsVisible) {
+      return Keyboard.dismiss();
+    }
+
+    if (this.state.showCardPicker) {
+      this._configureNextAnimation();
+      return this._hideCardPicker();
+    }
   }
 
   _showConfirmTransaction() {
@@ -691,7 +703,13 @@ export default class ConversationScreen extends Component {
     const contactMessages = messages[contact.id] || [];
 
     if (!contact.contactRequest && contactMessages.length > 0) {
-      return <Messages messages={contactMessages} contact={contact} />;
+      return (
+        <Messages
+          messages={contactMessages}
+          contact={contact}
+          onScrollBeginDrag={this._onScrollBeginDrag}
+        />
+      );
     }
 
     return (
