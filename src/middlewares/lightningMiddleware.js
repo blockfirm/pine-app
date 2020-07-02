@@ -1,4 +1,5 @@
 /* eslint-disable lines-around-comment */
+import { beginBackgroundTask, endBackgroundTask } from 'react-native-begin-background-task';
 import * as actions from '../actions';
 import * as lightningRpcActions from '../actions/lightning/rpc';
 import { LightningClient, setClient } from '../clients/lightning';
@@ -14,6 +15,20 @@ const getMethods = (dispatch) => {
   });
 
   return methods;
+};
+
+const connectLightningClient = (client) => {
+  /**
+   * Start the connection in a background task for 10s in case
+   * the app gets moved to the background before it's complete.
+   */
+  beginBackgroundTask().then(backgroundTaskId => {
+    client.connect().catch(() => client.reconnect());
+
+    setTimeout(() => {
+      endBackgroundTask(backgroundTaskId);
+    }, 10 * 1000);
+  });
 };
 
 /**
@@ -41,8 +56,8 @@ const lightningMiddleware = () => {
           client = new LightningClient(pineAddress, state.pine.credentials, settings.lightning);
           client.on('ready', () => store.dispatch(actions.sync({ force: true })));
           client.registerMethods(getMethods(store.dispatch));
-          client.connect().catch(() => client.reconnect());
 
+          connectLightningClient(client);
           setClient(client);
         }
         break;
