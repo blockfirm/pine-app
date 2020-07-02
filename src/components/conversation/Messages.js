@@ -90,8 +90,8 @@ export default class Messages extends PureComponent {
   _renderMessage({ item, index, section }) {
     const prevItem = section.data[index + 1]; // Plus one because the list is reversed.
     const nextItem = section.data[index - 1]; // Minus one because the list is reversed.
-    const isFirst = Boolean(!prevItem || prevItem.from !== item.from);
-    const isLast = Boolean(!nextItem || nextItem.from !== item.from);
+    const isFirst = Boolean(!prevItem || prevItem.from !== item.from || prevItem.data.card);
+    const isLast = Boolean(!nextItem || nextItem.from !== item.from || nextItem.data.card || item.data.card);
     const animate = this._shouldAnimateMessage(item);
 
     return (
