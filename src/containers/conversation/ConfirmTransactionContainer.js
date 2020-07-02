@@ -124,6 +124,11 @@ class ConfirmTransactionContainer extends Component {
     }
   }
 
+  _isPineContact() {
+    const { contact } = this.props;
+    return Boolean(contact && !contact.isBitcoinAddress && !contact.isLightningNode);
+  }
+
   _goBack() {
     const { dispatch } = this.props;
     dispatch(NavigationActions.back());
@@ -170,12 +175,11 @@ class ConfirmTransactionContainer extends Component {
   }
 
   async _checkLightningCapacities() {
-    const {
-      amountBtc,
-      lightningBalance,
-      contactInboundCapacity,
-      paymentRequest
-    } = this.props;
+    const { amountBtc, lightningBalance, contactInboundCapacity } = this.props;
+
+    if (!config.lightning.enabled || !this._isPineContact()) {
+      return;
+    }
 
     if (this.props.forceOnChain || this.state.forceOnChain) {
       return;
@@ -186,7 +190,7 @@ class ConfirmTransactionContainer extends Component {
     const hasInboundCapacity = amountSats <= contactInboundCapacity;
     const hasLightningCapacity = hasOutboundCapacity && hasInboundCapacity;
 
-    if (!paymentRequest && hasOutboundCapacity && contactInboundCapacity === null) {
+    if (hasOutboundCapacity && contactInboundCapacity === null) {
       // Wait for contact's inbound capacity to load and check again.
       return new Promise(resolve => {
         this._timeouts.push(
