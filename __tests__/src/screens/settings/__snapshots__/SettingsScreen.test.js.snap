@@ -857,7 +857,9 @@ exports[`SettingsScreen renders correctly 1`] = `
                     Object {
                       "marginLeft": 59,
                     },
-                    undefined,
+                    Object {
+                      "borderBottomWidth": 0,
+                    },
                   ]
                 }
               >

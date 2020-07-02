@@ -84,7 +84,12 @@ export default class SettingsScreen extends Component {
           }
 
           <View style={styles.linkAndDotWrapper}>
-            <SettingsLink icon={SettingsLink.ICON_STATUS} name='Status' onPress={this._showStatus.bind(this)} />
+            <SettingsLink
+              icon={SettingsLink.ICON_STATUS}
+              name='Status'
+              onPress={this._showStatus.bind(this)}
+              isLastItem={!config.lightning.enabled}
+            />
             <ConnectionIndicatorContainer style={styles.connectionWarning} />
           </View>
 
