@@ -1,3 +1,4 @@
+import { AppState } from 'react-native';
 import { beginBackgroundTask, endBackgroundTask } from 'react-native-begin-background-task';
 import { redeemInvoice } from '../../paymentServer/lightning';
 import { createInvoice } from '../createInvoice';
@@ -37,6 +38,11 @@ const redeemFailure = (invoice, error) => {
  */
 export const redeem = (invoice) => {
   return async (dispatch) => {
+    // Only redeem if app is active.
+    if (AppState.currentState !== 'active') {
+      return;
+    }
+
     const backgroundTaskId = await beginBackgroundTask();
 
     dispatch(redeemRequest());
