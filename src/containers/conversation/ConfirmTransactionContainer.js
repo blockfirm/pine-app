@@ -19,6 +19,7 @@ import {
   sendLegacyLightningPayment
 } from '../../actions/messages';
 
+import config from '../../config';
 import { estimateFee as estimateLightningFee } from '../../actions/lightning';
 import { getAddress } from '../../actions/paymentServer/contacts/getAddress';
 import { getNewInvoice } from '../../actions/paymentServer/lightning';
@@ -202,6 +203,10 @@ class ConfirmTransactionContainer extends Component {
   _isLightning() {
     const { paymentRequest } = this.props;
     const { hasLightningCapacity } = this.state;
+
+    if (!config.lightning.enabled) {
+      return false;
+    }
 
     if (this.props.forceOnChain || this.state.forceOnChain) {
       return false;
