@@ -17,6 +17,10 @@ const styles = StyleSheet.create({
   }
 });
 
+const messageIsCard = (message) => {
+  return Boolean(message && message.data && message.data.card);
+};
+
 export default class Messages extends PureComponent {
   constructor() {
     super(...arguments);
@@ -75,8 +79,8 @@ export default class Messages extends PureComponent {
       return 0;
     }
 
-    const hasCard = Boolean(this._newMessage.data.card);
-    return hasCard ? CARD_MESSAGE_HEIGHT : MESSAGE_HEIGHT;
+    const isCard = messageIsCard(this._newMessage);
+    return isCard ? CARD_MESSAGE_HEIGHT : MESSAGE_HEIGHT;
   }
 
   _keyExtractor(item, index) {
@@ -90,8 +94,11 @@ export default class Messages extends PureComponent {
   _renderMessage({ item, index, section }) {
     const prevItem = section.data[index + 1]; // Plus one because the list is reversed.
     const nextItem = section.data[index - 1]; // Minus one because the list is reversed.
-    const isFirst = Boolean(!prevItem || prevItem.from !== item.from || prevItem.data.card);
-    const isLast = Boolean(!nextItem || nextItem.from !== item.from || nextItem.data.card || item.data.card);
+    const prevItemIsCard = messageIsCard(prevItem);
+    const nextItemIsCard = messageIsCard(nextItem);
+    const currentItemIsCard = messageIsCard(item);
+    const isFirst = Boolean(!prevItem || prevItem.from !== item.from || prevItemIsCard);
+    const isLast = Boolean(!nextItem || nextItem.from !== item.from || nextItemIsCard || currentItemIsCard);
     const animate = this._shouldAnimateMessage(item);
 
     return (

@@ -127,7 +127,7 @@ class Message extends Component {
 
   _hasCard() {
     const { message } = this.props;
-    return Boolean(message.data.card);
+    return Boolean(message.data && message.data.card);
   }
 
   _getFirstBubbleStyle() {
