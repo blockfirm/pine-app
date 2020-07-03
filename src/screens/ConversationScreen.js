@@ -32,6 +32,7 @@ import {
 } from '../actions/messages';
 
 import vendors from '../vendors';
+import estimateKeyboardHeight from '../utils/estimateKeyboardHeight';
 import headerStyles from '../styles/headerStyles';
 import ContentView from '../components/ContentView';
 import HeaderTitle from '../components/conversation/HeaderTitle';
@@ -144,7 +145,7 @@ export default class ConversationScreen extends Component {
     initialAmountBtc: null,
     displayCurrency: 'BTC',
     displayUnit: 'BTC',
-    keyboardHeight: 301,
+    keyboardHeight: estimateKeyboardHeight(),
     keyboardAnimationDuration: 250,
     keyboardAnimationEasing: 'keyboard',
     keyboardIsVisible: false,
