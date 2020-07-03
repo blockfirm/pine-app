@@ -108,6 +108,10 @@ class ConfirmTransactionContainer extends Component {
     if (this.props.forceOnChain !== prevProps.forceOnChain) {
       return this._createState();
     }
+
+    if (this.props.selectedCard !== prevProps.selectedCard) {
+      return this._createState();
+    }
   }
 
   async _beginBackgroundTask() {
