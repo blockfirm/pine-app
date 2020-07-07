@@ -9,7 +9,17 @@ const TWO_DIGIT = '2-digit';
 
 const getDefaultFormatOptions = () => {
   const formattedTime = new Date('1 Jan 2020 01:01').toLocaleTimeString(LOCALE);
-  const timeParts = formattedTime.split(':');
+  let delimiter = ':';
+
+  if (formattedTime.indexOf(':') > -1) {
+    delimiter = ':';
+  } else if (formattedTime.indexOf('.') > -1) {
+    delimiter = '.';
+  } else {
+    return { hour: TWO_DIGIT, minute: TWO_DIGIT };
+  }
+
+  const timeParts = formattedTime.split(delimiter);
   const hour = timeParts[0];
   const minute = timeParts[1];
 
