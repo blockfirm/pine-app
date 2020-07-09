@@ -132,7 +132,7 @@ class AmountInput extends Component {
   _sanitizeAmount(amount) {
     let sanitized = amount.replace(/[^0-9,.]/g, '');
 
-    sanitized = sanitized.replace(/\./g, DECIMAL_SEPARATOR);
+    sanitized = sanitized.replace(/[.,]/g, DECIMAL_SEPARATOR);
 
     const { currency, unit } = this.props;
     const lastChar = sanitized.slice(-1);
