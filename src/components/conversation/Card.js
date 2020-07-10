@@ -72,7 +72,7 @@ export default class Card extends Component {
   };
 
   static getFallbackColor = card => {
-    return Card.CARD_FALLBACK_COLORS[card] || '#F4F4F4';
+    return Card.CARD_FALLBACK_COLORS[card] || '#F0F0F0';
   };
 
   state = {
