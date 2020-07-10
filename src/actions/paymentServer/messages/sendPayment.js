@@ -37,8 +37,9 @@ const sendPaymentFailure = (error) => {
  * @param {string} contact.address - The contact's Pine address.
  * @param {string} contact.userId - The contact's user ID.
  * @param {string} contact.publicKey - The contact's public key.
+ * @param {string} [card] - A Pine greeting card to attach to the payment (optional).
  */
-export const sendPayment = (transaction, contact) => {
+export const sendPayment = (transaction, contact, card) => {
   return (dispatch, getState) => {
     const state = getState();
     const { credentials } = state.pine;
@@ -49,7 +50,8 @@ export const sendPayment = (transaction, contact) => {
       type: MESSAGE_TYPE_PAYMENT,
       data: {
         transaction,
-        network
+        network,
+        card
       }
     };
 

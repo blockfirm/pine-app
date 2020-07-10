@@ -61,7 +61,7 @@ export const sendPayment = (rawTransaction, metadata, contact) => {
     dispatch(sendPaymentRequest());
 
     // Send payment as a message to the contact's Pine server.
-    return dispatch(sendPaymentToServer(rawTransaction, contact))
+    return dispatch(sendPaymentToServer(rawTransaction, contact, metadata.card))
       .then((sentMessage) => {
         const message = {
           id: sentMessage.id,
