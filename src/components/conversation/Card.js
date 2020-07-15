@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
-import FastImage from 'react-native-fast-image';
 
 const IMAGE_PLACEHOLDER = require('../../images/cards/CardPlaceholder.png');
 const IMAGE_NOT_FOUND = require('../../images/cards/CardNotFound.png');
@@ -104,7 +103,7 @@ export default class Card extends Component {
 
     return (
       <View style={[styles.container, sizeStyle, style]}>
-        <FastImage source={placeholderImage} style={[styles.card, sizeStyle]} />
+        <Image source={placeholderImage} style={[styles.card, sizeStyle]} />
       </View>
     );
   }
@@ -121,7 +120,7 @@ export default class Card extends Component {
 
     return (
       <View style={[styles.container, sizeStyle, style]}>
-        <FastImage
+        <Image
           source={cardImage}
           style={[styles.card, sizeStyle]}
           onError={this._onError}
