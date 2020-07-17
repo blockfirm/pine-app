@@ -234,13 +234,13 @@ export default class QrCodeScanner extends Component {
 
   _renderButton(cameraAuthorized) {
     const { copiedAddress } = this.state;
-    const subtitle = copiedAddress || 'No Address to Paste';
+    const subtitle = copiedAddress || 'Nothing to Paste';
     const disabled = !copiedAddress;
 
     if (cameraAuthorized) {
       return (
         <VibrancyButton
-          label='Paste Address'
+          label='Paste'
           subtitle={subtitle}
           disabled={disabled}
           onPress={this._onPaste.bind(this)}
@@ -265,7 +265,7 @@ export default class QrCodeScanner extends Component {
 
         <ContentView hasToolbar={true} style={styles.content}>
           <Paragraph style={styles.text}>
-            Scan a QR code or paste an address to send bitcoin.
+            Scan a QR code to send or receive bitcoin.
           </Paragraph>
 
           { this._renderViewport(cameraAuthorized) }

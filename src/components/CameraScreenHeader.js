@@ -42,7 +42,7 @@ export default class CameraScreenHeader extends Component {
     return (
       <View style={styles.header}>
         <StyledText style={[headerStyles.title, styles.title, styles.textShadow]}>
-          Send Bitcoin
+          Send or Receive Bitcoin
         </StyledText>
 
         <ForwardWhiteButton
