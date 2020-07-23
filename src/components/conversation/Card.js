@@ -9,6 +9,7 @@ const IMAGE_HAPPY_BIRTHDAY = require('../../images/cards/HappyBirthdayCard.jpg')
 const IMAGE_MOON_AND_BACK = require('../../images/cards/MoonAndBackCard.jpg');
 const IMAGE_ENJOY_THE_RIDE = require('../../images/cards/EnjoyTheRideCard.jpg');
 const IMAGE_PIZZA_OR_FORTUNE = require('../../images/cards/PizzaOrFortuneCard.jpg');
+const IMAGE_TAKE_MY_BITCOIN = require('../../images/cards/TakeMyBitcoinCard.jpg');
 
 const BLUR_TYPE_LIGHT = 'light';
 const BLUR_TYPE_DARK = 'dark';
@@ -28,13 +29,15 @@ export default class Card extends Component {
   static CARD_MOON_AND_BACK = 'MOON_AND_BACK';
   static CARD_ENJOY_THE_RIDE = 'ENJOY_THE_RIDE';
   static CARD_PIZZA_OR_FORTUNE = 'PIZZA_OR_FORTUNE';
+  static CARD_TAKE_MY_BITCOIN = 'TAKE_MY_BITCOIN';
 
   static CARDS = [
     Card.CARD_DONUT_SPEND_IT_ALL,
     Card.CARD_HAPPY_BIRTHDAY,
     Card.CARD_MOON_AND_BACK,
     Card.CARD_ENJOY_THE_RIDE,
-    Card.CARD_PIZZA_OR_FORTUNE
+    Card.CARD_PIZZA_OR_FORTUNE,
+    Card.CARD_TAKE_MY_BITCOIN
   ];
 
   static CARD_IMAGES = {
@@ -43,7 +46,8 @@ export default class Card extends Component {
     [Card.CARD_HAPPY_BIRTHDAY]: IMAGE_HAPPY_BIRTHDAY,
     [Card.CARD_MOON_AND_BACK]: IMAGE_MOON_AND_BACK,
     [Card.CARD_ENJOY_THE_RIDE]: IMAGE_ENJOY_THE_RIDE,
-    [Card.CARD_PIZZA_OR_FORTUNE]: IMAGE_PIZZA_OR_FORTUNE
+    [Card.CARD_PIZZA_OR_FORTUNE]: IMAGE_PIZZA_OR_FORTUNE,
+    [Card.CARD_TAKE_MY_BITCOIN]: IMAGE_TAKE_MY_BITCOIN
   };
 
   static CARD_BLUR_TYPES = {
@@ -51,7 +55,8 @@ export default class Card extends Component {
     [Card.CARD_HAPPY_BIRTHDAY]: BLUR_TYPE_LIGHT,
     [Card.CARD_MOON_AND_BACK]: BLUR_TYPE_DARK,
     [Card.CARD_ENJOY_THE_RIDE]: BLUR_TYPE_LIGHT,
-    [Card.CARD_PIZZA_OR_FORTUNE]: BLUR_TYPE_LIGHT
+    [Card.CARD_PIZZA_OR_FORTUNE]: BLUR_TYPE_LIGHT,
+    [Card.CARD_TAKE_MY_BITCOIN]: BLUR_TYPE_LIGHT
   };
 
   static CARD_FALLBACK_COLORS = {
@@ -59,7 +64,8 @@ export default class Card extends Component {
     [Card.CARD_HAPPY_BIRTHDAY]: '#FE6B3B',
     [Card.CARD_MOON_AND_BACK]: '#1A222E',
     [Card.CARD_ENJOY_THE_RIDE]: '#80E2D2',
-    [Card.CARD_PIZZA_OR_FORTUNE]: '#8090B2'
+    [Card.CARD_PIZZA_OR_FORTUNE]: '#8090B2',
+    [Card.CARD_TAKE_MY_BITCOIN]: '#E96759'
   };
 
   static getImage = card => {

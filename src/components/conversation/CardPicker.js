@@ -17,7 +17,8 @@ const CARDS = [
   Card.CARD_DONUT_SPEND_IT_ALL,
   Card.CARD_HAPPY_BIRTHDAY,
   Card.CARD_ENJOY_THE_RIDE,
-  Card.CARD_PIZZA_OR_FORTUNE
+  Card.CARD_PIZZA_OR_FORTUNE,
+  Card.CARD_TAKE_MY_BITCOIN
 ];
 
 const styles = StyleSheet.create({
