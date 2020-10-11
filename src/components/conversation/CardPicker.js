@@ -18,7 +18,8 @@ const CARDS = [
   Card.CARD_HAPPY_BIRTHDAY,
   Card.CARD_ENJOY_THE_RIDE,
   Card.CARD_PIZZA_OR_FORTUNE,
-  Card.CARD_TAKE_MY_BITCOIN
+  Card.CARD_TAKE_MY_BITCOIN,
+  Card.CARD_THANK_YOU_THIS_MUCH
 ];
 
 const styles = StyleSheet.create({
