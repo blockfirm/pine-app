@@ -11,6 +11,7 @@ const IMAGE_ENJOY_THE_RIDE = require('../../images/cards/EnjoyTheRideCard.jpg');
 const IMAGE_PIZZA_OR_FORTUNE = require('../../images/cards/PizzaOrFortuneCard.jpg');
 const IMAGE_TAKE_MY_BITCOIN = require('../../images/cards/TakeMyBitcoinCard.jpg');
 const IMAGE_THANK_YOU_THIS_MUCH = require('../../images/cards/ThankYouThisMuchCard.jpg');
+const IMAGE_HAPPY_BITCOINING = require('../../images/cards/HappyBitcoiningCard.jpg');
 
 const BLUR_TYPE_LIGHT = 'light';
 const BLUR_TYPE_DARK = 'dark';
@@ -32,6 +33,7 @@ export default class Card extends Component {
   static CARD_PIZZA_OR_FORTUNE = 'PIZZA_OR_FORTUNE';
   static CARD_TAKE_MY_BITCOIN = 'TAKE_MY_BITCOIN';
   static CARD_THANK_YOU_THIS_MUCH = 'THANK_YOU_THIS_MUCH';
+  static CARD_HAPPY_BITCOINING = 'HAPPY_BITCOINING';
 
   static CARDS = [
     Card.CARD_DONUT_SPEND_IT_ALL,
@@ -40,7 +42,8 @@ export default class Card extends Component {
     Card.CARD_ENJOY_THE_RIDE,
     Card.CARD_PIZZA_OR_FORTUNE,
     Card.CARD_TAKE_MY_BITCOIN,
-    Card.CARD_THANK_YOU_THIS_MUCH
+    Card.CARD_THANK_YOU_THIS_MUCH,
+    Card.CARD_HAPPY_BITCOINING
   ];
 
   static CARD_IMAGES = {
@@ -51,7 +54,8 @@ export default class Card extends Component {
     [Card.CARD_ENJOY_THE_RIDE]: IMAGE_ENJOY_THE_RIDE,
     [Card.CARD_PIZZA_OR_FORTUNE]: IMAGE_PIZZA_OR_FORTUNE,
     [Card.CARD_TAKE_MY_BITCOIN]: IMAGE_TAKE_MY_BITCOIN,
-    [Card.CARD_THANK_YOU_THIS_MUCH]: IMAGE_THANK_YOU_THIS_MUCH
+    [Card.CARD_THANK_YOU_THIS_MUCH]: IMAGE_THANK_YOU_THIS_MUCH,
+    [Card.CARD_HAPPY_BITCOINING]: IMAGE_HAPPY_BITCOINING
   };
 
   static CARD_BLUR_TYPES = {
@@ -61,7 +65,8 @@ export default class Card extends Component {
     [Card.CARD_ENJOY_THE_RIDE]: BLUR_TYPE_LIGHT,
     [Card.CARD_PIZZA_OR_FORTUNE]: BLUR_TYPE_LIGHT,
     [Card.CARD_TAKE_MY_BITCOIN]: BLUR_TYPE_LIGHT,
-    [Card.CARD_THANK_YOU_THIS_MUCH]: BLUR_TYPE_LIGHT
+    [Card.CARD_THANK_YOU_THIS_MUCH]: BLUR_TYPE_LIGHT,
+    [Card.CARD_HAPPY_BITCOINING]: BLUR_TYPE_LIGHT
   };
 
   static CARD_FALLBACK_COLORS = {
@@ -71,7 +76,8 @@ export default class Card extends Component {
     [Card.CARD_ENJOY_THE_RIDE]: '#80E2D2',
     [Card.CARD_PIZZA_OR_FORTUNE]: '#8090B2',
     [Card.CARD_TAKE_MY_BITCOIN]: '#E96759',
-    [Card.CARD_THANK_YOU_THIS_MUCH]: '#F0AE9D'
+    [Card.CARD_THANK_YOU_THIS_MUCH]: '#F0AE9D',
+    [Card.CARD_HAPPY_BITCOINING]: '#0C5670'
   };
 
   static getImage = card => {

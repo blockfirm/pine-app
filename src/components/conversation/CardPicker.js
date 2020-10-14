@@ -19,7 +19,8 @@ const CARDS = [
   Card.CARD_ENJOY_THE_RIDE,
   Card.CARD_PIZZA_OR_FORTUNE,
   Card.CARD_TAKE_MY_BITCOIN,
-  Card.CARD_THANK_YOU_THIS_MUCH
+  Card.CARD_THANK_YOU_THIS_MUCH,
+  Card.CARD_HAPPY_BITCOINING
 ];
 
 const styles = StyleSheet.create({
