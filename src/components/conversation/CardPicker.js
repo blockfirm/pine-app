@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, FlatList, Dimensions, Animated } from 'react-native';
 import ReactNativeHaptic from 'react-native-haptic';
+import moment from 'moment';
 
 import { withTheme } from '../../contexts/theme';
 import Card from './Card';
@@ -34,6 +35,18 @@ const styles = StyleSheet.create({
     overflow: 'visible'
   }
 });
+
+const addHolidayCards = (cards) => {
+  const year = new Date().getFullYear();
+  const newCards = [...cards];
+
+  // Halloween Card.
+  if (moment().isBetween(`${year}-10-23`, `${year}-11-08`)) {
+    newCards.splice(1, 0, Card.CARD_HAPPY_HALLOWEEN);
+  }
+
+  return newCards;
+};
 
 class CardPicker extends PureComponent {
   _getCardSize() {
@@ -89,7 +102,7 @@ class CardPicker extends PureComponent {
   render() {
     const { theme, pointerEvents } = this.props;
     const cardSizeWithMargins = this._getCardSizeWithMargins();
-    const cards = CARDS.map((card, index) => ({ key: index, card }));
+    const cards = addHolidayCards(CARDS).map((card, index) => ({ key: index, card }));
 
     const style = [
       styles.view,

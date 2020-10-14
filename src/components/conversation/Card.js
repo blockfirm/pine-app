@@ -13,6 +13,7 @@ const IMAGE_TAKE_MY_BITCOIN = require('../../images/cards/TakeMyBitcoinCard.jpg'
 const IMAGE_THANK_YOU_THIS_MUCH = require('../../images/cards/ThankYouThisMuchCard.jpg');
 const IMAGE_HAPPY_BITCOINING = require('../../images/cards/HappyBitcoiningCard.jpg');
 const IMAGE_WELCOME_TO_PINE = require('../../images/cards/WelcomeToPineCard.jpg');
+const IMAGE_HAPPY_HALLOWEEN = require('../../images/cards/HappyHalloweenCard.jpg');
 
 const BLUR_TYPE_LIGHT = 'light';
 const BLUR_TYPE_DARK = 'dark';
@@ -36,6 +37,7 @@ export default class Card extends Component {
   static CARD_THANK_YOU_THIS_MUCH = 'THANK_YOU_THIS_MUCH';
   static CARD_HAPPY_BITCOINING = 'HAPPY_BITCOINING';
   static CARD_WELCOME_TO_PINE = 'WELCOME_TO_PINE';
+  static CARD_HAPPY_HALLOWEEN = 'HAPPY_HALLOWEEN';
 
   static CARDS = [
     Card.CARD_DONUT_SPEND_IT_ALL,
@@ -46,7 +48,8 @@ export default class Card extends Component {
     Card.CARD_TAKE_MY_BITCOIN,
     Card.CARD_THANK_YOU_THIS_MUCH,
     Card.CARD_HAPPY_BITCOINING,
-    Card.CARD_WELCOME_TO_PINE
+    Card.CARD_WELCOME_TO_PINE,
+    Card.CARD_HAPPY_HALLOWEEN
   ];
 
   static CARD_IMAGES = {
@@ -59,7 +62,8 @@ export default class Card extends Component {
     [Card.CARD_TAKE_MY_BITCOIN]: IMAGE_TAKE_MY_BITCOIN,
     [Card.CARD_THANK_YOU_THIS_MUCH]: IMAGE_THANK_YOU_THIS_MUCH,
     [Card.CARD_HAPPY_BITCOINING]: IMAGE_HAPPY_BITCOINING,
-    [Card.CARD_WELCOME_TO_PINE]: IMAGE_WELCOME_TO_PINE
+    [Card.CARD_WELCOME_TO_PINE]: IMAGE_WELCOME_TO_PINE,
+    [Card.CARD_HAPPY_HALLOWEEN]: IMAGE_HAPPY_HALLOWEEN
   };
 
   static CARD_BLUR_TYPES = {
@@ -71,7 +75,8 @@ export default class Card extends Component {
     [Card.CARD_TAKE_MY_BITCOIN]: BLUR_TYPE_LIGHT,
     [Card.CARD_THANK_YOU_THIS_MUCH]: BLUR_TYPE_LIGHT,
     [Card.CARD_HAPPY_BITCOINING]: BLUR_TYPE_LIGHT,
-    [Card.CARD_WELCOME_TO_PINE]: BLUR_TYPE_LIGHT
+    [Card.CARD_WELCOME_TO_PINE]: BLUR_TYPE_LIGHT,
+    [Card.CARD_HAPPY_HALLOWEEN]: BLUR_TYPE_DARK
   };
 
   static CARD_FALLBACK_COLORS = {
@@ -83,7 +88,8 @@ export default class Card extends Component {
     [Card.CARD_TAKE_MY_BITCOIN]: '#E96759',
     [Card.CARD_THANK_YOU_THIS_MUCH]: '#F0AE9D',
     [Card.CARD_HAPPY_BITCOINING]: '#0C5670',
-    [Card.CARD_WELCOME_TO_PINE]: '#FCEC98'
+    [Card.CARD_WELCOME_TO_PINE]: '#FCEC98',
+    [Card.CARD_HAPPY_HALLOWEEN]: '#696399'
   };
 
   static getImage = card => {
