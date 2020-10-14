@@ -20,7 +20,8 @@ const CARDS = [
   Card.CARD_PIZZA_OR_FORTUNE,
   Card.CARD_TAKE_MY_BITCOIN,
   Card.CARD_THANK_YOU_THIS_MUCH,
-  Card.CARD_HAPPY_BITCOINING
+  Card.CARD_HAPPY_BITCOINING,
+  Card.CARD_WELCOME_TO_PINE
 ];
 
 const styles = StyleSheet.create({
