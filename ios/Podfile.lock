@@ -284,10 +284,10 @@ PODS:
     - React
   - RNVectorIcons (6.6.0):
     - React
-  - RSKImageCropper (2.2.3)
-  - SDWebImage (5.3.0):
-    - SDWebImage/Core (= 5.3.0)
-  - SDWebImage/Core (5.3.0)
+  - RSKImageCropper (3.0.0)
+  - SDWebImage (5.9.3):
+    - SDWebImage/Core (= 5.9.3)
+  - SDWebImage/Core (5.9.3)
   - TouchID (4.3.0):
     - React
   - Yoga (1.14.0)
@@ -523,8 +523,8 @@ SPEC CHECKSUMS:
   RNStaticSafeAreaInsets: e7f24b4b48990726d2d4184cb0cc4d0f2a904512
   RNSVG: f6177f8d7c095fada7cfee2e4bb7388ba426064c
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
-  RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
-  SDWebImage: f1afa74b86587c2c63f4e80dfd39b21e3c17b45b
+  RSKImageCropper: 81f449b4df96bdaf28e1ad6dcce28dcda2235458
+  SDWebImage: a31ee8e90a97303529e03fb0c333eae0eacb88e9
   TouchID: b816a3db79ac3f9da547d0d0d4bd87ff6e338ca9
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
