@@ -562,7 +562,7 @@ exports[`AboutScreen renders correctly 1`] = `
                 ]
               }
             >
-              © 2020 Blockfirm AB
+              © 2021 Blockfirm AB
             </Text>
           </View>
         </View>
