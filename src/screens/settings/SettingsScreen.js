@@ -55,11 +55,6 @@ export default class SettingsScreen extends Component {
     navigation.navigate('LightningSettings');
   }
 
-  _showBetaSettings() {
-    const { navigation } = this.props;
-    navigation.navigate('BetaSettings');
-  }
-
   _showStatus() {
     const { navigation } = this.props;
     navigation.navigate('Status');
@@ -88,15 +83,10 @@ export default class SettingsScreen extends Component {
               icon={SettingsLink.ICON_STATUS}
               name='Status'
               onPress={this._showStatus.bind(this)}
-              isLastItem={!config.lightning.enabled}
+              isLastItem={true}
             />
             <ConnectionIndicatorContainer style={styles.connectionWarning} />
           </View>
-
-          {
-            config.lightning.enabled ?
-            <SettingsLink icon={SettingsLink.ICON_BETA} name='Beta' onPress={this._showBetaSettings.bind(this)} isLastItem={true} /> : null
-          }
         </SettingsGroup>
       </BaseSettingsScreen>
     );

@@ -18,6 +18,11 @@ class LightningSettingsScreen extends Component {
     headerLeft: <BackButton onPress={() => navigation.goBack()} />
   });
 
+  _showAboutBeta() {
+    const { navigation } = this.props;
+    navigation.navigate('AboutBeta');
+  }
+
   _showOffChainBalance() {
     const { navigation } = this.props;
     navigation.navigate('OffChainBalance');
@@ -26,6 +31,9 @@ class LightningSettingsScreen extends Component {
   render() {
     return (
       <BaseSettingsScreen>
+        <SettingsGroup>
+          <SettingsLink name='About Beta' onPress={this._showAboutBeta.bind(this)} isLastItem={true} />
+        </SettingsGroup>
         <SettingsGroup>
           <SettingsLink name='Balance &amp; Capacity' onPress={this._showOffChainBalance.bind(this)} isLastItem={true} />
         </SettingsGroup>
