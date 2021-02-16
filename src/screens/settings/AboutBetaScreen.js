@@ -57,7 +57,7 @@ class AboutBetaScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerTransparent: true,
     headerBackground: <SettingsHeaderBackground />,
-    headerTitle: <HeaderTitle title='About Beta' />,
+    headerTitle: <HeaderTitle title='About Lightning Beta' />,
     headerLeft: <BackButton onPress={() => navigation.goBack()} />
   });
 
@@ -79,16 +79,15 @@ class AboutBetaScreen extends Component {
         <SettingsGroup style={styles.view}>
           <View style={styles.paragraphWrapper}>
             <Paragraph style={paragraphStyles}>
-              Pine's Lightning integration is finally in beta! It is non-custodial, meaning
-              that you own your private keys and that Pine does not have access to them. And
-              it does not require you to run your own Lightning node. Instead, a "virtual" node
-              is running in the cloud and is communicating securely with the app to sign
-              transactions, etc.
+              Welcome to Pine's Lightning integration! The integration is non-custodial,
+              meaning that you own your private keys and that Pine does
+              not have access to them. And it does not require you to run your own Lightning
+              node. Instead, a "virtual" node is running in the cloud and is communicating
+              securely with the app to sign transactions, etc.
             </Paragraph>
             <Paragraph style={paragraphStyles}>
-              Keep in mind that the integration is not complete, and once it comes out of beta
-              you won't have to think about rebalancing your channel or even whether your funds
-              are on-chain or off-chain – it will all be automatic and seamless.
+              Disclaimer: This is an early beta, don't try it with more money than you are
+              willing to lose.
             </Paragraph>
           </View>
 
@@ -126,6 +125,9 @@ class AboutBetaScreen extends Component {
             <Paragraph style={[paragraphStyles, styles.listItem]}>
               🔜 Independent recovery of Lightning funds
             </Paragraph>
+            <Paragraph style={[paragraphStyles, styles.listItem]}>
+              🔜 Rent inbound channel capacity
+            </Paragraph>
           </View>
 
           <Title style={titleStyles}>
@@ -138,8 +140,7 @@ class AboutBetaScreen extends Component {
               some love!
             </Paragraph>
             <Paragraph style={paragraphStyles}>
-              <Text>All you have to do is to take a screenshot and then share it as
-              Beta Feedback. You can also email </Text>
+              <Text>Email </Text>
               <Text style={theme.link} onPress={this._openEmail.bind(this)}>hi@pine.pm</Text>
               <Text> or tweet at </Text>
               <Text style={theme.link} onPress={this._openTwitter.bind(this)}>@pinewalletco</Text>
