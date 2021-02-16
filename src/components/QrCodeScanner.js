@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Dimensions, Linking, Clipboard, Alert } from 'react-native';
+import { AppState, StyleSheet, View, Image, Dimensions, Linking, Clipboard, Alert } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import PropTypes from 'prop-types';
 import { RNCamera } from 'react-native-camera';
@@ -82,19 +82,18 @@ export default class QrCodeScanner extends Component {
     copiedAddress: null
   }
 
+  constructor() {
+    super(...arguments);
+    this._onAppStateChange = this._onAppStateChange.bind(this);
+  }
+
   componentDidMount() {
-    this._clipboardInterval = setInterval(async () => {
-      try {
-        const copiedAddress = await this._getAddressFromClipboard();
-        this.setState({ copiedAddress });
-      } catch (error) {
-        this.setState({ copiedAddress: null });
-      }
-    }, 1000);
+    AppState.addEventListener('change', this._onAppStateChange);
+    this._onAppStateChange('active');
   }
 
   componentWillUnmount() {
-    clearInterval(this._clipboardInterval);
+    AppState.removeEventListener('change', this._onAppStateChange);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -113,6 +112,17 @@ export default class QrCodeScanner extends Component {
     }
 
     return false;
+  }
+
+  async _onAppStateChange(appState) {
+    if (appState === 'active') {
+      try {
+        const copiedAddress = await this._getAddressFromClipboard();
+        this.setState({ copiedAddress });
+      } catch (error) {
+        this.setState({ copiedAddress: null });
+      }
+    }
   }
 
   async _getAddressFromClipboard() {
