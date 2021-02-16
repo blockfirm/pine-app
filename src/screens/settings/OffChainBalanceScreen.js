@@ -4,6 +4,7 @@ import { StyleSheet, View, ActionSheetIOS } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { getEstimate } from '../../actions/bitcoin/fees';
 import { withTheme } from '../../contexts/theme';
 import { normalizeBtcAmount, satsToBtc } from '../../crypto/bitcoin';
 import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
@@ -19,6 +20,8 @@ import StrongText from '../../components/StrongText';
 import StackedBarChart from '../../components/charts/StackedBarChart';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import BaseSettingsScreen from './BaseSettingsScreen';
+
+const AVERAGE_TX_BYTES = 500;
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -58,6 +61,17 @@ class OffChainBalanceScreen extends Component {
     headerLeft: <BackButton onPress={() => { navigation.goBack(); }} />
   });
 
+  state = {
+    satsPerByte: 0
+  };
+
+  async componentDidMount() {
+    const { dispatch } = this.props;
+    const satsPerByte = await dispatch(getEstimate());
+
+    this.setState({ satsPerByte });
+  }
+
   _showCloseChannelConfirmation() {
     ActionSheetIOS.showActionSheetWithOptions({
       title: 'Do you want to close your Lightning channel? This will move all your on-chain funds to your off-chain funds, excluding fees. You can always reopen the channel later.',
@@ -82,31 +96,53 @@ class OffChainBalanceScreen extends Component {
   }
 
   _renderCloseChannelButton() {
+    const { commitFee } = this.props.balance;
+
     return (
-      <SettingsGroup>
-        <SettingsButton
-          title='Close Channel'
-          type='destructive'
-          onPress={this._showCloseChannelConfirmation.bind(this)}
-          style={styles.channelButton}
-          containerStyle={styles.channelButtonContainer}
-          isLastItem={true}
-        />
-      </SettingsGroup>
+      <>
+        <SettingsGroup>
+          <SettingsButton
+            title='Close Channel'
+            type='destructive'
+            onPress={this._showCloseChannelConfirmation.bind(this)}
+            style={styles.channelButton}
+            containerStyle={styles.channelButtonContainer}
+            isLastItem={true}
+          />
+        </SettingsGroup>
+        <SettingsDescription>
+          Estimated closing fee:&nbsp;
+          <CurrencyLabelContainer
+            amountBtc={satsToBtc(commitFee)}
+            currencyType='secondary'
+          />
+        </SettingsDescription>
+      </>
     );
   }
 
   _renderOpenChannelButton() {
+    const { satsPerByte } = this.state;
+
     return (
-      <SettingsGroup>
-        <SettingsButton
-          title='Open Channel'
-          onPress={this._showOpenChannelScreen.bind(this)}
-          style={styles.channelButton}
-          containerStyle={styles.channelButtonContainer}
-          isLastItem={true}
-        />
-      </SettingsGroup>
+      <>
+        <SettingsGroup>
+          <SettingsButton
+            title='Open Channel'
+            onPress={this._showOpenChannelScreen.bind(this)}
+            style={styles.channelButton}
+            containerStyle={styles.channelButtonContainer}
+            isLastItem={true}
+          />
+        </SettingsGroup>
+        <SettingsDescription>
+          Estimated opening fee:&nbsp;
+          {satsPerByte ? <CurrencyLabelContainer
+            amountBtc={satsToBtc(satsPerByte * AVERAGE_TX_BYTES)}
+            currencyType='secondary'
+          /> : 'Estimating...'}
+        </SettingsDescription>
+      </>
     );
   }
 
