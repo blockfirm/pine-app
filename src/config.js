@@ -39,7 +39,7 @@ export default {
     fee: {
       level: 'Normal', // One of: 'High', 'Normal', 'Low', 'Very Low', 'Custom'
       satoshisPerByte: 100, // Only used when level is set to 'Custom'
-      numberOfBlocks: 6 // Set priority to 6 blocks to try to keep fees down.
+      numberOfBlocks: 12 // Set priority to 12 blocks to try to keep fees down.
     }
   },
   lightning: {
