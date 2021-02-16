@@ -92,6 +92,30 @@ class AboutBetaScreen extends Component {
           </View>
 
           <Title style={titleStyles}>
+            Getting Started
+          </Title>
+          <View style={styles.paragraphWrapper}>
+            <Paragraph style={[paragraphStyles, styles.listItem]}>
+              1. Send some bitcoin to your wallet
+            </Paragraph>
+            <Paragraph style={[paragraphStyles, styles.listItem]}>
+              2. Wait for it to confirm
+            </Paragraph>
+            <Paragraph style={[paragraphStyles, styles.listItem]}>
+              3. Go to Settings → Lightning → Balance &amp; Capacity
+            </Paragraph>
+            <Paragraph style={[paragraphStyles, styles.listItem]}>
+              4. Press Open Channel and pick a funding amount to open a channel
+            </Paragraph>
+            <Paragraph style={[paragraphStyles, styles.listItem]}>
+              5. Wait until it is confirmed
+            </Paragraph>
+            <Paragraph style={[paragraphStyles, styles.listItem]}>
+              6. You can now send Lightning payments!
+            </Paragraph>
+          </View>
+
+          <Title style={titleStyles}>
             Features
           </Title>
           <View style={styles.paragraphWrapper}>
