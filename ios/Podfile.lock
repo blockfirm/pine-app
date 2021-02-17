@@ -284,10 +284,10 @@ PODS:
     - React
   - RNVectorIcons (6.6.0):
     - React
-  - RSKImageCropper (3.0.0)
-  - SDWebImage (5.9.3):
-    - SDWebImage/Core (= 5.9.3)
-  - SDWebImage/Core (5.9.3)
+  - RSKImageCropper (3.0.2)
+  - SDWebImage (5.10.4):
+    - SDWebImage/Core (= 5.10.4)
+  - SDWebImage/Core (5.10.4)
   - TouchID (4.3.0):
     - React
   - Yoga (1.14.0)
@@ -523,11 +523,11 @@ SPEC CHECKSUMS:
   RNStaticSafeAreaInsets: e7f24b4b48990726d2d4184cb0cc4d0f2a904512
   RNSVG: f6177f8d7c095fada7cfee2e4bb7388ba426064c
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
-  RSKImageCropper: 81f449b4df96bdaf28e1ad6dcce28dcda2235458
-  SDWebImage: a31ee8e90a97303529e03fb0c333eae0eacb88e9
+  RSKImageCropper: 1ac71e9a82e3f41eea3eedfff8eacb0d3821c9ec
+  SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   TouchID: b816a3db79ac3f9da547d0d0d4bd87ff6e338ca9
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: 23e1c84ae4c8c8401686653a35abcd8f02952ee7
+PODFILE CHECKSUM: a936a42ade81cee602f4802147af160210953eac
 
 COCOAPODS: 1.9.1
