@@ -21,7 +21,7 @@ import StackedBarChart from '../../components/charts/StackedBarChart';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
-const AVERAGE_TX_BYTES = 500;
+const AVERAGE_TX_BYTES = 150;
 
 const styles = StyleSheet.create({
   wrapper: {
