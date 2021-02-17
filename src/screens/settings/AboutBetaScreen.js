@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap'
   },
   paragraph: {
+    width: '100%',
     fontSize: 13,
     lineHeight: 15,
     letterSpacing: -0.08,
@@ -79,11 +80,12 @@ class AboutBetaScreen extends Component {
         <SettingsGroup style={styles.view}>
           <View style={styles.paragraphWrapper}>
             <Paragraph style={paragraphStyles}>
-              Welcome to Pine's Lightning integration! The integration is non-custodial,
-              meaning that you own your private keys and that Pine does
-              not have access to them. And it does not require you to run your own Lightning
-              node. Instead, a "virtual" node is running in the cloud and is communicating
-              securely with the app to sign transactions, etc.
+              Lightning payments are cheaper and faster than conventional bitcoin payments.
+              Connect Pine to Lightning to enjoy seamless Lightning payments while still
+              holding on to your private keys, which only you have access to. And
+              it does not require you to run your own Lightning node. Instead, a "virtual"
+              node is running in the cloud and is communicating securely with the app to sign
+              transactions, etc.
             </Paragraph>
             <Paragraph style={paragraphStyles}>
               Disclaimer: This is an early beta, don't try it with more money than you are
@@ -112,6 +114,10 @@ class AboutBetaScreen extends Component {
             </Paragraph>
             <Paragraph style={[paragraphStyles, styles.listItem]}>
               6. You can now send Lightning payments!
+            </Paragraph>
+            <Paragraph style={[paragraphStyles, styles.listItem]}>
+              7. You can only receive payments once you've made some Lightning payments
+              and have inbound capacity
             </Paragraph>
           </View>
 
