@@ -96,24 +96,6 @@ export default class QrCodeScanner extends Component {
     AppState.removeEventListener('change', this._onAppStateChange);
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (!this.state.cameraReady) {
-      return true;
-    }
-
-    if (nextProps.showPreview === this.props.showPreview) {
-      return true;
-    }
-
-    if (nextProps.showPreview) {
-      this._camera.resumePreview();
-    } else {
-      this._camera.pausePreview();
-    }
-
-    return false;
-  }
-
   async _onAppStateChange(appState) {
     if (appState === 'active') {
       try {
@@ -221,17 +203,6 @@ export default class QrCodeScanner extends Component {
     this.setState({
       cameraReady: true
     });
-
-    /*
-     * HACK: Pausing the camera preview just after it's ready sometimes
-     * makes the app freeze for a few seconds. Adding a 1s timeout seems
-     * to be fixing this.
-     */
-    setTimeout(() => {
-      if (!this.props.showPreview) {
-        this._camera.pausePreview();
-      }
-    }, 1000);
   }
 
   _renderViewport(cameraAuthorized) {
@@ -298,6 +269,10 @@ export default class QrCodeScanner extends Component {
   }
 
   render() {
+    if (!this.props.showPreview) {
+      return this._renderCameraContent(true);
+    }
+
     return (
       <View style={styles.view}>
         <RNCamera
