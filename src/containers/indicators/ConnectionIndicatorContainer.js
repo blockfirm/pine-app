@@ -7,7 +7,7 @@ import { getClient as getLightningClient } from '../../clients/lightning';
 import WarningDotIndicator from '../../components/indicators/WarningDotIndicator';
 import WarningLightningIndicator from '../../components/indicators/WarningLightningIndicator';
 
-const LIGHTNING_UPDATE_INTERVAL = 2000;
+const LIGHTNING_UPDATE_INTERVAL = 1000;
 
 const mapStateToProps = (state) => ({
   isDisconnectedFromInternet: Boolean(state.network.internet.disconnected),
@@ -47,8 +47,6 @@ class ConnectionIndicatorContainer extends PureComponent {
   };
 
   componentDidMount() {
-    this._updateLightningStatus();
-
     this._updateLightningInterval = setInterval(() => {
       this._updateLightningStatus();
     }, LIGHTNING_UPDATE_INTERVAL);
