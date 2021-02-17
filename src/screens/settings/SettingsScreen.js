@@ -75,7 +75,13 @@ export default class SettingsScreen extends Component {
 
           {
             config.lightning.enabled ?
-            <SettingsLink icon={SettingsLink.ICON_LIGHTNING} name='Lightning' onPress={this._showLightningSettings.bind(this)} /> : null
+              <SettingsLink
+                icon={SettingsLink.ICON_LIGHTNING}
+                name='Lightning'
+                value='Beta'
+                onPress={this._showLightningSettings.bind(this)}
+              />
+            : null
           }
 
           <View style={styles.linkAndDotWrapper}>
