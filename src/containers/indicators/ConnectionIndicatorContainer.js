@@ -47,6 +47,14 @@ class ConnectionIndicatorContainer extends PureComponent {
   };
 
   componentDidMount() {
+    /**
+     * The lightning bolt is shown on the settings icon and
+     * can flash quickly if status is updated immediately.
+     */
+    if (!this.props.withLightningBolt) {
+      this._updateLightningStatus();
+    }
+
     this._updateLightningInterval = setInterval(() => {
       this._updateLightningStatus();
     }, LIGHTNING_UPDATE_INTERVAL);
