@@ -75,7 +75,7 @@ class OffChainBalanceScreen extends Component {
 
   _showCloseChannelConfirmation() {
     ActionSheetIOS.showActionSheetWithOptions({
-      title: 'Do you want to close your Lightning channel? This will move all your on-chain funds to your off-chain funds, excluding fees. You can always reopen the channel later.',
+      title: 'Do you want to close your Lightning channel? This will move all your off-chain funds to your on-chain funds, excluding fees. You can always reopen the channel later.',
       options: ['Cancel', 'Close Channel'],
       destructiveButtonIndex: 1,
       cancelButtonIndex: 0
