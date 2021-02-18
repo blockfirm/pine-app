@@ -18,8 +18,8 @@ import Bullet from '../../components/typography/Bullet';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
 import BaseSettingsScreen from './BaseSettingsScreen';
 
-const MIN_SATS_AMOUNT = 20000;
-const MAX_SATS_AMOUNT = 500000;
+const MIN_SATS_AMOUNT = 50000;
+const MAX_SATS_AMOUNT = 1000000;
 
 const styles = StyleSheet.create({
   amountWrapper: {
