@@ -49,7 +49,11 @@ export default {
     // How many percent of the total channel capacity is reserved for fees.
     percentCapacityReservedForFees: 2,
 
-    isSetup: false
+    isSetup: false,
+
+    fundingFee: {
+      numberOfBlocks: 24 // ~4 hours, to keep fees down.
+    }
   },
   currency: {
     primary: 'BTC',

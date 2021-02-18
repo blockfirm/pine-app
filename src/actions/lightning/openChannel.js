@@ -25,13 +25,15 @@ const openChannelFailure = (error) => {
 };
 
 export const openChannel = (satsAmount) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     const client = getClient();
+    const state = getState();
+    const fundingFeePriority = state.settings.lightning.fundingFee.numberOfBlocks;
 
     dispatch(openChannelRequest());
 
     try {
-      const satsPerByte = await dispatch(getEstimate());
+      const satsPerByte = await dispatch(getEstimate(fundingFeePriority));
       await client.openChannel(satsAmount, satsPerByte);
     } catch (error) {
       dispatch(openChannelFailure(error));

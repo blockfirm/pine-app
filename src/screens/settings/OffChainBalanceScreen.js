@@ -51,7 +51,8 @@ const getReservedCapacity = (capacity, percentCapacityReservedForFees) => {
 
 @connect((state) => ({
   balance: state.lightning.balance, // Off-chain balances are in sats.
-  percentCapacityReservedForFees: state.settings.lightning.percentCapacityReservedForFees
+  percentCapacityReservedForFees: state.settings.lightning.percentCapacityReservedForFees,
+  fundingFeePriority: state.settings.lightning.fundingFee.numberOfBlocks
 }))
 class OffChainBalanceScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -66,8 +67,8 @@ class OffChainBalanceScreen extends Component {
   };
 
   async componentDidMount() {
-    const { dispatch } = this.props;
-    const satsPerByte = await dispatch(getEstimate());
+    const { dispatch, fundingFeePriority } = this.props;
+    const satsPerByte = await dispatch(getEstimate(fundingFeePriority));
 
     this.setState({ satsPerByte });
   }
@@ -122,7 +123,9 @@ class OffChainBalanceScreen extends Component {
   }
 
   _renderOpenChannelButton() {
+    const { fundingFeePriority } = this.props;
     const { satsPerByte } = this.state;
+    const hoursToConfirm = fundingFeePriority / 6;
 
     return (
       <>
@@ -136,7 +139,7 @@ class OffChainBalanceScreen extends Component {
           />
         </SettingsGroup>
         <SettingsDescription>
-          Estimated opening fee:&nbsp;
+          Estimated opening fee (~{hoursToConfirm} hrs):&nbsp;
           {satsPerByte ? <CurrencyLabelContainer
             amountBtc={satsToBtc(satsPerByte * AVERAGE_TX_BYTES)}
             currencyType='secondary'
@@ -265,6 +268,7 @@ OffChainBalanceScreen.propTypes = {
   navigation: PropTypes.any,
   balance: PropTypes.object,
   percentCapacityReservedForFees: PropTypes.number,
+  fundingFeePriority: PropTypes.number,
   theme: PropTypes.object.isRequired
 };
 
