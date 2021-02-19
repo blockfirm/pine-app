@@ -52,7 +52,7 @@ export default {
     isSetup: false,
 
     fundingFee: {
-      numberOfBlocks: 24 // ~4 hours, to keep fees down.
+      numberOfBlocks: 12 // ~2 hours, to keep fees down.
     }
   },
   currency: {
