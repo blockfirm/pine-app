@@ -216,8 +216,6 @@ PODS:
     - React
   - react-native-randombytes (3.5.3):
     - React
-  - react-native-slider (2.0.8):
-    - React
   - react-native-tooltip (5.2.0):
     - React
   - React-RCTActionSheet (0.61.4):
@@ -322,7 +320,6 @@ DEPENDENCIES:
   - react-native-keep-awake (from `../node_modules/react-native-keep-awake`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-randombytes (from `../node_modules/react-native-randombytes`)
-  - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
   - react-native-tooltip (from `../node_modules/react-native-tooltip`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -413,8 +410,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-randombytes:
     :path: "../node_modules/react-native-randombytes"
-  react-native-slider:
-    :path: "../node_modules/@react-native-community/slider"
   react-native-tooltip:
     :path: "../node_modules/react-native-tooltip"
   React-RCTActionSheet:
@@ -498,7 +493,6 @@ SPEC CHECKSUMS:
   react-native-keep-awake: afad8a51dfef9fe9655a6344771be32c8596d774
   react-native-netinfo: fa32a5bb986924e9be82a261c262039042dde81e
   react-native-randombytes: 3638d24759d67c68f6ccba60c52a7a8a8faa6a23
-  react-native-slider: 3a1cfd00c9c31068251b536822f7192e8d1d6b6f
   react-native-tooltip: 224ad9a499ef167de74dc270b5579dcab6826cd0
   React-RCTActionSheet: 7369b7c85f99b6299491333affd9f01f5a130c22
   React-RCTAnimation: d07be15b2bd1d06d89417eb0343f98ffd2b099a7
@@ -528,6 +522,6 @@ SPEC CHECKSUMS:
   TouchID: b816a3db79ac3f9da547d0d0d4bd87ff6e338ca9
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: a936a42ade81cee602f4802147af160210953eac
+PODFILE CHECKSUM: 49920b34f087fd651596d4da6144f6733b7c0650
 
 COCOAPODS: 1.9.1
