@@ -195,6 +195,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "link": Object {
                   "color": "#007AFF",
                 },
+                "metricTitle": Object {
+                  "color": "#B1AFB7",
+                },
                 "mnemonicWord": Object {
                   "color": "#999999",
                 },
@@ -251,6 +254,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "middleground5": "#F2F2F6",
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
+                  "orange3": "#DA7D02",
                   "overlay": "#FEFEFE",
                   "pink": "#ff2d55",
                   "red": "#FF3B30",
@@ -338,8 +342,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
                 },
-                "sliderTrackTintBackgroundColor": "#CECED0",
-                "sliderTrackTintColor": "#3478F5",
+                "sliderBackgroundColor": "#F6F6F6",
+                "sliderColor": "#FFCD00",
+                "sliderIconColor": "#DA7D02",
                 "smallLightningIconImage": Object {
                   "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
@@ -579,6 +584,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "link": Object {
                   "color": "#007AFF",
                 },
+                "metricTitle": Object {
+                  "color": "#B1AFB7",
+                },
                 "mnemonicWord": Object {
                   "color": "#999999",
                 },
@@ -635,6 +643,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "middleground5": "#F2F2F6",
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
+                  "orange3": "#DA7D02",
                   "overlay": "#FEFEFE",
                   "pink": "#ff2d55",
                   "red": "#FF3B30",
@@ -722,8 +731,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
                 },
-                "sliderTrackTintBackgroundColor": "#CECED0",
-                "sliderTrackTintColor": "#3478F5",
+                "sliderBackgroundColor": "#F6F6F6",
+                "sliderColor": "#FFCD00",
+                "sliderIconColor": "#DA7D02",
                 "smallLightningIconImage": Object {
                   "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
@@ -964,6 +974,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "link": Object {
                   "color": "#007AFF",
                 },
+                "metricTitle": Object {
+                  "color": "#B1AFB7",
+                },
                 "mnemonicWord": Object {
                   "color": "#999999",
                 },
@@ -1020,6 +1033,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "middleground5": "#F2F2F6",
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
+                  "orange3": "#DA7D02",
                   "overlay": "#FEFEFE",
                   "pink": "#ff2d55",
                   "red": "#FF3B30",
@@ -1107,8 +1121,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
                 },
-                "sliderTrackTintBackgroundColor": "#CECED0",
-                "sliderTrackTintColor": "#3478F5",
+                "sliderBackgroundColor": "#F6F6F6",
+                "sliderColor": "#FFCD00",
+                "sliderIconColor": "#DA7D02",
                 "smallLightningIconImage": Object {
                   "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
@@ -1402,6 +1417,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "link": Object {
                   "color": "#007AFF",
                 },
+                "metricTitle": Object {
+                  "color": "#B1AFB7",
+                },
                 "mnemonicWord": Object {
                   "color": "#999999",
                 },
@@ -1458,6 +1476,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "middleground5": "#F2F2F6",
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
+                  "orange3": "#DA7D02",
                   "overlay": "#FEFEFE",
                   "pink": "#ff2d55",
                   "red": "#FF3B30",
@@ -1545,8 +1564,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
                 },
-                "sliderTrackTintBackgroundColor": "#CECED0",
-                "sliderTrackTintColor": "#3478F5",
+                "sliderBackgroundColor": "#F6F6F6",
+                "sliderColor": "#FFCD00",
+                "sliderIconColor": "#DA7D02",
                 "smallLightningIconImage": Object {
                   "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
@@ -1823,6 +1843,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "link": Object {
                   "color": "#007AFF",
                 },
+                "metricTitle": Object {
+                  "color": "#B1AFB7",
+                },
                 "mnemonicWord": Object {
                   "color": "#999999",
                 },
@@ -1879,6 +1902,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "middleground5": "#F2F2F6",
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
+                  "orange3": "#DA7D02",
                   "overlay": "#FEFEFE",
                   "pink": "#ff2d55",
                   "red": "#FF3B30",
@@ -1966,8 +1990,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
                 },
-                "sliderTrackTintBackgroundColor": "#CECED0",
-                "sliderTrackTintColor": "#3478F5",
+                "sliderBackgroundColor": "#F6F6F6",
+                "sliderColor": "#FFCD00",
+                "sliderIconColor": "#DA7D02",
                 "smallLightningIconImage": Object {
                   "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
@@ -2245,6 +2270,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "link": Object {
                   "color": "#007AFF",
                 },
+                "metricTitle": Object {
+                  "color": "#B1AFB7",
+                },
                 "mnemonicWord": Object {
                   "color": "#999999",
                 },
@@ -2301,6 +2329,7 @@ exports[`HomeScreen renders correctly 1`] = `
                   "middleground5": "#F2F2F6",
                   "orange": "#FF9500",
                   "orange2": "#FF8D36",
+                  "orange3": "#DA7D02",
                   "overlay": "#FEFEFE",
                   "pink": "#ff2d55",
                   "red": "#FF3B30",
@@ -2388,8 +2417,9 @@ exports[`HomeScreen renders correctly 1`] = `
                 "shareIcon": Object {
                   "testUri": "../../../src/images/icons/Share.png",
                 },
-                "sliderTrackTintBackgroundColor": "#CECED0",
-                "sliderTrackTintColor": "#3478F5",
+                "sliderBackgroundColor": "#F6F6F6",
+                "sliderColor": "#FFCD00",
+                "sliderIconColor": "#DA7D02",
                 "smallLightningIconImage": Object {
                   "testUri": "../../../src/images/icons/SmallLightning.png",
                 },
