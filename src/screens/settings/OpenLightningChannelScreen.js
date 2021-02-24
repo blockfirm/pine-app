@@ -1,60 +1,108 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ActionSheetIOS } from 'react-native';
+import { StyleSheet, View, ActionSheetIOS, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Slider from '@react-native-community/slider';
 
+import { getEstimate } from '../../actions/bitcoin/fees';
 import { withTheme } from '../../contexts/theme';
+import headerStyles from '../../styles/headerStyles';
 import { satsToBtc, btcToSats } from '../../crypto/bitcoin';
-import SettingsHeaderBackground from '../../components/SettingsHeaderBackground';
+import ContentView from '../../components/ContentView';
+import Paragraph from '../../components/Paragraph';
+import LightningSlider from '../../components/lightning/LightningSlider';
+import NotEnoughFunds from '../../components/lightning/NotEnoughFunds';
+import HeaderBackground from '../../components/HeaderBackground';
 import HeaderTitle from '../../components/HeaderTitle';
 import CancelButton from '../../components/CancelButton';
 import HeaderButton from '../../components/buttons/HeaderButton';
 import StyledText from '../../components/StyledText';
-import SettingsTitle from '../../components/SettingsTitle';
-import SettingsDescription from '../../components/SettingsDescription';
-import SettingsGroup from '../../components/SettingsGroup';
-import Bullet from '../../components/typography/Bullet';
 import CurrencyLabelContainer from '../../containers/CurrencyLabelContainer';
-import BaseSettingsScreen from './BaseSettingsScreen';
+import BaseScreen from '../BaseScreen';
+
+const WINDOW_WIDTH = Dimensions.get('window').width;
+const SLIDER_SIZE = WINDOW_WIDTH - 80;
 
 const MIN_SATS_AMOUNT = 50000;
 const MAX_SATS_AMOUNT = 1000000;
 
+const AVERAGE_TX_BYTES = 300;
+
 const styles = StyleSheet.create({
-  amountWrapper: {
+  view: {
+    padding: 0
+  },
+  contentView: {
+    paddingLeft: 20,
+    paddingRight: 20
+  },
+  topWrapper: {
     flex: 1,
-    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 80
+  },
+  text: {
+    maxWidth: 300,
+    textAlign: 'center',
+    fontSize: 18,
+    marginBottom: 30
+  },
+  amountWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 15
+    position: 'absolute',
+    paddingTop: 5
+  },
+  amountPrimary: {
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  amountSecondary: {
+    fontSize: 18
   },
   sliderWrapper: {
-    marginLeft: 15,
-    marginRight: 15
-  },
-  slider: {
+    flex: 1,
     width: '100%',
-    height: 40
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20
   },
-  channelButtonContainer: {
-    paddingRight: 0,
-    marginLeft: 0
+  bottomWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 100
   },
-  channelButton: {
-    alignSelf: 'center'
+  metrics: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
-  channelButtonLoader: {
-    right: null,
-    alignSelf: 'center'
+  metric: {
+    flex: 2,
+    alignItems: 'center'
   },
-  notEnoughFundsText: {
-    margin: 15
+  metricTitle: {
+    width: 110,
+    fontSize: 13,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    textAlign: 'center',
+    marginBottom: 5
+  },
+  feePrimary: {
+    fontSize: 18,
+    fontWeight: '600'
+  },
+  feeSecondary: {
+  },
+  hours: {
+    fontSize: 20,
+    fontWeight: '600'
   }
 });
 
 @connect((state) => ({
-  spendableBitcoinBalance: state.bitcoin.wallet.spendableBalance
+  spendableBitcoinBalance: state.bitcoin.wallet.spendableBalance,
+  fundingFeePriority: state.settings.lightning.fundingFee.numberOfBlocks
 }))
 class OpenLightningChannelScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -63,7 +111,8 @@ class OpenLightningChannelScreen extends Component {
 
     return {
       headerTransparent: true,
-      headerBackground: <SettingsHeaderBackground />,
+      headerBackground: <HeaderBackground />,
+      headerStyle: headerStyles.borderlessHeader,
       headerTitle: <HeaderTitle title='Open Channel' />,
       headerLeft: <CancelButton onPress={screenProps.dismiss} />,
       headerRight: <HeaderButton label='Open' onPress={submit} disabled={!canSubmit} />
@@ -71,17 +120,28 @@ class OpenLightningChannelScreen extends Component {
   };
 
   state = {
-    satsAmount: MIN_SATS_AMOUNT
+    satsAmount: MIN_SATS_AMOUNT,
+    satsPerByte: 0
   };
 
-  componentDidMount() {
-    const { navigation, spendableBitcoinBalance } = this.props;
-    const spendableSats = btcToSats(spendableBitcoinBalance);
-    const canSubmit = spendableSats >= MIN_SATS_AMOUNT;
+  async componentDidMount() {
+    const {
+      dispatch,
+      navigation,
+      spendableBitcoinBalance,
+      fundingFeePriority
+    } = this.props;
 
-    navigation.setParams({
-      canSubmit,
-      submit: this._showOpenChannelConfirmation.bind(this)
+    const satsPerByte = await dispatch(getEstimate(fundingFeePriority));
+
+    this.setState({ satsPerByte }, () => {
+      const spendableSats = btcToSats(spendableBitcoinBalance);
+      const canSubmit = spendableSats >= this._getMinimumFunds();
+
+      navigation.setParams({
+        canSubmit,
+        submit: this._showOpenChannelConfirmation.bind(this)
+      });
     });
   }
 
@@ -110,69 +170,107 @@ class OpenLightningChannelScreen extends Component {
     });
   }
 
+  _getMinimumFunds() {
+    const { satsPerByte } = this.state;
+    const satsFee = satsPerByte * AVERAGE_TX_BYTES;
+
+    return MIN_SATS_AMOUNT + satsFee * 2;
+  }
+
   _renderNotEnoughFunds() {
-    const { theme } = this.props;
-    const minimumBtcAmount = satsToBtc(MIN_SATS_AMOUNT);
+    const minimumSatsAmount = Math.ceil(this._getMinimumFunds() * 1.1); // 10% margin in case fees goes up.
+    const minimumBtcAmount = satsToBtc(minimumSatsAmount);
 
     return (
-      <BaseSettingsScreen>
-        <SettingsGroup>
-          <StyledText style={[theme.errorText, styles.notEnoughFundsText]}>
-            You need a minimum of&nbsp;
-            <CurrencyLabelContainer
-              amountBtc={minimumBtcAmount}
-              currencyType='primary'
-              style={theme.errorText}
-            />
-            &nbsp;in spendable on-chain funds before you can open a channel.
-          </StyledText>
-        </SettingsGroup>
-      </BaseSettingsScreen>
+      <BaseScreen hideHeader={true} style={styles.view}>
+        <ContentView style={styles.contentView}>
+          <NotEnoughFunds minimumBtcAmount={minimumBtcAmount} />
+        </ContentView>
+      </BaseScreen>
     );
   }
 
   render() {
-    const { theme, spendableBitcoinBalance } = this.props;
-    const { satsAmount } = this.state;
+    const { theme, spendableBitcoinBalance, fundingFeePriority } = this.props;
+    const { satsAmount, satsPerByte } = this.state;
+    const satsFee = satsPerByte * AVERAGE_TX_BYTES;
+    const satsReserved = Math.ceil(satsFee * 1.5);
     const spendableSats = btcToSats(spendableBitcoinBalance);
     const btcAmount = satsToBtc(satsAmount);
+    const btcFee = satsToBtc(satsFee);
+    const hoursToConfirm = fundingFeePriority / 6;
+    const upperLimit = Math.min(spendableSats - satsReserved, MAX_SATS_AMOUNT);
 
-    if (spendableSats < MIN_SATS_AMOUNT) {
+    if (spendableSats < this._getMinimumFunds()) {
       return this._renderNotEnoughFunds();
     }
 
     return (
-      <BaseSettingsScreen>
-        <SettingsTitle>Select Amount</SettingsTitle>
-        <SettingsGroup>
-          <View style={styles.amountWrapper}>
-            <CurrencyLabelContainer
-              amountBtc={btcAmount}
-              currencyType='primary'
-            />
-            <Bullet />
-            <CurrencyLabelContainer
-              amountBtc={btcAmount}
-              currencyType='secondary'
-            />
+      <BaseScreen hideHeader={true} style={styles.view}>
+        <ContentView style={styles.contentView}>
+          <View style={styles.topWrapper}>
+            <Paragraph style={styles.text}>
+              Select the amount you would like to move from your on-chain funds to a Lightning channel.
+            </Paragraph>
           </View>
+
           <View style={styles.sliderWrapper}>
-            <Slider
-              style={styles.slider}
-              step={1000}
-              minimumValue={MIN_SATS_AMOUNT}
-              maximumValue={Math.min(spendableSats, MAX_SATS_AMOUNT)}
+            <LightningSlider
+              width={SLIDER_SIZE}
+              height={SLIDER_SIZE}
               value={satsAmount}
+              maximumValue={spendableSats}
+              lowerLimit={MIN_SATS_AMOUNT}
+              upperLimit={upperLimit}
               onValueChange={this._onAmountChange.bind(this)}
-              minimumTrackTintColor={theme.sliderTrackTintColor}
-              maximumTrackTintColor={theme.sliderTrackTintBackgroundColor}
+              step={10000}
             />
+            <View style={styles.amountWrapper}>
+              <CurrencyLabelContainer
+                style={[theme.text, styles.amountPrimary]}
+                amountBtc={btcAmount}
+                currencyType='primary'
+              />
+              <CurrencyLabelContainer
+                style={[theme.text, styles.amountSecondary]}
+                amountBtc={btcAmount}
+                currencyType='secondary'
+              />
+            </View>
           </View>
-        </SettingsGroup>
-        <SettingsDescription>
-          Select the amount you would like to move from your on-chain funds to an off-chain channel.
-        </SettingsDescription>
-      </BaseSettingsScreen>
+
+          <View style={styles.bottomWrapper}>
+            <View style={styles.metrics}>
+              <View style={styles.metric}>
+                <StyledText style={[theme.metricTitle, styles.metricTitle]}>
+                  Estimated Opening Fee
+                </StyledText>
+                <CurrencyLabelContainer
+                  style={[theme.text, styles.feePrimary]}
+                  amountBtc={btcFee}
+                  currencyType='primary'
+                />
+                <CurrencyLabelContainer
+                  style={[theme.text, styles.feeSecondary]}
+                  amountBtc={btcFee}
+                  currencyType='secondary'
+                />
+              </View>
+              <View style={styles.metric}>
+                <StyledText style={[theme.metricTitle, styles.metricTitle]}>
+                  Estimated Opening Time
+                </StyledText>
+                <StyledText style={[theme.text, styles.feePrimary]}>
+                  {hoursToConfirm} hours
+                </StyledText>
+                <StyledText style={[theme.text, styles.feeSecondary]}>
+                  {fundingFeePriority} blocks
+                </StyledText>
+              </View>
+            </View>
+          </View>
+        </ContentView>
+      </BaseScreen>
     );
   }
 }
@@ -182,6 +280,7 @@ OpenLightningChannelScreen.propTypes = {
   navigation: PropTypes.any,
   screenProps: PropTypes.object,
   spendableBitcoinBalance: PropTypes.number,
+  fundingFeePriority: PropTypes.number,
   theme: PropTypes.object.isRequired
 };
 

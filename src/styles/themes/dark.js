@@ -28,6 +28,7 @@ const palette = {
   blue: '#0A84FF',
   blue2: '#3B82F6',
   orange: '#FF9F0A',
+  orange2: '#B65C02',
   green: '#30d158',
   indigo: '#5e5ce6',
   pink: '#ff375f'
@@ -173,13 +174,15 @@ export default {
     borderColor: palette.gray9
   },
   inputFocus: { borderColor: palette.blue },
-  sliderTrackTintColor: palette.blue2,
-  sliderTrackTintBackgroundColor: palette.gray9,
+  sliderColor: palette.yellow,
+  sliderBackgroundColor: palette.middleground2,
+  sliderIconColor: palette.orange2,
   lightningBadgeImage: require('../../images/badges/LightningBadgeDark.png'),
   smallLightningIconImage: require('../../images/icons/SmallLightningDark.png'),
   progressBarBackgroundColor: palette.middleground1,
   progressBarForegroundColor: palette.yellow,
   progressBarForegroundColorRed: palette.red1,
   cardSelected: { borderColor: palette.blue },
+  metricTitle: { color: palette.gray1 },
   palette
 };
