@@ -37,7 +37,7 @@
     "coinselect": "^3.1.11",
     "create-hash": "^1.2.0",
     "deepmerge": "^2.1.0",
-    "elliptic": "^6.4.1",
+    "elliptic": "^6.5.4",
     "eventemitter3": "^4.0.0",
     "events": "^3.0.0",
     "hoist-non-react-statics": "^3.3.1",
