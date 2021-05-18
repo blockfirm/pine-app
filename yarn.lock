@@ -6047,10 +6047,10 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
-react-native-fast-image@^6.0.3:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-6.1.1.tgz#502165beeafdd117e09dfb68ba322fe602534b8e"
-  integrity sha512-9bYUY8GLKpuTF9WOC28VM/ceH0+GyV60g3bcwYeiq0A+oDBVyVlj/ovMaJqRxHII6GQYX0WbTkiT5kWtPCtWkA==
+react-native-fast-image@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.3.0.tgz#5821fac5e8759b3a87628600522eb72c579b0b9f"
+  integrity sha512-b0uhUEXKuIWY1WFai30i4LR99kF8OKoOjl6Yqcnc/bydkuE1r7oj0eUNifa7jwD4Pdpeff+uGMrEz27UMap0yQ==
 
 react-native-haptic@^1.0.9:
   version "1.0.9"
