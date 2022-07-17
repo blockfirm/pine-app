@@ -567,7 +567,7 @@ exports[`AboutScreen renders correctly 1`] = `
                 ]
               }
             >
-              © 2021 Blockfirm AB
+              © 2022 Blockfirm AB
             </Text>
           </View>
         </View>
