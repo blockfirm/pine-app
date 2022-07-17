@@ -56,7 +56,7 @@ const transformUtxos = (utxos) => {
       txid: utxo.txid,
       vout: utxo.n,
       value: satoshis,
-      addresses: utxo.scriptPubKey.addresses
+      addresses: utxo.scriptPubKey.addresses || []
     };
   });
 };

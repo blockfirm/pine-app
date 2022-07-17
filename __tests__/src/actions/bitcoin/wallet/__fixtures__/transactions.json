@@ -49,10 +49,7 @@
           "asm": "OP_HASH160 6109fcd0a9f339017229a01119417696721ea465 OP_EQUAL",
           "hex": "a9146109fcd0a9f339017229a01119417696721ea46587",
           "reqSigs": 1,
-          "type": "scripthash",
-          "addresses": [
-            "2N26KVqdYMi5jmgGyZErhyGuQyfqAVQLQtK"
-          ]
+          "type": "scripthash"
         }
       }
     ],
@@ -891,10 +888,7 @@
           "asm": "OP_DUP OP_HASH160 23f8236ac2f0db3630d9bea392f1e51b189fb1db OP_EQUALVERIFY OP_CHECKSIG",
           "hex": "76a91423f8236ac2f0db3630d9bea392f1e51b189fb1db88ac",
           "reqSigs": 1,
-          "type": "pubkeyhash",
-          "addresses": [
-            "mio9CisZv6FJuZNViA7XRGESZdiPAWo8Qh"
-          ]
+          "type": "pubkeyhash"
         }
       },
       {

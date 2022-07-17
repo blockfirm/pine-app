@@ -2,6 +2,10 @@
  * Finds an external wallet address the vout pays to, if any.
  */
 const findExternalWalletAddress = (vout, externalAddresses) => {
+  if (!vout.scriptPubKey.addresses) {
+    return false;
+  }
+
   return vout.scriptPubKey.addresses.find((address) => {
     return address in externalAddresses;
   });
@@ -11,6 +15,10 @@ const findExternalWalletAddress = (vout, externalAddresses) => {
  * Finds an internal wallet address the vout pays to, if any.
  */
 const findInternalWalletAddress = (vout, internalAddresses) => {
+  if (!vout.scriptPubKey.addresses) {
+    return false;
+  }
+
   return vout.scriptPubKey.addresses.find((address) => {
     return address in internalAddresses;
   });

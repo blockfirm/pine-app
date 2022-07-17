@@ -72,6 +72,10 @@ const buildVinMap = (vins) => {
  * @param {object} internalAddresses - Set of addresses in the format { <address>: {} }.
  */
 const hasWalletAddress = (vout, externalAddresses, internalAddresses) => {
+  if (!vout.scriptPubKey.addresses) {
+    return false;
+  }
+
   return vout.scriptPubKey.addresses.some((address) => {
     return address in externalAddresses || address in internalAddresses;
   });

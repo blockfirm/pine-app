@@ -27,7 +27,9 @@ const syncFailure = (error) => {
 const flagAddressesAsUsed = (dispatch, transactions) => {
   const usedAddresses = transactions.reduce((list, transaction) => {
     transaction.vout.forEach((vout) => {
-      vout.scriptPubKey.addresses.forEach((address) => list.push(address));
+      if (vout.scriptPubKey.addresses) {
+        vout.scriptPubKey.addresses.forEach((address) => list.push(address));
+      }
     });
 
     return list;

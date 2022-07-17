@@ -68,7 +68,7 @@ const createCancellationTransaction = (transaction, changeAddress, utxos) => {
       txid,
       vout: input.index,
       value: satoshis,
-      addresses: utxo.scriptPubKey.addresses
+      addresses: utxo.scriptPubKey.addresses || []
     };
   });
 

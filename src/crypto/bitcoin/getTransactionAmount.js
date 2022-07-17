@@ -4,6 +4,10 @@ import normalizeBtcAmount from './normalizeBtcAmount';
  * Whether a vout pays to one of the specified wallet addresses.
  */
 const hasWalletAddress = (vout, externalAddresses, internalAddresses) => {
+  if (!vout.scriptPubKey.addresses) {
+    return false;
+  }
+
   return vout.scriptPubKey.addresses.some((address) => {
     return address in externalAddresses || address in internalAddresses;
   });
@@ -13,6 +17,10 @@ const hasWalletAddress = (vout, externalAddresses, internalAddresses) => {
  * Whether a vout pays to one of the specified external addresses.
  */
 const hasExternalWalletAddress = (vout, externalAddresses) => {
+  if (!vout.scriptPubKey.addresses) {
+    return false;
+  }
+
   return vout.scriptPubKey.addresses.some((address) => {
     return address in externalAddresses;
   });
