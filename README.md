@@ -8,7 +8,7 @@ Pine Wallet
 [Pine](https://pine.pm) is an open-source bitcoin wallet for sending and receiving money among your friends.
 
 > [!WARNING]  
-> This project is not actively developed. Use with caution.
+> **This project is not actively developed.** Use with caution. To recover a Pine wallet, see [RECOVERY.md](RECOVERY.md).
 
 ## Getting Started
 
