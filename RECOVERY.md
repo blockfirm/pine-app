@@ -14,6 +14,10 @@ Use the following information if you need to recover a Pine wallet in another ap
 
 ## Recover With Another App
 
+> **Update 13 Nov 2025:**  
+> It's no longer possible to recover BIP39/BIP49 wallets with BlueWallet since they removed the "advanced mode".
+> To recover a Pine wallet in another app, try the [Blockstream App](https://blockstream.com/app/) instead.
+
 You can easily recover your Pine wallet in [BlueWallet](https://bluewallet.io).
 
 ### Step 1: Get your recovery key from Pine by going to (in the app):
